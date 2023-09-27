@@ -7,11 +7,38 @@ public class NewBehaviourScript : MonoBehaviour
     private Vector3 mOffset;
     private float mZCoord;
 
+    public Rigidbody rb;
+
+    private Vector3 prevPos;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        prevPos = gameObject.transform.position;
+    }
+
     private void OnMouseDown()
     {
+        if (rb != null)
+        {
+            // turn off gravity
+            rb.useGravity = false;
+            rb.velocity = Vector3.zero;
+        }
+
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 
-        mOffset = gameObject.transform.position - GetMouseWorldPos();
+        mOffset = transform.position - GetMouseWorldPos();
+    }
+
+    private void OnMouseUp()
+    {
+        if (rb != null)
+        {
+            // turn gravity back on
+            rb.useGravity = true;
+            rb.velocity = ((transform.position - prevPos) / Time.deltaTime);
+        }
     }
 
     private Vector3 GetMouseWorldPos()
@@ -27,6 +54,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        prevPos = transform.position;
         transform.position = GetMouseWorldPos() + mOffset;
     }
 }
