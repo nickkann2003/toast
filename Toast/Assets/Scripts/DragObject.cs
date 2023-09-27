@@ -9,12 +9,9 @@ public class NewBehaviourScript : MonoBehaviour
 
     public Rigidbody rb;
 
-    private Vector3 prevPos;
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        prevPos = gameObject.transform.position;
     }
 
     private void OnMouseDown()
@@ -37,7 +34,7 @@ public class NewBehaviourScript : MonoBehaviour
         {
             // turn gravity back on
             rb.useGravity = true;
-            rb.velocity = ((transform.position - prevPos) / (Time.deltaTime * 3));
+            rb.velocity = ((GetMouseWorldPos() + mOffset - transform.position) * 10);
         }
     }
 
@@ -54,7 +51,9 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        prevPos = transform.position;
-        transform.position = GetMouseWorldPos() + mOffset;
+        //transform.position = GetMouseWorldPos() + mOffset;
+        rb.velocity = ((GetMouseWorldPos() + mOffset - transform.position) * 10);
+        //rb.AddForceAtPosition(GetMouseWorldPos() + mOffset - transform.position, GetMouseWorldPos() + mOffset);
+        //rb.MovePosition(GetMouseWorldPos() + mOffset);
     }
 }
