@@ -37,7 +37,7 @@ public class NewBehaviourScript : MonoBehaviour
         {
             // turn gravity back on
             rb.useGravity = true;
-            rb.velocity = ((transform.position - prevPos) / Time.deltaTime);
+            rb.velocity = ((transform.position - prevPos) / (Time.deltaTime * 3));
         }
     }
 
