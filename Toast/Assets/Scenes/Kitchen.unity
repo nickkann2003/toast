@@ -874,6 +874,7 @@ GameObject:
   - component: {fileID: 1837828604}
   - component: {fileID: 1837828607}
   - component: {fileID: 1837828606}
+  - component: {fileID: 1837828608}
   - component: {fileID: 1837828605}
   m_Layer: 0
   m_Name: Button
@@ -968,6 +969,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1837828603}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1837828608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837828603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25688725de6164e41a85e61331a52d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHeight: 0.261
+  minHeight: -0.23
+  mouseY: 0
+  localPos: {x: 0, y: 0, z: 0}
+  timer: 0
+  maxTime: 10
 --- !u!1 &2108245368
 GameObject:
   m_ObjectHideFlags: 0
