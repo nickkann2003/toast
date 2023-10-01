@@ -13,10 +13,15 @@ public class NewBehaviourScript : MonoBehaviour
 
     public Rigidbody rb;
 
+    // Outline function test
+    private Outline outline;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         hand = Camera.main.GetComponent<Hand>();
+
+        outline = GetComponent<Outline>();
     }
 
     private void OnMouseDown()
@@ -75,5 +80,17 @@ public class NewBehaviourScript : MonoBehaviour
         rb.velocity = ((GetMouseWorldPos() + mOffset - transform.position) * 10);
         //rb.AddForceAtPosition(GetMouseWorldPos() + mOffset - transform.position, GetMouseWorldPos() + mOffset);
         //rb.MovePosition(GetMouseWorldPos() + mOffset);
+    }
+
+
+    // Test function
+    private void OnMouseOver()
+    {
+        outline.enabled= true;
+    }
+
+    private void OnMouseExit()
+    {
+        outline.enabled= false;
     }
 }
