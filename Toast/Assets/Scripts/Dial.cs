@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 
-public class Lever : MonoBehaviour
+public class Dial : MonoBehaviour
 {
-    private Vector3 mOffset;
+    public Vector3 mOffset;
     private float mZCoord;
 
     public float maxHeight;
@@ -13,6 +12,7 @@ public class Lever : MonoBehaviour
     private bool mouse;
 
     private Vector3 pos;
+    public Quaternion rotation;
 
     // allows objects to be given parents without having a parent
     private Transform parent;
@@ -23,6 +23,7 @@ public class Lever : MonoBehaviour
 
     private void Start()
     {
+        rotation = transform.rotation;
         mouse = false;
 
         if (transform.parent != null && parent == null)
@@ -33,24 +34,24 @@ public class Lever : MonoBehaviour
 
     private void Update()
     {
-        if (timer > 0)
-        {
-            timer -= Time.deltaTime;
-        }
-        else if (!mouse)
-        {
-            
-            pos = ConvertToLocalPos(transform.position);
+        //if (timer > 0)
+        //{
+        //    timer -= Time.deltaTime;
+        //}
+        //else if (!mouse)
+        //{
 
-            if (pos.y < maxHeight)
-            {
-                pos.y += ((maxHeight - minHeight) / .1f) * Time.deltaTime;
-            }
-            // convert from local to world pos if object has parent
-            pos = ConvertToWorldPos(pos);
+        //    pos = ConvertToLocalPos(transform.position);
 
-            transform.position = pos;
-        }
+        //    if (pos.y < maxHeight)
+        //    {
+        //        pos.y += ((maxHeight - minHeight) / .1f) * Time.deltaTime;
+        //    }
+        //    // convert from local to world pos if object has parent
+        //    pos = ConvertToWorldPos(pos);
+
+        //    transform.position = pos;
+        //}
     }
 
     private void OnMouseDown()
@@ -69,29 +70,32 @@ public class Lever : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (timer <= 0)
-        {
-            mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-            // get the button position in world space
-            pos = transform.position;
-            // set the y pos as the pos of the mouse
-            pos.y = GetMouseWorldPos().y + mOffset.y;
-            // convert from world to local space
-            pos = ConvertToLocalPos(pos);
+        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+        // get the button position in world space
+        pos = transform.position;
+        mOffset = GetMouseWorldPos() - transform.position;
+        rotation.z = Mathf.Atan2(mOffset.y, mOffset.x) - Mathf.PI/2;
 
-            if (pos.y > maxHeight)
-            {
-                pos.y = maxHeight;
-            }
-            else if (pos.y < minHeight)
-            {
-                pos.y = minHeight;
-                timer = maxTime;
-            }
+        transform.rotation = rotation;
 
-            // convert from local to world space
-            transform.position = ConvertToWorldPos(pos);
-        }
+        // convert from world to local space
+        
+        
+
+        //pos = ConvertToLocalPos(pos);
+
+        //if (pos.y > maxHeight)
+        //{
+        //    pos.y = maxHeight;
+        //}
+        //else if (pos.y < minHeight)
+        //{
+        //    pos.y = minHeight;
+        //    timer = maxTime;
+        //}
+
+        //// convert from local to world space
+        //transform.position = ConvertToWorldPos(pos);
     }
 
     private Vector3 GetMouseWorldPos()
@@ -104,7 +108,7 @@ public class Lever : MonoBehaviour
 
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
-    
+
     private Vector3 ConvertToLocalPos(Vector3 worldPos)
     {
         Vector3 localPos = worldPos;
