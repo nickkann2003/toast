@@ -271,7 +271,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: -0.5, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.59781164, y: -0.19720449, z: -6.821}
+  m_ConnectedAnchor: {x: -1.049, y: -0.29700002, z: -6.581}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -1355,6 +1355,7 @@ GameObject:
   - component: {fileID: 2108245369}
   - component: {fileID: 2108245373}
   - component: {fileID: 2108245374}
+  - component: {fileID: 2108245375}
   m_Layer: 0
   m_Name: BreadSlices
   m_TagString: Untagged
@@ -1488,6 +1489,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
+--- !u!114 &2108245375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108245368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.4669811, b: 0.5371449, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &3472000395257214393
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1500,6 +1519,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Toaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599821204484881650, guid: 0d4a1d7b8a4f9394ca17f7aa7fc7e38e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Stations
       objectReference: {fileID: 0}
     - target: {fileID: 2412597450204716973, guid: 0d4a1d7b8a4f9394ca17f7aa7fc7e38e,
         type: 3}

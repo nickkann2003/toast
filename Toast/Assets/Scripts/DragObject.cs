@@ -15,6 +15,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     // Outline function test
     private Outline outline;
+    private bool isDragging;
 
     private void Start()
     {
@@ -42,6 +43,10 @@ public class NewBehaviourScript : MonoBehaviour
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 
         mOffset = transform.position - GetMouseWorldPos();
+
+        // Outline
+        outline.enabled = false;
+        isDragging = true;
     }
 
     private void OnMouseUp()
@@ -61,6 +66,8 @@ public class NewBehaviourScript : MonoBehaviour
                 rb.velocity = ((GetMouseWorldPos() + mOffset - transform.position) * 10);
             }
         }
+
+        isDragging = false;
     }
 
     private Vector3 GetMouseWorldPos()
@@ -80,17 +87,24 @@ public class NewBehaviourScript : MonoBehaviour
         rb.velocity = ((GetMouseWorldPos() + mOffset - transform.position) * 10);
         //rb.AddForceAtPosition(GetMouseWorldPos() + mOffset - transform.position, GetMouseWorldPos() + mOffset);
         //rb.MovePosition(GetMouseWorldPos() + mOffset);
+
     }
 
 
-    // Test function
+    
     private void OnMouseOver()
     {
-        outline.enabled= true;
+        if(!isDragging)
+        outline.enabled = true;
     }
 
     private void OnMouseExit()
     {
-        outline.enabled= false;
+        if(!isDragging)
+            outline.enabled= false;
+    }
+
+    private void Update()
+    {
     }
 }
