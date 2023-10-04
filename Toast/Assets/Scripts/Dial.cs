@@ -16,6 +16,7 @@ public class Dial : MonoBehaviour
 
     // allows objects to be given parents without having a parent
     private Transform parent;
+    public Vector3 lookAtPos;
 
     // timer
     public float timer;
@@ -70,17 +71,22 @@ public class Dial : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-        // get the button position in world space
-        pos = transform.position;
-        mOffset = GetMouseWorldPos() - transform.position;
-        rotation.z = Mathf.Atan2(mOffset.y, mOffset.x) - Mathf.PI/2;
+        //mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+        //// get the button position in world space
+        //pos = transform.position;
+        //mOffset = GetMouseWorldPos() - transform.position;
+        //rotation.z = Mathf.Atan2(mOffset.y, mOffset.x);
 
-        transform.rotation = rotation;
+        //transform.rotation = rotation;
+
+        lookAtPos = Input.mousePosition;
+        lookAtPos.z = transform.position.z - Camera.main.transform.position.z;
+        lookAtPos = Camera.main.ScreenToWorldPoint(lookAtPos);
+        transform.up = lookAtPos - transform.position;
 
         // convert from world to local space
-        
-        
+
+
 
         //pos = ConvertToLocalPos(pos);
 
