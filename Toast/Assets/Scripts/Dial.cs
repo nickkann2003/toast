@@ -7,12 +7,10 @@ public class Dial : MonoBehaviour
     public Vector3 mOffset;
     private float mZCoord;
 
-    public float maxHeight;
-    public float minHeight;
     private bool mouse;
 
     private Vector3 pos;
-    public Quaternion rotation;
+    public Vector3 rotation;
 
     // allows objects to be given parents without having a parent
     private Transform parent;
@@ -24,7 +22,7 @@ public class Dial : MonoBehaviour
 
     private void Start()
     {
-        rotation = transform.rotation;
+        rotation = transform.eulerAngles;
         mouse = false;
 
         if (transform.parent != null && parent == null)
@@ -71,37 +69,19 @@ public class Dial : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        //mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-        //// get the button position in world space
-        //pos = transform.position;
-        //mOffset = GetMouseWorldPos() - transform.position;
-        //rotation.z = Mathf.Atan2(mOffset.y, mOffset.x);
-
-        //transform.rotation = rotation;
-
-        lookAtPos = Input.mousePosition;
-        lookAtPos.z = transform.position.z - Camera.main.transform.position.z;
-        lookAtPos = Camera.main.ScreenToWorldPoint(lookAtPos);
-        transform.up = lookAtPos - transform.position;
-
-        // convert from world to local space
-
-
-
-        //pos = ConvertToLocalPos(pos);
-
-        //if (pos.y > maxHeight)
-        //{
-        //    pos.y = maxHeight;
-        //}
-        //else if (pos.y < minHeight)
-        //{
-        //    pos.y = minHeight;
-        //    timer = maxTime;
-        //}
-
-        //// convert from local to world space
-        //transform.position = ConvertToWorldPos(pos);
+        transform.up = GetMouseWorldPos() - transform.position;
+        
+        rotation = transform.eulerAngles;
+        if (transform.eulerAngles.z > 110 && transform.eulerAngles.z <= 180)
+        {
+            rotation.z = 110f;
+            transform.eulerAngles = rotation;
+        }
+        else if ((transform.eulerAngles.z > 180 && transform.eulerAngles.z < 250))
+        {
+            rotation.z = 250f;
+            transform.eulerAngles = rotation;
+        }
     }
 
     private Vector3 GetMouseWorldPos()
