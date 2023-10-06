@@ -5,6 +5,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEditor.FilePathAttribute;
 
+public enum Stations
+{
+    Starting,
+    Table,
+    Toaster
+}
+
 public class Manager : MonoBehaviour
 {
     public static Manager instance;
@@ -14,10 +21,24 @@ public class Manager : MonoBehaviour
 
     public Stack<Location> playerPath;
 
+    private Stations curStation;
+    private Stations prevStation;
+
+    // Temporary public variables
+    public Outline toasterOutline;
+    public Outline dialOutline;
+    public Outline tableOutline;
+    public GameObject backButton;
+   
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
     {
         instance = this;
+        
+        // Will be used once have the stations state machine
+        curStation = Stations.Starting; 
+        prevStation = Stations.Starting;
+
     }
 
     // Start is called before the first frame update
@@ -42,6 +63,38 @@ public class Manager : MonoBehaviour
             }
         }
 
+        // temporary code for MVI
+        switch(curStation) 
+        {
+            case Stations.Starting:
+                tableOutline.enabled= true;
+                toasterOutline.enabled= false;
+                dialOutline.enabled= false;
+
+                backButton.SetActive(false);
+                break;
+            case Stations.Table:
+                tableOutline.enabled = false;
+                toasterOutline.enabled = true;
+                dialOutline.enabled = false;
+
+                backButton.SetActive(true);
+                break;
+            case Stations.Toaster:
+                tableOutline.enabled = false;
+                toasterOutline.enabled = false;
+                dialOutline.enabled = true;
+                backButton.SetActive(true);
+                break;
+
+        }
+
+    }
+
+    public void SetStations(Stations station)
+    {
+        prevStation= curStation;
+        curStation= station;
     }
 
     /// <summary>
@@ -71,9 +124,10 @@ public class Manager : MonoBehaviour
     /// <summary>
     /// Moves the player to the 
     /// </summary>
-    void StationMoveBack()
+    public void StationMoveBack()
     {
         playerPath.Pop();
+        SetStations(playerPath.Peek().stationLabel);
         MoveToStation(playerPath.Peek());
     }
 

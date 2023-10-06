@@ -6,6 +6,7 @@ public class Location : Station
 {
     public Vector3 cameraPos;
     public Quaternion cameraRotation;
+    public Stations stationLabel;
 
     // List of props and stations that can be reached from here
     public List<Station> interactables;
@@ -14,6 +15,7 @@ public class Location : Station
     {
         if (Manager.instance.playerLocation.interactables.Contains(this))
         {
+            Manager.instance.SetStations(stationLabel);
             Manager.instance.MoveToStation(this);
         }
     }
