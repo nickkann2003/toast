@@ -44,7 +44,7 @@ public class Lever : MonoBehaviour
 
             if (pos.y < maxHeight)
             {
-                pos.y += ((maxHeight - minHeight) / .1f) * Time.deltaTime;
+                pos.y += ((maxHeight - minHeight) / .3f) * Time.deltaTime;
             }
             // convert from local to world pos if object has parent
             pos = ConvertToWorldPos(pos);

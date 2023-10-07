@@ -17,7 +17,7 @@ public class Manager : MonoBehaviour
     public static Manager instance;
     public Location playerLocation;
 
-    Rect backBounds;
+    //Rect backBounds;
 
     public Stack<Location> playerPath;
 
@@ -46,7 +46,7 @@ public class Manager : MonoBehaviour
     {
         playerPath = new Stack<Location>();
 
-        backBounds = new Rect(0, 0, Screen.width, Screen.height / 10);
+        //backBounds = new Rect(0, 0, Screen.width, Screen.height / 10);
 
         MoveToStation(playerLocation);
     }
@@ -54,14 +54,14 @@ public class Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If player can move out a station, do so when clicking bottom part of screen
-        if (playerPath.Count > 1)
-        {
-            if (Input.GetMouseButtonDown(0) && backBounds.Contains(Input.mousePosition))
-            {
-                StationMoveBack();
-            }
-        }
+        //// If player can move out a station, do so when clicking bottom part of screen
+        //if (playerPath.Count > 1)
+        //{
+        //    if (Input.GetMouseButtonDown(0) && backBounds.Contains(Input.mousePosition))
+        //    {
+        //        StationMoveBack();
+        //    }
+        //}
 
         // temporary code for MVI
         switch(curStation) 

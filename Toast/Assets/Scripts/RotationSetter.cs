@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotationSetter : MonoBehaviour
 {
-    public Vector3 targetRotationEuler = new Vector3(0, 90, 0);
+    public Vector3 targetRotationEuler = new Vector3(0, 90, -90);
     // Start is called before the first frame update
     void Start()
     {
