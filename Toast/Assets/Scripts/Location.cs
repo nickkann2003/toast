@@ -7,6 +7,7 @@ public class Location : Station
     public Vector3 cameraPos;
     public Quaternion cameraRotation;
     public Stations stationLabel;
+    public Vector3 focusPos;
 
     // List of props and stations that can be reached from here
     public List<Station> interactables;

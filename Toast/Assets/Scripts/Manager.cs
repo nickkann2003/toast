@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering.HighDefinition;
 using static UnityEditor.FilePathAttribute;
 
 public enum Stations
@@ -29,6 +32,10 @@ public class Manager : MonoBehaviour
     public Outline dialOutline;
     public Outline tableOutline;
     public GameObject backButton;
+    public Volume globalVolume;
+
+    private VolumeProfile profile;
+    private DepthOfField depthOfField;
    
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
@@ -39,6 +46,8 @@ public class Manager : MonoBehaviour
         curStation = Stations.Starting; 
         prevStation = Stations.Starting;
 
+        profile = globalVolume.profile;
+        Debug.Log(profile);
     }
 
     // Start is called before the first frame update
@@ -118,7 +127,18 @@ public class Manager : MonoBehaviour
             loc.clickableCollider.enabled = false;
         }
 
-        Debug.Log(playerPath.Count);
+        if(profile.TryGet(out depthOfField)){
+            if(loc != null)
+            {
+                Vector3 focusVector = loc.focusPos - Camera.main.transform.position;
+                MinFloatParameter focusStart = new MinFloatParameter(focusVector.magnitude * 1.2f, 0f, true);
+                MinFloatParameter focusEnd = new MinFloatParameter(focusVector.magnitude * 2f, 0f, true);
+                Debug.Log(focusVector.magnitude);
+                Debug.Log(focusStart);
+                depthOfField.gaussianStart = focusStart;
+                depthOfField.gaussianEnd = focusEnd;
+            }
+        }
     }
 
     /// <summary>
