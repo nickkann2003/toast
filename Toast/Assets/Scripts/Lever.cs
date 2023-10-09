@@ -12,6 +12,9 @@ public class Lever : MonoBehaviour
     public float minHeight;
     private bool mouse;
 
+    public List<InteractableObject> interactables;
+    public string inputId = "lever";
+
     private Vector3 pos;
 
     // allows objects to be given parents without having a parent
