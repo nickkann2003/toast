@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,10 @@ public class Lever : MonoBehaviour
 
     public float maxHeight;
     public float minHeight;
+    public List<LeverChild> children;
+
     private bool mouse;
+    private float percent;
 
     private Vector3 pos;
 
@@ -29,6 +33,10 @@ public class Lever : MonoBehaviour
         {
             parent = transform.parent;
         }
+        foreach(LeverChild child in children) {
+            child.top += child.rigidBody.transform.position;
+
+        }
     }
 
     private void Update()
@@ -44,8 +52,17 @@ public class Lever : MonoBehaviour
 
             if (pos.y < maxHeight)
             {
-                pos.y += ((maxHeight - minHeight) / .3f) * Time.deltaTime;
+                pos.y += ((maxHeight - minHeight) / .2f) * Time.deltaTime;
             }
+
+            //Set all children to correct %
+            percent = (pos.y - minHeight) / (maxHeight - minHeight);
+            foreach (LeverChild child in children)
+            {
+                child.rigidBody.velocity = (child.bottom + ((child.top - child.bottom) * percent) - child.rigidBody.transform.position) * 10;
+                Debug.Log("Child Current Pos: " + child.rigidBody.transform.position + ",  Child Top: " + child.top + ",  Velocity: " + child.rigidBody.velocity);
+            }
+
             // convert from local to world pos if object has parent
             pos = ConvertToWorldPos(pos);
 
@@ -89,6 +106,12 @@ public class Lever : MonoBehaviour
                 timer = maxTime;
             }
 
+            percent = (pos.y - minHeight) / (maxHeight - minHeight);
+            foreach (LeverChild child in children)
+            {
+                child.rigidBody.velocity = (child.bottom + (child.top - child.bottom)*percent - child.rigidBody.transform.position) * 10;
+            }
+
             // convert from local to world space
             transform.position = ConvertToWorldPos(pos);
         }
@@ -127,5 +150,20 @@ public class Lever : MonoBehaviour
         }
 
         return worldPos;
+    }
+}
+
+[System.Serializable]
+public class LeverChild
+{
+    public Rigidbody rigidBody;
+    public Vector3 top;
+    public Vector3 bottom;
+
+    public LeverChild(Rigidbody rigidBody, Vector3 top, Vector3 bottom)
+    {
+        this.rigidBody = rigidBody;
+        this.top = top;
+        this.bottom = bottom;
     }
 }
