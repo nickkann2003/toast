@@ -34,8 +34,8 @@ public class Lever : MonoBehaviour
             parent = transform.parent;
         }
         foreach(LeverChild child in children) {
-            child.top += child.rigidBody.transform.position;
-
+            child.top += child.rigidBody.position;
+            child.bottom += child.rigidBody.position;
         }
     }
 
@@ -59,8 +59,7 @@ public class Lever : MonoBehaviour
             percent = (pos.y - minHeight) / (maxHeight - minHeight);
             foreach (LeverChild child in children)
             {
-                child.rigidBody.velocity = (child.bottom + ((child.top - child.bottom) * percent) - child.rigidBody.transform.position) * 10;
-                Debug.Log("Child Current Pos: " + child.rigidBody.transform.position + ",  Child Top: " + child.top + ",  Velocity: " + child.rigidBody.velocity);
+                child.rigidBody.velocity = (child.bottom + ((child.top - child.bottom) * percent) - child.rigidBody.transform.localPosition) * 25;
             }
 
             // convert from local to world pos if object has parent
@@ -109,7 +108,7 @@ public class Lever : MonoBehaviour
             percent = (pos.y - minHeight) / (maxHeight - minHeight);
             foreach (LeverChild child in children)
             {
-                child.rigidBody.velocity = (child.bottom + (child.top - child.bottom)*percent - child.rigidBody.transform.position) * 10;
+                child.rigidBody.velocity = (child.bottom + (child.top - child.bottom)*percent - child.rigidBody.transform.localPosition) * 25;
             }
 
             // convert from local to world space
