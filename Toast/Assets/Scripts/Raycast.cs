@@ -12,15 +12,21 @@ public class Raycast : MonoBehaviour
     public GameObject canvasGO;
     public GameObject infoText;
 
+    private GameObject prevGO;
+    private GameObject hitGO;
+
     // Start is called before the first frame update
     void Start()
     {
+        prevGO = null;
+        hitGO = null;
         targetCamera = GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        prevGO = hitGO;
         TestRaycast();
     }
 
@@ -30,8 +36,13 @@ public class Raycast : MonoBehaviour
         Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
-            print(hit.collider.gameObject.name);
-            print(hit.point);
+            hitGO = hit.collider.gameObject;
+
+            if (hitGO != prevGO)
+            {
+                print($"Object: \"{hitGO.name}\"");
+            }
+
             // draw ray at hit point
             Debug.DrawRay(ray.origin, transform.InverseTransformPoint(hit.point), Color.yellow);
         }
