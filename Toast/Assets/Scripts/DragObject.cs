@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class DragObjects : MonoBehaviour, IHighlightable
 {
     private Vector3 mOffset;
     private float mZCoord;
@@ -13,9 +13,9 @@ public class NewBehaviourScript : MonoBehaviour
 
     public Rigidbody rb;
 
-    // Outline function test
     private Outline outline;
     private bool isDragging;
+    private bool isEnable; // this is used to enable/disable the interaction of the objects
 
     private void Start()
     {
@@ -23,6 +23,7 @@ public class NewBehaviourScript : MonoBehaviour
         hand = Camera.main.GetComponent<Hand>();
 
         outline = GetComponent<Outline>();
+        isEnable= true;
     }
 
     private void OnMouseDown()
@@ -94,25 +95,28 @@ public class NewBehaviourScript : MonoBehaviour
     
     private void OnMouseOver()
     {
-        if(!isDragging)
-        outline.enabled = true;
-        
-        Cursor.SetCursor(GameManager.Instance.cursorHand,
-            GameManager.Instance.hotSpot,
-            GameManager.Instance.cursorMode);
+        if (!isDragging && isEnable)
+            EnableHiglight();
+
+
     }
 
     private void OnMouseExit()
     {
-        if (!isDragging)
-        {
-            outline.enabled = false;
-            Cursor.SetCursor(null,
-        GameManager.Instance.hotSpot,
-        GameManager.Instance.cursorMode);
-        }
-   
-      
+        if (!isDragging && isEnable)
+           DisableHighlight();
+    }
+
+    public void EnableHiglight()
+    {
+        outline.enabled = true;
+        GameManager.Instance.SetHandCursor();
+    }
+
+    public void DisableHighlight()
+    {
+        outline.enabled = false;
+        GameManager.Instance.SetDefaultCursor();
     }
 
     private void Update()

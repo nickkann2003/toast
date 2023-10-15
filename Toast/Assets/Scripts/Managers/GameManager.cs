@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+
+// Game state, used to track the game state
+public enum GameState
+{
+    Menu,
+    inGame
+}
+
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
@@ -23,11 +32,16 @@ public class GameManager : MonoBehaviour
 
     public AudioManager AudioManager { get; private set; }
 
+    // BGM
     public AudioClip test;
 
+    // Cursor
     public Texture2D cursorHand;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
+
+    // Outline
+
 
     private void Awake()
     {
@@ -52,6 +66,45 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //switch (curStation)
+        //{
+        //    case Stations.Starting:
+        //        tableOutline.enabled = true;
+        //        toasterOutline.enabled = false;
+        //        dialOutline.enabled = false;
+
+        //        backButton.SetActive(false);
+        //        break;
+        //    case Stations.Table:
+        //        tableOutline.enabled = false;
+        //        toasterOutline.enabled = true;
+        //        dialOutline.enabled = false;
+
+        //        backButton.SetActive(true);
+        //        break;
+        //    case Stations.Toaster:
+        //        tableOutline.enabled = false;
+        //        toasterOutline.enabled = false;
+        //        dialOutline.enabled = true;
+        //        backButton.SetActive(true);
+        //        break;
+
+        //}
+    }
+
+    /// <summary>
+    /// Set the default cursor
+    /// </summary>
+    public void SetDefaultCursor()
+    {
+        Cursor.SetCursor(null, Instance.hotSpot, Instance.cursorMode);
+    }
+
+    /// <summary>
+    /// Set the hand cursor
+    /// </summary>
+    public void SetHandCursor()
+    {
+        Cursor.SetCursor(Instance.cursorHand, Instance.hotSpot, Instance.cursorMode);
     }
 }
