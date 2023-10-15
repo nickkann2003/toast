@@ -13,6 +13,8 @@ public class Lever : MonoBehaviour
     public float minHeight;
     public List<LeverChild> children;
 
+    public ToastingBreadTest toastCollider;
+
     private bool mouse;
     private float percent;
 
@@ -36,6 +38,10 @@ public class Lever : MonoBehaviour
         foreach(LeverChild child in children) {
             child.top += child.rigidBody.position;
             child.bottom += child.rigidBody.position;
+        }
+        if (toastCollider != null)
+        {
+            toastCollider.setDialValue(0.5f);
         }
     }
 
@@ -66,6 +72,13 @@ public class Lever : MonoBehaviour
             pos = ConvertToWorldPos(pos);
 
             transform.position = pos;
+            if (toastCollider != null)
+            {
+                if (toastCollider.IsActive)
+                {
+                    toastCollider.deactivateTrigger();
+                }
+            }
         }
     }
 
@@ -103,9 +116,16 @@ public class Lever : MonoBehaviour
             {
                 pos.y = minHeight;
                 timer = maxTime;
+                if (toastCollider != null)
+                {
+                    if (!toastCollider.IsActive)
+                    {
+                        toastCollider.activateTrigger(maxTime);
+                    }
+                }
             }
 
-            percent = (pos.y - minHeight) / (maxHeight - minHeight);
+                percent = (pos.y - minHeight) / (maxHeight - minHeight);
             foreach (LeverChild child in children)
             {
                 child.rigidBody.velocity = (child.bottom + (child.top - child.bottom)*percent - child.rigidBody.transform.localPosition) * 25;
