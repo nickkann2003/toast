@@ -14,8 +14,13 @@ public class Raycast : MonoBehaviour
     GameObject selectGO;
 
     public GameObject linePrefab;
+    public GameObject mousePointPrefab;
 
+    GameObject mousePoint;
+    GameObject springJoint;
     GameObject line;
+    float mZOffset;
+
     bool dragging;
 
     // Start is called before the first frame update
@@ -48,11 +53,26 @@ public class Raycast : MonoBehaviour
             
             if (Input.GetMouseButtonDown(0))
             {
-                line = Instantiate(linePrefab);
                 print($"Object: \"{hitGO.name}\"");
                 selectGO = hitGO;
-                print(hit.point);
-                line.GetComponent<LineController>().SetAnchor(selectGO.transform);
+
+                line = Instantiate(linePrefab);
+
+                if (selectGO.GetComponent<Rigidbody>() != null)
+                {
+                    //mousePoint = Instantiate(mousePointPrefab);
+                    //springJoint = mousePoint.transform.GetChild(0).gameObject;
+                    //mousePoint.transform.position = hit.point;
+                    //selectGO.transform.parent = springJoint.transform;
+
+                    line.GetComponent<LineController>().SetAnchor(selectGO.transform);
+
+                    mZOffset = Camera.main.WorldToScreenPoint(selectGO.transform.position).z;
+                }
+                else
+                {
+                    line.GetComponent<LineController>().SetAnchor(selectGO.transform);
+                }
                 dragging = true;
 
 
@@ -63,13 +83,29 @@ public class Raycast : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 dragging = false;
+                if (selectGO.transform.parent == springJoint)
+                {
+                    selectGO.transform.parent = null;
+                    selectGO = null;
+                    Destroy(springJoint);
+                    springJoint = null;
+                    Destroy(mousePoint);
+                    mousePoint = null;
+                }
                 Destroy(line);
                 line = null;
             }
 
             if (dragging)
             {
-                //line.SetMouse(new Vector3());
+                if (selectGO.GetComponent<Rigidbody>() != null)
+                {
+                    //mousePoint.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
+                    //    mZOffset));
+                    selectGO.GetComponent<Rigidbody>().velocity =
+                        (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
+                        mZOffset)) - selectGO.transform.position) * 10;
+                }
             }
 
             // draw ray at hit point
