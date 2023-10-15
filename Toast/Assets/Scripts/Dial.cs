@@ -20,6 +20,9 @@ public class Dial : MonoBehaviour
     public float timer;
     public float maxTime;
 
+    //Interactable
+    public ToastingBreadTest breadToaster;
+
     private void Start()
     {
         rotation = transform.eulerAngles;
@@ -75,12 +78,29 @@ public class Dial : MonoBehaviour
         if (transform.eulerAngles.z > 110 && transform.eulerAngles.z <= 180)
         {
             rotation.z = 110f;
+            
             transform.eulerAngles = rotation;
         }
         else if ((transform.eulerAngles.z > 180 && transform.eulerAngles.z < 250))
         {
             rotation.z = 250f;
             transform.eulerAngles = rotation;
+        }
+        if(rotation.z >= 250)
+        {
+            if (breadToaster != null)
+            {
+                float dialValue = (1 - ((rotation.z - 250f) / 110f))*0.5f + 0.5f;
+                breadToaster.setDialValue(dialValue);
+            }
+        }
+        else if(rotation.z <= 110)
+        {
+            if (breadToaster != null)
+            {
+                float dialValue = (1 - ((rotation.z) / 110f)) * 0.5f;
+                breadToaster.setDialValue(dialValue);
+            }
         }
     }
 

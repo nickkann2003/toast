@@ -595,7 +595,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -988,6 +988,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ToasterModeled
       objectReference: {fileID: 0}
+    - target: {fileID: 8223324724943486126, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: breadToaster
+      value: 
+      objectReference: {fileID: 377088723}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2066,7 +2071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ff63f25d1ab4344b3bd1f858dfaec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickableCollider: {fileID: 0}
+  clickableCollider: {fileID: 1609884253}
   cameraPos: {x: 0, y: 0, z: 0}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 2
@@ -3298,6 +3303,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545584550}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1609884253 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1925848623824111273, guid: 35113bd6e1073544387b346e18ac6a57,
+    type: 3}
+  m_PrefabInstance: {fileID: 354014773}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1622962597 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1954706592542554607, guid: 35113bd6e1073544387b346e18ac6a57,
