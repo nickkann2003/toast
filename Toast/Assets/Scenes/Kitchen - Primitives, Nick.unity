@@ -123,6 +123,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &145993060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 145993061}
+  - component: {fileID: 145993062}
+  m_Layer: 0
+  m_Name: StationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &145993061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145993060}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 251738260}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &145993062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145993060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fe3d466e558d1f40bac0110da6874d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLocation: {fileID: 846166369}
+  toasterOutline: {fileID: 500303804}
+  dialOutline: {fileID: 1622962603}
+  tableOutline: {fileID: 365876367}
+  backButton: {fileID: 1774354216}
 --- !u!1 &174777826
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,10 +424,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 251738260}
-  - component: {fileID: 251738261}
   - component: {fileID: 251738262}
   m_Layer: 0
-  m_Name: Manager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,26 +445,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 277929031}
+  - {fileID: 145993061}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &251738261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 251738259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fe3d466e558d1f40bac0110da6874d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerLocation: {fileID: 846166369}
-  toasterOutline: {fileID: 500303804}
-  dialOutline: {fileID: 1622962603}
-  tableOutline: {fileID: 365876367}
-  backButton: {fileID: 1774354216}
 --- !u!114 &251738262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,7 +582,7 @@ GameObject:
   - component: {fileID: 277929033}
   - component: {fileID: 277929032}
   m_Layer: 0
-  m_Name: AudioManagers
+  m_Name: AudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -845,7 +877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 2768868129598411363, guid: 154a9c62522234843aba17b0ebb39b17,
     type: 3}
-  mousePointPrefab: {fileID: 5356622632730224899, guid: 0bd430e0abac2d24b9b3221afe91e330,
+  mousePointPrefab: {fileID: 7929144607893086852, guid: 0bd430e0abac2d24b9b3221afe91e330,
     type: 3}
 --- !u!1 &347806482
 GameObject:
@@ -1257,6 +1289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 365876365}
+  isEnabled: 0
   cameraPos: {x: 0, y: 0.48, z: -10}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 1
@@ -1561,6 +1594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  isEnabled: 0
   cameraPos: {x: 0, y: 0.5, z: -16}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 0
@@ -2083,7 +2117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ff63f25d1ab4344b3bd1f858dfaec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickableCollider: {fileID: 1609884253}
+  clickableCollider: {fileID: 0}
+  isEnabled: 0
   cameraPos: {x: 0, y: 0, z: 0}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 2
@@ -3315,12 +3350,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545584550}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &1609884253 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 1925848623824111273, guid: 35113bd6e1073544387b346e18ac6a57,
-    type: 3}
-  m_PrefabInstance: {fileID: 354014773}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1622962597 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1954706592542554607, guid: 35113bd6e1073544387b346e18ac6a57,
@@ -3664,8 +3693,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 251738261}
-        m_TargetAssemblyTypeName: Manager, Assembly-CSharp
+      - m_Target: {fileID: 145993062}
+        m_TargetAssemblyTypeName: StationManager, Assembly-CSharp
         m_MethodName: StationMoveBack
         m_Mode: 1
         m_Arguments:

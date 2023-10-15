@@ -20,10 +20,10 @@ public class LineController : MonoBehaviour
         anchor = objectTransform;
     }
 
-    public void SetMouse(Vector3 pos)
-    {
-        lineRenderer.SetPosition(1, pos);
-    }
+    //public void SetAnchor(Vector3 pos)
+    //{
+    //    lineRenderer.SetPosition(1, pos);
+    //}
 
     // Update is called once per frame
     void Update()

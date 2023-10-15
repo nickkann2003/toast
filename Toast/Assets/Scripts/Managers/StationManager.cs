@@ -5,21 +5,22 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEditor.FilePathAttribute;
 
+// Station enum, used to track which station it is in
 public enum Stations
 {
     Starting,
     Table,
     Toaster
 }
-
-public class Manager : MonoBehaviour
+public class StationManager : MonoBehaviour
 {
-    public static Manager instance;
+    public static StationManager instance;
     public Location playerLocation;
 
     //Rect backBounds;
 
     public Stack<Location> playerPath;
+
 
     private Stations curStation;
     private Stations prevStation;
@@ -67,9 +68,9 @@ public class Manager : MonoBehaviour
         switch(curStation) 
         {
             case Stations.Starting:
-                tableOutline.enabled= true;
-                toasterOutline.enabled= false;
-                dialOutline.enabled= false;
+                tableOutline.enabled = true;
+                toasterOutline.enabled = false;
+                dialOutline.enabled = false;
 
                 backButton.SetActive(false);
                 break;
@@ -89,6 +90,7 @@ public class Manager : MonoBehaviour
 
         }
 
+      
     }
 
     public void SetStations(Stations station)
@@ -105,10 +107,10 @@ public class Manager : MonoBehaviour
     {
         if(!playerPath.Contains(loc))
         {
-            Manager.instance.playerPath.Push(loc);
+            StationManager.instance.playerPath.Push(loc);
         }
         
-        Manager.instance.playerLocation = loc;
+        StationManager.instance.playerLocation = loc;
 
         Camera.main.transform.position = loc.cameraPos;
         Camera.main.transform.rotation = loc.cameraRotation;

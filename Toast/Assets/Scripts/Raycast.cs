@@ -60,14 +60,9 @@ public class Raycast : MonoBehaviour
 
                 if (selectGO.GetComponent<Rigidbody>() != null)
                 {
-                    //mousePoint = Instantiate(mousePointPrefab);
-                    //springJoint = mousePoint.transform.GetChild(0).gameObject;
-                    //mousePoint.transform.position = hit.point;
-                    //selectGO.transform.parent = springJoint.transform;
-
-                    line.GetComponent<LineController>().SetAnchor(selectGO.transform);
-
+                    //StartDragging(hit.point);
                     mZOffset = Camera.main.WorldToScreenPoint(selectGO.transform.position).z;
+                    line.GetComponent<LineController>().SetAnchor(selectGO.transform);
                 }
                 else
                 {
@@ -82,16 +77,22 @@ public class Raycast : MonoBehaviour
             }
             if (Input.GetMouseButtonUp(0))
             {
-                dragging = false;
-                if (selectGO.transform.parent == springJoint)
+                if (mousePoint != null)
                 {
-                    selectGO.transform.parent = null;
-                    selectGO = null;
-                    Destroy(springJoint);
-                    springJoint = null;
-                    Destroy(mousePoint);
-                    mousePoint = null;
+                    //StopDragging();
                 }
+                dragging = false;
+                //Destroy(selectGO.GetComponent<SpringJoint>());
+                //if (selectGO.transform.parent == springJoint)
+                //{
+                //    selectGO.transform.parent = null;
+                //    selectGO = null;
+                //    Destroy(springJoint);
+                //    springJoint = null;
+                //    Destroy(mousePoint);
+                //    mousePoint = null;
+                //}
+                
                 Destroy(line);
                 line = null;
             }
@@ -112,5 +113,31 @@ public class Raycast : MonoBehaviour
             Debug.DrawLine(ray.origin, hit.point, Color.yellow);
             //Debug.DrawRay(hit.point, Vector3.Reflect(transform.InverseTransformPoint(hit.point), hit.normal), Color.blue);
         }
+    }
+
+    void StartDragging(Vector3 hitPoint)
+    {
+        SpringJoint joint = selectGO.AddComponent<SpringJoint>();
+        //joint.autoConfigureConnectedAnchor = false;
+        mousePoint = Instantiate(mousePointPrefab);
+        mousePoint.transform.position = hitPoint;
+        joint.connectedBody = mousePoint.GetComponent<Rigidbody>();
+
+        // spring values
+        joint.spring = 100f;
+        joint.damper = 50f;
+        joint.tolerance = .01f;
+        joint.massScale = 100f;
+
+        line.GetComponent<LineController>().SetAnchor(selectGO.transform);
+
+        mZOffset = Camera.main.WorldToScreenPoint(selectGO.transform.position).z;
+    }
+
+    void StopDragging()
+    {
+        Destroy(selectGO.GetComponent<SpringJoint>());
+        Destroy(mousePoint);
+        mousePoint = null;
     }
 }
