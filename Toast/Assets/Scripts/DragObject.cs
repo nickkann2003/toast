@@ -96,12 +96,23 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if(!isDragging)
         outline.enabled = true;
+        
+        Cursor.SetCursor(GameManager.Instance.cursorHand,
+            GameManager.Instance.hotSpot,
+            GameManager.Instance.cursorMode);
     }
 
     private void OnMouseExit()
     {
-        if(!isDragging)
-            outline.enabled= false;
+        if (!isDragging)
+        {
+            outline.enabled = false;
+            Cursor.SetCursor(null,
+        GameManager.Instance.hotSpot,
+        GameManager.Instance.cursorMode);
+        }
+   
+      
     }
 
     private void Update()
