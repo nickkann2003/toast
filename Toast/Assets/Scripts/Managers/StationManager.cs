@@ -21,6 +21,12 @@ public class StationManager : MonoBehaviour
 
     public Stack<Location> playerPath;
 
+    // Used for camera movement/tweening
+    float moveProgress = 0.0f;
+    bool movingCam = false;
+
+    [SerializeField]
+    float moveSpeed = 1.0f;
 
     private Stations curStation;
     private Stations prevStation;
@@ -90,6 +96,23 @@ public class StationManager : MonoBehaviour
 
         }
 
+
+        // Camera tweening
+        if(movingCam)
+        {
+            // playerLocation.cameraPos is used because's player's location has already been changed internally
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, playerLocation.cameraPos, moveProgress);
+            Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, playerLocation.cameraRotation, moveProgress);
+
+            moveProgress += Time.deltaTime * moveSpeed;
+
+            // Target reached, stop moving
+            if(moveProgress >= 1.0f)
+            {
+                movingCam = false;
+            }
+        }
+
       
     }
 
@@ -105,22 +128,23 @@ public class StationManager : MonoBehaviour
     /// <param name="loc">The station being targeted to move to</param>
     public void MoveToStation(Location loc)
     {
+        // Trigger to begin moving camera
+        moveProgress = 0.0f;
+        movingCam = true;
+
+        // If station does not already exist in player's path, add it to stack
         if(!playerPath.Contains(loc))
         {
             StationManager.instance.playerPath.Push(loc);
         }
         
+        // Update player's current location
         StationManager.instance.playerLocation = loc;
-
-        Camera.main.transform.position = loc.cameraPos;
-        Camera.main.transform.rotation = loc.cameraRotation;
 
         if (loc.clickableCollider != null)
         {
             loc.clickableCollider.enabled = false;
         }
-
-        Debug.Log(playerPath.Count);
     }
 
     /// <summary>
