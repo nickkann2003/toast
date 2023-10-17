@@ -514,7 +514,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6428327968514597345, guid: 7b43ea5762fa8704cab6e06c4d13c3d9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2108174113}
   m_SourcePrefab: {fileID: 100100000, guid: 7b43ea5762fa8704cab6e06c4d13c3d9, type: 3}
 --- !u!1 &200729676 stripped
 GameObject:
@@ -4001,6 +4005,16 @@ PrefabInstance:
       propertyPath: maxTime
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 3213036528293942478, guid: 7b43ea5762fa8704cab6e06c4d13c3d9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1eaa054106669464995e69f719e37e77, type: 2}
+    - target: {fileID: 5287430596406601403, guid: 7b43ea5762fa8704cab6e06c4d13c3d9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1eaa054106669464995e69f719e37e77, type: 2}
     - target: {fileID: 6428327968514597345, guid: 7b43ea5762fa8704cab6e06c4d13c3d9,
         type: 3}
       propertyPath: m_Name
@@ -4662,3 +4676,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087142468}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2108174111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6428327968514597345, guid: 7b43ea5762fa8704cab6e06c4d13c3d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 186174409}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2108174113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108174111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
