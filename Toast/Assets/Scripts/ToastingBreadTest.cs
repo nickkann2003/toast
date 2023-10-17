@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class ToastingBreadTest : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class ToastingBreadTest : MonoBehaviour
 
     private Dictionary<GameObject, ToastingObject> toastingObjects = new Dictionary<GameObject, ToastingObject>();
     private float totalTime;
+
+    public ParticleSystem smokeParticles;
 
     public bool IsActive { get => isActive; }
 
@@ -42,6 +45,9 @@ public class ToastingBreadTest : MonoBehaviour
                 }
             }
         }
+        EmissionModule em = smokeParticles.emission;
+        em.rateOverTimeMultiplier = 0.3f + (6 * targetStrength);
+        smokeParticles.Play();
         isActive = true;
     }
 
