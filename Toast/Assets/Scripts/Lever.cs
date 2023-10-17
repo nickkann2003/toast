@@ -13,12 +13,17 @@ public class Lever : MonoBehaviour
     public float minHeight;
     public List<LeverChild> children;
 
+    // Test scripts to cause environment effects, TODO: Replace this with a list of interactables that are triggered on specific events
     public ToastingBreadTest toastCollider;
+    public SpawnPrefabScript spawnPrefab;
 
     private bool mouse;
     private float percent;
 
     private Vector3 pos;
+
+    // Has this reached bottom yet?
+    bool triggered = false;
 
     // allows objects to be given parents without having a parent
     private Transform parent;
@@ -72,11 +77,15 @@ public class Lever : MonoBehaviour
             pos = ConvertToWorldPos(pos);
 
             transform.position = pos;
-            if (toastCollider != null)
+            if(triggered)
             {
-                if (toastCollider.IsActive)
+                triggered = false;
+                if (toastCollider != null)
                 {
-                    toastCollider.deactivateTrigger();
+                    if (toastCollider.IsActive)
+                    {
+                        toastCollider.deactivateTrigger();
+                    }
                 }
             }
         }
@@ -108,6 +117,8 @@ public class Lever : MonoBehaviour
             // convert from world to local space
             pos = ConvertToLocalPos(pos);
 
+            triggered = false;
+
             if (pos.y > maxHeight)
             {
                 pos.y = maxHeight;
@@ -116,12 +127,20 @@ public class Lever : MonoBehaviour
             {
                 pos.y = minHeight;
                 timer = maxTime;
-                if (toastCollider != null)
+                if (!triggered)
                 {
-                    if (!toastCollider.IsActive)
+                    if (toastCollider != null)
                     {
-                        toastCollider.activateTrigger(maxTime);
+                        if (!toastCollider.IsActive)
+                        {
+                            toastCollider.activateTrigger(maxTime);
+                        }
                     }
+                    if (spawnPrefab != null)
+                    {
+                        spawnPrefab.TriggerSpawn();
+                    }
+                    triggered = true;
                 }
             }
 
