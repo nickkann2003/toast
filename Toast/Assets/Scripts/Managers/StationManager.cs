@@ -152,6 +152,10 @@ public class StationManager : MonoBehaviour
     /// </summary>
     public void StationMoveBack()
     {
+        if (StationManager.instance.playerLocation.clickableCollider != null)
+        {
+            StationManager.instance.playerLocation.clickableCollider.enabled = true;
+        }
         playerPath.Pop();
         SetStations(playerPath.Peek().stationLabel);
         MoveToStation(playerPath.Peek());
