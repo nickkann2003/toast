@@ -10,7 +10,8 @@ public enum Stations
 {
     Starting,
     Table,
-    Toaster
+    Toaster,
+    Fridge
 }
 public class StationManager : MonoBehaviour
 {
@@ -91,6 +92,9 @@ public class StationManager : MonoBehaviour
                 tableOutline.enabled = false;
                 toasterOutline.enabled = false;
                 dialOutline.enabled = true;
+                backButton.SetActive(true);
+                break;
+            case Stations.Fridge:
                 backButton.SetActive(true);
                 break;
 
