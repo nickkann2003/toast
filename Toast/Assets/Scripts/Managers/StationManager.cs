@@ -142,6 +142,12 @@ public class StationManager : MonoBehaviour
             StationManager.instance.playerPath.Push(loc);
         }
         
+        // Enable collider before leaving
+        if(StationManager.instance.playerLocation.clickableCollider != null)
+        {
+            StationManager.instance.playerLocation.clickableCollider.enabled = true;
+        }
+
         // Update player's current location
         StationManager.instance.playerLocation = loc;
 
