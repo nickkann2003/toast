@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Button : MonoBehaviour
+public class Button : MonoBehaviour, IHighlightable
 {
     // Test scripts to cause environment effects, TODO: Replace this with a list of interactables that are triggered on specific events
     public ToastingBreadTest toastCollider;
@@ -30,9 +30,20 @@ public class Button : MonoBehaviour
     public Trigger trigger;
     private bool pressed;
 
+    [SerializeField] private Outline outline;
+    public bool IsHighlightedEnable => true;
+
+    public Outline Outline => outline;
+
     private void Start()
     {
         timer = maxTime;
+        if (!TryGetComponent<Outline>(out outline))
+        {
+            this.transform.AddComponent<Outline>();
+            outline = GetComponent<Outline>();
+        }
+        outline.enabled = false;
     }
 
     private void Update()
@@ -123,5 +134,15 @@ public class Button : MonoBehaviour
         }
 
         transform.position = Vector3.Lerp(maxHeight.transform.position, minHieght.transform.position, interpolateAmount);
+    }
+
+    public void TurnOnHighlght()
+    {
+        Outline.enabled= true;
+    }
+
+    public void TurnOffHighlight()
+    {
+        Outline.enabled = false;
     }
 }

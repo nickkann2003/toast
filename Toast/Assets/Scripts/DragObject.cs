@@ -17,6 +17,10 @@ public class DragObjects : MonoBehaviour, IHighlightable
     private bool isDragging;
     private bool isEnable; // this is used to enable/disable the interaction of the objects
 
+    bool IHighlightable.IsHighlightedEnable => isEnable;
+
+    Outline IHighlightable.Outline => outline;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -96,7 +100,7 @@ public class DragObjects : MonoBehaviour, IHighlightable
     private void OnMouseOver()
     {
         if (!isDragging && isEnable)
-            EnableHiglight();
+            TurnOnHighlght();
 
 
     }
@@ -104,22 +108,17 @@ public class DragObjects : MonoBehaviour, IHighlightable
     private void OnMouseExit()
     {
         if (!isDragging && isEnable)
-           DisableHighlight();
+           TurnOffHighlight();
     }
 
-    public void EnableHiglight()
+    public void TurnOnHighlght()
     {
         outline.enabled = true;
-        GameManager.Instance.SetHandCursor();
     }
 
-    public void DisableHighlight()
+    public void TurnOffHighlight()
     {
         outline.enabled = false;
-        GameManager.Instance.SetDefaultCursor();
     }
 
-    private void Update()
-    {
-    }
 }

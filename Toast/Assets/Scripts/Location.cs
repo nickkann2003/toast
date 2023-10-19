@@ -18,7 +18,6 @@ public class Location : Station
     {
         if (StationManager.instance.playerLocation.interactables.Contains(this))
         {
-            StationManager.instance.SetStations(stationLabel);
             StationManager.instance.MoveToStation(this);
         }
     }

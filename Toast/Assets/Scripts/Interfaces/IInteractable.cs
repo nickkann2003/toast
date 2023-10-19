@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IInteractable
 {
+    bool IsInteractable { get; }
     void EnableInteract();
     void DisableInteract();
 }

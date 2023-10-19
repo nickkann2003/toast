@@ -8,6 +8,8 @@ using UnityEngine;
 /// </summary>
 public interface IHighlightable
 {
-    void EnableHiglight();
-    void DisableHighlight();
+    bool IsHighlightedEnable { get; }
+    Outline Outline { get; }
+    void TurnOnHighlght();
+    void TurnOffHighlight();
 }

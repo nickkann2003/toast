@@ -13,8 +13,10 @@ public class Raycast : MonoBehaviour
 
     GameObject selectGO;
 
-    public GameObject linePrefab;
-    public GameObject mousePointPrefab;
+    [SerializeField] private GameObject linePrefab;
+    [SerializeField] private GameObject mousePointPrefab;
+    [SerializeField] private int maxDistance;
+    [SerializeField] private LayerMask detectionLayer;
 
     GameObject mousePoint;
     GameObject springJoint;
@@ -22,6 +24,9 @@ public class Raycast : MonoBehaviour
     float mZOffset;
 
     bool dragging;
+
+    private IHighlightable highlightable;
+    private IHighlightable prevHighligtable;
 
     // Start is called before the first frame update
     void Awake()
@@ -42,9 +47,23 @@ public class Raycast : MonoBehaviour
     {
         RaycastHit hit = new RaycastHit();
         Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, maxDistance,detectionLayer))
         {
+            
             hitGO = hit.collider.gameObject;
+            highlightable = hit.collider.GetComponent<IHighlightable>();
+            if (highlightable != null)
+            {
+                GameManager.Instance.SetHandCursor();
+                highlightable.TurnOnHighlght();
+                if (prevHighligtable != highlightable && prevHighligtable != null)
+                {
+                    prevHighligtable.TurnOffHighlight();
+                    prevHighligtable = highlightable;
+                }
+
+            }
+
 
             if (hitGO != prevGO)
             {
@@ -56,7 +75,7 @@ public class Raycast : MonoBehaviour
                 print($"Object: \"{hitGO.name}\"");
                 selectGO = hitGO;
 
-                line = Instantiate(linePrefab);
+                line = Instantiate(linePrefab);         
 
                 if (selectGO.GetComponent<Rigidbody>() != null)
                 {
@@ -113,6 +132,19 @@ public class Raycast : MonoBehaviour
             Debug.DrawLine(ray.origin, hit.point, Color.yellow);
             //Debug.DrawRay(hit.point, Vector3.Reflect(transform.InverseTransformPoint(hit.point), hit.normal), Color.blue);
         }
+        else
+        {
+
+            GameManager.Instance.SetDefaultCursor();
+            if (highlightable != null)
+            {
+
+                highlightable.TurnOffHighlight();
+                prevHighligtable = highlightable;
+                highlightable = null;
+            }
+        }
+
     }
 
     void StartDragging(Vector3 hitPoint)

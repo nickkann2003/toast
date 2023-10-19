@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class Lever : MonoBehaviour
+public class Lever : MonoBehaviour, IHighlightable
 {
     private Vector3 mOffset;
     private float mZCoord;
@@ -32,6 +33,21 @@ public class Lever : MonoBehaviour
     public float timer;
     public float maxTime;
 
+    [SerializeField] private Outline outline;
+    public bool IsHighlightedEnable => true;
+
+    public Outline Outline => outline;
+
+    private void Awake()
+    {
+        if (!TryGetComponent<Outline>(out outline))
+        {
+            this.transform.AddComponent<Outline>();
+            outline = GetComponent<Outline>();
+        }
+        outline.enabled = false;
+
+    }
     private void Start()
     {
         mouse = false;
@@ -188,6 +204,16 @@ public class Lever : MonoBehaviour
         }
 
         return worldPos;
+    }
+
+    public void TurnOnHighlght()
+    {
+        outline.enabled = true;
+    }
+
+    public void TurnOffHighlight()
+    {
+        outline.enabled = false;
     }
 }
 

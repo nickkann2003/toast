@@ -14,24 +14,39 @@ public abstract class Station : MonoBehaviour, IHighlightable
     public bool isDynamic;
 
     // If isEnable is false, then the player should not be able to reach to interact with this station/prop
-    public bool isEnabled;
+    [SerializeField] private bool isEnabled;
+
+    bool IHighlightable.IsHighlightedEnable => isEnabled;
+
+    Outline IHighlightable.Outline => outline;
 
 
     // Start is called before the first frame update
     void Start()
     {
         isEnabled= true;
-        this.outline = this.transform.AddComponent<Outline>();
-    }
-
-    public void EnableHiglight()
-    {
-        outline.enabled = true;
-    }
-
-    public void DisableHighlight()
-    {
+        //this.transform.AddComponent<Outline>();
+        if(!TryGetComponent<Outline>(out outline))
+        {
+            this.transform.AddComponent<Outline>();
+            outline = GetComponent<Outline>();
+        }
         outline.enabled = false;
+    }
+
+    public void TurnOnHighlght()
+    {
+        if(!outline.isActiveAndEnabled)
+        {
+            outline.enabled = true;
+            Debug.Log("sss");
+        }
+    }
+
+    public void TurnOffHighlight()
+    {
+        if (outline.isActiveAndEnabled)
+            outline.enabled = false;
     }
 
 }

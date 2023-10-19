@@ -66,30 +66,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //switch (curStation)
-        //{
-        //    case Stations.Starting:
-        //        tableOutline.enabled = true;
-        //        toasterOutline.enabled = false;
-        //        dialOutline.enabled = false;
-
-        //        backButton.SetActive(false);
-        //        break;
-        //    case Stations.Table:
-        //        tableOutline.enabled = false;
-        //        toasterOutline.enabled = true;
-        //        dialOutline.enabled = false;
-
-        //        backButton.SetActive(true);
-        //        break;
-        //    case Stations.Toaster:
-        //        tableOutline.enabled = false;
-        //        toasterOutline.enabled = false;
-        //        dialOutline.enabled = true;
-        //        backButton.SetActive(true);
-        //        break;
-
-        //}
+       
     }
 
     /// <summary>

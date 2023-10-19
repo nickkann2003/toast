@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build.Content;
 using UnityEngine;
-using UnityEngine.UIElements;
+//using UnityEngine.UIElements;
 using static UnityEditor.FilePathAttribute;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 // Station enum, used to track which station it is in
 public enum Stations
@@ -29,23 +31,12 @@ public class StationManager : MonoBehaviour
     [SerializeField]
     float moveSpeed = 1.0f;
 
-    private Stations curStation;
-    private Stations prevStation;
-
-    // Temporary public variables
-    public Outline toasterOutline;
-    public Outline dialOutline;
-    public Outline tableOutline;
-    public GameObject backButton;
+    [SerializeField] private UnityEngine.UI.Button backButton;
    
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
     {
         instance = this;
-        
-        // Will be used once have the stations state machine
-        curStation = Stations.Starting; 
-        prevStation = Stations.Starting;
 
     }
 
@@ -55,50 +46,12 @@ public class StationManager : MonoBehaviour
         playerPath = new Stack<Location>();
 
         //backBounds = new Rect(0, 0, Screen.width, Screen.height / 10);
-
         MoveToStation(playerLocation);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //// If player can move out a station, do so when clicking bottom part of screen
-        //if (playerPath.Count > 1)
-        //{
-        //    if (Input.GetMouseButtonDown(0) && backBounds.Contains(Input.mousePosition))
-        //    {
-        //        StationMoveBack();
-        //    }
-        //}
-
-        // temporary code for MVI
-        switch(curStation) 
-        {
-            case Stations.Starting:
-                tableOutline.enabled = true;
-                toasterOutline.enabled = false;
-                dialOutline.enabled = false;
-
-                backButton.SetActive(false);
-                break;
-            case Stations.Table:
-                tableOutline.enabled = false;
-                toasterOutline.enabled = true;
-                dialOutline.enabled = false;
-
-                backButton.SetActive(true);
-                break;
-            case Stations.Toaster:
-                tableOutline.enabled = false;
-                toasterOutline.enabled = false;
-                dialOutline.enabled = true;
-                backButton.SetActive(true);
-                break;
-            case Stations.Fridge:
-                backButton.SetActive(true);
-                break;
-
-        }
 
 
         // Camera tweening
@@ -120,11 +73,6 @@ public class StationManager : MonoBehaviour
       
     }
 
-    public void SetStations(Stations station)
-    {
-        prevStation= curStation;
-        curStation= station;
-    }
 
     /// <summary>
     /// The player moves to a station upon clicking
@@ -132,6 +80,20 @@ public class StationManager : MonoBehaviour
     /// <param name="loc">The station being targeted to move to</param>
     public void MoveToStation(Location loc)
     {
+        //foreach(var i in playerLocation.interactables)
+        //{
+        //    i.GetComponent<IHighlightable>().
+        //}
+
+        if (playerPath.Count > 0)
+        {
+            backButton.interactable = true;
+        }
+        else
+        {
+            backButton.interactable = false;
+        }
+
         // Trigger to begin moving camera
         moveProgress = 0.0f;
         movingCam = true;
@@ -155,6 +117,8 @@ public class StationManager : MonoBehaviour
         {
             loc.clickableCollider.enabled = false;
         }
+
+
     }
 
     /// <summary>
@@ -167,8 +131,8 @@ public class StationManager : MonoBehaviour
             StationManager.instance.playerLocation.clickableCollider.enabled = true;
         }
         playerPath.Pop();
-        SetStations(playerPath.Peek().stationLabel);
         MoveToStation(playerPath.Peek());
+
     }
 
 }

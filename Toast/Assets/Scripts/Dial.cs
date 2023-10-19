@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Dial : MonoBehaviour
+public class Dial : MonoBehaviour, IHighlightable
 {
     public Vector3 mOffset;
     private float mZCoord;
@@ -23,6 +24,10 @@ public class Dial : MonoBehaviour
     //Interactable
     public ToastingBreadTest breadToaster;
 
+    public bool IsHighlightedEnable => true;
+    [SerializeField] private Outline outline;
+    public Outline Outline => outline;
+
     private void Start()
     {
         rotation = transform.eulerAngles;
@@ -32,6 +37,13 @@ public class Dial : MonoBehaviour
         {
             parent = transform.parent;
         }
+
+        if (!TryGetComponent<Outline>(out outline))
+        {
+            this.transform.AddComponent<Outline>();
+            outline = GetComponent<Outline>();
+        }
+        outline.enabled = false;
     }
 
     private void Update()
@@ -137,5 +149,15 @@ public class Dial : MonoBehaviour
         }
 
         return worldPos;
+    }
+
+    public void TurnOnHighlght()
+    {
+        outline.enabled = true;
+    }
+
+    public void TurnOffHighlight()
+    {
+        outline.enabled = false;
     }
 }
