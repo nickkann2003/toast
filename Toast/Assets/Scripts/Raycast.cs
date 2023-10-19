@@ -76,6 +76,14 @@ public class Raycast : MonoBehaviour
 
     void TestRaycast()
     {
+        // turn off prev highlight
+        if (prevHighligtable != null)
+        {
+            prevHighligtable.TurnOffHighlight();
+        }
+        // swap highlight over
+        prevHighligtable = highlightable;
+
         hit = new RaycastHit();
         Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, maxDistance,detectionLayer))
@@ -86,12 +94,6 @@ public class Raycast : MonoBehaviour
             {
                 GameManager.Instance.SetHandCursor();
                 highlightable.TurnOnHighlght();
-                if (prevHighligtable != highlightable && prevHighligtable != null)
-                {
-                    prevHighligtable.TurnOffHighlight();
-                    prevHighligtable = highlightable;
-                }
-
             }
 
 
