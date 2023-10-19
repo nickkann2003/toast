@@ -84,16 +84,6 @@ public class StationManager : MonoBehaviour
         //{
         //    i.GetComponent<IHighlightable>().
         //}
-
-        if (playerPath.Count > 0)
-        {
-            backButton.interactable = true;
-        }
-        else
-        {
-            backButton.interactable = false;
-        }
-
         // Trigger to begin moving camera
         moveProgress = 0.0f;
         movingCam = true;
@@ -118,7 +108,14 @@ public class StationManager : MonoBehaviour
             loc.clickableCollider.enabled = false;
         }
 
-
+        if (playerPath.Count > 1)
+        {
+            backButton.interactable = true;
+        }
+        else
+        {
+            backButton.interactable = false;
+        }
     }
 
     /// <summary>

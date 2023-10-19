@@ -39,7 +39,6 @@ public abstract class Station : MonoBehaviour, IHighlightable
         if(!outline.isActiveAndEnabled)
         {
             outline.enabled = true;
-            Debug.Log("sss");
         }
     }
 
