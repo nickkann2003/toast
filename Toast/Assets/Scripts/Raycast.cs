@@ -9,21 +9,21 @@ public class Raycast : MonoBehaviour
     Camera targetCamera;
 
     GameObject prevGO;
-    GameObject hitGO;
+    public GameObject hitGO;
 
-    GameObject selectGO;
+    public GameObject selectGO;
 
     [SerializeField] private GameObject linePrefab;
     [SerializeField] private GameObject mousePointPrefab;
     [SerializeField] private int maxDistance;
     [SerializeField] private LayerMask detectionLayer;
 
-    GameObject mousePoint;
-    GameObject springJoint;
     GameObject line;
+    LineController lineController;
     float mZOffset;
 
     bool dragging;
+    RaycastHit hit;
 
     private IHighlightable highlightable;
     private IHighlightable prevHighligtable;
@@ -44,70 +44,42 @@ public class Raycast : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             print($"Object: \"{hitGO.name}\"");
-            selectGO = hitGO;
 
-            line = Instantiate(linePrefab);
-
-            if (selectGO.GetComponent<Rigidbody>() != null)
-            {
-                //StartDragging(hit.point);
-                mZOffset = Camera.main.WorldToScreenPoint(selectGO.transform.position).z;
-                line.GetComponent<LineController>().SetAnchor(selectGO.transform);
-            }
-            else
-            {
-                line.GetComponent<LineController>().SetAnchor(selectGO.transform);
-            }
-            dragging = true;
-
-
-            //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            //cube.transform.position = hit.point;
-            //hitGO.transform.parent = cube.transform;
+            StartDragging();
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if (mousePoint != null)
+            if (dragging)
             {
-                //StopDragging();
+                StopDragging();
             }
-            dragging = false;
-            //Destroy(selectGO.GetComponent<SpringJoint>());
-            //if (selectGO.transform.parent == springJoint)
-            //{
-            //    selectGO.transform.parent = null;
-            //    selectGO = null;
-            //    Destroy(springJoint);
-            //    springJoint = null;
-            //    Destroy(mousePoint);
-            //    mousePoint = null;
-            //}
-
-            Destroy(line);
-            print("line destroyed");
-            line = null;
+            
         }
 
         if (dragging)
         {
-            if (selectGO.GetComponent<Rigidbody>() != null)
+            if (selectGO != null)
             {
-                //mousePoint.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
-                //    mZOffset));
-                selectGO.GetComponent<Rigidbody>().velocity =
+                if (selectGO.GetComponent<Rigidbody>() != null)
+                {
+                    selectGO.GetComponent<Rigidbody>().velocity =
                     (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
                     mZOffset)) - selectGO.transform.position) * 10;
+                }
+            }
+            else
+            {
+                line.GetComponent<LineController>().SetAnchorPoint(1, hit.point);
             }
         }
     }
 
     void TestRaycast()
     {
-        RaycastHit hit = new RaycastHit();
+        hit = new RaycastHit();
         Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, maxDistance,detectionLayer))
         {
-            
             hitGO = hit.collider.gameObject;
             highlightable = hit.collider.GetComponent<IHighlightable>();
             if (highlightable != null)
@@ -149,29 +121,46 @@ public class Raycast : MonoBehaviour
 
     }
 
-    void StartDragging(Vector3 hitPoint)
+    void StartDragging()
     {
-        SpringJoint joint = selectGO.AddComponent<SpringJoint>();
-        //joint.autoConfigureConnectedAnchor = false;
-        mousePoint = Instantiate(mousePointPrefab);
-        mousePoint.transform.position = hitPoint;
-        joint.connectedBody = mousePoint.GetComponent<Rigidbody>();
+        line = Instantiate(linePrefab);
+        lineController = line.GetComponent<LineController>();
 
-        // spring values
-        joint.spring = 100f;
-        joint.damper = 50f;
-        joint.tolerance = .01f;
-        joint.massScale = 100f;
+        if (hitGO.GetComponent<Rigidbody>() != null || hitGO.name == "Toaster_Lever" || hitGO.name == "Toaster_Dial") // HARDCODE FOR NOW CHANGE LATER
+        {
+            selectGO = hitGO;
+            mZOffset = Camera.main.WorldToScreenPoint(selectGO.transform.position).z;
+            line.GetComponent<LineController>().SetAnchor(selectGO.transform);
 
-        line.GetComponent<LineController>().SetAnchor(selectGO.transform);
-
-        mZOffset = Camera.main.WorldToScreenPoint(selectGO.transform.position).z;
+            // HARDCODED
+            if (hitGO.name == "Toaster_Lever")
+            {
+                // give the line for the lever a slight offset to make it visible
+                Vector3 offset = Vector3.zero;
+                offset.z = hit.point.z - selectGO.transform.position.z;
+                lineController.SetOffset(offset);
+            }
+        }
+        else
+        {
+            line.GetComponent<LineController>().SetAnchorPoint(0, hit.point);
+        }
+        dragging = true;
     }
 
     void StopDragging()
     {
-        Destroy(selectGO.GetComponent<SpringJoint>());
-        Destroy(mousePoint);
-        mousePoint = null;
+        if (selectGO != null)
+        {
+            selectGO = null;
+        }
+
+        if (line != null)
+        {
+            Destroy(line);
+            line = null;
+        }
+
+        dragging = false;
     }
 }
