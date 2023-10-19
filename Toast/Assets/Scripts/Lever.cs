@@ -71,6 +71,11 @@ public class Lever : MonoBehaviour, IHighlightable
         if (timer > 0)
         {
             timer -= Time.deltaTime;
+            percent = (pos.y - minHeight) / (maxHeight - minHeight);
+            foreach (LeverChild child in children)
+            {
+                child.rigidBody.velocity = (child.bottom + ((child.top - child.bottom) * percent) - child.rigidBody.transform.localPosition) * 25;
+            }
         }
         else if (!mouse)
         {
