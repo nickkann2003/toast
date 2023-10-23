@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEngine.ParticleSystem;
 
 public class ToastingBreadTest : MonoBehaviour
 {
+    [SerializeField] private UnityEvent toasting;
+
     private List<GameObject> collidingObjects = new List<GameObject>();
     private float targetStrength = 1;
     public Color weakestStrength = Color.white;
