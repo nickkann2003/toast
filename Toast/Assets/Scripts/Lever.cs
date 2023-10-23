@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR;
 
 public class Lever : MonoBehaviour, IHighlightable
 {
+    [SerializeField] private UnityEvent myTrigger;
+
     private Vector3 mOffset;
     private float mZCoord;
 
@@ -37,6 +40,28 @@ public class Lever : MonoBehaviour, IHighlightable
     public bool IsHighlightedEnable => true;
 
     public Outline Outline => outline;
+
+
+    public float Timer
+    {
+        get
+        {
+            return timer;
+        }
+    }
+
+    public float MaxTime
+    {
+        get
+        {
+            return maxTime;
+        }
+        set
+        {
+            maxTime = value;
+        }
+    }
+
 
     private void Awake()
     {
@@ -154,7 +179,8 @@ public class Lever : MonoBehaviour, IHighlightable
                     {
                         if (!toastCollider.IsActive)
                         {
-                            toastCollider.activateTrigger(maxTime);
+                            myTrigger.Invoke();
+                            //toastCollider.activateTrigger(maxTime);
                         }
                     }
                     if (spawnPrefab != null)

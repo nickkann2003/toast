@@ -731,6 +731,12 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!1 &244151134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1826966778704901977, guid: 35113bd6e1073544387b346e18ac6a57,
+    type: 3}
+  m_PrefabInstance: {fileID: 354014773}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &251738259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1473,9 +1479,54 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 614494583368263386, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
+      propertyPath: timer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 614494583368263386, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
       propertyPath: children.Array.data[0].rigidBody
       value: 
       objectReference: {fileID: 200729682}
+    - target: {fileID: 614494583368263386, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: myTrigger.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 614494583368263386, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: myTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 614494583368263386, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: myTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 745334967}
+    - target: {fileID: 614494583368263386, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: myTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 614494583368263386, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: myTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: activateTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 614494583368263386, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: myTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ToastingBreadTest, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 614494583368263386, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: myTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614494583368263386, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: myTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1117063608750256595, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
       propertyPath: m_Layer
@@ -1530,6 +1581,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: toasting.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: toasting.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 244151134}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: toasting.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8223324724943486126, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
@@ -1890,6 +1956,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25688725de6164e41a85e61331a52d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myTrigger:
+    m_PersistentCalls:
+      m_Calls: []
   maxHeight: 2.2
   minHeight: -1
   children:
@@ -10896,7 +10965,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 90.75, y: -37.5}
+  m_AnchoredPosition: {x: 90.75, y: 0}
   m_SizeDelta: {x: 116, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1774354218
