@@ -75,6 +75,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d36d2d8d4d4f94d9ac66410f52c005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toasting:
+    m_PersistentCalls:
+      m_Calls: []
   weakestStrength: {r: 0.9254902, g: 0.654902, b: 0.40392157, a: 1}
   strongestStrength: {r: 0.084905684, g: 0.043337278, b: 0, a: 1}
   smokeParticles: {fileID: 3992009934678706487}
@@ -5171,8 +5174,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5331732, y: 0.5716888, z: 0.102335274}
-  m_Center: {x: 0.00075632334, y: 0.279953, z: 0.46076098}
+  m_Size: {x: 0.5331732, y: 0.5716888, z: 0.047923476}
+  m_Center: {x: 0.00075632334, y: 0.279953, z: 0.43355507}
 --- !u!1 &8426764315507303231
 GameObject:
   m_ObjectHideFlags: 0
@@ -5369,6 +5372,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25688725de6164e41a85e61331a52d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myTrigger:
+    m_PersistentCalls:
+      m_Calls: []
   maxHeight: 0.49
   minHeight: 0.2
   children:
@@ -5379,6 +5385,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 0}
   timer: 0
   maxTime: 5
+  outline: {fileID: 0}
 --- !u!65 &8354473111180681564
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5538,6 +5545,7 @@ MonoBehaviour:
   timer: 0
   maxTime: 0
   breadToaster: {fileID: 7172836254959586144}
+  outline: {fileID: 0}
 --- !u!1001 &3580371533054869975
 PrefabInstance:
   m_ObjectHideFlags: 0

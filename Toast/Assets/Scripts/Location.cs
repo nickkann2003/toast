@@ -22,5 +22,10 @@ public class Location : Station
         }
     }
 
-   
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(cameraPos, 0.5f);
+    }
+
 }
