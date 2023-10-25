@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//#if UNITY_EDITOR
+//using UnityEditor;
+//#endif // UNITY_EDITOR
+
 public class Button : MonoBehaviour, IHighlightable
 {
     // Test scripts to cause environment effects, TODO: Replace this with a list of interactables that are triggered on specific events
@@ -12,6 +16,8 @@ public class Button : MonoBehaviour, IHighlightable
     // position in world
     public GameObject maxHeight;
     public GameObject minHieght;
+
+    public Vector3 testMaxHeight;
 
     // amount that the button has moved towards min height
     private float interpolateAmount;
@@ -146,3 +152,27 @@ public class Button : MonoBehaviour, IHighlightable
         Outline.enabled = false;
     }
 }
+
+//#if UNITY_EDITOR
+//[CustomEditor(typeof(Button))]
+//public class ButtonEditor : Editor
+//{
+//    public void OnSceneGUI()
+//    {
+//        Button button = target as Button;
+
+//        Transform parentTransform = button.transform.parent.transform;
+
+//        EditorGUI.BeginChangeCheck();
+
+//        Vector3 newMaxHeight = Handles.PositionHandle(parentTransform.TransformPoint(button.testMaxHeight), Quaternion.identity);
+//        Handles.DrawWireCube(parentTransform.TransformPoint(button.testMaxHeight), new Vector3(.1f, .1f, .1f));
+
+//        if (EditorGUI.EndChangeCheck())
+//        {
+//            Undo.RecordObject(target, "Update Max Height");
+//            button.testMaxHeight = parentTransform.InverseTransformPoint(newMaxHeight);
+//        }
+//    }
+//}
+//#endif // UNITY_EDITOR
