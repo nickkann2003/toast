@@ -25,7 +25,8 @@ public class Location : Station
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(cameraPos, 0.5f);
+        Gizmos.DrawSphere(cameraPos, 0.1f);
+        Gizmos.DrawFrustum(cameraPos, Camera.main.fieldOfView, Camera.main.farClipPlane, Camera.main.nearClipPlane, Camera.main.aspect);
     }
 
 }
