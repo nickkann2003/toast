@@ -80,6 +80,7 @@ public class Raycast : MonoBehaviour
         // swap highlight over
         prevHighligtable = highlightable;
 
+
         hit = new RaycastHit();
         Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
