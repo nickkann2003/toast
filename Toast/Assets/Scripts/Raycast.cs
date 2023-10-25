@@ -67,10 +67,6 @@ public class Raycast : MonoBehaviour
                     mZOffset)) - selectGO.transform.position) * 10;
                 }
             }
-            else
-            {
-                line.GetComponent<LineController>().SetAnchorPoint(1, hit.point);
-            }
         }
     }
 
@@ -86,14 +82,18 @@ public class Raycast : MonoBehaviour
 
         hit = new RaycastHit();
         Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, maxDistance,detectionLayer))
+        if (Physics.Raycast(ray, out hit))
         {
             hitGO = hit.collider.gameObject;
-            highlightable = hit.collider.GetComponent<IHighlightable>();
-            if (highlightable != null)
+
+            if (hitGO.layer == 7) // interactable layer
             {
-                GameManager.Instance.SetHandCursor();
-                highlightable.TurnOnHighlght();
+                highlightable = hit.collider.GetComponent<IHighlightable>();
+                if (highlightable != null)
+                {
+                    GameManager.Instance.SetHandCursor();
+                    highlightable.TurnOnHighlght();
+                }
             }
 
 
@@ -125,27 +125,23 @@ public class Raycast : MonoBehaviour
 
     void StartDragging()
     {
-        line = Instantiate(linePrefab);
-        lineController = line.GetComponent<LineController>();
-
         if (hitGO.GetComponent<Rigidbody>() != null || hitGO.name == "Toaster_Lever" || hitGO.name == "Toaster_Dial") // HARDCODE FOR NOW CHANGE LATER
         {
+            line = Instantiate(linePrefab);
+            lineController = line.GetComponent<LineController>();
+
             selectGO = hitGO;
             mZOffset = Camera.main.WorldToScreenPoint(selectGO.transform.position).z;
             line.GetComponent<LineController>().SetAnchor(selectGO.transform);
 
-            // HARDCODED
-            if (hitGO.name == "Toaster_Lever")
-            {
-                // give the line for the lever a slight offset to make it visible
-                Vector3 offset = Vector3.zero;
-                offset.z = hit.point.z - selectGO.transform.position.z;
-                lineController.SetOffset(offset);
-            }
-        }
-        else
-        {
-            line.GetComponent<LineController>().SetAnchorPoint(0, hit.point);
+            //// HARDCODED
+            //if (hitGO.name == "Toaster_Lever")
+            //{
+            //    // give the line for the lever a slight offset to make it visible
+            //    Vector3 offset = Vector3.zero;
+            //    offset.z = hit.point.z - selectGO.transform.position.z;
+            //    lineController.SetOffset(offset);
+            //}
         }
         dragging = true;
     }
