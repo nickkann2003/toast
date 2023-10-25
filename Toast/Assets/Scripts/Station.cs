@@ -10,9 +10,6 @@ public abstract class Station : MonoBehaviour, IHighlightable
 
     private Outline outline;
 
-    // If is dynamic, the station can be moved from place to place
-    public bool isDynamic;
-
     // If isEnable is false, then the player should not be able to reach to interact with this station/prop
     [SerializeField] private bool isEnabled;
 

@@ -32,6 +32,11 @@ public class StationManager : MonoBehaviour
     float moveSpeed = 1.0f;
 
     [SerializeField] private UnityEngine.UI.Button backButton;
+
+    [SerializeField]
+    int inspectorScale = 5;
+
+    public GameObject inspectorItem;
    
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
@@ -130,6 +135,19 @@ public class StationManager : MonoBehaviour
         playerPath.Pop();
         MoveToStation(playerPath.Peek());
 
+    }
+
+    public void ExamineObject(Prop propToExamine)
+    {
+        // Default Rotation
+        inspectorItem.transform.rotation = Quaternion.identity;
+
+        // Copy model/mesh
+        inspectorItem.GetComponent<MeshFilter>().mesh = propToExamine.GetComponent<MeshFilter>().mesh;
+        inspectorItem.GetComponent<MeshRenderer>().material = propToExamine.GetComponent<MeshRenderer>().material;
+
+        // Scale object properly
+        inspectorItem.transform.localScale = propToExamine.transform.localScale * inspectorScale;
     }
 
 }

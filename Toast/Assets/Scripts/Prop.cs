@@ -6,4 +6,12 @@ using UnityEngine;
 public class Prop : Station
 {
     public Location currentLocation; // The location the prop is currently in
+
+    private void OnMouseOver()
+    {
+        if(Input.GetMouseButtonDown(1))
+        {
+            StationManager.instance.ExamineObject(this);
+        }    
+    }
 }
