@@ -6,7 +6,9 @@ using static UnityEngine.ParticleSystem;
 
 public class ToastingBreadTest : MonoBehaviour
 {
+    [SerializeField] private UnityEvent startToasting;
     [SerializeField] private UnityEvent toasting;
+    [SerializeField] private UnityEvent stopToasting;
 
     private List<GameObject> collidingObjects = new List<GameObject>();
     private float targetStrength = 1;
@@ -15,7 +17,8 @@ public class ToastingBreadTest : MonoBehaviour
     private bool isActive = false;
 
     private Dictionary<GameObject, ToastingObject> toastingObjects = new Dictionary<GameObject, ToastingObject>();
-    private float totalTime;
+    public float timer;
+    public float maxTime;
 
     public ParticleSystem smokeParticles;
 
@@ -23,19 +26,28 @@ public class ToastingBreadTest : MonoBehaviour
 
     public void Update()
     {
-        if(toastingObjects.Count > 0)
+        if (isActive)
         {
-            foreach(var (key, value) in toastingObjects)
+            if (toastingObjects.Count > 0)
             {
-                ToastingObject toast = value;
-                toast.adjustColor(totalTime, Time.deltaTime);
+                foreach (var (key, value) in toastingObjects)
+                {
+                    ToastingObject toast = value;
+                    toast.adjustColor(maxTime, Time.deltaTime);
+                }
+            }
+            timer -= Time.deltaTime;
+
+            if (timer <= 0)
+            {
+                deactivateTrigger();
             }
         }
     }
 
-    public void activateTrigger(float maxTime)
+    public void activateTrigger()
     {
-        totalTime = maxTime;
+        timer = maxTime;
         Color targetColor = (strongestStrength - weakestStrength) * targetStrength + weakestStrength;
         foreach (GameObject obj in collidingObjects)
         {
@@ -52,12 +64,16 @@ public class ToastingBreadTest : MonoBehaviour
         em.rateOverTimeMultiplier = 0.3f + (6 * targetStrength);
         smokeParticles.Play();
         isActive = true;
+
+        startToasting.Invoke();
     }
 
     public void deactivateTrigger()
     {
+        timer = 0;
         toastingObjects.Clear();
         isActive = false;
+        stopToasting.Invoke();
     }
 
     public void setDialValue(float value)

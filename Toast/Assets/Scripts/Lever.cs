@@ -8,7 +8,7 @@ using UnityEngine.XR;
 
 public class Lever : MonoBehaviour, IHighlightable
 {
-    [SerializeField] private UnityEvent myTrigger;
+    [SerializeField] private UnityEvent leverTrigger;
 
     private Vector3 mOffset;
     private float mZCoord;
@@ -41,6 +41,8 @@ public class Lever : MonoBehaviour, IHighlightable
 
     public Outline Outline => outline;
 
+    private bool isOn;
+
 
     public float Timer
     {
@@ -71,7 +73,7 @@ public class Lever : MonoBehaviour, IHighlightable
             outline = GetComponent<Outline>();
         }
         outline.enabled = false;
-
+        isOn = false;
     }
     private void Start()
     {
@@ -93,9 +95,9 @@ public class Lever : MonoBehaviour, IHighlightable
 
     private void Update()
     {
-        if (timer > 0)
+        if (isOn)
         {
-            timer -= Time.deltaTime;
+            //timer -= Time.deltaTime;
             percent = (pos.y - minHeight) / (maxHeight - minHeight);
             foreach (LeverChild child in children)
             {
@@ -123,17 +125,6 @@ public class Lever : MonoBehaviour, IHighlightable
             pos = ConvertToWorldPos(pos);
 
             transform.position = pos;
-            if(triggered)
-            {
-                triggered = false;
-                if (toastCollider != null)
-                {
-                    if (toastCollider.IsActive)
-                    {
-                        toastCollider.deactivateTrigger();
-                    }
-                }
-            }
         }
     }
 
@@ -153,7 +144,7 @@ public class Lever : MonoBehaviour, IHighlightable
 
     private void OnMouseDrag()
     {
-        if (timer <= 0)
+        if (!isOn)
         {
             mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
             // get the button position in world space
@@ -163,8 +154,6 @@ public class Lever : MonoBehaviour, IHighlightable
             // convert from world to local space
             pos = ConvertToLocalPos(pos);
 
-            triggered = false;
-
             if (pos.y > maxHeight)
             {
                 pos.y = maxHeight;
@@ -172,26 +161,20 @@ public class Lever : MonoBehaviour, IHighlightable
             else if (pos.y < minHeight)
             {
                 pos.y = minHeight;
-                timer = maxTime;
-                if (!triggered)
+
+                if (!isOn)
                 {
-                    if (toastCollider != null)
-                    {
-                        if (!toastCollider.IsActive)
-                        {
-                            myTrigger.Invoke();
-                            //toastCollider.activateTrigger(maxTime);
-                        }
-                    }
+                    leverTrigger.Invoke();
+
                     if (spawnPrefab != null)
                     {
                         spawnPrefab.TriggerSpawn();
                     }
-                    triggered = true;
                 }
             }
 
-                percent = (pos.y - minHeight) / (maxHeight - minHeight);
+            percent = (pos.y - minHeight) / (maxHeight - minHeight);
+
             foreach (LeverChild child in children)
             {
                 child.rigidBody.velocity = (child.bottom + (child.top - child.bottom)*percent - child.rigidBody.transform.localPosition) * 25;
@@ -200,6 +183,16 @@ public class Lever : MonoBehaviour, IHighlightable
             // convert from local to world space
             transform.position = ConvertToWorldPos(pos);
         }
+    }
+
+    public void turnOn()
+    {
+        isOn = true;
+    }
+
+    public void turnOff()
+    {
+        isOn = false;
     }
 
     private Vector3 GetMouseWorldPos()
