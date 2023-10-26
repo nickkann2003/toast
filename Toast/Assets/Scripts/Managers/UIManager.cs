@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject pauseMenu;
+
+    public static UIManager instance;
+
+    private void Awake()
     {
-        
+
+        if (instance != null)
+            Destroy(gameObject);
+        else
+            instance = this;
+
+        //DontDestroyOnLoad(gameObject);
+    }
+  
+
+    public void SetPauseMenu()
+    {
+        pauseMenu.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ClosePauseMenu()
     {
-        
+        pauseMenu.SetActive(false);
     }
 }

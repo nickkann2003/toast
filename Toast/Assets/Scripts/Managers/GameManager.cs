@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 
 
 // Game state, used to track the game state
 public enum GameState
 {
-    Menu,
+    Pause,
     inGame
 }
 
@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     }
 
     public AudioManager AudioManager { get; private set; }
+    public UIManager UIManager { get; private set; }
+
+    public GameState curState;
 
     // BGM
     public AudioClip test;
@@ -40,7 +43,6 @@ public class GameManager : MonoBehaviour
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
-    // Outline
 
 
     private void Awake()
@@ -55,6 +57,9 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         AudioManager = GetComponentInChildren<AudioManager>();
+        UIManager= GetComponentInChildren<UIManager>();
+
+        curState = GameState.inGame;
     }
 
     // Start is called before the first frame update
@@ -66,7 +71,21 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        switch(curState)
+        {
+            case GameState.inGame:
+                if(Keyboard.current.escapeKey.wasPressedThisFrame)
+                {
+                    PauseGame();
+                }
+                break;
+            case GameState.Pause:
+                if (Keyboard.current.escapeKey.wasPressedThisFrame)
+                {
+                    UnPauseGame();
+                }
+                break;
+        }  
     }
 
     /// <summary>
@@ -83,5 +102,31 @@ public class GameManager : MonoBehaviour
     public void SetHandCursor()
     {
         Cursor.SetCursor(Instance.cursorHand, Instance.hotSpot, Instance.cursorMode);
+    }
+
+    public void PauseGame()
+    {
+        curState= GameState.Pause;
+        Time.timeScale = 0;
+        //Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
+        UIManager.SetPauseMenu();
+    }
+
+    public void UnPauseGame()
+    {
+        curState = GameState.inGame;
+        Time.timeScale = 1;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        UIManager.ClosePauseMenu();
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 }
