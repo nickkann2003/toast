@@ -11,6 +11,9 @@ public class Hand : MonoBehaviour
     private bool holdingItem;
     public Vector3 offset = new Vector3(0.35f, -0.35f, 0.55f);
 
+    //TODO: BAD TEMP CODE, GET IT OUT
+    bool eatPressed = false;
+
     // Start is called before the first frame update -----------
     void Start()
     {
@@ -25,6 +28,31 @@ public class Hand : MonoBehaviour
         if(currentItem != null)
         {
             currentItem.transform.position = cam.transform.position + (offset);
+        }
+
+        //TODO: BAD TEMP CODE, GET IT OUT
+        if (Input.GetKeyDown("e"))
+        {
+            if (!eatPressed)
+            {
+                eatPressed = true;
+                if (holdingItem)
+                {
+                    if(currentItem.GetComponent<IEatable>() != null)
+                    {
+                        currentItem.GetComponent<IEatable>().TakeBite();
+                        if(currentItem == null)
+                        {
+                            holdingItem = false;
+                            currentItem = null;
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            eatPressed = false;
         }
     }
 
