@@ -11,7 +11,7 @@ public class ToastingBreadTest : MonoBehaviour
     [SerializeField] private UnityEvent stopToasting;
 
     private List<GameObject> collidingObjects = new List<GameObject>();
-    private float targetStrength = 1;
+    private float targetStrength = .5f;
     public Color weakestStrength = Color.white;
     public Color strongestStrength = Color.black;
     private bool isActive = false;
@@ -70,10 +70,13 @@ public class ToastingBreadTest : MonoBehaviour
 
     public void deactivateTrigger()
     {
-        timer = 0;
-        toastingObjects.Clear();
-        isActive = false;
-        stopToasting.Invoke();
+        if (isActive)
+        {
+            timer = 0;
+            toastingObjects.Clear();
+            isActive = false;
+            stopToasting.Invoke();
+        }
     }
 
     public void setDialValue(float value)

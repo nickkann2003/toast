@@ -96,6 +96,10 @@ public class Raycast : MonoBehaviour
                     highlightable.TurnOnHighlght();
                 }
             }
+            else
+            {
+                GameManager.Instance.SetDefaultCursor();
+            }
 
 
             if (hitGO != prevGO)

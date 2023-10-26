@@ -116,7 +116,7 @@ Transform:
   - {fileID: 7245871066802113980}
   - {fileID: 6932202277023024513}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4523477414165319927
 GameObject:
@@ -322,13 +322,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de957e91aeca11240aff1a6a18f13c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonTrigger:
+    m_PersistentCalls:
+      m_Calls: []
   toastCollider: {fileID: 0}
   spawnPrefab: {fileID: 4952688417671541935}
   maxHeight: {fileID: 365891720197560109}
   minHieght: {fileID: 8173612472901576158}
+  testMaxHeight: {x: 0, y: 0, z: 0}
   timer: 0
   maxTime: 0.1
   trigger: 0
+  outline: {fileID: 0}
 --- !u!114 &4952688417671541935
 MonoBehaviour:
   m_ObjectHideFlags: 0

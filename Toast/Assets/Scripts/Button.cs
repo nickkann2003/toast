@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 //#if UNITY_EDITOR
 //using UnityEditor;
@@ -9,6 +10,8 @@ using UnityEngine;
 
 public class Button : MonoBehaviour, IHighlightable
 {
+    [SerializeField] private UnityEvent buttonTrigger;
+
     // Test scripts to cause environment effects, TODO: Replace this with a list of interactables that are triggered on specific events
     public ToastingBreadTest toastCollider;
     public SpawnPrefabScript spawnPrefab;
@@ -101,10 +104,7 @@ public class Button : MonoBehaviour, IHighlightable
     {
         if (timer >= maxTime)
         {
-            if (spawnPrefab != null)
-            {
-                spawnPrefab.TriggerSpawn();
-            }
+            buttonTrigger.Invoke();
             timer = 0;
         }
         else

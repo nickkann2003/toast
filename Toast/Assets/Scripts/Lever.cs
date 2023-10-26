@@ -17,52 +17,21 @@ public class Lever : MonoBehaviour, IHighlightable
     public float minHeight;
     public List<LeverChild> children;
 
-    // Test scripts to cause environment effects, TODO: Replace this with a list of interactables that are triggered on specific events
-    public ToastingBreadTest toastCollider;
-    public SpawnPrefabScript spawnPrefab;
-
     private bool mouse;
     private float percent;
 
     private Vector3 pos;
 
-    // Has this reached bottom yet?
-    bool triggered = false;
-
     // allows objects to be given parents without having a parent
     private Transform parent;
-
-    // timer
-    public float timer;
-    public float maxTime;
 
     [SerializeField] private Outline outline;
     public bool IsHighlightedEnable => true;
 
     public Outline Outline => outline;
 
+    // Has this reached bottom yet?
     private bool isOn;
-
-
-    public float Timer
-    {
-        get
-        {
-            return timer;
-        }
-    }
-
-    public float MaxTime
-    {
-        get
-        {
-            return maxTime;
-        }
-        set
-        {
-            maxTime = value;
-        }
-    }
 
 
     private void Awake()
@@ -86,10 +55,6 @@ public class Lever : MonoBehaviour, IHighlightable
         foreach(LeverChild child in children) {
             child.top += child.rigidBody.position;
             child.bottom += child.rigidBody.position;
-        }
-        if (toastCollider != null)
-        {
-            toastCollider.setDialValue(0.5f);
         }
     }
 
@@ -165,11 +130,6 @@ public class Lever : MonoBehaviour, IHighlightable
                 if (!isOn)
                 {
                     leverTrigger.Invoke();
-
-                    if (spawnPrefab != null)
-                    {
-                        spawnPrefab.TriggerSpawn();
-                    }
                 }
             }
 
