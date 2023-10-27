@@ -39,9 +39,10 @@ public class GameManager : MonoBehaviour
     public AudioClip test;
 
     // Cursor
-    public Texture2D cursorHand;
-    public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotSpot = Vector2.zero;
+    [SerializeField] private Texture2D cursorHand;
+    [SerializeField] private CursorMode cursorMode = CursorMode.Auto;
+    [SerializeField] private Vector2 DefaulthotSpot = new Vector2(16,16);
+    [SerializeField] private Vector2 HandHotSpot = new Vector2(16, 0);
 
 
 
@@ -93,7 +94,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SetDefaultCursor()
     {
-        Cursor.SetCursor(null, Instance.hotSpot, Instance.cursorMode);
+        // Default cursor hot spot is 16, 16
+        Cursor.SetCursor(null, DefaulthotSpot, Instance.cursorMode);
     }
 
     /// <summary>
@@ -101,7 +103,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SetHandCursor()
     {
-        Cursor.SetCursor(Instance.cursorHand, Instance.hotSpot, Instance.cursorMode);
+        Cursor.SetCursor(Instance.cursorHand, HandHotSpot, Instance.cursorMode);
     }
 
     public void PauseGame()
