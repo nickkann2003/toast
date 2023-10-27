@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 
 // Game state, used to track the game state
@@ -132,5 +133,11 @@ public class GameManager : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
+    }
+
+
+    public void LoadGame(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
     }
 }
