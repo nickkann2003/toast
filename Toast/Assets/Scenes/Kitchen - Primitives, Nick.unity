@@ -288,7 +288,7 @@ MonoBehaviour:
   moveSpeed: 0.5
   backButton: {fileID: 1774354218}
   inspectorScale: 5
-  inspectorItem: {fileID: 252240865}
+  inspectorItem: {fileID: 252240869}
 --- !u!1 &160495223
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,6 +823,7 @@ GameObject:
   - component: {fileID: 252240866}
   - component: {fileID: 252240868}
   - component: {fileID: 252240867}
+  - component: {fileID: 252240869}
   m_Layer: 8
   m_Name: Examine Model
   m_TagString: Untagged
@@ -895,6 +896,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252240865}
   m_Mesh: {fileID: 0}
+--- !u!114 &252240869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252240865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3805cd570d4dcc47bf2bdf96ed8a89a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inspecting: 0
+  inspectorCam: {fileID: 1014665522}
 --- !u!1 &259109840
 GameObject:
   m_ObjectHideFlags: 0
