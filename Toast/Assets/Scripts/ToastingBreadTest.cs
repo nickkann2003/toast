@@ -75,6 +75,7 @@ public class ToastingBreadTest : MonoBehaviour
             timer = 0;
             toastingObjects.Clear();
             isActive = false;
+            smokeParticles.Stop();
             stopToasting.Invoke();
         }
     }

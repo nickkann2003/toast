@@ -145,12 +145,12 @@ public class Lever : MonoBehaviour, IHighlightable
         }
     }
 
-    public void turnOn()
+    public void TurnOn()
     {
         isOn = true;
     }
 
-    public void turnOff()
+    public void TurnOff()
     {
         isOn = false;
     }
