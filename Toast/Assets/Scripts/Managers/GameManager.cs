@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 
 // Game state, used to track the game state
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     public AudioManager AudioManager { get; private set; }
     public UIManager UIManager { get; private set; }
+    public SceneLoadingManager SceneLoadingManager { get; private set; }
 
     public GameState curState;
 
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviour
         }
         AudioManager = GetComponentInChildren<AudioManager>();
         UIManager= GetComponentInChildren<UIManager>();
+        SceneLoadingManager = GetComponentInChildren<SceneLoadingManager>(); 
 
         curState = GameState.inGame;
     }
@@ -130,5 +133,11 @@ public class GameManager : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
+    }
+
+
+    public void LoadGame(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
     }
 }

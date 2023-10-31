@@ -36,7 +36,7 @@ public class StationManager : MonoBehaviour
     [SerializeField]
     int inspectorScale = 5;
 
-    public GameObject inspectorItem;
+    public InspectItem inspectorItem;
    
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
@@ -139,6 +139,8 @@ public class StationManager : MonoBehaviour
 
     public void ExamineObject(Prop propToExamine)
     {
+        inspectorItem.inspecting = true;
+
         // Default Rotation
         inspectorItem.transform.rotation = Quaternion.identity;
 
