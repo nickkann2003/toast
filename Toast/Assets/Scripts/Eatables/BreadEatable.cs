@@ -10,6 +10,11 @@ public class BreadEatable : MonoBehaviour, IEatable
 
     public void EatWhole()
     {
+        // If this is the held item, remove it from hand
+        if (Camera.main.GetComponent<Hand>().CheckHeldItem(gameObject))
+        {
+            Camera.main.GetComponent<Hand>().RemoveItem();
+        }
         Destroy(gameObject);
     }
 

@@ -10,6 +10,7 @@ public class Hand : MonoBehaviour
     private GameObject currentItem;
     private bool holdingItem;
     public Vector3 offset = new Vector3(0.35f, -0.35f, 0.55f);
+    public ParticleSystem EatParticles;
 
     //TODO: BAD TEMP CODE, GET IT OUT
     bool eatPressed = false;
@@ -22,6 +23,7 @@ public class Hand : MonoBehaviour
     }
 
     // Update is called once per frame -------------------------
+    [Obsolete]
     void Update()
     {
         // If theres a held item, set its position to hand position
@@ -40,7 +42,11 @@ public class Hand : MonoBehaviour
                 {
                     if(currentItem.GetComponent<IEatable>() != null)
                     {
+                        Color c = currentItem.GetComponent<Renderer>().material.color;
+                        var main = EatParticles.main;
+                        main.startColor = c;
                         currentItem.GetComponent<IEatable>().TakeBite();
+                        EatParticles.Play();
                         if(currentItem == null)
                         {
                             holdingItem = false;
