@@ -45,6 +45,7 @@ public class Hand : MonoBehaviour
                         Color c = currentItem.GetComponent<Renderer>().material.color;
                         var main = EatParticles.main;
                         main.startColor = c;
+                        ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.EatObject, "toast", true));
                         currentItem.GetComponent<IEatable>().TakeBite();
                         EatParticles.Play();
                         if(currentItem == null)

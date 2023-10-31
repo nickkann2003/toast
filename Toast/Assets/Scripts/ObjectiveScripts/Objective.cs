@@ -75,7 +75,7 @@ public class Objective : MonoBehaviour
             {
                 if(r.listening)
                 {
-                value += "\n-    " + r.ToString();
+                value += "\n    - " + r.ToString;
                 if (!r.CheckComplete())
                 {
                     allDone = false;

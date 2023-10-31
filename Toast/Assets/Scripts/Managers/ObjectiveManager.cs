@@ -14,13 +14,12 @@ public class ObjectiveManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        UpdateText();
     }
 
     // Update is called once per frame
@@ -36,11 +35,15 @@ public class ObjectiveManager : MonoBehaviour
         {
             obj.UpdateObjective(e);
         }
+        UpdateText();
     }
 
     private void UpdateText()
     {
-        
+        foreach(TextMeshPro display in displays)
+        {
+            display.text = this.ToString;
+        }
     }
 
     new public string ToString
@@ -48,10 +51,10 @@ public class ObjectiveManager : MonoBehaviour
         get
         {
             string value = "";
-            value += "To-Do List:\n";
+            value += "To-Do List:";
             foreach(Objective obj in objectives)
             {
-                value += "\n- " + obj.ToString();
+                value += "\n- " + obj.ToString;
             }
             return value;
         }
