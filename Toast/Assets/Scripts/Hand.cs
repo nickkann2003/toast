@@ -10,6 +10,10 @@ public class Hand : MonoBehaviour
     private GameObject currentItem;
     private bool holdingItem;
     public Vector3 offset = new Vector3(0.35f, -0.35f, 0.55f);
+    public ParticleSystem EatParticles;
+
+    //TODO: BAD TEMP CODE, GET IT OUT
+    bool eatPressed = false;
 
     // Start is called before the first frame update -----------
     void Start()
@@ -19,12 +23,42 @@ public class Hand : MonoBehaviour
     }
 
     // Update is called once per frame -------------------------
+    [Obsolete]
     void Update()
     {
         // If theres a held item, set its position to hand position
         if(currentItem != null)
         {
             currentItem.transform.position = cam.transform.position + (offset);
+        }
+
+        //TODO: BAD TEMP CODE, GET IT OUT
+        if (Input.GetKeyDown("e"))
+        {
+            if (!eatPressed)
+            {
+                eatPressed = true;
+                if (holdingItem)
+                {
+                    if(currentItem.GetComponent<IEatable>() != null)
+                    {
+                        Color c = currentItem.GetComponent<Renderer>().material.color;
+                        var main = EatParticles.main;
+                        main.startColor = c;
+                        currentItem.GetComponent<IEatable>().TakeBite();
+                        EatParticles.Play();
+                        if(currentItem == null)
+                        {
+                            holdingItem = false;
+                            currentItem = null;
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            eatPressed = false;
         }
     }
 
