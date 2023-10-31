@@ -40,19 +40,26 @@ public class Hand : MonoBehaviour
                 eatPressed = true;
                 if (holdingItem)
                 {
-                    if(currentItem.GetComponent<IEatable>() != null)
+                    if(currentItem != null)
                     {
-                        Color c = currentItem.GetComponent<Renderer>().material.color;
-                        var main = EatParticles.main;
-                        main.startColor = c;
-                        ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.EatObject, "toast", true));
-                        currentItem.GetComponent<IEatable>().TakeBite();
-                        EatParticles.Play();
-                        if(currentItem == null)
+                        if(currentItem.GetComponent<IEatable>() != null)
                         {
-                            holdingItem = false;
-                            currentItem = null;
+                            Color c = currentItem.GetComponent<Renderer>().material.color;
+                            var main = EatParticles.main;
+                            main.startColor = c;
+                            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.EatObject, "toast", true));
+                            currentItem.GetComponent<IEatable>().TakeBite();
+                            EatParticles.Play();
+                            if(currentItem == null)
+                            {
+                                holdingItem = false;
+                                currentItem = null;
+                            }
                         }
+                    }
+                    else
+                    {
+                        holdingItem = false;
                     }
                 }
             }
