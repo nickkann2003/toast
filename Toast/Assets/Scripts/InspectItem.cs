@@ -9,7 +9,7 @@ public class InspectItem : MonoBehaviour
     public bool inspecting = false;
 
     [SerializeField]
-    Camera inspectorCam;
+    public Camera inspectorCam;
 
     Vector3 prevPosition;
     Vector3 changeInPosition;

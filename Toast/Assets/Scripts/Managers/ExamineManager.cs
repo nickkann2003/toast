@@ -11,15 +11,25 @@ public class ExamineManager : MonoBehaviour
 
     public InspectItem inspectorItem;
 
+    public Location examineStation; 
+
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
     {
+        examineStation = new Location();
         instance = this;
     }
 
     public void ExamineObject(Prop propToExamine)
     {
         // Right now, can only inspect basic items with a single mesh
+
+        examineStation.cameraPos = StationManager.instance.playerLocation.cameraPos;
+        examineStation.cameraRotation = StationManager.instance.playerLocation.cameraRotation;
+
+        StationManager.instance.MoveToStation(examineStation);
+
+        inspectorItem.inspectorCam.enabled = true;
         inspectorItem.inspecting = true;
 
         /*
@@ -41,5 +51,13 @@ public class ExamineManager : MonoBehaviour
 
         // Scale object properly
         inspectorItem.transform.localScale = propToExamine.transform.lossyScale * inspectorScale;
+    }
+
+    /// <summary>
+    /// Hides the object examining mode
+    /// </summary>
+    public void QuitExamining()
+    {
+        inspectorItem.inspectorCam.enabled = false;
     }
 }

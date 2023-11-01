@@ -123,6 +123,11 @@ public class StationManager : MonoBehaviour
     /// </summary>
     public void StationMoveBack()
     {
+        if(playerLocation == ExamineManager.instance.examineStation)
+        {
+            ExamineManager.instance.QuitExamining();
+        }
+
         if (StationManager.instance.playerLocation.clickableCollider != null)
         {
             StationManager.instance.playerLocation.clickableCollider.enabled = true;
