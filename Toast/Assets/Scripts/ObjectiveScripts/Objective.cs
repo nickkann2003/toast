@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
@@ -32,12 +33,20 @@ public class Objective : MonoBehaviour
     // Check if the current task has had its prerequisites complete
     public bool CheckAvailable()
     {
-        foreach(Objective obj in prerequisites)
+        if(prerequisites.Count > 0)
         {
-            if (!obj.Complete)
+            foreach(Objective obj in prerequisites)
             {
-                return false;
+                if (!obj.Complete)
+                {
+                    return false;
+                }
             }
+        }
+        foreach(Requirement requirement in requirements)
+        {
+            requirement.listening = true;
+            Debug.Log("LISTENER ACTIVATED");
         }
         return true;
     }
@@ -61,6 +70,7 @@ public class Objective : MonoBehaviour
         {
             r.UpdateRequirement(e);
         }
+        CheckAvailable();
     }
 
     // Override ToString to return formatted for To-Do list
@@ -68,6 +78,8 @@ public class Objective : MonoBehaviour
     {
         get
         {
+            if (CheckAvailable())
+            {
             string value = "";
             value = objectiveName + ":";
             bool allDone = true;
@@ -76,17 +88,19 @@ public class Objective : MonoBehaviour
                 if(r.listening)
                 {
                 value += "\n    - " + r.ToString;
+                }
                 if (!r.CheckComplete())
                 {
                     allDone = false;
                 }
-                }
             }
             if(allDone)
             {
-                value = "COMPLETE: " + value;
+                value = "COMPLETE: " + "<color=#111>" + objectiveName + "</color>";
             }
             return value;
+            }
+            return "";
         }
     }
 }

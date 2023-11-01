@@ -53,6 +53,14 @@ public class ToastingBreadTest : MonoBehaviour
         {
             if (obj != null)
             {
+                if(targetStrength >= 0.15)
+                {
+                    ObjectVariables objVars = obj.GetComponent<ObjectVariables>();
+                    if(objVars != null)
+                    {
+                        objVars.AddAttribute(Attribute.Toast);
+                    }
+                }
                 Color totalOffset = targetColor - obj.GetComponent<Renderer>().material.color;
                 if (!toastingObjects.ContainsKey(obj))
                 {
@@ -60,6 +68,9 @@ public class ToastingBreadTest : MonoBehaviour
                 }
             }
         }
+        var main = smokeParticles.main;
+        Color light = new Color(100, 100, 100);
+        Color burnStrength = new Color(150 * targetStrength, 150 * targetStrength, 150 * targetStrength);
         EmissionModule em = smokeParticles.emission;
         em.rateOverTimeMultiplier = 0.3f + (6 * targetStrength);
         smokeParticles.Play();

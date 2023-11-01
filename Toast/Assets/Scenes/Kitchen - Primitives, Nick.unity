@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &47259530 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1826966778704901977, guid: 35113bd6e1073544387b346e18ac6a57,
+    type: 3}
+  m_PrefabInstance: {fileID: 354014773}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &61258242 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4714759722280616962, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
@@ -6571,6 +6577,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
+      propertyPath: weakestStrength.b
+      value: 0.368325
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: weakestStrength.g
+      value: 0.5951148
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: weakestStrength.r
+      value: 0.8396226
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
       propertyPath: toasting.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -6768,6 +6789,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1094151173}
+    - targetCorrespondingSourceObject: {fileID: 1826966778704901977, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1945611632}
     - targetCorrespondingSourceObject: {fileID: 8717996506208709261, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
       insertIndex: -1
@@ -7830,6 +7855,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689863777}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &717978097 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8377086756002446130, guid: c0ea23539fefbb944bc2831098845f6a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1592509770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &717978103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717978097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4427394429e87ca4b974e1b9d7c414ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalBites: 1
+  bitesRemaining: 1
 --- !u!114 &745334967 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
@@ -10849,6 +10894,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114110279}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1114568943 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7819770415201218806, guid: c0ea23539fefbb944bc2831098845f6a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1592509770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1114568949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114568943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4427394429e87ca4b974e1b9d7c414ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalBites: 1
+  bitesRemaining: 1
 --- !u!4 &1123898300 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3667570349703439538, guid: feab259fe9c691548b355f85457dab73,
@@ -11229,9 +11294,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listening: 1
   type: 0
-  targetObject: toast
+  targetObjects: 00000000
+  targetAttributes: 00000000
   goalName: Eat Toast
-  goal: 5
+  goal: 2
 --- !u!1 &1175518103
 GameObject:
   m_ObjectHideFlags: 0
@@ -12917,6 +12983,56 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1432116779}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1444648424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1444648425}
+  - component: {fileID: 1444648426}
+  m_Layer: 0
+  m_Name: EatBread
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1444648425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444648424}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1508398478}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1444648426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444648424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af866e473c2a3040aa075a67984daed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listening: 0
+  type: 0
+  targetObjects: 00000000
+  targetAttributes: 
+  goalName: Eat Bread
+  goal: 3
 --- !u!1 &1451197566
 GameObject:
   m_ObjectHideFlags: 0
@@ -12983,6 +13099,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1752776143}
+  - {fileID: 1508398478}
   m_Father: {fileID: 3635841976596546633}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13000,6 +13117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectives:
   - {fileID: 1752776144}
+  - {fileID: 1508398479}
   displays:
   - {fileID: 1887326342}
 --- !u!1 &1453517948
@@ -13245,6 +13363,56 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1477285713}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1508398477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1508398478}
+  - component: {fileID: 1508398479}
+  m_Layer: 0
+  m_Name: EatToast2Objective
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1508398478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508398477}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1444648425}
+  m_Father: {fileID: 1452169025}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1508398479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508398477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1cfdb4bb7e7a154a820e421ece8ff92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prerequisites:
+  - {fileID: 1752776144}
+  requirements:
+  - {fileID: 1444648426}
+  objectiveName: Eat Any Bread
 --- !u!1 &1527028397
 GameObject:
   m_ObjectHideFlags: 0
@@ -19001,6 +19169,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 944288252}
+    - targetCorrespondingSourceObject: {fileID: 7819770415201218806, guid: c0ea23539fefbb944bc2831098845f6a,
+        type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1114568949}
+    - targetCorrespondingSourceObject: {fileID: 8377086756002446130, guid: c0ea23539fefbb944bc2831098845f6a,
+        type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 717978103}
   m_SourcePrefab: {fileID: 100100000, guid: c0ea23539fefbb944bc2831098845f6a, type: 3}
 --- !u!1 &1615779063
 GameObject:
@@ -20612,6 +20788,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
+      propertyPath: m_text
+      value: 'To-Do:
+
+        - Eat Toast 0/5
+
+        - Eat Toast with Jam 0/5'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
+        type: 3}
       propertyPath: m_fontSize
       value: 14
       objectReference: {fileID: 0}
@@ -21052,12 +21237,26 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 354014773}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 47259530}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25688725de6164e41a85e61331a52d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1945611632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47259530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4427394429e87ca4b974e1b9d7c414ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalBites: 1
+  bitesRemaining: 1
 --- !u!1 &1952448103
 GameObject:
   m_ObjectHideFlags: 0
