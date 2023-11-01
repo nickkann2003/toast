@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 // Game state, used to track the game state
 public enum GameState
 {
+    Menu,
     Pause,
     inGame
 }
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
         UIManager= GetComponentInChildren<UIManager>();
         SceneLoadingManager = GetComponentInChildren<SceneLoadingManager>(); 
 
-        curState = GameState.inGame;
+        curState = GameState.Menu;
     }
 
     // Start is called before the first frame update
@@ -77,6 +78,8 @@ public class GameManager : MonoBehaviour
     {
         switch(curState)
         {
+            case GameState.Menu:
+                break;
             case GameState.inGame:
                 if(Keyboard.current.escapeKey.wasPressedThisFrame)
                 {
@@ -135,8 +138,13 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void ChangeToGameScene()
+    {
+        curState = GameState.inGame;
+        LoadGame(1);
+    }
 
-    public void LoadGame(int sceneIndex)
+    private void LoadGame(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
     }
