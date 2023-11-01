@@ -11,7 +11,7 @@ public class Prop : Station
     {
         if(Input.GetMouseButtonDown(1))
         {
-            StationManager.instance.ExamineObject(this);
+            ExamineManager.instance.ExamineObject(this);
         }    
     }
 }
