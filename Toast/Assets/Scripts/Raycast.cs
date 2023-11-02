@@ -47,7 +47,7 @@ public class Raycast : MonoBehaviour
 
             StartDragging();
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetButtonUp("Drag"))
         {
             if (dragging)
             {
