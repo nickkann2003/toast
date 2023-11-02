@@ -16,13 +16,17 @@ public class Location : Station
 
     private void OnMouseDown()
     {
-        if (StationManager.instance.playerLocation.interactables != null)
+        if(StationManager.instance!= null && StationManager.instance.playerLocation!=null)
         {
-            if (StationManager.instance.playerLocation.interactables.Contains(this))
+            if (StationManager.instance.playerLocation.interactables != null)
             {
-                StationManager.instance.MoveToStation(this);
+                if (StationManager.instance.playerLocation.interactables.Contains(this))
+                {
+                    StationManager.instance.MoveToStation(this);
+                }
             }
         }
+    
     }
 
     void OnDrawGizmosSelected()

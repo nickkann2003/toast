@@ -34,12 +34,13 @@ public class GameManager : MonoBehaviour
 
     public AudioManager AudioManager { get; private set; }
     public UIManager UIManager { get; private set; }
-    public SceneLoadingManager SceneLoadingManager { get; private set; }
+    //public SceneLoadingManager SceneLoadingManager { get; private set; }
 
     public GameState curState = GameState.Menu;
 
     // BGM
     public AudioClip test;
+    public Raycast raycaster;
 
     // Cursor
     [SerializeField] private Texture2D cursorHand;
@@ -60,16 +61,23 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        AudioManager = GetComponentInChildren<AudioManager>();
-        UIManager= GetComponentInChildren<UIManager>();
-        SceneLoadingManager = GetComponentInChildren<SceneLoadingManager>(); 
-
-        //curState = GameState.Menu;
+  
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            curState = GameState.Menu;
+        }
+        else
+        {
+            curState = GameState.inGame;
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager = GetComponentInChildren<AudioManager>();
+        UIManager = GameObject.Find("UIManager").gameObject.transform.GetComponent<UIManager>();
+        //SceneLoadingManager = GetComponentInChildren<SceneLoadingManager>(); 
         AudioManager.PlaySound(test);
     }
 
@@ -85,6 +93,7 @@ public class GameManager : MonoBehaviour
                 {
                     PauseGame();
                 }
+          
                 break;
             case GameState.Pause:
                 if (Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -116,8 +125,7 @@ public class GameManager : MonoBehaviour
     {
         curState= GameState.Pause;
         Time.timeScale = 0;
-        //Cursor.visible = true;
-        //Cursor.lockState = CursorLockMode.None;
+        raycaster.enabled= false;
         UIManager.SetPauseMenu();
     }
 
@@ -125,8 +133,7 @@ public class GameManager : MonoBehaviour
     {
         curState = GameState.inGame;
         Time.timeScale = 1;
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        raycaster.enabled = true;
         UIManager.ClosePauseMenu();
     }
 
@@ -142,6 +149,7 @@ public class GameManager : MonoBehaviour
     {
         curState = GameState.inGame;
         LoadGame(1);
+        //UIManager = GameObject.Find("UIManager").gameObject.transform.GetComponent<UIManager>();
     }
 
     private void LoadGame(int sceneIndex)

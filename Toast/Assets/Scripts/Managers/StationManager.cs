@@ -6,6 +6,7 @@ using UnityEngine;
 //using static UnityEditor.FilePathAttribute;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 
 // Station enum, used to track which station it is in
 public enum Stations
@@ -52,10 +53,16 @@ public class StationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (playerPath.Count > 1)
+        {
+            if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+            {
+                StationManager.instance.StationMoveBack();
+            }
+        }
 
         // Camera tweening
-        if(movingCam)
+        if (movingCam)
         {
             // playerLocation.cameraPos is used because's player's location has already been changed internally
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, playerLocation.cameraPos, moveProgress);
@@ -111,6 +118,10 @@ public class StationManager : MonoBehaviour
         if (playerPath.Count > 1)
         {
             backButton.interactable = true;
+            if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+            {
+                StationManager.instance.StationMoveBack();
+            }
         }
         else
         {

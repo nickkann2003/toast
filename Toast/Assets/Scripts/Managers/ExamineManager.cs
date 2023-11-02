@@ -20,6 +20,8 @@ public class ExamineManager : MonoBehaviour
 
     public Volume backgroundBlur;
 
+    [SerializeField] public Raycast raycast; // Temp
+
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
     {
@@ -70,6 +72,8 @@ public class ExamineManager : MonoBehaviour
 
         // Scale object properly
         inspectorItem.transform.localScale = propToExamine.transform.lossyScale * inspectorScale;
+
+        raycast.enabled = false;
     }
 
     /// <summary>
@@ -80,5 +84,7 @@ public class ExamineManager : MonoBehaviour
         inspectorItem.inspectorCam.enabled = false;
 
         dof.mode.value = DepthOfFieldMode.Off;
+
+        raycast.enabled = true;
     }
 }
