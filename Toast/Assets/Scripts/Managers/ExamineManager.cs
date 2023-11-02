@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class ExamineManager : MonoBehaviour
 {
@@ -11,13 +14,27 @@ public class ExamineManager : MonoBehaviour
 
     public InspectItem inspectorItem;
 
-    public Location examineStation; 
+    public Location examineStation;
+
+    private DepthOfField dof;
+
+    public Volume backgroundBlur;
 
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
     {
+        // Set up examine station
         examineStation = new Location();
+
         instance = this;
+    }
+
+    private void Start()
+    {
+        backgroundBlur.profile.TryGet<DepthOfField>(out dof);
+
+        dof.mode.value = DepthOfFieldMode.Off;
+
     }
 
     public void ExamineObject(Prop propToExamine)
@@ -31,6 +48,8 @@ public class ExamineManager : MonoBehaviour
 
         inspectorItem.inspectorCam.enabled = true;
         inspectorItem.inspecting = true;
+
+        dof.mode.value = DepthOfFieldMode.Gaussian;
 
         /*
         GameObject inspectorCopy = Instantiate(propToExamine.gameObject, inspectorItem.transform);
@@ -59,5 +78,7 @@ public class ExamineManager : MonoBehaviour
     public void QuitExamining()
     {
         inspectorItem.inspectorCam.enabled = false;
+
+        dof.mode.value = DepthOfFieldMode.Off;
     }
 }
