@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     public UIManager UIManager { get; private set; }
     public SceneLoadingManager SceneLoadingManager { get; private set; }
 
-    public GameState curState;
+    public GameState curState = GameState.Menu;
 
     // BGM
     public AudioClip test;
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         UIManager= GetComponentInChildren<UIManager>();
         SceneLoadingManager = GetComponentInChildren<SceneLoadingManager>(); 
 
-        curState = GameState.Menu;
+        //curState = GameState.Menu;
     }
 
     // Start is called before the first frame update

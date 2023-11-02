@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public float minRotation; // closed
-    public float maxRotation; // open
+    public float minRotation = 180; // closed
+    public float maxRotation = 80; // open
 
     // amount that the door has opened
     private float interpolateAmount;

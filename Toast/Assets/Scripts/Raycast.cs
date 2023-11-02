@@ -41,7 +41,7 @@ public class Raycast : MonoBehaviour
     {
         prevGO = hitGO;
         TestRaycast();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Drag"))
         {
             print($"Object: \"{hitGO.name}\"");
 
@@ -58,7 +58,7 @@ public class Raycast : MonoBehaviour
 
         if (dragging)
         {
-            if (selectGO != null)
+            if (selectGO != null && selectGO.name != "SM_CounterDrawer")
             {
                 if (selectGO.GetComponent<Rigidbody>() != null)
                 {
