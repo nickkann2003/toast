@@ -65,11 +65,11 @@ public class Raycast : MonoBehaviour
                     selectGO.GetComponent<Rigidbody>().velocity =
                     (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
                     mZOffset)) - selectGO.transform.position) * 10;
+                    if (Input.GetKeyDown("e"))
+                    {
+                        Camera.main.GetComponent<Hand>().AddItem(selectGO);
+                    }
                 }
-                if (Input.GetKeyDown("e"))
-                {
-                    Camera.main.GetComponent<Hand>().AddItem(selectGO);
-                }   
             }
         }
     }
