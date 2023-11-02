@@ -1,4 +1,5 @@
 public enum Object
 {
-    Bread
+    Bread,
+    Jam
 }

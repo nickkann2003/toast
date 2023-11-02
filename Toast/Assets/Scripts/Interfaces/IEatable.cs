@@ -7,4 +7,6 @@ public interface IEatable
     bool IsEatable { get; }
     void TakeBite();
     void EatWhole();
+
+    int BitesLeft();
 }

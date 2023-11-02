@@ -48,15 +48,18 @@ public class Hand : MonoBehaviour
                             var main = EatParticles.main;
                             main.startColor = c;
                             RequirementEvent rEvent;
-                            if(currentItem.GetComponent<ObjectVariables>() != null)
+                            if(currentItem.GetComponent<IEatable>().BitesLeft() <= 1)
                             {
-                                rEvent = new RequirementEvent(RequirementType.EatObject, currentItem.GetComponent<ObjectVariables>(), true);
+                                if(currentItem.GetComponent<ObjectVariables>() != null)
+                                {
+                                    rEvent = new RequirementEvent(RequirementType.EatObject, currentItem.GetComponent<ObjectVariables>(), true);
+                                }
+                                else
+                                {
+                                    rEvent = new RequirementEvent(RequirementType.EatObject, new ObjectVariables(), true);
+                                }
+                                ObjectiveManager.instance.UpdateObjectives(rEvent);
                             }
-                            else
-                            {
-                                rEvent = new RequirementEvent(RequirementType.EatObject, new ObjectVariables(), true);
-                            }
-                            ObjectiveManager.instance.UpdateObjectives(rEvent);
                             currentItem.GetComponent<IEatable>().TakeBite();
                             EatParticles.Play();
                             if(currentItem == null)

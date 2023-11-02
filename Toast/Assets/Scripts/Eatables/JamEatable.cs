@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreadEatable : MonoBehaviour, IEatable
+public class JamEatable : MonoBehaviour, IEatable
 {
-    public int totalBites = 1;
-    public int bitesRemaining = 1;
+    public int totalBites = 100;
+    public int bitesRemaining = 100;
     public bool IsEatable => true;
 
     public void EatWhole()
