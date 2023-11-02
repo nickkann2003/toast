@@ -58,7 +58,7 @@ public class Raycast : MonoBehaviour
 
         if (dragging)
         {
-            if (selectGO != null && selectGO.name != "SM_CounterDrawer")
+            if (selectGO != null && selectGO.name != "SM_CounterDrawer") // HARDCODE CHANGE LATER
             {
                 if (selectGO.GetComponent<Rigidbody>() != null)
                 {
@@ -70,6 +70,10 @@ public class Raycast : MonoBehaviour
                         Camera.main.GetComponent<Hand>().AddItem(selectGO);
                     }
                 }
+            }
+            else
+            {
+                StopDragging();
             }
         }
     }
