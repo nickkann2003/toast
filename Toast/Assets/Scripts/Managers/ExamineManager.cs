@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -19,6 +20,8 @@ public class ExamineManager : MonoBehaviour
     private DepthOfField dof;
 
     public Volume backgroundBlur;
+
+    GameObject currentExamine;
 
     [SerializeField] public Raycast raycast; // Temp
 
@@ -41,6 +44,12 @@ public class ExamineManager : MonoBehaviour
 
     public void ExamineObject(Prop propToExamine)
     {
+        // Ensure can't have more than one item being inspected
+        if(currentExamine != null)
+        {
+            return;
+        }
+
         // Right now, can only inspect basic items with a single mesh
 
         examineStation.cameraPos = StationManager.instance.playerLocation.cameraPos;
@@ -53,25 +62,28 @@ public class ExamineManager : MonoBehaviour
 
         dof.mode.value = DepthOfFieldMode.Gaussian;
 
-        /*
-        GameObject inspectorCopy = Instantiate(propToExamine.gameObject, inspectorItem.transform);
-        if(inspectorCopy.GetComponent<Rigidbody>())
+        // Create copy of object
+        currentExamine = Instantiate(propToExamine.gameObject, inspectorItem.transform);
+
+        // Remove components that may alter behavior
+        if(currentExamine.GetComponent<Rigidbody>())
         {
-            Destroy(inspectorCopy.GetComponent<Rigidbody>());
+            Destroy(currentExamine.GetComponent<Rigidbody>());
         }
-        inspectorCopy.transform.position = inspectorCopy.transform.parent.position;
-        inspectorCopy.layer = inspectorCopy.transform.parent.gameObject.layer;
-        */
+        Destroy(currentExamine.GetComponent<Prop>());
+
+        currentExamine.transform.position = currentExamine.transform.parent.position;
+        currentExamine.layer = currentExamine.transform.parent.gameObject.layer;
 
         // Default Rotation
-        inspectorItem.transform.rotation = Quaternion.identity;
+        currentExamine.transform.rotation = Quaternion.identity;
 
         // Copy model/mesh
-        inspectorItem.GetComponent<MeshFilter>().mesh = propToExamine.GetComponent<MeshFilter>().mesh;
-        inspectorItem.GetComponent<MeshRenderer>().material = propToExamine.GetComponent<MeshRenderer>().material;
+        //inspectorItem.GetComponent<MeshFilter>().mesh = propToExamine.GetComponent<MeshFilter>().mesh;
+        //inspectorItem.GetComponent<MeshRenderer>().material = propToExamine.GetComponent<MeshRenderer>().material;
 
         // Scale object properly
-        inspectorItem.transform.localScale = propToExamine.transform.lossyScale * inspectorScale;
+        currentExamine.transform.localScale = propToExamine.transform.localScale * inspectorScale;
 
         raycast.enabled = false;
     }
