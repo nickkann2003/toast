@@ -10,6 +10,7 @@ public class Objective : MonoBehaviour
     public List<Objective> prerequisites = new List<Objective>();
     public List<Requirement> requirements = new List<Requirement>();
     public string objectiveName;
+    public List<GameObject> activatables = new List<GameObject>();
 
     // Private variables
     private bool complete = false;
@@ -37,8 +38,10 @@ public class Objective : MonoBehaviour
         {
             foreach(Objective obj in prerequisites)
             {
+                Debug.Log("Checking prerequisites!");
                 if (!obj.Complete)
                 {
+                    Debug.Log("Prerequisite FAILED!!!!");
                     return false;
                 }
             }
@@ -58,8 +61,14 @@ public class Objective : MonoBehaviour
         {
             if (!r.CheckComplete())
             {
+                complete = false;
                 return false;
             }
+        }
+        complete = true;
+        foreach(GameObject ob in activatables)
+        {
+            ob.active = true;
         }
         return true;
     }
@@ -80,25 +89,26 @@ public class Objective : MonoBehaviour
         {
             if (CheckAvailable())
             {
-            string value = "";
-            value = objectiveName + ":";
-            bool allDone = true;
-            foreach(Requirement r in requirements )
-            {
-                if(r.listening)
+                string value = "";
+                value = objectiveName + ":";
+                bool allDone = true;
+                foreach(Requirement r in requirements )
                 {
-                value += "\n    - " + r.ToString;
+                    if(r.listening)
+                    {
+                    value += "\n    - " + r.ToString;
+                    }
+                    if (!r.CheckComplete())
+                    {
+                        allDone = false;
+                    }
                 }
-                if (!r.CheckComplete())
+                if(allDone)
                 {
-                    allDone = false;
+                    CheckComplete();
+                    value = "COMPLETE: " + "<color=#111>" + objectiveName + "</color>";
                 }
-            }
-            if(allDone)
-            {
-                value = "COMPLETE: " + "<color=#111>" + objectiveName + "</color>";
-            }
-            return value;
+                return value;
             }
             return "";
         }

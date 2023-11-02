@@ -6315,6 +6315,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TheFillerButton
       objectReference: {fileID: 0}
+    - target: {fileID: 3231300214657397877, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4714759722280616962, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: m_RootOrder
@@ -7731,7 +7736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &464587651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8095,6 +8100,56 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &635130977
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 635130978}
+  - component: {fileID: 635130979}
+  m_Layer: 0
+  m_Name: EatBread
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &635130978
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635130977}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1889103347}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &635130979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635130977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af866e473c2a3040aa075a67984daed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listening: 0
+  type: 0
+  targetObjects: 00000000
+  targetAttributes: 
+  goalName: Eat Bread
+  goal: 12
 --- !u!1 &673344896
 GameObject:
   m_ObjectHideFlags: 0
@@ -14401,6 +14456,7 @@ Transform:
   m_Children:
   - {fileID: 1752776143}
   - {fileID: 1508398478}
+  - {fileID: 1889103347}
   m_Father: {fileID: 3635841976596546633}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14419,6 +14475,7 @@ MonoBehaviour:
   objectives:
   - {fileID: 1752776144}
   - {fileID: 1508398479}
+  - {fileID: 1889103348}
   displays:
   - {fileID: 1887326342}
 --- !u!1 &1453517948
@@ -14709,10 +14766,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cfdb4bb7e7a154a820e421ece8ff92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prerequisites: []
+  prerequisites:
+  - {fileID: 1752776144}
   requirements:
   - {fileID: 1444648426}
   objectiveName: Eat Any Bread
+  activatables: []
 --- !u!1 &1527028397
 GameObject:
   m_ObjectHideFlags: 0
@@ -21173,6 +21232,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1731503090}
   m_CullTransparentMesh: 1
+--- !u!1 &1732510320 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3231300214657397877, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 344280350}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1748114539
 GameObject:
   m_ObjectHideFlags: 0
@@ -21550,6 +21615,7 @@ MonoBehaviour:
   requirements:
   - {fileID: 1173605072}
   objectiveName: Eat Pieces of Toast
+  activatables: []
 --- !u!4 &1768737166 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3907630849890543164, guid: 35113bd6e1073544387b346e18ac6a57,
@@ -22309,6 +22375,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1889103346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1889103347}
+  - component: {fileID: 1889103348}
+  m_Layer: 0
+  m_Name: EatToast3Objective
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1889103347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889103346}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 635130978}
+  m_Father: {fileID: 1452169025}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1889103348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889103346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1cfdb4bb7e7a154a820e421ece8ff92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prerequisites:
+  - {fileID: 1752776144}
+  - {fileID: 1508398479}
+  requirements:
+  - {fileID: 635130979}
+  objectiveName: Let the bread LIGHT your way
+  activatables:
+  - {fileID: 464587650}
+  - {fileID: 2087879966}
+  - {fileID: 1732510320}
 --- !u!1 &1894839404
 GameObject:
   m_ObjectHideFlags: 0
@@ -24012,7 +24133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2087879967
 BoxCollider:
   m_ObjectHideFlags: 0
