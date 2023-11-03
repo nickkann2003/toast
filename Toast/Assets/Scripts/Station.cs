@@ -45,8 +45,11 @@ public abstract class Station : MonoBehaviour, IHighlightable
 
     public void TurnOffHighlight()
     {
+        if(outline != null)
+        {
         if (outline.isActiveAndEnabled)
             outline.enabled = false;
+        }
     }
 
 }
