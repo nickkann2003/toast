@@ -29,6 +29,10 @@ public abstract class Station : MonoBehaviour, IHighlightable
             outline = GetComponent<Outline>();
         }
         outline.enabled = false;
+        if(clickableCollider!= null)
+        {
+            clickableCollider = GetComponent<Collider>();
+        }
     }
 
     public void TurnOnHighlght()
