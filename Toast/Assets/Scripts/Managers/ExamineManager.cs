@@ -69,6 +69,7 @@ public class ExamineManager : MonoBehaviour
         if(currentExamine.GetComponent<Rigidbody>())
         {
             Destroy(currentExamine.GetComponent<Rigidbody>());
+            Destroy(currentExamine.GetComponent<DragObjects>());
         }
         Destroy(currentExamine.GetComponent<Prop>());
 
@@ -96,6 +97,8 @@ public class ExamineManager : MonoBehaviour
         inspectorItem.inspectorCam.enabled = false;
 
         dof.mode.value = DepthOfFieldMode.Off;
+
+        Destroy(currentExamine);
 
         raycast.enabled = true;
     }
