@@ -1,0 +1,40 @@
+EDITOR STRUCTURE:
+> Manager (List of Objectives) (List of output displays)
+	> Objective (List of Requirements) (Prerequisite Objective) (List of Game Objects to activate on completion)
+		> Requirement
+		> Requirement
+	> Objective
+		> Requirement
+
+
+TO MAKE A NEW OBJECTIVE:
+	Create an Objective under the Objective Manager
+		Give it the objective script and add it to the list in Manager
+	Create a requirement under the objective
+		Give it the requirement script and add it to the list in Objective
+	Fill in all information for requirements and objective
+	Add any deactivated GameObjects to the list of activations
+
+
+ObjectivesManager: 
+Manager object singleton, contains references to all objectives.
+Recieves RequirementEvents and updates objectives accordingly.
+Outputs current list of objectives to set displays.
+
+Objective:
+Stores a list of requirements to be completed.
+Stores a reference to prerequisite objectives.
+
+Requirement:
+Stores an event type (eat object, create object, etc).
+	>Stores an event target (Object to be interacted with)
+	>Stores a list of attributes (Toasted, Jam, etc)
+Stores a target number of events.
+
+Info classes:
+	>RequirementEnum:
+		>Enum of all requirement types (EatObject, MakeObject, HaveObject, etc)
+
+	>RequirementEvent:
+		>Pure information class for passing event info
+
