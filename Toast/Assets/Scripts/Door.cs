@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -15,9 +16,18 @@ public class Door : MonoBehaviour
 
     public bool isOpen;
 
+    public GameObject rotator;
+    Transform rotatorTransform;
+
     private void Awake()
     {
-        this.GetComponent<BoxCollider>().isTrigger = true;
+        if (rotator == null)
+        {
+            rotator = transform.parent.gameObject;
+        }
+
+        rotatorTransform = rotator.GetComponent<Transform>();
+        //this.GetComponent<BoxCollider>().isTrigger = true;
     }
 
     // Update is called once per frame
@@ -46,10 +56,10 @@ public class Door : MonoBehaviour
             }
         }
 
-        Vector3 newRotation = transform.localEulerAngles;
+        Vector3 newRotation = rotatorTransform.localEulerAngles;
         newRotation.y = Mathf.Lerp(minRotation, maxRotation, interpolateAmount);
 
-        transform.localEulerAngles = newRotation;
+        rotatorTransform.localEulerAngles = newRotation;
     }
 
     private void OnMouseDown()
