@@ -91,6 +91,10 @@ public class Hand : MonoBehaviour
             currentItem = item;
             holdingItem = true;
         }
+        else
+        {
+            RemoveItem();
+        }
         return;
     }
 
@@ -98,6 +102,11 @@ public class Hand : MonoBehaviour
     public GameObject RemoveItem()
     {
         // If holding item, unset values and return the item
+        Location currentStation = StationManager.instance.playerLocation;
+        float offset = currentStation.objectOffset;
+        float zLock = cam.transform.position.z + offset;
+        Vector3 lockPos = new Vector3(currentItem.transform.position.x, currentItem.transform.position.y, zLock);
+        currentItem.transform.position = lockPos;
         if (holdingItem)
         {
             GameObject item = currentItem;

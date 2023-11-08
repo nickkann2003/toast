@@ -7,6 +7,7 @@ public class Location : Station
     public Vector3 cameraPos;
     public Quaternion cameraRotation;
     public Stations stationLabel;
+    public float objectOffset = 5f;
 
     // List of objects that is highlightables/interactable
     public List<IHighlightable> highlightables;

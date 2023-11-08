@@ -51,10 +51,10 @@ public class ObjectiveManager : MonoBehaviour
         get
         {
             string value = "";
-            value += "To-Do List:";
+            value += "<u>To-Do List:</u>";
             foreach(Objective obj in objectives)
             {
-                value += "\n- " + obj.ToString;
+                value += "\n- " + "<size=-1>" + obj.ToString + "</size>";
             }
             return value;
         }

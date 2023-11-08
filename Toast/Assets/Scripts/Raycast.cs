@@ -128,7 +128,7 @@ public class Raycast : MonoBehaviour
 
             if (hitGO != prevGO)
             {
-                print($"Object: \"{hitGO.name}\"");
+                //print($"Object: \"{hitGO.name}\"");
             }
             
             

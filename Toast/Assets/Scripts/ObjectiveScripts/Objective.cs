@@ -102,7 +102,7 @@ public class Objective : MonoBehaviour
                 {
                     if(r.listening)
                     {
-                    value += "\n    - " + r.ToString;
+                    value += "\n    - <size=-1>" + r.ToString + "</size>";
                     }
                     if (!r.CheckComplete())
                     {
@@ -112,7 +112,7 @@ public class Objective : MonoBehaviour
                 if(allDone)
                 {
                     CheckComplete();
-                    value = "COMPLETE: " + "<color=#111>" + objectiveName + "</color>";
+                    value = "<color=#111><s>" + objectiveName + "</s></color>";
                 }
                 return value;
             }
