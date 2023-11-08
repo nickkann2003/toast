@@ -18,11 +18,17 @@ public class ToastingBreadTest : MonoBehaviour
 
     private Dictionary<GameObject, ToastingObject> toastingObjects = new Dictionary<GameObject, ToastingObject>();
     public float timer;
+    private float baseTime;
     public float maxTime;
 
     public ParticleSystem smokeParticles;
 
     public bool IsActive { get => isActive; }
+
+    public void Awake()
+    {
+        baseTime = maxTime;
+    }
 
     public void Update()
     {
@@ -94,6 +100,7 @@ public class ToastingBreadTest : MonoBehaviour
     public void setDialValue(float value)
     {
         targetStrength = value;
+        maxTime = baseTime + (targetStrength - .5f) * baseTime; // between -baseTime/2 and baseTime/2
     }
 
     void OnTriggerEnter(Collider other)

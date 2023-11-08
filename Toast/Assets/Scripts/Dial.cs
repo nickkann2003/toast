@@ -17,9 +17,7 @@ public class Dial : MonoBehaviour, IHighlightable
     private Transform parent;
     public Vector3 lookAtPos;
 
-    // timer
-    public float timer;
-    public float maxTime;
+    public bool freeze = false;
 
     //Interactable
     public ToastingBreadTest breadToaster;
@@ -68,6 +66,11 @@ public class Dial : MonoBehaviour, IHighlightable
         //}
     }
 
+    public void ToggleFreeze()
+    {
+        freeze = !freeze;
+    }
+
     private void OnMouseDown()
     {
         mouse = true;
@@ -84,34 +87,37 @@ public class Dial : MonoBehaviour, IHighlightable
 
     private void OnMouseDrag()
     {
-        transform.up = GetMouseWorldPos() - transform.position;
-        
-        rotation = transform.eulerAngles;
-        if (transform.eulerAngles.z > 110 && transform.eulerAngles.z <= 180)
+        if (!freeze)
         {
-            rotation.z = 110f;
-            
-            transform.eulerAngles = rotation;
-        }
-        else if ((transform.eulerAngles.z > 180 && transform.eulerAngles.z < 250))
-        {
-            rotation.z = 250f;
-            transform.eulerAngles = rotation;
-        }
-        if(rotation.z >= 250)
-        {
-            if (breadToaster != null)
+            transform.up = GetMouseWorldPos() - transform.position;
+
+            rotation = transform.eulerAngles;
+            if (transform.eulerAngles.z > 110 && transform.eulerAngles.z <= 180)
             {
-                float dialValue = (1 - ((rotation.z - 250f) / 110f))*0.5f + 0.5f;
-                breadToaster.setDialValue(dialValue);
+                rotation.z = 110f;
+
+                transform.eulerAngles = rotation;
             }
-        }
-        else if(rotation.z <= 110)
-        {
-            if (breadToaster != null)
+            else if ((transform.eulerAngles.z > 180 && transform.eulerAngles.z < 250))
             {
-                float dialValue = (1 - ((rotation.z) / 110f)) * 0.5f;
-                breadToaster.setDialValue(dialValue);
+                rotation.z = 250f;
+                transform.eulerAngles = rotation;
+            }
+            if (rotation.z >= 250)
+            {
+                if (breadToaster != null)
+                {
+                    float dialValue = (1 - ((rotation.z - 250f) / 110f)) * 0.5f + 0.5f;
+                    breadToaster.setDialValue(dialValue);
+                }
+            }
+            else if (rotation.z <= 110)
+            {
+                if (breadToaster != null)
+                {
+                    float dialValue = (1 - ((rotation.z) / 110f)) * 0.5f;
+                    breadToaster.setDialValue(dialValue);
+                }
             }
         }
     }

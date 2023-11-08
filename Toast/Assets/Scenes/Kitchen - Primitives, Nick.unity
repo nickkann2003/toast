@@ -222,6 +222,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1 &83630301 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 518058045675689659, guid: df30bdfafa0003e43b7b3beaf1e9bb89,
@@ -7205,6 +7206,11 @@ PrefabInstance:
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
       propertyPath: maxTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: baseTimer
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
@@ -7230,12 +7236,12 @@ PrefabInstance:
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
       propertyPath: stopToasting.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
       propertyPath: startToasting.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
@@ -7254,12 +7260,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
+      propertyPath: stopToasting.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
       propertyPath: startToasting.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
       propertyPath: startToasting.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: startToasting.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
@@ -7279,6 +7295,11 @@ PrefabInstance:
       objectReference: {fileID: 1100171671}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
+      propertyPath: stopToasting.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1622962610}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
       propertyPath: startToasting.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1945611628}
@@ -7289,12 +7310,22 @@ PrefabInstance:
       objectReference: {fileID: 1100171671}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
+      propertyPath: startToasting.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1622962610}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
       propertyPath: stopToasting.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
       propertyPath: stopToasting.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: stopToasting.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
@@ -7309,6 +7340,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
+      propertyPath: startToasting.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
       propertyPath: stopToasting.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TurnOff
       objectReference: {fileID: 0}
@@ -7316,6 +7352,11 @@ PrefabInstance:
         type: 3}
       propertyPath: stopToasting.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: TurnOff
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: stopToasting.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: ToggleFreeze
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
@@ -7329,6 +7370,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
+      propertyPath: startToasting.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: ToggleFreeze
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
       propertyPath: stopToasting.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Lever, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -7336,6 +7382,11 @@ PrefabInstance:
         type: 3}
       propertyPath: stopToasting.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: Light, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: stopToasting.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Dial, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
@@ -7349,6 +7400,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
+      propertyPath: startToasting.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Dial, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
       propertyPath: stopToasting.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -7359,12 +7415,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
+      propertyPath: stopToasting.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
       propertyPath: startToasting.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
       propertyPath: startToasting.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
+      propertyPath: startToasting.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8223324724943486126, guid: 35113bd6e1073544387b346e18ac6a57,
@@ -8601,6 +8667,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1 &635130977
 GameObject:
   m_ObjectHideFlags: 0
@@ -8943,6 +9010,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1 &717978097 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8377086756002446130, guid: c0ea23539fefbb944bc2831098845f6a,
@@ -9815,6 +9883,7 @@ MonoBehaviour:
   inspectorItem: {fileID: 252240869}
   examineStation: {fileID: 0}
   backgroundBlur: {fileID: 843827915}
+  freezeOnExamine: 1
   raycast: {fileID: 330585549}
 --- !u!1 &879551552
 GameObject:
@@ -10164,6 +10233,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1 &938561063
 GameObject:
   m_ObjectHideFlags: 0
@@ -12610,6 +12680,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1 &1083800333
 GameObject:
   m_ObjectHideFlags: 0
@@ -13135,6 +13206,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1 &1141619631
 GameObject:
   m_ObjectHideFlags: 0
@@ -13274,6 +13346,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1001 &1172758303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14040,6 +14113,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1 &1257938657
 GameObject:
   m_ObjectHideFlags: 0
@@ -14612,6 +14686,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1 &1313266150
 GameObject:
   m_ObjectHideFlags: 0
@@ -16021,6 +16096,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1 &1477285713
 GameObject:
   m_ObjectHideFlags: 0
@@ -16198,6 +16274,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1 &1527028397
 GameObject:
   m_ObjectHideFlags: 0
@@ -22446,6 +22523,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1 &1615779063
 GameObject:
   m_ObjectHideFlags: 0
@@ -22567,6 +22645,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalBites: 1
   bitesRemaining: 1
+--- !u!114 &1622962610 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8223324724943486126, guid: 35113bd6e1073544387b346e18ac6a57,
+    type: 3}
+  m_PrefabInstance: {fileID: 354014773}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622962597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6fe55942e134141860f13b0b95ff6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1627021916
 GameObject:
   m_ObjectHideFlags: 0
@@ -24291,6 +24381,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 1863063897}
   isEnabled: 1
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!65 &1863063897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24333,6 +24424,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1 &1874414989
 GameObject:
   m_ObjectHideFlags: 0
@@ -24495,6 +24587,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1001 &1887326341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25769,6 +25862,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1 &2011516338
 GameObject:
   m_ObjectHideFlags: 0
@@ -26913,6 +27007,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!1 &2098974577 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7563956214207294138, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
