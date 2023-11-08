@@ -22,7 +22,13 @@ public class Objective : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (!complete)
+        {
+            foreach(GameObject obj in activatables)
+            {
+                obj.SetActive(false);
+            }
+        }
     }
 
     // Update is called once per frame
