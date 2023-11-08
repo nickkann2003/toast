@@ -22,7 +22,7 @@ public class Raycast : MonoBehaviour
     LineController lineController;
     float mZOffset;
 
-    public bool dragging;
+    bool dragging;
     RaycastHit hit;
 
     private IHighlightable highlightable;
@@ -55,9 +55,25 @@ public class Raycast : MonoBehaviour
             }
             
         }
+        if (Input.GetButtonDown("View"))
+        {
+            if (dragging && selectGO.GetComponent<Prop>() != null)
+            {
+                ExamineManager.instance.ExamineObject(selectGO.GetComponent<Prop>());
+            }
+            else if (hitGO.GetComponent<Prop>())
+            {
+                ExamineManager.instance.ExamineObject(hitGO.GetComponent<Prop>());
+            }
+            StopDragging();
+        }
 
         if (dragging)
         {
+            if (!Input.GetButton("Drag"))
+            {
+                StopDragging();
+            }
             if (selectGO != null && selectGO.name != "SM_CounterDrawer") // HARDCODE CHANGE LATER
             {
                 if (selectGO.GetComponent<Rigidbody>() != null)
@@ -166,11 +182,8 @@ public class Raycast : MonoBehaviour
             selectGO = null;
         }
 
-        if (line != null)
-        {
-            Destroy(line);
-            line = null;
-        }
+        Destroy(line);
+        line = null;
 
         dragging = false;
     }

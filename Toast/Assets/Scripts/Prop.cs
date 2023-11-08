@@ -9,9 +9,9 @@ public class Prop : Station
 
     private void OnMouseOver()
     {
-        if(Input.GetButtonDown("View"))
-        {
-            ExamineManager.instance.ExamineObject(this);
-        }
+        //if(Input.GetButtonDown("View"))
+        //{
+        //    ExamineManager.instance.ExamineObject(this);
+        //}
     }
 }

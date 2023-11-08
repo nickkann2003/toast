@@ -21,6 +21,8 @@ public class ExamineManager : MonoBehaviour
 
     public Volume backgroundBlur;
 
+    public bool freezeOnExamine;
+
     GameObject currentExamine;
 
     [SerializeField] public Raycast raycast; // Temp
@@ -48,6 +50,10 @@ public class ExamineManager : MonoBehaviour
         if(currentExamine != null)
         {
             return;
+        }
+        if (freezeOnExamine)
+        {
+            Time.timeScale = 0;
         }
 
         // Right now, can only inspect basic items with a single mesh
@@ -99,6 +105,11 @@ public class ExamineManager : MonoBehaviour
         dof.mode.value = DepthOfFieldMode.Off;
 
         Destroy(currentExamine);
+
+        if (freezeOnExamine)
+        {
+            Time.timeScale = 1;
+        }
 
         raycast.enabled = true;
     }
