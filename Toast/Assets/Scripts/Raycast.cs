@@ -22,7 +22,7 @@ public class Raycast : MonoBehaviour
     LineController lineController;
     float mZOffset;
 
-    bool dragging;
+    public bool dragging;
     RaycastHit hit;
 
     private IHighlightable highlightable;
