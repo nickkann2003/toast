@@ -33,7 +33,7 @@ public class Hand : MonoBehaviour
         }
 
         //TODO: BAD TEMP CODE, GET IT OUT
-        if (Input.GetKeyDown("e"))
+        if (Input.GetButtonDown("Pickup"))
         {
             if (!eatPressed)
             {

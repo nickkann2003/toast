@@ -19,7 +19,7 @@ public class InspectItem : MonoBehaviour
     {
         if (inspecting)
         {
-            if(Input.GetMouseButton(0))
+            if(Input.GetButton("Drag"))
             {
                 changeInPosition = Input.mousePosition - prevPosition;
 
