@@ -65,6 +65,7 @@ public class ToastingBreadTest : MonoBehaviour
                     if(objVars != null)
                     {
                         objVars.AddAttribute(Attribute.Toast);
+                        ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, objVars, true));
                     }
                 }
                 Color totalOffset = targetColor - obj.GetComponent<Renderer>().material.color;

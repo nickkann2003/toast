@@ -13,7 +13,8 @@ public class Hand : MonoBehaviour
     public ParticleSystem EatParticles;
 
     //TODO: BAD TEMP CODE, GET IT OUT
-    bool eatPressed = false;
+    private bool dropPressed = false;
+    private bool eatPressed = false;
 
     // Start is called before the first frame update -----------
     void Start()
@@ -80,6 +81,19 @@ public class Hand : MonoBehaviour
         {
             eatPressed = false;
         }
+
+        if (Input.GetButtonDown("Pickup"))
+        {
+            if (!dropPressed)
+            {
+                dropPressed = true;
+                RemoveItem();
+            }
+        }
+        else
+        {
+            dropPressed = false;
+        }
     }
 
     // Functions ----------------------------------------
@@ -101,14 +115,28 @@ public class Hand : MonoBehaviour
     // Remove the currently held item
     public GameObject RemoveItem()
     {
-        // If holding item, unset values and return the item
-        Location currentStation = StationManager.instance.playerLocation;
-        float offset = currentStation.objectOffset;
-        float zLock = cam.transform.position.z + offset;
-        Vector3 lockPos = new Vector3(currentItem.transform.position.x, currentItem.transform.position.y, zLock);
-        currentItem.transform.position = lockPos;
+        // If currently holding an item
         if (holdingItem)
         {
+            // Get the current station
+            Location currentStation = StationManager.instance.playerLocation;
+
+            // Grab world pos from the current station
+            Vector3 objectPos = currentStation.objectOffset;
+
+            // Set the current position of the object
+            currentItem.transform.position = objectPos;
+
+            // Try setting rigidbody, catch if object doesnt have a rigidbody
+            try
+            {
+                currentItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+            catch
+            {
+                Debug.Log("Dropped item without a rigid body");
+            }
+
             GameObject item = currentItem;
             currentItem = null;
             holdingItem = false;

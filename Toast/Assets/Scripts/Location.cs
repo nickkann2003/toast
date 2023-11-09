@@ -7,7 +7,7 @@ public class Location : Station
     public Vector3 cameraPos;
     public Quaternion cameraRotation;
     public Stations stationLabel;
-    public float objectOffset = 5f;
+    public Vector3 objectOffset;
 
     // List of objects that is highlightables/interactable
     public List<IHighlightable> highlightables;
@@ -35,6 +35,9 @@ public class Location : Station
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(cameraPos, 0.1f);
         Gizmos.DrawFrustum(cameraPos, Camera.main.fieldOfView, Camera.main.farClipPlane, Camera.main.nearClipPlane, Camera.main.aspect);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(objectOffset, 0.1f);
     }
 
 }
