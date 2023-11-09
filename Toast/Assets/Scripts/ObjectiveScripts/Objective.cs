@@ -74,7 +74,10 @@ public class Objective : MonoBehaviour
         complete = true;
         foreach(GameObject ob in activatables)
         {
-            ob.active = true;
+            if(ob != null)
+            {
+                ob.SetActive(true);
+            }
         }
         return true;
     }

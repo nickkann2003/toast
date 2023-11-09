@@ -39,42 +39,7 @@ public class Hand : MonoBehaviour
             if (!eatPressed)
             {
                 eatPressed = true;
-                if (holdingItem)
-                {
-                    if(currentItem != null)
-                    {
-                        if(currentItem.GetComponent<IEatable>() != null)
-                        {
-                            Color c = currentItem.GetComponent<Renderer>().material.color;
-                            var main = EatParticles.main;
-                            main.startColor = c;
-                            RequirementEvent rEvent;
-                            if(currentItem.GetComponent<IEatable>().BitesLeft() <= 1)
-                            {
-                                if(currentItem.GetComponent<ObjectVariables>() != null)
-                                {
-                                    rEvent = new RequirementEvent(RequirementType.EatObject, currentItem.GetComponent<ObjectVariables>(), true);
-                                }
-                                else
-                                {
-                                    rEvent = new RequirementEvent(RequirementType.EatObject, new ObjectVariables(), true);
-                                }
-                                ObjectiveManager.instance.UpdateObjectives(rEvent);
-                            }
-                            currentItem.GetComponent<IEatable>().TakeBite();
-                            EatParticles.Play();
-                            if(currentItem == null)
-                            {
-                                holdingItem = false;
-                                currentItem = null;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        holdingItem = false;
-                    }
-                }
+                EatHeldItem();
             }
         }
         else
@@ -186,5 +151,46 @@ public class Hand : MonoBehaviour
             }
         }
         return false;
+    }
+
+    // Eat code
+    public void EatHeldItem()
+    {
+        if (holdingItem)
+        {
+            if (currentItem != null)
+            {
+                if (currentItem.GetComponent<IEatable>() != null)
+                {
+                    Color c = currentItem.GetComponent<Renderer>().material.color;
+                    var main = EatParticles.main;
+                    main.startColor = c;
+                    RequirementEvent rEvent;
+                    if (currentItem.GetComponent<IEatable>().BitesLeft() <= 1)
+                    {
+                        if (currentItem.GetComponent<ObjectVariables>() != null)
+                        {
+                            rEvent = new RequirementEvent(RequirementType.EatObject, currentItem.GetComponent<ObjectVariables>(), true);
+                        }
+                        else
+                        {
+                            rEvent = new RequirementEvent(RequirementType.EatObject, new ObjectVariables(), true);
+                        }
+                        ObjectiveManager.instance.UpdateObjectives(rEvent);
+                    }
+                    currentItem.GetComponent<IEatable>().TakeBite();
+                    EatParticles.Play();
+                    if (currentItem == null)
+                    {
+                        holdingItem = false;
+                        currentItem = null;
+                    }
+                }
+            }
+            else
+            {
+                holdingItem = false;
+            }
+        }
     }
 }

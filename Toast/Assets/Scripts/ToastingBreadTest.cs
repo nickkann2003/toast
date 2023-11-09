@@ -59,15 +59,6 @@ public class ToastingBreadTest : MonoBehaviour
         {
             if (obj != null)
             {
-                if(targetStrength >= 0.15)
-                {
-                    ObjectVariables objVars = obj.GetComponent<ObjectVariables>();
-                    if(objVars != null)
-                    {
-                        objVars.AddAttribute(Attribute.Toast);
-                        ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, objVars, true));
-                    }
-                }
                 Color totalOffset = targetColor - obj.GetComponent<Renderer>().material.color;
                 if (!toastingObjects.ContainsKey(obj))
                 {
@@ -90,6 +81,21 @@ public class ToastingBreadTest : MonoBehaviour
     {
         if (isActive)
         {
+            foreach (GameObject obj in collidingObjects)
+            {
+                if (obj != null)
+                {
+                    if (targetStrength >= 0.15)
+                    {
+                        ObjectVariables objVars = obj.GetComponent<ObjectVariables>();
+                        if (objVars != null)
+                        {
+                            objVars.AddAttribute(Attribute.Toast);
+                            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, objVars, true));
+                        }
+                    }
+                }
+            }
             timer = 0;
             toastingObjects.Clear();
             isActive = false;

@@ -118,7 +118,10 @@ public class DragObjects : MonoBehaviour, IHighlightable
 
     public void TurnOffHighlight()
     {
-        outline.enabled = false;
+        if(outline != null)
+        {
+            outline.enabled = false;
+        }
     }
 
 }

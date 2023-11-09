@@ -68,6 +68,53 @@ public class Raycast : MonoBehaviour
             StopDragging();
         }
 
+        // OBJECT EAT DETECTION
+        if (Input.GetButtonDown("Use"))
+        {
+            if (hitGO != null && hitGO.layer == 7) // Interactable layer
+            {
+                if (hitGO.GetComponent<IEatable>() != null)
+                {
+                    Color c = hitGO.GetComponent<Renderer>().material.color;
+                    var main = Camera.main.GetComponent<Hand>().EatParticles.main;
+                    main.startColor = c;
+                    RequirementEvent rEvent;
+                    if (hitGO.GetComponent<IEatable>().BitesLeft() <= 1)
+                    {
+                        if (hitGO.GetComponent<ObjectVariables>() != null)
+                        {
+                            rEvent = new RequirementEvent(RequirementType.EatObject, hitGO.GetComponent<ObjectVariables>(), true);
+                        }
+                        else
+                        {
+                            rEvent = new RequirementEvent(RequirementType.EatObject, new ObjectVariables(), true);
+                        }
+                        ObjectiveManager.instance.UpdateObjectives(rEvent);
+                    }
+                    hitGO.GetComponent<IEatable>().TakeBite();
+                    Camera.main.GetComponent<Hand>().EatParticles.Play();
+                    prevGO = null;
+                    hitGO = null;
+                    prevHighligtable = null;
+                    highlightable = null;
+                }
+            }
+        }
+
+        // OBJECT PICKUP DETECTION
+        if (Input.GetButtonDown("Pickup"))
+        {
+            if (hitGO != null && hitGO.layer == 7) // Interactable layer
+            {
+                Camera.main.GetComponent<Hand>().AddItem(hitGO);
+                prevGO = null;
+                hitGO = null;
+                prevHighligtable = null;
+                highlightable = null;
+            }
+        }
+
+
         if (dragging)
         {
             if (!Input.GetButton("Drag"))
@@ -81,10 +128,6 @@ public class Raycast : MonoBehaviour
                     selectGO.GetComponent<Rigidbody>().velocity =
                     (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
                     mZOffset)) - selectGO.transform.position) * 10;
-                    if (Input.GetButtonDown("Pickup"))
-                    {
-                        Camera.main.GetComponent<Hand>().AddItem(selectGO);
-                    }
                 }
             }
             else

@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 1385297963663112036}
   - component: {fileID: 4614064787217340371}
   - component: {fileID: 6241602093650640002}
+  - component: {fileID: 3834836528053964392}
   - component: {fileID: 852532254625793814}
   - component: {fileID: 2184660583607016673}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: JamJarModeled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +119,22 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &3834836528053964392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518058045675689659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ed4ab8bf312e2478fd4ead7aa93dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickableCollider: {fileID: 3687421184397709117}
+  isEnabled: 1
+  currentLocation: {fileID: 0}
+  toastiness: 0
 --- !u!114 &852532254625793814
 MonoBehaviour:
   m_ObjectHideFlags: 0
