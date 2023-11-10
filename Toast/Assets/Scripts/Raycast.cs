@@ -104,7 +104,7 @@ public class Raycast : MonoBehaviour
         // OBJECT PICKUP DETECTION
         if (Input.GetButtonDown("Pickup"))
         {
-            if (hitGO != null && hitGO.layer == 7) // Interactable layer
+            if (hitGO != null && hitGO.layer == 7 && hitGO.GetComponent<Prop>() != null) // Interactable layer
             {
                 Camera.main.GetComponent<Hand>().AddItem(hitGO);
                 prevGO = null;
