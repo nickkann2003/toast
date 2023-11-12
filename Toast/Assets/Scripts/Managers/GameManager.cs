@@ -61,15 +61,18 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-  
-        if(SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            curState = GameState.Menu;
-        }
-        else
-        {
-            curState = GameState.inGame;
-        }
+
+        curState = GameState.Menu;
+        raycaster.enabled = false;
+
+        //if (SceneManager.GetActiveScene().buildIndex == 0)
+        //{
+
+        //}
+        //else
+        //{
+        //    curState = GameState.inGame;
+        //}
     }
 
     // Start is called before the first frame update
@@ -145,11 +148,11 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void ChangeToGameScene()
+    public void MenuToGame()
     {
         curState = GameState.inGame;
-        LoadGame(1);
-        //UIManager = GameObject.Find("UIManager").gameObject.transform.GetComponent<UIManager>();
+        UIManager.CloseMainMenu();
+        raycaster.enabled = true;
     }
 
     private void LoadGame(int sceneIndex)
