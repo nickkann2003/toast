@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     public GameState curState = GameState.Menu;
 
+    [SerializeField] Location gameStartingPosition;
+
     // BGM
     public AudioClip test;
     public Raycast raycaster;
@@ -148,11 +150,14 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    // Change the main menu to game station
     public void MenuToGame()
     {
         curState = GameState.inGame;
         UIManager.CloseMainMenu();
         raycaster.enabled = true;
+        StationManager.instance.playerPath.Clear();
+        StationManager.instance.MoveToStation(gameStartingPosition);
     }
 
     private void LoadGame(int sceneIndex)

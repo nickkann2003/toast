@@ -87,6 +87,7 @@ public class StationManager : MonoBehaviour
     /// <param name="loc">The station being targeted to move to</param>
     public void MoveToStation(Location loc)
     {
+        Debug.Log(loc);
         //foreach(var i in playerLocation.interactables)
         //{
         //    i.GetComponent<IHighlightable>().
