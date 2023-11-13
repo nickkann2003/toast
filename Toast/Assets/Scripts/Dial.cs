@@ -19,6 +19,9 @@ public class Dial : MonoBehaviour, IHighlightable
 
     public bool freeze = false;
 
+    public float dialValue;
+    public float minValue = .15f;
+
     //Interactable
     public ToastingBreadTest breadToaster;
 
@@ -107,7 +110,8 @@ public class Dial : MonoBehaviour, IHighlightable
             {
                 if (breadToaster != null)
                 {
-                    float dialValue = (1 - ((rotation.z - 250f) / 110f)) * 0.5f + 0.5f;
+                    dialValue = (1 - ((rotation.z - 250f) / 110f)) * 0.5f + 0.5f;
+                    dialValue = dialValue * (1 - minValue * 2) + minValue;
                     breadToaster.setDialValue(dialValue);
                 }
             }
@@ -115,7 +119,8 @@ public class Dial : MonoBehaviour, IHighlightable
             {
                 if (breadToaster != null)
                 {
-                    float dialValue = (1 - ((rotation.z) / 110f)) * 0.5f;
+                    dialValue = (1 - ((rotation.z) / 110f)) * 0.5f;
+                    dialValue = dialValue * (1 - minValue * 2) + minValue;
                     breadToaster.setDialValue(dialValue);
                 }
             }
