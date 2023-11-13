@@ -88,7 +88,7 @@ public class ToastingBreadTest : MonoBehaviour
                     if (targetStrength >= 0.15)
                     {
                         ObjectVariables objVars = obj.GetComponent<ObjectVariables>();
-                        if (objVars != null)
+                        if (objVars != null && !objVars.attributes.Contains(Attribute.Toast))
                         {
                             objVars.AddAttribute(Attribute.Toast);
                             ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, objVars, true));
