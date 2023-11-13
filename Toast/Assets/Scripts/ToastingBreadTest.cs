@@ -62,7 +62,7 @@ public class ToastingBreadTest : MonoBehaviour
                 Color totalOffset = targetColor - obj.GetComponent<Renderer>().material.color;
                 if (!toastingObjects.ContainsKey(obj))
                 {
-                    toastingObjects.Add(obj, new ToastingObject(obj.GetComponent<Renderer>(), totalOffset));
+                    toastingObjects.Add(obj, new ToastingObject(obj, totalOffset, strongestStrength, weakestStrength, targetStrength));
                 }
             }
         }
@@ -143,12 +143,16 @@ public class ToastingBreadTest : MonoBehaviour
 }
 
 class ToastingObject {
+    GameObject obj;
     Renderer renderer;
     Color totalOffset;
+    Prop propScript;
 
-    public ToastingObject(Renderer renderer, Color totalOffset)
+    public ToastingObject(GameObject obj, Color totalOffset, Color strongestStrength, Color weakestStrength, float targetStrngth)
     {
-        this.renderer = renderer;
+        this.obj = obj;
+        this.renderer = obj.GetComponent<Renderer>();
+        this.propScript = obj.GetComponent<Prop>();
         this.totalOffset = totalOffset;
     }
 
