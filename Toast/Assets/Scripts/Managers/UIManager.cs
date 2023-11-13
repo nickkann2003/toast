@@ -5,6 +5,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject mainMenu;
 
     public static UIManager instance;
 
@@ -28,5 +29,15 @@ public class UIManager : MonoBehaviour
     public void ClosePauseMenu()
     {
         pauseMenu.SetActive(false);
+    }
+
+    public void SetMainMain()
+    {
+        mainMenu.SetActive(true);
+    }
+
+    public void CloseMainMenu() 
+    {
+        mainMenu.SetActive(false);
     }
 }

@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     public GameState curState = GameState.Menu;
 
+    [SerializeField] Location gameDefaultStation;
+
     // BGM
     public AudioClip test;
     public Raycast raycaster;
@@ -62,14 +64,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
   
-        if(SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            curState = GameState.Menu;
-        }
-        else
-        {
-            curState = GameState.inGame;
-        }
+        curState= GameState.Menu;
+        raycaster.enabled = false;
+
+        Time.timeScale = 0;
     }
 
     // Start is called before the first frame update
@@ -145,11 +143,15 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void ChangeToGameScene()
+    public void MainMenuToGame()
     {
         curState = GameState.inGame;
-        LoadGame(1);
-        //UIManager = GameObject.Find("UIManager").gameObject.transform.GetComponent<UIManager>();
+
+        Time.timeScale = 1;
+        raycaster.enabled = true;
+        UIManager.CloseMainMenu();
+        StationManager.instance.playerPath.Clear();
+        StationManager.instance.MoveToStation(gameDefaultStation);
     }
 
     private void LoadGame(int sceneIndex)
