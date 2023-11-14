@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using static UnityEngine.ParticleSystem;
@@ -23,6 +24,9 @@ public class ToastingBreadTest : MonoBehaviour
 
     public ParticleSystem smokeParticles;
 
+    public GameObject firePrefab;
+    public float fireTrigger = 1.5f;
+
     public bool IsActive { get => isActive; }
 
     public void Awake()
@@ -40,9 +44,24 @@ public class ToastingBreadTest : MonoBehaviour
                 {
                     ToastingObject toast = value;
                     toast.adjustColor(maxTime, Time.deltaTime);
-                    if (key.GetComponent<Prop>() != null)
+                    Prop prop = key.GetComponent<Prop>();
+                    if (prop != null)
                     {
-                        key.GetComponent<Prop>().toastiness = toast.toastiness;
+                        prop.toastiness = toast.toastiness;
+                        ObjectVariables objVars = key.GetComponent<ObjectVariables>();
+                        if (objVars != null)
+                        {
+                            if (!objVars.attributes.Contains(Attribute.OnFire) && prop.toastiness > fireTrigger)
+                            {
+                                GameObject fire = Instantiate(firePrefab);
+                                fire.transform.parent = key.transform;
+                                fire.transform.localPosition = Vector3.zero;
+                                fire.transform.eulerAngles = Vector3.zero;
+                                fire.transform.localScale = Vector3.one;
+                                objVars.AddAttribute(Attribute.OnFire);
+                            }
+                        }
+                        
                     }
                 }
             }

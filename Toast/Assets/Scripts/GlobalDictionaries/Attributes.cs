@@ -3,5 +3,6 @@ public enum Attribute
     Toast,
     Butter,
     Jam,
-    Metal
+    Metal,
+    OnFire
 }
