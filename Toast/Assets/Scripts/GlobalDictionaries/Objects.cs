@@ -1,5 +1,6 @@
 public enum Object
 {
     Bread,
-    Jam
+    Jam,
+    Knife
 }
