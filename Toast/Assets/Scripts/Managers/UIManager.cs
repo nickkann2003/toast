@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject mainMenu;
-    public GameObject backButton;
+    public UnityEngine.UI.Button backButton;
     public Animator backButtonAni;
     private bool backButtonOnScreen = false;
 
@@ -48,6 +49,7 @@ public class UIManager : MonoBehaviour
     {
         if(!backButtonOnScreen)
         {
+            backButton.interactable= true;
             backButtonAni.Play("BackButton_PopUp");
             backButtonOnScreen= true;
         }
@@ -57,6 +59,8 @@ public class UIManager : MonoBehaviour
     {
         if(backButtonOnScreen)
         {
+            backButton.interactable = false;
+            //backButton.GetComponent<Button>().enabled = false;
             backButtonAni.Play("BackButton_PopDown");
             backButtonOnScreen= false;
         }

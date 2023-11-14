@@ -580,7 +580,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2572542521203530372}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: GameToMainMenu
+        m_MethodName: PauseToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -28838,7 +28838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 981063929}
   mainMenu: {fileID: 995668699}
-  backButton: {fileID: 1774354216}
+  backButton: {fileID: 1774354218}
   backButtonAni: {fileID: 1774354221}
 --- !u!1 &417360045494069095
 GameObject:
@@ -29238,6 +29238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curState: 0
   gameDefaultStation: {fileID: 846166369}
+  mainMenuStation: {fileID: 409015822}
   test: {fileID: 8300000, guid: 2dbc84ee6181c6b4bab722bdd08f9ef5, type: 3}
   raycaster: {fileID: 330585549}
   cursorHand: {fileID: 2800000, guid: 54e7796fb8852d446a43dda57a1d3268, type: 3}

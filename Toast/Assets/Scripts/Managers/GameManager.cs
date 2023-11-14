@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public GameState curState = GameState.Menu;
 
     [SerializeField] Location gameDefaultStation;
+    [SerializeField] Location mainMenuStation;
 
     // BGM
     public AudioClip test;
@@ -152,21 +153,34 @@ public class GameManager : MonoBehaviour
         UIManager.CloseMainMenu();
         StationManager.instance.playerPath.Clear();
         StationManager.instance.MoveToStation(gameDefaultStation);
-        UIManager.instance.TurnOnBackButton();
+        //UIManager.instance.TurnOnBackButton();
     }
 
-    public void GameToMainMenu()
+    public void PauseToMainMenu()
     {
+       
         curState = GameState.Menu;
-
-        Time.timeScale = 0;
+        Time.timeScale = 1;
         raycaster.enabled = false;
-        UIManager.SetMainMain();
-        StationManager.instance.playerPath.Clear();
-        StationManager.instance.MoveToStation(gameDefaultStation);
 
-        UIManager.instance.ClosePauseMenu();
-        UIManager.instance.TurnOffBackButton();
+        UIManager.ClosePauseMenu();
+        StationManager.instance.playerPath.Clear();
+        StationManager.instance.MoveToStation(mainMenuStation);
+
+        StartCoroutine(WaitForCameraMovement());
+    }
+
+    private IEnumerator WaitForCameraMovement()
+    {
+        // Wait until the camera movement is complete (you may need to adjust the condition based on your implementation)
+        while (Vector3.Distance(Camera.main.transform.position, mainMenuStation.cameraPos) > 0.1)
+        {
+            yield return null; // Wait for the next frame
+        }
+
+        // Once the camera movement is complete, set the timescale to 0
+        Time.timeScale = 0;
+        UIManager.SetMainMain();
     }
 
     //private void LoadGame(int sceneIndex)
