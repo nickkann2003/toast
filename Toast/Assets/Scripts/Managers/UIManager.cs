@@ -51,7 +51,6 @@ public class UIManager : MonoBehaviour
             backButtonAni.Play("BackButton_PopUp");
             backButtonOnScreen= true;
         }
-        //backButton.SetActive(true);
     }
 
     public void TurnOffBackButton()
@@ -61,6 +60,5 @@ public class UIManager : MonoBehaviour
             backButtonAni.Play("BackButton_PopDown");
             backButtonOnScreen= false;
         }
-        //backButton.SetActive(false);
     }
 }
