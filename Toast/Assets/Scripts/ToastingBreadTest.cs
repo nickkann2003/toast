@@ -40,6 +40,10 @@ public class ToastingBreadTest : MonoBehaviour
                 {
                     ToastingObject toast = value;
                     toast.adjustColor(maxTime, Time.deltaTime);
+                    if (key.GetComponent<Prop>() != null)
+                    {
+                        key.GetComponent<Prop>().toastiness = toast.toastiness;
+                    }
                 }
             }
             timer -= Time.deltaTime;
@@ -54,15 +58,19 @@ public class ToastingBreadTest : MonoBehaviour
     public void activateTrigger()
     {
         timer = maxTime;
-        Color targetColor = (strongestStrength - weakestStrength) * targetStrength + weakestStrength;
+        //Color targetColor = (strongestStrength - weakestStrength) * targetStrength + weakestStrength;
         foreach (GameObject obj in collidingObjects)
         {
             if (obj != null)
             {
-                Color totalOffset = targetColor - obj.GetComponent<Renderer>().material.color;
+                float toastiness = 0.0f;
+                if (obj.GetComponent<Prop>() != null)
+                {
+                    toastiness = obj.GetComponent<Prop>().toastiness;
+                }
                 if (!toastingObjects.ContainsKey(obj))
                 {
-                    toastingObjects.Add(obj, new ToastingObject(obj, totalOffset, strongestStrength, weakestStrength, targetStrength));
+                    toastingObjects.Add(obj, new ToastingObject(obj, toastiness, strongestStrength, weakestStrength, targetStrength));
                 }
             }
         }
@@ -146,19 +154,27 @@ class ToastingObject {
     GameObject obj;
     Renderer renderer;
     Color totalOffset;
-    Prop propScript;
+    float targetStrength;
+    public float toastiness;
 
-    public ToastingObject(GameObject obj, Color totalOffset, Color strongestStrength, Color weakestStrength, float targetStrngth)
+    public ToastingObject(GameObject obj, float toastiness, Color strongestStrength, Color weakestStrength, float targetStrength)
     {
         this.obj = obj;
-        this.renderer = obj.GetComponent<Renderer>();
-        this.propScript = obj.GetComponent<Prop>();
-        this.totalOffset = totalOffset;
+        renderer = obj.GetComponent<Renderer>();
+        this.targetStrength = targetStrength;
+        this.toastiness = toastiness;
+        float colorStrength = targetStrength + toastiness;
+        if (colorStrength > 1)
+        {
+            colorStrength = 1;
+        }
+        this.totalOffset = ((strongestStrength - weakestStrength) * colorStrength + weakestStrength) - renderer.material.color;
     }
 
     public void adjustColor(float maxTime, float deltaTime)
     {
         float pChange = deltaTime / maxTime;
         renderer.material.color += totalOffset*pChange;
+        toastiness += targetStrength * pChange;
     }
 }
