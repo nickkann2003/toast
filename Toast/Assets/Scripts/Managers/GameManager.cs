@@ -152,10 +152,25 @@ public class GameManager : MonoBehaviour
         UIManager.CloseMainMenu();
         StationManager.instance.playerPath.Clear();
         StationManager.instance.MoveToStation(gameDefaultStation);
+        UIManager.instance.TurnOnBackButton();
     }
 
-    private void LoadGame(int sceneIndex)
+    public void GameToMainMenu()
     {
-        SceneManager.LoadScene(sceneIndex);
+        curState = GameState.Menu;
+
+        Time.timeScale = 0;
+        raycaster.enabled = false;
+        UIManager.SetMainMain();
+        StationManager.instance.playerPath.Clear();
+        StationManager.instance.MoveToStation(gameDefaultStation);
+
+        UIManager.instance.ClosePauseMenu();
+        UIManager.instance.TurnOffBackButton();
     }
+
+    //private void LoadGame(int sceneIndex)
+    //{
+    //    SceneManager.LoadScene(sceneIndex);
+    //}
 }

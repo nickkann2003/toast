@@ -11,7 +11,8 @@ using UnityEngine.InputSystem;
 // Station enum, used to track which station it is in
 public enum Stations
 {
-    Starting,
+    MainMenu,
+    Defualt,
     Table,
     Toaster,
     Fridge
@@ -32,7 +33,6 @@ public class StationManager : MonoBehaviour
     [SerializeField]
     float moveSpeed = 1.0f;
 
-    [SerializeField] private UnityEngine.UI.Button backButton;
    
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
@@ -117,7 +117,7 @@ public class StationManager : MonoBehaviour
 
         if (playerPath.Count > 1)
         {
-            backButton.interactable = true;
+            GameManager.Instance.UIManager.TurnOnBackButton();
             if (Keyboard.current.downArrowKey.wasPressedThisFrame)
             {
                 StationManager.instance.StationMoveBack();
@@ -125,7 +125,7 @@ public class StationManager : MonoBehaviour
         }
         else
         {
-            backButton.interactable = false;
+            GameManager.Instance.UIManager.TurnOffBackButton();
         }
     }
 

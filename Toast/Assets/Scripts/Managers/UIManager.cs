@@ -6,6 +6,9 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject mainMenu;
+    public GameObject backButton;
+    public Animator backButtonAni;
+    private bool backButtonOnScreen = false;
 
     public static UIManager instance;
 
@@ -39,5 +42,25 @@ public class UIManager : MonoBehaviour
     public void CloseMainMenu() 
     {
         mainMenu.SetActive(false);
+    }
+
+    public void TurnOnBackButton()
+    {
+        if(!backButtonOnScreen)
+        {
+            backButtonAni.Play("BackButton_PopUp");
+            backButtonOnScreen= true;
+        }
+        //backButton.SetActive(true);
+    }
+
+    public void TurnOffBackButton()
+    {
+        if(backButtonOnScreen)
+        {
+            backButtonAni.Play("BackButton_PopDown");
+            backButtonOnScreen= false;
+        }
+        //backButton.SetActive(false);
     }
 }
