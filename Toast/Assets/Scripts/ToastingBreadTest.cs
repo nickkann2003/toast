@@ -121,6 +121,17 @@ public class ToastingBreadTest : MonoBehaviour
                             ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, objVars, true));
                         }
                     }
+
+                    // apply force to obj
+                    Rigidbody rb = obj.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        Vector3 force = new Vector3(0, 5, 0);
+                        force.y = 2.5f + 2 * (1 - (timer / maxTime));
+
+                        rb.velocity += force;
+                        print(force);
+                    }
                 }
             }
             timer = 0;
