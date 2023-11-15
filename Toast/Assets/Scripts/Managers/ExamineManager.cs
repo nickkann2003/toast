@@ -27,6 +27,8 @@ public class ExamineManager : MonoBehaviour
 
     [SerializeField] public Raycast raycast; // Temp
 
+    [SerializeField] Canvas background;
+
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
     {
@@ -41,6 +43,8 @@ public class ExamineManager : MonoBehaviour
         backgroundBlur.profile.TryGet<DepthOfField>(out dof);
 
         dof.mode.value = DepthOfFieldMode.Off;
+
+        background.gameObject.SetActive(false);
 
     }
 
@@ -92,6 +96,7 @@ public class ExamineManager : MonoBehaviour
         // Scale object properly
         currentExamine.transform.localScale = propToExamine.transform.localScale * inspectorScale;
 
+        background.gameObject.SetActive(true);
         raycast.enabled = false;
     }
 
@@ -111,6 +116,7 @@ public class ExamineManager : MonoBehaviour
             Time.timeScale = 1;
         }
 
+        background.gameObject.SetActive(false);
         raycast.enabled = true;
     }
 }
