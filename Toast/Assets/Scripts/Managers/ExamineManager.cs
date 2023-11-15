@@ -32,9 +32,6 @@ public class ExamineManager : MonoBehaviour
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
     {
-        // Set up examine station
-        examineStation = new Location();
-
         instance = this;
     }
 
