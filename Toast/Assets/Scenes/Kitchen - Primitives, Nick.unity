@@ -8567,6 +8567,7 @@ MonoBehaviour:
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 0
   objectOffset: {x: 0.3, y: 0.75, z: -5.35}
+  parentLoc: {fileID: 0}
   interactables:
   - {fileID: 1576028184}
   - {fileID: 944288252}
@@ -10863,7 +10864,9 @@ MonoBehaviour:
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 2
   objectOffset: {x: 0, y: 0, z: 0}
-  interactables: []
+  parentLoc: {fileID: 846166369}
+  interactables:
+  - {fileID: 1576028184}
 --- !u!1 &816476510
 GameObject:
   m_ObjectHideFlags: 0
@@ -11157,6 +11160,7 @@ MonoBehaviour:
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 1
   objectOffset: {x: 0.3, y: 0.75, z: -5.35}
+  parentLoc: {fileID: 0}
   interactables:
   - {fileID: 1576028184}
   - {fileID: 944288252}
@@ -12327,9 +12331,11 @@ MonoBehaviour:
   isEnabled: 0
   cameraPos: {x: -4.03, y: -0.21, z: -9.18}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
-  stationLabel: 3
+  stationLabel: 4
   objectOffset: {x: -3.97, y: -0.41, z: -4.79}
-  interactables: []
+  parentLoc: {fileID: 846166369}
+  interactables:
+  - {fileID: 1576028184}
 --- !u!4 &944288253 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6857931201524819916, guid: c0ea23539fefbb944bc2831098845f6a,
@@ -14879,6 +14885,7 @@ MonoBehaviour:
   cameraRotation: {x: 0, y: 0, z: 0, w: 1}
   stationLabel: 2
   objectOffset: {x: -0.68, y: 0.65, z: -5.35}
+  parentLoc: {fileID: 1576028184}
   interactables: []
 --- !u!65 &1094151175 stripped
 BoxCollider:
@@ -24297,8 +24304,10 @@ MonoBehaviour:
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 1
   objectOffset: {x: 0.3, y: 0.75, z: -5.35}
+  parentLoc: {fileID: 846166369}
   interactables:
   - {fileID: 1094151173}
+  - {fileID: 944288252}
 --- !u!65 &1576028186
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24319,7 +24328,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 5.4661417, y: 2.55, z: 0.14755899}
-  m_Center: {x: -0.19272101, y: 0.62, z: -5.0815535}
+  m_Center: {x: -0.19272101, y: 0.62, z: -4.52}
 --- !u!4 &1576028187
 Transform:
   m_ObjectHideFlags: 0
@@ -25480,6 +25489,7 @@ MonoBehaviour:
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 0
   objectOffset: {x: 0, y: 0, z: 0}
+  parentLoc: {fileID: 0}
   interactables: []
 --- !u!1 &1645582996
 GameObject:
