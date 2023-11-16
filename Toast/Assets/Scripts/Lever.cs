@@ -78,6 +78,10 @@ public class Lever : MonoBehaviour, IHighlightable
             {
                 pos.y += ((maxHeight - minHeight) / .2f) * Time.deltaTime;
             }
+            else if (pos.y > maxHeight)
+            {
+                pos.y = maxHeight;
+            }
 
             //Set all children to correct %
             percent = (pos.y - minHeight) / (maxHeight - minHeight);
