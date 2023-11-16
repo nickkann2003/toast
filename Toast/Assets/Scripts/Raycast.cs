@@ -16,7 +16,10 @@ public class Raycast : MonoBehaviour
     [SerializeField] private GameObject linePrefab;
     [SerializeField] private GameObject mousePointPrefab;
     [SerializeField] private int maxDistance;
-    [SerializeField] private LayerMask detectionLayer;
+    //[SerializeField] private LayerMask detectionLayer;
+
+    public float scrollSpeed = 1.0f;
+    private float scrollInput;
 
     GameObject line;
     LineController lineController;
@@ -39,6 +42,7 @@ public class Raycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        scrollInput = Input.GetAxis("Mouse ScrollWheel");
         prevGO = hitGO;
         TestRaycast();
         if (Input.GetButtonDown("Drag"))
@@ -139,6 +143,11 @@ public class Raycast : MonoBehaviour
 
     void TestRaycast()
     {
+
+        if (scrollInput < 0f)
+        {
+            StationManager.instance.StationMoveBack();
+        }
         // turn off prev highlight
         if (prevHighligtable != null)
         {
@@ -161,6 +170,16 @@ public class Raycast : MonoBehaviour
                 {
                     GameManager.Instance.SetHandCursor();
                     highlightable.TurnOnHighlght();
+
+                    Location hightLocation = hit.collider.GetComponent<Location>();
+                    if (hightLocation)
+                    {
+                        if (scrollInput > 0f)
+                        {
+                            Debug.Log("Try to zoom in");
+                            StationManager.instance.MoveToStation(hightLocation);
+                        }
+                    }
                 }
             }
             else

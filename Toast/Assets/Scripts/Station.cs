@@ -7,7 +7,7 @@ using UnityEngine;
 public abstract class Station : MonoBehaviour, IHighlightable
 {
     public Collider clickableCollider;
-
+    public GameObject stationHighlight;
     private Outline outline;
 
     // If isEnable is false, then the player should not be able to reach to interact with this station/prop
@@ -22,7 +22,7 @@ public abstract class Station : MonoBehaviour, IHighlightable
     void Start()
     {
         isEnabled= true;
-        //this.transform.AddComponent<Outline>();
+        
         if(!TryGetComponent<Outline>(out outline))
         {
             this.transform.AddComponent<Outline>();
