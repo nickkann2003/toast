@@ -19,14 +19,21 @@ public class Freezer : MonoBehaviour
     {
         foreach (GameObject obj in collidingObjects)
         {
-            ObjectVariables objVar = obj.GetComponent<ObjectVariables>();
-
-            obj.GetComponent<Prop>().frozenness += Time.deltaTime;
-
-            if (obj.GetComponent<Prop>().frozenness >= 5f && !objVar.attributes.Contains(Attribute.Frozen))
+            if (obj != null)
             {
-                Freeze(obj);
-                obj.GetComponent<Prop>().frozenness = 0.0f;
+                ObjectVariables objVar = obj.GetComponent<ObjectVariables>();
+
+                obj.GetComponent<Prop>().frozenness += Time.deltaTime;
+
+                if (obj.GetComponent<Prop>().frozenness >= 5f && !objVar.attributes.Contains(Attribute.Frozen))
+                {
+                    Freeze(obj);
+                    obj.GetComponent<Prop>().frozenness = 0.0f;
+                }
+            }
+            else
+            {
+                collidingObjects.Remove(obj);
             }
         }
     }
