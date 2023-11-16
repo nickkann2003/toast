@@ -143,8 +143,23 @@ public class StationManager : MonoBehaviour
         {
             StationManager.instance.playerLocation.clickableCollider.enabled = true;
         }
-        playerPath.Pop();
-        MoveToStation(playerPath.Peek());
+
+        // No parent location exists, do stack manipulation
+        if(playerLocation.parentLoc == null)
+        {
+            playerPath.Pop();
+            MoveToStation(playerPath.Peek());
+        }
+        // Move back to parent
+        else
+        {
+            while(playerPath.Peek() != playerLocation.parentLoc)
+            {
+                playerPath.Pop();
+            }
+            MoveToStation(playerLocation.parentLoc);
+        }
+       
 
     }
 
