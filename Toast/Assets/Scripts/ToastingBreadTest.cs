@@ -26,6 +26,7 @@ public class ToastingBreadTest : MonoBehaviour
 
     public GameObject firePrefab;
     public float fireTrigger = 1.5f;
+    private bool defrost = false;
 
     public bool IsActive { get => isActive; }
 
@@ -43,7 +44,7 @@ public class ToastingBreadTest : MonoBehaviour
                 foreach (var (key, value) in toastingObjects)
                 {
                     ToastingObject toast = value;
-                    toast.adjustColor(maxTime, Time.deltaTime);
+
                     Prop prop = key.GetComponent<Prop>();
                     if (prop != null)
                     {
@@ -51,6 +52,10 @@ public class ToastingBreadTest : MonoBehaviour
                         ObjectVariables objVars = key.GetComponent<ObjectVariables>();
                         if (objVars != null)
                         {
+                            if (!objVars.attributes.Contains(Attribute.Frozen))
+                            {
+                                toast.adjustColor(maxTime, Time.deltaTime);
+                            }
                             if (!objVars.attributes.Contains(Attribute.OnFire) && prop.toastiness > fireTrigger)
                             {
                                 GameObject fire = Instantiate(firePrefab);
@@ -87,7 +92,18 @@ public class ToastingBreadTest : MonoBehaviour
                 {
                     toastiness = obj.GetComponent<Prop>().toastiness;
                 }
-                if (!toastingObjects.ContainsKey(obj))
+                ObjectVariables objVar = obj.GetComponent<ObjectVariables>();
+
+                if (objVar != null && objVar.attributes.Contains(Attribute.Metal))
+                {
+                    //// METAL EXPLODE
+                    //Vector3 explosionVel = new Vector3(Random.Range(-1,1), Random.value, 0);
+                    //explosionVel *= 10;
+                    //explosionVel += new Vector3((explosionVel.x / Mathf.Abs(explosionVel.x)) * 10, 10, 0);
+
+                    //transform.GetComponent<Rigidbody>().velocity = explosionVel;
+                }
+                else if (!toastingObjects.ContainsKey(obj))
                 {
                     toastingObjects.Add(obj, new ToastingObject(obj, toastiness, strongestStrength, weakestStrength, targetStrength));
                 }
@@ -112,13 +128,20 @@ public class ToastingBreadTest : MonoBehaviour
             {
                 if (obj != null)
                 {
-                    if (targetStrength >= 0.15)
+                    ObjectVariables objVars = obj.GetComponent<ObjectVariables>();
+
+                    if (objVars != null)
                     {
-                        ObjectVariables objVars = obj.GetComponent<ObjectVariables>();
-                        if (objVars != null && !objVars.attributes.Contains(Attribute.Toast))
+                        if (obj.GetComponent<Prop>().toastiness > .15f && !objVars.attributes.Contains(Attribute.Toast))
                         {
                             objVars.AddAttribute(Attribute.Toast);
                             ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, objVars, true));
+                        }
+
+                        if (objVars.attributes.Contains(Attribute.Frozen) && defrost)
+                        {
+                            Destroy(obj.transform.GetChild(0).gameObject);
+                            objVars.RemoveAttribute(Attribute.Frozen);
                         }
                     }
 
@@ -140,6 +163,11 @@ public class ToastingBreadTest : MonoBehaviour
             smokeParticles.Stop();
             stopToasting.Invoke();
         }
+    }
+
+    public void toggleDefrost()
+    {
+        defrost = !defrost;
     }
 
     public void setDialValue(float value)

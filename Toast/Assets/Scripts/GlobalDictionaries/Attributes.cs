@@ -4,5 +4,6 @@ public enum Attribute
     Butter,
     Jam,
     Metal,
-    OnFire
+    OnFire,
+    Frozen
 }

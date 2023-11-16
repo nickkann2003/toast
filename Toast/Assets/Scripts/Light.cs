@@ -7,6 +7,8 @@ public class Light : MonoBehaviour
     public Material M_Off;
     public Material M_On;
 
+    private bool on;
+
     Renderer meshRenderer;
 
     // Start is called before the first frame update
@@ -15,12 +17,25 @@ public class Light : MonoBehaviour
         TurnOff();
     }
 
+    public void Toggle()
+    {
+        if (on)
+        {
+            TurnOff();
+        }
+        else
+        {
+            TurnOn();
+        }
+    }
+
     public void TurnOn()
     {
         if (M_On != null)
         {
             GetComponent<Renderer>().material = M_On;
         }
+        on = true;
     }
 
     public void TurnOff()
@@ -29,5 +44,6 @@ public class Light : MonoBehaviour
         {
             GetComponent<Renderer>().material = M_Off;
         }
+        on = false;
     }
 }
