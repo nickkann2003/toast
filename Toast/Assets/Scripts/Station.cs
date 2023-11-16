@@ -22,12 +22,23 @@ public abstract class Station : MonoBehaviour, IHighlightable
     void Start()
     {
         isEnabled= true;
-        
-        if(!TryGetComponent<Outline>(out outline))
+        if(stationHighlight!=null)
         {
-            this.transform.AddComponent<Outline>();
-            outline = GetComponent<Outline>();
+            if (!stationHighlight.TryGetComponent<Outline>(out outline))
+            {
+                outline = stationHighlight.transform.AddComponent<Outline>();
+                //outline = GetComponent<Outline>();
+            }
         }
+        else
+        {
+            if (!TryGetComponent<Outline>(out outline))
+            {
+                this.transform.AddComponent<Outline>();
+                outline = GetComponent<Outline>();
+            }
+        }
+       
         outline.enabled = false;
         if(clickableCollider!= null)
         {

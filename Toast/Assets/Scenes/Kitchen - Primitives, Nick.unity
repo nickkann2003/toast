@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &21950660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8425060187787322496, guid: 1c17e514c8d966241be47df8881aef91,
+    type: 3}
+  m_PrefabInstance: {fileID: 2039977796}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &28632599
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -1725,11 +1732,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258903379}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.7084153, y: 0.74, z: 0}
+  m_LocalPosition: {x: 0, y: 0.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 98135152}
+  m_Father: {fileID: 1591441408}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &258903381
@@ -1745,6 +1752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 258903382}
+  stationHighlight: {fileID: 21950660}
   isEnabled: 0
   cameraPos: {x: 0.39, y: -1.73, z: -8.21}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -2366,9 +2374,7 @@ MonoBehaviour:
   mousePointPrefab: {fileID: 7929144607893086852, guid: 0bd430e0abac2d24b9b3221afe91e330,
     type: 3}
   maxDistance: 15
-  detectionLayer:
-    serializedVersion: 2
-    m_Bits: 128
+  scrollSpeed: 1
 --- !u!199 &330585550
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -8829,6 +8835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 381376332}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   cameraPos: {x: -4.03, y: 0.63, z: -6.88}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -8920,6 +8927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 1
   cameraPos: {x: -3.8, y: 0.7, z: -8}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -9685,6 +9693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 510954538}
+  stationHighlight: {fileID: 918292100}
   isEnabled: 0
   cameraPos: {x: -1.7, y: -1.73, z: -8.21}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -9720,12 +9729,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510954536}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.67, y: 0.74, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.03841531, y: 0.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1591441408}
+  m_Father: {fileID: 98135152}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &521645972
@@ -10117,6 +10126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -10513,6 +10523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -10783,6 +10794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 710977561}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -11299,6 +11311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 800153524}
+  stationHighlight: {fileID: 0}
   isEnabled: 1
   cameraPos: {x: 0.57, y: -1.26, z: -11}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -11598,6 +11611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   cameraPos: {x: -0.75, y: 0.7, z: -15.25}
   cameraRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -11824,6 +11838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 873334011}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   cameraPos: {x: -4.03, y: -0.34, z: -8.02}
   cameraRotation: {x: 0.12186935, y: 0, z: 0, w: 0.99254614}
@@ -12242,6 +12257,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 902943724}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &918292100 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8425060187787322496, guid: 1c17e514c8d966241be47df8881aef91,
+    type: 3}
+  m_PrefabInstance: {fileID: 1967010352}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &918735567
 GameObject:
   m_ObjectHideFlags: 0
@@ -12366,6 +12387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -12845,6 +12867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 944288248}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   cameraPos: {x: -4.03, y: -0.21, z: -9.18}
   cameraRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -14178,6 +14201,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 601911696}
     m_Modifications:
+    - target: {fileID: 66618314234273813, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 288
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722764242635152743, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 72
+      objectReference: {fileID: 0}
     - target: {fileID: 5366386428531671611, guid: 79bbdac269fb3484685f63b4b174e8e7,
         type: 3}
       propertyPath: m_Name
@@ -14821,6 +14854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 1017904671}
+  stationHighlight: {fileID: 1298658932}
   isEnabled: 0
   cameraPos: {x: 2.55, y: -1.73, z: -8.21}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -15345,6 +15379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -15473,6 +15508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 1094151175}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   cameraPos: {x: -0.6, y: 0, z: -7.05}
   cameraRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -15874,6 +15910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -16015,6 +16052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -16783,6 +16821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -17125,6 +17164,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280990271}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1298658932 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8425060187787322496, guid: 1c17e514c8d966241be47df8881aef91,
+    type: 3}
+  m_PrefabInstance: {fileID: 439921887}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1305839819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17380,6 +17425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -18698,6 +18744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -19182,6 +19229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -24892,6 +24940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 1576028186}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   cameraPos: {x: 0, y: 0.52, z: -9.14}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -25502,6 +25551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -26085,6 +26135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   cameraPos: {x: 0, y: 0, z: 0}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -27287,7 +27338,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -42.9}
+  m_AnchoredPosition: {x: 0, y: -44}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1774354218
@@ -27632,6 +27683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -27888,6 +27940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 1863063897}
+  stationHighlight: {fileID: 0}
   isEnabled: 1
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -27932,6 +27985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -28096,6 +28150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -29410,7 +29465,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4684795839527299668, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 258903380}
+      addedObject: {fileID: 510954539}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2060560102226244103, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
@@ -29680,6 +29735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -30340,7 +30396,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4684795839527299668, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 510954539}
+      addedObject: {fileID: 258903380}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2060560102226244103, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
@@ -31013,6 +31069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableCollider: {fileID: 0}
+  stationHighlight: {fileID: 0}
   isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
@@ -31857,7 +31914,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3635841976596546633}
   - component: {fileID: 2572542521203530372}
-  - component: {fileID: 4601543134888157634}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -31865,19 +31921,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &4601543134888157634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4601543134888157633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1466b03572b41b84eadd632490eaf689, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollSpeed: 1
 --- !u!4 &7155209054112756705
 Transform:
   m_ObjectHideFlags: 0
