@@ -8499,6 +8499,80 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 439921887}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &381376329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 381376330}
+  - component: {fileID: 381376332}
+  - component: {fileID: 381376331}
+  m_Layer: 7
+  m_Name: FreezerStation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &381376330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381376329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.44, z: 0.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 944288253}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &381376331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381376329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ff63f25d1ab4344b3bd1f858dfaec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickableCollider: {fileID: 381376332}
+  isEnabled: 0
+  cameraPos: {x: -4.03, y: 0.63, z: -6.88}
+  cameraRotation: {x: 0, y: 0, z: 0, w: 0}
+  stationLabel: 4
+  objectOffset: {x: -3.97, y: 0.6, z: -4.79}
+  parentLoc: {fileID: 944288252}
+  interactables: []
+--- !u!65 &381376332
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381376329}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 0.04}
+  m_Center: {x: 0, y: 0.14, z: 0.57}
 --- !u!1 &399019509
 GameObject:
   m_ObjectHideFlags: 0
@@ -11157,7 +11231,7 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   isEnabled: 0
   cameraPos: {x: -0.75, y: 0.7, z: -15.25}
-  cameraRotation: {x: 0, y: 0, z: 0, w: 0}
+  cameraRotation: {x: 0, y: 0, z: 0, w: 1}
   stationLabel: 1
   objectOffset: {x: 0.3, y: 0.75, z: -5.35}
   parentLoc: {fileID: 0}
@@ -11314,6 +11388,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851315552}
   m_CullTransparentMesh: 1
+--- !u!1 &873334009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 873334010}
+  - component: {fileID: 873334011}
+  - component: {fileID: 873334012}
+  m_Layer: 7
+  m_Name: FridgeInteriorStation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &873334010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873334009}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.51, z: 0.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 944288253}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &873334011
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873334009}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.0834486, y: 2.8690262, z: 1}
+  m_Center: {x: -0.019075453, y: 0.9345127, z: 0}
+--- !u!114 &873334012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873334009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ff63f25d1ab4344b3bd1f858dfaec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickableCollider: {fileID: 873334011}
+  isEnabled: 0
+  cameraPos: {x: -4.03, y: -0.34, z: -8.02}
+  cameraRotation: {x: 0.12186935, y: 0, z: 0, w: 0.99254614}
+  stationLabel: 0
+  objectOffset: {x: -3.97, y: -0.41, z: -4.79}
+  parentLoc: {fileID: 944288252}
+  interactables: []
 --- !u!1 &875749194
 GameObject:
   m_ObjectHideFlags: 0
@@ -12330,12 +12478,14 @@ MonoBehaviour:
   clickableCollider: {fileID: 944288248}
   isEnabled: 0
   cameraPos: {x: -4.03, y: -0.21, z: -9.18}
-  cameraRotation: {x: 0, y: 0, z: 0, w: 0}
+  cameraRotation: {x: 0, y: 0, z: 0, w: 1}
   stationLabel: 4
   objectOffset: {x: -3.97, y: -0.41, z: -4.79}
   parentLoc: {fileID: 846166369}
   interactables:
   - {fileID: 1576028184}
+  - {fileID: 381376331}
+  - {fileID: 873334012}
 --- !u!4 &944288253 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6857931201524819916, guid: c0ea23539fefbb944bc2831098845f6a,
@@ -24327,8 +24477,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.4661417, y: 2.55, z: 0.14755899}
-  m_Center: {x: -0.19272101, y: 0.62, z: -5.3}
+  m_Size: {x: 5.988372, y: 2.55, z: 2.7182484}
+  m_Center: {x: 0.068394184, y: 0.61999995, z: -4.0146847}
 --- !u!4 &1576028187
 Transform:
   m_ObjectHideFlags: 0
@@ -24608,6 +24758,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 983340282}
+    - targetCorrespondingSourceObject: {fileID: 6857931201524819916, guid: c0ea23539fefbb944bc2831098845f6a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 381376330}
+    - targetCorrespondingSourceObject: {fileID: 6857931201524819916, guid: c0ea23539fefbb944bc2831098845f6a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 873334010}
     - targetCorrespondingSourceObject: {fileID: 5375308115240640745, guid: c0ea23539fefbb944bc2831098845f6a,
         type: 3}
       insertIndex: 0
