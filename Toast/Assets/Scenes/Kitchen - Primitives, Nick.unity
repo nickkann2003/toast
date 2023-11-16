@@ -14208,6 +14208,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4722764242635152743, guid: 79bbdac269fb3484685f63b4b174e8e7,
         type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -190
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722764242635152743, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 72
       objectReference: {fileID: 0}
@@ -27314,6 +27319,7 @@ GameObject:
   - component: {fileID: 1774354219}
   - component: {fileID: 1774354218}
   - component: {fileID: 1774354221}
+  - component: {fileID: 1774354222}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -27456,6 +27462,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1774354222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774354216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a49e786c3f0cc2f40aa3f128207d8435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newPosition: {x: 0, y: -44}
 --- !u!1 &1800917752
 GameObject:
   m_ObjectHideFlags: 0
