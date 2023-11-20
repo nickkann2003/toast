@@ -4,5 +4,6 @@ public enum RequirementType
     CreateObject,
     CompleteMinigame,
     HaveObject,
-    DestroyObject
+    DestroyObject,
+    PickUpObject
 }

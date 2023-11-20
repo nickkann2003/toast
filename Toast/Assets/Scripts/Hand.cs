@@ -28,7 +28,7 @@ public class Hand : MonoBehaviour
     void Update()
     {
         // If theres a held item, set its position to hand position
-        if(currentItem != null)
+        if (currentItem != null)
         {
             currentItem.transform.position = cam.transform.position + (offset);
         }
@@ -65,10 +65,20 @@ public class Hand : MonoBehaviour
     public void AddItem(GameObject item)
     {
         // If not holding anything, set internal values
-        if(!holdingItem)
+        if (!holdingItem)
         {
             currentItem = item;
             holdingItem = true;
+            RequirementEvent rEvent;
+            if (currentItem.GetComponent<ObjectVariables>() != null)
+            {
+                rEvent = new RequirementEvent(RequirementType.PickUpObject, currentItem.GetComponent<ObjectVariables>(), true);
+            }
+            else
+            {
+                rEvent = new RequirementEvent(RequirementType.PickUpObject, new ObjectVariables(), true);
+            }
+            ObjectiveManager.instance.UpdateObjectives(rEvent);
         }
         else
         {
@@ -133,7 +143,7 @@ public class Hand : MonoBehaviour
     {
         Vector2 mPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         Debug.Log("MPos: " + mPos + ", Width: " + cam.pixelWidth + ", Height: " + cam.pixelHeight);
-        if(mPos.x < cam.pixelWidth && mPos.x > cam.pixelWidth-100 && mPos.y < 100 && mPos.y > 0)
+        if (mPos.x < cam.pixelWidth && mPos.x > cam.pixelWidth - 100 && mPos.y < 100 && mPos.y > 0)
         {
             return true;
         }

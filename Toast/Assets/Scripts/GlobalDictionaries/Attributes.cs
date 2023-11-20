@@ -5,5 +5,6 @@ public enum Attribute
     Jam,
     Metal,
     OnFire,
-    Frozen
+    Frozen,
+    Giant
 }
