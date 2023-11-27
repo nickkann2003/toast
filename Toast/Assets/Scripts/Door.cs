@@ -62,15 +62,25 @@ public class Door : MonoBehaviour
         rotatorTransform.localEulerAngles = newRotation;
     }
 
+    public void Open()
+    {
+        isOpen = true;
+    }
+
+    public void Close()
+    {
+        isOpen = false;
+    }
+
     private void OnMouseDown()
     {
         if (!isOpen)
         {
-            isOpen = true;
+            Open();
         }
         else
         {
-            isOpen = false;
+            Close();
         }
     }
 }

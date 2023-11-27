@@ -1418,6 +1418,60 @@ MonoBehaviour:
   clickableCollider: {fileID: 258903382}
   stationHighlight: {fileID: 21950660}
   isEnabled: 0
+  arrive:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 488095643}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 237941032}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  leave:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 488095643}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 237941032}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   cameraPos: {x: 0.39, y: -1.73, z: -8.21}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 2
@@ -8035,6 +8089,12 @@ MonoBehaviour:
   clickableCollider: {fileID: 381376332}
   stationHighlight: {fileID: 0}
   isEnabled: 0
+  arrive:
+    m_PersistentCalls:
+      m_Calls: []
+  leave:
+    m_PersistentCalls:
+      m_Calls: []
   cameraPos: {x: -4.03, y: 0.63, z: -6.88}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 4
@@ -8094,6 +8154,12 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   stationHighlight: {fileID: 0}
   isEnabled: 1
+  arrive:
+    m_PersistentCalls:
+      m_Calls: []
+  leave:
+    m_PersistentCalls:
+      m_Calls: []
   cameraPos: {x: -3.8, y: 0.7, z: -8}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 0
@@ -8244,7 +8310,7 @@ PrefabInstance:
     - target: {fileID: 1082296063586050274, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1082296063586050274, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
@@ -8289,7 +8355,7 @@ PrefabInstance:
     - target: {fileID: 4045566601356467773, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4045566601356467773, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
@@ -8725,6 +8791,60 @@ MonoBehaviour:
   clickableCollider: {fileID: 510954538}
   stationHighlight: {fileID: 918292100}
   isEnabled: 0
+  arrive:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 645062666}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1261342717}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  leave:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 645062666}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1261342717}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   cameraPos: {x: -1.7, y: -1.73, z: -8.21}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 2
@@ -10078,6 +10198,12 @@ MonoBehaviour:
   clickableCollider: {fileID: 800153524}
   stationHighlight: {fileID: 1576028183}
   isEnabled: 1
+  arrive:
+    m_PersistentCalls:
+      m_Calls: []
+  leave:
+    m_PersistentCalls:
+      m_Calls: []
   cameraPos: {x: 0.57, y: -1.26, z: -11}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 2
@@ -10395,6 +10521,12 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   stationHighlight: {fileID: 0}
   isEnabled: 0
+  arrive:
+    m_PersistentCalls:
+      m_Calls: []
+  leave:
+    m_PersistentCalls:
+      m_Calls: []
   cameraPos: {x: -0.75, y: 0.7, z: -20}
   cameraRotation: {x: 0, y: 0, z: 0, w: 1}
   stationLabel: 1
@@ -10660,6 +10792,12 @@ MonoBehaviour:
   clickableCollider: {fileID: 873334011}
   stationHighlight: {fileID: 0}
   isEnabled: 0
+  arrive:
+    m_PersistentCalls:
+      m_Calls: []
+  leave:
+    m_PersistentCalls:
+      m_Calls: []
   cameraPos: {x: -4.03, y: -0.34, z: -8.02}
   cameraRotation: {x: 0.12186935, y: 0, z: 0, w: 0.99254614}
   stationLabel: 0
@@ -11773,6 +11911,12 @@ MonoBehaviour:
   clickableCollider: {fileID: 944288248}
   stationHighlight: {fileID: 0}
   isEnabled: 0
+  arrive:
+    m_PersistentCalls:
+      m_Calls: []
+  leave:
+    m_PersistentCalls:
+      m_Calls: []
   cameraPos: {x: -4.03, y: -0.21, z: -9.18}
   cameraRotation: {x: 0, y: 0, z: 0, w: 1}
   stationLabel: 4
@@ -13469,6 +13613,60 @@ MonoBehaviour:
   clickableCollider: {fileID: 1017904671}
   stationHighlight: {fileID: 1298658932}
   isEnabled: 0
+  arrive:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 646083987}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 77548382}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  leave:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 646083987}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 77548382}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   cameraPos: {x: 2.55, y: -1.73, z: -8.21}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 2
@@ -23317,6 +23515,12 @@ MonoBehaviour:
   clickableCollider: {fileID: 1576028186}
   stationHighlight: {fileID: 0}
   isEnabled: 0
+  arrive:
+    m_PersistentCalls:
+      m_Calls: []
+  leave:
+    m_PersistentCalls:
+      m_Calls: []
   cameraPos: {x: 0, y: 0.52, z: -9.14}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 1
@@ -24379,6 +24583,12 @@ MonoBehaviour:
   clickableCollider: {fileID: 0}
   stationHighlight: {fileID: 0}
   isEnabled: 0
+  arrive:
+    m_PersistentCalls:
+      m_Calls: []
+  leave:
+    m_PersistentCalls:
+      m_Calls: []
   cameraPos: {x: 0, y: 0, z: 0}
   cameraRotation: {x: 0, y: 0, z: 0, w: 0}
   stationLabel: 0
@@ -27200,7 +27410,7 @@ PrefabInstance:
     - target: {fileID: 1082296063586050274, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1082296063586050274, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
@@ -27245,7 +27455,7 @@ PrefabInstance:
     - target: {fileID: 4045566601356467773, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4045566601356467773, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
@@ -28106,7 +28316,7 @@ PrefabInstance:
     - target: {fileID: 1082296063586050274, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1082296063586050274, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
@@ -28176,7 +28386,7 @@ PrefabInstance:
     - target: {fileID: 4045566601356467773, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4045566601356467773, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}

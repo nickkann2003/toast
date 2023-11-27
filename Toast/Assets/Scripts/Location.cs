@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Location : Station
 {
+    [SerializeField] private UnityEvent arrive;
+    [SerializeField] private UnityEvent leave;
+
     public Vector3 cameraPos;
     public Quaternion cameraRotation;
     public Stations stationLabel;
@@ -28,7 +32,16 @@ public class Location : Station
                 }
             }
         }
-    
+    }
+
+    public void OnArrive()
+    {
+        arrive.Invoke();
+    }
+
+    public void OnLeave()
+    {
+        leave.Invoke();
     }
 
     void OnDrawGizmosSelected()

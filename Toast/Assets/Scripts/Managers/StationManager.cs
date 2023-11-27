@@ -105,10 +105,13 @@ public class StationManager : MonoBehaviour
         if(StationManager.instance.playerLocation.clickableCollider != null && StationManager.instance.playerLocation != loc.parentLoc)
         {
             StationManager.instance.playerLocation.clickableCollider.enabled = true;
+            StationManager.instance.playerLocation.OnLeave();
         }
 
         // Update player's current location
         StationManager.instance.playerLocation = loc;
+        StationManager.instance.playerLocation.OnArrive();
+
 
         if (loc.clickableCollider != null)
         {
@@ -142,6 +145,7 @@ public class StationManager : MonoBehaviour
         if (StationManager.instance.playerLocation.clickableCollider != null)
         {
             StationManager.instance.playerLocation.clickableCollider.enabled = true;
+            //StationManager.instance.playerLocation.OnLeave();
         }
 
         if(playerPath.Count > 1)
