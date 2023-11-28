@@ -16,6 +16,9 @@ public class Hand : MonoBehaviour
     private bool dropPressed = false;
     private bool eatPressed = false;
 
+    // TEMP FIX ATTEMPT
+    private float pickupCooldown = 0.1f;
+
     // Start is called before the first frame update -----------
     void Start()
     {
@@ -47,11 +50,20 @@ public class Hand : MonoBehaviour
             eatPressed = false;
         }
 
+        // Pickup pressed
         if (Input.GetButtonDown("Pickup"))
         {
+            // If drop has not been pressed yet
             if (!dropPressed)
             {
+                // If holding an item, set pickup cooldown
+                if (holdingItem)
+                {
+                    pickupCooldown = 0.1f;
+                }
+
                 dropPressed = true;
+                // Drop the item
                 RemoveItem();
             }
         }
@@ -59,30 +71,36 @@ public class Hand : MonoBehaviour
         {
             dropPressed = false;
         }
+
+        pickupCooldown -= Time.deltaTime;
     }
 
     // Functions ----------------------------------------
     public void AddItem(GameObject item)
     {
-        // If not holding anything, set internal values
-        if (!holdingItem)
+        if(pickupCooldown <= 0)
         {
-            currentItem = item;
-            holdingItem = true;
-            RequirementEvent rEvent;
-            if (currentItem.GetComponent<ObjectVariables>() != null)
+            pickupCooldown = 0.1f;
+            // If not holding anything, set internal values
+            if (!holdingItem)
             {
-                rEvent = new RequirementEvent(RequirementType.PickUpObject, currentItem.GetComponent<ObjectVariables>(), true);
+                currentItem = item;
+                holdingItem = true;
+                RequirementEvent rEvent;
+                if (currentItem.GetComponent<ObjectVariables>() != null)
+                {
+                    rEvent = new RequirementEvent(RequirementType.PickUpObject, currentItem.GetComponent<ObjectVariables>(), true);
+                }
+                else
+                {
+                    rEvent = new RequirementEvent(RequirementType.PickUpObject, new ObjectVariables(), true);
+                }
+                ObjectiveManager.instance.UpdateObjectives(rEvent);
             }
             else
             {
-                rEvent = new RequirementEvent(RequirementType.PickUpObject, new ObjectVariables(), true);
+                RemoveItem();
             }
-            ObjectiveManager.instance.UpdateObjectives(rEvent);
-        }
-        else
-        {
-            RemoveItem();
         }
         return;
     }

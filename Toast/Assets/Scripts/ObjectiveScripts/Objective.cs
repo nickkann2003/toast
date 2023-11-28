@@ -29,6 +29,14 @@ public class Objective : MonoBehaviour
                 obj.SetActive(false);
             }
         }
+
+        if (!CheckAvailable())
+        {
+            foreach(Requirement req in requirements)
+            {
+                req.listening = false;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -44,10 +52,8 @@ public class Objective : MonoBehaviour
         {
             foreach(Objective obj in prerequisites)
             {
-                Debug.Log("Checking prerequisites!");
                 if (!obj.Complete)
                 {
-                    Debug.Log("Prerequisite FAILED!!!!");
                     return false;
                 }
             }
@@ -55,7 +61,6 @@ public class Objective : MonoBehaviour
         foreach(Requirement requirement in requirements)
         {
             requirement.listening = true;
-            Debug.Log("LISTENER ACTIVATED");
         }
         return true;
     }
@@ -84,11 +89,11 @@ public class Objective : MonoBehaviour
 
     public void UpdateObjective(RequirementEvent e)
     {
+        CheckAvailable();
         foreach(Requirement r in requirements)
         {
             r.UpdateRequirement(e);
         }
-        CheckAvailable();
     }
 
     // Override ToString to return formatted for To-Do list

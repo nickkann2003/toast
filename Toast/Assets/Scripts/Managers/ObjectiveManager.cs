@@ -10,6 +10,8 @@ public class ObjectiveManager : MonoBehaviour
     public List<Objective> objectives = new List<Objective>();
     public List<TextMeshPro> displays = new List<TextMeshPro>();
 
+    private float completedObjectives = 0;
+
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
     {
@@ -31,9 +33,14 @@ public class ObjectiveManager : MonoBehaviour
     // Update Objectives
     public void UpdateObjectives(RequirementEvent e)
     {
+        completedObjectives = 0;
         foreach (Objective obj in objectives)
         {
             obj.UpdateObjective(e);
+            if (obj.CheckComplete())
+            {
+                completedObjectives++;
+            }
         }
         UpdateText();
     }
@@ -51,10 +58,14 @@ public class ObjectiveManager : MonoBehaviour
         get
         {
             string value = "";
-            value += "<u>To-Do List:</u>";
-            foreach(Objective obj in objectives)
+            value += "<u>To-Do List:</u>";            
+            value += "\n" + "<color=#111><size=-1>" + "Objectives Completed: " + completedObjectives + "</size></color>";
+            foreach (Objective obj in objectives)
             {
-                value += "\n- " + "<size=-1>" + obj.ToString + "</size>";
+                if (obj.CheckAvailable() && !obj.CheckComplete())
+                {
+                    value += "\n- " + "<size=-1>" + obj.ToString + "</size>";
+                }
             }
             return value;
         }

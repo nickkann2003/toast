@@ -11,6 +11,7 @@ public class Requirement : MonoBehaviour
     public List<Attribute> targetAttributes;
     public string goalName;
     public int goal;
+    public bool alwaysListening = false;
 
     // Private variables
     private int current;
@@ -40,7 +41,7 @@ public class Requirement : MonoBehaviour
     // Update the requirement with a given event
     public void UpdateRequirement(RequirementEvent e)
     {
-        if(listening && e.type == type && targetObjects.Contains(e.targetVars.objectId)) // Ensure type, target, and listening
+        if((listening || alwaysListening) && e.type == type && targetObjects.Contains(e.targetVars.objectId)) // Ensure type, target, and listening
         {
             foreach(Attribute a in targetAttributes) // Ensure all necessary attributes are present
             {
