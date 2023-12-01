@@ -17,8 +17,9 @@ public class Freezer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (GameObject obj in collidingObjects)
+        for (int i = 0; i < collidingObjects.Count; i++)
         {
+            GameObject obj = collidingObjects[i];
             if (obj != null)
             {
                 ObjectVariables objVar = obj.GetComponent<ObjectVariables>();
@@ -47,7 +48,7 @@ public class Freezer : MonoBehaviour
             objVar.RemoveAttribute(Attribute.OnFire);
             Destroy(obj.transform.GetChild(0).gameObject);
         }
-        else if (!objVar.attributes.Contains(Attribute.Frozen)) 
+        else if (!objVar.attributes.Contains(Attribute.Frozen) && objVar.objectId == Object.Bread) 
         {
             GameObject ice = Instantiate(icePrefab);
             ice.transform.position = obj.transform.position;
@@ -83,7 +84,10 @@ public class Freezer : MonoBehaviour
                 //{
                 //    other.gameObject.GetComponent<Prop>().frozenness = 0.0f;
                 //}
-                other.gameObject.GetComponent<Prop>().frozenness = 0.0f;
+                if (other != null)
+                {
+                    other.gameObject.GetComponent<Prop>().frozenness = 0.0f;
+                }
                 collidingObjects.Remove(other.gameObject);
             }
 

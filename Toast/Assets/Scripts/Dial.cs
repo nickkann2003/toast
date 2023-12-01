@@ -96,16 +96,15 @@ public class Dial : MonoBehaviour, IHighlightable
             transform.up = GetMouseWorldPos() - transform.position;
 
             rotation = transform.eulerAngles;
+            rotation.x = 0;
+            rotation.y = 0;
             if (transform.eulerAngles.z > 110 && transform.eulerAngles.z <= 180)
             {
                 rotation.z = 110f;
-
-                transform.eulerAngles = rotation;
             }
             else if ((transform.eulerAngles.z > 180 && transform.eulerAngles.z < 250))
             {
                 rotation.z = 250f;
-                transform.eulerAngles = rotation;
             }
             if (rotation.z >= 250)
             {
@@ -125,6 +124,8 @@ public class Dial : MonoBehaviour, IHighlightable
                     breadToaster.setDialValue(dialValue);
                 }
             }
+
+            transform.eulerAngles = rotation;
         }
     }
 

@@ -11,6 +11,8 @@ public class ToastingBreadTest : MonoBehaviour
     [SerializeField] private UnityEvent toasting;
     [SerializeField] private UnityEvent stopToasting;
 
+    public FireEndingManager fireEndingManager;
+
     private List<GameObject> collidingObjects = new List<GameObject>();
     private float targetStrength = .5f;
     public Color weakestStrength = Color.white;
@@ -64,6 +66,7 @@ public class ToastingBreadTest : MonoBehaviour
                                 fire.transform.eulerAngles = Vector3.zero;
                                 fire.transform.localScale = Vector3.one;
                                 objVars.AddAttribute(Attribute.OnFire);
+                                fireEndingManager.addFireObject(key);
                             }
                         }
                         
