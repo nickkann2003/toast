@@ -9958,6 +9958,57 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1592509770}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &736488355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 736488357}
+  - component: {fileID: 736488356}
+  m_Layer: 0
+  m_Name: FireEndingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &736488356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736488355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 118ff6410a3432b48a1c165e67c24af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smokiness: 0
+  smokeRate: 1
+  antiSmokeRate: -0.8
+  fireEndingThreshold: 20
+  endingTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &736488357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736488355}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.37630698, y: -8.178782, z: 9.102779}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3635841976596546633}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &780205980
 GameObject:
   m_ObjectHideFlags: 0
@@ -29757,6 +29808,7 @@ Transform:
   - {fileID: 7155209054112756705}
   - {fileID: 1452169025}
   - {fileID: 878126204}
+  - {fileID: 736488357}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29835,6 +29887,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.10789997
       objectReference: {fileID: 0}
+    - target: {fileID: 4220189479911761573, guid: 087a36c7a73205049bb1d1992e3f01ce,
+        type: 3}
+      propertyPath: fireEndingManager
+      value: 
+      objectReference: {fileID: 736488356}
     - target: {fileID: 5170604673576388490, guid: 087a36c7a73205049bb1d1992e3f01ce,
         type: 3}
       propertyPath: m_Camera

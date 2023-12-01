@@ -37,25 +37,6 @@ public class Freezer : MonoBehaviour
                 collidingObjects.Remove(obj);
             }
         }
-        //foreach (GameObject obj in collidingObjects)
-        //{
-        //    if (obj != null)
-        //    {
-        //        ObjectVariables objVar = obj.GetComponent<ObjectVariables>();
-
-        //        obj.GetComponent<Prop>().frozenness += Time.deltaTime;
-
-        //        if (obj.GetComponent<Prop>().frozenness >= 5f && !objVar.attributes.Contains(Attribute.Frozen))
-        //        {
-        //            Freeze(obj);
-        //            obj.GetComponent<Prop>().frozenness = 0.0f;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        collidingObjects.Remove(obj);
-        //    }
-        //}
     }
 
     void Freeze(GameObject obj)
