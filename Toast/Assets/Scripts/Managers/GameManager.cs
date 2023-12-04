@@ -183,8 +183,8 @@ public class GameManager : MonoBehaviour
         UIManager.SetMainMain();
     }
 
-    //private void LoadGame(int sceneIndex)
-    //{
-    //    SceneManager.LoadScene(sceneIndex);
-    //}
+    public void LoadGame(int sceneIndex)
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
