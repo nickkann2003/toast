@@ -14,6 +14,8 @@ public class FireEndingManager : MonoBehaviour
 
     private List<GameObject> fireObjects = new List<GameObject>();
 
+    public GameObject smokeThingy;
+
     [SerializeField] private UnityEvent endingTrigger;
 
     // Start is called before the first frame update
@@ -26,10 +28,18 @@ public class FireEndingManager : MonoBehaviour
     void Update()
     {
         smokiness += (antiSmokeRate + smokeRate * fireObjects.Count) * Time.deltaTime;
+        if (smokiness < 0)
+        {
+            smokiness = 0;
+        }
+
+        Color color;
+        color = smokeThingy.GetComponent<Renderer>().material.color;
+        color.a = (smokiness / fireEndingThreshold);
+        smokeThingy.GetComponent<Renderer>().material.color = color;
 
         if (smokiness > fireEndingThreshold)
         {
-            print(fireObjects.Count);
             print("FIRE");
         }
     }
