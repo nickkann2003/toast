@@ -7,9 +7,10 @@ using UnityEngine;
 public class Objective : MonoBehaviour
 {
     // Public variables
+    public string objectiveName;
     public List<Objective> prerequisites = new List<Objective>();
     public List<Requirement> requirements = new List<Requirement>();
-    public string objectiveName;
+    public List<ObjectiveObject> objectiveObjects = new List<ObjectiveObject>();
     public List<GameObject> activatables = new List<GameObject>();
 
     // Private variables
@@ -24,7 +25,7 @@ public class Objective : MonoBehaviour
     {
         if (!complete)
         {
-            foreach(GameObject obj in activatables)
+            foreach (GameObject obj in activatables)
             {
                 obj.SetActive(false);
             }
@@ -32,7 +33,7 @@ public class Objective : MonoBehaviour
 
         if (!CheckAvailable())
         {
-            foreach(Requirement req in requirements)
+            foreach (Requirement req in requirements)
             {
                 req.listening = false;
             }
@@ -42,15 +43,15 @@ public class Objective : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // Check if the current task has had its prerequisites complete
     public bool CheckAvailable()
     {
-        if(prerequisites.Count > 0)
+        if (prerequisites.Count > 0)
         {
-            foreach(Objective obj in prerequisites)
+            foreach (Objective obj in prerequisites)
             {
                 if (!obj.Complete)
                 {
@@ -58,7 +59,7 @@ public class Objective : MonoBehaviour
                 }
             }
         }
-        foreach(Requirement requirement in requirements)
+        foreach (Requirement requirement in requirements)
         {
             requirement.listening = true;
         }
@@ -68,7 +69,7 @@ public class Objective : MonoBehaviour
     // Check if this objective is complete
     public bool CheckComplete()
     {
-        foreach(Requirement r in requirements)
+        foreach (Requirement r in requirements)
         {
             if (!r.CheckComplete())
             {
@@ -77,9 +78,9 @@ public class Objective : MonoBehaviour
             }
         }
         complete = true;
-        foreach(GameObject ob in activatables)
+        foreach (GameObject ob in activatables)
         {
-            if(ob != null)
+            if (ob != null)
             {
                 ob.SetActive(true);
             }
@@ -90,9 +91,16 @@ public class Objective : MonoBehaviour
     public void UpdateObjective(RequirementEvent e)
     {
         CheckAvailable();
-        foreach(Requirement r in requirements)
+        foreach (Requirement r in requirements)
         {
             r.UpdateRequirement(e);
+        }
+        if (!complete)
+        {
+            foreach (ObjectiveObject obj in objectiveObjects)
+            {
+                obj.CheckObjectiveObject();
+            }
         }
     }
 
@@ -106,18 +114,18 @@ public class Objective : MonoBehaviour
                 string value = "";
                 value = objectiveName + ":";
                 bool allDone = true;
-                foreach(Requirement r in requirements )
+                foreach (Requirement r in requirements)
                 {
-                    if(r.listening)
+                    if (r.listening)
                     {
-                    value += "\n    - <size=-1>" + r.ToString + "</size>";
+                        value += "\n    - <size=-1>" + r.ToString + "</size>";
                     }
                     if (!r.CheckComplete())
                     {
                         allDone = false;
                     }
                 }
-                if(allDone)
+                if (allDone)
                 {
                     CheckComplete();
                     value = "<color=#111><s>" + objectiveName + "</s></color>";
