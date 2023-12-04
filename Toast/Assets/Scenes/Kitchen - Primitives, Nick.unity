@@ -279,11 +279,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cfdb4bb7e7a154a820e421ece8ff92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectiveName: Open The Freezer (Scroll In)
   prerequisites:
   - {fileID: 1508398479}
   requirements:
   - {fileID: 1929358180}
-  objectiveName: Open The Freezer (Scroll In)
+  objectiveObjects: []
   activatables:
   - {fileID: 1094151171}
   - {fileID: 1488856649}
@@ -2588,6 +2589,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 916073723}
   - {fileID: 1527028398}
   m_Father: {fileID: 875749195}
   m_RootOrder: -1
@@ -10611,9 +10613,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smokiness: 0
-  smokeRate: 1
-  antiSmokeRate: -0.8
+  smokeRate: 0.4
+  antiSmokeRate: -0.6
   fireEndingThreshold: 20
+  smokeThingy: {fileID: 916073722}
   endingTrigger:
     m_PersistentCalls:
       m_Calls: []
@@ -12212,6 +12215,112 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 914127014}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &916073722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 916073723}
+  - component: {fileID: 916073726}
+  - component: {fileID: 916073725}
+  - component: {fileID: 916073724}
+  m_Layer: 0
+  m_Name: SmokeThingy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &916073723
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916073722}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 330585546}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!64 &916073724
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916073722}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &916073725
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916073722}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7fdf7aebe4114f047931fe916be3f0ff, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &916073726
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916073722}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &918292100 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8425060187787322496, guid: 1c17e514c8d966241be47df8881aef91,
@@ -19012,10 +19121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cfdb4bb7e7a154a820e421ece8ff92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectiveName: Open The Fridge (Scroll In)
   prerequisites: []
   requirements:
   - {fileID: 1444648426}
-  objectiveName: Open The Fridge (Scroll In)
+  objectiveObjects: []
   activatables:
   - {fileID: 1133917777}
   - {fileID: 1399312436}
@@ -24574,11 +24684,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cfdb4bb7e7a154a820e421ece8ff92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectiveName: Giant Lever? And Button?
   prerequisites:
   - {fileID: 1889103348}
   requirements:
   - {fileID: 345359348}
-  objectiveName: Giant Lever? And Button?
+  objectiveObjects: []
   activatables:
   - {fileID: 154145554}
 --- !u!1 &1576028183
@@ -25806,11 +25917,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cfdb4bb7e7a154a820e421ece8ff92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectiveName: Defrost The Bread
   prerequisites:
   - {fileID: 25139428}
   requirements:
   - {fileID: 829069836}
-  objectiveName: Defrost The Bread
+  objectiveObjects: []
   activatables:
   - {fileID: 320400191}
   - {fileID: 939905406}
@@ -26717,11 +26829,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cfdb4bb7e7a154a820e421ece8ff92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectiveName: Visit The Counter (Back Button)
   prerequisites:
   - {fileID: 1649208706}
   requirements:
   - {fileID: 1173605072}
-  objectiveName: Visit The Counter (Back Button)
+  objectiveObjects: []
   activatables:
   - {fileID: 83630301}
   - {fileID: 1845834145}
@@ -27476,12 +27589,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragGrabPos: {x: 0, y: 0, z: 0}
-  dragHomePos: {x: 3.1917605, y: -2.3352091, z: -4.7173038}
+  dragHomePos: {x: 0, y: 0, z: 0}
   dragGiftPos: {x: 0, y: 0, z: 0}
   edibleObject: {fileID: 0}
-  grabHand: {fileID: 1518115511}
+  grabHand: {fileID: 0}
   status: 0
-  grabSpeed: 0.3
+  grabSpeed: 1
   giftTarget: 5
 --- !u!1001 &1887326341
 PrefabInstance:
@@ -27676,12 +27789,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cfdb4bb7e7a154a820e421ece8ff92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectiveName: Breadsplosion!
   prerequisites:
   - {fileID: 1752776144}
   - {fileID: 1508398479}
   requirements:
   - {fileID: 635130979}
-  objectiveName: Breadsplosion!
+  objectiveObjects: []
   activatables:
   - {fileID: 464587650}
   - {fileID: 2087879966}
@@ -29771,11 +29885,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cfdb4bb7e7a154a820e421ece8ff92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectiveName: Get Sticky
   prerequisites:
   - {fileID: 1752776144}
   requirements:
   - {fileID: 159569214}
-  objectiveName: Get Sticky
+  objectiveObjects: []
   activatables:
   - {fileID: 571585012}
   - {fileID: 1641049132}
@@ -30490,11 +30605,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c875085de0bb14a98c847e01a37c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eatingBread: {fileID: 8300000, guid: 1c7ba7172277ca744817651c575b666d, type: 3}
-  toasterTimer: {fileID: 8300000, guid: acf8ccd7512611a498a39f0269de0e2b, type: 3}
-  toasterLever: {fileID: 8300000, guid: 172d93197dff7cd4d9abd907ed46206c, type: 3}
-  toasterPop: {fileID: 8300000, guid: 21e841fc998a1f349b34e73e94db59eb, type: 3}
-  toasterDing: {fileID: 8300000, guid: 7d5c6be812afdee46b9d3cb4a586cf66, type: 3}
+  eatingBread: {fileID: 0}
+  toasterTimer: {fileID: 0}
+  toasterLever: {fileID: 0}
+  toasterPop: {fileID: 0}
+  toasterDing: {fileID: 0}
 --- !u!1001 &1374168725138644443
 PrefabInstance:
   m_ObjectHideFlags: 0
