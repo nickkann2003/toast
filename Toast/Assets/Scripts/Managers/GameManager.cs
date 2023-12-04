@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
                 GameObject gObj = new GameObject();
                 gObj.name = "GameManager";
                 instance = gObj.AddComponent<GameManager>();
-                DontDestroyOnLoad(gObj);
+                //DontDestroyOnLoad(gObj);
             }
             return instance;
         }
@@ -58,14 +58,14 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
-  
-        curState= GameState.Menu;
+
+        curState = GameState.Menu;
         raycaster.enabled = false;
 
         Time.timeScale = 0;
