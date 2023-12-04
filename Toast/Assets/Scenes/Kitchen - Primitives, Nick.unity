@@ -30217,6 +30217,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c875085de0bb14a98c847e01a37c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eatingBread: {fileID: 8300000, guid: 1c7ba7172277ca744817651c575b666d, type: 3}
+  toasterTimer: {fileID: 8300000, guid: acf8ccd7512611a498a39f0269de0e2b, type: 3}
+  toasterLever: {fileID: 8300000, guid: 172d93197dff7cd4d9abd907ed46206c, type: 3}
+  toasterPop: {fileID: 8300000, guid: 21e841fc998a1f349b34e73e94db59eb, type: 3}
+  toasterDing: {fileID: 8300000, guid: 7d5c6be812afdee46b9d3cb4a586cf66, type: 3}
 --- !u!1001 &1374168725138644443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30486,10 +30491,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

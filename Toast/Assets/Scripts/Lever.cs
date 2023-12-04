@@ -151,11 +151,15 @@ public class Lever : MonoBehaviour, IHighlightable
 
     public void TurnOn()
     {
+        AudioManager.instance.PlaySound(AudioManager.instance.toasterLever);
+        AudioManager.instance.PlaySound(AudioManager.instance.toasterTimer);
         isOn = true;
     }
 
     public void TurnOff()
     {
+        AudioManager.instance.PlaySound(AudioManager.instance.toasterPop);
+        AudioManager.instance.PlaySound(AudioManager.instance.toasterDing);
         isOn = false;
     }
 

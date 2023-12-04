@@ -8,6 +8,12 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource audioPlayer;
 
+    public AudioClip eatingBread;
+    public AudioClip toasterTimer;
+    public AudioClip toasterLever;
+    public AudioClip toasterPop;
+    public AudioClip toasterDing;
+
     private void Awake()
     {
 
@@ -21,11 +27,23 @@ public class AudioManager : MonoBehaviour
         //DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        
+    }
+
     public void PlaySound(AudioClip soundToPlay)
     {
+        if (soundToPlay == null)
+        {
+            return;
+        }
+      
+
         // example 1
         audioPlayer.clip = soundToPlay;
         audioPlayer.Play();
+        Debug.LogWarning(eatingBread.name);
 
         // example 2
         //audioPlayer.PlayOneShot(soundToPlay);

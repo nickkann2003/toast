@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         AudioManager = GetComponentInChildren<AudioManager>();
         UIManager = GameObject.Find("UIManager").gameObject.transform.GetComponent<UIManager>();
         //SceneLoadingManager = GetComponentInChildren<SceneLoadingManager>(); 
-        AudioManager.PlaySound(test);
+        //AudioManager.PlaySound(test);
     }
 
     // Update is called once per frame

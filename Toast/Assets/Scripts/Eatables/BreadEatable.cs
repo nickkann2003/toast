@@ -20,6 +20,7 @@ public class BreadEatable : MonoBehaviour, IEatable
 
     public void TakeBite()
     {
+        AudioManager.instance.PlaySound(AudioManager.instance.eatingBread);
         bitesRemaining--;
         if (bitesRemaining <= 0)
         {
