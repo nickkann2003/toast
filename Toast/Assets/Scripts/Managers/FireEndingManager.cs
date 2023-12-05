@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class FireEndingManager : MonoBehaviour
 {
@@ -15,33 +16,65 @@ public class FireEndingManager : MonoBehaviour
     private List<GameObject> fireObjects = new List<GameObject>();
 
     public GameObject smokeThingy;
+    public GameObject redLight;
+    public float lightTimer = 0;
+    public bool lightEnabled = false;
 
     [SerializeField] private UnityEvent endingTrigger;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //if (redLight != null)
+        //{
+        //    redLight.SetActive(false);
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
-        smokiness += (antiSmokeRate + smokeRate * fireObjects.Count) * Time.deltaTime;
-        if (smokiness < 0)
+        float smokeValue = (antiSmokeRate + smokeRate * fireObjects.Count) * Time.deltaTime;
+
+        if (smokiness + smokeValue < 0)
         {
-            smokiness = 0;
+            smokeValue = 0f;
         }
+        else if (smokiness >= fireEndingThreshold)
+        {
+            Application.Quit();
+        }
+        else if (smokiness >= fireEndingThreshold * .85)
+        {
+            smokiness += .3f * Time.deltaTime;
+            if (lightTimer <= 0)
+            {
+                lightEnabled = !lightEnabled;
+                lightTimer = .75f;
+
+            }
+            if (redLight != null)
+            {
+                redLight.SetActive(lightEnabled);
+            }
+
+            lightTimer -= Time.deltaTime;
+        }
+        else
+        {
+            smokiness += smokeValue;
+        }
+        
 
         Color color;
         color = smokeThingy.GetComponent<Renderer>().material.color;
         color.a = (smokiness / fireEndingThreshold);
         smokeThingy.GetComponent<Renderer>().material.color = color;
 
-        if (smokiness > fireEndingThreshold)
-        {
-            print("FIRE");
-        }
+        //if (smokiness > fireEndingThreshold)
+        //{
+        //    print("FIRE");
+        //}
     }
 
     public void addFireObject(GameObject obj)
