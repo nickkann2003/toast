@@ -10620,6 +10620,7 @@ MonoBehaviour:
   smokeThingy: {fileID: 916073722}
   redLight: {fileID: 1430776347}
   lightTimer: 0
+  lightEnabled: 0
   endingTrigger:
     m_PersistentCalls:
       m_Calls: []
@@ -18367,12 +18368,12 @@ GameObject:
   - component: {fileID: 1430776349}
   - component: {fileID: 1430776348}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Red Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1430776348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18403,12 +18404,12 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1430776347}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 20
+  m_Intensity: 10
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
