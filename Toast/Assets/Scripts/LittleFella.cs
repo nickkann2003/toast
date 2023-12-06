@@ -154,6 +154,7 @@ public class LittleFella : MonoBehaviour
         if(other.gameObject == edibleObject)
         {
             edibleObject = null;
+            moveProgress = 0.0f;
             status = GrabStatus.Withdrawing;
         }
     }
