@@ -52,10 +52,10 @@ public class Lever : MonoBehaviour, IHighlightable
         {
             parent = transform.parent;
         }
-        foreach(LeverChild child in children) {
-            child.top += child.rigidBody.position;
-            child.bottom += child.rigidBody.position;
-        }
+        //foreach(LeverChild child in children) {
+        //    child.top += child.rigidBody.position;
+        //    child.bottom += child.rigidBody.position;
+        //}
     }
 
     private void Update()
