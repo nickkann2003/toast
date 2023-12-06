@@ -19278,8 +19278,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518115511}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 3.1917605, y: -2.3352091, z: -4.7173038}
-  m_LocalScale: {x: 0.11898195, y: 0.10377111, z: 0.26481086}
+  m_LocalPosition: {x: 2.99, y: -2.34, z: -3.65}
+  m_LocalScale: {x: 0.18, y: 0.15698853, z: 0.400615}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -19302,7 +19302,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -27711,13 +27711,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragGrabPos: {x: 0, y: 0, z: 0}
-  dragHomePos: {x: 0, y: 0, z: 0}
-  dragGiftPos: {x: 0, y: 0, z: 0}
+  dragHomePos: {x: 2.99, y: -2.34, z: -3.65}
+  dragGiftPos: {x: 3, y: -2.3, z: -5.39}
   edibleObject: {fileID: 0}
-  grabHand: {fileID: 0}
+  grabHand: {fileID: 1518115511}
   status: 0
-  grabSpeed: 1
+  grabSpeed: 0.3
   giftTarget: 5
+  moveProgress: 0
+  handLevel: -2.3
 --- !u!1001 &1887326341
 PrefabInstance:
   m_ObjectHideFlags: 0
