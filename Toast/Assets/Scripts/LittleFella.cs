@@ -51,6 +51,7 @@ public class LittleFella : MonoBehaviour
     {
         switch(status)
         {
+            // Reaching for the player's object
             case GrabStatus.Reaching:
                 grabHand.transform.position = Vector3.Lerp(dragHomePos, dragGrabPos, moveProgress);
                 moveProgress += Time.deltaTime * grabSpeed;
@@ -62,6 +63,7 @@ public class LittleFella : MonoBehaviour
 
                 break;
 
+            // Dragging the player's object back
             case GrabStatus.Taking:
                 grabHand.transform.position = Vector3.Lerp(dragGrabPos, dragHomePos, moveProgress);
                 edibleObject.transform.position = grabHand.transform.position;
@@ -90,6 +92,7 @@ public class LittleFella : MonoBehaviour
                 }
                 break;
 
+            // Can't eat the player's object, give it back
             case GrabStatus.Returning:
                 grabHand.transform.position = Vector3.Lerp(dragHomePos, dragGiftPos, moveProgress);
                 edibleObject.transform.position = grabHand.transform.position;
@@ -102,6 +105,7 @@ public class LittleFella : MonoBehaviour
                 }
                 break;
 
+            // Withdraw hand to default position
             case GrabStatus.Withdrawing:
                 grabHand.transform.position = Vector3.Lerp(grabHand.transform.position, dragHomePos, moveProgress);
                 moveProgress += Time.deltaTime * grabSpeed;
@@ -112,9 +116,11 @@ public class LittleFella : MonoBehaviour
                 }
                 break;
 
+            // Player has fed enough, give a gift
             case GrabStatus.Gifting:
                 break;
 
+            // Nothing to do, stay in place
             case GrabStatus.Rest:
                 if(edibleObject != null)
                 {
@@ -140,6 +146,15 @@ public class LittleFella : MonoBehaviour
                 dragGrabPos.y = handLevel;
                 //status = GrabStatus.Reaching;
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject == edibleObject)
+        {
+            edibleObject = null;
+            status = GrabStatus.Withdrawing;
         }
     }
 
