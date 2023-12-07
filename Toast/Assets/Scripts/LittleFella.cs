@@ -46,6 +46,11 @@ public class LittleFella : MonoBehaviour
     [SerializeField]
     float handLevel = -2.0f; // Used to balance where the hand is grabbing, rather than the initial height;
 
+    [SerializeField]
+    GameObject giftPrefab;
+
+    GameObject giftObject;
+
     // Update is called once per frame
     void Update()
     {
@@ -94,7 +99,7 @@ public class LittleFella : MonoBehaviour
                         
                         currentGifts++;
 
-                        if(currentGifts >= giftTarget)
+                        if(currentGifts == giftTarget)
                         {
                             GiveGift();
                         }
@@ -132,6 +137,13 @@ public class LittleFella : MonoBehaviour
 
             // Player has fed enough, give a gift
             case GrabStatus.Gifting:
+                grabHand.transform.position = Vector3.Lerp(dragHomePos, dragGiftPos, moveProgress);
+                giftObject.transform.position = grabHand.transform.position;
+                moveProgress += Time.deltaTime * grabSpeed;
+                if(moveProgress >= 1.0f)
+                {
+                    status = GrabStatus.Withdrawing;
+                }
                 break;
 
             // Nothing to do, stay in place
@@ -151,7 +163,7 @@ public class LittleFella : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject != grabHand)
+        if(other.gameObject != grabHand && other.gameObject != giftObject)
         {
             if (edibleObject == null)
             {
@@ -176,7 +188,8 @@ public class LittleFella : MonoBehaviour
     private void GiveGift()
     {
         // Create the gift
-
-        //status = GrabStatus.Gifting;
+        giftObject = Instantiate(giftPrefab, dragHomePos, Quaternion.identity);
+        moveProgress = 0.0f;
+        status = GrabStatus.Gifting;
     }
 }
