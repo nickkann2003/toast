@@ -7,9 +7,13 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject settingMenu;
     public UnityEngine.UI.Button backButton;
     public Animator backButtonAni;
     private bool backButtonOnScreen = false;
+
+    public bool backFromMainMenu = true;
+
 
     public static UIManager instance;
 
@@ -64,5 +68,34 @@ public class UIManager : MonoBehaviour
             backButtonAni.Play("BackButton_PopDown");
             backButtonOnScreen= false;
         }
+    }
+
+    public void OpenSettingMenu()
+    {
+        if(mainMenu.active)
+        {
+            backFromMainMenu = true;
+        }
+        else
+        {
+            backFromMainMenu = false;
+        }
+        settingMenu.SetActive(true);
+        mainMenu.SetActive(false);
+        pauseMenu.SetActive(false);
+    }
+
+    public void CloseSettingMenuFromMainMenu()
+    {
+        settingMenu.SetActive(false);
+        if (backFromMainMenu)
+        {
+            mainMenu.SetActive(true);
+        }
+        else
+        {
+            pauseMenu.SetActive(true);
+        }
+ 
     }
 }
