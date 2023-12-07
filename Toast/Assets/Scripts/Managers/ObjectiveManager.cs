@@ -40,7 +40,7 @@ public class ObjectiveManager : MonoBehaviour
             if (obj.CheckComplete())
             {
                 completedObjectives++;
-                AudioManager.instance.PlaySound(AudioManager.instance.objectiveComplete, 0.3f, 1);
+                AudioManager.instance.PlayOneShotSound(AudioManager.instance.objectiveComplete, 0.3f, 1);
             }
         }
         UpdateText();

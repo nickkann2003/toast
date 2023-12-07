@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip objectiveComplete;
     public AudioClip fire;
     public AudioClip fireAlarm;
+    public AudioClip physicalButton;
 
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    public void PlaySound(AudioClip soundToPlay, float volume = 1, float delay =0)
+    public void PlayOneShotSound(AudioClip soundToPlay, float volume = 1, float delay =0)
     {
         if (soundToPlay == null)
         {
@@ -52,4 +53,23 @@ public class AudioManager : MonoBehaviour
         audioPlayer.PlayDelayed(delay);
         audioPlayer.PlayOneShot(soundToPlay);
     }
+
+    public void PlaySound(AudioClip soundToPlay, float volume = 1, float delay = 0)
+    {
+        if (soundToPlay == null)
+        {
+            return;
+        }
+
+
+        // example 1
+
+        audioPlayer.volume = volume;
+        audioPlayer.PlayDelayed(delay);
+        audioPlayer.clip = soundToPlay;
+        audioPlayer.Play();
+
+    }
+
+
 }

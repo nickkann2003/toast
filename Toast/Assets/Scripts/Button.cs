@@ -98,6 +98,7 @@ public class Button : MonoBehaviour, IHighlightable
                 break;
         }
         pressed = true;
+        AudioManager.instance.PlaySound(AudioManager.instance.physicalButton);
     }
 
     void Activate()
@@ -124,7 +125,7 @@ public class Button : MonoBehaviour, IHighlightable
         {
             interpolateAmount = 1;
         }
-
+  
         transform.position = Vector3.Lerp(maxHeight.transform.position, minHieght.transform.position, interpolateAmount);
     }
 

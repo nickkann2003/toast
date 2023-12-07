@@ -82,7 +82,7 @@ public class LittleFella : MonoBehaviour
                     }
                     else
                     {
-                        AudioManager.instance.PlaySound(AudioManager.instance.eatingBread);
+                        AudioManager.instance.PlayOneShotSound(AudioManager.instance.eatingBread);
                         Destroy(edibleObject);
 
                         RequirementEvent rEvent;
