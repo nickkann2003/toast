@@ -77,7 +77,21 @@ public class LittleFella : MonoBehaviour
                     }
                     else
                     {
+                        AudioManager.instance.PlaySound(AudioManager.instance.eatingBread);
                         Destroy(edibleObject);
+
+                        RequirementEvent rEvent;
+                        if (edibleObject.GetComponent<ObjectVariables>() != null)
+                        {
+                            rEvent = new RequirementEvent(RequirementType.EatObject, edibleObject.GetComponent<ObjectVariables>(), true);
+                        }
+                        else
+                        {
+                            rEvent = new RequirementEvent(RequirementType.EatObject, new ObjectVariables(), true);
+                        }
+
+                        ObjectiveManager.instance.UpdateObjectives(rEvent);
+                        
                         currentGifts++;
 
                         if(currentGifts >= giftTarget)
@@ -124,7 +138,7 @@ public class LittleFella : MonoBehaviour
             case GrabStatus.Rest:
                 if(edibleObject != null)
                 {
-                    if(Math.Abs(edibleObject.transform.position.y - handLevel) < 0.2)
+                    if(Math.Abs(edibleObject.transform.position.y - handLevel) < 0.3)
                     {
                         status = GrabStatus.Reaching;
                     }
