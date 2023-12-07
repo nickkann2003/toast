@@ -176,7 +176,7 @@ public class Raycast : MonoBehaviour
                     {
                         if (scrollInput > 0f)
                         {
-                            Debug.Log("Try to zoom in");
+                            Debug.Log("Try to zoom in" + hightLocation);
                             StationManager.instance.MoveToStation(hightLocation);
                         }
                     }
