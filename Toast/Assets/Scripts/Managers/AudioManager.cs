@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip toasterLever;
     public AudioClip toasterPop;
     public AudioClip toasterDing;
+    public AudioClip objectiveComplete;
 
     private void Awake()
     {
@@ -32,7 +33,7 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    public void PlaySound(AudioClip soundToPlay)
+    public void PlaySound(AudioClip soundToPlay, float volume = 1, float delay =0)
     {
         if (soundToPlay == null)
         {
@@ -41,10 +42,12 @@ public class AudioManager : MonoBehaviour
       
 
         // example 1
-        audioPlayer.clip = soundToPlay;
-        audioPlayer.Play();
+        //audioPlayer.clip = soundToPlay;
+        //audioPlayer.Play();
 
         // example 2
-        //audioPlayer.PlayOneShot(soundToPlay);
+        audioPlayer.volume = volume;
+        audioPlayer.PlayDelayed(delay);
+        audioPlayer.PlayOneShot(soundToPlay);
     }
 }
