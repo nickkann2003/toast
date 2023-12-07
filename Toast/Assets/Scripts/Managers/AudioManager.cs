@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip toasterPop;
     public AudioClip toasterDing;
     public AudioClip objectiveComplete;
+    public AudioClip fire;
+    public AudioClip fireAlarm;
 
     private void Awake()
     {
@@ -39,12 +41,12 @@ public class AudioManager : MonoBehaviour
         {
             return;
         }
-      
+
 
         // example 1
         //audioPlayer.clip = soundToPlay;
         //audioPlayer.Play();
-
+        Debug.Log(soundToPlay);
         // example 2
         audioPlayer.volume = volume;
         audioPlayer.PlayDelayed(delay);

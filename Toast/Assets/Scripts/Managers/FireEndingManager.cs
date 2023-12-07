@@ -56,6 +56,7 @@ public class FireEndingManager : MonoBehaviour
             {
                 lightEnabled = !lightEnabled;
                 lightTimer = .75f;
+                AudioManager.instance.PlaySound(AudioManager.instance.fireAlarm);
 
             }
             if (redLight != null)
