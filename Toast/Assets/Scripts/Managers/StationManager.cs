@@ -148,27 +148,32 @@ public class StationManager : MonoBehaviour
             //StationManager.instance.playerLocation.OnLeave();
         }
 
-        if(playerPath.Count > 1)
-        {
             // No parent location exists, do stack manipulation
             if (playerLocation.parentLoc == null)
             {
+                if (playerPath.Count > 1)
+                {
+                    playerPath.Pop();
 
-                playerPath.Pop();
-                MoveToStation(playerPath.Peek());
-
+                    Debug.Log("MOVE TO BACK" + playerPath.Peek());
+                    MoveToStation(playerPath.Peek());
+                }
+                   
 
             }
             // Move back to parent
             else
             {
-                while (playerPath.Peek() != playerLocation.parentLoc)
+                while (playerPath.Count > 0 &&
+                    playerPath.Peek() != playerLocation.parentLoc)
                 {
                     playerPath.Pop();
                 }
+
+                Debug.Log("MOVE TO PARENT" + playerLocation.parentLoc);
                 MoveToStation(playerLocation.parentLoc);
             }
-        }
+      
  
        
 

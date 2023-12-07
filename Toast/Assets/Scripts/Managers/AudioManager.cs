@@ -43,7 +43,6 @@ public class AudioManager : MonoBehaviour
         // example 1
         audioPlayer.clip = soundToPlay;
         audioPlayer.Play();
-        Debug.LogWarning(eatingBread.name);
 
         // example 2
         //audioPlayer.PlayOneShot(soundToPlay);
