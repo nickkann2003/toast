@@ -22,6 +22,8 @@ public class FireEndingManager : MonoBehaviour
 
     [SerializeField] private UnityEvent endingTrigger;
 
+    public GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +44,10 @@ public class FireEndingManager : MonoBehaviour
         }
         else if (smokiness >= fireEndingThreshold)
         {
-            Application.Quit();
+            if (gameManager != null)
+            {
+                gameManager.LoadGame(0);
+            }
         }
         else if (smokiness >= fireEndingThreshold * .85)
         {
