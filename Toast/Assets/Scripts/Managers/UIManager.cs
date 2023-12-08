@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject settingMenu;
     public UnityEngine.UI.Button backButton;
     public Animator backButtonAni;
+    public Slider volumeSlider;
+    public Slider moveSpeedSlider;
     private bool backButtonOnScreen = false;
 
     public bool backFromMainMenu = true;
@@ -72,7 +74,7 @@ public class UIManager : MonoBehaviour
 
     public void OpenSettingMenu()
     {
-        if(mainMenu.active)
+        if(mainMenu.activeSelf)
         {
             backFromMainMenu = true;
         }

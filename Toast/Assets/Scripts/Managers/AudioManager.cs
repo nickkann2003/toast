@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
     private AudioSource audioPlayer;
+    [SerializeField] float volumeMultiplier = 0.8f;
 
     public AudioClip eatingBread;
     public AudioClip toasterTimer;
@@ -17,8 +20,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip fire;
     public AudioClip fireAlarm;
     public AudioClip physicalButton;
-
-
     private void Awake()
     {
 
@@ -34,7 +35,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        
+        volumeMultiplier = UIManager.instance.volumeSlider.value;
     }
 
     public void PlayOneShotSound(AudioClip soundToPlay, float volume = 1, float delay =0)
@@ -50,7 +51,7 @@ public class AudioManager : MonoBehaviour
         //audioPlayer.Play();
         Debug.Log(soundToPlay);
         // example 2
-        audioPlayer.volume = volume;
+        audioPlayer.volume = volume * volumeMultiplier;
         audioPlayer.PlayDelayed(delay);
         audioPlayer.PlayOneShot(soundToPlay);
     }
@@ -65,12 +66,21 @@ public class AudioManager : MonoBehaviour
 
         // example 1
 
-        audioPlayer.volume = volume;
+        audioPlayer.volume = volume *volumeMultiplier;
         audioPlayer.PlayDelayed(delay);
         audioPlayer.clip = soundToPlay;
         audioPlayer.Play();
 
     }
 
+    public void ChangeVolume()
+    {
+        volumeMultiplier= UIManager.instance.volumeSlider.value;
+        audioPlayer.volume = volumeMultiplier;
+        audioPlayer.clip = eatingBread;
+        audioPlayer.Play();
 
+    }
+
+    
 }

@@ -11,6 +11,7 @@ public class ObjectiveManager : MonoBehaviour
     public List<TextMeshPro> displays = new List<TextMeshPro>();
 
     private float completedObjectives = 0;
+    private float oldCompletedObjectives = 0; // Used to check if some new objective completed
 
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
@@ -40,9 +41,14 @@ public class ObjectiveManager : MonoBehaviour
             if (obj.CheckComplete())
             {
                 completedObjectives++;
-                AudioManager.instance.PlayOneShotSound(AudioManager.instance.objectiveComplete, 0.3f, 1);
             }
         }
+        if(completedObjectives > oldCompletedObjectives)
+        {
+            AudioManager.instance.PlayOneShotSound(AudioManager.instance.objectiveComplete, 0.3f, 1);
+            Debug.LogWarning("new objective complete");
+        }
+        oldCompletedObjectives = completedObjectives;
         UpdateText();
     }
 

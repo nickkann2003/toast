@@ -85,7 +85,8 @@ public class Objective : MonoBehaviour
                 ob.SetActive(true);
             }
         }
-        return true;
+         return true;
+
     }
 
     public void UpdateObjective(RequirementEvent e)

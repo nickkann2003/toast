@@ -48,6 +48,7 @@ public class StationManager : MonoBehaviour
 
         //backBounds = new Rect(0, 0, Screen.width, Screen.height / 10);
         MoveToStation(playerLocation);
+        moveSpeed= UIManager.instance.moveSpeedSlider.value;
     }
 
     // Update is called once per frame
@@ -179,4 +180,9 @@ public class StationManager : MonoBehaviour
 
     }
 
+
+    public void ChangeMoveSpeed()
+    {
+        moveSpeed = UIManager.instance.moveSpeedSlider.value;
+    }
 }
