@@ -23,8 +23,7 @@ public class Dial : MonoBehaviour, IHighlightable
     public float maxValue = .6f;
     public float minValue = .2f;
 
-    //Interactable
-    public ToastingBreadTest breadToaster;
+    public FloatEvent onDialChange;
 
     public bool IsHighlightedEnable => true;
     [SerializeField] private Outline outline;
@@ -108,22 +107,15 @@ public class Dial : MonoBehaviour, IHighlightable
             }
             if (rotation.z >= 250)
             {
-                if (breadToaster != null)
-                {
-                    dialValue = (1 - ((rotation.z - 250f) / 110f)) * 0.5f + 0.5f;
-                    dialValue = dialValue * (maxValue - minValue) + minValue;
-                    breadToaster.setDialValue(dialValue);
-                }
+                dialValue = (1 - ((rotation.z - 250f) / 110f)) * 0.5f + 0.5f;
             }
             else if (rotation.z <= 110)
             {
-                if (breadToaster != null)
-                {
-                    dialValue = (1 - ((rotation.z) / 110f)) * 0.5f;
-                    dialValue = dialValue * (maxValue - minValue) + minValue;
-                    breadToaster.setDialValue(dialValue);
-                }
+                dialValue = (1 - ((rotation.z) / 110f)) * 0.5f;
             }
+
+            dialValue = dialValue * (maxValue - minValue) + minValue;
+            onDialChange.Invoke(dialValue);
 
             transform.eulerAngles = rotation;
         }
