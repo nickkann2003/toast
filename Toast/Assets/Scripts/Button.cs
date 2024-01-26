@@ -12,10 +12,6 @@ public class Button : MonoBehaviour, IHighlightable
 {
     [SerializeField] private UnityEvent buttonTrigger;
 
-    // Test scripts to cause environment effects, TODO: Replace this with a list of interactables that are triggered on specific events
-    public ToastingBreadTest toastCollider;
-    public SpawnPrefabScript spawnPrefab;
-
     // position in world
     public GameObject maxHeight;
     public GameObject minHieght;
