@@ -58,6 +58,11 @@ public class ToastingBreadTest : MonoBehaviour
                             {
                                 toast.adjustColor(maxTime, Time.deltaTime);
                             }
+                            else if (defrost)
+                            {
+                                // if frozen toast slower
+                                toast.adjustColor(maxTime, Time.deltaTime/2);
+                            }
                             if (!objVars.attributes.Contains(Attribute.OnFire) && prop.toastiness > fireTrigger)
                             {
                                 GameObject fire = Instantiate(firePrefab);

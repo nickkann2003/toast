@@ -61,61 +61,19 @@ public class Raycast : MonoBehaviour
         }
         if (Input.GetButtonDown("View"))
         {
-            if (dragging && selectGO.GetComponent<Prop>() != null)
-            {
-                ExamineManager.instance.ExamineObject(selectGO.GetComponent<Prop>());
-            }
-            else if (hitGO.GetComponent<Prop>())
-            {
-                ExamineManager.instance.ExamineObject(hitGO.GetComponent<Prop>());
-            }
-            StopDragging();
+            ViewRaycast();
         }
 
         // OBJECT EAT DETECTION
         if (Input.GetButtonDown("Use"))
         {
-            if (hitGO != null && hitGO.layer == 7) // Interactable layer
-            {
-                if (hitGO.GetComponent<IEatable>() != null)
-                {
-                    Color c = hitGO.GetComponent<Renderer>().material.color;
-                    var main = Camera.main.GetComponent<Hand>().EatParticles.main;
-                    main.startColor = c;
-                    RequirementEvent rEvent;
-                    if (hitGO.GetComponent<IEatable>().BitesLeft() <= 1)
-                    {
-                        if (hitGO.GetComponent<ObjectVariables>() != null)
-                        {
-                            rEvent = new RequirementEvent(RequirementType.EatObject, hitGO.GetComponent<ObjectVariables>(), true);
-                        }
-                        else
-                        {
-                            rEvent = new RequirementEvent(RequirementType.EatObject, new ObjectVariables(), true);
-                        }
-                        ObjectiveManager.instance.UpdateObjectives(rEvent);
-                    }
-                    hitGO.GetComponent<IEatable>().TakeBite();
-                    Camera.main.GetComponent<Hand>().EatParticles.Play();
-                    prevGO = null;
-                    hitGO = null;
-                    prevHighligtable = null;
-                    highlightable = null;
-                }
-            }
+            UseRaycast();
         }
 
         // OBJECT PICKUP DETECTION
         if (Input.GetButtonDown("Pickup"))
         {
-            if (hitGO != null && hitGO.layer == 7 && hitGO.GetComponent<Prop>() != null) // Interactable layer
-            {
-                Camera.main.GetComponent<Hand>().AddItem(hitGO);
-                prevGO = null;
-                hitGO = null;
-                prevHighligtable = null;
-                highlightable = null;
-            }
+            PickupRaycast();
         }
 
 
@@ -138,6 +96,66 @@ public class Raycast : MonoBehaviour
             {
                 StopDragging();
             }
+        }
+    }
+
+    void ViewRaycast()
+    {
+        if (dragging && selectGO.GetComponent<Prop>() != null)
+        {
+            ExamineManager.instance.ExamineObject(selectGO.GetComponent<Prop>());
+        }
+        else if (hitGO.GetComponent<Prop>())
+        {
+            ExamineManager.instance.ExamineObject(hitGO.GetComponent<Prop>());
+        }
+        StopDragging();
+    }
+
+    void UseRaycast()
+    {
+        if (hitGO != null && hitGO.layer == 7) // Interactable layer
+        {
+            if (hitGO.GetComponent<IEatable>() != null)
+            {
+                // !!MOVE THIS TO THE EATABLE COMPONENT!! //
+                Color c = hitGO.GetComponent<Renderer>().material.color;
+                var main = Camera.main.GetComponent<Hand>().EatParticles.main;
+                main.startColor = c;
+                RequirementEvent rEvent;
+                if (hitGO.GetComponent<IEatable>().BitesLeft() <= 1)
+                {
+                    if (hitGO.GetComponent<ObjectVariables>() != null)
+                    {
+                        rEvent = new RequirementEvent(RequirementType.EatObject, hitGO.GetComponent<ObjectVariables>(), true);
+                    }
+                    else
+                    {
+                        rEvent = new RequirementEvent(RequirementType.EatObject, new ObjectVariables(), true);
+                    }
+                    ObjectiveManager.instance.UpdateObjectives(rEvent);
+                }
+                // ^^MOVE THIS TO THE EATABLE COMPONENT^^ //
+
+                hitGO.GetComponent<IEatable>().TakeBite();
+                Camera.main.GetComponent<Hand>().EatParticles.Play();
+                prevGO = null;
+                hitGO = null;
+                prevHighligtable = null;
+                highlightable = null;
+            }
+        }
+    }
+
+    void PickupRaycast()
+    {
+        if (hitGO != null && hitGO.layer == 7 && hitGO.GetComponent<Prop>() != null) // Interactable layer
+        {
+            Camera.main.GetComponent<Hand>().AddItem(hitGO);
+            prevGO = null;
+            hitGO = null;
+            prevHighligtable = null;
+            highlightable = null;
         }
     }
 
