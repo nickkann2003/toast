@@ -76,7 +76,7 @@ public class ExamineManager : MonoBehaviour
         if(currentExamine.GetComponent<Rigidbody>())
         {
             Destroy(currentExamine.GetComponent<Rigidbody>());
-            Destroy(currentExamine.GetComponent<DragObjects>());
+            //Destroy(currentExamine.GetComponent<DragObjects>());
         }
         Destroy(currentExamine.GetComponent<Prop>());
 
