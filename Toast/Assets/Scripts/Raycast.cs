@@ -181,7 +181,7 @@ public class Raycast : MonoBehaviour
         {
             hitGO = hit.collider.gameObject;
 
-            if (hitGO.layer == 7) // interactable layer
+            if (hitGO.layer == 7 || hitGO.layer == 3) // interactable layer
             {
                 highlightable = hit.collider.GetComponent<IHighlightable>();
                 if (highlightable != null)
