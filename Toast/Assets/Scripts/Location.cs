@@ -24,6 +24,7 @@ public class Location : Station
     {
         if(StationManager.instance!= null && StationManager.instance.playerLocation!=null)
         {
+            StationManager.instance.MoveToStation(this);
             if (StationManager.instance.playerLocation.interactables != null)
             {
                 if (StationManager.instance.playerLocation.interactables.Contains(this))
