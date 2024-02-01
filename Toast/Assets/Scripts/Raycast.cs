@@ -6,6 +6,14 @@ using UnityEngine.UI;
 
 public class Raycast : MonoBehaviour
 {
+    private int layer_IgnoreRaycast = 2;
+    private int layer_Interactable = 7;
+    private int layer_Station = 3;
+
+    private int mask_IgnoreRaycast;
+    private int mask_Interactable;
+    private int mask_Station;
+
     Camera targetCamera;
 
     GameObject prevGO;
@@ -20,13 +28,15 @@ public class Raycast : MonoBehaviour
 
     public float scrollSpeed = 1.0f;
     private float scrollInput;
+    private float stationMoveTimer = 0.0f;
+    private float stationMaxTimer = .1f;
 
     GameObject line;
     LineController lineController;
     float mZOffset;
 
     bool dragging;
-    RaycastHit hit;
+    //RaycastHit hit;
 
     private IHighlightable highlightable;
     private IHighlightable prevHighligtable;
@@ -34,6 +44,9 @@ public class Raycast : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        mask_IgnoreRaycast = 1 << layer_IgnoreRaycast;
+        mask_Interactable = 1 << layer_Interactable;
+        mask_Station = 1 << layer_Station;
         prevGO = null;
         hitGO = null;
         targetCamera = GetComponent<Camera>();
@@ -42,12 +55,17 @@ public class Raycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(stationMoveTimer > 0.0f)
+        {
+            stationMoveTimer -= Time.deltaTime;
+        }
+
         scrollInput = Input.GetAxis("Mouse ScrollWheel");
         prevGO = hitGO;
         TestRaycast();
         if (Input.GetButtonDown("Drag"))
         {
-            print($"Object: \"{hitGO.name}\"");
+            //print($"Object: \"{hitGO.name}\"");
 
             StartDragging();
         }
@@ -104,8 +122,12 @@ public class Raycast : MonoBehaviour
         if (dragging && selectGO.GetComponent<Prop>() != null)
         {
             ExamineManager.instance.ExamineObject(selectGO.GetComponent<Prop>());
+            return;
         }
-        else if (hitGO.GetComponent<Prop>())
+
+        GameObject itemToView = RaycastHelper(~mask_Station);
+
+        if (itemToView != null && itemToView.GetComponent<Prop>() != null)
         {
             ExamineManager.instance.ExamineObject(hitGO.GetComponent<Prop>());
         }
@@ -114,48 +136,58 @@ public class Raycast : MonoBehaviour
 
     void UseRaycast()
     {
-        if (hitGO != null && hitGO.layer == 7) // Interactable layer
-        {
-            if (hitGO.GetComponent<IEatable>() != null)
-            {
-                // !!MOVE THIS TO THE EATABLE COMPONENT!! //
-                Color c = hitGO.GetComponent<Renderer>().material.color;
-                var main = Camera.main.GetComponent<Hand>().EatParticles.main;
-                main.startColor = c;
-                RequirementEvent rEvent;
-                if (hitGO.GetComponent<IEatable>().BitesLeft() <= 1)
-                {
-                    if (hitGO.GetComponent<ObjectVariables>() != null)
-                    {
-                        rEvent = new RequirementEvent(RequirementType.EatObject, hitGO.GetComponent<ObjectVariables>(), true);
-                    }
-                    else
-                    {
-                        rEvent = new RequirementEvent(RequirementType.EatObject, new ObjectVariables(), true);
-                    }
-                    ObjectiveManager.instance.UpdateObjectives(rEvent);
-                }
-                // ^^MOVE THIS TO THE EATABLE COMPONENT^^ //
+        GameObject itemToUse = RaycastHelper(~mask_Station);
 
-                hitGO.GetComponent<IEatable>().TakeBite();
-                Camera.main.GetComponent<Hand>().EatParticles.Play();
-                prevGO = null;
-                hitGO = null;
-                prevHighligtable = null;
-                highlightable = null;
+        if (itemToUse != null && itemToUse.GetComponent<IEatable>() != null && itemToUse.layer == layer_Interactable) // Interactable layer
+        {
+            // !!MOVE THIS TO THE EATABLE COMPONENT!! //
+            Color c = itemToUse.GetComponent<Renderer>().material.color;
+            var main = Camera.main.GetComponent<Hand>().EatParticles.main;
+            main.startColor = c;
+            RequirementEvent rEvent;
+            if (itemToUse.GetComponent<IEatable>().BitesLeft() <= 1)
+            {
+                if (itemToUse.GetComponent<ObjectVariables>() != null)
+                {
+                    rEvent = new RequirementEvent(RequirementType.EatObject, itemToUse.GetComponent<ObjectVariables>(), true);
+                }
+                else
+                {
+                    rEvent = new RequirementEvent(RequirementType.EatObject, new ObjectVariables(), true);
+                }
+                ObjectiveManager.instance.UpdateObjectives(rEvent);
             }
+            // ^^MOVE THIS TO THE EATABLE COMPONENT^^ //
+
+            itemToUse.GetComponent<IEatable>().TakeBite();
+            Camera.main.GetComponent<Hand>().EatParticles.Play();
+
+            //prevGO = null;
+            //hitGO = null;
+            //prevHighligtable = null;
+            //highlightable = null;
         }
     }
 
     void PickupRaycast()
     {
-        if (hitGO != null && hitGO.layer == 7 && hitGO.GetComponent<Prop>() != null) // Interactable layer
+        if (dragging && selectGO.GetComponent<Prop>() != null)
         {
-            Camera.main.GetComponent<Hand>().AddItem(hitGO);
-            prevGO = null;
-            hitGO = null;
-            prevHighligtable = null;
-            highlightable = null;
+            Camera.main.GetComponent<Hand>().AddItem(selectGO);
+            StopDragging();
+            return;
+        }
+
+        // shoot out a raycast, ignore every layer except interactable
+        GameObject itemToPickup = RaycastHelper(~mask_Station);
+
+        if (itemToPickup != null && itemToPickup.GetComponent<Prop>() != null) // Interactable layer
+        {
+            Camera.main.GetComponent<Hand>().AddItem(itemToPickup);
+            //prevGO = null;
+            //hitGO = null;
+            //prevHighligtable = null;
+            //highlightable = null;
         }
     }
 
@@ -175,51 +207,36 @@ public class Raycast : MonoBehaviour
         prevHighligtable = highlightable;
 
 
-        hit = new RaycastHit();
-        Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
+        //hit = new RaycastHit();
+        //Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
+
+        hitGO = RaycastHelper(~mask_IgnoreRaycast);
+
+        if (hitGO != null && (hitGO.layer == layer_Station || hitGO.layer == layer_Interactable))
         {
-            hitGO = hit.collider.gameObject;
+            //hitGO = hit.collider.gameObject;
 
-            if (hitGO.layer == 7 || hitGO.layer == 3) // interactable layer
+            highlightable = hitGO.GetComponent<IHighlightable>();
+            if (highlightable != null)
             {
-                highlightable = hit.collider.GetComponent<IHighlightable>();
-                if (highlightable != null)
-                {
-                    GameManager.Instance.SetHandCursor();
-                    highlightable.TurnOnHighlght();
+                GameManager.Instance.SetHandCursor();
+                highlightable.TurnOnHighlght();
 
-                    Location hightLocation = hit.collider.GetComponent<Location>();
-                    if (hightLocation)
+                Location hightLocation = hitGO.GetComponent<Location>();
+                if (hightLocation)
+                {
+                    if ((scrollInput > 0f || Input.GetButtonDown("Drag")) && stationMoveTimer <= 0)
                     {
-                        if (scrollInput > 0f)
-                        {
-                            Debug.Log("Try to zoom in" + hightLocation);
-                            StationManager.instance.MoveToStation(hightLocation);
-                        }
+                        Debug.Log("Try to zoom in" + hightLocation);
+                        StationManager.instance.MoveToStation(hightLocation);
+                        stationMoveTimer = stationMaxTimer;
                     }
                 }
             }
-            else
-            {
-                GameManager.Instance.SetDefaultCursor();
-            }
-
-
-            if (hitGO != prevGO)
-            {
-                //print($"Object: \"{hitGO.name}\"");
-            }
             
-            
-
-            // draw ray at hit point
-            Debug.DrawLine(ray.origin, hit.point, Color.yellow);
-            //Debug.DrawRay(hit.point, Vector3.Reflect(transform.InverseTransformPoint(hit.point), hit.normal), Color.blue);
         }
         else
         {
-
             GameManager.Instance.SetDefaultCursor();
             if (highlightable != null)
             {
@@ -234,6 +251,11 @@ public class Raycast : MonoBehaviour
 
     void StartDragging()
     {
+        if (hitGO == null)
+        {
+            return;
+        }
+
         if (hitGO.GetComponent<Rigidbody>() != null || hitGO.name == "Toaster_Lever" || hitGO.name == "Toaster_Dial") // HARDCODE FOR NOW CHANGE LATER
         {
             line = Instantiate(linePrefab);
@@ -266,5 +288,23 @@ public class Raycast : MonoBehaviour
         line = null;
 
         dragging = false;
+    }
+
+    GameObject RaycastHelper(int layerMask)
+    {
+        RaycastHit hit = new RaycastHit();
+        Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
+
+        // shoot a raycast, ignoring the layermask
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, (layerMask & ~mask_IgnoreRaycast)))
+        {
+            return hit.collider.gameObject;
+        }
+
+        // draw ray at hit point
+        Debug.DrawLine(ray.origin, hit.point, Color.yellow);
+        //Debug.DrawRay(hit.point, Vector3.Reflect(transform.InverseTransformPoint(hit.point), hit.normal), Color.blue);
+
+        return null;
     }
 }
