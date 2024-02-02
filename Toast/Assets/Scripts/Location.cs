@@ -14,9 +14,6 @@ public class Location : Station
     public Vector3 objectOffset;
     public Location parentLoc;
 
-    // List of objects that is highlightables/interactable
-    public List<IHighlightable> highlightables;
-
     // List of props and stations that can be reached from here
     public List<Station> interactables;
 
