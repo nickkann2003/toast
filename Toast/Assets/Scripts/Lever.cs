@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR;
 
-public class Lever : MonoBehaviour, IHighlightable
+public class Lever : MonoBehaviour
 {
     [SerializeField] private UnityEvent leverTrigger;
 
@@ -25,23 +25,12 @@ public class Lever : MonoBehaviour, IHighlightable
     // allows objects to be given parents without having a parent
     private Transform parent;
 
-    [SerializeField] private Outline outline;
-    public bool IsHighlightedEnable => true;
-
-    public Outline Outline => outline;
-
     // Has this reached bottom yet?
     private bool isOn;
 
 
     private void Awake()
     {
-        if (!TryGetComponent<Outline>(out outline))
-        {
-            this.transform.AddComponent<Outline>();
-            outline = GetComponent<Outline>();
-        }
-        outline.enabled = false;
         isOn = false;
     }
     private void Start()
@@ -198,15 +187,6 @@ public class Lever : MonoBehaviour, IHighlightable
         return worldPos;
     }
 
-    public void TurnOnHighlght()
-    {
-        outline.enabled = true;
-    }
-
-    public void TurnOffHighlight()
-    {
-        outline.enabled = false;
-    }
 }
 
 [System.Serializable]

@@ -4,63 +4,27 @@ using Unity.VisualScripting;
 //using UnityEditor.Build.Content;
 using UnityEngine;
 
-public abstract class Station : MonoBehaviour, IHighlightable
+[RequireComponent(typeof(Highlights))]
+public abstract class Station : MonoBehaviour
 {
     public Collider clickableCollider;
-    public GameObject stationHighlight;
-    private Outline outline;
+    //public GameObject stationHighlight;
+
+    private Highlights highlight;
 
     // If isEnable is false, then the player should not be able to reach to interact with this station/prop
     [SerializeField] private bool isEnabled;
-
-    bool IHighlightable.IsHighlightedEnable => isEnabled;
-
-    Outline IHighlightable.Outline => outline;
 
 
     // Start is called before the first frame update
     void Start()
     {
         isEnabled= true;
-        if(stationHighlight!=null)
-        {
-            if (!stationHighlight.TryGetComponent<Outline>(out outline))
-            {
-                outline = stationHighlight.transform.AddComponent<Outline>();
-                //outline = GetComponent<Outline>();
-            }
-        }
-        else
-        {
-            if (!TryGetComponent<Outline>(out outline))
-            {
-                this.transform.AddComponent<Outline>();
-                outline = GetComponent<Outline>();
-            }
-        }
-       
-        outline.enabled = false;
         if(clickableCollider!= null)
         {
             clickableCollider = GetComponent<Collider>();
         }
     }
 
-    public void TurnOnHighlght()
-    {
-        if(!outline.isActiveAndEnabled)
-        {
-            outline.enabled = true;
-        }
-    }
-
-    public void TurnOffHighlight()
-    {
-        if(outline != null)
-        {
-        if (outline.isActiveAndEnabled)
-            outline.enabled = false;
-        }
-    }
 
 }

@@ -8,7 +8,7 @@ using UnityEngine.Events;
 //using UnityEditor;
 //#endif // UNITY_EDITOR
 
-public class Button : MonoBehaviour, IHighlightable
+public class Button : MonoBehaviour
 {
     [SerializeField] private UnityEvent buttonTrigger;
 
@@ -35,20 +35,10 @@ public class Button : MonoBehaviour, IHighlightable
     public Trigger trigger;
     private bool pressed;
 
-    [SerializeField] private Outline outline;
-    public bool IsHighlightedEnable => true;
-
-    public Outline Outline => outline;
 
     private void Start()
     {
         timer = maxTime;
-        if (!TryGetComponent<Outline>(out outline))
-        {
-            this.transform.AddComponent<Outline>();
-            outline = GetComponent<Outline>();
-        }
-        outline.enabled = false;
     }
 
     private void Update()
@@ -137,16 +127,6 @@ public class Button : MonoBehaviour, IHighlightable
         }
 
         transform.position = Vector3.Lerp(maxHeight.transform.position, minHieght.transform.position, interpolateAmount);
-    }
-
-    public void TurnOnHighlght()
-    {
-        Outline.enabled= true;
-    }
-
-    public void TurnOffHighlight()
-    {
-        Outline.enabled = false;
     }
 }
 

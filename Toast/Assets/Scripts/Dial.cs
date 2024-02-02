@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Dial : MonoBehaviour, IHighlightable
+public class Dial : MonoBehaviour
 {
     public Vector3 mOffset;
     private float mZCoord;
@@ -25,9 +25,6 @@ public class Dial : MonoBehaviour, IHighlightable
 
     public FloatEvent onDialChange;
 
-    public bool IsHighlightedEnable => true;
-    [SerializeField] private Outline outline;
-    public Outline Outline => outline;
 
     private void Start()
     {
@@ -39,12 +36,6 @@ public class Dial : MonoBehaviour, IHighlightable
             parent = transform.parent;
         }
 
-        if (!TryGetComponent<Outline>(out outline))
-        {
-            this.transform.AddComponent<Outline>();
-            outline = GetComponent<Outline>();
-        }
-        outline.enabled = false;
     }
 
     private void Update()
@@ -154,15 +145,5 @@ public class Dial : MonoBehaviour, IHighlightable
         }
 
         return worldPos;
-    }
-
-    public void TurnOnHighlght()
-    {
-        outline.enabled = true;
-    }
-
-    public void TurnOffHighlight()
-    {
-        outline.enabled = false;
     }
 }

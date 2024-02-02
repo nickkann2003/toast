@@ -28,8 +28,8 @@ public class Raycast : MonoBehaviour
     bool dragging;
     RaycastHit hit;
 
-    private IHighlightable highlightable;
-    private IHighlightable prevHighligtable;
+    private Highlights highlightable;
+    private Highlights prevHighligtable;
 
     // Start is called before the first frame update
     void Awake()
@@ -183,7 +183,7 @@ public class Raycast : MonoBehaviour
 
             if (hitGO.layer == 7 || hitGO.layer == 3) // interactable layer
             {
-                highlightable = hit.collider.GetComponent<IHighlightable>();
+                highlightable = hit.collider.GetComponent<Highlights>();
                 if (highlightable != null)
                 {
                     GameManager.Instance.SetHandCursor();
