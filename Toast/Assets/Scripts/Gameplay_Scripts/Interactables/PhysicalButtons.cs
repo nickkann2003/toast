@@ -8,7 +8,7 @@ using UnityEngine.Events;
 //using UnityEditor;
 //#endif // UNITY_EDITOR
 
-public class Button : MonoBehaviour
+public class PhysicalButtons : MonoBehaviour
 {
     [SerializeField] private UnityEvent buttonTrigger;
 
