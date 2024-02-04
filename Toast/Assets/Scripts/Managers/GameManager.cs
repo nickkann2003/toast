@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
 
     public GameState curState = GameState.Menu;
 
-    [SerializeField] Location gameDefaultStation;
-    [SerializeField] Location mainMenuStation;
+    [SerializeField] Station gameDefaultStation;
+    [SerializeField] Station mainMenuStation;
 
     // BGM
     public AudioClip test;

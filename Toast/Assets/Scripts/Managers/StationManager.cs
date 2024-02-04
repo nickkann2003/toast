@@ -20,11 +20,11 @@ public enum Stations
 public class StationManager : MonoBehaviour
 {
     public static StationManager instance;
-    public Location playerLocation;
+    public Station playerLocation;
 
     //Rect backBounds;
 
-    public Stack<Location> playerPath;
+    public Stack<Station> playerPath;
 
     // Used for camera movement/tweening
     float moveProgress = 0.0f;
@@ -44,7 +44,7 @@ public class StationManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerPath = new Stack<Location>();
+        playerPath = new Stack<Station>();
 
         //backBounds = new Rect(0, 0, Screen.width, Screen.height / 10);
         MoveToStation(playerLocation);
@@ -86,7 +86,7 @@ public class StationManager : MonoBehaviour
     /// The player moves to a station upon clicking
     /// </summary>
     /// <param name="loc">The station being targeted to move to</param>
-    public void MoveToStation(Location loc)
+    public void MoveToStation(Station loc)
     {
         //foreach(var i in playerLocation.interactables)
         //{

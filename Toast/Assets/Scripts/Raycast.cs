@@ -222,7 +222,7 @@ public class Raycast : MonoBehaviour
                     GameManager.Instance.SetHandCursor();
                     highlightable.TurnOnHighlght();
 
-                Location hightLocation = hitGO.GetComponent<Location>();
+                Station hightLocation = hitGO.GetComponent<Station>();
                 if (hightLocation)
                 {
                     if ((scrollInput > 0f || Input.GetButtonDown("Drag")) && stationMoveTimer <= 0)

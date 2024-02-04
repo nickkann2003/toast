@@ -15,7 +15,7 @@ public class ExamineManager : MonoBehaviour
 
     public InspectItem inspectorItem;
 
-    public Location examineStation;
+    public Station examineStation;
 
     private DepthOfField dof;
 

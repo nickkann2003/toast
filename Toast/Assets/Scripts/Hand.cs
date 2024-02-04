@@ -112,7 +112,7 @@ public class Hand : MonoBehaviour
         if (holdingItem)
         {
             // Get the current station
-            Location currentStation = StationManager.instance.playerLocation;
+            Station currentStation = StationManager.instance.playerLocation;
 
             // Grab world pos from the current station
             Vector3 objectPos = currentStation.objectOffset;
