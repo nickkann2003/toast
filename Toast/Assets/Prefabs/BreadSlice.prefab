@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 3803632346088239554}
   - component: {fileID: 7547528165289670064}
   - component: {fileID: 4240386593035213387}
-  - component: {fileID: 8147115974647321248}
   - component: {fileID: 2909806397489619225}
   - component: {fileID: 4579674392767978358}
   - component: {fileID: 2975258086176167877}
+  - component: {fileID: 4020190604440293892}
   m_Layer: 7
   m_Name: BreadSlice
   m_TagString: Untagged
@@ -115,24 +115,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalBites: 1
   bitesRemaining: 1
---- !u!114 &8147115974647321248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6994967846282815134}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 0.4669811, b: 0.5371449, a: 1}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!114 &2909806397489619225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,10 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ed4ab8bf312e2478fd4ead7aa93dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickableCollider: {fileID: 7227840601854474518}
-  isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
+  frozenness: 0
 --- !u!33 &4579674392767978358
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -199,3 +180,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4020190604440293892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6994967846282815134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902f118e886d20d43b1ff6bff5092b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHighlightSetting: {fileID: 11400000, guid: 66f8fe3eb1012ef40aa66410722286fc,
+    type: 2}
+  isHighlightedEnabled: 1
+  outline: []

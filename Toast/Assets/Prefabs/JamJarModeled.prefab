@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3687421184397709117}
   - component: {fileID: 1385297963663112036}
   - component: {fileID: 4614064787217340371}
-  - component: {fileID: 6241602093650640002}
   - component: {fileID: 3834836528053964392}
   - component: {fileID: 852532254625793814}
   - component: {fileID: 2184660583607016673}
+  - component: {fileID: 5972941697218247028}
   m_Layer: 7
   m_Name: JamJarModeled
   m_TagString: Untagged
@@ -37,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 3018549506701896726}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3687421184397709117
 BoxCollider:
@@ -85,7 +85,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 8
   m_CollisionDetection: 0
 --- !u!114 &4614064787217340371
 MonoBehaviour:
@@ -101,24 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalBites: 100
   bitesRemaining: 100
---- !u!114 &6241602093650640002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518058045675689659}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0.7962416, g: 0.45911944, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!114 &3834836528053964392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,10 +113,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ed4ab8bf312e2478fd4ead7aa93dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickableCollider: {fileID: 3687421184397709117}
-  isEnabled: 1
   currentLocation: {fileID: 0}
   toastiness: 0
+  frozenness: 0
 --- !u!114 &852532254625793814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +172,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5972941697218247028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518058045675689659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902f118e886d20d43b1ff6bff5092b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHighlightSetting: {fileID: 11400000, guid: 66f8fe3eb1012ef40aa66410722286fc,
+    type: 2}
+  isHighlightedEnabled: 1
+  outline: []
 --- !u!1001 &4650851537403715372
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7703814388887535911}
   - component: {fileID: 3901534030299875764}
   - component: {fileID: 7632355670911563060}
+  - component: {fileID: 1256678978654817974}
   m_Layer: 7
   m_Name: KnifeModeled
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_Children:
   - {fileID: 1028743393215611214}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3589054759992536755
 BoxCollider:
@@ -129,10 +130,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ed4ab8bf312e2478fd4ead7aa93dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickableCollider: {fileID: 3589054759992536755}
-  isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
+  frozenness: 0
+--- !u!114 &1256678978654817974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099820441112653305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902f118e886d20d43b1ff6bff5092b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHighlightSetting: {fileID: 11400000, guid: 66f8fe3eb1012ef40aa66410722286fc,
+    type: 2}
+  isHighlightedEnabled: 1
+  outline: []
 --- !u!1001 &706060012230338213
 PrefabInstance:
   m_ObjectHideFlags: 0
