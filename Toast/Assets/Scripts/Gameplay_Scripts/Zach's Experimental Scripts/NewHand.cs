@@ -2,35 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewHand : MonoBehaviour, IUse
+public class NewHand : MonoBehaviour, IUseStrategy
 {
+    [SerializeField] protected GameObject handPos;
     private GameObject heldObject;
-    private IUse _useHeld;
+    private IUseStrategy _useStrategy;
+
+    public void Update()
+    {
+        heldObject.transform.position = handPos.transform.position;
+    }
 
     public void Use(GameObject gameObject)
     {
-        if (_useHeld != null)
+        if (_useStrategy != null)
         {
-            _useHeld.Use(gameObject);
+            _useStrategy.Use(gameObject);
             return;
         }
 
         if (gameObject != null)
         {
-            _useHeld = gameObject.GetComponent<IUse>();
-            if ( _useHeld != null )
-            {
-                _useHeld.Use(gameObject);
-            }
+            _useStrategy = gameObject.GetComponent<IUseStrategy>();
+            _useStrategy?.Use(gameObject);
         }
+    }
+
+    public GameObject CheckObject()
+    { 
+        return heldObject; 
     }
 
     public GameObject SwapGameObjects(GameObject itemToPickup)
     {
+        heldObject.GetComponent<NewProp>()?.RemoveAttribute(NewProp.PropFlags.InHand);
         GameObject itemToReturn = heldObject;
 
         heldObject = itemToPickup;
-        _useHeld = heldObject.GetComponent<IUse>();
+        heldObject.GetComponent<NewProp>()?.AddAttribute(NewProp.PropFlags.InHand);
+        _useStrategy = heldObject.GetComponent<IUseStrategy>();
 
         return itemToReturn;
     }

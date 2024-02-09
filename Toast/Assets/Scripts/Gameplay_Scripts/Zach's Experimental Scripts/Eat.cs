@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Eat : MonoBehaviour, IUse
+public class Eat : MonoBehaviour, IUseStrategy
 {
     // Start is called before the first frame update
     void Start()
