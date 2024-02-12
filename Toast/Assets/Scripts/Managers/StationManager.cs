@@ -143,6 +143,11 @@ public class StationManager : MonoBehaviour
             ExamineManager.instance.QuitExamining();
         }
 
+        if(playerLocation == InventoryManager.instance.InventoryStation)
+        {
+            InventoryManager.instance.SetLeaveInventoryValues();
+        }
+
         if (StationManager.instance.playerLocation.clickableCollider != null)
         {
             StationManager.instance.playerLocation.clickableCollider.enabled = true;

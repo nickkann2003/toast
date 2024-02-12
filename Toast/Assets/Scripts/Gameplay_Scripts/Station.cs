@@ -10,7 +10,7 @@ public class Station : MonoBehaviour
     [SerializeField] private UnityEvent leave;
 
     public Vector3 cameraPos;
-    public Quaternion cameraRotation;
+    public Quaternion cameraRotation = Quaternion.identity;
     public Stations stationLabel;
     public Vector3 objectOffset;
     public Station parentLoc;

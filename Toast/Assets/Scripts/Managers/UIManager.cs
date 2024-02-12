@@ -9,10 +9,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject settingMenu;
     public UnityEngine.UI.Button backButton;
+    public UnityEngine.UI.Button inventoryButton;
     public Animator backButtonAni;
     public Slider volumeSlider;
     public Slider moveSpeedSlider;
     private bool backButtonOnScreen = false;
+    private bool inventoryButtonOnScreen = false;
 
     public bool backFromMainMenu = true;
 
@@ -70,6 +72,21 @@ public class UIManager : MonoBehaviour
             backButtonAni.Play("BackButton_PopDown");
             backButtonOnScreen= false;
         }
+    }
+
+    public void TurnOnInventoryButton()
+    {
+        if (!inventoryButtonOnScreen)
+        {
+            inventoryButton.interactable = true;
+            inventoryButtonOnScreen = true;
+        }
+    }
+
+    public void TurnOffInventoryButton()
+    {
+        inventoryButton.interactable = false;
+        inventoryButtonOnScreen = false;
     }
 
     public void OpenSettingMenu()

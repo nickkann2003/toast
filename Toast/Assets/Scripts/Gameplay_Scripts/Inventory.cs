@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,95 +9,65 @@ using UnityEngine;
  * ----------------------
  * Handles all item storage
  */
-public class Inventory
+public class Inventory : MonoBehaviour
 {
     // Variables ----------------------------------------------
-    private InventoryObject[] inventoryItems;
+    [SerializeField]
+    private Vector3 dropOffset = Vector3.zero;
+
+    private List<GameObject> inventoryItems;
 
     // Constructors -------------------------------------------
     public Inventory(){
-        inventoryItems = new InventoryObject[10];
+        inventoryItems = new List<GameObject>();
     }
 
     public Inventory(List<GameObject> items){
-        if(items.Count > 10)
-        {
-            inventoryItems = new InventoryObject[items.Count];
-        }
-        else
-        {
-            inventoryItems = new InventoryObject[10];
-        }
+        inventoryItems = new List<GameObject>(items.Count);
 
-        for(int i = 0; i < items.Count-1; i++)
+        for(int i = 0; i < items.Count; i++)
         {
-            inventoryItems[i] = new InventoryObject(items[i]);
+            inventoryItems[i] = items[i];
         }
+    }
+
+    // ----------------- MonoBehaviour Functions ------------------
+    // Start is called before the first frame update -----------
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame -------------------------
+    [Obsolete]
+    void Update()
+    {
+
     }
 
     // Functions ----------------------------------------------
     public void addItem(GameObject item)
     {
-        for(int i = 0;i < inventoryItems.Length;i++)
+        inventoryItems.Add(item);
+        item.transform.position = gameObject.transform.position + dropOffset;
+    }
+    public GameObject removeItem(GameObject item)
+    {
+
+        if (inventoryItems.Remove(item))
         {
-            if (inventoryItems[i] == null)
-            {
-                inventoryItems[i] = new InventoryObject(item);
-            }
+            return item;
+        }
+        else
+        {
+            return null;
         }
     }
-    public GameObject removeItem(int position)
+
+    public void OnDrawGizmosSelected()
     {
-        if (inventoryItems[position] == null)
-        {
-            GameObject removedObject = inventoryItems[position].GameObject;
-            inventoryItems[position] = null;
-            return removedObject;
-        }
-        return null;
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(gameObject.transform.position + dropOffset, 0.2f);
     }
 
-}
-
-class InventoryObject
-{
-    // Variables ----------------------------------------------
-    private GameObject gameObject;
-    protected bool selectable;
-    protected Sprite icon;
-
-    public GameObject GameObject { get => gameObject; }
-
-    // Constructors -------------------------------------------
-    public InventoryObject(GameObject gameObject)
-    {
-        this.gameObject = gameObject;
-        selectable = true;
-    }
-
-    public InventoryObject(GameObject gameObject, bool selectable)
-    {
-        this.gameObject = gameObject;
-        this.selectable = selectable;
-    }
-
-    public InventoryObject(GameObject gameObject, Sprite icon)
-    {
-        this.gameObject = gameObject;
-        this.icon = icon;
-        selectable = true;
-    }
-
-    public InventoryObject(GameObject gameObject, bool selectable, Sprite icon)
-    {
-        this.gameObject = gameObject;
-        this.icon = icon;
-        this.selectable = selectable;
-    }
-
-    // Functions ----------------------------------------------
-    public void setSelectable(bool selectable)
-    {
-        this.selectable = selectable;
-    }
 }
