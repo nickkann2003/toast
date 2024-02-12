@@ -26,6 +26,8 @@ public class Station : MonoBehaviour
     // If isEnable is false, then the player should not be able to reach to interact with this station/prop
     [SerializeField] private bool isEnabled;
 
+    public Plane dragPlane;
+
 
     // Start is called before the first frame update
     void Start()
