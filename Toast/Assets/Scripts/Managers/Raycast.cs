@@ -4,6 +4,7 @@ using System.Collections.Generic;
 //using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class Raycast : MonoBehaviour
 {
@@ -109,13 +110,23 @@ public class Raycast : MonoBehaviour
             {
                 if (selectGO.GetComponent<Rigidbody>() != null)
                 {
-                    // Check for hit on plane
-                    if (PlaneDragCheck(Input.mousePosition))
+                    // Plane-based code
+                    // Create ray and hit
+                    RaycastHit hit;
+                    Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
+
+                    // Check for hit
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, (mask_Plane & ~mask_IgnoreRaycast)))
                     {
-                        selectGO.GetComponent<Rigidbody>().velocity =
-                        (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
-                        mZOffset)) - selectGO.transform.position) * 10;
-                    }   
+                        // Check that plane matches current station
+                        if (hit.collider.gameObject == StationManager.instance.playerLocation.dragPlane)
+                        {
+                            // Set velocity based on position on plane
+                            selectGO.GetComponent<Rigidbody>().velocity =
+                            (new Vector3(hit.point.x, hit.point.y,
+                            hit.point.z) - selectGO.transform.position) * 10;
+                        }
+                    }
                 }
             }
             else
@@ -314,24 +325,5 @@ public class Raycast : MonoBehaviour
         //Debug.DrawRay(hit.point, Vector3.Reflect(transform.InverseTransformPoint(hit.point), hit.normal), Color.blue);
 
         return null;
-    }
-
-    bool PlaneDragCheck(Vector3 pos)
-    {
-        // Create ray and hit
-        RaycastHit hit;
-        Ray ray = targetCamera.ScreenPointToRay(pos);
-
-        // Check for hit
-        if(Physics.Raycast(ray, out hit, Mathf.Infinity, (mask_Plane & ~mask_IgnoreRaycast)))
-        {
-            // Check that plane matches current station
-            if(hit.collider.gameObject == StationManager.instance.playerLocation.dragPlane)
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
