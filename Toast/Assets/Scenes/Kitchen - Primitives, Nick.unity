@@ -339,6 +339,7 @@ MonoBehaviour:
   interactables: []
   clickableCollider: {fileID: 31569021}
   isEnabled: 0
+  dragPlane: {fileID: 0}
 --- !u!65 &31569021
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1685,6 +1686,7 @@ MonoBehaviour:
   interactables: []
   clickableCollider: {fileID: 258903382}
   isEnabled: 0
+  dragPlane: {fileID: 0}
 --- !u!65 &258903382
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8518,6 +8520,7 @@ MonoBehaviour:
   interactables: []
   clickableCollider: {fileID: 381376332}
   isEnabled: 0
+  dragPlane: {fileID: 0}
 --- !u!65 &381376332
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8703,6 +8706,7 @@ MonoBehaviour:
   interactables: []
   clickableCollider: {fileID: 0}
   isEnabled: 0
+  dragPlane: {fileID: 0}
 --- !u!114 &390667956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8799,6 +8803,7 @@ MonoBehaviour:
   - {fileID: 944288252}
   clickableCollider: {fileID: 0}
   isEnabled: 1
+  dragPlane: {fileID: 0}
 --- !u!4 &409015823
 Transform:
   m_ObjectHideFlags: 0
@@ -9553,6 +9558,7 @@ MonoBehaviour:
   interactables: []
   clickableCollider: {fileID: 510954538}
   isEnabled: 0
+  dragPlane: {fileID: 0}
 --- !u!65 &510954538
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10896,6 +10902,7 @@ MonoBehaviour:
   - {fileID: 1017904670}
   clickableCollider: {fileID: 800153524}
   isEnabled: 1
+  dragPlane: {fileID: 0}
 --- !u!114 &800153526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11298,6 +11305,7 @@ MonoBehaviour:
   - {fileID: 800153525}
   clickableCollider: {fileID: 0}
   isEnabled: 0
+  dragPlane: {fileID: 0}
 --- !u!4 &846166370
 Transform:
   m_ObjectHideFlags: 0
@@ -11671,6 +11679,7 @@ MonoBehaviour:
   interactables: []
   clickableCollider: {fileID: 873334011}
   isEnabled: 0
+  dragPlane: {fileID: 0}
 --- !u!114 &873334013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12370,6 +12379,7 @@ MonoBehaviour:
   - {fileID: 873334012}
   clickableCollider: {fileID: 944288248}
   isEnabled: 0
+  dragPlane: {fileID: 0}
 --- !u!4 &944288253 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6857931201524819916, guid: c0ea23539fefbb944bc2831098845f6a,
@@ -13450,6 +13460,7 @@ MonoBehaviour:
   interactables: []
   clickableCollider: {fileID: 1017904671}
   isEnabled: 0
+  dragPlane: {fileID: 0}
 --- !u!65 &1017904671
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22246,6 +22257,7 @@ MonoBehaviour:
   - {fileID: 0}
   clickableCollider: {fileID: 1576028186}
   isEnabled: 0
+  dragPlane: {fileID: 2069029613}
 --- !u!65 &1576028186
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23264,6 +23276,7 @@ MonoBehaviour:
   interactables: []
   clickableCollider: {fileID: 0}
   isEnabled: 0
+  dragPlane: {fileID: 0}
 --- !u!114 &1642791214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26387,14 +26400,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069029613}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: 0.44, z: -3.847}
   m_LocalScale: {x: 0.65, y: 1, z: 0.17}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1576028187}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!64 &2069029615
 MeshCollider:
   m_ObjectHideFlags: 0
