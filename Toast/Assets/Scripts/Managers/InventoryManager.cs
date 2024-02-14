@@ -7,6 +7,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance;
 
     public Station InventoryStation;
+    public Inventory inventory;
 
     public bool atInventory = false;
 
@@ -55,5 +56,15 @@ public class InventoryManager : MonoBehaviour
     {
         SetLeaveInventoryValues();
         StationManager.instance.StationMoveBack();
+    }
+
+    public void AddItemToInventory(GameObject item)
+    {
+
+    }
+
+    public void RemoveItemFromInventory(GameObject item)
+    {
+
     }
 }
