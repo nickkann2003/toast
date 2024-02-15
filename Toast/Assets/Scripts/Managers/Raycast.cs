@@ -1,18 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 //using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class Raycast : MonoBehaviour
 {
     private int layer_IgnoreRaycast = 2;
     private int layer_Interactable = 7;
     private int layer_Station = 3;
+    private int layer_Plane = 10;
 
     private int mask_IgnoreRaycast;
     private int mask_Interactable;
     private int mask_Station;
+    private int mask_Plane;
 
     Camera targetCamera;
 
@@ -47,6 +51,7 @@ public class Raycast : MonoBehaviour
         mask_IgnoreRaycast = 1 << layer_IgnoreRaycast;
         mask_Interactable = 1 << layer_Interactable;
         mask_Station = 1 << layer_Station;
+        mask_Plane = 1 << layer_Plane;
         prevGO = null;
         hitGO = null;
         targetCamera = GetComponent<Camera>();
@@ -105,9 +110,23 @@ public class Raycast : MonoBehaviour
             {
                 if (selectGO.GetComponent<Rigidbody>() != null)
                 {
-                    selectGO.GetComponent<Rigidbody>().velocity =
-                    (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
-                    mZOffset)) - selectGO.transform.position) * 10;
+                    // Plane-based code
+                    // Create ray and hit
+                    RaycastHit hit;
+                    Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
+
+                    // Check for hit
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, (mask_Plane & ~mask_IgnoreRaycast)))
+                    {
+                        // Check that plane matches current station
+                        if (hit.collider.gameObject == StationManager.instance.playerLocation.dragPlane)
+                        {
+                            // Set velocity based on position on plane
+                            selectGO.GetComponent<Rigidbody>().velocity =
+                            (new Vector3(hit.point.x, hit.point.y,
+                            hit.point.z) - selectGO.transform.position) * 10;
+                        }
+                    }
                 }
             }
             else
