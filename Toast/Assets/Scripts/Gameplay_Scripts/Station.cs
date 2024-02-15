@@ -29,8 +29,19 @@ public class Station : MonoBehaviour
 
     public GameObject dragPlane;
 
-    //public Plane dragPlane;
+    ///private int layer_Station = 3;
+    ///private int layer_UI = 5;
+    ///private int layer_Ignore = 2;
+    ///private int mask_Station;
+    ///private int mask_UI;
+    ///private int mask_Ignore;
 
+    //private void Awake()
+    //{
+    //    mask_Station = 1 << layer_Station;
+    //    mask_UI = 1 << layer_UI;
+    //    mask_Ignore = 1 << layer_Ignore;
+    //}
 
     // Start is called before the first frame update
     void Start()
@@ -42,9 +53,26 @@ public class Station : MonoBehaviour
         }
     }
 
+    //private void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //        RaycastHit hit;
+
+    //        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask_Ignore))
+    //        {
+    //            if (hit.collider == clickableCollider)
+    //            {
+                   
+    //            }
+    //        }
+    //    }
+    //}
+
     private void OnMouseDown()
     {
-        if(StationManager.instance!= null && StationManager.instance.playerLocation!=null)
+        if (StationManager.instance != null && StationManager.instance.playerLocation != null)
         {
             StationManager.instance.MoveToStation(this);
             if (StationManager.instance.playerLocation.interactables != null)
