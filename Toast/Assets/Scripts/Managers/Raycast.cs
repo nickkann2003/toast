@@ -4,7 +4,7 @@ using System.Collections.Generic;
 //using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
+//using static UnityEditor.PlayerSettings;
 
 public class Raycast : MonoBehaviour
 {
