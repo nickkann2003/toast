@@ -315,7 +315,7 @@ public class Raycast : MonoBehaviour
         Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
 
         // shoot a raycast, ignoring the layermask
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, (layerMask & ~mask_IgnoreRaycast)))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, (layerMask & ~mask_IgnoreRaycast & ~mask_Plane)))
         {
             return hit.collider.gameObject;
         }
