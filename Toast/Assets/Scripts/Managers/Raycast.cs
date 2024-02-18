@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class Raycast : MonoBehaviour
 {
+    [SerializeField]
+    private NewHand hand;
+
     private int layer_IgnoreRaycast = 2;
     private int layer_Interactable = 7;
     private int layer_Station = 3;
@@ -155,31 +158,38 @@ public class Raycast : MonoBehaviour
 
     void UseRaycast()
     {
+        if (hand.CheckObject())
+        {
+            hand.UseInHand();
+            return;
+        }
+
         GameObject itemToUse = RaycastHelper(~mask_Station);
 
-        if (itemToUse != null && itemToUse.GetComponent<IEatable>() != null && itemToUse.layer == layer_Interactable) // Interactable layer
+        if (itemToUse != null && itemToUse.GetComponent<NewProp>() != null && itemToUse.layer == layer_Interactable) // Interactable layer
         {
-            // !!MOVE THIS TO THE EATABLE COMPONENT!! //
-            Color c = itemToUse.GetComponent<Renderer>().material.color;
-            var main = Camera.main.GetComponent<Hand>().EatParticles.main;
-            main.startColor = c;
-            RequirementEvent rEvent;
-            if (itemToUse.GetComponent<IEatable>().BitesLeft() <= 1)
-            {
-                if (itemToUse.GetComponent<ObjectVariables>() != null)
-                {
-                    rEvent = new RequirementEvent(RequirementType.EatObject, itemToUse.GetComponent<ObjectVariables>(), true);
-                }
-                else
-                {
-                    rEvent = new RequirementEvent(RequirementType.EatObject, new ObjectVariables(), true);
-                }
-                ObjectiveManager.instance.UpdateObjectives(rEvent);
-            }
-            // ^^MOVE THIS TO THE EATABLE COMPONENT^^ //
+            itemToUse.GetComponent<NewProp>().Use();
+            //// !!MOVE THIS TO THE EATABLE COMPONENT!! //
+            //Color c = itemToUse.GetComponent<Renderer>().material.color;
+            //var main = Camera.main.GetComponent<Hand>().EatParticles.main;
+            //main.startColor = c;
+            //RequirementEvent rEvent;
+            //if (itemToUse.GetComponent<IEatable>().BitesLeft() <= 1)
+            //{
+            //    if (itemToUse.GetComponent<ObjectVariables>() != null)
+            //    {
+            //        rEvent = new RequirementEvent(RequirementType.EatObject, itemToUse.GetComponent<ObjectVariables>(), true);
+            //    }
+            //    else
+            //    {
+            //        rEvent = new RequirementEvent(RequirementType.EatObject, new ObjectVariables(), true);
+            //    }
+            //    ObjectiveManager.instance.UpdateObjectives(rEvent);
+            //}
+            //// ^^MOVE THIS TO THE EATABLE COMPONENT^^ //
 
-            itemToUse.GetComponent<IEatable>().TakeBite();
-            Camera.main.GetComponent<Hand>().EatParticles.Play();
+            //itemToUse.GetComponent<IEatable>().TakeBite();
+            //Camera.main.GetComponent<Hand>().EatParticles.Play();
 
             //prevGO = null;
             //hitGO = null;
@@ -190,9 +200,36 @@ public class Raycast : MonoBehaviour
 
     void PickupRaycast()
     {
-        if (dragging && selectGO.GetComponent<Prop>() != null)
+        if (hand==null)
         {
-            Camera.main.GetComponent<Hand>().AddItem(selectGO);
+            return;
+        }
+
+        GameObject itemToDrop = hand.Drop();
+        if (itemToDrop != null)
+        {
+            Station currentStation = StationManager.instance.playerLocation;
+
+            // Grab world pos from the current station
+            Vector3 objectPos = currentStation.objectOffset;
+
+            // Set the current position of the object
+            itemToDrop.transform.position = objectPos;
+
+            // Try setting rigidbody, catch if object doesnt have a rigidbody
+            try
+            {
+                itemToDrop.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+            catch
+            {
+                Debug.Log("Dropped item without a rigid body");
+            }
+        }
+
+        if (dragging && selectGO.GetComponent<NewProp>() != null)
+        {
+            hand.Pickup(selectGO);
             StopDragging();
             return;
         }
@@ -200,13 +237,14 @@ public class Raycast : MonoBehaviour
         // shoot out a raycast, ignore every layer except interactable
         GameObject itemToPickup = RaycastHelper(~mask_Station);
 
-        if (itemToPickup != null && itemToPickup.GetComponent<Prop>() != null) // Interactable layer
+        if (itemToPickup == null)
         {
-            Camera.main.GetComponent<Hand>().AddItem(itemToPickup);
-            //prevGO = null;
-            //hitGO = null;
-            //prevHighligtable = null;
-            //highlightable = null;
+            return;
+        }
+
+        if (itemToPickup.GetComponent<NewProp>() != null) // Interactable layer
+        {
+            hand.Pickup(itemToPickup);
         }
     }
 

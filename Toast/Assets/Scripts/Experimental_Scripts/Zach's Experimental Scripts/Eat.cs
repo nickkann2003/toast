@@ -5,20 +5,35 @@ using UnityEngine;
 
 public class Eat : MonoBehaviour, IUseStrategy
 {
-    // Start is called before the first frame update
+    public int bitesRemaining;
+    private NewProp propScript;
+
     void Start()
     {
-        
+        if (propScript == null)
+        {
+            propScript = this.gameObject.GetComponent<NewProp>();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Use()
     {
-        
-    }
-
-    public void Use(GameObject gameObject)
-    {
+        TakeBite();
         Debug.Log(gameObject);
+    }
+
+    private void EatWhole()
+    {
+        Destroy(gameObject);
+    }
+
+    private void TakeBite()
+    {
+        AudioManager.instance.PlayOneShotSound(AudioManager.instance.eatingBread);
+        bitesRemaining--;
+        if (bitesRemaining <= 0)
+        {
+            EatWhole();
+        }
     }
 }

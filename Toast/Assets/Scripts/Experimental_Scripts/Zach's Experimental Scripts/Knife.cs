@@ -5,6 +5,8 @@ using UnityEngine;
 public class Knife : NewProp
 {
     public NewHand hand;
+    GrabFromContainer grabStrategy;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,17 +19,17 @@ public class Knife : NewProp
         
     }
 
-    public override void Use(GameObject gameObject)
+    public override void Use()
     {
         if (attributes.HasFlag(PropFlags.InHand))
         {
             if (hand.CheckObject())
             {
-                base.Use(gameObject);
+                hand.UseInHand();
             }
             else
             {
-                hand.SwapGameObjects(gameObject);
+                hand.SwapUse(grabStrategy);
             }
         }
     }

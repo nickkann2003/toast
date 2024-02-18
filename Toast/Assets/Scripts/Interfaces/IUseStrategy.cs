@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IUseStrategy
 {
-    public void Use(GameObject gameObject);
+    public void Use();
 }
