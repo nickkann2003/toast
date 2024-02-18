@@ -13,6 +13,7 @@ public class NewHand : MonoBehaviour
         if (heldObject != null)
         {
             heldObject.transform.position = handPos.transform.position;
+            heldObject.transform.localRotation = handPos.transform.localRotation;
         }
     }
 
