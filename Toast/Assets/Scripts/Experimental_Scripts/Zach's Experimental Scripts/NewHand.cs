@@ -37,7 +37,6 @@ public class NewHand : MonoBehaviour
         {
             heldObject.GetComponent<NewProp>()?.RemoveAttribute(NewProp.PropFlags.InHand);
             itemToReturn = heldObject;
-            itemToReturn.transform.localScale *= 2f; // TEMP MAKE HAND A SEPARATE CAM THAT OVERLAYS
             Debug.Log("Returning Held Object");
             heldObject = null;
         }
@@ -50,7 +49,6 @@ public class NewHand : MonoBehaviour
         if (itemToPickup != null)
         {
             heldObject = itemToPickup;
-            itemToPickup.transform.localScale *= .5f; // TEMP MAKE HAND A SEPARATE CAM THAT OVERLAYS
             heldObject.GetComponent<NewProp>()?.AddAttribute(NewProp.PropFlags.InHand);
             _useStrategy = heldObject.GetComponent<IUseStrategy>();
         }

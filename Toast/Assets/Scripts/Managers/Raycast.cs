@@ -143,7 +143,7 @@ public class Raycast : MonoBehaviour
     {
         if (dragging && selectGO.GetComponent<Prop>() != null)
         {
-            ExamineManager.instance.ExamineObject(selectGO.GetComponent<Prop>());
+            ExamineManager.instance.ExamineObject(selectGO);
             return;
         }
 
@@ -151,7 +151,7 @@ public class Raycast : MonoBehaviour
 
         if (itemToView != null && itemToView.GetComponent<Prop>() != null)
         {
-            ExamineManager.instance.ExamineObject(hitGO.GetComponent<Prop>());
+            ExamineManager.instance.ExamineObject(hitGO);
         }
         StopDragging();
     }

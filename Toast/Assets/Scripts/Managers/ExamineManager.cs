@@ -45,7 +45,7 @@ public class ExamineManager : MonoBehaviour
 
     }
 
-    public void ExamineObject(Prop propToExamine)
+    public void ExamineObject(GameObject propToExamine)
     {
         // Ensure can't have more than one item being inspected
         if(currentExamine != null)
@@ -71,7 +71,7 @@ public class ExamineManager : MonoBehaviour
         globalVolume.profile = blurProfile;
 
           // Create copy of object
-          currentExamine = Instantiate(propToExamine.gameObject, inspectorItem.transform);
+          currentExamine = Instantiate(propToExamine, inspectorItem.transform);
 
         // Remove components that may alter behavior
         if(currentExamine.GetComponent<Rigidbody>())
