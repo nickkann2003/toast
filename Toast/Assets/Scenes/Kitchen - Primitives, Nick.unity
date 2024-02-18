@@ -2454,7 +2454,8 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
-  m_Cameras: []
+  m_Cameras:
+  - {fileID: 1014665522}
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -11635,77 +11636,6 @@ Transform:
   m_Father: {fileID: 875749195}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &843827914
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 843827917}
-  - component: {fileID: 843827916}
-  - component: {fileID: 843827915}
-  m_Layer: 9
-  m_Name: Volume_Examine Blur
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &843827915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 843827914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IsGlobal: 0
-  priority: 1
-  blendDistance: 1
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: 188e4c64da4ab7d44863661a1182c636, type: 2}
---- !u!65 &843827916
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 843827914}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 15.071836, y: 10.497255, z: 14.497778}
-  m_Center: {x: -2.9965658, y: -3.4650927, z: 3.0435066}
---- !u!4 &843827917
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 843827914}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.4, y: 5, z: -16.38}
-  m_LocalScale: {x: 1, y: 1, z: 1.4785}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 875749195}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &846166368
 GameObject:
   m_ObjectHideFlags: 0
@@ -12179,7 +12109,6 @@ Transform:
   - {fileID: 832575519}
   - {fileID: 347806485}
   - {fileID: 1453517949}
-  - {fileID: 843827917}
   - {fileID: 1624671494}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -12231,7 +12160,9 @@ MonoBehaviour:
   inspectorScale: 5
   inspectorItem: {fileID: 252240869}
   examineStation: {fileID: 1642791213}
-  backgroundBlur: {fileID: 843827915}
+  blurProfile: {fileID: 11400000, guid: 8d18d7d756165b14a8a5f8f96c93e388, type: 2}
+  globalProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
+  globalVolume: {fileID: 832575518}
   freezeOnExamine: 1
   raycast: {fileID: 330585549}
   background: {fileID: 1624671493}
@@ -13789,7 +13720,7 @@ MonoBehaviour:
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
+  m_CameraType: 1
   m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
@@ -13797,7 +13728,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0

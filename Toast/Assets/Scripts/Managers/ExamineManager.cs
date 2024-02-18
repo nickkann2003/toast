@@ -17,9 +17,9 @@ public class ExamineManager : MonoBehaviour
 
     public Station examineStation;
 
-    private DepthOfField dof;
-
-    public Volume backgroundBlur;
+    [SerializeField] private VolumeProfile blurProfile;
+    [SerializeField] private VolumeProfile globalProfile;
+    [SerializeField] private Volume globalVolume;
 
     public bool freezeOnExamine;
 
@@ -37,9 +37,9 @@ public class ExamineManager : MonoBehaviour
 
     private void Start()
     {
-        backgroundBlur.profile.TryGet<DepthOfField>(out dof);
+        //backgroundBlur.profile.TryGet<DepthOfField>(out dof);
 
-        dof.mode.value = DepthOfFieldMode.Off;
+        //dof.mode.value = DepthOfFieldMode.Off;
 
         background.gameObject.SetActive(false);
 
@@ -67,10 +67,11 @@ public class ExamineManager : MonoBehaviour
         inspectorItem.inspectorCam.enabled = true;
         inspectorItem.inspecting = true;
 
-        dof.mode.value = DepthOfFieldMode.Gaussian;
+        //dof.mode.value = DepthOfFieldMode.Gaussian;
+        globalVolume.profile = blurProfile;
 
-        // Create copy of object
-        currentExamine = Instantiate(propToExamine.gameObject, inspectorItem.transform);
+          // Create copy of object
+          currentExamine = Instantiate(propToExamine.gameObject, inspectorItem.transform);
 
         // Remove components that may alter behavior
         if(currentExamine.GetComponent<Rigidbody>())
@@ -104,7 +105,8 @@ public class ExamineManager : MonoBehaviour
     {
         inspectorItem.inspectorCam.enabled = false;
 
-        dof.mode.value = DepthOfFieldMode.Off;
+        // dof.mode.value = DepthOfFieldMode.Off;
+        globalVolume.profile = globalProfile;
 
         Destroy(currentExamine);
 
