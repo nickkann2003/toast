@@ -5,6 +5,8 @@ using System;
 
 public class NewProp : MonoBehaviour
 {
+    [SerializeField]
+    private Material baseMat;
 
     // in order to check to see if the prop contains a flag use HasFlag
     // in order to check to see if the prop doesn't contain a flag use Equals(PropFlags.None)
@@ -18,9 +20,11 @@ public class NewProp : MonoBehaviour
         Giant = 1 << 3,
         ImmuneToFreeze = 1 << 4,
         ImmuneToToast = 1 << 5,
-        InHand
+        InHand = 1 << 6,
     }
     public PropFlags attributes;
+
+    private float toastiness;
 
     protected IUseStrategy _useStrategy;
 
@@ -36,9 +40,9 @@ public class NewProp : MonoBehaviour
 
     }
 
-    public virtual void Use(GameObject gameObject)
+    public virtual void Use()
     {
-        _useStrategy?.Use(gameObject);
+        _useStrategy?.Use();
     }
 
     public void AddAttribute(PropFlags flagToAdd)
