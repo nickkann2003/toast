@@ -7,8 +7,7 @@ public class Requirement : MonoBehaviour
     // Public variables
     public bool listening = false;
     public RequirementType type = RequirementType.EatObject;
-    public List<Object> targetObjects;
-    public List<Attribute> targetAttributes;
+    public PropFlags targetAttributes;
     public string goalName;
     public int goal;
     public bool alwaysListening = false;
@@ -41,15 +40,19 @@ public class Requirement : MonoBehaviour
     // Update the requirement with a given event
     public void UpdateRequirement(RequirementEvent e)
     {
-        if((listening || alwaysListening) && e.type == type && targetObjects.Contains(e.targetVars.objectId)) // Ensure type, target, and listening
+        if((listening || alwaysListening) && e.type == type) // Ensure type, target, and listening
         {
-            foreach(Attribute a in targetAttributes) // Ensure all necessary attributes are present
+            if(targetAttributes == e.attributes)
             {
-                if (!e.targetVars.attributes.Contains(a)) // If the target's att's did not contain all our require att's, return
-                {
-                    return;
-                }
+
             }
+            //foreach(Attribute a in targetAttributes) // Ensure all necessary attributes are present
+            //{
+            //    if (!e.targetVars.attributes.Contains(a)) // If the target's att's did not contain all our require att's, return
+            //    {
+            //        return;
+            //    }
+            //}
             if (e.increase) // Increase or Decrease
             {
                 current += 1;

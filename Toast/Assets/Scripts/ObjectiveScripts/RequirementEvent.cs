@@ -5,13 +5,13 @@ using UnityEngine;
 public class RequirementEvent
 {
     public RequirementType type;
-    public ObjectVariables targetVars;
+    public PropFlags attributes;
     public bool increase;
 
-    public RequirementEvent(RequirementType type, ObjectVariables vars, bool increase)
+    public RequirementEvent(RequirementType type, PropFlags attributes, bool increase)
     {
         this.type = type;
-        this.targetVars = vars;
+        this.attributes = attributes;
         this.increase = increase;
     }
 }
