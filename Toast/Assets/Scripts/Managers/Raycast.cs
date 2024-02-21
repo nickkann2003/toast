@@ -56,6 +56,7 @@ public class Raycast : MonoBehaviour
     float mZOffset;
 
     bool dragging;
+    private Vector3 lastPos;
     //RaycastHit hit;
 
     private Highlights highlightable;
@@ -143,7 +144,22 @@ public class Raycast : MonoBehaviour
                             selectGO.GetComponent<Rigidbody>().velocity =
                             (new Vector3(hit.point.x, hit.point.y,
                             hit.point.z) - selectGO.transform.position) * 10;
+
+                            lastPos = new Vector3(hit.point.x, hit.point.y,
+                            hit.point.z);
                         }
+                        else
+                        {
+                            // Set velocity based on position on plane
+                            selectGO.GetComponent<Rigidbody>().velocity =
+                            (lastPos - selectGO.transform.position) * 10;
+                        }
+                    }
+                    else
+                    {
+                        // Set velocity based on position on plane
+                        selectGO.GetComponent<Rigidbody>().velocity =
+                        (lastPos - selectGO.transform.position) * 10;
                     }
                 }
             }
