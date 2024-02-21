@@ -86,13 +86,13 @@ public class LittleFella : MonoBehaviour
                         Destroy(edibleObject);
 
                         RequirementEvent rEvent;
-                        if (edibleObject.GetComponent<ObjectVariables>() != null)
+                        if (edibleObject.GetComponent<NewProp>() != null)
                         {
-                            rEvent = new RequirementEvent(RequirementType.EatObject, edibleObject.GetComponent<ObjectVariables>(), true);
+                            rEvent = new RequirementEvent(RequirementType.EatObject, edibleObject.GetComponent<NewProp>().attributes, true);
                         }
                         else
                         {
-                            rEvent = new RequirementEvent(RequirementType.EatObject, new ObjectVariables(), true);
+                            rEvent = new RequirementEvent(RequirementType.EatObject, PropFlags.None, true);
                         }
 
                         ObjectiveManager.instance.UpdateObjectives(rEvent);

@@ -40,19 +40,15 @@ public class Requirement : MonoBehaviour
     // Update the requirement with a given event
     public void UpdateRequirement(RequirementEvent e)
     {
+        // If listening and correct type
         if((listening || alwaysListening) && e.type == type) // Ensure type, target, and listening
         {
-            if(targetAttributes == e.attributes)
+            // If does not contain all necessary flags, return
+            if(!(e.attributes.HasFlag(targetAttributes)))
             {
-
+                return;
             }
-            //foreach(Attribute a in targetAttributes) // Ensure all necessary attributes are present
-            //{
-            //    if (!e.targetVars.attributes.Contains(a)) // If the target's att's did not contain all our require att's, return
-            //    {
-            //        return;
-            //    }
-            //}
+            
             if (e.increase) // Increase or Decrease
             {
                 current += 1;
@@ -71,6 +67,7 @@ public class Requirement : MonoBehaviour
         }
     }
 
+    // Returns a formatted string of this requirement to be displayed to the player
     new public string ToString
     {
         get

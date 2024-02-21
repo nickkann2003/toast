@@ -36,7 +36,7 @@ public class NewHand : MonoBehaviour
         GameObject itemToReturn = null;
         if (heldObject != null)
         {
-            heldObject.GetComponent<NewProp>()?.RemoveAttribute(NewProp.PropFlags.InHand);
+            heldObject.GetComponent<NewProp>()?.RemoveAttribute(PropFlags.InHand);
             itemToReturn = heldObject;
             Debug.Log("Returning Held Object");
             heldObject = null;
@@ -50,7 +50,7 @@ public class NewHand : MonoBehaviour
         if (itemToPickup != null)
         {
             heldObject = itemToPickup;
-            heldObject.GetComponent<NewProp>()?.AddAttribute(NewProp.PropFlags.InHand);
+            heldObject.GetComponent<NewProp>()?.AddAttribute(PropFlags.InHand);
             _useStrategy = heldObject.GetComponent<IUseStrategy>();
         }
     }

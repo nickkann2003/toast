@@ -24,6 +24,7 @@ public class Eat : MonoBehaviour, IUseStrategy
 
     private void EatWhole()
     {
+        ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.EatObject, propScript.attributes, true));
         Destroy(gameObject);
     }
 

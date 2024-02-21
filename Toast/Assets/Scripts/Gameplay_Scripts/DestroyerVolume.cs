@@ -8,27 +8,20 @@ public class DestroyerVolume : MonoBehaviour
     {
         GameObject parent = other.gameObject;
         RequirementEvent rEvent;
-        ObjectVariables objVars = null;
-        if (parent.GetComponent<ObjectVariables>() != null)
+        PropFlags flags = PropFlags.None;
+        if (parent.GetComponent<NewProp>() != null)
         {
-            objVars = parent.GetComponent<ObjectVariables>();
+            flags = parent.GetComponent<NewProp>().attributes;
         }
         while (parent.transform.parent != null)
         {
             parent = parent.transform.parent.gameObject;
-            if (parent.GetComponent<ObjectVariables>() != null)
+            if (parent.GetComponent<NewProp>() != null)
             {
-                objVars = parent.GetComponent<ObjectVariables>();
+                flags = parent.GetComponent<NewProp>().attributes;
             }
         }
-        if (objVars != null)
-        {
-            rEvent = new RequirementEvent(RequirementType.DestroyObject, objVars, true);
-        }
-        else
-        {
-            rEvent = new RequirementEvent(RequirementType.DestroyObject, new ObjectVariables(), true);
-        }
+        rEvent = new RequirementEvent(RequirementType.DestroyObject, flags, true);
         ObjectiveManager.instance.UpdateObjectives(rEvent);
         Destroy(parent);
     }

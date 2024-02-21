@@ -87,13 +87,13 @@ public class Hand : MonoBehaviour
                 currentItem = item;
                 holdingItem = true;
                 RequirementEvent rEvent;
-                if (currentItem.GetComponent<ObjectVariables>() != null)
+                if (currentItem.GetComponent<NewProp>() != null)
                 {
-                    rEvent = new RequirementEvent(RequirementType.PickUpObject, currentItem.GetComponent<ObjectVariables>(), true);
+                    rEvent = new RequirementEvent(RequirementType.PickUpObject, currentItem.GetComponent<NewProp>().attributes, true);
                 }
                 else
                 {
-                    rEvent = new RequirementEvent(RequirementType.PickUpObject, new ObjectVariables(), true);
+                    rEvent = new RequirementEvent(RequirementType.PickUpObject, PropFlags.None, true);
                 }
                 ObjectiveManager.instance.UpdateObjectives(rEvent);
             }
@@ -196,13 +196,13 @@ public class Hand : MonoBehaviour
                     RequirementEvent rEvent;
                     if (currentItem.GetComponent<IEatable>().BitesLeft() <= 1)
                     {
-                        if (currentItem.GetComponent<ObjectVariables>() != null)
+                        if (currentItem.GetComponent<NewProp>() != null)
                         {
-                            rEvent = new RequirementEvent(RequirementType.EatObject, currentItem.GetComponent<ObjectVariables>(), true);
+                            rEvent = new RequirementEvent(RequirementType.EatObject, currentItem.GetComponent<NewProp>().attributes, true);
                         }
                         else
                         {
-                            rEvent = new RequirementEvent(RequirementType.EatObject, new ObjectVariables(), true);
+                            rEvent = new RequirementEvent(RequirementType.EatObject, PropFlags.None, true);
                         }
                         ObjectiveManager.instance.UpdateObjectives(rEvent);
                     }

@@ -136,20 +136,21 @@ public class ToastingBreadTest : MonoBehaviour
             {
                 if (obj != null)
                 {
-                    ObjectVariables objVars = obj.GetComponent<ObjectVariables>();
+                    NewProp prop = obj.GetComponent<NewProp>();
 
-                    if (objVars != null)
+                    if (prop != null)
                     {
-                        if (obj.GetComponent<Prop>().toastiness > .15f && !objVars.attributes.Contains(Attribute.Toast))
+                        if (obj.GetComponent<Prop>().toastiness > .15f && !prop.attributes.HasFlag(PropFlags.Toast))
                         {
-                            objVars.AddAttribute(Attribute.Toast);
-                            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, objVars, true));
+                            prop.attributes |= PropFlags.Toast;
+                            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, prop.attributes, true));
                         }
 
-                        if (objVars.attributes.Contains(Attribute.Frozen) && defrost)
+                        if (prop.attributes.HasFlag(PropFlags.Frozen) && defrost)
                         {
                             Destroy(obj.transform.GetChild(0).gameObject);
-                            objVars.RemoveAttribute(Attribute.Frozen);
+                            prop.attributes &= ~PropFlags.Frozen;
+                            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.ThawObject, prop.attributes, true));
                         }
                     }
 
