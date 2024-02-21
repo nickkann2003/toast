@@ -8,6 +8,19 @@ using UnityEngine.UI;
 
 public class Raycast : MonoBehaviour
 {
+    private static Raycast _instance;
+    public static Raycast Instance
+    {
+        get
+        {
+            if(_instance == null)
+            {
+                Debug.LogError("Raycast is null");
+            }
+            return _instance;
+        }
+    }
+
     [SerializeField]
     private NewHand hand;
 
@@ -51,6 +64,8 @@ public class Raycast : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        _instance = this;
+
         mask_IgnoreRaycast = 1 << layer_IgnoreRaycast;
         mask_Interactable = 1 << layer_Interactable;
         mask_Station = 1 << layer_Station;
