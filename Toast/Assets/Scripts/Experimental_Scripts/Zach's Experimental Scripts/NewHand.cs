@@ -52,6 +52,7 @@ public class NewHand : MonoBehaviour
             heldObject = itemToPickup;
             heldObject.GetComponent<NewProp>()?.AddAttribute(PropFlags.InHand);
             _useStrategy = heldObject.GetComponent<IUseStrategy>();
+            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.PickUpObject, heldObject.GetComponent<NewProp>().attributes, true));
         }
     }
 

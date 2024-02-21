@@ -6,5 +6,6 @@ public enum RequirementType
     HaveObject,
     DestroyObject,
     PickUpObject,
-    ThawObject
+    ThawObject,
+    UseObject
 }
