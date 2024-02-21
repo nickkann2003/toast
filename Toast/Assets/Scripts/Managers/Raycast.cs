@@ -127,6 +127,8 @@ public class Raycast : MonoBehaviour
             }
             if (selectGO != null && selectGO.name != "SM_CounterDrawer") // HARDCODE CHANGE LATER
             {
+
+                Debug.Log(targetCamera.ScreenToWorldPoint(Input.mousePosition).y);
                 if (selectGO.GetComponent<Rigidbody>() != null)
                 {
                     // Plane-based code
@@ -135,31 +137,25 @@ public class Raycast : MonoBehaviour
                     Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
 
                     // Check for hit
-                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, (mask_Plane & ~mask_IgnoreRaycast)))
-                    {
-                        // Check that plane matches current station
-                        if (hit.collider.gameObject == StationManager.instance.playerLocation.dragPlane)
-                        {
-                            // Set velocity based on position on plane
-                            selectGO.GetComponent<Rigidbody>().velocity =
-                            (new Vector3(hit.point.x, hit.point.y,
-                            hit.point.z) - selectGO.transform.position) * 10;
-
-                            lastPos = new Vector3(hit.point.x, hit.point.y,
-                            hit.point.z);
-                        }
-                        else
-                        {
-                            // Set velocity based on position on plane
-                            selectGO.GetComponent<Rigidbody>().velocity =
-                            (lastPos - selectGO.transform.position) * 10;
-                        }
-                    }
-                    else
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, (mask_Plane & ~mask_IgnoreRaycast))
+                            && hit.collider.gameObject == StationManager.instance.playerLocation.dragPlane)
                     {
                         // Set velocity based on position on plane
                         selectGO.GetComponent<Rigidbody>().velocity =
+                        (new Vector3(hit.point.x, hit.point.y,
+                        hit.point.z) - selectGO.transform.position) * 10;
+
+                        lastPos = new Vector3(hit.point.x, hit.point.y,
+                        hit.point.z);
+                    }
+                    else
+                    {
+                        
+                        // Set velocity based on last stored position on plane
+                        selectGO.GetComponent<Rigidbody>().velocity =
                         (lastPos - selectGO.transform.position) * 10;
+
+                        
                     }
                 }
             }
