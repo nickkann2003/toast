@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class Container : MonoBehaviour
 {
+    [SerializeField]
     GameObject objPrefab;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public GameObject GrabContent()
     {
-        
+        return objPrefab;
     }
 }
