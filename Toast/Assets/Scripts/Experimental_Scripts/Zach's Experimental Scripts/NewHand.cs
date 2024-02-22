@@ -14,8 +14,12 @@ public class NewHand : MonoBehaviour
         {
             heldObject.transform.position = handPos.transform.position;
             heldObject.transform.rotation = handPos.transform.rotation;
+            heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-            
+            if (!heldObject.GetComponent<NewProp>().attributes.HasFlag(PropFlags.InHand))
+            {
+                heldObject.GetComponent<NewProp>().AddAttribute(PropFlags.InHand);
+            }
         }
     }
 
@@ -24,7 +28,14 @@ public class NewHand : MonoBehaviour
         if (heldObject != null)
         {
             _useStrategy = heldObject.GetComponent<IUseStrategy>();
-            _useStrategy?.Use();
+            if (_useStrategy != null)
+            {
+                _useStrategy.Use();
+            }
+            else if (heldObject.GetComponent<NewProp>() != null)
+            {
+                heldObject.GetComponent<NewProp>().Use();
+            }
         }
     }
 
@@ -39,12 +50,9 @@ public class NewHand : MonoBehaviour
         if (heldObject != null)
         {
             heldObject.GetComponent<NewProp>()?.RemoveAttribute(PropFlags.InHand);
-            if ((bool)heldObject.GetComponent<NewProp>()?.attributes.HasFlag(PropFlags.Giant))
-            {
-                transform.localScale *= 2f;
-            }
             itemToReturn = heldObject;
             Debug.Log("Returning Held Object");
+            heldObject.transform.parent = null;
             heldObject = null;
         }
 
@@ -56,13 +64,10 @@ public class NewHand : MonoBehaviour
         if (itemToPickup != null)
         {
             heldObject = itemToPickup;
-            if ((bool)heldObject.GetComponent<NewProp>()?.attributes.HasFlag(PropFlags.Giant))
-            {
-                transform.localScale *= .5f;
-            }
             heldObject.GetComponent<NewProp>()?.AddAttribute(PropFlags.InHand);
             _useStrategy = heldObject.GetComponent<IUseStrategy>();
             ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.PickUpObject, heldObject.GetComponent<NewProp>().attributes, true));
+            heldObject.transform.parent = this.transform;
         }
     }
 
