@@ -29,7 +29,8 @@ public class Knife : NewProp
             }
             else
             {
-                hand.SwapUse(grabStrategy);
+                Raycast.Instance.PickupRaycast(hand);
+                Debug.Log("Using Knife");
             }
         }
     }

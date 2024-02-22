@@ -110,13 +110,18 @@ public class Raycast : MonoBehaviour
         // OBJECT EAT DETECTION
         if (Input.GetButtonDown("Use"))
         {
+            if (hand.CheckObject())
+            {
+                hand.UseInHand();
+                return;
+            }
             UseRaycast();
         }
 
         // OBJECT PICKUP DETECTION
         if (Input.GetButtonDown("Pickup"))
         {
-            PickupRaycast();
+            PickupRaycast(hand);
         }
 
 
@@ -184,12 +189,6 @@ public class Raycast : MonoBehaviour
 
     void UseRaycast()
     {
-        if (hand.CheckObject())
-        {
-            hand.UseInHand();
-            return;
-        }
-
         GameObject itemToUse = RaycastHelper(~mask_Station);
 
         if (itemToUse != null && itemToUse.GetComponent<NewProp>() != null && itemToUse.layer == layer_Interactable) // Interactable layer
@@ -224,14 +223,15 @@ public class Raycast : MonoBehaviour
         }
     }
 
-    void PickupRaycast()
+    public void PickupRaycast(NewHand _hand)
     {
-        if (hand==null)
+        if (_hand==null)
         {
+            Debug.Log("Hand is null");
             return;
         }
 
-        GameObject itemToDrop = hand.Drop();
+        GameObject itemToDrop = _hand.Drop();
         if (itemToDrop != null)
         {
             Station currentStation = StationManager.instance.playerLocation;
@@ -270,7 +270,7 @@ public class Raycast : MonoBehaviour
 
         if (itemToPickup.GetComponent<NewProp>() != null) // Interactable layer
         {
-            hand.Pickup(itemToPickup);
+            _hand.Pickup(itemToPickup);
         }
     }
 
