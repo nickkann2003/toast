@@ -4,6 +4,7 @@ using System.Collections.Generic;
 //using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 //using static UnityEditor.PlayerSettings;
 
 public class Raycast : MonoBehaviour
@@ -127,8 +128,6 @@ public class Raycast : MonoBehaviour
             }
             if (selectGO != null && selectGO.name != "SM_CounterDrawer") // HARDCODE CHANGE LATER
             {
-
-                Debug.Log(targetCamera.ScreenToWorldPoint(Input.mousePosition).y);
                 if (selectGO.GetComponent<Rigidbody>() != null)
                 {
                     // Plane-based code
@@ -153,8 +152,8 @@ public class Raycast : MonoBehaviour
                         
                         // Set velocity based on last stored position on plane
                         selectGO.GetComponent<Rigidbody>().velocity =
-                        (lastPos - selectGO.transform.position) * 10;
-
+                        (OffPlaneHelper(lastPos) - selectGO.transform.position) * 10;
+                        
                         
                     }
                 }
@@ -390,5 +389,52 @@ public class Raycast : MonoBehaviour
         //Debug.DrawRay(hit.point, Vector3.Reflect(transform.InverseTransformPoint(hit.point), hit.normal), Color.blue);
 
         return null;
+    }
+
+    Vector3 OffPlaneHelper(Vector3 planePos)
+    {
+        Vector3 newVelocity = planePos;
+
+        Vector3 planeMin = StationManager.instance.playerLocation.dragPlane.GetComponent<MeshRenderer>().bounds.min;
+        Vector3 planeMax = StationManager.instance.playerLocation.dragPlane.GetComponent<MeshRenderer>().bounds.max;
+
+        Vector3 mouseCopy = Input.mousePosition;
+        mouseCopy.z = targetCamera.WorldToScreenPoint(planePos).z;
+        mouseCopy = targetCamera.ScreenToWorldPoint(mouseCopy);
+
+        Debug.Log("Mouse pos:" + Input.mousePosition);
+        Debug.Log("Plane min x: " + targetCamera.WorldToScreenPoint(planeMin).x);
+
+        if (Input.mousePosition.x < targetCamera.WorldToScreenPoint(planeMin).x)
+        {
+            newVelocity.x = planeMin.x;
+        }
+        else if(Input.mousePosition.x > targetCamera.WorldToScreenPoint(planeMax).x)
+        {
+            newVelocity.x = planeMax.x;
+        }
+        else
+        {
+            newVelocity.x = mouseCopy.x;
+        }
+
+        if (Input.mousePosition.y < targetCamera.WorldToScreenPoint(planeMin).y)
+        {
+            newVelocity.y = planeMin.y;
+        }
+        else if (Input.mousePosition.y > targetCamera.WorldToScreenPoint(planeMax).y)
+        {
+            newVelocity.y = planeMax.y;
+        }
+        else
+        {
+            newVelocity.y = mouseCopy.y;
+        }
+
+        // Need to figure out some handling for z
+        // Compare ZY Coordinates
+        // Since forward planes will have the same min and max z, can set those for all
+
+        return newVelocity;
     }
 }
