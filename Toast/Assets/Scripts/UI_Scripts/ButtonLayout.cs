@@ -7,7 +7,7 @@ public class ButtonLayout : MonoBehaviour
 {
     public Vector2 newPosition;
 
-    void Start()
+    void Awake()
     {
         // Call the method to adjust the button position based on the input position
         AdjustButtonPosition();
