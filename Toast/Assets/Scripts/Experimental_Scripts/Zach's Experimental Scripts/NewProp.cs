@@ -10,7 +10,8 @@ public class NewProp : MonoBehaviour
 
     public PropFlags attributes;
 
-    private float toastiness;
+    public float toastiness;
+    public float frozenness;
 
     protected IUseStrategy _useStrategy;
 

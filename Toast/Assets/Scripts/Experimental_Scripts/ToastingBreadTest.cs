@@ -47,34 +47,30 @@ public class ToastingBreadTest : MonoBehaviour
                 {
                     ToastingObject toast = value;
 
-                    Prop prop = key.GetComponent<Prop>();
+                    NewProp prop = key.GetComponent<NewProp>();
                     if (prop != null)
                     {
                         prop.toastiness = toast.toastiness;
-                        ObjectVariables objVars = key.GetComponent<ObjectVariables>();
-                        if (objVars != null)
+                        if (!prop.attributes.HasFlag(PropFlags.Frozen))
                         {
-                            if (!objVars.attributes.Contains(Attribute.Frozen))
-                            {
-                                toast.adjustColor(maxTime, Time.deltaTime);
-                            }
-                            else if (defrost)
-                            {
-                                // if frozen toast slower
-                                toast.adjustColor(maxTime, Time.deltaTime/2);
-                            }
-                            if (!objVars.attributes.Contains(Attribute.OnFire) && prop.toastiness > fireTrigger)
-                            {
-                                GameObject fire = Instantiate(firePrefab);
-                                fire.transform.parent = key.transform;
-                                fire.transform.localPosition = Vector3.zero;
-                                fire.transform.eulerAngles = Vector3.zero;
-                                fire.transform.localScale = Vector3.one;
-                                objVars.AddAttribute(Attribute.OnFire);
-                                fireEndingManager.addFireObject(key);
-                            }
+                            toast.adjustColor(maxTime, Time.deltaTime);
                         }
-                        
+                        else if (defrost)
+                        {
+                            // if frozen toast slower
+                            toast.adjustColor(maxTime, Time.deltaTime / 2);
+                        }
+                        if (!prop.attributes.HasFlag(PropFlags.OnFire) && prop.toastiness > fireTrigger)
+                        {
+                            GameObject fire = Instantiate(firePrefab);
+                            fire.transform.parent = key.transform;
+                            fire.transform.localPosition = Vector3.zero;
+                            fire.transform.eulerAngles = Vector3.zero;
+                            fire.transform.localScale = Vector3.one;
+                            prop.AddAttribute(PropFlags.OnFire);
+                            fireEndingManager.addFireObject(key);
+                        }
+
                     }
                 }
             }
@@ -96,9 +92,9 @@ public class ToastingBreadTest : MonoBehaviour
             if (obj != null)
             {
                 float toastiness = 0.0f;
-                if (obj.GetComponent<Prop>() != null)
+                if (obj.GetComponent<NewProp>() != null)
                 {
-                    toastiness = obj.GetComponent<Prop>().toastiness;
+                    toastiness = obj.GetComponent<NewProp>().toastiness;
                 }
                 ObjectVariables objVar = obj.GetComponent<ObjectVariables>();
 
@@ -140,9 +136,9 @@ public class ToastingBreadTest : MonoBehaviour
 
                     if (prop != null)
                     {
-                        if (obj.GetComponent<Prop>().toastiness > .15f && !prop.attributes.HasFlag(PropFlags.Toast))
+                        if (prop.toastiness > .15f && !prop.attributes.HasFlag(PropFlags.Toast))
                         {
-                            prop.attributes |= PropFlags.Toast;
+                            prop.AddAttribute(PropFlags.Toast);
                             ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, prop.attributes, true));
                         }
 

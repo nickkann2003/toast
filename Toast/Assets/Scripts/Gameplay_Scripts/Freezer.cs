@@ -22,14 +22,14 @@ public class Freezer : MonoBehaviour
             GameObject obj = collidingObjects[i];
             if (obj != null)
             {
-                ObjectVariables objVar = obj.GetComponent<ObjectVariables>();
+                NewProp prop = obj.GetComponent<NewProp>();
 
-                obj.GetComponent<Prop>().frozenness += Time.deltaTime;
+                prop.frozenness += Time.deltaTime;
 
-                if (obj.GetComponent<Prop>().frozenness >= 5f && !objVar.attributes.Contains(Attribute.Frozen))
+                if (prop.frozenness >= 5f && !prop.attributes.HasFlag(PropFlags.Frozen))
                 {
-                    Freeze(obj);
-                    obj.GetComponent<Prop>().frozenness = 0.0f;
+                    Freeze(obj, prop);
+                    prop.frozenness = 0.0f;
                 }
             }
             else
@@ -39,22 +39,20 @@ public class Freezer : MonoBehaviour
         }
     }
 
-    void Freeze(GameObject obj)
+    void Freeze(GameObject obj, NewProp prop)
     {
-        ObjectVariables objVar = obj.GetComponent<ObjectVariables>();
-
-        if (objVar.attributes.Contains(Attribute.OnFire))
+        if (prop.attributes.HasFlag(PropFlags.OnFire))
         {
-            objVar.RemoveAttribute(Attribute.OnFire);
+            prop.RemoveAttribute(PropFlags.OnFire);
             Destroy(obj.transform.GetChild(0).gameObject);
         }
-        else if (!objVar.attributes.Contains(Attribute.Frozen) && objVar.objectId == Object.Bread) 
+        else if (!prop.attributes.HasFlag(PropFlags.Frozen) && prop.attributes.HasFlag(PropFlags.Bread)) 
         {
             GameObject ice = Instantiate(icePrefab);
             ice.transform.position = obj.transform.position;
             ice.transform.localScale = obj.GetComponent<Renderer>().bounds.size;
             ice.transform.parent = obj.transform;
-            objVar.AddAttribute(Attribute.Frozen);
+            prop.AddAttribute(PropFlags.Frozen);
         }
     }
 
@@ -63,7 +61,7 @@ public class Freezer : MonoBehaviour
         try
         {
             if (!collidingObjects.Contains(other.gameObject) 
-                && other.gameObject.GetComponent<Prop>() != null && other.gameObject.GetComponent<ObjectVariables>() != null)
+                && other.gameObject.GetComponent<NewProp>() != null)
             {
                 collidingObjects.Add(other.gameObject);
             }
@@ -86,7 +84,7 @@ public class Freezer : MonoBehaviour
                 //}
                 if (other != null)
                 {
-                    other.gameObject.GetComponent<Prop>().frozenness = 0.0f;
+                    other.gameObject.GetComponent<NewProp>().frozenness = 0.0f;
                 }
                 collidingObjects.Remove(other.gameObject);
             }

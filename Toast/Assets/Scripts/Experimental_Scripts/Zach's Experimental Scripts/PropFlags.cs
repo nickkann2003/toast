@@ -17,6 +17,7 @@ public enum PropFlags
     ImmuneToToast = 1 << 5,
     InHand = 1 << 6,
     Frozen = 1 << 7,
+    OnFire = 1 << 8,
     Bread = 1 << 29,
     Jam = 1 << 30,
     Knife = 1 << 31,

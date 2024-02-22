@@ -13,7 +13,9 @@ public class NewHand : MonoBehaviour
         if (heldObject != null)
         {
             heldObject.transform.position = handPos.transform.position;
-            heldObject.transform.localRotation = handPos.transform.localRotation;
+            heldObject.transform.rotation = handPos.transform.rotation;
+
+            
         }
     }
 
@@ -37,6 +39,10 @@ public class NewHand : MonoBehaviour
         if (heldObject != null)
         {
             heldObject.GetComponent<NewProp>()?.RemoveAttribute(PropFlags.InHand);
+            if ((bool)heldObject.GetComponent<NewProp>()?.attributes.HasFlag(PropFlags.Giant))
+            {
+                transform.localScale *= 2f;
+            }
             itemToReturn = heldObject;
             Debug.Log("Returning Held Object");
             heldObject = null;
@@ -50,6 +56,10 @@ public class NewHand : MonoBehaviour
         if (itemToPickup != null)
         {
             heldObject = itemToPickup;
+            if ((bool)heldObject.GetComponent<NewProp>()?.attributes.HasFlag(PropFlags.Giant))
+            {
+                transform.localScale *= .5f;
+            }
             heldObject.GetComponent<NewProp>()?.AddAttribute(PropFlags.InHand);
             _useStrategy = heldObject.GetComponent<IUseStrategy>();
             ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.PickUpObject, heldObject.GetComponent<NewProp>().attributes, true));
