@@ -11,6 +11,8 @@ public enum GameState
 {
     Menu,
     Pause,
+    Tutorial,
+    Objective,
     inGame
 }
 
@@ -87,12 +89,36 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Menu:
                 break;
+            case GameState.Tutorial:
+                if (Keyboard.current.escapeKey.wasPressedThisFrame)
+                {
+                    PauseGame();
+                }
+
+                break;
             case GameState.inGame:
                 if(Keyboard.current.escapeKey.wasPressedThisFrame)
                 {
                     PauseGame();
                 }
-          
+
+                // Check if the player is holding down the 'J' key
+                if (Input.GetKey(KeyCode.J))
+                {
+                    // Enable the UI canvas if it's not already enabled
+                    if (!UIManager.objectiveOpened)
+                    {
+                        UIManager.OpenObjectiveNote();
+                    }
+                }
+                else
+                {
+                    // Disable the UI canvas if it's currently enabled
+                    if (UIManager.objectiveOpened)
+                    {
+                        UIManager.CloseObjectiveNote();
+                    }
+                }
                 break;
             case GameState.Pause:
                 if (Keyboard.current.escapeKey.wasPressedThisFrame)

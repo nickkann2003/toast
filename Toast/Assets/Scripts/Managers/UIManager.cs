@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject settingMenu;
+    [SerializeField] private GameObject objectiveNote;
+    public bool objectiveOpened = false;
     public UnityEngine.UI.Button backButton;
     public UnityEngine.UI.Button inventoryButton;
     public Animator backButtonAni;
@@ -31,7 +33,6 @@ public class UIManager : MonoBehaviour
 
         //DontDestroyOnLoad(gameObject);
     }
-  
 
     public void SetPauseMenu()
     {
@@ -72,6 +73,19 @@ public class UIManager : MonoBehaviour
             backButtonAni.Play("BackButton_PopDown");
             backButtonOnScreen= false;
         }
+    }
+
+    public void OpenObjectiveNote()
+    {
+        objectiveOpened = true;
+        objectiveNote.SetActive(true);
+
+    }
+
+    public void CloseObjectiveNote()
+    {
+        objectiveOpened = false;
+        objectiveNote.SetActive(false);    
     }
 
     public void TurnOnInventoryButton()

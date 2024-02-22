@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectiveManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ObjectiveManager : MonoBehaviour
     
     public List<Objective> objectives = new List<Objective>();
     public List<TextMeshPro> displays = new List<TextMeshPro>();
+    public List<TextMeshProUGUI> displaysUI;
 
     private float completedObjectives = 0;
     private float oldCompletedObjectives = 0; // Used to check if some new objective completed
@@ -55,6 +57,11 @@ public class ObjectiveManager : MonoBehaviour
     private void UpdateText()
     {
         foreach(TextMeshPro display in displays)
+        {
+            display.text = this.ToString;
+        }
+
+        foreach (TextMeshProUGUI display in displaysUI)
         {
             display.text = this.ToString;
         }
