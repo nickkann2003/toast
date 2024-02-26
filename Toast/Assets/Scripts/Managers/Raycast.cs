@@ -133,7 +133,7 @@ public class Raycast : MonoBehaviour
             }
             if (selectGO != null && selectGO.name != "SM_CounterDrawer") // HARDCODE CHANGE LATER
             {
-                if (selectGO.GetComponent<Rigidbody>() != null)
+                if (selectGO.GetComponent<Rigidbody>() != null && StationManager.instance.playerLocation.dragPlane != null)
                 {
                     // Plane-based code
                     // Create ray and hit
