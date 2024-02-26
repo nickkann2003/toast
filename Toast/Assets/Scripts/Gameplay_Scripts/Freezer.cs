@@ -20,7 +20,7 @@ public class Freezer : MonoBehaviour
         for (int i = 0; i < collidingObjects.Count; i++)
         {
             GameObject obj = collidingObjects[i];
-            if (obj != null)
+            if (obj != null && obj.GetComponent<Rigidbody>() != null)
             {
                 NewProp prop = obj.GetComponent<NewProp>();
 
@@ -76,6 +76,7 @@ public class Freezer : MonoBehaviour
     {
         try
         {
+            
             if (collidingObjects.Contains(other.gameObject))
             {
                 //if (!other.gameObject.GetComponent<ObjectVariables>().attributes.Contains(Attribute.Frozen))

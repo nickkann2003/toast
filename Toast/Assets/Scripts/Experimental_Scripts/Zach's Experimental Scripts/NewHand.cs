@@ -14,7 +14,8 @@ public class NewHand : MonoBehaviour
         {
             heldObject.transform.position = handPos.transform.position;
             heldObject.transform.rotation = handPos.transform.rotation;
-            heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            //heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            
 
             if (!heldObject.GetComponent<NewProp>().attributes.HasFlag(PropFlags.InHand))
             {
@@ -63,11 +64,22 @@ public class NewHand : MonoBehaviour
     {
         if (itemToPickup != null)
         {
+            // if the object is already in a hand, remove it
+            if (itemToPickup.GetComponent<NewProp>() != null && itemToPickup.GetComponent<NewProp>().HasAttribute(PropFlags.InHand))
+            {
+                Debug.Log("Forcibly removing from hand");
+                itemToPickup.GetComponent<NewProp>().ForceRemoveFromHand();
+            }
+
             heldObject = itemToPickup;
             heldObject.GetComponent<NewProp>()?.AddAttribute(PropFlags.InHand);
             _useStrategy = heldObject.GetComponent<IUseStrategy>();
             ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.PickUpObject, heldObject.GetComponent<NewProp>().attributes, true));
-            heldObject.transform.parent = this.transform;
+            heldObject.transform.parent = this.gameObject.transform;
+            //if (this.transform.parent.GetComponent<Collider>())
+            //{
+            //    Physics.IgnoreCollision(this.transform.parent.GetComponent<Collider>(), heldObject.GetComponent<Collider>(), true);
+            //}
         }
     }
 

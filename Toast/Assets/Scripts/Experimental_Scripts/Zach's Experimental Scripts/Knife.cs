@@ -13,12 +13,6 @@ public class Knife : NewProp
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public override void Use()
     {
         if (attributes.HasFlag(PropFlags.InHand))
@@ -30,7 +24,6 @@ public class Knife : NewProp
             else
             {
                 Raycast.Instance.PickupRaycast(hand);
-                Debug.Log("Using Knife");
             }
         }
     }

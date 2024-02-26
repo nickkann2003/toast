@@ -339,6 +339,12 @@ public class Raycast : MonoBehaviour
             return;
         }
 
+        if (hitGO.GetComponent<NewProp>() != null && hitGO.GetComponent<NewProp>().HasAttribute(PropFlags.InHand))
+        {
+            Debug.Log("Forcibly removing from hand");
+            hitGO.GetComponent<NewProp>().ForceRemoveFromHand();
+        }
+
         if (hitGO.GetComponent<Rigidbody>() != null || hitGO.name == "Toaster_Lever" || hitGO.name == "Toaster_Dial") // HARDCODE FOR NOW CHANGE LATER
         {
             line = Instantiate(linePrefab);

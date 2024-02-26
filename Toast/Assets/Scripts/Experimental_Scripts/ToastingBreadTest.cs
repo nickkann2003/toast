@@ -231,7 +231,10 @@ class ToastingObject {
         {
             colorStrength = 1;
         }
-        this.totalOffset = ((strongestStrength - weakestStrength) * colorStrength + weakestStrength) - renderer.material.color;
+        if (renderer != null)
+        {
+            this.totalOffset = ((strongestStrength - weakestStrength) * colorStrength + weakestStrength) - renderer.material.color;
+        }
     }
 
     public void adjustColor(float maxTime, float deltaTime)
