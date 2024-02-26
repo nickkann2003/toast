@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class InventoryManager : MonoBehaviour
 
     public Station InventoryStation;
     public Inventory inventory;
+    public Image transitionMask;
 
     public bool atInventory = false;
 
