@@ -73,10 +73,14 @@ public class Requirement : MonoBehaviour
         get
         {
             string value = "";
-            value = goalName + ": " + current + "/" + goal;
+            value = goalName + ": ";
             if (CheckComplete())
             {
-                value += " -- DONE!";
+                value += "DONE!";
+            }
+            else
+            {
+                value += current + "/" + goal;
             }
             return value;
         }
