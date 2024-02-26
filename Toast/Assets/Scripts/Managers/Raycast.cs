@@ -172,7 +172,7 @@ public class Raycast : MonoBehaviour
 
     void ViewRaycast()
     {
-        if (dragging && selectGO.GetComponent<Prop>() != null)
+        if (dragging && selectGO.GetComponent<NewProp>() != null)
         {
             ExamineManager.instance.ExamineObject(selectGO);
             return;
@@ -180,7 +180,7 @@ public class Raycast : MonoBehaviour
 
         GameObject itemToView = RaycastHelper(~mask_Station);
 
-        if (itemToView != null && itemToView.GetComponent<Prop>() != null)
+        if (itemToView != null && itemToView.GetComponent<NewProp>() != null)
         {
             ExamineManager.instance.ExamineObject(hitGO);
         }
