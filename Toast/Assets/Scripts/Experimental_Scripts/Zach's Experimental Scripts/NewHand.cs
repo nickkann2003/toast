@@ -52,6 +52,7 @@ public class NewHand : MonoBehaviour
         {
             heldObject.GetComponent<NewProp>()?.RemoveAttribute(PropFlags.InHand);
             itemToReturn = heldObject;
+            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.DropObject, itemToReturn.GetComponent<NewProp>().attributes, true));
             Debug.Log("Returning Held Object");
             heldObject.transform.parent = null;
             heldObject = null;

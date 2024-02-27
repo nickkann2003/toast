@@ -68,6 +68,7 @@ public class ToastingBreadTest : MonoBehaviour
                             fire.transform.eulerAngles = Vector3.zero;
                             fire.transform.localScale = Vector3.one;
                             prop.AddAttribute(PropFlags.OnFire);
+                            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, prop.attributes, true));
                             fireEndingManager.addFireObject(key);
                         }
 
@@ -139,6 +140,12 @@ public class ToastingBreadTest : MonoBehaviour
                         if (prop.toastiness > .15f && !prop.attributes.HasFlag(PropFlags.Toast))
                         {
                             prop.AddAttribute(PropFlags.Toast);
+                            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, prop.attributes, true));
+                        }
+
+                        if (prop.toastiness > .9f && !prop.attributes.HasFlag(PropFlags.Burnt))
+                        {
+                            prop.AddAttribute(PropFlags.Burnt);
                             ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, prop.attributes, true));
                         }
 

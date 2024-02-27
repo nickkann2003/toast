@@ -119,7 +119,7 @@ public class Objective : MonoBehaviour
                 {
                     if (r.listening)
                     {
-                        value += "\n    - <size=-1>" + r.ToString + "</size>";
+                        value += "\n    - <size=-2>" + r.ToString + "</size>";
                     }
                     if (!r.CheckComplete())
                     {

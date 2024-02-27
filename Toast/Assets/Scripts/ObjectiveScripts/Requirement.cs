@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class Requirement : MonoBehaviour
@@ -73,15 +74,19 @@ public class Requirement : MonoBehaviour
         get
         {
             string value = "";
-            value = goalName + ": ";
             if (CheckComplete())
             {
+                value += "<color=#111><s><size=-2>";
+                value += goalName + ": ";
                 value += "DONE!";
             }
             else
             {
+                value += "<color=#000><size=+0>";
+                value += goalName + ": ";
                 value += current + "/" + goal;
             }
+            value += "</size></s></color>";
             return value;
         }
     }

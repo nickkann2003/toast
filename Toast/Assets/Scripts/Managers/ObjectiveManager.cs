@@ -73,10 +73,10 @@ public class ObjectiveManager : MonoBehaviour
         {
             string value = "";
             value += "<u>To-Do List:</u>";            
-            value += "\n" + "<color=#111><size=-1>" + "Objectives Completed: " + completedObjectives + "</size></color>";
+            //value += "\n" + "<color=#111><size=-1>" + "Objectives Completed: " + completedObjectives + "</size></color>";
             foreach (Objective obj in objectives)
             {
-                if (obj.CheckAvailable() && !obj.CheckComplete())
+                if (obj.CheckAvailable())
                 {
                     value += "\n- " + "<size=-1>" + obj.ToString + "</size>";
                 }

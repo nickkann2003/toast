@@ -18,6 +18,7 @@ public enum PropFlags
     InHand = 1 << 6,
     Frozen = 1 << 7,
     OnFire = 1 << 8,
+    Burnt = 1 << 9,
     Bread = 1 << 29,
     Jam = 1 << 30,
     Knife = 1 << 31,

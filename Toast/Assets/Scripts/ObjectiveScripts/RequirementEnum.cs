@@ -5,7 +5,9 @@ public enum RequirementType
     CompleteMinigame,
     HaveObject,
     DestroyObject,
+    DragObject,
     PickUpObject,
+    DropObject,
     ThawObject,
     UseObject
 }
