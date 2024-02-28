@@ -183,8 +183,16 @@ public class Raycast : MonoBehaviour
         if (itemToView != null && itemToView.GetComponent<NewProp>() != null)
         {
             ExamineManager.instance.ExamineObject(hitGO);
+            StopDragging();
+            return;
         }
-        StopDragging();
+
+        if (hand.CheckObject())
+        {
+            ExamineManager.instance.ExamineObject(hand.CheckObject());
+            StopDragging();
+            return;
+        }
     }
 
     void UseRaycast()
