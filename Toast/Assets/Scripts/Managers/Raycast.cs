@@ -462,12 +462,6 @@ public class Raycast : MonoBehaviour
             newVelocity.z = mouseCopy.z;
         }
 
-
-
-        // Need to figure out some handling for z
-        // Compare ZY Coordinates
-        // Since forward planes will have the same min and max z, can set those for all
-
         return newVelocity;
     }
 }
