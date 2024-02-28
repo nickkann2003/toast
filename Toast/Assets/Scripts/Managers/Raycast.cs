@@ -449,6 +449,21 @@ public class Raycast : MonoBehaviour
             newVelocity.y = mouseCopy.y;
         }
 
+        if ((targetCamera.transform.rotation * Input.mousePosition).z < targetCamera.WorldToScreenPoint(planeMin).x)
+        {
+            newVelocity.z = planeMin.z;
+        }
+        else if ((targetCamera.transform.rotation * Input.mousePosition).z > targetCamera.WorldToScreenPoint(planeMax).x)
+        {
+            newVelocity.z = planeMax.z;
+        }
+        else
+        {
+            newVelocity.z = mouseCopy.z;
+        }
+
+
+
         // Need to figure out some handling for z
         // Compare ZY Coordinates
         // Since forward planes will have the same min and max z, can set those for all
