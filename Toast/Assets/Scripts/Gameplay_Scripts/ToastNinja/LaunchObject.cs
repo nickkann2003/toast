@@ -17,7 +17,7 @@ public class LaunchObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Use", 2.0f, 2.0f);
+        //InvokeRepeating("Use", 2.0f, 2.0f);
     }
 
     // Update is called once per frame
