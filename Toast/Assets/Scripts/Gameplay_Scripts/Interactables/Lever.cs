@@ -28,6 +28,13 @@ public class Lever : MonoBehaviour
     // Has this reached bottom yet?
     private bool isOn;
 
+    // amount that the button has moved towards min height
+    [SerializeField]
+    private float baseSpeedInterpolation = 1;
+    [SerializeField]
+    private float maxSpeedInterpolation = 8;
+    private float interpolateAmount;
+    private float interpolationSpeed;
 
     private void Awake()
     {
@@ -63,14 +70,25 @@ public class Lever : MonoBehaviour
             
             pos = ConvertToLocalPos(transform.position);
 
-            if (pos.y < maxHeight)
+            if (interpolateAmount > 0 && interpolateAmount <= 1)
             {
-                pos.y += ((maxHeight - minHeight) / .2f) * Time.deltaTime;
+                interpolateAmount -= Time.deltaTime * interpolationSpeed;
             }
-            else if (pos.y > maxHeight)
+            else
             {
-                pos.y = maxHeight;
+                interpolateAmount = 0;
             }
+
+            pos = Vector3.Lerp(new Vector3(pos.x, maxHeight, pos.z), new Vector3(pos.x, minHeight, pos.z), interpolateAmount);
+
+            //if (pos.y < maxHeight)
+            //{
+            //    pos.y += ((maxHeight - minHeight) / .2f) * Time.deltaTime;
+            //}
+            //else if (pos.y > maxHeight)
+            //{
+            //    pos.y = maxHeight;
+            //}
 
             //Set all children to correct %
             percent = (pos.y - minHeight) / (maxHeight - minHeight);
@@ -97,6 +115,8 @@ public class Lever : MonoBehaviour
 
     private void OnMouseUp()
     {
+        interpolateAmount = 1 - (ConvertToLocalPos(transform.position).y - minHeight) / (maxHeight - minHeight);
+        interpolationSpeed = (maxSpeedInterpolation - baseSpeedInterpolation) * interpolateAmount + baseSpeedInterpolation;
         mouse = false;
     }
 
