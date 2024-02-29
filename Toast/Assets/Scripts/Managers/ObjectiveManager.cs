@@ -7,13 +7,9 @@ using UnityEngine.UI;
 public class ObjectiveManager : MonoBehaviour
 {
     public static ObjectiveManager instance;
-    
-    public List<Objective> objectives = new List<Objective>();
-    public List<TextMeshPro> displays = new List<TextMeshPro>();
-    public List<TextMeshProUGUI> displaysUI;
 
-    private float completedObjectives = 0;
-    private float oldCompletedObjectives = 0; // Used to check if some new objective completed
+    [SerializeField]
+    public List<ObjectiveGroup> groups = new List<ObjectiveGroup>();
 
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
@@ -36,34 +32,17 @@ public class ObjectiveManager : MonoBehaviour
     // Update Objectives
     public void UpdateObjectives(RequirementEvent e)
     {
-        completedObjectives = 0;
-        foreach (Objective obj in objectives)
+        foreach(ObjectiveGroup g in groups)
         {
-            obj.UpdateObjective(e);
-            if (obj.CheckComplete())
-            {
-                completedObjectives++;
-            }
+            g.UpdateObjectives(e);
         }
-        if(completedObjectives > oldCompletedObjectives)
-        {
-            AudioManager.instance.PlayOneShotSound(AudioManager.instance.objectiveComplete, 0.3f, 1);
-            Debug.LogWarning("new objective complete");
-        }
-        oldCompletedObjectives = completedObjectives;
-        UpdateText();
     }
 
     private void UpdateText()
     {
-        foreach(TextMeshPro display in displays)
+        foreach (ObjectiveGroup g in groups)
         {
-            display.text = this.ToString;
-        }
-
-        foreach (TextMeshProUGUI display in displaysUI)
-        {
-            display.text = this.ToString;
+            g.UpdateText();
         }
     }
 
@@ -72,14 +51,9 @@ public class ObjectiveManager : MonoBehaviour
         get
         {
             string value = "";
-            value += "<u>To-Do List:</u>";            
-            //value += "\n" + "<color=#111><size=-1>" + "Objectives Completed: " + completedObjectives + "</size></color>";
-            foreach (Objective obj in objectives)
+            foreach (ObjectiveGroup g in groups)
             {
-                if (obj.CheckAvailable())
-                {
-                    value += "\n- " + "<size=-1>" + obj.ToString + "</size>";
-                }
+                value += g.ToString();
             }
             return value;
         }
