@@ -54,7 +54,14 @@ public class UIManager : MonoBehaviour
         mainMenu.SetActive(false);
     }
 
-    public void TurnOnBackButton()
+
+    public void SetupInGameUI()
+    {
+        backButton.gameObject.SetActive(true);
+        inventoryButton.gameObject.SetActive(true);
+    }
+
+    public void BackButtonPopup()
     {
         if(!backButtonOnScreen)
         {
@@ -64,7 +71,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void TurnOffBackButton()
+    public void BackButtonPopdown()
     {
         if(backButtonOnScreen)
         {

@@ -29,7 +29,7 @@ public class ObjectiveGroup
         {
             AudioManager.instance.PlayOneShotSound(AudioManager.instance.objectiveComplete, 0.3f, 1);
             Debug.LogWarning("new objective complete");
-            GameManager.Instance.MainMenuToGame();
+            GameManager.Instance.TutorialToGame();
         }
         oldCompletedObjectives = completedObjectives;
         UpdateText();

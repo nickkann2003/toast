@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     public GameState curState = GameState.Menu;
 
     [SerializeField] Station gameDefaultStation;
+    [SerializeField] Station tutorialStation;
     [SerializeField] Station mainMenuStation;
 
     // BGM
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Vector2 DefaulthotSpot = new Vector2(16,16);
     [SerializeField] private Vector2 HandHotSpot = new Vector2(16, 0);
 
+    [SerializeField] private Animator tutorialFinish;
 
 
     private void Awake()
@@ -170,16 +172,35 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void MainMenuToGame()
+    public void MainMenuToTutorial()
     {
-        curState = GameState.inGame;
+        curState= GameState.Tutorial;
 
         Time.timeScale = 1;
         raycaster.enabled = true;
         UIManager.CloseMainMenu();
         StationManager.instance.playerPath.Clear();
+        StationManager.instance.MoveToStation(tutorialStation);
+    }
+
+    public void TutorialToGame()
+    {
+        tutorialFinish.SetTrigger("FinishTutorial");
+        StartCoroutine(WaitForTutorialAnimation());
+    }
+
+    private System.Collections.IEnumerator WaitForTutorialAnimation()
+    {
+        yield return new WaitForSeconds(2);
+
+        // Once the animation is finished, execute the rest of your code
+        curState = GameState.inGame;
+        Time.timeScale = 1;
+        raycaster.enabled = true;
+        UIManager.CloseMainMenu();
+        StationManager.instance.playerPath.Clear();
         StationManager.instance.MoveToStation(gameDefaultStation);
-        //UIManager.instance.TurnOnBackButton();
+        UIManager.instance.SetupInGameUI();
     }
 
     public void PauseToMainMenu()

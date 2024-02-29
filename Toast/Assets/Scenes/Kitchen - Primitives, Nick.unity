@@ -8973,6 +8973,8 @@ MonoBehaviour:
   - rigidBody: {fileID: 1527467457}
     top: {x: 0.62, y: -2.64, z: -7.8}
     bottom: {x: 12.59, y: -2.64, z: -7.8}
+  baseSpeedInterpolation: 1
+  maxSpeedInterpolation: 8
 --- !u!65 &464587652
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23635,35 +23637,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TitleUI
       objectReference: {fileID: 0}
-    - target: {fileID: 2094396101680858586, guid: d22de2d781775c54ea1510b62f74ecc6,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2094396101680858586, guid: d22de2d781775c54ea1510b62f74ecc6,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 2526733773592914610, guid: d22de2d781775c54ea1510b62f74ecc6,
         type: 3}
       propertyPath: m_RootOrder
       value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2526733773592914610, guid: d22de2d781775c54ea1510b62f74ecc6,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2526733773592914610, guid: d22de2d781775c54ea1510b62f74ecc6,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2526733773592914610, guid: d22de2d781775c54ea1510b62f74ecc6,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2526733773592914610, guid: d22de2d781775c54ea1510b62f74ecc6,
         type: 3}
@@ -27043,6 +27020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curState: 0
   gameDefaultStation: {fileID: 846166369}
+  tutorialStation: {fileID: 0}
   mainMenuStation: {fileID: 409015822}
   test: {fileID: 8300000, guid: 2dbc84ee6181c6b4bab722bdd08f9ef5, type: 3}
   raycaster: {fileID: 330585549}

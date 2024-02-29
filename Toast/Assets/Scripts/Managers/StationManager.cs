@@ -121,7 +121,7 @@ public class StationManager : MonoBehaviour
 
         if (playerPath.Count > 1)
         {
-            GameManager.Instance.UIManager.TurnOnBackButton();
+            GameManager.Instance.UIManager.BackButtonPopup();
             if (Keyboard.current.downArrowKey.wasPressedThisFrame)
             {
                 StationManager.instance.StationMoveBack();
@@ -129,7 +129,7 @@ public class StationManager : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.UIManager.TurnOffBackButton();
+            GameManager.Instance.UIManager.BackButtonPopdown();
         }
     }
 
