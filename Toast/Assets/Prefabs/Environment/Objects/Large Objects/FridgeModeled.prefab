@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 8276055670337835259}
   - component: {fileID: 7192388771581026912}
   - component: {fileID: 4126750331377396116}
+  - component: {fileID: 220165781879336104}
   m_Layer: 0
   m_Name: RotatorTopDoor
   m_TagString: Untagged
@@ -380,6 +381,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &220165781879336104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3523534184957948369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7921e314fe395f409ff3b4b4be214e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRotation: -180
+  maxRotation: -90
+  speed: 3
+  isOpen: 0
+  rotator: {fileID: 3523534184957948369}
 --- !u!1 &3897389252958179053
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +410,7 @@ GameObject:
   - component: {fileID: 5428041112024768768}
   - component: {fileID: 7607979587131603667}
   - component: {fileID: 4967136759150170860}
+  - component: {fileID: 7046335455449225179}
   m_Layer: 0
   m_Name: RotatorBottomDoor
   m_TagString: Untagged
@@ -486,6 +505,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7046335455449225179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3897389252958179053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7921e314fe395f409ff3b4b4be214e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRotation: -180
+  maxRotation: -90
+  speed: 3
+  isOpen: 0
+  rotator: {fileID: 3897389252958179053}
 --- !u!1 &4081993937479264351
 GameObject:
   m_ObjectHideFlags: 0

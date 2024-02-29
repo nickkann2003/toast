@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 2774120284373707910}
   - component: {fileID: 4073315838096952472}
   - component: {fileID: 4045566601356467773}
+  - component: {fileID: 5792740530286225678}
   m_Layer: 0
   m_Name: RotatorRightDoor
   m_TagString: Untagged
@@ -140,6 +141,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9999999, y: 0.9999999, z: 0.9999999}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5792740530286225678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4695151753420679362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7921e314fe395f409ff3b4b4be214e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRotation: -180
+  maxRotation: -90
+  speed: 3
+  isOpen: 0
+  rotator: {fileID: 4695151753420679362}
 --- !u!1 &8117977386866984415
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,6 +328,7 @@ GameObject:
   - component: {fileID: 3805496951604502516}
   - component: {fileID: 7730229421381659705}
   - component: {fileID: 1082296063586050274}
+  - component: {fileID: 8067559168292584180}
   m_Layer: 0
   m_Name: RotatorLeftDoor
   m_TagString: Untagged
@@ -404,6 +423,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9999999, y: 0.9999999, z: 0.9999999}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8067559168292584180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8668779231207018693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7921e314fe395f409ff3b4b4be214e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRotation: -180
+  maxRotation: -90
+  speed: 3
+  isOpen: 0
+  rotator: {fileID: 8668779231207018693}
 --- !u!1001 &1178251705721327446
 PrefabInstance:
   m_ObjectHideFlags: 0
