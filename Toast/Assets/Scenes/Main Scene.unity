@@ -856,7 +856,7 @@ GameObject:
   - component: {fileID: 242067163}
   - component: {fileID: 242067164}
   m_Layer: 0
-  m_Name: Drag Bread (!)
+  m_Name: Drag Bread
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1888,18 +1888,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &450812857 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
-    type: 3}
-  m_PrefabInstance: {fileID: 780163198}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &457063236
 GameObject:
   m_ObjectHideFlags: 0
@@ -4062,6 +4050,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 780163198}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &780163200 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
+    type: 3}
+  m_PrefabInstance: {fileID: 780163198}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &792756045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4476,7 +4476,6 @@ MonoBehaviour:
   - {fileID: 1366592690}
   - {fileID: 1529303603}
   - {fileID: 1224051955}
-  - {fileID: 2070419343}
   objectiveObjects: []
   activatables: []
 --- !u!4 &809895352
@@ -4497,7 +4496,6 @@ Transform:
   - {fileID: 1366592689}
   - {fileID: 1529303602}
   - {fileID: 1224051954}
-  - {fileID: 2070419342}
   m_Father: {fileID: 1756709728}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6342,7 +6340,7 @@ GameObject:
   - component: {fileID: 1224051954}
   - component: {fileID: 1224051955}
   m_Layer: 0
-  m_Name: Burn Toast (!)
+  m_Name: Burn Toast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9910,11 +9908,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff1a8436ea9b4548a77a9a63db04c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectives:
-  - {fileID: 809895351}
-  displays:
-  - {fileID: 450812857}
-  displaysUI: []
+  groups:
+  - objectives:
+    - {fileID: 809895351}
+    displays:
+    - {fileID: 780163200}
+    displaysUI: []
 --- !u!1001 &1764463560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10408,7 +10407,7 @@ GameObject:
   - component: {fileID: 1780170093}
   - component: {fileID: 1780170094}
   m_Layer: 0
-  m_Name: Drop Bread (!)
+  m_Name: Drop Bread
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17904,56 +17903,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054908678}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2070419341
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2070419342}
-  - component: {fileID: 2070419343}
-  m_Layer: 0
-  m_Name: Set Toast On Fire (!)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2070419342
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070419341}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 809895352}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2070419343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070419341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0af866e473c2a3040aa075a67984daed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listening: 1
-  type: 1
-  targetAttributes: 536871169
-  goalName: Set Toast On Fire
-  goal: 1
-  alwaysListening: 0
 --- !u!1 &2074781285
 GameObject:
   m_ObjectHideFlags: 0
