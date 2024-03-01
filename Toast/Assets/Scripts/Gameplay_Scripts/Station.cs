@@ -97,12 +97,15 @@ public class Station : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(cameraPos, 0.1f);
-        Gizmos.DrawFrustum(cameraPos, Camera.main.fieldOfView, Camera.main.farClipPlane, Camera.main.nearClipPlane, Camera.main.aspect);
-
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(objectOffset, 0.1f);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(cameraPos, 0.1f);
+        Matrix4x4 matrix = Matrix4x4.Translate(cameraPos) * Matrix4x4.Rotate(cameraRotation);
+        Gizmos.matrix = matrix;
+        Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane, Camera.main.nearClipPlane, Camera.main.aspect);
+
     }
 
 }
