@@ -50,7 +50,7 @@ public class Raycast : MonoBehaviour
     public float scrollSpeed = 1.0f;
     private float scrollInput;
     private float stationMoveTimer = 0.0f;
-    private float stationMaxTimer = .1f;
+    private float stationMaxTimer = .2f;
 
     GameObject line;
     LineController lineController;
@@ -285,9 +285,10 @@ public class Raycast : MonoBehaviour
     void TestRaycast()
     {
 
-        if (scrollInput < 0f)
+        if (scrollInput < 0f && stationMoveTimer <= 0)
         {
             StationManager.instance.StationMoveBack();
+            stationMoveTimer = stationMaxTimer;
         }
         // turn off prev highlight
         if (prevHighligtable != null)
