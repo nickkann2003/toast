@@ -13,17 +13,33 @@ public class ObjectiveGroup
     private float completedObjectives = 0;
     private float oldCompletedObjectives = 0; // Used to check if some new objective completed
 
+    private float completedRequirements = 0;
+    private float oldCompletedRequirements = 0;
+
     // Update Objectives
     public void UpdateObjectives(RequirementEvent e)
     {
         completedObjectives = 0;
+        completedRequirements = 0;
         foreach (Objective obj in objectives)
         {
             obj.UpdateObjective(e);
+            foreach(Requirement r in obj.requirements)
+            {
+                if (r.CheckComplete())
+                {
+                    completedRequirements++;
+                }
+            }
             if (obj.CheckComplete())
             {
                 completedObjectives++;
             }
+        }
+        if(completedRequirements > oldCompletedRequirements)
+        {
+            AudioManager.instance.PlayOneShotSound(AudioManager.instance.requirementComplete, 0.8f, 1);
+            Debug.LogWarning("new requirement complete");
         }
         if (completedObjectives > oldCompletedObjectives)
         {
@@ -32,6 +48,7 @@ public class ObjectiveGroup
             GameManager.Instance.TutorialToGame();
         }
         oldCompletedObjectives = completedObjectives;
+        oldCompletedRequirements = completedRequirements;
         UpdateText();
     }
 

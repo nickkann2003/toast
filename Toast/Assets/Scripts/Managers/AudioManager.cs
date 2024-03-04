@@ -20,6 +20,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip fire;
     public AudioClip fireAlarm;
     public AudioClip physicalButton;
+    public AudioClip requirementComplete;
     private void Awake()
     {
 
