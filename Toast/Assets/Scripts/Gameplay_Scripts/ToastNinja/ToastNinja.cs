@@ -58,7 +58,7 @@ public class ToastNinja : MonoBehaviour
         //{
         //    launchObjects[i].Use();
         //}
-        launchObjects[Random.Range(0, launchObjects.Length)].Use();
+        launchObjects[Random.Range(0, launchObjects.Length)].Launch();
     }
 
     public void GameStart()

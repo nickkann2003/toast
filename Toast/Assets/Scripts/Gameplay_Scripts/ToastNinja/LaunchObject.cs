@@ -8,9 +8,19 @@ public class LaunchObject : MonoBehaviour
     public Vector3 launchVector;
     public float launchVelocity = 400f;
 
-    public void Use()
+    public void Launch()
     {
-        GameObject obj = Instantiate(objPrefab, transform.position, transform.rotation);
+        LaunchObj(objPrefab);
+    }
+
+    public void Launch(GameObject objectToLaunch)
+    {
+        LaunchObj(objectToLaunch);
+    }
+
+    private void LaunchObj(GameObject objectToLaunch)
+    {
+        GameObject obj = Instantiate(objectToLaunch, transform.position, transform.rotation);
         obj.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, launchVelocity, 0));
     }
 
