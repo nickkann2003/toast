@@ -12,9 +12,9 @@ public enum ToastNinjaState
 public class ToastNinja : MonoBehaviour
 {
     [SerializeField]
-    private float timeRandMin = .01f;
+    private float timeRandMin = .5f;
     [SerializeField]
-    private float timeRandMax = .2f;
+    private float timeRandMax = 1f;
 
     private float timer;
 
@@ -30,7 +30,7 @@ public class ToastNinja : MonoBehaviour
     void Start()
     {
         timer = Random.Range(timeRandMin, timeRandMax);
-        toastNinjaState = ToastNinjaState.Inactive;
+        toastNinjaState = ToastNinjaState.Active;
         //InvokeRepeating("LaunchToast", 2.0f, 2.0f);
     }
 
