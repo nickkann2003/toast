@@ -385,6 +385,56 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 92117208}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &122066555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 122066556}
+  - component: {fileID: 122066557}
+  m_Layer: 0
+  m_Name: Place Bread In Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &122066556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122066555}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1944344248}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &122066557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122066555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af866e473c2a3040aa075a67984daed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listening: 1
+  type: 10
+  targetAttributes: 536870912
+  goalName: Have Bread In Inventory
+  goal: 3
+  alwaysListening: 0
 --- !u!1 &124748872
 GameObject:
   m_ObjectHideFlags: 0
@@ -12356,6 +12406,18 @@ Transform:
   m_Father: {fileID: 1001314359}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1637991380 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
+    type: 3}
+  m_PrefabInstance: {fileID: 2035227709}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1640900799
 GameObject:
   m_ObjectHideFlags: 0
@@ -13453,6 +13515,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 809895352}
+  - {fileID: 1944344248}
   m_Father: {fileID: 1135898838}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13473,6 +13536,12 @@ MonoBehaviour:
     - {fileID: 809895351}
     displays:
     - {fileID: 780163200}
+    displaysUI:
+    - {fileID: 1776345623}
+  - objectives:
+    - {fileID: 1944344249}
+    displays:
+    - {fileID: 1637991380}
     displaysUI:
     - {fileID: 1776345623}
 --- !u!1001 &1764463560
@@ -19960,6 +20029,57 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938381525}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1944344247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1944344248}
+  - component: {fileID: 1944344249}
+  m_Layer: 0
+  m_Name: ToastObjectives1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1944344248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944344247}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 122066556}
+  m_Father: {fileID: 1756709728}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1944344249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944344247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1cfdb4bb7e7a154a820e421ece8ff92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveName: Learning The Ropes
+  prerequisites: []
+  requirements:
+  - {fileID: 122066557}
+  objectiveObjects: []
+  activatables: []
 --- !u!1 &1994780787
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,5 +9,6 @@ public enum RequirementType
     PickUpObject,
     DropObject,
     ThawObject,
-    UseObject
+    UseObject,
+    HaveObjectsInInventory
 }
