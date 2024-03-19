@@ -12,6 +12,13 @@ public enum ToastNinjaState
 public class ToastNinja : MonoBehaviour
 {
     [SerializeField]
+    private GameObject toastObj;
+    [SerializeField]
+    private GameObject jamObj;
+    [SerializeField]
+    private GameObject burningObj;
+
+    [SerializeField]
     private float timeRandMin = .5f;
     [SerializeField]
     private float timeRandMax = 1f;
@@ -54,11 +61,24 @@ public class ToastNinja : MonoBehaviour
 
     void LaunchToast()
     {
+        float rand = Random.value;
+        if (rand < .8)
+        {
+            launchObjects[Random.Range(0, launchObjects.Length)].Launch(toastObj);
+        }
+        else if(rand < .95)
+        {
+            launchObjects[Random.Range(0, launchObjects.Length)].Launch(jamObj);
+        }
+        else
+        {
+            launchObjects[Random.Range(0, launchObjects.Length)].Launch(burningObj);
+        }
         //for (int i = 0; i < launchObjects.Length; i++)
         //{
         //    launchObjects[i].Use();
         //}
-        launchObjects[Random.Range(0, launchObjects.Length)].Launch();
+        //launchObjects[Random.Range(0, launchObjects.Length)].Launch();
     }
 
     public void GameStart()
