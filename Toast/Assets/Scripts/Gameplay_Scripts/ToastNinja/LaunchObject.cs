@@ -20,8 +20,17 @@ public class LaunchObject : MonoBehaviour
 
     private void LaunchObj(GameObject objectToLaunch)
     {
+        
         GameObject obj = Instantiate(objectToLaunch, transform.position, transform.rotation);
         obj.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, launchVelocity, 0));
+        if (transform.rotation.z == 0)
+        {
+            obj.GetComponent<Rigidbody>().AddRelativeTorque(new Vector3(0, 0, Random.Range(-10, 10)));
+        }
+        else
+        {
+            obj.GetComponent<Rigidbody>().AddRelativeTorque(new Vector3(0, 0, Random.Range(3, 15) * (transform.rotation.z/Mathf.Abs(transform.rotation.z))));
+        }
     }
 
     // Start is called before the first frame update
