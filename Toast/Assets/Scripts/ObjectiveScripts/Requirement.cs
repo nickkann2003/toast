@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -12,6 +13,7 @@ public class Requirement : MonoBehaviour
     public string goalName;
     public int goal;
     public bool alwaysListening = false;
+    private bool complete = false;
 
     // Private variables
     private int current;
@@ -33,6 +35,11 @@ public class Requirement : MonoBehaviour
     {
         if(current == goal)
         {
+            if (!complete)
+            {
+                complete = true;
+                AudioManager.instance.PlayOneShotSound(AudioManager.instance.requirementComplete);
+            }
             return true;
         }
         return false;
