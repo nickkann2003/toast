@@ -30,14 +30,16 @@ public class ToastNinja : MonoBehaviour
 
     [SerializeField]
     private LaunchObject[] launchObjects;
+    [SerializeField]
+    private DestroyerVolume[] destroyerVolumes;
 
     private ToastNinjaState toastNinjaState;
 
     // Start is called before the first frame update
     void Start()
     {
-        timer = Random.Range(timeRandMin, timeRandMax);
-        toastNinjaState = ToastNinjaState.Active;
+        timer = 2;
+        GameStop();
         //InvokeRepeating("LaunchToast", 2.0f, 2.0f);
     }
 
@@ -95,14 +97,47 @@ public class ToastNinja : MonoBehaviour
         //launchObjects[Random.Range(0, launchObjects.Length)].Launch();
     }
 
+    public void ToggleActive()
+    {
+        if (toastNinjaState == ToastNinjaState.Active)
+        {
+            GameStop();
+        }
+        else
+        {
+            GameStart();
+        }
+    }
+
     public void GameStart()
     {
         toastNinjaState = ToastNinjaState.Active;
+        //for (int i = 0; i < launchObjects.Length; i++)
+        //{
+        //    launchObjects[i].gameObject.SetActive(true);
+        //}
+        for (int i = 0;i < destroyerVolumes.Length; i++)
+        {
+            destroyerVolumes[i].gameObject.SetActive(true);
+        }
+    }
+
+    public void GameStop()
+    {
+        toastNinjaState = ToastNinjaState.Inactive;
+        //for (int i = 0; i < launchObjects.Length; i++)
+        //{
+        //    launchObjects[i].gameObject.SetActive(false);
+        //}
+        for (int i = 0; i < destroyerVolumes.Length; i++)
+        {
+            destroyerVolumes[i].gameObject.SetActive(false);
+        }
     }
 
     public void GameReady()
     {
-        toastNinjaObjects.active = true;
+        toastNinjaObjects.SetActive(true);
         toastNinjaState = ToastNinjaState.Ready;
     }
 }
