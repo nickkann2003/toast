@@ -8,6 +8,9 @@ public class LaunchObject : MonoBehaviour
     public Vector3 launchVector;
     public float launchVelocity = 400f;
 
+    [SerializeField]
+    ParticleSystem particles;
+
     public void Launch()
     {
         LaunchObj(objPrefab);
@@ -20,7 +23,15 @@ public class LaunchObject : MonoBehaviour
 
     private void LaunchObj(GameObject objectToLaunch)
     {
-        
+        particles.Play();
+        StartCoroutine(DelayedLaunchObj(objectToLaunch));
+
+    }
+
+    IEnumerator DelayedLaunchObj(GameObject objectToLaunch)
+    {
+        yield return new WaitForSeconds(1.5f);
+
         GameObject obj = Instantiate(objectToLaunch, transform.position, transform.rotation);
         obj.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, launchVelocity, 0));
         if (transform.rotation.z == 0)
@@ -29,7 +40,7 @@ public class LaunchObject : MonoBehaviour
         }
         else
         {
-            obj.GetComponent<Rigidbody>().AddRelativeTorque(new Vector3(0, 0, Random.Range(3, 15) * (transform.rotation.z/Mathf.Abs(transform.rotation.z))));
+            obj.GetComponent<Rigidbody>().AddRelativeTorque(new Vector3(0, 0, Random.Range(3, 15) * (transform.rotation.z / Mathf.Abs(transform.rotation.z))));
         }
     }
 

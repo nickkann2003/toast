@@ -51,11 +51,25 @@ public class ToastNinja : MonoBehaviour
                 
                 if (timer <= 0)
                 {
-                    LaunchToast();
+                    StartCoroutine(RapidFire(5));
                     timer = Random.Range(timeRandMin, timeRandMax);
                 }
 
                 break;
+        }
+    }
+
+    IEnumerator RapidFire(int amount)
+    {
+        if (amount > 0)
+        {
+            LaunchToast();
+            yield return new WaitForSeconds(.25f);
+            StartCoroutine(RapidFire(amount - 1));
+        }
+        else
+        {
+            yield return new WaitForSeconds(.1f);
         }
     }
 
