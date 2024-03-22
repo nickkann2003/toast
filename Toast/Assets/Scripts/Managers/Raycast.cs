@@ -150,6 +150,8 @@ public class Raycast : MonoBehaviour
                         (new Vector3(hit.point.x, hit.point.y,
                         hit.point.z) - selectGO.transform.position) * 10;
 
+                        Debug.Log($"Point on Plane: ({hit.point.x}, {hit.point.y}, {hit.point.z}");
+
                         lastPos = new Vector3(hit.point.x, hit.point.y,
                         hit.point.z);
                     }
