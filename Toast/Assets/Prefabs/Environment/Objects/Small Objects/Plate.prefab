@@ -25,8 +25,8 @@ Transform:
   m_GameObject: {fileID: 7478228445048931180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5139215702867535907}
   m_Father: {fileID: 0}
@@ -126,6 +126,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5019248527639951099}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7b961fe625a1ceb4985559c9d923f5d9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6960371487541433942}
   m_SourcePrefab: {fileID: 100100000, guid: 7b961fe625a1ceb4985559c9d923f5d9, type: 3}
 --- !u!4 &5139215702867535907 stripped
 Transform:
@@ -178,9 +182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ed4ab8bf312e2478fd4ead7aa93dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickableCollider: {fileID: 0}
-  stationHighlight: {fileID: 0}
-  isEnabled: 0
   currentLocation: {fileID: 0}
   toastiness: 0
   frozenness: 0
@@ -205,3 +206,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9325353, y: 0.059079237, z: 0.9325355}
   m_Center: {x: -0.0037479997, y: 0.029539619, z: -0.0012494773}
+--- !u!114 &6960371487541433942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5483688759137874585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902f118e886d20d43b1ff6bff5092b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHighlightSetting: {fileID: 0}
+  isHighlightedEnabled: 1
+  outline: []
