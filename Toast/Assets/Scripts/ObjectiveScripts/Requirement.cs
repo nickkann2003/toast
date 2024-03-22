@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Drawing;
 using UnityEngine;
 
@@ -33,14 +34,18 @@ public class Requirement : MonoBehaviour
     // Check if the goal is complete
     public bool CheckComplete()
     {
-        if(current == goal)
+        if(goal > 0) // If the goal is a completable goal
         {
-            if (!complete)
+            if(current == goal) // Exact match
             {
-                complete = true;
-                AudioManager.instance.PlayOneShotSound(AudioManager.instance.requirementComplete);
+                if (!complete) // If it was not complete, run one-shot effects
+                {
+                    complete = true;
+                    AudioManager.instance.PlayOneShotSound(AudioManager.instance.requirementComplete);
+                }
+                return true;
             }
-            return true;
+            return false;
         }
         return false;
     }
@@ -65,11 +70,39 @@ public class Requirement : MonoBehaviour
             {
                 current = current > 0 ? current - 1 : 0;
             }
-            if(type != RequirementType.HaveObject) // If not [exact number type], don't allow overflow
+
+            if(type != RequirementType.HaveObject && type != RequirementType.ToastNinjaScore) // If not [exact number type], don't allow overflow
             {
                 if(current > goal)
                 {
                     current = goal;
+                }
+            }
+
+            // Specific case for handling Toast Ninja score
+            if(type == RequirementType.ToastNinjaScore)
+            {
+                // Undo previous increase
+                current -= 1;
+
+                // Check for Jam, Toast, Bread
+                if (e.attributes.HasFlag(PropFlags.Jam))
+                {
+                    current += 2;
+                }
+                else if (e.attributes.HasFlag(PropFlags.Toast))
+                {
+                    current -= 2;
+                }
+                else
+                {
+                    current += 1;
+                }
+
+                // Reset if not increase
+                if (!e.increase)
+                {
+                    current = 0;
                 }
             }
         }
@@ -89,9 +122,19 @@ public class Requirement : MonoBehaviour
             }
             else
             {
-                value += "<color=#000><size=+0>";
-                value += goalName + ": ";
-                value += current + "/" + goal;
+                if(goal > 0)
+                {
+                    value += "<color=#000><size=+0>";
+                    value += goalName + ": ";
+                    value += current + "/" + goal;
+                }
+                else
+                {
+                    value += "<color=#000><size=+0>";
+                    value += goalName + ": ";
+                    value += current;
+                }
+                
             }
             value += "</size></s></color>";
             return value;

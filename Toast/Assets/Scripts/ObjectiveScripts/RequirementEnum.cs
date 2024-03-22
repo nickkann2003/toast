@@ -10,5 +10,6 @@ public enum RequirementType
     DropObject,
     ThawObject,
     UseObject,
-    HaveObjectsInInventory
+    HaveObjectsInInventory,
+    ToastNinjaScore
 }
