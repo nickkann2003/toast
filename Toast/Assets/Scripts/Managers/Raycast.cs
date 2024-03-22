@@ -133,6 +133,7 @@ public class Raycast : MonoBehaviour
             }
             if (selectGO != null && selectGO.name != "SM_CounterDrawer") // HARDCODE CHANGE LATER
             {
+
                 if (selectGO.GetComponent<Rigidbody>() != null && StationManager.instance.playerLocation.dragPlane != null)
                 {
                     // Plane-based code
@@ -154,7 +155,8 @@ public class Raycast : MonoBehaviour
                     }
                     else
                     {
-                        
+                        Debug.Log("Dragging failed");
+
                         // Set velocity based on last stored position on plane
                         selectGO.GetComponent<Rigidbody>().velocity =
                         (OffPlaneHelper(lastPos) - selectGO.transform.position) * 10;
@@ -421,8 +423,8 @@ public class Raycast : MonoBehaviour
         mouseCopy.z = targetCamera.WorldToScreenPoint(planePos).z;
         mouseCopy = targetCamera.ScreenToWorldPoint(mouseCopy);
 
-        Debug.Log("Mouse pos:" + Input.mousePosition);
-        Debug.Log("Plane min x: " + targetCamera.WorldToScreenPoint(planeMin).x);
+        //Debug.Log("Mouse pos:" + Input.mousePosition);
+        //Debug.Log("Plane min x: " + targetCamera.WorldToScreenPoint(planeMin).x);
 
         if (Input.mousePosition.x < targetCamera.WorldToScreenPoint(planeMin).x)
         {
