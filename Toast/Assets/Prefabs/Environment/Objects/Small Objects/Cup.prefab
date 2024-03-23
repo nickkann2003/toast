@@ -121,15 +121,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c490c66eacb54a841af165279a975faf,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8035107821761388487}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c490c66eacb54a841af165279a975faf,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1331198083477772128}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c490c66eacb54a841af165279a975faf,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6805311895788677695}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c490c66eacb54a841af165279a975faf,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5920409591873511441}
   m_SourcePrefab: {fileID: 100100000, guid: c490c66eacb54a841af165279a975faf, type: 3}
 --- !u!1 &4977454841250188548 stripped
 GameObject:
@@ -164,21 +164,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
---- !u!114 &8035107821761388487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4977454841250188548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47ed4ab8bf312e2478fd4ead7aa93dd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentLocation: {fileID: 0}
-  toastiness: 0
-  frozenness: 0
 --- !u!65 &1331198083477772128
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -215,6 +200,22 @@ MonoBehaviour:
   defaultHighlightSetting: {fileID: 0}
   isHighlightedEnabled: 1
   outline: []
+--- !u!114 &5920409591873511441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4977454841250188548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429bde5dd05b54548b37ef4292b26c5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMat: {fileID: 0}
+  attributes: 0
+  toastiness: 0
+  frozenness: 0
 --- !u!4 &5645447275677505470 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c490c66eacb54a841af165279a975faf,

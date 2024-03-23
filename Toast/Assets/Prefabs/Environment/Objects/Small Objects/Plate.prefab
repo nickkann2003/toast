@@ -121,15 +121,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7b961fe625a1ceb4985559c9d923f5d9,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1740094954185058965}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7b961fe625a1ceb4985559c9d923f5d9,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5019248527639951099}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7b961fe625a1ceb4985559c9d923f5d9,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6960371487541433942}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7b961fe625a1ceb4985559c9d923f5d9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5915577446088352130}
   m_SourcePrefab: {fileID: 100100000, guid: 7b961fe625a1ceb4985559c9d923f5d9, type: 3}
 --- !u!4 &5139215702867535907 stripped
 Transform:
@@ -170,21 +170,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
---- !u!114 &1740094954185058965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5483688759137874585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47ed4ab8bf312e2478fd4ead7aa93dd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentLocation: {fileID: 0}
-  toastiness: 0
-  frozenness: 0
 --- !u!65 &5019248527639951099
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -221,3 +206,19 @@ MonoBehaviour:
   defaultHighlightSetting: {fileID: 0}
   isHighlightedEnabled: 1
   outline: []
+--- !u!114 &5915577446088352130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5483688759137874585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429bde5dd05b54548b37ef4292b26c5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMat: {fileID: 0}
+  attributes: 0
+  toastiness: 0
+  frozenness: 0
