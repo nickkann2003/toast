@@ -2603,8 +2603,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b19bf611c1b9d842be4c2b1abc3d354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6994967846282815134, guid: c3f3c7f25a39a19419714892b4c2aa0d, type: 3}
-  spawnPosition: {x: 0, y: 0, z: 0}
+  objects:
+  - prefab: {fileID: 6994967846282815134, guid: c3f3c7f25a39a19419714892b4c2aa0d,
+      type: 3}
+    spawnPosition: {x: -0.09, y: 0.51, z: 0}
+    spawnRotation: {x: 0.49999997, y: -0.49999997, z: 0.49999997, w: 0.49999997}
+  - prefab: {fileID: 6994967846282815134, guid: c3f3c7f25a39a19419714892b4c2aa0d,
+      type: 3}
+    spawnPosition: {x: -0.21, y: 0, z: 0}
+    spawnRotation: {x: -0.45922917, y: 0.5376882, z: -0.5376882, w: -0.45922917}
+  waitForAll: 1
 --- !u!1 &405738750
 GameObject:
   m_ObjectHideFlags: 0
@@ -16197,6 +16205,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AdvancedToaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 7502987978113204342, guid: 087a36c7a73205049bb1d1992e3f01ce,
+        type: 3}
+      propertyPath: targetRotationEuler.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7673949830678707445, guid: 087a36c7a73205049bb1d1992e3f01ce,
         type: 3}
