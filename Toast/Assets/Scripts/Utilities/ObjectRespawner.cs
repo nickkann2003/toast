@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ObjectRespawner : MonoBehaviour
 {
     [SerializeField] public List<RespawnableObject> objects;
     [SerializeField] public bool waitForAll = false;
+    [SerializeField] public bool autoRespawnItems = true;
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +27,17 @@ public class ObjectRespawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (autoRespawnItems)
+        {
+            RespawnItems();
+        }
+    }
+
+    public void RespawnItems()
+    {
         bool empty = true;
         // Innefficient, temp solution
-        foreach(RespawnableObject obj in objects)
+        foreach (RespawnableObject obj in objects)
         {
             if (!obj.CheckNull())
             {
@@ -42,7 +53,7 @@ public class ObjectRespawner : MonoBehaviour
         }
         if (empty)
         {
-            foreach(RespawnableObject obj in objects)
+            foreach (RespawnableObject obj in objects)
             {
                 obj.RespawnObject(transform.position);
             }
