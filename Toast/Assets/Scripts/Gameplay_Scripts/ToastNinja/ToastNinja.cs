@@ -38,7 +38,7 @@ public class ToastNinja : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = 2;
+        timer = 1;
         GameStop();
         //InvokeRepeating("LaunchToast", 2.0f, 2.0f);
     }
@@ -66,7 +66,7 @@ public class ToastNinja : MonoBehaviour
         if (amount > 0)
         {
             LaunchToast();
-            yield return new WaitForSeconds(.25f);
+            yield return new WaitForSeconds(.4f);
             StartCoroutine(RapidFire(amount - 1));
         }
         else

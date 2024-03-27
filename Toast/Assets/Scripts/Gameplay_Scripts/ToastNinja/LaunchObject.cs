@@ -30,7 +30,7 @@ public class LaunchObject : MonoBehaviour
 
     IEnumerator DelayedLaunchObj(GameObject objectToLaunch)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
 
         GameObject obj = Instantiate(objectToLaunch, transform.position, transform.rotation);
         obj.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, launchVelocity, 0));

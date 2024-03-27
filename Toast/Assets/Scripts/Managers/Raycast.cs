@@ -267,6 +267,10 @@ public class Raycast : MonoBehaviour
 
         if (dragging && selectGO.GetComponent<NewProp>() != null)
         {
+            if (selectGO.GetComponent<NewProp>().HasAttribute(PropFlags.ImmuneToPickup))
+            {
+                return;
+            }
             hand.Pickup(selectGO);
             StopDragging();
             return;
@@ -282,6 +286,10 @@ public class Raycast : MonoBehaviour
 
         if (itemToPickup.GetComponent<NewProp>() != null) // Interactable layer
         {
+            if (itemToPickup.GetComponent<NewProp>().HasAttribute(PropFlags.ImmuneToPickup))
+            {
+                return;
+            }
             _hand.Pickup(itemToPickup);
         }
     }
@@ -354,6 +362,10 @@ public class Raycast : MonoBehaviour
 
         if (hitGO.GetComponent<NewProp>() != null)
         {
+            if (hitGO.GetComponent<NewProp>().HasAttribute(PropFlags.ImmuneToDrag))
+            {
+                return;
+            }
             if (hitGO.GetComponent<NewProp>().HasAttribute(PropFlags.InHand))
             {
                 Debug.Log("Forcibly removing from hand");
