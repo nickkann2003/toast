@@ -17,8 +17,9 @@ public class ObjectiveGroup
     public void UpdateObjectives(RequirementEvent e)
     {
         completedObjectives = 0;
-        foreach (Objective obj in objectives)
+        for(int i = objectives.Count - 1; i >= 0; i --)
         {
+            Objective obj = objectives[i];
             obj.UpdateObjective(e);
             if (obj.CheckComplete())
             {

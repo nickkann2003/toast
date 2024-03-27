@@ -118,7 +118,7 @@ public class Objective : MonoBehaviour
             if (CheckAvailable())
             {
                 string value = "";
-                value = objectiveName + ":";
+                value = objectiveName + "";
                 bool allDone = true;
                 foreach (Requirement r in requirements)
                 {

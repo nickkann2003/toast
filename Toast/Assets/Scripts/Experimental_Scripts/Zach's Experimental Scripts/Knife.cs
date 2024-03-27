@@ -24,6 +24,7 @@ public class Knife : NewProp
             else
             {
                 Raycast.Instance.PickupRaycast(hand);
+                ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.UseObject, attributes, true));
             }
         }
     }

@@ -121,7 +121,7 @@ public class Requirement : MonoBehaviour
             if (CheckComplete())
             {
                 value += "<color=#111><s><size=-2>";
-                value += goalName + ": ";
+                value += goalName + " ";
                 value += "DONE!";
             }
             else
@@ -129,13 +129,13 @@ public class Requirement : MonoBehaviour
                 if(goal > 0)
                 {
                     value += "<color=#000><size=+0>";
-                    value += goalName + ": ";
+                    value += goalName + " ";
                     value += current + "/" + goal;
                 }
                 else
                 {
                     value += "<color=#000><size=+0>";
-                    value += goalName + ": ";
+                    value += goalName + " ";
                     value += current;
                 }
                 
