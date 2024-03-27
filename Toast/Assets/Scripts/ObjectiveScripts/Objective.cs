@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 //using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Objective : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Objective : MonoBehaviour
     public List<Requirement> requirements = new List<Requirement>();
     public List<ObjectiveObject> objectiveObjects = new List<ObjectiveObject>();
     public List<GameObject> activatables = new List<GameObject>();
+    public UnityEvent completionEvents;
 
     // Private variables
     private bool complete = false;
@@ -69,24 +71,27 @@ public class Objective : MonoBehaviour
     // Check if this objective is complete
     public bool CheckComplete()
     {
-        foreach (Requirement r in requirements)
+        if (!complete)
         {
-            if (!r.CheckComplete())
+            foreach (Requirement r in requirements)
             {
-                complete = false;
-                return false;
+                if (!r.CheckComplete())
+                {
+                    complete = false;
+                    return false;
+                }
             }
-        }
-        complete = true;
-        foreach (GameObject ob in activatables)
-        {
-            if (ob != null)
+            foreach (GameObject ob in activatables)
             {
-                ob.SetActive(true);
+                if (ob != null)
+                {
+                    ob.SetActive(true);
+                }
             }
+            completionEvents.Invoke();
+            complete = true;
         }
-         return true;
-
+        return true;
     }
 
     public void UpdateObjective(RequirementEvent e)
@@ -113,7 +118,7 @@ public class Objective : MonoBehaviour
             if (CheckAvailable())
             {
                 string value = "";
-                value = objectiveName + ":";
+                value = objectiveName + "";
                 bool allDone = true;
                 foreach (Requirement r in requirements)
                 {

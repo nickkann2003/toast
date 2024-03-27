@@ -84,7 +84,7 @@ public class PhysicalButtons : MonoBehaviour
                 break;
         }
         pressed = true;
-        AudioManager.instance.PlaySound(AudioManager.instance.physicalButton);
+        AudioManager.instance.PlayOneShotSound(AudioManager.instance.physicalButton);
     }
 
     void Activate()

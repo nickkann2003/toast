@@ -11,15 +11,19 @@ public class ObjectRespawner : MonoBehaviour
     [SerializeField] public List<RespawnableObject> objects;
     [SerializeField] public bool waitForAll = false;
     [SerializeField] public bool autoRespawnItems = true;
+    [SerializeField] public bool spawnOnStart = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach(RespawnableObject obj in objects)
+        if(gameObject.activeSelf && spawnOnStart)
         {
-            if (obj.CheckNull())
+            foreach(RespawnableObject obj in objects)
             {
-                obj.RespawnObject(transform.position);
+                if (obj.CheckNull())
+                {
+                    obj.RespawnObject(transform.position);
+                }
             }
         }
     }
@@ -35,27 +39,30 @@ public class ObjectRespawner : MonoBehaviour
 
     public void RespawnItems()
     {
-        bool empty = true;
-        // Innefficient, temp solution
-        foreach (RespawnableObject obj in objects)
+        if(gameObject.activeSelf)
         {
-            if (!obj.CheckNull())
+            bool empty = true;
+            // Innefficient, temp solution
+            foreach (RespawnableObject obj in objects)
             {
-                empty = false;
+                if (!obj.CheckNull())
+                {
+                    empty = false;
+                }
+                else
+                {
+                    if (!waitForAll)
+                    {
+                        obj.RespawnObject(transform.position);
+                    }
+                }
             }
-            else
+            if (empty)
             {
-                if (!waitForAll)
+                foreach (RespawnableObject obj in objects)
                 {
                     obj.RespawnObject(transform.position);
                 }
-            }
-        }
-        if (empty)
-        {
-            foreach (RespawnableObject obj in objects)
-            {
-                obj.RespawnObject(transform.position);
             }
         }
     }

@@ -15,6 +15,7 @@ public class Requirement : MonoBehaviour
     public int goal;
     public bool alwaysListening = false;
     private bool complete = false;
+    private bool completeOnNextFrame = false;
 
     // Private variables
     private int current;
@@ -28,7 +29,11 @@ public class Requirement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (completeOnNextFrame && !complete)
+        {
+            complete = true;
+            AudioManager.instance.PlayOneShotSound(AudioManager.instance.requirementComplete);
+        }
     }
 
     // Check if the goal is complete
@@ -40,8 +45,7 @@ public class Requirement : MonoBehaviour
             {
                 if (!complete) // If it was not complete, run one-shot effects
                 {
-                    complete = true;
-                    AudioManager.instance.PlayOneShotSound(AudioManager.instance.requirementComplete);
+                    completeOnNextFrame = true;
                 }
                 return true;
             }
@@ -117,7 +121,7 @@ public class Requirement : MonoBehaviour
             if (CheckComplete())
             {
                 value += "<color=#111><s><size=-2>";
-                value += goalName + ": ";
+                value += goalName + " ";
                 value += "DONE!";
             }
             else
@@ -125,13 +129,13 @@ public class Requirement : MonoBehaviour
                 if(goal > 0)
                 {
                     value += "<color=#000><size=+0>";
-                    value += goalName + ": ";
+                    value += goalName + " ";
                     value += current + "/" + goal;
                 }
                 else
                 {
                     value += "<color=#000><size=+0>";
-                    value += goalName + ": ";
+                    value += goalName + " ";
                     value += current;
                 }
                 
