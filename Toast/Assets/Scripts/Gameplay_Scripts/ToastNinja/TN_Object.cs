@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TN_Object : MonoBehaviour, IUseStrategy
@@ -30,6 +31,14 @@ public class TN_Object : MonoBehaviour, IUseStrategy
         ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.ToastNinjaScore, gameObject.GetComponent<NewProp>().attributes, true));
 
         GameObject pointsObj = Instantiate(pointObject, new Vector3(transform.position.x, transform.position.y, transform.position.z - 1), Quaternion.identity);
+        pointsObj.GetComponent<TextMeshPro>().color = this.GetComponent<Renderer>().material.color;
+        pointsObj.GetComponent<TextMeshPro>().text = "";
+        if (points >= 0)
+        {
+            pointsObj.GetComponent<TextMeshPro>().text += "+";
+        }
+
+        pointsObj.GetComponent<TextMeshPro>().text += points;
 
         Destroy(this.gameObject);
     }
