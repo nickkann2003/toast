@@ -15,7 +15,7 @@ public class Sword : NewProp
     {
         if (attributes.HasFlag(PropFlags.InHand))
         {
-            
+            this.transform.position = new Vector3(0,3,-5);
         }
     }
 }
