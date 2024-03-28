@@ -9,6 +9,9 @@ using UnityEngine.UIElements;
 
 public class Raycast : MonoBehaviour
 {
+    public bool noDrop = false;
+    public bool noDrag = false;
+
     private static Raycast _instance;
     public static Raycast Instance
     {
@@ -23,7 +26,7 @@ public class Raycast : MonoBehaviour
     }
 
     [SerializeField]
-    private NewHand hand;
+    public NewHand hand;
 
     private int layer_IgnoreRaycast = 2;
     private int layer_Interactable = 7;
@@ -88,13 +91,13 @@ public class Raycast : MonoBehaviour
         scrollInput = Input.GetAxis("Mouse ScrollWheel");
         prevGO = hitGO;
         TestRaycast();
-        if (Input.GetButtonDown("Drag"))
+        if (Input.GetButtonDown("Drag") && !noDrag)
         {
             //print($"Object: \"{hitGO.name}\"");
 
             StartDragging();
         }
-        if (Input.GetButtonUp("Drag"))
+        if (Input.GetButtonUp("Drag") && !noDrag)
         {
             if (dragging)
             {
@@ -119,7 +122,7 @@ public class Raycast : MonoBehaviour
         }
 
         // OBJECT PICKUP DETECTION
-        if (Input.GetButtonDown("Pickup"))
+        if (Input.GetButtonDown("Pickup") && !noDrop)
         {
             PickupRaycast(hand);
         }
@@ -127,7 +130,7 @@ public class Raycast : MonoBehaviour
 
         if (dragging)
         {
-            if (!Input.GetButton("Drag"))
+            if (!Input.GetButton("Drag") && !noDrag)
             {
                 StopDragging();
             }
@@ -263,6 +266,9 @@ public class Raycast : MonoBehaviour
             {
                 Debug.Log("Dropped item without a rigid body");
             }
+
+
+            return;
         }
 
         if (dragging && selectGO.GetComponent<NewProp>() != null)
@@ -480,5 +486,28 @@ public class Raycast : MonoBehaviour
         }
 
         return newVelocity;
+    }
+
+    public int CheckKnifeStack()
+    {
+        NewHand handToCheck = hand;
+
+        int knives = 0;
+
+        while (handToCheck != null)
+        {
+            GameObject objInHand = handToCheck.CheckObject();
+            if (objInHand != null && objInHand.GetComponent<Knife>() != null)
+            {
+                handToCheck = objInHand.GetComponent<Knife>().hand;
+                knives++;
+            }
+            else
+            {
+                handToCheck = null;
+            }
+        }
+
+        return knives;
     }
 }

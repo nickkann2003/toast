@@ -35,6 +35,10 @@ public class ToastNinja : MonoBehaviour
 
     private ToastNinjaState toastNinjaState;
 
+    [SerializeField]
+    private GameObject swordPrefab;
+    private GameObject swordObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -111,6 +115,20 @@ public class ToastNinja : MonoBehaviour
 
     public void GameStart()
     {
+        if (Raycast.Instance.CheckKnifeStack() >= 3)
+        {
+            if (swordPrefab != null)
+            {
+                swordObject = Instantiate(swordPrefab);
+                Sword swordScript = swordObject.GetComponent<Sword>();
+                swordScript.hand.Pickup(Raycast.Instance.hand.CheckObject());
+                Raycast.Instance.hand.Pickup(swordObject);
+
+                Raycast.Instance.noDrop = true;
+                Raycast.Instance.noDrag = true;
+            }
+        }
+
         toastNinjaState = ToastNinjaState.Active;
         //for (int i = 0; i < launchObjects.Length; i++)
         //{
@@ -124,6 +142,19 @@ public class ToastNinja : MonoBehaviour
 
     public void GameStop()
     {
+        if (swordObject != null)
+        {
+            Raycast.Instance.noDrop = true;
+            Raycast.Instance.noDrag = true;
+
+            Sword swordScript = swordObject.GetComponent<Sword>();
+
+            Raycast.Instance.hand.Pickup(swordScript.hand.CheckObject());
+
+            Destroy(swordObject);
+            swordObject = null;
+        }
+
         toastNinjaState = ToastNinjaState.Inactive;
         //for (int i = 0; i < launchObjects.Length; i++)
         //{

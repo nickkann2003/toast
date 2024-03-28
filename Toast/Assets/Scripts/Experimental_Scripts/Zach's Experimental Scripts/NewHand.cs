@@ -42,7 +42,7 @@ public class NewHand : MonoBehaviour
 
     public GameObject CheckObject()
     { 
-        return heldObject; 
+        return heldObject;
     }
 
     public GameObject Drop()
@@ -50,6 +50,11 @@ public class NewHand : MonoBehaviour
         GameObject itemToReturn = null;
         if (heldObject != null)
         {
+            if (heldObject.GetComponent<NewProp>().HasAttribute(PropFlags.ImmuneToDrop))
+            {
+                return null;
+            }
+
             heldObject.GetComponent<NewProp>()?.RemoveAttribute(PropFlags.InHand);
             itemToReturn = heldObject;
             if (StationManager.instance.playerLocation == InventoryManager.instance.InventoryStation)

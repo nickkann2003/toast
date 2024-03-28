@@ -21,6 +21,7 @@ public enum PropFlags
     Burnt = 1 << 9,
     ImmuneToPickup = 1 << 10,
     ImmuneToDrag = 1 << 11,
+    ImmuneToDrop = 1 << 12,
     Bread = 1 << 29,
     Jam = 1 << 30,
     Knife = 1 << 31,
