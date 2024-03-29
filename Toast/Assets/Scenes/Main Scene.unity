@@ -7227,7 +7227,7 @@ MonoBehaviour:
   cameraRotation: {x: -0.102380544, y: 0.6996558, z: -0.102380544, w: -0.6996558}
   stationLabel: 1
   objectOffset: {x: -4.06, y: 2.51, z: -7.53}
-  parentLoc: {fileID: 1653159256}
+  parentLoc: {fileID: 1448825837}
   interactables: []
   clickableCollider: {fileID: 906334228}
   isEnabled: 0
@@ -7995,7 +7995,10 @@ PrefabInstance:
       propertyPath: maxRotation
       value: 60
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6564675527180232313, guid: c0ea23539fefbb944bc2831098845f6a, type: 3}
+    - {fileID: 5743716127971857675, guid: c0ea23539fefbb944bc2831098845f6a, type: 3}
+    - {fileID: 1892460209770934142, guid: c0ea23539fefbb944bc2831098845f6a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6857931201524819916, guid: c0ea23539fefbb944bc2831098845f6a,
@@ -15789,7 +15792,7 @@ MonoBehaviour:
   objectOffset: {x: -4.42, y: 2.92, z: -5.72}
   parentLoc: {fileID: 1467470857}
   interactables:
-  - {fileID: 1653159256}
+  - {fileID: 0}
   - {fileID: 124748874}
   clickableCollider: {fileID: 1448825838}
   isEnabled: 0
@@ -16622,7 +16625,7 @@ MonoBehaviour:
   cameraRotation: {x: -0.051664144, y: 0.7052169, z: -0.051664144, w: -0.7052169}
   stationLabel: 1
   objectOffset: {x: -4.1, y: 3.59, z: -7.54}
-  parentLoc: {fileID: 1653159256}
+  parentLoc: {fileID: 1448825837}
   interactables: []
   clickableCollider: {fileID: 1550744642}
   isEnabled: 0
@@ -17829,18 +17832,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650479183}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1653159256 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6564675527180232313, guid: c0ea23539fefbb944bc2831098845f6a,
-    type: 3}
-  m_PrefabInstance: {fileID: 954981395}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80ff63f25d1ab4344b3bd1f858dfaec3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1657480388
 PrefabInstance:
   m_ObjectHideFlags: 0
