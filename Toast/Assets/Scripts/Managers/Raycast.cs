@@ -53,7 +53,7 @@ public class Raycast : MonoBehaviour
     public float scrollSpeed = 1.0f;
     private float scrollInput;
     private float stationMoveTimer = 0.0f;
-    private float stationMaxTimer = .2f;
+    private float stationMaxTimer = .4f;
 
     GameObject line;
     LineController lineController;
