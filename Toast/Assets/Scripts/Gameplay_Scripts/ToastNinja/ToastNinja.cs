@@ -144,8 +144,8 @@ public class ToastNinja : MonoBehaviour
     {
         if (swordObject != null)
         {
-            Raycast.Instance.noDrop = true;
-            Raycast.Instance.noDrag = true;
+            Raycast.Instance.noDrop = false;
+            Raycast.Instance.noDrag = false;
 
             Sword swordScript = swordObject.GetComponent<Sword>();
 
