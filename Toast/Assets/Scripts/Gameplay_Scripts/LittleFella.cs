@@ -187,7 +187,7 @@ public class LittleFella : MonoBehaviour
     private void GiveGift()
     {
         // Create the gift
-        giftObject = Instantiate(giftPrefab, dragHomePos, Quaternion.identity);
+        giftObject = Instantiate(giftPrefab, dragHomePos, Quaternion.Euler(0,90,0));
         moveProgress = 0.0f;
         status = GrabStatus.Gifting;
     }
