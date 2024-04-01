@@ -23,8 +23,8 @@ public class Knife : NewProp
             }
             else
             {
-                Raycast.Instance.PickupRaycast(hand);
-                ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.UseObject, attributes, true));
+                bool pickedUp = Raycast.Instance.PickupRaycast(hand);
+                if(pickedUp) ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.UseObject, attributes, true));
             }
         }
     }

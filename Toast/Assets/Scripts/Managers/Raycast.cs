@@ -238,12 +238,13 @@ public class Raycast : MonoBehaviour
         }
     }
 
-    public void PickupRaycast(NewHand _hand)
+    // Return true if item was picked up, false otherwise
+    public bool PickupRaycast(NewHand _hand)
     {
         if (_hand==null)
         {
             Debug.Log("Hand is null");
-            return;
+            return false;
         }
 
         GameObject itemToDrop = _hand.Drop();
@@ -268,18 +269,18 @@ public class Raycast : MonoBehaviour
             }
 
 
-            return;
+            return true;
         }
 
         if (dragging && selectGO.GetComponent<NewProp>() != null)
         {
             if (selectGO.GetComponent<NewProp>().HasAttribute(PropFlags.ImmuneToPickup))
             {
-                return;
+                return false;
             }
             hand.Pickup(selectGO);
             StopDragging();
-            return;
+            return true;
         }
 
         // shoot out a raycast, ignore every layer except interactable
@@ -287,17 +288,20 @@ public class Raycast : MonoBehaviour
 
         if (itemToPickup == null)
         {
-            return;
+            return false;
         }
 
         if (itemToPickup.GetComponent<NewProp>() != null) // Interactable layer
         {
             if (itemToPickup.GetComponent<NewProp>().HasAttribute(PropFlags.ImmuneToPickup))
             {
-                return;
+                return false;
             }
             _hand.Pickup(itemToPickup);
+            return true;
         }
+
+        return false;
     }
 
     void TestRaycast()

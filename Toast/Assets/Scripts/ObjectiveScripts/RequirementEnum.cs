@@ -11,5 +11,6 @@ public enum RequirementType
     ThawObject,
     UseObject,
     HaveObjectsInInventory,
-    ToastNinjaScore
+    ToastNinjaScore,
+    GiveLittleFella
 }

@@ -83,8 +83,13 @@ public class PhysicalButtons : MonoBehaviour
                 Activate();
                 break;
         }
+
+        // Play audio on first press
+        if (!pressed)
+        {
+            AudioManager.instance.PlayOneShotSound(AudioManager.instance.physicalButton);
+        }
         pressed = true;
-        AudioManager.instance.PlayOneShotSound(AudioManager.instance.physicalButton);
     }
 
     void Activate()
