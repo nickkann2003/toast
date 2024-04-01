@@ -146,7 +146,7 @@ public class Raycast : MonoBehaviour
 
                     // Check for hit
                     if (Physics.Raycast(ray, out hit, Mathf.Infinity, (mask_Plane & ~mask_IgnoreRaycast))
-                            && hit.collider.gameObject == StationManager.instance.playerLocation.dragPlane)
+                            /*&& hit.collider.gameObject == StationManager.instance.playerLocation.dragPlane*/)
                     {
                         // Set velocity based on position on plane
                         selectGO.GetComponent<Rigidbody>().velocity =
