@@ -6,6 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class ObjectiveGroup
 {
+    public string name;
     public List<Objective> objectives;
     public List<TextMeshPro> displays;
     public List<TextMeshProUGUI> displaysUI;

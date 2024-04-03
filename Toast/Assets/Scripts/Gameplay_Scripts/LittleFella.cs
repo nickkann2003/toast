@@ -75,6 +75,7 @@ public class LittleFella : MonoBehaviour
                 moveProgress += Time.deltaTime * grabSpeed;
                 if (moveProgress >= 1.0f)
                 {
+                    ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.GiveLittleFella, edibleObject.GetComponent<NewProp>().attributes, true));
                     if (edibleObject.GetComponent<IEatable>() != null || edibleObject.GetComponent<Eat>() != null)
                     {
                         AudioManager.instance.PlayOneShotSound(AudioManager.instance.eatingBread);
