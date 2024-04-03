@@ -58,6 +58,14 @@ public class LittleFella : MonoBehaviour
         {
             // Reaching for the player's object
             case GrabStatus.Reaching:
+
+                // PLayer moved object, withdraw
+                if(edibleObject.GetComponent<Rigidbody>().velocity != Vector3.zero)
+                {
+                    status = GrabStatus.Withdrawing;
+                    break;
+                }
+
                 grabHand.transform.position = Vector3.Lerp(dragHomePos, dragGrabPos, moveProgress);
                 moveProgress += Time.deltaTime * grabSpeed;
                 if (moveProgress >= 1.0f)
@@ -108,6 +116,8 @@ public class LittleFella : MonoBehaviour
                     {
                         status = GrabStatus.Returning;
                         moveProgress = 0.0f;
+
+                        Debug.Log("Can't eat it!");
                     }
                 }
                 break;
@@ -177,7 +187,7 @@ public class LittleFella : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject == edibleObject)
+        if(other.gameObject == edibleObject && status != GrabStatus.Returning)
         {
             edibleObject = null;
             moveProgress = 0.0f;
