@@ -112,6 +112,11 @@ public class Requirement : MonoBehaviour
         }
     }
 
+    public void ForceComplete()
+    {
+        current = goal;
+    }
+
     // Returns a formatted string of this requirement to be displayed to the player
     new public string ToString
     {

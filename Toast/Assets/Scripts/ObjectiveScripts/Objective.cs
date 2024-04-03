@@ -110,6 +110,16 @@ public class Objective : MonoBehaviour
         }
     }
 
+    public void ForceCompleteObjective()
+    {
+        foreach(Requirement r in requirements)
+        {
+            r.ForceComplete();
+        }
+        UpdateObjective(new RequirementEvent(RequirementType.CompleteMinigame, PropFlags.None, true));
+        ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CompleteMinigame, PropFlags.None, true));
+    }
+
     // Override ToString to return formatted for To-Do list
     new public string ToString
     {
