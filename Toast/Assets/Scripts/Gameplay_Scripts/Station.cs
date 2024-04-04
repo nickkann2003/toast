@@ -72,9 +72,13 @@ public class Station : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if(this == StationManager.instance.playerLocation.parentLoc)
+        {
+            return;
+        }
+
         if (StationManager.instance != null && StationManager.instance.playerLocation != null)
         {
-            StationManager.instance.MoveToStation(this);
             if (StationManager.instance.playerLocation.interactables != null)
             {
                 if (StationManager.instance.playerLocation.interactables.Contains(this))
@@ -106,6 +110,23 @@ public class Station : MonoBehaviour
         Gizmos.matrix = matrix;
         Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane, Camera.main.nearClipPlane, Camera.main.aspect);
 
+    }
+
+    public void DisableParent()
+    {
+
+        if (clickableCollider != null)
+        {
+            clickableCollider.enabled = false;
+
+           
+           
+        }
+
+        if (parentLoc != null)
+        {
+            parentLoc.DisableParent();
+        }
     }
 
 }

@@ -105,7 +105,11 @@ public class StationManager : MonoBehaviour
         // Enable collider before leaving
         if(StationManager.instance.playerLocation.clickableCollider != null && StationManager.instance.playerLocation != loc.parentLoc)
         {
-            StationManager.instance.playerLocation.clickableCollider.enabled = true;
+            if(instance.playerLocation != loc.parentLoc)
+            {
+                StationManager.instance.playerLocation.clickableCollider.enabled = true;
+            }    
+            
             StationManager.instance.playerLocation.OnLeave();
         }
 
