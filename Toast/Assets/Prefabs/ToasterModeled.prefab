@@ -84,11 +84,14 @@ MonoBehaviour:
   stopToasting:
     m_PersistentCalls:
       m_Calls: []
+  fireEndingManager: {fileID: 0}
   weakestStrength: {r: 0.9254902, g: 0.654902, b: 0.40392157, a: 1}
   strongestStrength: {r: 0.084905684, g: 0.043337278, b: 0, a: 1}
   timer: 0
   maxTime: 0
   smokeParticles: {fileID: 3992009934678706487}
+  firePrefab: {fileID: 0}
+  fireTrigger: 1.5
 --- !u!1 &1955597983955280020
 GameObject:
   m_ObjectHideFlags: 0
@@ -5450,6 +5453,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetRotationEuler: {x: 0, y: 0, z: 0}
+--- !u!1 &8892505999121035699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2625767997941262540}
+  m_Layer: 0
+  m_Name: Dial_Encaps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2625767997941262540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8892505999121035699}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.099999584, z: 0.4550003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1183131576606434133}
+  m_Father: {fileID: 3907630849890543164}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1557077011814943240
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5579,7 +5614,8 @@ MonoBehaviour:
   - rigidBody: {fileID: 4066151840965446243}
     top: {x: 0, y: 0.32, z: -0.07}
     bottom: {x: 0, y: 0.08, z: -0.07}
-  outline: {fileID: 0}
+  baseSpeedInterpolation: 1
+  maxSpeedInterpolation: 8
 --- !u!65 &8354473111180681564
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5607,7 +5643,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 3907630849890543164}
+    m_TransformParent: {fileID: 2625767997941262540}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
         type: 3}
@@ -5622,32 +5658,32 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.455
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
         type: 3}
@@ -5738,9 +5774,11 @@ MonoBehaviour:
   lookAtPos: {x: 0, y: 0, z: 0}
   freeze: 0
   dialValue: 0
+  maxValue: 0.6
   minValue: 0.15
-  breadToaster: {fileID: 7172836254959586144}
-  outline: {fileID: 0}
+  onDialChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &3580371533054869975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5838,7 +5876,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 993c9c17819c037488e7787eb95b4684,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1183131576606434133}
+      addedObject: {fileID: 2625767997941262540}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 993c9c17819c037488e7787eb95b4684,
         type: 3}
       insertIndex: -1

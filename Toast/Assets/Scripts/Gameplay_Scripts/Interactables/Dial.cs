@@ -83,16 +83,16 @@ public class Dial : MonoBehaviour
     {
         if (!freeze)
         {
-            transform.up = GetMouseWorldPos() - transform.position;
-
-            rotation = transform.eulerAngles;
+            transform.up = ConvertToLocalPos(GetMouseWorldPos()) - transform.localPosition;
+            
+            rotation = transform.localEulerAngles;
             rotation.x = 0;
             rotation.y = 0;
-            if (transform.eulerAngles.z > 110 && transform.eulerAngles.z <= 180)
+            if (transform.localEulerAngles.z > 110 && transform.localEulerAngles.z <= 180)
             {
                 rotation.z = 110f;
             }
-            else if ((transform.eulerAngles.z > 180 && transform.eulerAngles.z < 250))
+            else if ((transform.localEulerAngles.z > 180 && transform.localEulerAngles.z < 250))
             {
                 rotation.z = 250f;
             }
@@ -108,7 +108,7 @@ public class Dial : MonoBehaviour
             dialValue = dialValue * (maxValue - minValue) + minValue;
             onDialChange.Invoke(dialValue);
 
-            transform.eulerAngles = rotation;
+            transform.localEulerAngles = rotation;
         }
     }
 
