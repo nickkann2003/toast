@@ -25,7 +25,7 @@ public class Placer : MonoBehaviour, IUseStrategy
             return;
         }
 
-        SetPlacement(Raycast.Instance.RaycastHelper(1 << 7));
+        SetPlacement(Raycast.Instance.RaycastHelper(~(1 << 10) & ~(1 << 3)));
 
         if (parentPlacementObj != null)
         {
@@ -42,7 +42,7 @@ public class Placer : MonoBehaviour, IUseStrategy
         if (hit.collider != null)
         {
             parentPlacementObj = hit.collider.gameObject;
-            placementLocation = hit.point;
+            placementLocation = hit.point + hit.normal * .01f;
             placementRotation = hit.normal;
         }
     }
