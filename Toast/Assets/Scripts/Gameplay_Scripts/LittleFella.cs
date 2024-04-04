@@ -43,8 +43,8 @@ public class LittleFella : MonoBehaviour
     [SerializeField]
     float moveProgress = 0.0f;
 
-    [SerializeField]
-    float handLevel = 0.2f; // Used to balance where the hand is grabbing, rather than the initial height;
+    //[SerializeField]
+    //float handLevel = 0.2f; // Used to balance where the hand is grabbing, rather than the initial height;
 
     [SerializeField]
     GameObject giftPrefab;
@@ -84,7 +84,16 @@ public class LittleFella : MonoBehaviour
                 if (moveProgress >= 1.0f)
                 {
                     ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.GiveLittleFella, edibleObject.GetComponent<NewProp>().attributes, true));
-                    if (edibleObject.GetComponent<IEatable>() != null || edibleObject.GetComponent<Eat>() != null)
+
+                    if(edibleObject.GetComponent<IEatable>() == null && edibleObject.GetComponent<Eat>() == null)
+                    {
+                        status = GrabStatus.Returning;
+                        moveProgress = 0.0f;
+
+                        Debug.Log("Can't eat it!");
+                    }
+                    else
+                    //if (edibleObject.GetComponent<IEatable>() != null || edibleObject.GetComponent<Eat>() != null)
                     {
                         AudioManager.instance.PlayOneShotSound(AudioManager.instance.eatingBread);
                         Destroy(edibleObject);
@@ -112,13 +121,7 @@ public class LittleFella : MonoBehaviour
                             status = GrabStatus.Withdrawing;
                         }
                     }
-                    else
-                    {
-                        status = GrabStatus.Returning;
-                        moveProgress = 0.0f;
-
-                        Debug.Log("Can't eat it!");
-                    }
+                    
                 }
                 break;
 
@@ -161,9 +164,8 @@ public class LittleFella : MonoBehaviour
             case GrabStatus.Rest:
                 if(edibleObject != null && edibleObject.GetComponent<Rigidbody>().velocity == Vector3.zero)
                 {
-                  
+                    dragGrabPos.y = edibleObject.transform.position.y;
                     status = GrabStatus.Reaching;
-                   
                 }
                 break;
 
@@ -179,7 +181,8 @@ public class LittleFella : MonoBehaviour
             {
                 edibleObject = other.gameObject;
                 dragGrabPos = other.transform.position;
-                dragGrabPos.y -= handLevel;
+
+                
                 //status = GrabStatus.Reaching;
             }
         }
@@ -187,7 +190,7 @@ public class LittleFella : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject == edibleObject && status != GrabStatus.Returning)
+        if(other.gameObject == edibleObject && status != GrabStatus.Taking)
         {
             edibleObject = null;
             moveProgress = 0.0f;
