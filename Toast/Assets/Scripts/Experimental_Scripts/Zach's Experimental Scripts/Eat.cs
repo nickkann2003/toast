@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Eat : MonoBehaviour, IUseStrategy
 {
+    public int totalBites;
     public int bitesRemaining;
     private NewProp propScript;
 

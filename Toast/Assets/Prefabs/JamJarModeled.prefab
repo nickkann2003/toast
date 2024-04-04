@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 8483031752779676798}
   - component: {fileID: 3687421184397709117}
   - component: {fileID: 1385297963663112036}
-  - component: {fileID: 4614064787217340371}
-  - component: {fileID: 3834836528053964392}
   - component: {fileID: 5278958259069086486}
-  - component: {fileID: 6471471258045588297}
+  - component: {fileID: 5951264499587906993}
   - component: {fileID: 2184660583607016673}
   - component: {fileID: 5972941697218247028}
   m_Layer: 7
@@ -88,35 +86,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4614064787217340371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518058045675689659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63c3b78e426b415489600f75e0e4e784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  totalBites: 100
-  bitesRemaining: 100
---- !u!114 &3834836528053964392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518058045675689659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47ed4ab8bf312e2478fd4ead7aa93dd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentLocation: {fileID: 0}
-  toastiness: 0
-  frozenness: 0
 --- !u!114 &5278958259069086486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +102,7 @@ MonoBehaviour:
   attributes: 1073741824
   toastiness: 0
   frozenness: 0
---- !u!114 &6471471258045588297
+--- !u!114 &5951264499587906993
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,10 +111,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 518058045675689659}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 861876e5b223f704ab1b0b3e8aa592a0, type: 3}
+  m_Script: {fileID: 11500000, guid: fe4e6cbc1c9a43a4a965a48a729d7ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bitesRemaining: 5
+  total: -1
+  remaining: -1
+  objPrefab: {fileID: 8306667316286608774, guid: 82ebec8b54fd6f54fb5c45f2d778337c,
+    type: 3}
+  mat: {fileID: 2100000, guid: 05e15fbe6bfebb849b2990b5c19bf280, type: 2}
 --- !u!23 &2184660583607016673
 MeshRenderer:
   m_ObjectHideFlags: 0

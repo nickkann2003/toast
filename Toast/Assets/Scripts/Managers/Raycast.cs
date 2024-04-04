@@ -184,8 +184,14 @@ public class Raycast : MonoBehaviour
             ExamineManager.instance.ExamineObject(selectGO);
             return;
         }
+        
+        RaycastHit hit = RaycastHelper(~mask_Station);
 
-        GameObject itemToView = RaycastHelper(~mask_Station);
+        GameObject itemToView = null;
+        if (hit.collider != null)
+        {
+            itemToView = hit.collider.gameObject;
+        }
 
         if (itemToView != null && itemToView.GetComponent<NewProp>() != null)
         {
@@ -204,7 +210,14 @@ public class Raycast : MonoBehaviour
 
     void UseRaycast()
     {
-        GameObject itemToUse = RaycastHelper(~mask_Station);
+        RaycastHit hit = RaycastHelper(~mask_Station);
+
+        GameObject itemToUse = null;
+        if (hit.collider != null)
+        {
+            itemToUse = hit.collider.gameObject;
+        }
+        
 
         if (itemToUse != null && itemToUse.GetComponent<NewProp>() != null && itemToUse.layer == layer_Interactable) // Interactable layer
         {
@@ -284,7 +297,13 @@ public class Raycast : MonoBehaviour
         }
 
         // shoot out a raycast, ignore every layer except interactable
-        GameObject itemToPickup = RaycastHelper(~mask_Station);
+        RaycastHit hit = RaycastHelper(~mask_Station);
+
+        GameObject itemToPickup = null;
+        if (hit.collider != null)
+        {
+            itemToPickup = hit.collider.gameObject;
+        }
 
         if (itemToPickup == null)
         {
@@ -324,7 +343,13 @@ public class Raycast : MonoBehaviour
         //hit = new RaycastHit();
         //Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
 
-        hitGO = RaycastHelper(~mask_IgnoreRaycast);
+        RaycastHit hit = RaycastHelper(~mask_IgnoreRaycast);
+
+        hitGO = null;
+        if (hit.collider != null)
+        {
+            hitGO = hit.collider.gameObject;
+        }
 
         if (hitGO != null && (hitGO.layer == layer_Station || hitGO.layer == layer_Interactable))
         {
@@ -418,7 +443,7 @@ public class Raycast : MonoBehaviour
         dragging = false;
     }
 
-    GameObject RaycastHelper(int layerMask)
+    public RaycastHit RaycastHelper(int layerMask)
     {
         RaycastHit hit = new RaycastHit();
         Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
@@ -426,14 +451,14 @@ public class Raycast : MonoBehaviour
         // shoot a raycast, ignoring the layermask
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, (layerMask & ~mask_IgnoreRaycast & ~mask_Plane)))
         {
-            return hit.collider.gameObject;
+            return hit;
         }
 
         // draw ray at hit point
         Debug.DrawLine(ray.origin, hit.point, Color.yellow);
         //Debug.DrawRay(hit.point, Vector3.Reflect(transform.InverseTransformPoint(hit.point), hit.normal), Color.blue);
 
-        return null;
+        return hit;
     }
 
     Vector3 OffPlaneHelper(Vector3 planePos)
