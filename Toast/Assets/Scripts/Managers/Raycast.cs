@@ -137,7 +137,7 @@ public class Raycast : MonoBehaviour
             if (selectGO != null && selectGO.name != "SM_CounterDrawer") // HARDCODE CHANGE LATER
             {
 
-                if (selectGO.GetComponent<Rigidbody>() != null && StationManager.instance.playerLocation.dragPlane != null)
+                if (selectGO.GetComponent<Rigidbody>() != null /*&& StationManager.instance.playerLocation.dragPlane != null*/)
                 {
                     // Plane-based code
                     // Create ray and hit
@@ -163,8 +163,8 @@ public class Raycast : MonoBehaviour
                         Debug.Log("Dragging failed");
 
                         // Set velocity based on last stored position on plane
-                        selectGO.GetComponent<Rigidbody>().velocity =
-                        (OffPlaneHelper(lastPos) - selectGO.transform.position) * 10;
+                        //selectGO.GetComponent<Rigidbody>().velocity =
+                        //(OffPlaneHelper(lastPos) - selectGO.transform.position) * 10;
                         
                         
                     }
@@ -461,61 +461,61 @@ public class Raycast : MonoBehaviour
         return hit;
     }
 
-    Vector3 OffPlaneHelper(Vector3 planePos)
-    {
-        Vector3 newVelocity = planePos;
+    //Vector3 OffPlaneHelper(Vector3 planePos)
+    //{
+    //    Vector3 newVelocity = planePos;
 
-        Vector3 planeMin = StationManager.instance.playerLocation.dragPlane.GetComponent<MeshRenderer>().bounds.min;
-        Vector3 planeMax = StationManager.instance.playerLocation.dragPlane.GetComponent<MeshRenderer>().bounds.max;
+    //    Vector3 planeMin = StationManager.instance.playerLocation.dragPlane.GetComponent<MeshRenderer>().bounds.min;
+    //    Vector3 planeMax = StationManager.instance.playerLocation.dragPlane.GetComponent<MeshRenderer>().bounds.max;
 
-        Vector3 mouseCopy = Input.mousePosition;
-        mouseCopy.z = targetCamera.WorldToScreenPoint(planePos).z;
-        mouseCopy = targetCamera.ScreenToWorldPoint(mouseCopy);
+    //    Vector3 mouseCopy = Input.mousePosition;
+    //    mouseCopy.z = targetCamera.WorldToScreenPoint(planePos).z;
+    //    mouseCopy = targetCamera.ScreenToWorldPoint(mouseCopy);
 
-        //Debug.Log("Mouse pos:" + Input.mousePosition);
-        //Debug.Log("Plane min x: " + targetCamera.WorldToScreenPoint(planeMin).x);
+    //    //Debug.Log("Mouse pos:" + Input.mousePosition);
+    //    //Debug.Log("Plane min x: " + targetCamera.WorldToScreenPoint(planeMin).x);
 
-        if (Input.mousePosition.x < targetCamera.WorldToScreenPoint(planeMin).x)
-        {
-            newVelocity.x = planeMin.x;
-        }
-        else if(Input.mousePosition.x > targetCamera.WorldToScreenPoint(planeMax).x)
-        {
-            newVelocity.x = planeMax.x;
-        }
-        else
-        {
-            newVelocity.x = mouseCopy.x;
-        }
+    //    if (Input.mousePosition.x < targetCamera.WorldToScreenPoint(planeMin).x)
+    //    {
+    //        newVelocity.x = planeMin.x;
+    //    }
+    //    else if(Input.mousePosition.x > targetCamera.WorldToScreenPoint(planeMax).x)
+    //    {
+    //        newVelocity.x = planeMax.x;
+    //    }
+    //    else
+    //    {
+    //        newVelocity.x = mouseCopy.x;
+    //    }
 
-        if (Input.mousePosition.y < targetCamera.WorldToScreenPoint(planeMin).y)
-        {
-            newVelocity.y = planeMin.y;
-        }
-        else if (Input.mousePosition.y > targetCamera.WorldToScreenPoint(planeMax).y)
-        {
-            newVelocity.y = planeMax.y;
-        }
-        else
-        {
-            newVelocity.y = mouseCopy.y;
-        }
+    //    if (Input.mousePosition.y < targetCamera.WorldToScreenPoint(planeMin).y)
+    //    {
+    //        newVelocity.y = planeMin.y;
+    //    }
+    //    else if (Input.mousePosition.y > targetCamera.WorldToScreenPoint(planeMax).y)
+    //    {
+    //        newVelocity.y = planeMax.y;
+    //    }
+    //    else
+    //    {
+    //        newVelocity.y = mouseCopy.y;
+    //    }
 
-        if ((targetCamera.transform.rotation * Input.mousePosition).z < targetCamera.WorldToScreenPoint(planeMin).x)
-        {
-            newVelocity.z = planeMin.z;
-        }
-        else if ((targetCamera.transform.rotation * Input.mousePosition).z > targetCamera.WorldToScreenPoint(planeMax).x)
-        {
-            newVelocity.z = planeMax.z;
-        }
-        else
-        {
-            newVelocity.z = mouseCopy.z;
-        }
+    //    if ((targetCamera.transform.rotation * Input.mousePosition).z < targetCamera.WorldToScreenPoint(planeMin).x)
+    //    {
+    //        newVelocity.z = planeMin.z;
+    //    }
+    //    else if ((targetCamera.transform.rotation * Input.mousePosition).z > targetCamera.WorldToScreenPoint(planeMax).x)
+    //    {
+    //        newVelocity.z = planeMax.z;
+    //    }
+    //    else
+    //    {
+    //        newVelocity.z = mouseCopy.z;
+    //    }
 
-        return newVelocity;
-    }
+    //    return newVelocity;
+    //}
 
     public int CheckKnifeStack()
     {

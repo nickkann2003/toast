@@ -26,8 +26,8 @@ public class Station : MonoBehaviour
     // If isEnable is false, then the player should not be able to reach to interact with this station/prop
     [SerializeField] private bool isEnabled;
 
-
-    public GameObject dragPlane;
+    public List<GameObject> dragPlanes;
+    //public GameObject dragPlane;
 
     ///private int layer_Station = 3;
     ///private int layer_UI = 5;
@@ -110,6 +110,32 @@ public class Station : MonoBehaviour
         Gizmos.matrix = matrix;
         Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane, Camera.main.nearClipPlane, Camera.main.aspect);
 
+    }
+
+    public void DisableDragPlanes()
+    {
+        if (dragPlanes.Count <= 0)
+        {
+            return;
+        }
+
+        for (int i = 0; i < dragPlanes.Count; i++)
+        {
+            dragPlanes[i].SetActive(false);
+        }
+    }
+
+    public void EnableDragPlanes()
+    {
+        if (dragPlanes.Count >= 0)
+        {
+            return;
+        }
+
+        for (int i = 0; i < dragPlanes.Count; i++)
+        {
+            dragPlanes[i].SetActive(true);
+        }
     }
 
     public void DisableParent()
