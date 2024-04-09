@@ -570,6 +570,8 @@ GameObject:
   - component: {fileID: 3426743350776573129}
   - component: {fileID: 460705574539631715}
   - component: {fileID: 3506569995115026444}
+  - component: {fileID: 2995693028692231271}
+  - component: {fileID: 4221137151806647976}
   m_Layer: 0
   m_Name: SM_Knob3
   m_TagString: Untagged
@@ -584,8 +586,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3174944171683272862}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.5870953, z: 0.50257033}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5870953, z: 0.5025703}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -665,6 +667,58 @@ CapsuleCollider:
   m_Height: 0.15105104
   m_Direction: 1
   m_Center: {x: 0, y: -0.000000007450581, z: 0.023146091}
+--- !u!114 &2995693028692231271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3174944171683272862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6fe55942e134141860f13b0b95ff6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mOffset: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 90}
+  lookAtPos: {x: 0, y: 0, z: 0}
+  freeze: 0
+  dialValue: 0
+  maxValue: 2
+  minValue: 0
+  onDialChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 714151089674959331}
+        m_TargetAssemblyTypeName: ToastingVolume, Assembly-CSharp
+        m_MethodName: SetToastingValue
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4221137151806647976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3174944171683272862}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3288806293315646406
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,9 +879,85 @@ Transform:
   - {fileID: 5981027359144495654}
   - {fileID: 8856255245354051235}
   - {fileID: 1439909680549336001}
+  - {fileID: 6207886747765977390}
   m_Father: {fileID: 428700256972440995}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3972409559377627736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6207886747765977390}
+  - component: {fileID: 6045588416609280042}
+  - component: {fileID: 714151089674959331}
+  m_Layer: 2
+  m_Name: InsideTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6207886747765977390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3972409559377627736}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4413323618378710142}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6045588416609280042
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3972409559377627736}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.4783046, y: 0.9218272, z: 1.3022965}
+  m_Center: {x: -0.002878675, y: 0.9330322, z: -0.16038777}
+--- !u!114 &714151089674959331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3972409559377627736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8544d0f1a6da48747acadc4388bfbe1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toastRate: 1
+  toastingValueDial: {fileID: 2995693028692231271}
+  volume: {fileID: 6045588416609280042}
+  onToastingStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onToastingStop:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4238916419527353823
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,7 +969,7 @@ GameObject:
   - component: {fileID: 1439909680549336001}
   - component: {fileID: 1882835154218710551}
   - component: {fileID: 4854936796127755096}
-  - component: {fileID: 8508529955923489189}
+  - component: {fileID: 8012949132345898055}
   m_Layer: 0
   m_Name: SM_OvenRack
   m_TagString: Untagged
@@ -912,8 +1042,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8508529955923489189
-MeshCollider:
+--- !u!65 &8012949132345898055
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -930,10 +1060,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2952643416705876108, guid: 3de37be5dedec9649952dc9d1ae10740, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.4749942, y: 0.018445492, z: 1.1513561}
+  m_Center: {x: 0.00000011920929, y: 0.000000009313226, z: 0.00000046193597}
 --- !u!1 &4861747243089801384
 GameObject:
   m_ObjectHideFlags: 0
