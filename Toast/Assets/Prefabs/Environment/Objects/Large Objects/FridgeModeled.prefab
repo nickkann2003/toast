@@ -102,7 +102,7 @@ MonoBehaviour:
   interactables: []
   clickableCollider: {fileID: 5743716127971857675}
   isEnabled: 0
-  dragPlane: {fileID: 0}
+  dragPlanes: []
 --- !u!1 &2375273585493751680
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,8 +409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7921e314fe395f409ff3b4b4be214e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRotation: 180
-  maxRotation: 80
+  minRot: {x: 0, y: 180, z: 0}
+  maxRot: {x: 0, y: 40, z: 0}
   speed: 3
   isOpen: 0
   rotator: {fileID: 3523534184957948369}
@@ -533,8 +533,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7921e314fe395f409ff3b4b4be214e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRotation: 180
-  maxRotation: 75
+  minRot: {x: 0, y: 180, z: 0}
+  maxRot: {x: 0, y: 40, z: 0}
   speed: 2.5
   isOpen: 0
   rotator: {fileID: 3897389252958179053}

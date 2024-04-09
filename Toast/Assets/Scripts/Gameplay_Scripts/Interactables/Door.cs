@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public float minRotation = 180; // closed
-    public float maxRotation = 80; // open
+    public Vector3 minRot; // Closed
+    public Vector3 maxRot; // Open
 
     // amount that the door has opened
     private float interpolateAmount;
@@ -57,7 +57,9 @@ public class Door : MonoBehaviour
         }
 
         Vector3 newRotation = rotatorTransform.localEulerAngles;
-        newRotation.y = Mathf.Lerp(minRotation, maxRotation, interpolateAmount);
+        newRotation.x = Mathf.Lerp(minRot.x, maxRot.x, interpolateAmount);
+        newRotation.y = Mathf.Lerp(minRot.y, maxRot.y, interpolateAmount);
+        newRotation.z = Mathf.Lerp(minRot.z, maxRot.z, interpolateAmount);
 
         rotatorTransform.localEulerAngles = newRotation;
     }

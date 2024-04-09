@@ -676,7 +676,8 @@ GameObject:
   - component: {fileID: 428700256972440995}
   - component: {fileID: 4326911809229429836}
   - component: {fileID: 1668649824645164083}
-  m_Layer: 7
+  - component: {fileID: 2103029747172952424}
+  m_Layer: 3
   m_Name: Oven
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -763,9 +764,30 @@ MonoBehaviour:
   objectOffset: {x: 0, y: 0, z: 0}
   parentLoc: {fileID: 0}
   interactables: []
-  clickableCollider: {fileID: 0}
+  clickableCollider: {fileID: 2103029747172952424}
   isEnabled: 0
   dragPlanes: []
+--- !u!65 &2103029747172952424
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3288806293315646406}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7638272, y: 2.0374713, z: 1.597961}
+  m_Center: {x: 0.0015095973, y: 0.9952197, z: -0.13129832}
 --- !u!1 &3923927056160499396
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +797,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4413323618378710142}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SM_Oven
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1023,7 +1045,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5060393013478635358}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.00046029687, z: 0.04863298}
+  m_LocalPosition: {x: 0, y: -0.094999924, z: 0.043822877}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1148,7 +1170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5955706287978779647}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.00046029687, z: 0.015810132}
+  m_LocalPosition: {x: 0, y: -0.095, z: 0.011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1322,7 +1344,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5981027359144495654}
   - component: {fileID: 8294714665253310374}
-  m_Layer: 0
+  - component: {fileID: 3203193790308525704}
+  m_Layer: 2
   m_Name: DoorRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1337,7 +1360,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8918016945309899299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.385, z: 0.503}
+  m_LocalPosition: {x: 0, y: 0.485, z: 0.499}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1358,8 +1381,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7921e314fe395f409ff3b4b4be214e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRotation: 0
-  maxRotation: 80
+  minRot: {x: 0, y: 0, z: 0}
+  maxRot: {x: 85, y: 0, z: 0}
   speed: 3
   isOpen: 0
   rotator: {fileID: 8918016945309899299}
+--- !u!65 &3203193790308525704
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8918016945309899299}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.74, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
