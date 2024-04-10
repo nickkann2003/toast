@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 
 public class NewProp : MonoBehaviour
 {
@@ -11,7 +12,15 @@ public class NewProp : MonoBehaviour
 
     public PropFlags attributes;
 
+    // Toast Values
     public float toastiness;
+    public float fireTrigger = 1.5f;
+    public GameObject firePrefab;
+    private float targetStrength = 0.5f;
+    private Color strongestStrength = Color.black;
+    private Color initialColor;
+    private Color colorOffset;
+
     public float frozenness;
 
     protected IUseStrategy _useStrategy;
@@ -22,6 +31,9 @@ public class NewProp : MonoBehaviour
     void Start()
     {
         _useStrategy = this.gameObject.GetComponent<IUseStrategy>();
+
+        initialColor = gameObject.GetComponent<Renderer>().material.color;
+        colorOffset = strongestStrength - initialColor;
     }
 
     // Update is called once per frame
@@ -68,5 +80,51 @@ public class NewProp : MonoBehaviour
     public bool HasAttribute(PropFlags flagToCheck)
     {
         return attributes.HasFlag(flagToCheck);
+    }
+
+    public void IncreaseToastiness(float val)
+    {
+        toastiness += val;
+        float colorStrength = toastiness;
+        if (colorStrength > 1)
+        {
+            colorStrength = 1;
+        }
+
+        gameObject.GetComponent<Renderer>().material.color = initialColor + (colorOffset * colorStrength);
+
+        if (toastiness > .15f && !attributes.HasFlag(PropFlags.Toast))
+        {
+            AddAttribute(PropFlags.Toast);
+            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, PropFlags.Toast, true));
+        }
+
+        if (toastiness > .9f && !attributes.HasFlag(PropFlags.Burnt))
+        {
+            AddAttribute(PropFlags.Burnt);
+            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, PropFlags.Burnt, true));
+        }
+        if (!attributes.HasFlag(PropFlags.OnFire) && toastiness > fireTrigger)
+        {
+            GameObject fire = Instantiate(firePrefab);
+            fire.transform.parent = gameObject.transform;
+            fire.transform.localPosition = Vector3.zero;
+            fire.transform.eulerAngles = Vector3.zero;
+            fire.transform.localScale = Vector3.one;
+            AddAttribute(PropFlags.OnFire);
+            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, PropFlags.OnFire, true));
+            FireEndingManager.instance.addFireObject(gameObject);
+            //fireEndingManager.addFireObject(key);
+        }
+    }
+
+    public void DefrostToast()
+    {
+        if (attributes.HasFlag(PropFlags.Frozen))
+        {
+            Destroy(gameObject.transform.GetChild(0).gameObject);
+            attributes &= ~PropFlags.Frozen;
+            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.ThawObject, attributes, true));
+        }
     }
 }

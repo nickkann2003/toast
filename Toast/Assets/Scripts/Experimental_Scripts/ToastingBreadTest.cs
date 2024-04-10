@@ -50,29 +50,15 @@ public class ToastingBreadTest : MonoBehaviour
                     NewProp prop = key.GetComponent<NewProp>();
                     if (prop != null)
                     {
-                        prop.toastiness = toast.toastiness;
                         if (!prop.attributes.HasFlag(PropFlags.Frozen))
                         {
-                            toast.adjustColor(maxTime, Time.deltaTime);
+                            prop.IncreaseToastiness((Time.deltaTime / maxTime) * targetStrength);
                         }
                         else if (defrost)
                         {
                             // if frozen toast slower
-                            toast.adjustColor(maxTime, Time.deltaTime / 2);
+                            prop.IncreaseToastiness((Time.deltaTime / maxTime) * targetStrength/2f);
                         }
-                        if (!prop.attributes.HasFlag(PropFlags.OnFire) && prop.toastiness > fireTrigger)
-                        {
-                            GameObject fire = Instantiate(firePrefab);
-                            fire.transform.parent = key.transform;
-                            fire.transform.localPosition = Vector3.zero;
-                            fire.transform.eulerAngles = Vector3.zero;
-                            fire.transform.localScale = Vector3.one;
-                            prop.AddAttribute(PropFlags.OnFire);
-                            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, prop.attributes, true));
-                            FireEndingManager.instance.addFireObject(key);
-                            //fireEndingManager.addFireObject(key);
-                        }
-
                     }
                 }
             }
@@ -138,24 +124,8 @@ public class ToastingBreadTest : MonoBehaviour
 
                     if (prop != null)
                     {
-                        if (prop.toastiness > .15f && !prop.attributes.HasFlag(PropFlags.Toast))
-                        {
-                            prop.AddAttribute(PropFlags.Toast);
-                            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, prop.attributes, true));
-                        }
-
-                        if (prop.toastiness > .9f && !prop.attributes.HasFlag(PropFlags.Burnt))
-                        {
-                            prop.AddAttribute(PropFlags.Burnt);
-                            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, prop.attributes, true));
-                        }
-
-                        if (prop.attributes.HasFlag(PropFlags.Frozen) && defrost)
-                        {
-                            Destroy(obj.transform.GetChild(0).gameObject);
-                            prop.attributes &= ~PropFlags.Frozen;
-                            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.ThawObject, prop.attributes, true));
-                        }
+                        if(defrost)
+                            prop.DefrostToast();
                     }
 
                     // apply force to obj

@@ -11,7 +11,7 @@ using UnityEngine.Events;
 public class ToastingVolume : MonoBehaviour
 {
     // Variables --------------------------
-    public float toastRate = 1.0f;
+    public float toastRate = 0.2f;
     public Dial toastingValueDial;
     public BoxCollider volume;
     public UnityEvent onToastingStart;
@@ -27,21 +27,7 @@ public class ToastingVolume : MonoBehaviour
         {
             foreach(NewProp prop in toastingObjects)
             {
-                prop.toastiness += toastRate * Time.deltaTime;
-                if (prop != null)
-                {
-                    if (prop.toastiness > .15f && !prop.attributes.HasFlag(PropFlags.Toast))
-                    {
-                        prop.AddAttribute(PropFlags.Toast);
-                        ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, prop.attributes, true));
-                    }
-
-                    if (prop.toastiness > .9f && !prop.attributes.HasFlag(PropFlags.Burnt))
-                    {
-                        prop.AddAttribute(PropFlags.Burnt);
-                        ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, prop.attributes, true));
-                    }
-                }
+                prop.IncreaseToastiness(toastRate * Time.deltaTime);
             }
         }
     }
