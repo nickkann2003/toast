@@ -27,10 +27,8 @@ public class FireEndingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //if (redLight != null)
-        //{
-        //    redLight.SetActive(false);
-        //}
+        instance = this;
+        InvokeRepeating("removeNull", 0, 1);
     }
 
     // Update is called once per frame
@@ -81,6 +79,11 @@ public class FireEndingManager : MonoBehaviour
         //{
         //    print("FIRE");
         //}
+    }
+
+    private void removeNull()
+    {
+        fireObjects.RemoveAll(x => x == null);
     }
 
     public void addFireObject(GameObject obj)

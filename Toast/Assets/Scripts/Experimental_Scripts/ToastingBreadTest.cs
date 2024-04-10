@@ -11,7 +11,7 @@ public class ToastingBreadTest : MonoBehaviour
     [SerializeField] private UnityEvent toasting;
     [SerializeField] private UnityEvent stopToasting;
 
-    public FireEndingManager fireEndingManager;
+    //public FireEndingManager fireEndingManager;
 
     private List<GameObject> collidingObjects = new List<GameObject>();
     private float targetStrength = .5f;
@@ -69,7 +69,8 @@ public class ToastingBreadTest : MonoBehaviour
                             fire.transform.localScale = Vector3.one;
                             prop.AddAttribute(PropFlags.OnFire);
                             ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, prop.attributes, true));
-                            fireEndingManager.addFireObject(key);
+                            FireEndingManager.instance.addFireObject(key);
+                            //fireEndingManager.addFireObject(key);
                         }
 
                     }

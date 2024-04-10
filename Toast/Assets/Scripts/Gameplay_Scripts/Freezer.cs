@@ -43,6 +43,7 @@ public class Freezer : MonoBehaviour
     {
         if (prop.attributes.HasFlag(PropFlags.OnFire))
         {
+            FireEndingManager.instance.removeFireObject(obj);
             prop.RemoveAttribute(PropFlags.OnFire);
             Destroy(obj.transform.GetChild(0).gameObject);
         }
