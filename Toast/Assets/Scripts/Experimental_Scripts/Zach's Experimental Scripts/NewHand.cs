@@ -57,6 +57,9 @@ public class NewHand : MonoBehaviour
 
             heldObject.GetComponent<NewProp>()?.RemoveAttribute(PropFlags.InHand);
             itemToReturn = heldObject;
+
+            
+
             if (StationManager.instance.playerLocation == InventoryManager.instance.InventoryStation)
             {
                 ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.HaveObjectsInInventory, itemToReturn.GetComponent<NewProp>().attributes, true));

@@ -268,6 +268,12 @@ public class Raycast : MonoBehaviour
             // Grab world pos from the current station
             Vector3 objectPos = currentStation.objectOffset;
 
+            //RaycastHit hitTest = RaycastHelper(~mask_Station);
+            //if (hitTest.collider != null)
+            //{
+            //    objectPos = hitTest.point + hitTest.normal * .4f;
+            //}
+
             // Set the current position of the object
             itemToDrop.transform.position = objectPos;
 
