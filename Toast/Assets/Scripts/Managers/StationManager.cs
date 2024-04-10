@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using UnityEngine.InputSystem;
+using Unity.PlasticSCM.Editor.WebApi;
 
 // Station enum, used to track which station it is in
 public enum Stations
@@ -25,6 +26,9 @@ public class StationManager : MonoBehaviour
     //Rect backBounds;
 
     public Stack<Station> playerPath;
+
+    // Transition Effect
+    public TransitionEffect transitionMask;
 
     // Used for camera movement/tweening
     float moveProgress = 0.0f;
@@ -97,7 +101,7 @@ public class StationManager : MonoBehaviour
         movingCam = true;
 
         // If station does not already exist in player's path, add it to stack
-        if(!playerPath.Contains(loc))
+        if (!playerPath.Contains(loc))
         {
             StationManager.instance.playerPath.Push(loc);
         }
@@ -146,6 +150,7 @@ public class StationManager : MonoBehaviour
 
         if(playerLocation == InventoryManager.instance.InventoryStation)
         {
+            transitionMask.StartTransition();
             InventoryManager.instance.SetLeaveInventoryValues();
         }
 
@@ -177,10 +182,6 @@ public class StationManager : MonoBehaviour
                 Debug.Log("MOVE TO PARENT" + playerLocation.parentLoc);
                 MoveToStation(playerLocation.parentLoc);
             }
-      
- 
-       
-
     }
 
 
