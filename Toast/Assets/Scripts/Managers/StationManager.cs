@@ -107,7 +107,7 @@ public class StationManager : MonoBehaviour
         {
             if(instance.playerLocation != loc.parentLoc)
             {
-                StationManager.instance.playerLocation.clickableCollider.enabled = true;
+                StationManager.instance.playerLocation.EnableColliders();
             }    
             
             StationManager.instance.playerLocation.OnLeave();
@@ -118,10 +118,7 @@ public class StationManager : MonoBehaviour
         StationManager.instance.playerLocation.OnArrive();
 
 
-        if (loc.clickableCollider != null)
-        {
-            loc.clickableCollider.enabled = false;
-        }
+        loc.DisableColliders();
 
         if (playerPath.Count > 1)
         {
@@ -152,11 +149,8 @@ public class StationManager : MonoBehaviour
             InventoryManager.instance.SetLeaveInventoryValues();
         }
 
-        if (StationManager.instance.playerLocation.clickableCollider != null)
-        {
-            StationManager.instance.playerLocation.clickableCollider.enabled = true;
-            //StationManager.instance.playerLocation.OnLeave();
-        }
+            StationManager.instance.playerLocation.EnableColliders();
+
 
             // No parent location exists, do stack manipulation
             if (playerLocation.parentLoc == null)

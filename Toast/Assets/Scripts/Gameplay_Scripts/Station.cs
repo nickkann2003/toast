@@ -19,6 +19,7 @@ public class Station : MonoBehaviour
     public List<Station> interactables;
 
     public Collider clickableCollider;
+    private Collider[] myClickableColliders;
     //public GameObject stationHighlight;
 
     private Highlights highlight;
@@ -47,6 +48,7 @@ public class Station : MonoBehaviour
     void Start()
     {
         isEnabled = true;
+        myClickableColliders = GetComponents<Collider>();
         if (clickableCollider != null)
         {
             clickableCollider = GetComponent<Collider>();
@@ -153,6 +155,23 @@ public class Station : MonoBehaviour
         {
             parentLoc.DisableParent();
         }
+    }
+
+    public void DisableColliders()
+    {
+        foreach(Collider c in myClickableColliders)
+        {
+            c.enabled = false;
+        }
+    }
+
+    public void EnableColliders()
+    {
+        foreach (Collider c in myClickableColliders)
+        {
+            c.enabled = true;
+        }
+        clickableCollider.enabled = true;
     }
 
 }
