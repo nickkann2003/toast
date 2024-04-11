@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 //using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 //using static UnityEditor.PlayerSettings;
@@ -32,11 +33,13 @@ public class Raycast : MonoBehaviour
     private int layer_Interactable = 7;
     private int layer_Station = 3;
     private int layer_Plane = 10;
+    private int layer_UI = 5;
 
     private int mask_IgnoreRaycast;
     private int mask_Interactable;
     private int mask_Station;
     private int mask_Plane;
+    private int mask_UI;
 
     Camera targetCamera;
 
@@ -75,6 +78,7 @@ public class Raycast : MonoBehaviour
         mask_Interactable = 1 << layer_Interactable;
         mask_Station = 1 << layer_Station;
         mask_Plane = 1 << layer_Plane;
+        mask_UI = 1 << layer_UI;
         prevGO = null;
         hitGO = null;
         targetCamera = GetComponent<Camera>();
@@ -83,13 +87,23 @@ public class Raycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(stationMoveTimer > 0.0f)
+        if (stationMoveTimer > 0.0f)
         {
             stationMoveTimer -= Time.deltaTime;
         }
 
         scrollInput = Input.GetAxis("Mouse ScrollWheel");
         prevGO = hitGO;
+        if(EventSystem.current.IsPointerOverGameObject())
+        {
+            // turn off prev highlight
+            if (prevHighligtable != null)
+            {
+                prevHighligtable.TurnOffHighlight();
+            }
+            hitGO = null;
+            return;
+        }
         TestRaycast();
         if (Input.GetButtonDown("Drag") && !noDrag)
         {
@@ -451,11 +465,13 @@ public class Raycast : MonoBehaviour
 
     public RaycastHit RaycastHelper(int layerMask)
     {
+
         RaycastHit hit = new RaycastHit();
         Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
 
         // shoot a raycast, ignoring the layermask
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, (layerMask & ~mask_IgnoreRaycast & ~mask_Plane)))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, (layerMask & ~mask_IgnoreRaycast & ~mask_Plane & ~mask_UI))
+            && !EventSystem.current.IsPointerOverGameObject())
         {
             return hit;
         }
