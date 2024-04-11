@@ -145,10 +145,7 @@ public class Station : MonoBehaviour
 
         if (clickableCollider != null)
         {
-            clickableCollider.enabled = false;
-
-           
-           
+            clickableCollider.enabled = false;           
         }
 
         if (parentLoc != null)
@@ -171,7 +168,12 @@ public class Station : MonoBehaviour
         {
             c.enabled = true;
         }
-        clickableCollider.enabled = true;
+
+        if(clickableCollider != null)
+        {
+            clickableCollider.enabled = true;
+        }
+       
     }
 
 }
