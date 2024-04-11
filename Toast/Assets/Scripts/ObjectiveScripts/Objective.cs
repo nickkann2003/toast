@@ -17,6 +17,7 @@ public class Objective : MonoBehaviour
 
     // Private variables
     private bool complete = false;
+    private bool available = false;
 
     // Properties
     public bool Complete { get => complete; }
@@ -57,14 +58,12 @@ public class Objective : MonoBehaviour
             {
                 if (!obj.Complete)
                 {
+                    available = false;
                     return false;
                 }
             }
         }
-        foreach (Requirement requirement in requirements)
-        {
-            requirement.listening = true;
-        }
+        available = true;
         return true;
     }
 
@@ -92,6 +91,17 @@ public class Objective : MonoBehaviour
             complete = true;
         }
         return true;
+    }
+
+    public void CheckListening()
+    {
+        if (available)
+        {
+            foreach (Requirement requirement in requirements)
+            {
+                requirement.listening = true;
+            }
+        }
     }
 
     public void UpdateObjective(RequirementEvent e)

@@ -34,6 +34,10 @@ public class NewProp : MonoBehaviour
 
         initialColor = gameObject.GetComponent<Renderer>().material.color;
         colorOffset = strongestStrength - initialColor;
+        if(firePrefab == null)
+        {
+            firePrefab = FireEndingManager.instance.firePrefab;
+        }
     }
 
     // Update is called once per frame
@@ -96,15 +100,15 @@ public class NewProp : MonoBehaviour
         if (toastiness > .15f && !attributes.HasFlag(PropFlags.Toast))
         {
             AddAttribute(PropFlags.Toast);
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, PropFlags.Toast, true));
+            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, attributes, true));
         }
 
         if (toastiness > .9f && !attributes.HasFlag(PropFlags.Burnt))
         {
             AddAttribute(PropFlags.Burnt);
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, PropFlags.Burnt, true));
+            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, attributes, true));
         }
-        if (!attributes.HasFlag(PropFlags.OnFire) && toastiness > fireTrigger)
+        if (!attributes.HasFlag(PropFlags.OnFire) && toastiness > fireTrigger && firePrefab != null)
         {
             GameObject fire = Instantiate(firePrefab);
             fire.transform.parent = gameObject.transform;
@@ -112,7 +116,7 @@ public class NewProp : MonoBehaviour
             fire.transform.eulerAngles = Vector3.zero;
             fire.transform.localScale = Vector3.one;
             AddAttribute(PropFlags.OnFire);
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, PropFlags.OnFire, true));
+            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, attributes, true));
             FireEndingManager.instance.addFireObject(gameObject);
             //fireEndingManager.addFireObject(key);
         }

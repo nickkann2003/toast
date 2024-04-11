@@ -27,6 +27,12 @@ public class ObjectiveGroup
                 completedObjectives++;
             }
         }
+        for (int i = objectives.Count - 1; i >= 0; i--)
+        {
+            Objective obj = objectives[i];
+            obj.CheckAvailable();
+            obj.CheckListening();
+        }
         if (completedObjectives > oldCompletedObjectives)
         {
             AudioManager.instance.PlayOneShotSound(AudioManager.instance.objectiveComplete, 0.3f, 1);

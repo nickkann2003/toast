@@ -34,6 +34,7 @@ public class Placer : MonoBehaviour, IUseStrategy
             obj.transform.up = placementRotation;
             obj.transform.parent = parentPlacementObj.transform;
             obj.GetComponentInChildren<Renderer>().material.color = mat.color;
+            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.UseObject, gameObject.GetComponent<NewProp>().attributes, true));
         }
     }
 

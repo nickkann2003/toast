@@ -15,6 +15,7 @@ public class FireEndingManager : MonoBehaviour
 
     private List<GameObject> fireObjects = new List<GameObject>();
 
+    public GameObject firePrefab;
     public GameObject smokeThingy;
     public GameObject redLight;
     public float lightTimer = 0;
@@ -23,6 +24,11 @@ public class FireEndingManager : MonoBehaviour
     [SerializeField] private UnityEvent endingTrigger;
 
     public GameManager gameManager;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()

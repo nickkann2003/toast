@@ -46,7 +46,10 @@ public class ToastingBreadTest : MonoBehaviour
                 foreach (var (key, value) in toastingObjects)
                 {
                     ToastingObject toast = value;
-
+                    if(key == null)
+                    {
+                        continue;
+                    }
                     NewProp prop = key.GetComponent<NewProp>();
                     if (prop != null)
                     {

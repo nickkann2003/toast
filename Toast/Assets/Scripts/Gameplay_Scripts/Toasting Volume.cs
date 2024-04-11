@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,6 +19,7 @@ public class ToastingVolume : MonoBehaviour
     public UnityEvent onToastingStop;
 
     private bool toasting;
+    private List<int> toRemove = new List<int>();
     private List<NewProp> toastingObjects = new List<NewProp>();
 
     // Functions --------------------------
@@ -25,10 +27,31 @@ public class ToastingVolume : MonoBehaviour
     {
         if (toasting)
         {
-            foreach(NewProp prop in toastingObjects)
+            for(int i = 0; i < toastingObjects.Count; i ++)
             {
+                NewProp prop = toastingObjects[i];
+                if(prop == null)
+                {
+                    toRemove.Add(i);
+                    continue;
+                }
+
+                if(prop.gameObject == null)
+                {
+                    toRemove.Add(i);
+                    continue;
+                }
+
                 prop.IncreaseToastiness(toastRate * Time.deltaTime);
             }
+        }
+        if(toRemove.Count > 0)
+        {
+            for(int i = 0; i < toRemove.Count; i++)
+            {
+                toastingObjects.RemoveAt(toRemove[i]);
+            }
+            toRemove.Clear();
         }
     }
 
