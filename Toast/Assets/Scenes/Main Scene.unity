@@ -4117,9 +4117,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 463764331}
-  - component: {fileID: 463764334}
   - component: {fileID: 463764336}
   - component: {fileID: 463764335}
+  - component: {fileID: 463764334}
   m_Layer: 3
   m_Name: FrontWall
   m_TagString: Untagged
@@ -4211,7 +4211,8 @@ MonoBehaviour:
   defaultHighlightSetting: {fileID: 11400000, guid: 048731340c1ada64b85ea5f05e1199b8,
     type: 2}
   isHighlightedEnabled: 1
-  outline: []
+  outline:
+  - {fileID: 1926337203}
 --- !u!1 &467990179 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3897389252958179053, guid: c0ea23539fefbb944bc2831098845f6a,
@@ -6995,6 +6996,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 767060069}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &779680019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8317045835413974375, guid: 7354718f332bbc646bb3feaa82d6f316,
+    type: 3}
+  m_PrefabInstance: {fileID: 1926337201}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &780163198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27199,7 +27206,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8317045835413974375, guid: 7354718f332bbc646bb3feaa82d6f316,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1926337203}
   m_SourcePrefab: {fileID: 100100000, guid: 7354718f332bbc646bb3feaa82d6f316, type: 3}
 --- !u!4 &1926337202 stripped
 Transform:
@@ -27207,6 +27218,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1926337201}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1926337203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779680019}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  outlineWidth: 6
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1929992518
 PrefabInstance:
   m_ObjectHideFlags: 0
