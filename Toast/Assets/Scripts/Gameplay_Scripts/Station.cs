@@ -49,7 +49,7 @@ public class Station : MonoBehaviour
     {
         isEnabled = true;
         myClickableColliders = GetComponents<Collider>();
-        if (clickableCollider != null)
+        if (clickableCollider == null)
         {
             clickableCollider = GetComponent<Collider>();
         }

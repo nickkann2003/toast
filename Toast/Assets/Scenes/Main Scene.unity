@@ -4167,8 +4167,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.733299, y: 7.2931523, z: 2.546743}
-  m_Center: {x: 0.3690815, y: 3.1465762, z: -0.77337146}
+  m_Size: {x: 10.733299, y: 7.2931523, z: 2.9818416}
+  m_Center: {x: 0.3690815, y: 3.1465762, z: -0.9909208}
 --- !u!114 &463764335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4190,9 +4190,11 @@ MonoBehaviour:
   cameraPos: {x: -0.347, y: 2.911, z: -8.362}
   cameraRotation: {x: 0.04361953, y: 0, z: 0, w: -0.99904823}
   stationLabel: 1
-  objectOffset: {x: 0, y: 0, z: 0}
-  parentLoc: {fileID: 0}
-  interactables: []
+  objectOffset: {x: -0.057, y: 2.49, z: -0.9}
+  parentLoc: {fileID: 1467470857}
+  interactables:
+  - {fileID: 1123605236}
+  - {fileID: 1645101101}
   clickableCollider: {fileID: 463764334}
   isEnabled: 0
   dragPlanes: []
@@ -10476,7 +10478,7 @@ MonoBehaviour:
   cameraRotation: {x: 0, y: 0, z: 0, w: 1}
   stationLabel: 1
   objectOffset: {x: 0, y: 0, z: 0}
-  parentLoc: {fileID: 0}
+  parentLoc: {fileID: 463764335}
   interactables: []
   clickableCollider: {fileID: 0}
   isEnabled: 0
@@ -17309,7 +17311,7 @@ MonoBehaviour:
   - {fileID: 1707342908}
   - {fileID: 1448825837}
   - {fileID: 629212539}
-  - {fileID: 0}
+  - {fileID: 463764335}
   clickableCollider: {fileID: 0}
   isEnabled: 0
   dragPlanes: []
@@ -18991,7 +18993,7 @@ MonoBehaviour:
   cameraRotation: {x: 0, y: 0, z: 0, w: 1}
   stationLabel: 1
   objectOffset: {x: -0.057, y: 2.49, z: -0.9}
-  parentLoc: {fileID: 0}
+  parentLoc: {fileID: 463764335}
   interactables:
   - {fileID: 2122773137}
   - {fileID: 596603644}
