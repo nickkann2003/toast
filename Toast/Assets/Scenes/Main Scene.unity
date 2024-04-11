@@ -4117,7 +4117,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 463764331}
-  m_Layer: 0
+  - component: {fileID: 463764334}
+  - component: {fileID: 463764336}
+  - component: {fileID: 463764335}
+  m_Layer: 3
   m_Name: FrontWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4145,6 +4148,70 @@ Transform:
   m_Father: {fileID: 1608233084}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &463764334
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463764330}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.733299, y: 7.2931523, z: 2.546743}
+  m_Center: {x: 0.3690815, y: 3.1465762, z: -0.77337146}
+--- !u!114 &463764335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463764330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ff63f25d1ab4344b3bd1f858dfaec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrive:
+    m_PersistentCalls:
+      m_Calls: []
+  leave:
+    m_PersistentCalls:
+      m_Calls: []
+  cameraPos: {x: -0.347, y: 2.911, z: -8.362}
+  cameraRotation: {x: 0.04361953, y: 0, z: 0, w: -0.99904823}
+  stationLabel: 1
+  objectOffset: {x: 0, y: 0, z: 0}
+  parentLoc: {fileID: 0}
+  interactables: []
+  clickableCollider: {fileID: 463764334}
+  isEnabled: 0
+  dragPlanes: []
+--- !u!114 &463764336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463764330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902f118e886d20d43b1ff6bff5092b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHighlightSetting: {fileID: 11400000, guid: 048731340c1ada64b85ea5f05e1199b8,
+    type: 2}
+  isHighlightedEnabled: 1
+  outline: []
 --- !u!1 &467990179 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3897389252958179053, guid: c0ea23539fefbb944bc2831098845f6a,
@@ -10402,7 +10469,7 @@ MonoBehaviour:
   cameraRotation: {x: 0, y: 0, z: 0, w: 1}
   stationLabel: 1
   objectOffset: {x: 0, y: 0, z: 0}
-  parentLoc: {fileID: 1645101101}
+  parentLoc: {fileID: 0}
   interactables: []
   clickableCollider: {fileID: 0}
   isEnabled: 0
@@ -16788,7 +16855,7 @@ MonoBehaviour:
       m_Calls: []
   cameraPos: {x: 2.55, y: 2.32, z: -5.72}
   cameraRotation: {x: 0, y: -0.70710677, z: 0, w: 0.70710677}
-  stationLabel: 0
+  stationLabel: 1
   objectOffset: {x: -4.42, y: 2.92, z: -5.72}
   parentLoc: {fileID: 1467470857}
   interactables:
@@ -17233,11 +17300,9 @@ MonoBehaviour:
   parentLoc: {fileID: 0}
   interactables:
   - {fileID: 1707342908}
-  - {fileID: 1645101101}
-  - {fileID: 2122773137}
   - {fileID: 1448825837}
   - {fileID: 629212539}
-  - {fileID: 1123605236}
+  - {fileID: 0}
   clickableCollider: {fileID: 0}
   isEnabled: 0
   dragPlanes: []
@@ -18919,7 +18984,7 @@ MonoBehaviour:
   cameraRotation: {x: 0, y: 0, z: 0, w: 1}
   stationLabel: 1
   objectOffset: {x: -0.057, y: 2.49, z: -0.9}
-  parentLoc: {fileID: 1467470857}
+  parentLoc: {fileID: 0}
   interactables:
   - {fileID: 2122773137}
   - {fileID: 596603644}
