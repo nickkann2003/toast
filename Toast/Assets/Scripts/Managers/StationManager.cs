@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using UnityEngine.InputSystem;
-using Unity.PlasticSCM.Editor.WebApi;
 
 // Station enum, used to track which station it is in
 public enum Stations
