@@ -20,7 +20,7 @@ public class Placer : MonoBehaviour, IUseStrategy
 
     public void Use()
     {
-        if (remaining == 0 || objPrefab == null)
+        if (remaining == 0 || objPrefab == null || !transform.GetComponent<NewProp>().HasAttribute(PropFlags.InHand))
         {
             return;
         }
