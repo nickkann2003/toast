@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         curState = GameState.Menu;
         raycaster.enabled = false;
 
-        Time.timeScale = 0;
+        Time.timeScale = 0.1f;
     }
 
     // Start is called before the first frame update
