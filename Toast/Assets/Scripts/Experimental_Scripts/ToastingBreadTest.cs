@@ -46,7 +46,7 @@ public class ToastingBreadTest : MonoBehaviour
                 foreach (var (key, value) in toastingObjects)
                 {
                     ToastingObject toast = value;
-                    if(key == null)
+                    if(key == null || key.GetComponent<Rigidbody>() == null)
                     {
                         continue;
                     }

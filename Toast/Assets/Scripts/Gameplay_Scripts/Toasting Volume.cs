@@ -41,6 +41,12 @@ public class ToastingVolume : MonoBehaviour
                     continue;
                 }
 
+                if (prop.gameObject.GetComponent<Rigidbody>() == null)
+                {
+                    toRemove.Add(i);
+                    continue;
+                }
+
                 prop.IncreaseToastiness(toastRate * Time.deltaTime);
             }
         }
