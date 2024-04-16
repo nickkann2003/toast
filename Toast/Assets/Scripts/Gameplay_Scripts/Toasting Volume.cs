@@ -11,11 +11,19 @@ using UnityEngine.Events;
 public class ToastingVolume : MonoBehaviour
 {
     // Variables --------------------------
-    public float toastRate = 0.2f;
+    [Header("Object References")]
     public Dial toastingValueDial;
     public BoxCollider volume;
+
+    [Header("Start/Stop Events")]
     public UnityEvent onToastingStart;
     public UnityEvent onToastingStop;
+
+    // Complex Heating Variables
+    [Header ("Heating Values")]
+    public float toastRate = 0.2f;
+    public float heatingPower; // Determines how fast the volume heats up
+    private float heat; // Degrees
 
     private bool toasting;
     private List<int> toRemove = new List<int>();

@@ -50,7 +50,6 @@ public class AudioManager : MonoBehaviour
         // example 1
         //audioPlayer.clip = soundToPlay;
         //audioPlayer.Play();
-        Debug.Log(soundToPlay);
         // example 2
         audioPlayer.volume = volume * volumeMultiplier;
         audioPlayer.PlayDelayed(delay);

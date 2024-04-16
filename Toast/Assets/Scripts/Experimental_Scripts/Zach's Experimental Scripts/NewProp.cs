@@ -7,13 +7,15 @@ using UnityEngine.InputSystem;
 
 public class NewProp : MonoBehaviour
 {
-    [SerializeField]
-    private Material baseMat;
 
+    [Header("------------ Attributes ------------")]
     public PropFlags attributes;
 
     // Toast Values
+    [Header("------------ Toastiness ------------")]
     public float toastiness;
+
+    [Header("------------ Fire Variables ------------")]
     public float fireTrigger = 1.5f;
     public GameObject firePrefab;
     private float targetStrength = 0.5f;
@@ -21,7 +23,11 @@ public class NewProp : MonoBehaviour
     private Color initialColor;
     private Color colorOffset;
 
+    [Header("------------ Freeze Variables ------------")]
     public float frozenness;
+
+    [SerializeField]
+    private Material baseMat;
 
     protected IUseStrategy _useStrategy;
 

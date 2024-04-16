@@ -2,15 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Hand : MonoBehaviour
 {
     // Variables -----------------------------------------------
+    [Header("------------ Hand Visual Offset ------------")]
+    public Vector3 offset = new Vector3(0.35f, -0.35f, 0.55f);
+
+    [Header("------------ Particles ------------")]
+    public ParticleSystem EatParticles;
+
     private Camera cam;
     private GameObject currentItem;
     private bool holdingItem;
-    public Vector3 offset = new Vector3(0.35f, -0.35f, 0.55f);
-    public ParticleSystem EatParticles;
 
     //TODO: BAD TEMP CODE, GET IT OUT
     private bool dropPressed = false;
@@ -190,9 +195,7 @@ public class Hand : MonoBehaviour
             {
                 if (currentItem.GetComponent<IEatable>() != null)
                 {
-                    Color c = currentItem.GetComponent<Renderer>().material.color;
-                    var main = EatParticles.main;
-                    main.startColor = c;
+                    PlayEatParticles(currentItem);
                     RequirementEvent rEvent;
                     if (currentItem.GetComponent<IEatable>().BitesLeft() <= 1)
                     {
@@ -207,7 +210,6 @@ public class Hand : MonoBehaviour
                         ObjectiveManager.instance.UpdateObjectives(rEvent);
                     }
                     currentItem.GetComponent<IEatable>().TakeBite();
-                    EatParticles.Play();
                     if (currentItem == null)
                     {
                         holdingItem = false;
@@ -220,5 +222,13 @@ public class Hand : MonoBehaviour
                 holdingItem = false;
             }
         }
+    }
+
+    public void PlayEatParticles(GameObject item)
+    {
+        Color c = item.GetComponent<Renderer>().material.color;
+        var main = EatParticles.main;
+        main.startColor = c;       
+        EatParticles.Play();
     }
 }

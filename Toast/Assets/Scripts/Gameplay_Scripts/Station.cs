@@ -6,43 +6,37 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Highlights))]
 public class Station : MonoBehaviour
 {
-    [SerializeField] private UnityEvent arrive;
-    [SerializeField] private UnityEvent leave;
 
+    [Header("------------ Transform Variables ------------")]
     public Vector3 cameraPos;
     public Quaternion cameraRotation = Quaternion.identity;
-    public Stations stationLabel;
+
+    [Header("------------ Obj Offset ------------")]
     public Vector3 objectOffset;
+
+    [Header("------------ Station Variables ------------")]
     public Station parentLoc;
+    public Stations stationLabel;
+
+    public Collider clickableCollider;
+    private Collider[] myClickableColliders;
 
     // List of props and stations that can be reached from here
     public List<Station> interactables;
 
-    public Collider clickableCollider;
-    private Collider[] myClickableColliders;
-    //public GameObject stationHighlight;
 
     private Highlights highlight;
 
-    // If isEnable is false, then the player should not be able to reach to interact with this station/prop
+    [Header("------------ Enable Station ------------")]
     [SerializeField] private bool isEnabled;
 
+    [Header("------------ Drag Planes ------------")]
     public List<GameObject> dragPlanes;
     //public GameObject dragPlane;
 
-    ///private int layer_Station = 3;
-    ///private int layer_UI = 5;
-    ///private int layer_Ignore = 2;
-    ///private int mask_Station;
-    ///private int mask_UI;
-    ///private int mask_Ignore;
-
-    //private void Awake()
-    //{
-    //    mask_Station = 1 << layer_Station;
-    //    mask_UI = 1 << layer_UI;
-    //    mask_Ignore = 1 << layer_Ignore;
-    //}
+    [Header("------------ Events ------------")]
+    [SerializeField] private UnityEvent arrive;
+    [SerializeField] private UnityEvent leave;
 
     // Start is called before the first frame update
     void Start()

@@ -20,7 +20,6 @@ public class Eat : MonoBehaviour, IUseStrategy
     public void Use()
     {
         TakeBite();
-        Debug.Log(gameObject);
     }
 
     private void EatWhole()
@@ -32,6 +31,7 @@ public class Eat : MonoBehaviour, IUseStrategy
     private void TakeBite()
     {
         AudioManager.instance.PlayOneShotSound(AudioManager.instance.eatingBread);
+        Camera.main.GetComponent<Hand>().PlayEatParticles(gameObject);
         bitesRemaining--;
         if (bitesRemaining <= 0)
         {
