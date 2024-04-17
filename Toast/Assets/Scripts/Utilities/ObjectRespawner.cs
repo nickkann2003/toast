@@ -8,7 +8,10 @@ using UnityEngine.Events;
 
 public class ObjectRespawner : MonoBehaviour
 {
+    [Header("-------------- List of Objects to Respawn ---------------")]
     [SerializeField] public List<RespawnableObject> objects;
+
+    [Header("------------- Spawn Variables -------------")]
     [SerializeField] public bool waitForAll = false;
     [SerializeField] public bool autoRespawnItems = true;
     [SerializeField] public bool spawnOnStart = true;

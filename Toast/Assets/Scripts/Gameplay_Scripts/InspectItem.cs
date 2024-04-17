@@ -6,13 +6,15 @@ using UnityEngine.InputSystem;
 
 public class InspectItem : MonoBehaviour
 {
-    public bool inspecting = false;
-
+    [Header("----------- Inspector Cam ------------")]
     [SerializeField]
     public Camera inspectorCam;
 
     Vector3 prevPosition;
     Vector3 changeInPosition;
+
+    [Header("----------- Inspecting ------------")]
+    public bool inspecting = false;
 
     // Update is called once per frame
     void Update()

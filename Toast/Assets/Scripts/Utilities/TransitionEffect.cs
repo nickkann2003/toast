@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TransitionEffect : MonoBehaviour
 {
-
+    [Header("-------------- Transition Variables ---------------")]
     public float fadeInDuration = 1f; // Duration of the fade in transition
     public float stayDuration = 1f; // Duration of the stay at full scale
     public float fadeOutDuration = 1f; // Duration of the fade out transition

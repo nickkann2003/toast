@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Freezer : MonoBehaviour
 {
-    private List<GameObject> collidingObjects = new List<GameObject>();
-
+    [Header("------------- Ice Prefab ------------")]
     public GameObject icePrefab;
+    
+    private List<GameObject> collidingObjects = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()

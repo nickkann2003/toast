@@ -6,18 +6,18 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    [Header("------------ Rotating Object ------------")]
+    public GameObject rotator;
+    private Transform rotatorTransform;
+
+    [Header("------------ Rotation Values ------------")]
     public Vector3 minRot; // Closed
     public Vector3 maxRot; // Open
+    public float speed = 3;
+    public bool isOpen;
 
     // amount that the door has opened
     private float interpolateAmount;
-
-    public float speed = 3;
-
-    public bool isOpen;
-
-    public GameObject rotator;
-    Transform rotatorTransform;
 
     private void Awake()
     {

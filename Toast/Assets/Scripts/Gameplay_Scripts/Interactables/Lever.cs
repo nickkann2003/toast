@@ -8,11 +8,13 @@ using UnityEngine.XR;
 
 public class Lever : MonoBehaviour
 {
+    [Header("---------- Unity Events -----------")]
     [SerializeField] private UnityEvent leverTrigger;
 
     private Vector3 mOffset;
     private float mZCoord;
 
+    [Header("------------- Lever Variables ------------")]
     public float maxHeight;
     public float minHeight;
     public List<LeverChild> children;

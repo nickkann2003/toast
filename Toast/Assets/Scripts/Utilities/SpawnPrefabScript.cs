@@ -6,12 +6,15 @@ using UnityEngine.Rendering;
 
 public class SpawnPrefabScript : MonoBehaviour
 {
+    [Header("------------------ Item to Spawn --------------")]
     public GameObject prefab;
+    
+    [Header("----------------- Spawn Variables -------------")]
     public Vector3 spawnPosition;
-    private Vector3 actualSpawnPos;
-    public Vector3 spawnRandomness;
-
     public Quaternion spawnRotation;
+    private Vector3 actualSpawnPos;
+
+    public Vector3 spawnRandomness;
     public Quaternion spawnRotationRandomness;
 
     public void Start()

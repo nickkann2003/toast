@@ -5,25 +5,25 @@ using UnityEngine;
 
 public class Dial : MonoBehaviour
 {
-    public Vector3 mOffset;
     private float mZCoord;
-
     private bool mouse;
-
     private Vector3 pos;
-    public Vector3 rotation;
+    private Vector3 rotation;
 
     // allows objects to be given parents without having a parent
     private Transform parent;
-    public Vector3 lookAtPos;
 
-    public bool freeze = false;
-
+    [Header("------------- Dial Values ------------")]
     public float dialValue;
     public float maxValue = .6f;
     public float minValue = .2f;
 
+    [Header("------------- Unity Events ------------")]
     public FloatEvent onDialChange;
+    
+    [Header("Freeze Dial")]
+    public bool freeze = false;
+
 
 
     private void Start()
@@ -71,7 +71,6 @@ public class Dial : MonoBehaviour
 
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 
-        mOffset = transform.position - GetMouseWorldPos();
     }
 
     private void OnMouseUp()

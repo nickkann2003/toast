@@ -10,20 +10,20 @@ using UnityEngine.Events;
 
 public class PhysicalButtons : MonoBehaviour
 {
+    [Header("----------- Unity Events ------------")]
     [SerializeField] private UnityEvent buttonTrigger;
 
-    // position in world
+    [Header("----------- Height Entities -----------")]
     public GameObject maxHeight;
     public GameObject minHieght;
-
-    public Vector3 testMaxHeight;
 
     // amount that the button has moved towards min height
     private float interpolateAmount;
 
     // timer
-    public float timer;
+    [Header("------------ Time ------------")]
     public float maxTime;
+    private float timer;
 
     public enum Trigger
     {
@@ -134,27 +134,3 @@ public class PhysicalButtons : MonoBehaviour
         transform.position = Vector3.Lerp(maxHeight.transform.position, minHieght.transform.position, interpolateAmount);
     }
 }
-
-//#if UNITY_EDITOR
-//[CustomEditor(typeof(Button))]
-//public class ButtonEditor : Editor
-//{
-//    public void OnSceneGUI()
-//    {
-//        Button button = target as Button;
-
-//        Transform parentTransform = button.transform.parent.transform;
-
-//        EditorGUI.BeginChangeCheck();
-
-//        Vector3 newMaxHeight = Handles.PositionHandle(parentTransform.TransformPoint(button.testMaxHeight), Quaternion.identity);
-//        Handles.DrawWireCube(parentTransform.TransformPoint(button.testMaxHeight), new Vector3(.1f, .1f, .1f));
-
-//        if (EditorGUI.EndChangeCheck())
-//        {
-//            Undo.RecordObject(target, "Update Max Height");
-//            button.testMaxHeight = parentTransform.InverseTransformPoint(newMaxHeight);
-//        }
-//    }
-//}
-//#endif // UNITY_EDITOR
