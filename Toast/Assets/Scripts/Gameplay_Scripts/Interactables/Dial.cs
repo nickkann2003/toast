@@ -18,8 +18,14 @@ public class Dial : MonoBehaviour
     public float maxValue = .6f;
     public float minValue = .2f;
 
+    [Header("------------ Dial Position Values -------------")]
+    public Vector3 normal = new Vector3(0, 1, 0);
+    public Vector3 minRotation = new Vector3(0,0,110);
+    public Vector3 maxRotation = new Vector3(0, 0, 220);
+
     [Header("------------- Unity Events ------------")]
     public FloatEvent onDialChange;
+
     
     [Header("Freeze Dial")]
     public bool freeze = false;
