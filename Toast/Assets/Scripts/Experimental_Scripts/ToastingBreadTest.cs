@@ -101,8 +101,8 @@ public class ToastingBreadTest : MonoBehaviour
                 else if (!toastingObjects.ContainsKey(obj))
                 {
                     toastingObjects.Add(obj, new ToastingObject(obj, toastiness, strongestStrength, weakestStrength, targetStrength));
-                    obj.GetComponent<NewProp>().AddAttribute(PropFlags.ImmuneToDrag);
-                    obj.GetComponent<NewProp>().AddAttribute(PropFlags.ImmuneToPickup);
+                    //obj.GetComponent<NewProp>().AddAttribute(PropFlags.ImmuneToDrag);
+                    //obj.GetComponent<NewProp>().AddAttribute(PropFlags.ImmuneToPickup);
 
                 }
             }
@@ -133,8 +133,8 @@ public class ToastingBreadTest : MonoBehaviour
                         if(defrost)
                             prop.DefrostToast();
 
-                        obj.GetComponent<NewProp>().RemoveAttribute(PropFlags.ImmuneToDrag);
-                        obj.GetComponent<NewProp>().RemoveAttribute(PropFlags.ImmuneToPickup);
+                        //obj.GetComponent<NewProp>().RemoveAttribute(PropFlags.ImmuneToDrag);
+                        //obj.GetComponent<NewProp>().RemoveAttribute(PropFlags.ImmuneToPickup);
                     }
 
                     // apply force to obj
