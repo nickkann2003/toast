@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7245871066802113980}
   - component: {fileID: 8880966765278886725}
   - component: {fileID: 7766549166607460703}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: MaxHeight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4714759722280616962}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StandardButton 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 5941913119493797275}
   - component: {fileID: 3807411875626970147}
   - component: {fileID: 3127223650141395640}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,8 @@ GameObject:
   - component: {fileID: 5182423190351182385}
   - component: {fileID: 7707362071693748688}
   - component: {fileID: 4952688417671541935}
-  m_Layer: 0
+  - component: {fileID: 7533192536378343418}
+  m_Layer: 7
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,15 +326,10 @@ MonoBehaviour:
   buttonTrigger:
     m_PersistentCalls:
       m_Calls: []
-  toastCollider: {fileID: 0}
-  spawnPrefab: {fileID: 4952688417671541935}
   maxHeight: {fileID: 365891720197560109}
   minHieght: {fileID: 8173612472901576158}
-  testMaxHeight: {x: 0, y: 0, z: 0}
-  timer: 0
   maxTime: 0.1
   trigger: 0
-  outline: {fileID: 0}
 --- !u!114 &4952688417671541935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,9 +344,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 6994967846282815134, guid: c3f3c7f25a39a19419714892b4c2aa0d, type: 3}
   spawnPosition: {x: 0, y: 3, z: 0}
-  spawnRandomness: {x: 0, y: 0, z: 1}
   spawnRotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
+  spawnRandomness: {x: 0, y: 0, z: 1}
   spawnRotationRandomness: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7533192536378343418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563956214207294138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902f118e886d20d43b1ff6bff5092b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHighlightSetting: {fileID: 11400000, guid: 4e99a902e42de1744966150e6be5e105,
+    type: 2}
+  isHighlightedEnabled: 1
+  outline: []
 --- !u!1 &8173612472901576158
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +374,7 @@ GameObject:
   - component: {fileID: 6932202277023024513}
   - component: {fileID: 9083033198039411719}
   - component: {fileID: 5183667869472670417}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: MinHeight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
