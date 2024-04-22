@@ -122,9 +122,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialValue: 0
-  maxValue: 0.08
+  maxValue: 0.04
   minValue: 0
   normal: {x: 0, y: 0, z: 0}
+  minRotation: {x: 0, y: 0, z: 110}
+  maxRotation: {x: 0, y: 0, z: 220}
   onDialChange:
     m_PersistentCalls:
       m_Calls:
@@ -279,9 +281,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialValue: 0
-  maxValue: 0.08
+  maxValue: 0.04
   minValue: 0
   normal: {x: 0, y: 0, z: 0}
+  minRotation: {x: 0, y: 0, z: 110}
+  maxRotation: {x: 0, y: 0, z: 220}
   onDialChange:
     m_PersistentCalls:
       m_Calls:
@@ -414,7 +418,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  toastRate: 1
+  toastRate: 0.05
   heatingPower: 0
 --- !u!1 &838481289870879057
 GameObject:
@@ -538,9 +542,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialValue: 0
-  maxValue: 0.08
+  maxValue: 0.04
   minValue: 0
   normal: {x: 0, y: 0, z: 0}
+  minRotation: {x: 0, y: 0, z: 110}
+  maxRotation: {x: 0, y: 0, z: 220}
   onDialChange:
     m_PersistentCalls:
       m_Calls:
@@ -1226,9 +1232,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialValue: 0.08
-  maxValue: 2
+  maxValue: 0.04
   minValue: 0
   normal: {x: 0, y: 0, z: 0}
+  minRotation: {x: 0, y: 0, z: 110}
+  maxRotation: {x: 0, y: 0, z: 220}
   onDialChange:
     m_PersistentCalls:
       m_Calls:
@@ -1489,9 +1497,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialValue: 0
-  maxValue: 0.15
+  maxValue: 0.08
   minValue: 0
   normal: {x: -44.1, y: -0.83, z: -33.44}
+  minRotation: {x: 0, y: 0, z: 110}
+  maxRotation: {x: 0, y: 0, z: 220}
   onDialChange:
     m_PersistentCalls:
       m_Calls:
@@ -2093,7 +2103,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  toastRate: 0.2
+  toastRate: 0.1
   heatingPower: 0
 --- !u!1 &4238916419527353823
 GameObject:
@@ -3292,8 +3302,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7897296679275952494}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0014, y: 1.119, z: -0.158}
-  m_LocalScale: {x: 1.4429734, y: 0.89486724, z: 1.2939063}
+  m_LocalPosition: {x: -0.0014, y: 1.125, z: -0.158}
+  m_LocalScale: {x: 1.5188738, y: 0.961942, z: 1.2939063}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2575519069239052855}
@@ -3555,7 +3565,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  toastRate: 1
+  toastRate: 0.05
   heatingPower: 0
 --- !u!1 &8843506081145165389
 GameObject:
@@ -3657,7 +3667,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  toastRate: 1
+  toastRate: 0.05
   heatingPower: 0
 --- !u!1 &8918016945309899299
 GameObject:

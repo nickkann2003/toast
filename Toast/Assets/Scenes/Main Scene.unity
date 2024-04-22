@@ -228,56 +228,6 @@ MonoBehaviour:
   completionEvents:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &24448282
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 24448283}
-  - component: {fileID: 24448284}
-  m_Layer: 0
-  m_Name: Eat Burnt Toast
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &24448283
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 24448282}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 809895352}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &24448284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 24448282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0af866e473c2a3040aa075a67984daed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listening: 1
-  type: 0
-  targetAttributes: 536871425
-  goalName: Eat Burnt Toast
-  goal: 1
-  alwaysListening: 0
 --- !u!1001 &25347457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7879,7 +7829,6 @@ MonoBehaviour:
   - {fileID: 1366592690}
   - {fileID: 1529303603}
   - {fileID: 1224051955}
-  - {fileID: 24448284}
   objectiveObjects: []
   activatables: []
   completionEvents:
@@ -7915,7 +7864,6 @@ Transform:
   - {fileID: 1366592689}
   - {fileID: 1529303602}
   - {fileID: 1224051954}
-  - {fileID: 24448283}
   m_Father: {fileID: 1756709728}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
