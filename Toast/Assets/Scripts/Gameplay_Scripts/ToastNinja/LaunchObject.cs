@@ -8,6 +8,8 @@ public class LaunchObject : MonoBehaviour
     public Vector3 launchVector;
     public float launchVelocity = 400f;
 
+    public bool active = false;
+
     [SerializeField]
     ParticleSystem particles;
 
@@ -23,6 +25,10 @@ public class LaunchObject : MonoBehaviour
 
     private void LaunchObj(GameObject objectToLaunch)
     {
+        if (!active)
+        {
+            return;
+        }
         particles.Play();
         StartCoroutine(DelayedLaunchObj(objectToLaunch));
 
@@ -31,6 +37,11 @@ public class LaunchObject : MonoBehaviour
     IEnumerator DelayedLaunchObj(GameObject objectToLaunch)
     {
         yield return new WaitForSeconds(2f);
+
+        if (!active)
+        {
+            yield break;
+        }
 
         GameObject obj = Instantiate(objectToLaunch, transform.position, transform.rotation);
         obj.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, launchVelocity, 0));

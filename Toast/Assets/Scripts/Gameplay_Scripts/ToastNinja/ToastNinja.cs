@@ -130,10 +130,10 @@ public class ToastNinja : MonoBehaviour
         }
 
         toastNinjaState = ToastNinjaState.Active;
-        //for (int i = 0; i < launchObjects.Length; i++)
-        //{
-        //    launchObjects[i].gameObject.SetActive(true);
-        //}
+        for (int i = 0; i < launchObjects.Length; i++)
+        {
+            launchObjects[i].active = true;
+        }
         for (int i = 0;i < destroyerVolumes.Length; i++)
         {
             destroyerVolumes[i].gameObject.SetActive(true);
@@ -156,10 +156,10 @@ public class ToastNinja : MonoBehaviour
         }
 
         toastNinjaState = ToastNinjaState.Inactive;
-        //for (int i = 0; i < launchObjects.Length; i++)
-        //{
-        //    launchObjects[i].gameObject.SetActive(false);
-        //}
+        for (int i = 0; i < launchObjects.Length; i++)
+        {
+            launchObjects[i].active = false;
+        }
         for (int i = 0; i < destroyerVolumes.Length; i++)
         {
             destroyerVolumes[i].gameObject.SetActive(false);
