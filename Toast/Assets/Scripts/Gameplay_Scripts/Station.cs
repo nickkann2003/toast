@@ -34,6 +34,9 @@ public class Station : MonoBehaviour
     public List<GameObject> dragPlanes;
     //public GameObject dragPlane;
 
+    [Header("------------ Station Specific Objects -------------")]
+    public List<GameObject> stationSpecificHints = new List<GameObject>();
+
     [Header("------------ Events ------------")]
     [SerializeField] private UnityEvent arrive;
     [SerializeField] private UnityEvent leave;
@@ -47,24 +50,12 @@ public class Station : MonoBehaviour
         {
             clickableCollider = GetComponent<Collider>();
         }
+
+        foreach (GameObject obj in stationSpecificHints)
+        {
+            obj.SetActive(false);
+        }
     }
-
-    //private void Update()
-    //{
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //        RaycastHit hit;
-
-    //        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask_Ignore))
-    //        {
-    //            if (hit.collider == clickableCollider)
-    //            {
-                   
-    //            }
-    //        }
-    //    }
-    //}
 
     private void OnMouseDown()
     {
@@ -88,11 +79,19 @@ public class Station : MonoBehaviour
     public void OnArrive()
     {
         arrive.Invoke();
+        foreach(GameObject obj in stationSpecificHints)
+        {
+            obj.SetActive(true);
+        }
     }
 
     public void OnLeave()
     {
         leave.Invoke();
+        foreach (GameObject obj in stationSpecificHints)
+        {
+            obj.SetActive(false);
+        }
     }
 
     void OnDrawGizmosSelected()
