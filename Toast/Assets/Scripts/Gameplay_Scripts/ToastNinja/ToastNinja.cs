@@ -39,6 +39,9 @@ public class ToastNinja : MonoBehaviour
     private GameObject swordPrefab;
     private GameObject swordObject;
 
+    [SerializeField]
+    private GameObject moveBlocker;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -138,6 +141,7 @@ public class ToastNinja : MonoBehaviour
         {
             destroyerVolumes[i].gameObject.SetActive(true);
         }
+        moveBlocker.SetActive(true);
     }
 
     public void GameStop()
@@ -164,6 +168,7 @@ public class ToastNinja : MonoBehaviour
         {
             destroyerVolumes[i].gameObject.SetActive(false);
         }
+        moveBlocker.SetActive(false);
     }
 
     public void GameReady()
