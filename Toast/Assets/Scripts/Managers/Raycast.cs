@@ -26,6 +26,8 @@ public class Raycast : MonoBehaviour
         }
     }
 
+    public bool Dragging { get => dragging; }
+
     [SerializeField]
     public NewHand hand;
 
@@ -94,6 +96,14 @@ public class Raycast : MonoBehaviour
 
         scrollInput = Input.GetAxis("Mouse ScrollWheel");
         prevGO = hitGO;
+        if (Input.GetButtonUp("Drag"))
+        {
+            if (dragging)
+            {
+                StopDragging();
+            }
+            
+        }
         if(EventSystem.current.IsPointerOverGameObject())
         {
             // turn off prev highlight
@@ -110,14 +120,6 @@ public class Raycast : MonoBehaviour
             //print($"Object: \"{hitGO.name}\"");
 
             StartDragging();
-        }
-        if (Input.GetButtonUp("Drag") && !noDrag)
-        {
-            if (dragging)
-            {
-                StopDragging();
-            }
-            
         }
         if (Input.GetButtonDown("View"))
         {
@@ -144,7 +146,7 @@ public class Raycast : MonoBehaviour
 
         if (dragging)
         {
-            if (!Input.GetButton("Drag") && !noDrag)
+            if (!Input.GetButton("Drag"))
             {
                 StopDragging();
             }
@@ -173,14 +175,7 @@ public class Raycast : MonoBehaviour
                         hit.point.z);
                     }
                     else
-                    {
-                        Debug.Log("Dragging failed");
-
-                        // Set velocity based on last stored position on plane
-                        //selectGO.GetComponent<Rigidbody>().velocity =
-                        //(OffPlaneHelper(lastPos) - selectGO.transform.position) * 10;
-                        
-                        
+                    {   
                     }
                 }
             }
@@ -454,6 +449,22 @@ public class Raycast : MonoBehaviour
     {
         if (selectGO != null)
         {
+            Debug.Log("obj not null");
+            if (InventoryManager.instance.HoveringInventory)
+            {
+                Debug.Log("hovering inv");
+                if (!InventoryManager.instance.atInventory)
+                {
+                    Debug.Log("not at inv");
+                    InventoryManager.instance.AddItemToInventory(selectGO);
+                    selectGO.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                }
+                else
+                {
+                    InventoryManager.instance.RemoveItemFromInventory(selectGO);
+                    selectGO.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                }
+            }
             selectGO = null;
         }
 
