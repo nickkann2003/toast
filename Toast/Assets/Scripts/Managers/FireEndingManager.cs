@@ -78,7 +78,9 @@ public class FireEndingManager : MonoBehaviour
 
         Color color;
         color = smokeThingy.GetComponent<Renderer>().material.color;
-        color.a = -Mathf.Pow(smokiness / fireEndingThreshold, 2) + 2 * (smokiness / fireEndingThreshold);
+        //color.a = -Mathf.Pow(smokiness / fireEndingThreshold, 2) + 2 * (smokiness / fireEndingThreshold);
+        float x = smokiness / fireEndingThreshold;
+        color.a = 1 / (.5f * Mathf.Pow(x - 1, 2) - 1) + 2;
         smokeThingy.GetComponent<Renderer>().material.color = color;
 
         //if (smokiness > fireEndingThreshold)
