@@ -57,8 +57,8 @@ public class Requirement : MonoBehaviour
     // Update the requirement with a given event
     public void UpdateRequirement(RequirementEvent e)
     {
-        // If listening and correct type
-        if((listening || alwaysListening) && e.type == type) // Ensure type, target, and listening
+        // If listening and correct type and incomplete
+        if((listening || alwaysListening) && e.type == type && !complete) // Ensure type, target, and listening
         {
             // If does not contain all necessary flags, return
             if(!(e.attributes.HasFlag(targetAttributes)))
@@ -75,11 +75,14 @@ public class Requirement : MonoBehaviour
                 current = current > 0 ? current - 1 : 0;
             }
 
-            if(type != RequirementType.HaveObject && type != RequirementType.ToastNinjaScore) // If not [exact number type], don't allow overflow
+            if(type != RequirementType.HaveObject) // If not [exact number type], don't allow overflow
             {
-                if(current > goal)
+                if(goal > 0)
                 {
-                    current = goal;
+                    if(current > goal)
+                    {
+                        current = goal;
+                    }
                 }
             }
 

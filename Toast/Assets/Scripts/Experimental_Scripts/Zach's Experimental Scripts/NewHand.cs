@@ -59,7 +59,7 @@ public class NewHand : MonoBehaviour
             itemToReturn = heldObject;
             if (StationManager.instance.playerLocation == InventoryManager.instance.InventoryStation)
             {
-                ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.HaveObjectsInInventory, itemToReturn.GetComponent<NewProp>().attributes, true));
+                InventoryManager.instance.AddItemToInventory(itemToReturn);
             }
             ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.DropObject, itemToReturn.GetComponent<NewProp>().attributes, true));
             Debug.Log("Returning Held Object");
@@ -86,7 +86,7 @@ public class NewHand : MonoBehaviour
             _useStrategy = heldObject.GetComponent<IUseStrategy>();
             if (StationManager.instance.playerLocation == InventoryManager.instance.InventoryStation)
             {
-                ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.HaveObjectsInInventory, heldObject.GetComponent<NewProp>().attributes, false));
+                InventoryManager.instance.RemoveItemFromInventory(itemToPickup);
             }
             ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.PickUpObject, heldObject.GetComponent<NewProp>().attributes, true));
             heldObject.transform.parent = this.gameObject.transform;

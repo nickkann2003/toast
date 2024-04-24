@@ -62,11 +62,11 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItemToInventory(GameObject item)
     {
-
+        ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.HaveObjectsInInventory, item.GetComponent<NewProp>().attributes, true));
     }
 
     public void RemoveItemFromInventory(GameObject item)
     {
-
+        ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.HaveObjectsInInventory, item.GetComponent<NewProp>().attributes, false));
     }
 }

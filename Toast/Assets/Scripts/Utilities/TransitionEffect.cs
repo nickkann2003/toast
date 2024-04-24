@@ -9,7 +9,9 @@ public class TransitionEffect : MonoBehaviour
     public float stayDuration = 1f; // Duration of the stay at full scale
     public float fadeOutDuration = 1f; // Duration of the fade out transition
     public AnimationCurve scaleCurve; // Animation curve for scaling
+    public float stayDurationOnFirstTransition = 1f;
 
+    private bool hadFirstTransition = false;
     private RectTransform rectTransform;
     private bool isTransitioning = false;
 
@@ -42,7 +44,13 @@ public class TransitionEffect : MonoBehaviour
         rectTransform.localScale = Vector3.one; // Ensure the final value is set correctly
 
         // Wait for the stay duration
-        yield return new WaitForSeconds(stayDuration);
+        float additionalTime = 0f;
+        if (!hadFirstTransition)
+        {
+            additionalTime = stayDurationOnFirstTransition - stayDuration;
+            hadFirstTransition = true;
+        }
+        yield return new WaitForSeconds(stayDuration + additionalTime);
 
         // Fade out transition (1 to 0)
         timer = 0f;
