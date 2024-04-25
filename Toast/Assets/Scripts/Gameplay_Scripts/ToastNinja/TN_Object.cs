@@ -28,6 +28,7 @@ public class TN_Object : MonoBehaviour, IUseStrategy
     {
         GameObject obj = Instantiate(splatter, transform.position, transform.rotation);
         obj.GetComponent<Renderer>().material.color = this.GetComponent<Renderer>().material.color;
+        obj.transform.Rotate(new Vector3(0, 0, Random.Range(-30, 30)*2), Space.Self);
         ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.ToastNinjaScore, gameObject.GetComponent<NewProp>().attributes, true));
 
         GameObject pointsObj = Instantiate(pointObject, new Vector3(transform.position.x, transform.position.y, transform.position.z - 1), Quaternion.identity);

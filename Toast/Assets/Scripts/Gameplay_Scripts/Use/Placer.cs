@@ -32,7 +32,9 @@ public class Placer : MonoBehaviour, IUseStrategy
             GameObject obj = GameObject.Instantiate(objPrefab);
             obj.transform.position = placementLocation;
             obj.transform.up = placementRotation;
+            
             obj.transform.parent = parentPlacementObj.transform;
+            obj.transform.GetChild(0).Rotate(new Vector3(0, 0, Random.Range(-30, 30)*2), Space.Self);
             obj.GetComponentInChildren<Renderer>().material.color = mat.color;
             ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.UseObject, gameObject.GetComponent<NewProp>().attributes, true));
         }
