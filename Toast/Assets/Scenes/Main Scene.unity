@@ -3388,8 +3388,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1.3471217}
-  m_Center: {x: 0, y: 0, z: 0.17355926}
+  m_Size: {x: 0.9999997, y: 1, z: 1.4740878}
+  m_Center: {x: -0.000000010169761, y: 0, z: 0.23704226}
 --- !u!23 &324063652
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6180,8 +6180,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5550327, y: 2.2768588, z: 9.728046}
-  m_Center: {x: 3.9843884, y: 1.042949, z: -4.974614}
+  m_Size: {x: 2.5550327, y: 2.2768588, z: 7.8275876}
+  m_Center: {x: 3.9843884, y: 1.042949, z: -5.924844}
 --- !u!65 &629212543
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20202,7 +20202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ff63f25d1ab4344b3bd1f858dfaec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPos: {x: -0.2, y: 3.2, z: -5.7}
+  cameraPos: {x: -0.2, y: 3, z: -5.7}
   cameraRotation: {x: 0, y: 0, z: 0, w: 1}
   objectOffset: {x: -0.057, y: 2.49, z: -0.9}
   parentLoc: {fileID: 463764335}
@@ -30047,8 +30047,15 @@ PrefabInstance:
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
       propertyPath: m_text
-      value: "Reminders:\n- Store things in your basket for easy carrying \n\t(Click
-        the icon in the lower left corner)\n- Need to use something? Press E!"
+      value: 'Reminders:
+
+        - Store things in your basket for easy carrying 
+        (Click the icon in the lower left corner)
+
+        - Don''t forget to feed
+        the cabinet monster
+
+        - Items in your hand can be used with (E)'
       objectReference: {fileID: 0}
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
@@ -30156,15 +30163,19 @@ PrefabInstance:
     - target: {fileID: 4282048991565472453, guid: 40fb11b78cec3194d8836dc141c0f45f,
         type: 3}
       propertyPath: m_text
-      value: '
-
-        Toast Ninja Secret Sword Technique:
+      value: 'Cabinet Monster Care Manual:
 
 
-        Put 3 knives
-        together and start
+        Little Fella is shy and will
+        not accept food unless it is dropped in front of him and remains unmoving.
 
-        TOAST NINJA'
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282048991565472453, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4282048991565472453, guid: 40fb11b78cec3194d8836dc141c0f45f,
         type: 3}
@@ -30180,6 +30191,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontColor.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282048991565472453, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4282048991565472453, guid: 40fb11b78cec3194d8836dc141c0f45f,
         type: 3}
