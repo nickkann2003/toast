@@ -84,7 +84,6 @@ MonoBehaviour:
   stopToasting:
     m_PersistentCalls:
       m_Calls: []
-  fireEndingManager: {fileID: 0}
   weakestStrength: {r: 0.9254902, g: 0.654902, b: 0.40392157, a: 1}
   strongestStrength: {r: 0.084905684, g: 0.043337278, b: 0, a: 1}
   timer: 0
@@ -118,8 +117,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1955597983955280020}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.0324, z: -0.0108}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0324, z: 0.0108}
   m_LocalScale: {x: 0.009000005, y: 0.044999998, z: 0.02000001}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5476,7 +5475,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8892505999121035699}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.099999584, z: 0.4550003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5485,6 +5484,85 @@ Transform:
   m_Father: {fileID: 3907630849890543164}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &241999884881824542
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1183131576606434133}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
+        type: 3}
+      propertyPath: m_Name
+      value: Toaster_Dial (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 90b8ef70a3a815944ba4a1fbb5842dad, type: 3}
+--- !u!4 &347191556340215029 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
+    type: 3}
+  m_PrefabInstance: {fileID: 241999884881824542}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1557077011814943240
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5705,9 +5783,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toaster_Dial
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -7511558181221131132, guid: 90b8ef70a3a815944ba4a1fbb5842dad, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 347191556340215029}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 90b8ef70a3a815944ba4a1fbb5842dad,
         type: 3}
       insertIndex: -1
@@ -5769,16 +5852,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6fe55942e134141860f13b0b95ff6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mOffset: {x: 0, y: 0, z: 0}
-  rotation: {x: 0, y: 0, z: 0}
-  lookAtPos: {x: 0, y: 0, z: 0}
-  freeze: 0
+  localRotationPlane: {x: 0, y: 0, z: 1}
   dialValue: 0
   maxValue: 0.6
   minValue: 0.15
+  normal: {x: 0, y: 1, z: 0}
+  minRotation: {x: 0, y: 0, z: 110}
+  maxRotation: {x: 0, y: 0, z: 220}
   onDialChange:
     m_PersistentCalls:
       m_Calls: []
+  freeze: 0
 --- !u!1001 &3580371533054869975
 PrefabInstance:
   m_ObjectHideFlags: 0
