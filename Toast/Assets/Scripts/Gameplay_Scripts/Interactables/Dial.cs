@@ -10,6 +10,8 @@ public class Dial : MonoBehaviour
     private Vector3 pos;
     private Vector3 rotation;
 
+    public Vector3 localRotationPlane = new Vector3(0,0,1);
+
     // allows objects to be given parents without having a parent
     private Transform parent;
 
