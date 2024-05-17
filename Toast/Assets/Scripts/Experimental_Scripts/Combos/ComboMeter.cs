@@ -5,8 +5,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Author: Nick Kannenberg
+// This script handles a combo meter, which has a multiplier and adjustable score variables
+// Does not store a score, this is meant to be used in junction with other minigame scripts
 public class ComboMeter : MonoBehaviour
 {
+    [Header("Canvas References")]
     [SerializeField]
     private Image backgroundBar;
     [SerializeField]
@@ -14,27 +18,37 @@ public class ComboMeter : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI comboLabel;
 
-    private int currentCombo = 1;
-
+    [BoxGroup("Combo Variables")]
     [SerializeField]
     private float comboDuration;
-    private float currentComboDuration = 0.0f;
-    private float currentMaxComboDuration = 0.0f;
+    [BoxGroup("Combo Variables")]
     [SerializeField]
     private float comboDurationMultiplier;
+    
+    private int currentCombo = 1;
+
+    private float currentComboDuration = 0.0f;
+    private float currentMaxComboDuration = 0.0f;
+
+    // Properties
+    public int CurrentCombo { get => currentCombo; set => currentCombo = value; }
 
     [Button]
-    private void MethodOne() { IncreaseCombo(); }
+    private void IncreaseComboBy1() { IncrementCombo(); }
+    [Button]
+    private void ResetComboTo1() { ResetCombo(); }
 
     // Start is called before the first frame update
     void Start()
     {
+        // On start, reset combo
         ResetCombo();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // If there is a combo, set meter, count time
         if(currentCombo > 1)
         {
             Vector3 lScale = foregroundBar.transform.localScale;
@@ -47,6 +61,7 @@ public class ComboMeter : MonoBehaviour
         }
     }
 
+    // Set the combo to a given value
     private void SetCombo(int newCombo)
     {
         currentCombo = newCombo;
@@ -63,16 +78,43 @@ public class ComboMeter : MonoBehaviour
         }
     }
 
-    public void IncreaseCombo()
+    // Returns a value multiplied by the current combo multiplier
+    public int ComboMultiplier(int score)
+    {
+        return score * currentCombo;
+    }
+
+    // Increase the combo by 1
+    public void IncrementCombo()
     {
         SetCombo(currentCombo + 1);
     }
 
+    // Increases the combo by a given value
+    public void IncreaseCombo(int increase)
+    {
+        SetCombo(currentCombo + increase);
+    }
+
+    // Decreases the combo by 1
+    public void DecrementCombo()
+    {
+        SetCombo(currentCombo - 1);
+    }
+
+    // Decreases the combo by a given value
+    public void DecreaseCombo(int decrease)
+    {
+        SetCombo(currentCombo - decrease);
+    }
+
+    // Reset the combo to 1
     public void ResetCombo()
     {
         SetCombo(1);
     }
 
+    // Disables all visible UI elements relating to combo
     private void DisableVisibleChildren()
     {
         backgroundBar.enabled = false;
@@ -80,6 +122,7 @@ public class ComboMeter : MonoBehaviour
         comboLabel.SetText("");
     }
 
+    // Enables all visual UI elements relating to combo
     private void EnableVisibleChildren()
     {
         backgroundBar.enabled = true;
