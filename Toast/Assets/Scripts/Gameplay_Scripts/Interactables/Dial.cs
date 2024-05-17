@@ -105,11 +105,11 @@ public class Dial : MonoBehaviour
             }
             if (rotation.z >= 250)
             {
-                dialValue = (1 - ((rotation.z - 250f) / 110f)) * 0.5f + 0.5f;
+                dialValue = (((rotation.z - 250f) / 110f)) * 0.5f;
             }
             else if (rotation.z <= 110)
             {
-                dialValue = (1 - ((rotation.z) / 110f)) * 0.5f;
+                dialValue = (((rotation.z) / 110f)) * 0.5f + 0.5f;
             }
 
             dialValue = dialValue * (maxValue - minValue) + minValue;
