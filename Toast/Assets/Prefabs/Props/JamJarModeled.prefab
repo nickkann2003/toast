@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2184660583607016673}
   - component: {fileID: 5972941697218247028}
   - component: {fileID: 2682929653942242001}
+  - component: {fileID: 4876395570248877967}
   m_Layer: 7
   m_Name: JamJarModeled
   m_TagString: Untagged
@@ -100,6 +101,8 @@ MonoBehaviour:
   objPrefab: {fileID: 8306667316286608774, guid: 82ebec8b54fd6f54fb5c45f2d778337c,
     type: 3}
   mat: {fileID: 2100000, guid: 05e15fbe6bfebb849b2990b5c19bf280, type: 2}
+  isJam: 1
+  jam: {fileID: 4876395570248877967}
 --- !u!23 &2184660583607016673
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -177,8 +180,24 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2760918, y: 0.40493274, z: 0.2763628}
-  m_Center: {x: -0.00012338161, y: -0.007844508, z: 0.0013170391}
+  m_Size: {x: 0.2760918, y: 0.40216342, z: 0.2763628}
+  m_Center: {x: -0.00012338161, y: -0.006459847, z: 0.0013170391}
+--- !u!114 &4876395570248877967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518058045675689659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228212b9597dfad448eea2a41dbcec8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jamJar: {fileID: 2499456441536345772}
+  jamJarLid: {fileID: 7483129214720482922}
+  jamJarLidPrefab: {fileID: 1000392157583233769, guid: eb8873735e8458744b40bc8d58c32d04,
+    type: 3}
 --- !u!1001 &4650851537403715372
 PrefabInstance:
   m_ObjectHideFlags: 0
