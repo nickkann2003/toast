@@ -11,42 +11,37 @@ public class DialManipulatorTool : Editor
 {
     public void OnSceneGUI()
     {
-        foreach (var obj in targets)
+        Dial dial = (Dial)target;
+
+        Transform transform = dial.transform;
+
+        Handles.DrawWireDisc(transform.position, transform.forward, transform.lossyScale.y * .12f);
+
+        // ADD THIS CALC TO THE DIAL CLASS
+        Quaternion minRotation = Quaternion.AngleAxis(-dial.maxRotation, transform.parent.forward);
+        Vector3 min = minRotation * transform.parent.up;
+        Quaternion maxRotation = Quaternion.AngleAxis(dial.maxRotation, transform.parent.forward);
+        Vector3 max = maxRotation * transform.parent.up;
+
+
+        Handles.color = new Color(1.0f, 1.0f, 1.0f, 0.15f);
+        Handles.DrawSolidArc(transform.position, transform.forward, min, dial.maxRotation * 2, transform.lossyScale.y * .12f);
+
+        for (int i = 0; i < 3; i++)
         {
-            // check to see if the obj is a dial
-            if (!(obj is Dial dial))
-                continue;
+            // some logic up here
 
-            Transform transform = dial.transform;
+            EditorGUI.BeginChangeCheck();
 
-            Handles.DrawWireDisc(transform.position, transform.forward, transform.lossyScale.y * .12f);
+            // some logic here
 
-            // ADD THIS CALC TO THE DIAL CLASS
-            Quaternion minRotation = Quaternion.AngleAxis(-dial.maxRotation, transform.parent.forward);
-            Vector3 min = minRotation * transform.parent.up;
-            Quaternion maxRotation = Quaternion.AngleAxis(dial.maxRotation, transform.parent.forward);
-            Vector3 max = maxRotation * transform.parent.up;
-
-
-            Handles.color = new Color(1.0f, 1.0f, 1.0f, 0.1f);
-            Handles.DrawSolidArc(transform.position, transform.forward, min, dial.maxRotation * 2, transform.lossyScale.y * .12f);
-
-            for (int i = 0; i < 3; i++)
+            if (EditorGUI.EndChangeCheck())
             {
-                // some logic up here
-
-                EditorGUI.BeginChangeCheck();
-
-                // some logic here
-
-                if (EditorGUI.EndChangeCheck())
-                {
-                    // store the obj before the change was made so that you can "undo" the change
-                    Undo.RecordObject(dial, "Moved dial point");
-                    //dial.SetPoint(i, point);
-                }
-
+                // store the obj before the change was made so that you can "undo" the change
+                Undo.RecordObject(dial, "Moved dial point");
+                //dial.SetPoint(i, point);
             }
+
         }
     }
 }
