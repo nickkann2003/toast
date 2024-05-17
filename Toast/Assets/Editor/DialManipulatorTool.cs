@@ -1,28 +1,25 @@
+//using log4net.Util;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[EditorTool("Dial Manipulator Tool", typeof(Dial))]
-public class DialManipulatorTool : EditorTool
+[CustomEditor(typeof(Dial))]
+[CanEditMultipleObjects]
+public class DialManipulatorTool : Editor
 {
-    // checks which window we are currently in
-    public override void OnToolGUI(EditorWindow window)
+    public void OnSceneGUI()
     {
-        // only continue if we are in scene view
-        if (!(window is SceneView))
-            return;
-
-        foreach(var obj in targets)
+        foreach (var obj in targets)
         {
             // check to see if the obj is a dial
             if (!(obj is Dial dial))
                 continue;
 
             Transform transform = dial.transform;
-            
-            Handles.DrawWireDisc(transform.position, transform.forward, transform.lossyScale.y  * .1f);
+
+            Handles.DrawWireDisc(transform.position, transform.forward, transform.lossyScale.y * .12f);
 
             // ADD THIS CALC TO THE DIAL CLASS
             Quaternion minRotation = Quaternion.AngleAxis(-dial.maxRotation, transform.parent.forward);
@@ -31,10 +28,10 @@ public class DialManipulatorTool : EditorTool
             Vector3 max = maxRotation * transform.parent.up;
 
 
-            Handles.color = new Color(1.0f, 1.0f, 1.0f, 0.3f);
-            Handles.DrawSolidArc(transform.position, transform.forward, min, dial.maxRotation * 2, transform.lossyScale.y * .1f);
+            Handles.color = new Color(1.0f, 1.0f, 1.0f, 0.1f);
+            Handles.DrawSolidArc(transform.position, transform.forward, min, dial.maxRotation * 2, transform.lossyScale.y * .12f);
 
-            for (int i = 0; i < 3; i ++)
+            for (int i = 0; i < 3; i++)
             {
                 // some logic up here
 

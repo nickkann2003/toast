@@ -175,19 +175,4 @@ public class Dial : MonoBehaviour
 
         return worldPos;
     }
-
-    // MOVE TO TOOL LATER
-    private void OnDrawGizmosSelected()
-    {
-        Handles.DrawWireDisc(transform.position, transform.forward, transform.parent.lossyScale.y * .1f);
-
-        // ADD THIS CALC TO THE DIAL CLASS
-        Quaternion minRotationQ = Quaternion.AngleAxis(-maxRotation, transform.parent.forward);
-        Vector3 min = minRotationQ * transform.parent.up;
-        Quaternion maxRotationQ = Quaternion.AngleAxis(maxRotation, transform.parent.forward);
-        Vector3 max = maxRotationQ * transform.parent.up;
-
-        Handles.color = new Color(1.0f, 1.0f, 1.0f, 0.3f);
-        Handles.DrawSolidArc(transform.position, transform.forward, min, maxRotation * 2, transform.lossyScale.y * .1f);
-    }
 }
