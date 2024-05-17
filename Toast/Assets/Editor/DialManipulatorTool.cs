@@ -20,8 +20,8 @@ public class DialManipulatorTool : EditorTool
                 continue;
 
             Transform transform = dial.transform;
-            Vector3 rot = transform.up + dial.localRotationPlane;
-            Handles.DrawWireDisc(transform.position, transform.forward, 1);
+            
+            Handles.DrawWireDisc(transform.position, transform.forward, transform.lossyScale.y  * .5f);
 
             for (int i = 0; i < 3; i ++)
             {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class Dial : MonoBehaviour
 {
@@ -10,12 +11,14 @@ public class Dial : MonoBehaviour
     private Vector3 pos;
     private Vector3 rotation;
 
-    public Vector3 localRotationPlane = new Vector3(0,0,1);
+    /* CHANGE LATER??? */
+    //public Vector3 localRotationPlane = new Vector3(0,0,1);
 
     // allows objects to be given parents without having a parent
     private Transform parent;
 
     [Header("------------- Dial Values ------------")]
+    [ReadOnly]
     public float dialValue;
     public float maxValue = .6f;
     public float minValue = .2f;
@@ -91,26 +94,20 @@ public class Dial : MonoBehaviour
         if (!freeze)
         {
             transform.up = ConvertToLocalPos(GetMouseWorldPos()) - transform.localPosition;
-            
             rotation = transform.localEulerAngles;
             rotation.x = 0;
             rotation.y = 0;
-            if (transform.localEulerAngles.z > 110 && transform.localEulerAngles.z <= 180)
+
+            // if the rotation is 
+            if (rotation.z > 180)
             {
-                rotation.z = 110f;
+                rotation.z = rotation.z - 360;
             }
-            else if ((transform.localEulerAngles.z > 180 && transform.localEulerAngles.z < 250))
+            if (Mathf.Abs(rotation.z) > 110)
             {
-                rotation.z = 250f;
+                rotation.z = 110 * rotation.z / Mathf.Abs(rotation.z);
             }
-            if (rotation.z >= 250)
-            {
-                dialValue = (((rotation.z - 250f) / 110f)) * 0.5f;
-            }
-            else if (rotation.z <= 110)
-            {
-                dialValue = (((rotation.z) / 110f)) * 0.5f + 0.5f;
-            }
+            dialValue = (((rotation.z + 110) / (110f * 2)));
 
             dialValue = dialValue * (maxValue - minValue) + minValue;
             onDialChange.Invoke(dialValue);
