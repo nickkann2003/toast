@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEditor;
 
 public class Dial : MonoBehaviour
 {
+    bool isDirty;
+
     private float mZCoord;
     private bool mouse;
     private Vector3 pos;
-    private Vector3 rotation;
 
     /* CHANGE LATER??? */
     //public Vector3 localRotationPlane = new Vector3(0,0,1);
@@ -18,15 +20,27 @@ public class Dial : MonoBehaviour
     private Transform parent;
 
     [Header("------------- Dial Values ------------")]
+    [MinMaxSlider(0, 1), Label("Min/Max Value")]
+    public Vector2 minMaxValue = new Vector2 (.2f, .6f);
     [ReadOnly]
     public float dialValue;
-    public float maxValue = .6f;
-    public float minValue = .2f;
+
+    float snapDegrees;
+
+    public float MinValue
+    {
+        get { return minMaxValue.x; }
+    }
+    public float MaxValue
+    {
+        get { return minMaxValue.y; }
+    }
 
     [Header("------------ Dial Position Values -------------")]
-    public Vector3 normal = new Vector3(0, 1, 0);
-    public Vector3 minRotation = new Vector3(0,0,110);
-    public Vector3 maxRotation = new Vector3(0, 0, 220);
+    public Vector3 normal = new Vector3(0, 1.0f, 0);
+    // maybe change to not be a 
+    [Range(1, 180)]
+    public float maxRotation = 110;
 
     [Header("------------- Unity Events ------------")]
     public FloatEvent onDialChange;
@@ -39,7 +53,6 @@ public class Dial : MonoBehaviour
 
     private void Start()
     {
-        rotation = transform.eulerAngles;
         mouse = false;
 
         if (transform.parent != null && parent == null)
@@ -47,6 +60,7 @@ public class Dial : MonoBehaviour
             parent = transform.parent;
         }
 
+        isDirty = true;
     }
 
     private void Update()
@@ -69,6 +83,10 @@ public class Dial : MonoBehaviour
 
         //    transform.position = pos;
         //}
+        if (isDirty)
+        {
+
+        }
     }
 
     public void ToggleFreeze()
@@ -94,6 +112,8 @@ public class Dial : MonoBehaviour
         if (!freeze)
         {
             transform.up = ConvertToLocalPos(GetMouseWorldPos()) - transform.localPosition;
+
+            Vector3 rotation;
             rotation = transform.localEulerAngles;
             rotation.x = 0;
             rotation.y = 0;
@@ -103,17 +123,22 @@ public class Dial : MonoBehaviour
             {
                 rotation.z = rotation.z - 360;
             }
-            if (Mathf.Abs(rotation.z) > 110)
+            if (Mathf.Abs(rotation.z) > maxRotation)
             {
-                rotation.z = 110 * rotation.z / Mathf.Abs(rotation.z);
+                rotation.z = maxRotation * rotation.z / Mathf.Abs(rotation.z);
             }
-            dialValue = (((rotation.z + 110) / (110f * 2)));
+            dialValue = (rotation.z + maxRotation) / (maxRotation * 2);
 
-            dialValue = dialValue * (maxValue - minValue) + minValue;
+            dialValue = dialValue * (MaxValue - MinValue) + MinValue;
             onDialChange.Invoke(dialValue);
 
             transform.localEulerAngles = rotation;
         }
+    }
+
+    private void UpdateDialValue()
+    {
+
     }
 
     private Vector3 GetMouseWorldPos()
@@ -149,5 +174,20 @@ public class Dial : MonoBehaviour
         }
 
         return worldPos;
+    }
+
+    // MOVE TO TOOL LATER
+    private void OnDrawGizmosSelected()
+    {
+        Handles.DrawWireDisc(transform.position, transform.forward, transform.parent.lossyScale.y * .1f);
+
+        // ADD THIS CALC TO THE DIAL CLASS
+        Quaternion minRotationQ = Quaternion.AngleAxis(-maxRotation, transform.parent.forward);
+        Vector3 min = minRotationQ * transform.parent.up;
+        Quaternion maxRotationQ = Quaternion.AngleAxis(maxRotation, transform.parent.forward);
+        Vector3 max = maxRotationQ * transform.parent.up;
+
+        Handles.color = new Color(1.0f, 1.0f, 1.0f, 0.3f);
+        Handles.DrawSolidArc(transform.position, transform.forward, min, maxRotation * 2, transform.lossyScale.y * .1f);
     }
 }

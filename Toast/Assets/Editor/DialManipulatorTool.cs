@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.EditorTools;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [EditorTool("Dial Manipulator Tool", typeof(Dial))]
 public class DialManipulatorTool : EditorTool
@@ -21,7 +22,17 @@ public class DialManipulatorTool : EditorTool
 
             Transform transform = dial.transform;
             
-            Handles.DrawWireDisc(transform.position, transform.forward, transform.lossyScale.y  * .5f);
+            Handles.DrawWireDisc(transform.position, transform.forward, transform.lossyScale.y  * .1f);
+
+            // ADD THIS CALC TO THE DIAL CLASS
+            Quaternion minRotation = Quaternion.AngleAxis(-dial.maxRotation, transform.parent.forward);
+            Vector3 min = minRotation * transform.parent.up;
+            Quaternion maxRotation = Quaternion.AngleAxis(dial.maxRotation, transform.parent.forward);
+            Vector3 max = maxRotation * transform.parent.up;
+
+
+            Handles.color = new Color(1.0f, 1.0f, 1.0f, 0.3f);
+            Handles.DrawSolidArc(transform.position, transform.forward, min, dial.maxRotation * 2, transform.lossyScale.y * .1f);
 
             for (int i = 0; i < 3; i ++)
             {
