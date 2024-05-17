@@ -21,7 +21,7 @@ public class DialManipulatorTool : EditorTool
 
             Transform transform = dial.transform;
             Vector3 rot = transform.up + dial.localRotationPlane;
-            Handles.DrawWireDisc(transform.position, transform.up, 1);
+            Handles.DrawWireDisc(transform.position, transform.forward, 1);
 
             for (int i = 0; i < 3; i ++)
             {
