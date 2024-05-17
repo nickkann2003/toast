@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,8 +19,25 @@ public class Placer : MonoBehaviour, IUseStrategy
     Vector3 placementLocation;
     Vector3 placementRotation;
 
+    [SerializeField]
+    private bool isJam = false;
+    [EnableIf("isJam")]
+    [Header("Jam References")]
+    [SerializeField]
+    private Jam jam;
+
     public void Use()
     {
+        // If jam, uncap it before it can be used
+        if (isJam)
+        {
+            if (jam.IsCapped)
+            {
+                jam.UncapJam();
+                return;
+            }
+        }
+
         if (remaining == 0 || objPrefab == null || !transform.GetComponent<NewProp>().HasAttribute(PropFlags.InHand))
         {
             return;
