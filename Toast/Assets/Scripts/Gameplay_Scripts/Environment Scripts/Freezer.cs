@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Freezer : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     [Header("------------- Ice Prefab ------------")]
     public GameObject icePrefab;
     
     private List<GameObject> collidingObjects = new List<GameObject>();
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,7 @@ public class Freezer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Loop all objects, set frozenness, freeze if over threshold
         for (int i = 0; i < collidingObjects.Count; i++)
         {
             GameObject obj = collidingObjects[i];
@@ -40,8 +43,10 @@ public class Freezer : MonoBehaviour
         }
     }
 
+    // Freezes a given prop
     void Freeze(GameObject obj, NewProp prop)
     {
+        // Put out fire if on fire, otherwise freeze
         if (prop.attributes.HasFlag(PropFlags.OnFire))
         {
             FireEndingManager.instance.removeFireObject(obj);
@@ -58,6 +63,7 @@ public class Freezer : MonoBehaviour
         }
     }
 
+    // On enter trigger, add to freezing list
     void OnTriggerEnter(Collider other)
     {
         try
@@ -74,6 +80,7 @@ public class Freezer : MonoBehaviour
         }
     }
 
+    // On trigger exist, remove from freezing list
     void OnTriggerExit(Collider other)
     {
         try

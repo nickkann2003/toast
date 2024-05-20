@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class Light : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
+    [Header("Lighting Materials")]
+    [SerializeField]
     public Material M_Off;
+    [SerializeField]
     public Material M_On;
 
     private bool on;
 
-    Renderer meshRenderer;
+    private Renderer meshRenderer;
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {
         TurnOff();
     }
 
+    // Toggles the light
     public void Toggle()
     {
         if (on)
@@ -29,6 +35,7 @@ public class Light : MonoBehaviour
         }
     }
 
+    // Turns the light on
     public void TurnOn()
     {
         if (M_On != null)
@@ -38,6 +45,7 @@ public class Light : MonoBehaviour
         on = true;
     }
 
+    // Turns the light off
     public void TurnOff()
     {
         if (M_Off != null)

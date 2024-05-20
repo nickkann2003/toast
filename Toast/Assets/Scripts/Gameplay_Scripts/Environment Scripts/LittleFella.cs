@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class LittleFella : MonoBehaviour
 {
-
+    // ------------------------------- Enums -------------------------------
     private enum GrabStatus
     {
         Rest,
@@ -18,25 +18,26 @@ public class LittleFella : MonoBehaviour
         Gifting
     }
 
+    // ------------------------------- Variables -------------------------------
+    [Header("Grab Item Variables")]
     [SerializeField]
-    Vector3 dragGrabPos; // The position of the object he takes
+    private Vector3 dragGrabPos; // The position of the object he takes
     [SerializeField]
-    Vector3 dragHomePos; // The position he takes the object to
+    private Vector3 dragHomePos; // The position he takes the object to
     [SerializeField]
-    Vector3 dragGiftPos; // The position of the gift he gives
-    [SerializeField]
-    GameObject edibleObject;
-    [SerializeField]
-    GameObject grabHand;
-
-    [SerializeField]
-    GrabStatus status = GrabStatus.Rest;
-
+    private Vector3 dragGiftPos; // The position of the gift he gives
     [SerializeField]
     float grabSpeed;
-
     [SerializeField]
-    int giftTarget = 5;
+    private int giftTarget = 5;
+
+    [Header("Other Variables")]
+    [SerializeField]
+    private GameObject edibleObject;
+    [SerializeField]
+    private GameObject grabHand;
+    [SerializeField]
+    private GrabStatus status = GrabStatus.Rest;
 
     int currentGifts = 0;
 
@@ -46,14 +47,17 @@ public class LittleFella : MonoBehaviour
     //[SerializeField]
     //float handLevel = 0.2f; // Used to balance where the hand is grabbing, rather than the initial height;
 
+    [Header("Gift References")]
     [SerializeField]
-    GameObject giftPrefab;
+    private GameObject giftPrefab;
 
     GameObject giftObject;
 
+    // ------------------------------- Functions -------------------------------
     // Update is called once per frame
     void Update()
     {
+        // Switch based on current GrabStatus
         switch(status)
         {
             // Reaching for the player's object
@@ -89,8 +93,6 @@ public class LittleFella : MonoBehaviour
                     {
                         status = GrabStatus.Returning;
                         moveProgress = 0.0f;
-
-                        Debug.Log("Can't eat it!");
                     }
                     else
                     //if (edibleObject.GetComponent<IEatable>() != null || edibleObject.GetComponent<Eat>() != null)
@@ -180,10 +182,7 @@ public class LittleFella : MonoBehaviour
             if (edibleObject == null)
             {
                 edibleObject = other.gameObject;
-                dragGrabPos = other.transform.position;
-
-                
-                //status = GrabStatus.Reaching;
+                dragGrabPos = other.transform.position;                
             }
         }
     }

@@ -10,7 +10,7 @@ using UnityEngine.Events;
  */
 public class ToastingVolume : MonoBehaviour
 {
-    // Variables --------------------------
+    // ------------------------------- Variables -------------------------------
     [Header("Object References")]
     public Dial toastingValueDial;
     public BoxCollider volume;
@@ -29,35 +29,38 @@ public class ToastingVolume : MonoBehaviour
     private List<int> toRemove = new List<int>();
     private List<NewProp> toastingObjects = new List<NewProp>();
 
-    // Functions --------------------------
+    // ------------------------------- Functions -------------------------------
     private void Update()
     {
+        // If toasting, loop toasting objects
         if (toasting)
         {
             for(int i = 0; i < toastingObjects.Count; i ++)
             {
+                // Get prop, check null
                 NewProp prop = toastingObjects[i];
                 if(prop == null)
                 {
                     toRemove.Add(i);
                     continue;
                 }
-
                 if(prop.gameObject == null)
                 {
                     toRemove.Add(i);
                     continue;
                 }
-
                 if (prop.gameObject.GetComponent<Rigidbody>() == null)
                 {
                     toRemove.Add(i);
                     continue;
                 }
 
+                // Increase tostiness
                 prop.IncreaseToastiness(toastRate * Time.deltaTime);
             }
         }
+
+        // Remove outside of loop
         if(toRemove.Count > 0)
         {
             for(int i = 0; i < toRemove.Count; i++)
@@ -68,18 +71,21 @@ public class ToastingVolume : MonoBehaviour
         }
     }
 
+    // Starting toasting
     public void StartToasting()
     {
         toasting = true;
         onToastingStart.Invoke();
     }
 
+    // Stop toasting
     public void StopToasting()
     {
         toasting = false;
         onToastingStop.Invoke();
     }
 
+    // Set the current toasting value
     public void SetToastingValue(int toastValue)
     {
         toastRate = toastValue;
@@ -93,6 +99,7 @@ public class ToastingVolume : MonoBehaviour
         }
     }
 
+    // Checks dial reference to determine current toasting setting
     public void CheckToastingValue()
     {
         if(toastingValueDial != null)
@@ -109,6 +116,7 @@ public class ToastingVolume : MonoBehaviour
         }
     }
 
+    // On enter trigger, add to toasting list
     void OnTriggerEnter(Collider other)
     {
         NewProp prop = other.gameObject.GetComponent<NewProp>();
@@ -118,6 +126,7 @@ public class ToastingVolume : MonoBehaviour
         }
     }
 
+    // On exit trigger, remove from toasting list
     void OnTriggerExit(Collider other)
     {
         NewProp prop = other.gameObject.GetComponent<NewProp>();
