@@ -8,6 +8,7 @@ using UnityEngine.XR;
 
 public class Lever : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     [Header("---------- Unity Events -----------")]
     [SerializeField] private UnityEvent leverTrigger;
 
@@ -38,10 +39,13 @@ public class Lever : MonoBehaviour
     private float interpolateAmount;
     private float interpolationSpeed;
 
+    // ------------------------------- Functions -------------------------------
     private void Awake()
     {
         isOn = false;
     }
+
+    // On start, set parent
     private void Start()
     {
         mouse = false;
@@ -50,17 +54,14 @@ public class Lever : MonoBehaviour
         {
             parent = transform.parent;
         }
-        //foreach(LeverChild child in children) {
-        //    child.top += child.rigidBody.position;
-        //    child.bottom += child.rigidBody.position;
-        //}
     }
 
+    // Update each frame
     private void Update()
     {
+        // If on, set percent and positions
         if (isOn)
         {
-            //timer -= Time.deltaTime;
             percent = (pos.y - minHeight) / (maxHeight - minHeight);
             foreach (LeverChild child in children)
             {
@@ -69,9 +70,12 @@ public class Lever : MonoBehaviour
         }
         else if (!mouse)
         {
+            // If not on, and not clicking
 
+            // Convert world to local pos
             pos = ConvertToLocalPos(transform.position);
 
+            // If interpolating, calculate
             if (interpolateAmount > 0 && interpolateAmount <= 1)
             {
                 interpolateAmount -= Time.deltaTime * interpolationSpeed;
@@ -81,16 +85,8 @@ public class Lever : MonoBehaviour
                 interpolateAmount = 0;
             }
 
+            // Lerp from current pos to new location
             pos = Vector3.Lerp(new Vector3(pos.x, maxHeight, pos.z), new Vector3(pos.x, minHeight, pos.z), interpolateAmount);
-
-            //if (pos.y < maxHeight)
-            //{
-            //    pos.y += ((maxHeight - minHeight) / .2f) * Time.deltaTime;
-            //}
-            //else if (pos.y > maxHeight)
-            //{
-            //    pos.y = maxHeight;
-            //}
 
             //Set all children to correct %
             percent = (pos.y - minHeight) / (maxHeight - minHeight);
@@ -106,6 +102,7 @@ public class Lever : MonoBehaviour
         }
     }
 
+    // On mouse down, set values
     private void OnMouseDown()
     {
         mouse = true;
@@ -115,6 +112,7 @@ public class Lever : MonoBehaviour
         mOffset = transform.position - GetMouseWorldPos();
     }
 
+    // On mouse up, clear values
     private void OnMouseUp()
     {
         interpolateAmount = 1 - (ConvertToLocalPos(transform.position).y - minHeight) / (maxHeight - minHeight);
@@ -122,6 +120,7 @@ public class Lever : MonoBehaviour
         mouse = false;
     }
 
+    // On drag, cap at ends and calculate percent
     private void OnMouseDrag()
     {
         if (!isOn)
@@ -160,6 +159,7 @@ public class Lever : MonoBehaviour
         }
     }
 
+    // Turns this lever on
     public void TurnOn()
     {
         AudioManager.instance.PlayOneShotSound(AudioManager.instance.toasterLever);
@@ -167,6 +167,7 @@ public class Lever : MonoBehaviour
         isOn = true;
     }
 
+    // Turns this lever off
     public void TurnOff()
     {
         AudioManager.instance.PlayOneShotSound(AudioManager.instance.toasterPop);
@@ -174,6 +175,7 @@ public class Lever : MonoBehaviour
         isOn = false;
     }
 
+    // Gets mouse pos in world coords
     private Vector3 GetMouseWorldPos()
     {
         // pixel coordinates (x,y)
@@ -185,6 +187,7 @@ public class Lever : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
 
+    // Converts world coords to local coords
     private Vector3 ConvertToLocalPos(Vector3 worldPos)
     {
         Vector3 localPos = worldPos;
@@ -197,6 +200,7 @@ public class Lever : MonoBehaviour
         return localPos;
     }
 
+    // Converts local coords to world coords
     private Vector3 ConvertToWorldPos(Vector3 localPos)
     {
         Vector3 worldPos = localPos;

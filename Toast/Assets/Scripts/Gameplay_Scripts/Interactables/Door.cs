@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     [Header("------------ Rotating Object ------------")]
     public GameObject rotator;
     private Transform rotatorTransform;
@@ -19,6 +20,7 @@ public class Door : MonoBehaviour
     // amount that the door has opened
     private float interpolateAmount;
 
+    // ------------------------------- Functions -------------------------------
     private void Awake()
     {
         if (rotator == null)
@@ -27,7 +29,6 @@ public class Door : MonoBehaviour
         }
 
         rotatorTransform = rotator.GetComponent<Transform>();
-        //this.GetComponent<BoxCollider>().isTrigger = true;
     }
 
     // Update is called once per frame
@@ -64,16 +65,19 @@ public class Door : MonoBehaviour
         rotatorTransform.localEulerAngles = newRotation;
     }
 
+    // Opens the door
     public void Open()
     {
         isOpen = true;
     }
 
+    // Closes the door
     public void Close()
     {
         isOpen = false;
     }
 
+    // On mouse down, toggle open
     private void OnMouseDown()
     {
         if (!isOpen)

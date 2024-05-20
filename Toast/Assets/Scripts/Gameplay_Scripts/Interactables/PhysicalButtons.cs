@@ -10,6 +10,15 @@ using UnityEngine.Events;
 
 public class PhysicalButtons : MonoBehaviour
 {
+    // ------------------------------- Enums -------------------------------
+    public enum Trigger
+    {
+        onDown,
+        onUp,
+        onHold
+    }
+
+    // ------------------------------- Variables -------------------------------
     [Header("----------- Unity Events ------------")]
     [SerializeField] private UnityEvent buttonTrigger;
 
@@ -25,22 +34,16 @@ public class PhysicalButtons : MonoBehaviour
     public float maxTime;
     private float timer;
 
-    public enum Trigger
-    {
-        onDown,
-        onUp,
-        onHold
-    }
-
     public Trigger trigger;
     private bool pressed;
 
-
+    // ------------------------------- Functions -------------------------------
     private void Start()
     {
         timer = maxTime;
     }
 
+    // On update, interact if pressed
     private void Update()
     {
         if (pressed)
@@ -53,11 +56,13 @@ public class PhysicalButtons : MonoBehaviour
         }
     }
 
+    // On click, interact
     private void OnMouseDown()
     {
         Interact();
     }
 
+    // On release, activate if on-up
     private void OnMouseUp()
     {
         pressed = false;
@@ -68,6 +73,7 @@ public class PhysicalButtons : MonoBehaviour
         timer = maxTime;
     }
 
+    // Starts the interaction with this button
     void Interact()
     {
         Press();
@@ -92,6 +98,7 @@ public class PhysicalButtons : MonoBehaviour
         pressed = true;
     }
 
+    // Activates the button
     void Activate()
     {
         if (timer >= maxTime)
@@ -120,6 +127,7 @@ public class PhysicalButtons : MonoBehaviour
         transform.position = Vector3.Lerp(maxHeight.transform.position, minHieght.transform.position, interpolateAmount);
     }
 
+    // Lerps button
     void Depress()
     {
         if (interpolateAmount > 0 && interpolateAmount <= 1)

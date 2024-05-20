@@ -7,7 +7,7 @@ public class Knife : NewProp
     // ------------------------------- Variables -------------------------------
     [Header("References")]
     [SerializeField]
-    private NewHand hand;
+    public NewHand hand;
     
     private GrabFromContainer grabStrategy;
 

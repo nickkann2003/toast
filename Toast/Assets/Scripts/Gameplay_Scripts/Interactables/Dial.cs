@@ -7,7 +7,8 @@ using UnityEditor;
 
 public class Dial : MonoBehaviour
 {
-    bool isDirty;
+    // ------------------------------- Variables -------------------------------
+    private bool isDirty;
 
     private float mZCoord;
     private bool mouse;
@@ -31,15 +32,6 @@ public class Dial : MonoBehaviour
     float snapAngle = 5.0f;
     float[] snapPoints;
 
-    public float MinValue
-    {
-        get { return minMaxValue.x; }
-    }
-    public float MaxValue
-    {
-        get { return minMaxValue.y; }
-    }
-
     [Header("------------ Dial Position Values -------------")]
     public Vector3 normal = new Vector3(0, 1.0f, 0);
     // maybe change to not be a 
@@ -53,8 +45,17 @@ public class Dial : MonoBehaviour
     [Header("Freeze Dial")]
     public bool freeze = false;
 
+    // ------------------------------- Properties -------------------------------
+    public float MinValue
+    {
+        get { return minMaxValue.x; }
+    }
+    public float MaxValue
+    {
+        get { return minMaxValue.y; }
+    }
 
-
+    // ------------------------------- Functions -------------------------------
     private void Start()
     {
         mouse = false;
@@ -69,6 +70,7 @@ public class Dial : MonoBehaviour
         isDirty = true;
     }
 
+    // Sets the snap points of the dial
     private void SetSnapPoints()
     {
         snapPoints = new float[numSnapPoints];
@@ -114,11 +116,13 @@ public class Dial : MonoBehaviour
         }
     }
 
+    // Togggles dial frozen
     public void ToggleFreeze()
     {
         freeze = !freeze;
     }
 
+    // On click
     private void OnMouseDown()
     {
         mouse = true;
@@ -127,11 +131,13 @@ public class Dial : MonoBehaviour
 
     }
 
+    // On click release
     private void OnMouseUp()
     {
         mouse = false;
     }
 
+    // On drag, perform calculations
     private void OnMouseDrag()
     {
         if (!freeze)
@@ -180,6 +186,7 @@ public class Dial : MonoBehaviour
 
     }
 
+    // Gets the mouse world pos
     private Vector3 GetMouseWorldPos()
     {
         // pixel coordinates (x,y)
@@ -191,6 +198,7 @@ public class Dial : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
 
+    // Converts a vector3 to local pos
     private Vector3 ConvertToLocalPos(Vector3 worldPos)
     {
         Vector3 localPos = worldPos;
@@ -203,6 +211,7 @@ public class Dial : MonoBehaviour
         return localPos;
     }
 
+    // Converts a local vector to world coords
     private Vector3 ConvertToWorldPos(Vector3 localPos)
     {
         Vector3 worldPos = localPos;

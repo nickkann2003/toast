@@ -24,8 +24,8 @@ public class ToastingBreadTest : MonoBehaviour
     private Dictionary<GameObject, ToastingObject> toastingObjects = new Dictionary<GameObject, ToastingObject>();
 
     [Header("Time and Toast Variables")]
-    [SerializeField] private float timer;
-    [SerializeField] private float maxTime;
+    [SerializeField] public float timer;
+    [SerializeField] public float maxTime;
     [SerializeField] float fireTrigger = 1.5f;
     private float baseTime;
 

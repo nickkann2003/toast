@@ -79,7 +79,6 @@ public class ExamineManager : MonoBehaviour
             Destroy(currentExamine.GetComponent<Rigidbody>());
             //Destroy(currentExamine.GetComponent<DragObjects>());
         }
-        Destroy(currentExamine.GetComponent<Prop>());
 
         currentExamine.transform.position = currentExamine.transform.parent.position;
         currentExamine.layer = currentExamine.transform.parent.gameObject.layer;
