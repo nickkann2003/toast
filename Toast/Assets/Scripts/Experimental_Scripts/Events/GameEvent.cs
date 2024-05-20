@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +11,8 @@ public class GameEvent : ScriptableObject
     private List<GameEventListener> listeners = new List<GameEventListener>(); // subscribers to the GameEvent
 
     // ------------------------------- Functions -------------------------------
-    public void Invoke() // method to invoke all the subscribers
+    [Button] // inspector button
+    public void RaiseEvent() // method to invoke all the subscribers
     {
         for (int i = listeners.Count - 1; i >= 0; i--) // last GameEventListener to subscribe will be the first to get invoked (last in, first out)
         {
