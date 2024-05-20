@@ -25,7 +25,11 @@ public class Dial : MonoBehaviour
     [ReadOnly]
     public float dialValue;
 
-    float snapDegrees;
+    [MinValue(1), Label("Snap Points")]
+    public int numSnapPoints = 2;
+    [SerializeField]
+    float snapAngle = 5.0f;
+    float[] snapPoints;
 
     public float MinValue
     {
@@ -60,7 +64,28 @@ public class Dial : MonoBehaviour
             parent = transform.parent;
         }
 
+        SetSnapPoints();
+
         isDirty = true;
+    }
+
+    private void SetSnapPoints()
+    {
+        snapPoints = new float[numSnapPoints];
+
+        snapPoints[0] = -110;
+        float angle = maxRotation * 2 / (numSnapPoints - 1);
+
+        for (int i = 1; i < numSnapPoints; i++)
+        {
+            snapPoints[i] = snapPoints[i - 1] + angle;
+            Debug.Log(snapPoints[i]);
+        }
+
+        if (snapAngle > angle)
+        {
+            snapAngle = angle;
+        }
     }
 
     private void Update()
@@ -127,6 +152,20 @@ public class Dial : MonoBehaviour
             {
                 rotation.z = maxRotation * rotation.z / Mathf.Abs(rotation.z);
             }
+            //else if (Mathf.Abs(maxRotation - Mathf.Abs(rotation.z)) < snapAngle)
+            //{
+            //    rotation.z = maxRotation * rotation.z / Mathf.Abs(rotation.z);
+            //}
+
+            for (int i = 0; i < numSnapPoints;  i++)
+            {
+                if (Mathf.Abs(snapPoints[i] - rotation.z) < snapAngle)
+                {
+                    rotation.z = snapPoints[i];
+                    break;
+                }
+            }
+
             dialValue = (rotation.z + maxRotation) / (maxRotation * 2);
 
             dialValue = dialValue * (MaxValue - MinValue) + MinValue;
