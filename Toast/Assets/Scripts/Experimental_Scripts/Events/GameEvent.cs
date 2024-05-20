@@ -6,8 +6,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Game Event", menuName = "Game Event", order = 52)] // adds GameEvent as an asset in the asset menu
 public class GameEvent : ScriptableObject
 {
+    // ------------------------------- Variables -------------------------------
     private List<GameEventListener> listeners = new List<GameEventListener>(); // subscribers to the GameEvent
 
+    // ------------------------------- Functions -------------------------------
     public void Invoke() // method to invoke all the subscribers
     {
         for (int i = listeners.Count - 1; i >= 0; i--) // last GameEventListener to subscribe will be the first to get invoked (last in, first out)

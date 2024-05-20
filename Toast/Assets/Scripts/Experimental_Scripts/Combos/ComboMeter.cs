@@ -10,6 +10,7 @@ using UnityEngine.UI;
 // Does not store a score, this is meant to be used in junction with other minigame scripts
 public class ComboMeter : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     [Header("Canvas References")]
     [SerializeField]
     private Image backgroundBar;
@@ -30,7 +31,7 @@ public class ComboMeter : MonoBehaviour
     private float currentComboDuration = 0.0f;
     private float currentMaxComboDuration = 0.0f;
 
-    // Properties
+    // ------------------------------- Properties -------------------------------
     public int CurrentCombo { get => currentCombo; set => currentCombo = value; }
 
     [Button]
@@ -38,6 +39,7 @@ public class ComboMeter : MonoBehaviour
     [Button]
     private void ResetComboTo1() { ResetCombo(); }
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +69,8 @@ public class ComboMeter : MonoBehaviour
         currentCombo = newCombo;
         currentComboDuration = comboDuration * Mathf.Pow(comboDurationMultiplier, currentCombo);
         currentMaxComboDuration = currentComboDuration;
+        
+        // Set visibility and displays based on combo
         comboLabel.SetText("Combo! " + currentCombo + "x!");
         if(newCombo == 1)
         {
