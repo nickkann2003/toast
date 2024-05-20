@@ -2,9 +2,12 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// Author: Nick Kannnenberg
+// Experimental Jam script, handles capping/uncapping
 
 public class Jam : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     [Header("Object References")]
     [SerializeField]
     GameObject jamJar;
@@ -17,6 +20,7 @@ public class Jam : MonoBehaviour
     [SerializeField]
     GameObject jamJarLidPrefab;
 
+    // ------------------------------- Properties -------------------------------
     public bool IsCapped { get => isCapped; set => isCapped = value; }
 
     [Button]
@@ -24,6 +28,7 @@ public class Jam : MonoBehaviour
     [Button]
     private void UncapJamLid() { UncapJam(); }
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {

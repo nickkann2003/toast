@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Knife : NewProp
 {
-    public NewHand hand;
-    GrabFromContainer grabStrategy;
+    // ------------------------------- Variables -------------------------------
+    [Header("References")]
+    [SerializeField]
+    private NewHand hand;
+    
+    private GrabFromContainer grabStrategy;
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
+    // Called when this item is used
     public override void Use()
     {
         if (attributes.HasFlag(PropFlags.InHand))

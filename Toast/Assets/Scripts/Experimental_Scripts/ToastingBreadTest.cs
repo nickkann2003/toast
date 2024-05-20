@@ -7,31 +7,39 @@ using static UnityEngine.ParticleSystem;
 
 public class ToastingBreadTest : MonoBehaviour
 {
+    // ------------------------------- Variables
+    [Header("Unity Events")]
     [SerializeField] private UnityEvent startToasting;
     [SerializeField] private UnityEvent toasting;
     [SerializeField] private UnityEvent stopToasting;
 
-    //public FireEndingManager fireEndingManager;
+    [Header("Colors")]
+    [SerializeField] private Color weakestStrength = Color.white;
+    [SerializeField] private Color strongestStrength = Color.black;
 
     private List<GameObject> collidingObjects = new List<GameObject>();
     private float targetStrength = .5f;
-    public Color weakestStrength = Color.white;
-    public Color strongestStrength = Color.black;
     private bool isActive = false;
 
     private Dictionary<GameObject, ToastingObject> toastingObjects = new Dictionary<GameObject, ToastingObject>();
-    public float timer;
+
+    [Header("Time and Toast Variables")]
+    [SerializeField] private float timer;
+    [SerializeField] private float maxTime;
+    [SerializeField] float fireTrigger = 1.5f;
     private float baseTime;
-    public float maxTime;
 
-    public ParticleSystem smokeParticles;
+    [Header("References")]
+    [SerializeField] private ParticleSystem smokeParticles;
+    [SerializeField] private GameObject firePrefab;
 
-    public GameObject firePrefab;
-    public float fireTrigger = 1.5f;
     private bool defrost = false;
 
+    // ------------------------------- Properties -------------------------------
     public bool IsActive { get => isActive; }
 
+
+    // ------------------------------- Functions -------------------------------
     public void Awake()
     {
         baseTime = maxTime;
@@ -39,34 +47,42 @@ public class ToastingBreadTest : MonoBehaviour
 
     public void Update()
     {
+        // Check Active, has objects, then loop all objects
         if (isActive)
         {
             if (toastingObjects.Count > 0)
             {
                 foreach (var (key, value) in toastingObjects)
                 {
+                    // Check object null
                     ToastingObject toast = value;
                     if(key == null || key.GetComponent<Rigidbody>() == null)
                     {
                         continue;
                     }
+
+                    // Get prop and check null
                     NewProp prop = key.GetComponent<NewProp>();
                     if (prop != null)
                     {
+                        // If not frozen, then toast
                         if (!prop.attributes.HasFlag(PropFlags.Frozen))
                         {
                             prop.IncreaseToastiness((Time.deltaTime / maxTime) * targetStrength);
                         }
                         else if (defrost)
                         {
-                            // if frozen toast slower
+                            // If frozen and defrosting, toast slowly
                             prop.IncreaseToastiness((Time.deltaTime / maxTime) * targetStrength/2f);
                         }
                     }
                 }
             }
+
+            // Decrement time
             timer -= Time.deltaTime;
 
+            // Reset if timer is 0
             if (timer <= 0)
             {
                 deactivateTrigger();
@@ -74,39 +90,42 @@ public class ToastingBreadTest : MonoBehaviour
         }
     }
 
+    // Starts toasting
     public void activateTrigger()
     {
+        // Set timer to max time
         timer = maxTime;
-        //Color targetColor = (strongestStrength - weakestStrength) * targetStrength + weakestStrength;
+
+        // Get toasting objects from colliding objects
         foreach (GameObject obj in collidingObjects)
         {
+            // If object isn't null
             if (obj != null)
             {
+                // Set toastiness
                 float toastiness = 0.0f;
                 if (obj.GetComponent<NewProp>() != null)
                 {
                     toastiness = obj.GetComponent<NewProp>().toastiness;
                 }
-                ObjectVariables objVar = obj.GetComponent<ObjectVariables>();
 
+                // Get attributes and check specific interactions
+                ObjectVariables objVar = obj.GetComponent<ObjectVariables>();
                 if (objVar != null && objVar.attributes.Contains(Attribute.Metal))
                 {
                     //// METAL EXPLODE
                     //Vector3 explosionVel = new Vector3(Random.Range(-1,1), Random.value, 0);
                     //explosionVel *= 10;
                     //explosionVel += new Vector3((explosionVel.x / Mathf.Abs(explosionVel.x)) * 10, 10, 0);
-
                     //transform.GetComponent<Rigidbody>().velocity = explosionVel;
                 }
                 else if (!toastingObjects.ContainsKey(obj))
                 {
                     toastingObjects.Add(obj, new ToastingObject(obj, toastiness, strongestStrength, weakestStrength, targetStrength));
-                    //obj.GetComponent<NewProp>().AddAttribute(PropFlags.ImmuneToDrag);
-                    //obj.GetComponent<NewProp>().AddAttribute(PropFlags.ImmuneToPickup);
-
                 }
             }
         }
+        // Set color and particles
         var main = smokeParticles.main;
         Color light = new Color(100, 100, 100);
         Color burnStrength = new Color(150 * targetStrength, 150 * targetStrength, 150 * targetStrength);
@@ -115,29 +134,29 @@ public class ToastingBreadTest : MonoBehaviour
         smokeParticles.Play();
         isActive = true;
 
+        // Start toastig event
         startToasting.Invoke();
     }
 
+    // Deactivates toasting
     public void deactivateTrigger()
     {
+        // If active, loop all objs not null
         if (isActive)
         {
             foreach (GameObject obj in collidingObjects)
             {
                 if (obj != null)
                 {
+                    //Get prop, set flags
                     NewProp prop = obj.GetComponent<NewProp>();
-
                     if (prop != null)
                     {
                         if(defrost)
                             prop.DefrostToast();
-
-                        //obj.GetComponent<NewProp>().RemoveAttribute(PropFlags.ImmuneToDrag);
-                        //obj.GetComponent<NewProp>().RemoveAttribute(PropFlags.ImmuneToPickup);
                     }
 
-                    // apply force to obj
+                    // Apply force to objs
                     Rigidbody rb = obj.GetComponent<Rigidbody>();
                     if (rb != null)
                     {
@@ -149,6 +168,7 @@ public class ToastingBreadTest : MonoBehaviour
                     }
                 }
             }
+            // Reset timer and data structures
             timer = 0;
             toastingObjects.Clear();
             isActive = false;
@@ -157,17 +177,20 @@ public class ToastingBreadTest : MonoBehaviour
         }
     }
 
+    // Toggles the defrost setting
     public void toggleDefrost()
     {
         defrost = !defrost;
     }
 
+    // Sets the toasting dials value
     public void setDialValue(float value)
     {
         targetStrength = value;
         maxTime = baseTime + (targetStrength - .5f) * baseTime; // between -baseTime/2 and baseTime/2
     }
 
+    // When entering trigger, add to toasting object list
     void OnTriggerEnter(Collider other)
     {
         try
@@ -181,6 +204,7 @@ public class ToastingBreadTest : MonoBehaviour
         }
     }
 
+    // When exiting, try removing from list
     void OnTriggerExit(Collider other)
     {
         try
@@ -200,13 +224,18 @@ public class ToastingBreadTest : MonoBehaviour
     }
 }
 
-class ToastingObject {
-    GameObject obj;
-    Renderer renderer;
-    Color totalOffset;
-    float targetStrength;
+// Toasting object class
+class ToastingObject
+{
+    // ------------------------------- Variables -------------------------------
+    private GameObject obj;
+    private Renderer renderer;
+    private Color totalOffset;
+    private float targetStrength;
+    
     public float toastiness;
 
+    // ------------------------------- Constructors -------------------------------
     public ToastingObject(GameObject obj, float toastiness, Color strongestStrength, Color weakestStrength, float targetStrength)
     {
         this.obj = obj;
@@ -224,6 +253,8 @@ class ToastingObject {
         }
     }
 
+    // ------------------------------- Functions -------------------------------
+    // Adjust color based on a max time and delta time
     public void adjustColor(float maxTime, float deltaTime)
     {
         float pChange = deltaTime / maxTime;

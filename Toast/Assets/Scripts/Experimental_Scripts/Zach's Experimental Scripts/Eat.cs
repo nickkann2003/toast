@@ -5,10 +5,17 @@ using UnityEngine;
 
 public class Eat : MonoBehaviour, IUseStrategy
 {
-    public int totalBites;
-    public int bitesRemaining;
+    // ------------------------------- Variables -------------------------------
+    [Header("Eating Variables")]
+    [SerializeField]
+    private int totalBites;
+    [SerializeField]
+    private int bitesRemaining;
+    
     private NewProp propScript;
 
+    // ------------------------------- Functions -------------------------------
+    // Run on start
     void Start()
     {
         if (propScript == null)
@@ -17,17 +24,20 @@ public class Eat : MonoBehaviour, IUseStrategy
         }
     }
 
+    // Called when the Object is used
     public void Use()
     {
         TakeBite();
     }
 
+    // Eats the entire object and destroys it
     private void EatWhole()
     {
         ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.EatObject, propScript.attributes, true));
         Destroy(gameObject);
     }
 
+    // Takes a bit. May trigger Eat Whole if one bite is left
     private void TakeBite()
     {
         AudioManager.instance.PlayOneShotSound(AudioManager.instance.eatingBread);

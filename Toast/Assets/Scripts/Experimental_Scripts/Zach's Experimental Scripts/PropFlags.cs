@@ -25,5 +25,5 @@ public enum PropFlags
     Bread = 1 << 28,
     Jam = 1 << 29,
     Knife = 1 << 30,
-    JamLid = 1 << 31
+    JamLid = 1 << 32
 }
