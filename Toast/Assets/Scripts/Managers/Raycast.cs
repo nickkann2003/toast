@@ -55,27 +55,29 @@ public class Raycast : MonoBehaviour
     public GameObject hitGO;
     public GameObject selectGO;
 
+    [Header("Prefabs")]
     [SerializeField] private GameObject linePrefab;
     [SerializeField] private GameObject mousePointPrefab;
     [SerializeField] private int maxDistance;
     //[SerializeField] private LayerMask detectionLayer;
 
+    [Header("Movement Variables")]
     public float scrollSpeed = 1.0f;
     private float scrollInput;
     private float stationMoveTimer = 0.0f;
     private float stationMaxTimer = .4f;
 
-    GameObject line;
-    LineController lineController;
-    float mZOffset;
+    private GameObject line;
+    private LineController lineController;
+    private float mZOffset;
 
-    bool dragging;
+    private bool dragging;
     private Vector3 lastPos;
     //RaycastHit hit;
-
     private Highlights highlightable;
     private Highlights prevHighligtable;
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Awake()
     {
@@ -191,6 +193,9 @@ public class Raycast : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Triggers the examine manager on the hovered item
+    /// </summary>
     void ViewRaycast()
     {
         if (dragging && selectGO.GetComponent<NewProp>() != null)
@@ -222,6 +227,9 @@ public class Raycast : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sends a ray and gets current item
+    /// </summary>
     void UseRaycast()
     {
         RaycastHit hit = RaycastHelper(~mask_Station);
@@ -265,7 +273,11 @@ public class Raycast : MonoBehaviour
         }
     }
 
-    // Return true if item was picked up, false otherwise
+    /// <summary>
+    /// Return true if item was picked up, false otherwise
+    /// </summary>
+    /// <param name="_hand">Hand to pickup item</param>
+    /// <returns></returns>
     public bool PickupRaycast(NewHand _hand)
     {
         if (_hand==null)
