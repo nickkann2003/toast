@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TN_Object : MonoBehaviour, IUseStrategy
 {
+    // ------------------------------- Variables -------------------------------
+    [Header("Variables")]
     [SerializeField]
     float points;
     [SerializeField]
@@ -12,6 +14,7 @@ public class TN_Object : MonoBehaviour, IUseStrategy
     [SerializeField]
     GameObject pointObject;
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,7 @@ public class TN_Object : MonoBehaviour, IUseStrategy
         
     }
 
+    // Use for TNObject destroys the object and grants points
     public void Use()
     {
         GameObject obj = Instantiate(splatter, transform.position, transform.rotation);

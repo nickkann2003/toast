@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class TN_Points : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     [SerializeField]
     private float timer;
     [SerializeField]
     private Vector3 vel;
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {

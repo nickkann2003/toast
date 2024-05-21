@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Sword : NewProp
 {
+    // ------------------------------- Variables -------------------------------
+    [Header("Hand")]
+    [SerializeField]
     public NewHand hand;
+
     //public Vector3 mOffset;
     private float mZCoord = 6;
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +29,10 @@ public class Sword : NewProp
         //}
     }
 
+    /// <summary>
+    ///  Gets the mouse position in world coordinates
+    /// </summary>
+    /// <returns>Mouse position in world coords</returns>
     private Vector3 GetMouseWorldPos()
     {
         // pixel coordinates (x,y)

@@ -5,27 +5,32 @@ using UnityEngine;
 
 public class Placer : MonoBehaviour, IUseStrategy
 {
+    // ------------------------------- Variables -------------------------------
+    [Header("Number of Uses")]
     [SerializeField]
-    int total = -1;
+    private int total = -1;
     [SerializeField]
-    int remaining = -1;
+    private int remaining = -1;
 
+    [Header("Prefabs")]
     [SerializeField]
-    GameObject objPrefab;
+    private GameObject objPrefab;
     [SerializeField]
-    Material mat;
+    private Material mat;
 
-    GameObject parentPlacementObj;
-    Vector3 placementLocation;
-    Vector3 placementRotation;
+    private GameObject parentPlacementObj;
+    private Vector3 placementLocation;
+    private Vector3 placementRotation;
 
+    [Header("Jam Specific Variables")]
     [SerializeField]
     private bool isJam = false;
     [EnableIf("isJam")]
-    [Header("Jam References")]
+    [BoxGroup("Jam")]
     [SerializeField]
     private Jam jam;
 
+    // ------------------------------- Functions -------------------------------
     public void Use()
     {
         // If jam, uncap it before it can be used

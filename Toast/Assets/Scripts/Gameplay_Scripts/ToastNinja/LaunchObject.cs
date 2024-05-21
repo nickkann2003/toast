@@ -4,25 +4,43 @@ using UnityEngine;
 
 public class LaunchObject : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
+    [Header("Prefabs")]
+    [SerializeField]
     public GameObject objPrefab;
-    public Vector3 launchVector;
-    public float launchVelocity = 400f;
-
-    public bool active = false;
-
     [SerializeField]
     ParticleSystem particles;
 
+    [Header("Launch Values")]
+    [SerializeField]
+    public Vector3 launchVector;
+    [SerializeField]
+    public float launchVelocity = 400f;
+    [SerializeField]
+    public bool active = false;
+
+    // ------------------------------- Functions -------------------------------
+    /// <summary>
+    /// Launchs this items prefab
+    /// </summary>
     public void Launch()
     {
         LaunchObj(objPrefab);
     }
 
+    /// <summary>
+    /// Launches a given object
+    /// </summary>
+    /// <param name="objectToLaunch">Object to be launched</param>
     public void Launch(GameObject objectToLaunch)
     {
         LaunchObj(objectToLaunch);
     }
 
+    /// <summary>
+    /// Launches a given game object
+    /// </summary>
+    /// <param name="objectToLaunch">Object to be launched</param>
     private void LaunchObj(GameObject objectToLaunch)
     {
         if (!active)
@@ -34,6 +52,11 @@ public class LaunchObject : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// DelayedLaunch, launches an objet after a delay
+    /// </summary>
+    /// <param name="objectToLaunch">The object being launched</param>
+    /// <returns>Coroutine</returns>
     IEnumerator DelayedLaunchObj(GameObject objectToLaunch)
     {
         yield return new WaitForSeconds(2f);

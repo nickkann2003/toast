@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class TN_Splat : MonoBehaviour
 {
-    Renderer renderer;
-    Color splatColor;
-    float transparency;
+    // ------------------------------- Variables -------------------------------
+    private Renderer renderer;
+    private Color splatColor;
+    private float transparency;
 
+    [Header("Fade Variables")]
     [SerializeField]
     private float timeBeforeFade = 0;
     [SerializeField]
@@ -16,6 +18,7 @@ public class TN_Splat : MonoBehaviour
     [SerializeField]
     private float speed = 1;
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {

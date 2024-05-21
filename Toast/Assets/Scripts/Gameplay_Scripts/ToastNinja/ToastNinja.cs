@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// ------------------------------- Enums -------------------------------
 public enum ToastNinjaState
 {
     Inactive,
@@ -11,6 +12,8 @@ public enum ToastNinjaState
 
 public class ToastNinja : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
+    [Header("Prefab References")]
     [SerializeField]
     private GameObject toastObj;
     [SerializeField]
@@ -19,29 +22,33 @@ public class ToastNinja : MonoBehaviour
     private GameObject burningObj;
 
     [SerializeField]
+    private GameObject swordPrefab;
+    private GameObject swordObject;
+
+    [Header("Time Variables")]
+    [SerializeField]
     private float timeRandMin = .5f;
     [SerializeField]
     private float timeRandMax = 1f;
 
     private float timer;
 
+    [Header("Current Arrays")]
     [SerializeField]
     private GameObject toastNinjaObjects;
-
     [SerializeField]
     private LaunchObject[] launchObjects;
+
+    [Header("Destroyer Volumes")]
     [SerializeField]
     private DestroyerVolume[] destroyerVolumes;
 
     private ToastNinjaState toastNinjaState;
 
     [SerializeField]
-    private GameObject swordPrefab;
-    private GameObject swordObject;
-
-    [SerializeField]
     private GameObject moveBlocker;
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {
@@ -53,8 +60,10 @@ public class ToastNinja : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Switch for game state
         switch(toastNinjaState)
         {
+            // Active, run toast ninja
             case ToastNinjaState.Active:
                 timer -= Time.deltaTime;
                 
@@ -68,6 +77,7 @@ public class ToastNinja : MonoBehaviour
         }
     }
 
+    // Fires toast recursively
     IEnumerator RapidFire(int amount)
     {
         if (amount > 0)
@@ -82,6 +92,7 @@ public class ToastNinja : MonoBehaviour
         }
     }
 
+    // Randomly creates a wave of items
     void LaunchToast()
     {
         float rand = Random.value;
@@ -97,6 +108,7 @@ public class ToastNinja : MonoBehaviour
         {
             launchObjects[Random.Range(0, launchObjects.Length)].Launch(burningObj);
         }
+
         //for (int i = 0; i < launchObjects.Length; i++)
         //{
         //    launchObjects[i].Use();
@@ -104,6 +116,7 @@ public class ToastNinja : MonoBehaviour
         //launchObjects[Random.Range(0, launchObjects.Length)].Launch();
     }
 
+    // Toggles toast ninja active state
     public void ToggleActive()
     {
         if (toastNinjaState == ToastNinjaState.Active)
@@ -116,6 +129,7 @@ public class ToastNinja : MonoBehaviour
         }
     }
 
+    // Starts Toast Ninja
     public void GameStart()
     {
         if (Raycast.Instance.CheckKnifeStack() >= 3)
@@ -144,6 +158,7 @@ public class ToastNinja : MonoBehaviour
         moveBlocker.SetActive(true);
     }
 
+    // Stops Toast Ninja
     public void GameStop()
     {
         if (swordObject != null)
@@ -171,6 +186,7 @@ public class ToastNinja : MonoBehaviour
         moveBlocker.SetActive(false);
     }
 
+    // Readies the game
     public void GameReady()
     {
         toastNinjaObjects.SetActive(true);
