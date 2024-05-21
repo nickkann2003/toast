@@ -11,13 +11,13 @@ using UnityEngine;
  */
 public class Inventory : MonoBehaviour
 {
-    // Variables ----------------------------------------------
+    // ------------------------------- Variables -------------------------------
     [SerializeField]
     private Vector3 dropOffset = Vector3.zero;
 
     private List<GameObject> inventoryItems;
 
-    // Constructors -------------------------------------------
+    // ------------------------------- Constructors -------------------------------
     public Inventory(){
         inventoryItems = new List<GameObject>();
     }
@@ -31,26 +31,34 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // ----------------- MonoBehaviour Functions ------------------
-    // Start is called before the first frame update -----------
+    // ------------------------------- Functions -------------------------------
+    // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    // Update is called once per frame -------------------------
     [Obsolete]
     void Update()
     {
 
     }
 
-    // Functions ----------------------------------------------
+    /// <summary>
+    /// Adds an item to the inventory and sets its position
+    /// </summary>
+    /// <param name="item">Item to be added</param>
     public void addItem(GameObject item)
     {
         inventoryItems.Add(item);
         item.transform.position = gameObject.transform.position + dropOffset;
     }
+
+    /// <summary>
+    /// Removes item from list and returns it
+    /// </summary>
+    /// <param name="item">Item to be removed</param>
+    /// <returns>Item removed</returns>
     public GameObject removeItem(GameObject item)
     {
 
@@ -64,6 +72,10 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gizmos: 
+    /// Blue sphere for drop position
+    /// </summary>
     public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;

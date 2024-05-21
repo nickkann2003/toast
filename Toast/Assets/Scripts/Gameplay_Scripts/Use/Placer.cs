@@ -31,6 +31,9 @@ public class Placer : MonoBehaviour, IUseStrategy
     private Jam jam;
 
     // ------------------------------- Functions -------------------------------
+    /// <summary>
+    /// Use function for this item
+    /// </summary>
     public void Use()
     {
         // If jam, uncap it before it can be used
@@ -63,6 +66,10 @@ public class Placer : MonoBehaviour, IUseStrategy
         }
     }
 
+    /// <summary>
+    /// Places object
+    /// </summary>
+    /// <param name="hit">Racyast hit of where to place</param>
     public void SetPlacement(RaycastHit hit)
     {
         if (hit.collider != null)

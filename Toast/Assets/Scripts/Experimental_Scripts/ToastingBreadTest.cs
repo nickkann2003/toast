@@ -7,7 +7,7 @@ using static UnityEngine.ParticleSystem;
 
 public class ToastingBreadTest : MonoBehaviour
 {
-    // ------------------------------- Variables
+    // ------------------------------- Variables -------------------------------
     [Header("Unity Events")]
     [SerializeField] private UnityEvent startToasting;
     [SerializeField] private UnityEvent toasting;

@@ -5,11 +5,15 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
+    [Header("Menu References")]
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject settingMenu;
     [SerializeField] private GameObject objectiveNote;
     public bool objectiveOpened = false;
+
+    [Header("UI Buttons")]
     public UnityEngine.UI.Button backButton;
     public UnityEngine.UI.Button inventoryButton;
     public Animator backButtonAni;
@@ -17,12 +21,12 @@ public class UIManager : MonoBehaviour
     public Slider moveSpeedSlider;
     private bool backButtonOnScreen = false;
     private bool inventoryButtonOnScreen = false;
-
+    
     public bool backFromMainMenu = true;
-
 
     public static UIManager instance;
 
+    // ------------------------------- Functions -------------------------------
     private void Awake()
     {
 
@@ -34,27 +38,41 @@ public class UIManager : MonoBehaviour
         //DontDestroyOnLoad(gameObject);
     }
 
+    /// <summary>
+    /// Sets pause menu active
+    /// </summary>
     public void SetPauseMenu()
     {
         pauseMenu.SetActive(true);
     }
 
+    /// <summary>
+    /// Sets pause menu false
+    /// </summary>
     public void ClosePauseMenu()
     {
         pauseMenu.SetActive(false);
     }
 
+    /// <summary>
+    /// Sets main menu true
+    /// </summary>
     public void SetMainMain()
     {
         mainMenu.SetActive(true);
     }
 
+    /// <summary>
+    /// Sets main menu false
+    /// </summary>
     public void CloseMainMenu() 
     {
         mainMenu.SetActive(false);
     }
 
-
+    /// <summary>
+    /// Sets up the in game UI
+    /// </summary>
     public void SetupInGameUI()
     {
         backButton.gameObject.SetActive(true);
@@ -71,6 +89,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Starts the back button exit screen animation
+    /// </summary>
     public void BackButtonPopdown()
     {
         if(backButtonOnScreen)
@@ -82,6 +103,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Opens objective notes
+    /// </summary>
     public void OpenObjectiveNote()
     {
         objectiveOpened = true;
@@ -89,12 +113,18 @@ public class UIManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Closes objective notes
+    /// </summary>
     public void CloseObjectiveNote()
     {
         objectiveOpened = false;
         objectiveNote.SetActive(false);    
     }
 
+    /// <summary>
+    /// Activates the inventory button
+    /// </summary>
     public void TurnOnInventoryButton()
     {
         if (!inventoryButtonOnScreen)
@@ -104,12 +134,18 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Deactivates the inventory button
+    /// </summary>
     public void TurnOffInventoryButton()
     {
         inventoryButton.interactable = false;
         inventoryButtonOnScreen = false;
     }
 
+    /// <summary>
+    /// Opens the settings menu
+    /// </summary>
     public void OpenSettingMenu()
     {
         if(mainMenu.activeSelf)
@@ -125,6 +161,9 @@ public class UIManager : MonoBehaviour
         pauseMenu.SetActive(false);
     }
 
+    /// <summary>
+    /// Closes the settings menu
+    /// </summary>
     public void CloseSettingMenuFromMainMenu()
     {
         settingMenu.SetActive(false);

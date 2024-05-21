@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-
+// ------------------------------- Enums -------------------------------
 // Game state, used to track the game state
 public enum GameState
 {
@@ -18,6 +18,7 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
+    // ------------------------------- Instances -------------------------------
     private static GameManager instance;
     public static GameManager Instance
     {
@@ -34,19 +35,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // ------------------------------- Properties -------------------------------
     public AudioManager AudioManager { get; private set; }
     public UIManager UIManager { get; private set; }
     //public SceneLoadingManager SceneLoadingManager { get; private set; }
 
+    // ------------------------------- Variables -------------------------------
+    [Header("Current Game State")]
     public GameState curState = GameState.Menu;
 
+    [Header("Station References")]
     [SerializeField] Station gameDefaultStation;
     [SerializeField] Station tutorialStation;
     [SerializeField] Station mainMenuStation;
 
+    [Header("Music")]
     // BGM
     public AudioClip test;
+
+    [Header("Raycaster")]
     public Raycast raycaster;
+
+    [Header("Cursor References")]
 
     // Cursor
     [SerializeField] private Texture2D cursorHand;
@@ -54,9 +64,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Vector2 DefaulthotSpot = new Vector2(16,16);
     [SerializeField] private Vector2 HandHotSpot = new Vector2(16, 0);
 
+    [Header("Animations")]
     [SerializeField] private Animator tutorialFinish;
 
-
+    // ------------------------------- Functions -------------------------------
     private void Awake()
     {
         if (instance == null)
@@ -87,6 +98,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Switch for current game state
         switch(curState)
         {
             case GameState.Menu:
@@ -148,6 +160,9 @@ public class GameManager : MonoBehaviour
         Cursor.SetCursor(Instance.cursorHand, HandHotSpot, Instance.cursorMode);
     }
 
+    /// <summary>
+    /// Pauses the game
+    /// </summary>
     public void PauseGame()
     {
         curState= GameState.Pause;
@@ -156,6 +171,9 @@ public class GameManager : MonoBehaviour
         UIManager.SetPauseMenu();
     }
 
+    /// <summary>
+    /// Unpauses the game
+    /// </summary>
     public void UnPauseGame()
     {
         curState = GameState.inGame;
@@ -164,6 +182,9 @@ public class GameManager : MonoBehaviour
         UIManager.ClosePauseMenu();
     }
 
+    /// <summary>
+    ///  Quits the game
+    /// </summary>
     public void QuitGame()
     {
 #if UNITY_EDITOR
@@ -172,6 +193,9 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    /// <summary>
+    /// Activates the main menu to tutorial animation
+    /// </summary>
     public void MainMenuToTutorial()
     {
         curState= GameState.Tutorial;
@@ -183,12 +207,19 @@ public class GameManager : MonoBehaviour
         StationManager.instance.MoveToStation(tutorialStation);
     }
 
+    /// <summary>
+    /// Activates the Tutorial to Game animation
+    /// </summary>
     public void TutorialToGame()
     {
         tutorialFinish.SetTrigger("FinishTutorial");
         StartCoroutine(WaitForTutorialAnimation());
     }
 
+    /// <summary>
+    /// Waits for the tutorial animation to finish
+    /// </summary>
+    /// <returns></returns>
     private System.Collections.IEnumerator WaitForTutorialAnimation()
     {
         yield return new WaitForSeconds(2);
@@ -203,6 +234,9 @@ public class GameManager : MonoBehaviour
         UIManager.instance.SetupInGameUI();
     }
 
+    /// <summary>
+    /// Activates the pause menu to main menu animation
+    /// </summary>
     public void PauseToMainMenu()
     {
        
@@ -217,6 +251,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(WaitForCameraMovement());
     }
 
+    /// <summary>
+    /// Waits for camera movement to complete
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator WaitForCameraMovement()
     {
         // Wait until the camera movement is complete (you may need to adjust the condition based on your implementation)
@@ -230,6 +268,10 @@ public class GameManager : MonoBehaviour
         UIManager.SetMainMain();
     }
 
+    /// <summary>
+    /// Loads the game
+    /// </summary>
+    /// <param name="sceneIndex"></param>
     public void LoadGame(int sceneIndex)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

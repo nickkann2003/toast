@@ -10,9 +10,12 @@ using UnityEngine.UIElements;
 
 public class Raycast : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
+    [Header("Drag and Drop Prevention")]
     public bool noDrop = false;
     public bool noDrag = false;
 
+    [Header("Instances")]
     private static Raycast _instance;
     public static Raycast Instance
     {
@@ -27,7 +30,8 @@ public class Raycast : MonoBehaviour
     }
 
     public bool Dragging { get => dragging; }
-
+    
+    [Header("Hand Reference")]
     [SerializeField]
     public NewHand hand;
 
@@ -43,11 +47,12 @@ public class Raycast : MonoBehaviour
     private int mask_Plane;
     private int mask_UI;
 
-    Camera targetCamera;
+    private Camera targetCamera;
 
-    GameObject prevGO;
+    private GameObject prevGO;
+
+    [Header("Game Object References")]
     public GameObject hitGO;
-
     public GameObject selectGO;
 
     [SerializeField] private GameObject linePrefab;

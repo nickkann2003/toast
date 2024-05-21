@@ -6,7 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Highlights))]
 public class Station : MonoBehaviour
 {
-
+    // ------------------------------- Variables -------------------------------
     [Header("------------ Transform Variables ------------")]
     public Vector3 cameraPos;
     public Quaternion cameraRotation = Quaternion.identity;
@@ -24,7 +24,6 @@ public class Station : MonoBehaviour
     // List of props and stations that can be reached from here
     public List<Station> interactables;
 
-
     private Highlights highlight;
 
     [Header("------------ Enable Station ------------")]
@@ -41,6 +40,7 @@ public class Station : MonoBehaviour
     [SerializeField] private UnityEvent arrive;
     [SerializeField] private UnityEvent leave;
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +57,9 @@ public class Station : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// On mouse down, call station manager to visit this station
+    /// </summary>
     private void OnMouseDown()
     {
         if(this == StationManager.instance.playerLocation.parentLoc)
@@ -76,6 +79,9 @@ public class Station : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Calls necessary arrival functions for this station
+    /// </summary>
     public void OnArrive()
     {
         arrive.Invoke();
@@ -84,7 +90,10 @@ public class Station : MonoBehaviour
             obj.SetActive(true);
         }
     }
-
+    
+    /// <summary>
+    /// Calls necessary Leave functions for this station
+    /// </summary>
     public void OnLeave()
     {
         leave.Invoke();
@@ -94,6 +103,11 @@ public class Station : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gizmos:
+    /// Camera orb with FOV view
+    /// Blue wire sphere for drop location
+    /// </summary>
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
@@ -107,6 +121,9 @@ public class Station : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Disables attached dragplanes
+    /// </summary>
     public void DisableDragPlanes()
     {
         if (dragPlanes.Count <= 0)
@@ -120,6 +137,9 @@ public class Station : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Enables attached dragplanes
+    /// </summary>
     public void EnableDragPlanes()
     {
         if (dragPlanes.Count >= 0)
@@ -133,6 +153,9 @@ public class Station : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Disables parent station
+    /// </summary>
     public void DisableParent()
     {
 
@@ -147,6 +170,9 @@ public class Station : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Disables this stations colliders
+    /// </summary>
     public void DisableColliders()
     {
         foreach(Collider c in myClickableColliders)
@@ -155,6 +181,9 @@ public class Station : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Enables colliders for this station
+    /// </summary>
     public void EnableColliders()
     {
         foreach (Collider c in myClickableColliders)

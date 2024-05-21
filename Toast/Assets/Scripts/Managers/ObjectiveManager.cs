@@ -6,11 +6,14 @@ using UnityEngine.UI;
 
 public class ObjectiveManager : MonoBehaviour
 {
+    // ------------------------------- Variables
     public static ObjectiveManager instance;
 
+    [Header("Objective Groups")]
     [SerializeField]
     public List<ObjectiveGroup> groups = new List<ObjectiveGroup>();
 
+    // ------------------------------- Functions -------------------------------
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
     {
@@ -29,7 +32,10 @@ public class ObjectiveManager : MonoBehaviour
         
     }
 
-    // Update Objectives
+    /// <summary>
+    /// Updates all objectives with a given requirement event
+    /// </summary>
+    /// <param name="e">Event</param>
     public void UpdateObjectives(RequirementEvent e)
     {
         foreach(ObjectiveGroup g in groups)
@@ -38,6 +44,9 @@ public class ObjectiveManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the text of all objective groups
+    /// </summary>
     private void UpdateText()
     {
         foreach (ObjectiveGroup g in groups)
@@ -46,6 +55,9 @@ public class ObjectiveManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Text display
+    /// </summary>
     new public string ToString
     {
         get

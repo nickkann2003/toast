@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 
 public class Hand : MonoBehaviour
 {
-    // Variables -----------------------------------------------
+    // ------------------------------- Variables -------------------------------
     [Header("------------ Hand Visual Offset ------------")]
     public Vector3 offset = new Vector3(0.35f, -0.35f, 0.55f);
 
@@ -24,14 +24,15 @@ public class Hand : MonoBehaviour
     // TEMP FIX ATTEMPT
     private float pickupCooldown = 0.1f;
 
-    // Start is called before the first frame update -----------
+    // ------------------------------- Functions -------------------------------
+    // Start is called before the first frame update
     void Start()
     {
         holdingItem = false;
         cam = Camera.main;
     }
 
-    // Update is called once per frame -------------------------
+    // Update is called once per frame
     [Obsolete]
     void Update()
     {
@@ -80,7 +81,10 @@ public class Hand : MonoBehaviour
         pickupCooldown -= Time.deltaTime;
     }
 
-    // Functions ----------------------------------------
+    /// <summary>
+    /// Adds an item to this hand
+    /// </summary>
+    /// <param name="item">Item to be added</param>
     public void AddItem(GameObject item)
     {
         if(pickupCooldown <= 0)
@@ -224,6 +228,10 @@ public class Hand : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Plays particle effects for eating
+    /// </summary>
+    /// <param name="item">Item that was eaten</param>
     public void PlayEatParticles(GameObject item)
     {
         Color c = item.GetComponent<Renderer>().material.color;
