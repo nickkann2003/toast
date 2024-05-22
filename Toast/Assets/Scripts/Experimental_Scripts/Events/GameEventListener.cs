@@ -12,11 +12,21 @@ public class GameEventListener : MonoBehaviour
 
     private void OnEnable() // when enabled, subscribe to the GameEvent
     {
+        if (gameEvent == null)
+        {
+            Debug.Log("Game Event is not set");
+            return;
+        }
         gameEvent.RegisterListener(this);
     }
 
     private void OnDisable() // when disabled, unsubscribe from the GameEvent
     {
+        if (gameEvent == null)
+        {
+            Debug.Log("Game Event is not set");
+            return;
+        }
         gameEvent.UnregisterListener(this);
     }
 

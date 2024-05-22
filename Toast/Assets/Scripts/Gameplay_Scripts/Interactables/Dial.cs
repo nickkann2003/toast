@@ -93,7 +93,6 @@ public class Dial : MonoBehaviour
         for (int i = 1; i < numSnapPoints; i++)
         {
             snapPoints[i] = snapPoints[i - 1] + angle;
-            Debug.Log(snapPoints[i]);
         }
 
         if (snapAngle > angle)
