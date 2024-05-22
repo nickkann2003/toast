@@ -33,8 +33,20 @@ public class Dial : MonoBehaviour
     float[] snapPoints;
 
     [Header("------------ Dial Position Values -------------")]
-    public Vector3 normal = new Vector3(0, 1.0f, 0);
-    // maybe change to not be a 
+    [Dropdown("GetRotVector")]
+    public Vector3 rotateAround;
+
+    private DropdownList<Vector3> GetRotVector()
+    {
+        return new DropdownList<Vector3>()
+        {
+            { "X Axis",   transform.parent.right },
+            { "Y Axis (DOES NOT WORK)",    transform.parent.up },
+            { "Z Axis",    transform.parent.forward }
+        };
+    }
+
+    // maybe change to not be a single float value
     [Range(1, 180)]
     public float maxRotation = 110;
 
