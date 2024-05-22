@@ -7,6 +7,8 @@ public class AchievementManager : MonoBehaviour
 {
     public static AchievementManager instance;
 
+    public List<Achievement> achievements;
+
     // Basic singleton
     private void Awake()
     {
@@ -38,7 +40,7 @@ public class AchievementManager : MonoBehaviour
     /// Performs the steps of unlocking an achievement
     /// </summary>
     /// <param name="achievement">The achievement to unlock</param>
-    private void Unlock(Achivement achievement)
+    private void Unlock(Achievement achievement)
     {
         if(!achievement.isUnlocked)
         {

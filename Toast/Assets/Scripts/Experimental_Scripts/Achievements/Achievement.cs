@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Achivement : MonoBehaviour
+public class Achievement : MonoBehaviour
 {
     string achievName; // The name of the achievement
     string description; // The description of the achievement
