@@ -1,45 +1,41 @@
 using NaughtyAttributes;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
+using UnityEngine.UIElements;
 
-public class Door : MonoBehaviour
+public class Drawer : MonoBehaviour
 {
+
     // ------------------------------- Variables -------------------------------
-    [Header("------------ Rotating Object ------------")]
-    public GameObject rotator;
-    private Transform rotatorTransform;
+    [Header("------------ Moving Object ------------")]
+    public GameObject objectToMove;
 
     [Header("------------ Rotation Values ------------")]
-    public Vector3 minRot; // Closed
-    public Vector3 maxRot; // Open
+    public Vector3 minPos; // Closed
+    public Vector3 maxPos; // Open
     public float speed = 3;
     public bool isOpen;
-
-    [SerializeField, Button]
-    private void setDoorOpen() { rotator.transform.localEulerAngles = maxRot; isOpen = true; }
-    [SerializeField, Button]
-    private void setDoorClosed() { rotator.transform.localEulerAngles = minRot; isOpen = false; }
-    [SerializeField, Button]
-    private void setMinToCurrentRotation() { minRot = transform.localEulerAngles; }
-    [SerializeField, Button]
-    private void setMaxToCurrentRotation() { maxRot = transform.localEulerAngles; }
 
     // amount that the door has opened
     private float interpolateAmount;
 
+    [SerializeField, Button]
+    private void setDrawerOpen() { objectToMove.transform.localPosition = maxPos; isOpen = true; }
+    [SerializeField, Button]
+    private void setDrawerClosed() { objectToMove.transform.localPosition = minPos; isOpen = false; }
+    [SerializeField, Button]
+    private void setMinToCurrentPosition() { minPos = transform.localPosition; }
+    [SerializeField, Button]
+    private void setMaxToCurrentPosition() { maxPos = transform.localPosition;  }
+
     // ------------------------------- Functions -------------------------------
     private void Awake()
     {
-        if (rotator == null)
+        if (objectToMove == null)
         {
-            rotator = transform.parent.gameObject;
+            objectToMove = transform.parent.gameObject;
         }
-
-        rotatorTransform = rotator.GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -68,21 +64,21 @@ public class Door : MonoBehaviour
             }
         }
 
-        Vector3 newRotation = rotatorTransform.localEulerAngles;
-        newRotation.x = Mathf.Lerp(minRot.x, maxRot.x, interpolateAmount);
-        newRotation.y = Mathf.Lerp(minRot.y, maxRot.y, interpolateAmount);
-        newRotation.z = Mathf.Lerp(minRot.z, maxRot.z, interpolateAmount);
+        Vector3 newPosition = objectToMove.transform.localPosition;
+        newPosition.x = Mathf.Lerp(minPos.x, maxPos.x, interpolateAmount);
+        newPosition.y = Mathf.Lerp(minPos.y, maxPos.y, interpolateAmount);
+        newPosition.z = Mathf.Lerp(minPos.z, maxPos.z, interpolateAmount);
 
-        rotatorTransform.localEulerAngles = newRotation;
+        objectToMove.transform.localPosition = newPosition;
     }
 
-    // Opens the door
+    // Opens the drawer
     public void Open()
     {
         isOpen = true;
     }
 
-    // Closes the door
+    // Closes the drawer
     public void Close()
     {
         isOpen = false;

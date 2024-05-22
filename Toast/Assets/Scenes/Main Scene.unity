@@ -638,10 +638,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 596603642}
     m_Modifications:
+    - target: {fileID: 488976655545423288, guid: 1c17e514c8d966241be47df8881aef91,
+        type: 3}
+      propertyPath: isOpen
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1152021565661789292, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
       propertyPath: m_Name
       value: Counter
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716791553725950141, guid: 1c17e514c8d966241be47df8881aef91,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.42199996
       objectReference: {fileID: 0}
     - target: {fileID: 4684795839527299668, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
@@ -5854,6 +5864,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 577787074}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &577787076 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 488976655545423288, guid: 1c17e514c8d966241be47df8881aef91,
+    type: 3}
+  m_PrefabInstance: {fileID: 577787074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9feb287f2355f36459a282728e1ae1f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &596603641
 GameObject:
   m_ObjectHideFlags: 0
@@ -5924,7 +5946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ff63f25d1ab4344b3bd1f858dfaec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPos: {x: 0.9, y: 1.39, z: -5.22}
+  cameraPos: {x: 0.9, y: 1.09, z: -5.22}
   cameraRotation: {x: 0, y: 0, z: 0, w: 1}
   objectOffset: {x: 0.69, y: 2.56, z: -1.17}
   parentLoc: {fileID: 1645101101}
@@ -7429,10 +7451,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1768009368}
     m_Modifications:
+    - target: {fileID: 488976655545423288, guid: 1c17e514c8d966241be47df8881aef91,
+        type: 3}
+      propertyPath: isOpen
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1152021565661789292, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
       propertyPath: m_Name
       value: Counter (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716791553725950141, guid: 1c17e514c8d966241be47df8881aef91,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716791553725950141, guid: 1c17e514c8d966241be47df8881aef91,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.206
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716791553725950141, guid: 1c17e514c8d966241be47df8881aef91,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.42199996
       objectReference: {fileID: 0}
     - target: {fileID: 4684795839527299668, guid: 1c17e514c8d966241be47df8881aef91,
         type: 3}
@@ -8606,6 +8648,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 577787076}
+        m_TargetAssemblyTypeName: Drawer, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   leave:
     m_PersistentCalls:
       m_Calls:
@@ -8623,6 +8677,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 448824705}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 577787076}
+        m_TargetAssemblyTypeName: Drawer, Assembly-CSharp
         m_MethodName: Close
         m_Mode: 1
         m_Arguments:
@@ -23047,11 +23113,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inspectorScale: 5
   inspectorItem: {fileID: 751020254}
+  freezeOnExamine: 1
   examineStation: {fileID: 324112396}
   blurProfile: {fileID: 11400000, guid: 8d18d7d756165b14a8a5f8f96c93e388, type: 2}
   globalProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
   globalVolume: {fileID: 360692423}
-  freezeOnExamine: 1
   raycast: {fileID: 1872210365}
   background: {fileID: 1923942723}
 --- !u!1 &1838505612
@@ -23428,6 +23494,7 @@ MonoBehaviour:
     type: 3}
   maxDistance: 15
   scrollSpeed: 1
+  stationMaxTimer: 0.4
 --- !u!4 &1872210366
 Transform:
   m_ObjectHideFlags: 0
