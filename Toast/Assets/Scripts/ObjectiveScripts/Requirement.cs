@@ -7,26 +7,34 @@ using UnityEngine;
 
 public class Requirement : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     // Public variables
+    [Header("Listening for Events")]
     public bool listening = false;
+
+    [Header("Requirement Type and Attribute Flags")]
     public RequirementType type = RequirementType.EatObject;
     public PropFlags targetAttributes;
+
+    [Header("Goal Information")]
     public string goalName;
     public int goal;
     public bool alwaysListening = false;
-    private bool complete = false;
-    private bool completeOnNextFrame = false;
 
     // Private variables
     private int current;
-    
+    private bool complete = false;
+    private bool completeOnNextFrame = false;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Completes objectives the frame after they are actually complete
+    /// </summary>
     void Update()
     {
         if (completeOnNextFrame && !complete)
@@ -36,7 +44,10 @@ public class Requirement : MonoBehaviour
         }
     }
 
-    // Check if the goal is complete
+    /// <summary>
+    /// Checks if this goal is complete
+    /// </summary>
+    /// <returns></returns>
     public bool CheckComplete()
     {
         if(goal > 0) // If the goal is a completable goal
@@ -53,8 +64,11 @@ public class Requirement : MonoBehaviour
         }
         return false;
     }
-
-    // Update the requirement with a given event
+    
+    /// <summary>
+    /// Updates this requirement with an event
+    /// </summary>
+    /// <param name="e"></param>
     public void UpdateRequirement(RequirementEvent e)
     {
         // If listening and correct type and incomplete
@@ -115,12 +129,17 @@ public class Requirement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Forces this requirement to complete
+    /// </summary>
     public void ForceComplete()
     {
         current = goal;
     }
 
-    // Returns a formatted string of this requirement to be displayed to the player
+    /// <summary>
+    /// Returns a formatted string to be displayed to the player
+    /// </summary>
     new public string ToString
     {
         get

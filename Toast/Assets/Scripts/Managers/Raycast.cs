@@ -65,6 +65,9 @@ public class Raycast : MonoBehaviour
     public float scrollSpeed = 1.0f;
     private float scrollInput;
     private float stationMoveTimer = 0.0f;
+
+    [Header("Station Movement Variables")]
+    [SerializeField]
     private float stationMaxTimer = .4f;
 
     private GameObject line;
@@ -355,6 +358,9 @@ public class Raycast : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Perform a raycast hit, or check to move stations based on scroll input
+    /// </summary>
     void TestRaycast()
     {
 
@@ -420,6 +426,9 @@ public class Raycast : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Take a raycast hit and start dragging
+    /// </summary>
     void StartDragging()
     {
         if (hitGO == null)
@@ -462,6 +471,9 @@ public class Raycast : MonoBehaviour
         dragging = true;
     }
 
+    /// <summary>
+    /// Perform stop dragging operations
+    /// </summary>
     void StopDragging()
     {
         if (selectGO != null)
@@ -491,6 +503,11 @@ public class Raycast : MonoBehaviour
         dragging = false;
     }
 
+    /// <summary>
+    /// Helper function that returns a raycast hit based on mouse position
+    /// </summary>
+    /// <param name="layerMask"></param>
+    /// <returns></returns>
     public RaycastHit RaycastHelper(int layerMask)
     {
 
@@ -567,6 +584,10 @@ public class Raycast : MonoBehaviour
     //    return newVelocity;
     //}
 
+    /// <summary>
+    /// Checks if knives are stacked
+    /// </summary>
+    /// <returns>The number of knives stacked on top of each other</returns>
     public int CheckKnifeStack()
     {
         NewHand handToCheck = hand;

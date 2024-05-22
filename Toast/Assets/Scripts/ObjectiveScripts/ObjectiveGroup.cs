@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,14 +7,21 @@ using UnityEngine;
 [System.Serializable]
 public class ObjectiveGroup
 {
+    // ------------------------------- Variables -------------------------------
+    [Header("Display Name")]
     public string name;
+
+    [Header("Objectives")]
     public List<Objective> objectives;
+
+    [Header("Displays")]
     public List<TextMeshPro> displays;
     public List<TextMeshProUGUI> displaysUI;
 
     private float completedObjectives = 0;
     private float oldCompletedObjectives = 0; // Used to check if some new objective completed
 
+    // ------------------------------- Functions -------------------------------
     // Update Objectives
     public void UpdateObjectives(RequirementEvent e)
     {

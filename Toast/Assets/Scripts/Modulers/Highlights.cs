@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// ------------------------------- Enums -------------------------------
 public enum ObjectsType 
 { 
     Station,
@@ -19,8 +20,11 @@ public enum ObjectsType
 /// </summary>
 public class Highlights : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
+    [Header("Highlight Settings")]
     [SerializeField] private HighlightSettings defaultHighlightSetting;
 
+    [Header("Is Hightlight-able")]
     [SerializeField] private bool isHighlightedEnabled = true;  // Default is true
 
     // - This is used for some highlight parts that are made of several models
@@ -30,6 +34,7 @@ public class Highlights : MonoBehaviour
     private List<Outline> outline = new List<Outline>(); 
     bool IsHighlightedEnable { get; set; }
 
+    // ------------------------------- Functions -------------------------------
     private void Start()
     {
         Outline defaultOutline;
@@ -50,6 +55,9 @@ public class Highlights : MonoBehaviour
         SettingOutline();
     }
 
+    /// <summary>
+    /// Disables outline and sets default values
+    /// </summary>
     private void SettingOutline()
     {
         if(defaultHighlightSetting!= null)
@@ -73,6 +81,9 @@ public class Highlights : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Turns the outline on
+    /// </summary>
     public void TurnOnHighlght()
     {
         if(isHighlightedEnabled)
@@ -85,6 +96,9 @@ public class Highlights : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Turns the outline off
+    /// </summary>
     public void TurnOffHighlight()
     {
         if (isHighlightedEnabled)

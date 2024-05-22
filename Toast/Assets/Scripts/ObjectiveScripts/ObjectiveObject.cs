@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class ObjectiveObject : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
+    [Header("Prefab")]
     public GameObject prefab;
+
+    [Header("Spawn Variables")]
     public Vector3 spawnLocation;
     public Quaternion spawnRotation;
+
+    [Header("Persistant Reference")]
     public GameObject reference;
 
     // Start is called before the first frame update
