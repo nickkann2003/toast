@@ -8,27 +8,27 @@ using UnityEngine.Rendering.Universal;
 
 public class ExamineManager : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
+    [Header("Instance")]
     public static ExamineManager instance;
 
+    [Header("Examine Variables")]
     [SerializeField]
     int inspectorScale = 5;
-
     public InspectItem inspectorItem;
+    public bool freezeOnExamine;
 
+    [Header("References")]
     public Station examineStation;
-
     [SerializeField] private VolumeProfile blurProfile;
     [SerializeField] private VolumeProfile globalProfile;
     [SerializeField] private Volume globalVolume;
-
-    public bool freezeOnExamine;
-
-    GameObject currentExamine;
-
     [SerializeField] public Raycast raycast; // Temp
-
     [SerializeField] Canvas background;
 
+    private GameObject currentExamine;
+
+    // ------------------------------- Functions -------------------------------
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
     {
@@ -45,6 +45,10 @@ public class ExamineManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Sets the game into examine mode on a specific object
+    /// </summary>
+    /// <param name="propToExamine">The prop to be examined</param>
     public void ExamineObject(GameObject propToExamine)
     {
         // Ensure can't have more than one item being inspected

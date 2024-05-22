@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ObjectiveManager : MonoBehaviour
 {
-    // ------------------------------- Variables
+    // ------------------------------- Variables -------------------------------
     public static ObjectiveManager instance;
 
     [Header("Objective Groups")]

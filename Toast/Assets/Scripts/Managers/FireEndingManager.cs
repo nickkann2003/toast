@@ -6,8 +6,11 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class FireEndingManager : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
+    [Header("Instance")]
     public static FireEndingManager instance;
 
+    [Header("Smoke Values")]
     public float smokiness;
     public float smokeRate;
     public float antiSmokeRate;
@@ -15,16 +18,22 @@ public class FireEndingManager : MonoBehaviour
 
     private List<GameObject> fireObjects = new List<GameObject>();
 
+    [Header("Prefabs")]
     public GameObject firePrefab;
     public GameObject smokeThingy;
     public GameObject redLight;
+
+    [Header("Light Values")]
     public float lightTimer = 0;
     public bool lightEnabled = false;
 
+    [Header("Unity Events")]
     [SerializeField] private UnityEvent endingTrigger;
 
+    [Header("References")]
     public GameManager gameManager;
 
+    // ------------------------------- Functions -------------------------------
     private void Awake()
     {
         instance = this;
@@ -89,16 +98,27 @@ public class FireEndingManager : MonoBehaviour
         //}
     }
 
+    /// <summary>
+    /// Removes all null objects from fireObjects
+    /// </summary>
     private void removeNull()
     {
         fireObjects.RemoveAll(x => x == null);
     }
 
+    /// <summary>
+    /// Adds an object to the list of fire objects
+    /// </summary>
+    /// <param name="obj"></param>
     public void addFireObject(GameObject obj)
     {
         fireObjects.Add(obj);
     }
 
+    /// <summary>
+    /// Removes an object from the list of fire objects
+    /// </summary>
+    /// <param name="obj"></param>
     public void removeFireObject(GameObject obj)
     {
         fireObjects.Remove(obj);

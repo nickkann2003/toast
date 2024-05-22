@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using Unity.VisualScripting;
 using UnityEngine.InputSystem;
 
+// ------------------------------- Enums -------------------------------
 // Station enum, used to track which station it is in
 public enum Stations
 {
@@ -19,10 +20,9 @@ public enum Stations
 }
 public class StationManager : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     public static StationManager instance;
     public Station playerLocation;
-
-    //Rect backBounds;
 
     public Stack<Station> playerPath;
 
@@ -30,13 +30,13 @@ public class StationManager : MonoBehaviour
     public TransitionEffect transitionMask;
 
     // Used for camera movement/tweening
-    float moveProgress = 0.0f;
-    bool movingCam = false;
+    private float moveProgress = 0.0f;
+    private bool movingCam = false;
 
     [SerializeField]
-    float moveSpeed = 1.0f;
+    private float moveSpeed = 1.0f;
 
-   
+    // ------------------------------- Functions -------------------------------
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
     {
@@ -183,7 +183,9 @@ public class StationManager : MonoBehaviour
             }
     }
 
-
+    /// <summary>
+    /// Changes the station movement speed, grabbing it from the UI element
+    /// </summary>
     public void ChangeMoveSpeed()
     {
         moveSpeed = UIManager.instance.moveSpeedSlider.value;

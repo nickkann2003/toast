@@ -6,11 +6,15 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
+    // ------------------------------- Variables
+    [Header("Instance")]
     public static AudioManager instance;
 
     private AudioSource audioPlayer;
+    [Header("Volume")]
     [SerializeField] float volumeMultiplier = 0.8f;
 
+    [Header("-------- Audio Clips --------")]
     public AudioClip eatingBread;
     public AudioClip toasterTimer;
     public AudioClip toasterLever;
@@ -21,6 +25,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip fireAlarm;
     public AudioClip physicalButton;
     public AudioClip requirementComplete;
+
+    // ------------------------------- Functions -------------------------------
     private void Awake()
     {
 
@@ -39,6 +45,12 @@ public class AudioManager : MonoBehaviour
         volumeMultiplier = UIManager.instance.volumeSlider.value;
     }
 
+    /// <summary>
+    /// Plays a sound a single time
+    /// </summary>
+    /// <param name="soundToPlay">Clip to be played</param>
+    /// <param name="volume">Volume to play it at</param>
+    /// <param name="delay">Delay</param>
     public void PlayOneShotSound(AudioClip soundToPlay, float volume = 1, float delay =0)
     {
         if (soundToPlay == null)
@@ -56,6 +68,12 @@ public class AudioManager : MonoBehaviour
         audioPlayer.PlayOneShot(soundToPlay);
     }
 
+    /// <summary>
+    /// Play a given sound
+    /// </summary>
+    /// <param name="soundToPlay"></param>
+    /// <param name="volume"></param>
+    /// <param name="delay"></param>
     public void PlaySound(AudioClip soundToPlay, float volume = 1, float delay = 0)
     {
         if (soundToPlay == null)
@@ -73,6 +91,9 @@ public class AudioManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Sets global volume by reading the UI element
+    /// </summary>
     public void ChangeVolume()
     {
         volumeMultiplier= UIManager.instance.volumeSlider.value;
