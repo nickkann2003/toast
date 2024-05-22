@@ -5,6 +5,14 @@ using UnityEngine.Events;
 
 public class AchievementManager : MonoBehaviour
 {
+    public static AchievementManager instance;
+
+    // Basic singleton
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +25,7 @@ public class AchievementManager : MonoBehaviour
         
     }
 
-    void EventReceived(UnityEvent e)
+    public void EventReceived(GameEvent e)
     {
         switch(e)
         {
