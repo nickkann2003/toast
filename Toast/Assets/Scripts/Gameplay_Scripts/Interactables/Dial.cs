@@ -40,8 +40,8 @@ public class Dial : MonoBehaviour
     {
         return new DropdownList<Vector3>()
         {
-            { "X Axis",   transform.parent.right },
-            { "Y Axis (DOES NOT WORK)",    transform.parent.up },
+            { "X Axis (DOES NOT WORK)",   transform.parent.right },
+            { "Y Axis (REALLY DOES NOT WORK)",    transform.parent.up },
             { "Z Axis",    transform.parent.forward }
         };
     }
