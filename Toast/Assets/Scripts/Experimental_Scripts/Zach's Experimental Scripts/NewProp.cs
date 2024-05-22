@@ -31,7 +31,8 @@ public class NewProp : MonoBehaviour
 
     protected IUseStrategy _useStrategy;
 
-    private Rigidbody _rigidbody;
+    [SerializeField]
+    private PD_Rigidbody PD_Rb;
 
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
@@ -63,7 +64,7 @@ public class NewProp : MonoBehaviour
         // If not in hand and doesn't have a rigid body, give it a rigidbody
         if (!attributes.HasFlag(PropFlags.InHand) && this.GetComponent<Rigidbody>() == null)
         {
-            this.AddComponent<Rigidbody>();
+            CreateAndUpdateRigidbody();
         }
     }
 
@@ -84,7 +85,7 @@ public class NewProp : MonoBehaviour
             // If no rigidbody when dropped, get one
             if (this.GetComponent<Rigidbody>() == null)
             {
-                this.AddComponent<Rigidbody>();
+                CreateAndUpdateRigidbody();
             }
         }
     }
@@ -171,5 +172,26 @@ public class NewProp : MonoBehaviour
             attributes &= ~PropFlags.Frozen;
             ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.ThawObject, attributes, true));
         }
+    }
+
+    public void UpdateRigidbody()
+    {
+        if (PD_Rb == null) return;
+
+        Rigidbody rb = GetComponent<Rigidbody>();
+
+        if (rb == null) return;
+
+        rb.mass = PD_Rb.mass;
+        rb.drag = PD_Rb.drag;
+        rb.angularDrag = PD_Rb.angularDrag;
+        rb.useGravity = PD_Rb.useGravity;
+        rb.collisionDetectionMode = PD_Rb.collisionDetection;
+    }
+
+    public void CreateAndUpdateRigidbody()
+    {
+        this.AddComponent<Rigidbody>();
+        UpdateRigidbody();
     }
 }
