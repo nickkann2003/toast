@@ -114,15 +114,18 @@ public class Raycast : MonoBehaviour
             }
             
         }
-        if(EventSystem.current.IsPointerOverGameObject())
+        if (!dragging)
         {
-            // turn off prev highlight
-            if (prevHighligtable != null)
+            if (EventSystem.current.IsPointerOverGameObject())
             {
-                prevHighligtable.TurnOffHighlight();
+                // turn off prev highlight
+                if (prevHighligtable != null)
+                {
+                    prevHighligtable.TurnOffHighlight();
+                }
+                hitGO = null;
+                return;
             }
-            hitGO = null;
-            return;
         }
         TestRaycast();
         if (Input.GetButtonDown("Drag") && !noDrag)
@@ -369,14 +372,16 @@ public class Raycast : MonoBehaviour
             StationManager.instance.StationMoveBack();
             stationMoveTimer = stationMaxTimer;
         }
-        // turn off prev highlight
-        if (prevHighligtable != null)
+        if (!dragging)
         {
-            prevHighligtable.TurnOffHighlight();
+            // turn off prev highlight
+            if (prevHighligtable != null)
+            {
+                prevHighligtable.TurnOffHighlight();
+            }
+            // swap highlight over
+            prevHighligtable = highlightable;
         }
-        // swap highlight over
-        prevHighligtable = highlightable;
-
 
         //hit = new RaycastHit();
         //Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
@@ -396,9 +401,11 @@ public class Raycast : MonoBehaviour
             highlightable = hitGO.GetComponent<Highlights>();
             if (highlightable != null)
             {
-                    GameManager.Instance.SetHandCursor();
+                GameManager.Instance.SetHandCursor();
+                if (!dragging)
+                {
                     highlightable.TurnOnHighlght();
-
+                }
                 Station hightLocation = hitGO.GetComponent<Station>();
                 if (hightLocation)
                 {
@@ -414,13 +421,16 @@ public class Raycast : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.SetDefaultCursor();
-            if (highlightable != null)
+            if (!dragging)
             {
+                GameManager.Instance.SetDefaultCursor();
+                if (highlightable != null)
+                {
 
-                highlightable.TurnOffHighlight();
-                prevHighligtable = highlightable;
-                highlightable = null;
+                    highlightable.TurnOffHighlight();
+                    prevHighligtable = highlightable;
+                    highlightable = null;
+                }
             }
         }
 
