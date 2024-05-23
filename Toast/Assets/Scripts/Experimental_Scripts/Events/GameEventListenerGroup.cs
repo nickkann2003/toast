@@ -1,9 +1,18 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events; // 1
 
 /* https://www.kodeco.com/2826197-scriptableobject-tutorial-getting-started/page/2 */
 
-public class GameEventListener : MonoBehaviour
+public class GameEventListenerGroup : MonoBehaviour
+{
+    [SerializeField]
+    List<GameEventListener> gameEventListeners;
+}
+
+[Serializable]
+public class GameEventListener
 {
     [SerializeField]
     private GameEvent gameEvent; // the GameEvent this GameEventListener will subscribe to
