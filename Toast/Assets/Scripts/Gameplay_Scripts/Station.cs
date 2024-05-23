@@ -43,8 +43,12 @@ public class Station : MonoBehaviour
     [SerializeField] private UnityEvent leave;
 
     [SerializeField, Button]
-    private void SetCameraPositionAndRotation() { cameraPos = SceneView.GetAllSceneCameras()[0].transform.position; cameraRotation = SceneView.GetAllSceneCameras()[0].transform.rotation; }
-
+    private void SetCameraPositionAndRotation() 
+    { 
+        cameraPos = transform.TransformPoint(SceneView.GetAllSceneCameras()[0].transform.position); 
+        cameraPos.Scale(new Vector3(1.0f/transform.localScale.x, 1.0f / transform.localScale.y, 1.0f / transform.localScale.z)); 
+        cameraRotation = SceneView.GetAllSceneCameras()[0].transform.rotation; 
+    }
 
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
@@ -117,11 +121,11 @@ public class Station : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(objectOffset, 0.1f);
+        Gizmos.DrawWireSphere(transform.TransformPoint(objectOffset), 0.1f);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(cameraPos, 0.1f);
-        Matrix4x4 matrix = Matrix4x4.Translate(cameraPos) * Matrix4x4.Rotate(cameraRotation);
+        Gizmos.DrawSphere(transform.TransformPoint(cameraPos), 0.1f);
+        Matrix4x4 matrix = Matrix4x4.Translate(transform.TransformPoint(cameraPos)) * Matrix4x4.Rotate(cameraRotation);
         Gizmos.matrix = matrix;
         Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane, Camera.main.nearClipPlane, Camera.main.aspect);
 
