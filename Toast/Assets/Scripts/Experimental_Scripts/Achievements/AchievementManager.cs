@@ -32,6 +32,7 @@ public class AchievementManager : MonoBehaviour
         
     }
 
+    /*
     public void EventReceived(GameEvent e)
     {
         switch(e)
@@ -41,6 +42,7 @@ public class AchievementManager : MonoBehaviour
                 break;
         }
     }
+    */
 
     /// <summary>
     /// Performs the steps of unlocking an achievement
@@ -54,5 +56,11 @@ public class AchievementManager : MonoBehaviour
             achievement.IsUnlocked = true;
             Debug.Log("Achievement Unlocked: " + achievement.AchievementName + ": " + achievement.Description);
         }
+    }
+
+    public void AchievementTest()
+    {
+        Debug.Log("Testing Achievement!");
+        Unlock(tester);
     }
 }
