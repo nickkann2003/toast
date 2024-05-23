@@ -3643,22 +3643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea41f8a24668b1d47be05302e4d93b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 336314292}
-        m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
-        m_MethodName: EventReceived
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: GameEvent, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  gameEventListeners: []
 --- !u!114 &336314292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20133,17 +20118,17 @@ PrefabInstance:
     - target: {fileID: 7958088596070710736, guid: 087a36c7a73205049bb1d1992e3f01ce,
         type: 3}
       propertyPath: cameraPos.x
-      value: -0.73
+      value: -0.58073884
       objectReference: {fileID: 0}
     - target: {fileID: 7958088596070710736, guid: 087a36c7a73205049bb1d1992e3f01ce,
         type: 3}
       propertyPath: cameraPos.y
-      value: 17.5
+      value: 17.903887
       objectReference: {fileID: 0}
     - target: {fileID: 7958088596070710736, guid: 087a36c7a73205049bb1d1992e3f01ce,
         type: 3}
       propertyPath: cameraPos.z
-      value: -15.7
+      value: -17.13834
       objectReference: {fileID: 0}
     - target: {fileID: 7958088596070710736, guid: 087a36c7a73205049bb1d1992e3f01ce,
         type: 3}
@@ -20168,12 +20153,22 @@ PrefabInstance:
     - target: {fileID: 7958088596070710736, guid: 087a36c7a73205049bb1d1992e3f01ce,
         type: 3}
       propertyPath: cameraRotation.w
-      value: 0.9976527
+      value: -0.9980406
       objectReference: {fileID: 0}
     - target: {fileID: 7958088596070710736, guid: 087a36c7a73205049bb1d1992e3f01ce,
         type: 3}
       propertyPath: cameraRotation.x
-      value: 0.06847672
+      value: -0.06253009
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958088596070710736, guid: 087a36c7a73205049bb1d1992e3f01ce,
+        type: 3}
+      propertyPath: cameraRotation.y
+      value: -0.00218179
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958088596070710736, guid: 087a36c7a73205049bb1d1992e3f01ce,
+        type: 3}
+      propertyPath: cameraRotation.z
+      value: 0.00043251424
       objectReference: {fileID: 0}
     - target: {fileID: 7958088596070710736, guid: 087a36c7a73205049bb1d1992e3f01ce,
         type: 3}
