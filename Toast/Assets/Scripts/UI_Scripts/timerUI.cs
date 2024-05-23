@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class timerUI : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     public Image image;
 
     public ToastingBreadTest toasterScript;
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {

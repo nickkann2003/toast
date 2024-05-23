@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DialUISet : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     [SerializeField] private float degree;
     [SerializeField] private int totalNumbers;
     [SerializeField] private Canvas canvas;

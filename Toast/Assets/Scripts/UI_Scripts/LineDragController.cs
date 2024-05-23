@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class LineController : MonoBehaviour
 {
-    LineRenderer lineRenderer;
+    // ------------------------------- Variables -------------------------------
+    private LineRenderer lineRenderer;
 
     // used for object with rigidbody
-    Transform anchor;
-    Vector3 mousePos;
-    Vector3 mOffset;
+    private Transform anchor;
+    private Vector3 mousePos;
+    private Vector3 mOffset;
 
     // used for object without rigidbody
-    Vector3 anchorPoint;
+    private Vector3 anchorPoint;
 
-
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Awake()
     {
@@ -22,16 +23,29 @@ public class LineController : MonoBehaviour
         lineRenderer.positionCount = 2;
     }
 
+    /// <summary>
+    /// Sets the anchor point for the drag line to an objects transform
+    /// </summary>
+    /// <param name="objectTransform">Transform of anchor</param>
     public void SetAnchor(Transform objectTransform)
     {
         anchor = objectTransform;
     }
 
+    /// <summary>
+    /// Sets the anchor point of the line to a position in space
+    /// </summary>
+    /// <param name="i"></param>
+    /// <param name="pos"></param>
     public void SetAnchorPoint(int i, Vector3 pos)
     {
         lineRenderer.SetPosition(i, pos);
     }
 
+    /// <summary>
+    /// Sets the mouse offset
+    /// </summary>
+    /// <param name="offset"></param>
     public void SetOffset(Vector3 offset)
     {
         mOffset = offset;

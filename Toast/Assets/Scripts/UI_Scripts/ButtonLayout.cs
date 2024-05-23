@@ -5,14 +5,19 @@ using UnityEngine.UI;
 
 public class ButtonLayout : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     public Vector2 newPosition;
 
+    // ------------------------------- Functions -------------------------------
     void Awake()
     {
         // Call the method to adjust the button position based on the input position
         AdjustButtonPosition();
     }
 
+    /// <summary>
+    /// Adjusts the buttons position 
+    /// </summary>
     void AdjustButtonPosition()
     {
         RectTransform buttonTransform = GetComponent<RectTransform>();

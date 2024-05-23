@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 
 public class SpawnPrefabScript : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     [Header("------------------ Item to Spawn --------------")]
     public GameObject prefab;
     
@@ -17,11 +18,15 @@ public class SpawnPrefabScript : MonoBehaviour
     public Vector3 spawnRandomness;
     public Quaternion spawnRotationRandomness;
 
+    // ------------------------------- Functions -------------------------------
     public void Start()
     {
         actualSpawnPos = spawnPosition + transform.position;
     }
 
+    /// <summary>
+    /// Triggers the spawn of this prefab
+    /// </summary>
     public void TriggerSpawn()
     {
         Vector3 randomness = new Vector3(Random.value*spawnRandomness.x, Random.value*spawnRandomness.y, Random.value*spawnRandomness.z);
@@ -32,6 +37,9 @@ public class SpawnPrefabScript : MonoBehaviour
         spawnedObject.transform.rotation = rotationRandomness;
     }
 
+    /// <summary>
+    /// Gizmos, shows red square for position with randomness
+    /// </summary>
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

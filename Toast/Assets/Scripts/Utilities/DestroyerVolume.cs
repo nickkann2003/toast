@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class DestroyerVolume : MonoBehaviour
 {
+    // ------------------------------- Functions -------------------------------
+    /// <summary>
+    /// On trigger enter, destroy other and send event
+    /// </summary>
+    /// <param name="other"></param>
     public void OnTriggerEnter(Collider other)
     {
         GameObject parent = other.gameObject;

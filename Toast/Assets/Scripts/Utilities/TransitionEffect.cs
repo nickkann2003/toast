@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TransitionEffect : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     [Header("-------------- Transition Variables ---------------")]
     public float fadeInDuration = 1f; // Duration of the fade in transition
     public float stayDuration = 1f; // Duration of the stay at full scale
@@ -15,12 +16,16 @@ public class TransitionEffect : MonoBehaviour
     private RectTransform rectTransform;
     private bool isTransitioning = false;
 
+    // ------------------------------- Functions -------------------------------
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         rectTransform.localScale = Vector3.zero; // Start with the UI hidden
     }
 
+    /// <summary>
+    /// Starts the transition effect
+    /// </summary>
     public void StartTransition()
     {
         if (!isTransitioning)
@@ -30,6 +35,10 @@ public class TransitionEffect : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Performs the transition effect routine
+    /// </summary>
+    /// <returns>Enumerator for the routine</returns>
     private IEnumerator TransitionRoutine()
     {
         // Fade in transition (0 to 1)

@@ -8,6 +8,7 @@ using UnityEngine.Events;
 
 public class ObjectRespawner : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     [Header("-------------- List of Objects to Respawn ---------------")]
     [SerializeField] public List<RespawnableObject> objects;
 
@@ -16,6 +17,7 @@ public class ObjectRespawner : MonoBehaviour
     [SerializeField] public bool autoRespawnItems = true;
     [SerializeField] public bool spawnOnStart = true;
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,9 @@ public class ObjectRespawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Respawns all items if they do not exist
+    /// </summary>
     public void RespawnItems()
     {
         if(gameObject.activeSelf)
@@ -70,6 +75,9 @@ public class ObjectRespawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gizmos for each spawn position
+    /// </summary>
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
@@ -83,16 +91,26 @@ public class ObjectRespawner : MonoBehaviour
 [Serializable]
 public class RespawnableObject
 {
+    // ------------------------------- Variables -------------------------------
     [SerializeField] public GameObject prefab;
     [SerializeField] public Vector3 spawnPosition;
     [SerializeField] public Quaternion spawnRotation;
     private GameObject objRef = null;
 
+    // ------------------------------- Functions -------------------------------
+    /// <summary>
+    /// Checks if this respawnable object is null
+    /// </summary>
+    /// <returns></returns>
     public bool CheckNull()
     {
         return objRef == null;
     }
 
+    /// <summary>
+    /// Respawns this object, taking its parents offset as a parameter
+    /// </summary>
+    /// <param name="parentOffset"></param>
     public void RespawnObject(Vector3 parentOffset)
     {
         objRef = GameObject.Instantiate(prefab);

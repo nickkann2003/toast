@@ -26,6 +26,7 @@ public class Requirement : MonoBehaviour
     private bool complete = false;
     private bool completeOnNextFrame = false;
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {

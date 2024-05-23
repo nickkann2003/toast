@@ -15,6 +15,7 @@ public class ObjectiveObject : MonoBehaviour
     [Header("Persistant Reference")]
     public GameObject reference;
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {

@@ -7,22 +7,34 @@ using UnityEngine.Events;
 
 public class Objective : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     // Public variables
+    [Header("Objective Information")]
     public string objectiveName;
+
+    [Header("Pre-Requisite Objectives")]
     public List<Objective> prerequisites = new List<Objective>();
+
+    [Header("Requirements")]
     public List<Requirement> requirements = new List<Requirement>();
-    public List<ObjectiveObject> objectiveObjects = new List<ObjectiveObject>();
+
+    [Header("Activtables Upon Completion")]
     public List<GameObject> activatables = new List<GameObject>();
+    
+    [Header("Objective Related Objects")]
+    public List<ObjectiveObject> objectiveObjects = new List<ObjectiveObject>();
+
+    [Header("Unity Events")]
     public UnityEvent completionEvents;
 
     // Private variables
     private bool complete = false;
     private bool available = false;
 
-    // Properties
+    // ------------------------------- Properties -------------------------------
     public bool Complete { get => complete; }
 
-
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {
@@ -93,6 +105,9 @@ public class Objective : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// Checks if this objective should be listening and changes its value
+    /// </summary>
     public void CheckListening()
     {
         if (available)
@@ -104,6 +119,10 @@ public class Objective : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates this objective with a requirement event, updating all of its requirements
+    /// </summary>
+    /// <param name="e">Event to update with</param>
     public void UpdateObjective(RequirementEvent e)
     {
         CheckAvailable();
@@ -120,6 +139,9 @@ public class Objective : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Force completes all requirements in this objective
+    /// </summary>
     public void ForceCompleteObjective()
     {
         foreach(Requirement r in requirements)

@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class DetectItem : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
     [Header("Prop Variables")]
     [SerializeField]
     private PropFlags attributes;
@@ -38,6 +39,7 @@ public class DetectItem : MonoBehaviour
     [SerializeField]
     private UnityEvent progressEvent;
 
+    // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
     {
