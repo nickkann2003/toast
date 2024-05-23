@@ -69,7 +69,7 @@ public class StationManager : MonoBehaviour
         if (movingCam)
         {
             // playerLocation.cameraPos is used because's player's location has already been changed internally
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, playerLocation.cameraPos, moveProgress);
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, playerLocation.camPosWorldCoords(), moveProgress);
             Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, playerLocation.cameraRotation, moveProgress);
 
             moveProgress += Time.deltaTime * moveSpeed;

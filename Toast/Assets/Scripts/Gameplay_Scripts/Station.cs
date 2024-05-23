@@ -44,10 +44,9 @@ public class Station : MonoBehaviour
 
     [SerializeField, Button]
     private void SetCameraPositionAndRotation() 
-    { 
-        cameraPos = transform.TransformPoint(SceneView.GetAllSceneCameras()[0].transform.position); 
-        cameraPos.Scale(new Vector3(1.0f/transform.localScale.x, 1.0f / transform.localScale.y, 1.0f / transform.localScale.z)); 
-        cameraRotation = SceneView.GetAllSceneCameras()[0].transform.rotation; 
+    {
+        cameraPos = transform.InverseTransformPoint(SceneView.GetAllSceneCameras()[0].transform.position);
+        cameraRotation = Quaternion.Euler(transform.InverseTransformDirection(SceneView.GetAllSceneCameras()[0].transform.eulerAngles));
     }
 
     // ------------------------------- Functions -------------------------------
@@ -125,7 +124,7 @@ public class Station : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.TransformPoint(cameraPos), 0.1f);
-        Matrix4x4 matrix = Matrix4x4.Translate(transform.TransformPoint(cameraPos)) * Matrix4x4.Rotate(cameraRotation);
+        Matrix4x4 matrix = Matrix4x4.Translate(transform.TransformPoint(cameraPos)) * Matrix4x4.Rotate(Quaternion.Euler(transform.TransformDirection(cameraRotation.eulerAngles)));
         Gizmos.matrix = matrix;
         Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane, Camera.main.nearClipPlane, Camera.main.aspect);
 
@@ -206,6 +205,24 @@ public class Station : MonoBehaviour
             clickableCollider.enabled = true;
         }
        
+    }
+
+    /// <summary>
+    /// Returns the camera position in world coords
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 camPosWorldCoords()
+    {
+        return transform.TransformPoint(cameraPos);
+    }
+
+    /// <summary>
+    /// Returns the rotation of the camera in world coords
+    /// </summary>
+    /// <returns></returns>
+    public Quaternion camRotWorldCoords()
+    {
+        return Quaternion.Euler(transform.TransformDirection(cameraRotation.eulerAngles));
     }
 
 }
