@@ -22,8 +22,8 @@ public enum PropFlags
     ImmuneToPickup = 1 << 10,
     ImmuneToDrag = 1 << 11,
     ImmuneToDrop = 1 << 12,
-    Bread = 1 << 28,
-    Jam = 1 << 29,
-    Knife = 1 << 30,
-    JamLid = 1 << 32
+    JamLid = 1 << 28,
+    Bread = 1 << 29,
+    Jam = 1 << 30,
+    Knife = 1 << 31
 }
