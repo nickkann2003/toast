@@ -8,6 +8,7 @@ using UnityEngine;
 public class GameEvent : ScriptableObject
 {
     // ------------------------------- Variables -------------------------------
+    [SerializeField, ReadOnly]
     private List<GameEventListener> listeners = new List<GameEventListener>(); // subscribers to the GameEvent
 
     // ------------------------------- Functions -------------------------------

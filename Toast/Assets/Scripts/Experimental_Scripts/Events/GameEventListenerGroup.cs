@@ -9,6 +9,26 @@ public class GameEventListenerGroup : MonoBehaviour
 {
     [SerializeField]
     List<GameEventListener> gameEventListeners;
+
+    private void OnEnable()
+    {
+        if (gameEventListeners.Count == 0) return;
+
+        for (int i = 0; i < gameEventListeners.Count; i++)
+        {
+            gameEventListeners[i].OnEnable();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (gameEventListeners.Count == 0) return;
+
+        for (int i = 0; i < gameEventListeners.Count; i++)
+        {
+            gameEventListeners[i].OnDisable();
+        }
+    }
 }
 
 [Serializable]
@@ -19,7 +39,7 @@ public class GameEventListener
     [SerializeField]
     private UnityEvent response; // the response that will be invoked
 
-    private void OnEnable() // when enabled, subscribe to the GameEvent
+    public void OnEnable() // when enabled, subscribe to the GameEvent
     {
         if (gameEvent == null)
         {
@@ -29,7 +49,7 @@ public class GameEventListener
         gameEvent.RegisterListener(this);
     }
 
-    private void OnDisable() // when disabled, unsubscribe from the GameEvent
+    public void OnDisable() // when disabled, unsubscribe from the GameEvent
     {
         if (gameEvent == null)
         {
