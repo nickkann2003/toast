@@ -53,6 +53,8 @@ public class NewProp : MonoBehaviour
         {
             firePrefab = FireEndingManager.instance.firePrefab;
         }
+
+        CreateAndUpdateRigidbody();
     }
 
     // Update is called once per frame
@@ -194,7 +196,10 @@ public class NewProp : MonoBehaviour
 
     public void CreateAndUpdateRigidbody()
     {
-        this.AddComponent<Rigidbody>();
+        if (this.GetComponent<Rigidbody>() != null)
+        {
+            this.AddComponent<Rigidbody>();
+        }
         UpdateRigidbody();
     }
 }

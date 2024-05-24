@@ -118,8 +118,8 @@ Rigidbody:
   m_GameObject: {fileID: 1000392157583233769}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 0.5
+  m_AngularDrag: 1.5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -154,7 +154,8 @@ MonoBehaviour:
   firePrefab: {fileID: 0}
   frozenness: 0
   baseMat: {fileID: 0}
-  PD_Rb: {fileID: 0}
+  useEffects: []
+  PD_Rb: {fileID: 11400000, guid: b20dc0f9dd7226b449da17de806c70a4, type: 2}
 --- !u!114 &8355603083893133512
 MonoBehaviour:
   m_ObjectHideFlags: 0
