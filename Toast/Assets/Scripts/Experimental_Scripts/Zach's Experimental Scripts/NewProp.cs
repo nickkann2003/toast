@@ -196,7 +196,7 @@ public class NewProp : MonoBehaviour
 
     public void CreateAndUpdateRigidbody()
     {
-        if (this.GetComponent<Rigidbody>() != null)
+        if (this.GetComponent<Rigidbody>() == null)
         {
             this.AddComponent<Rigidbody>();
         }
