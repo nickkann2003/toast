@@ -31,6 +31,9 @@ public class NewProp : MonoBehaviour
 
     protected IUseStrategy _useStrategy;
 
+    [Header("------------ Prop Data ------------")]
+    [SerializeField]
+    private List<UseEffect> useEffects;
     [SerializeField]
     private PD_Rigidbody PD_Rb;
 
