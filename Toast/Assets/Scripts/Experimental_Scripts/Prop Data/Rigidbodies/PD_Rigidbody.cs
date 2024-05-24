@@ -8,15 +8,15 @@ using UnityEngine;
 public class PD_Rigidbody : ScriptableObject
 {
     [MinValue(.01f)]
-    public float mass;
+    public float mass = 1.0f;
     [MinValue(0)]
-    public float drag;
+    public float drag = .5f;
     [MinValue(0)]
-    public float angularDrag;
-    public bool useGravity;
+    public float angularDrag = 1.5f;
+    public bool useGravity = true;
 
     [Dropdown("GetCollisionDetectionMode")]
-    public CollisionDetectionMode collisionDetection;
+    public CollisionDetectionMode collisionDetection = CollisionDetectionMode.Continuous;
 
     private DropdownList<CollisionDetectionMode> GetCollisionDetectionMode()
     {
