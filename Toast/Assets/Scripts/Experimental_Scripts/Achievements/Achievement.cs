@@ -16,6 +16,11 @@ public class Achievement : MonoBehaviour
         set { isUnlocked = value; } 
     }
 
+    /// <summary>
+    /// Non-stat-based achievements with only a name and descriptiom
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="description"></param>
     public Achievement(string name, string description)
     {
         this.achievementName = name;

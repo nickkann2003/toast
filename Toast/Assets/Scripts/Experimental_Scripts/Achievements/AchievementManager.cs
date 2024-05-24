@@ -12,6 +12,8 @@ public class AchievementManager : MonoBehaviour
     // Tester, remove later
     Achievement tester;
 
+    StatBased statTest;
+
     // Basic singleton
     private void Awake()
     {
@@ -23,7 +25,9 @@ public class AchievementManager : MonoBehaviour
     {
         // Test Achievement
         tester = new Achievement("Test", "Passed the test");
+        statTest = new StatBased("Stat Test", "Got some stats", 5);
         achievements.Add(tester);
+        achievements.Add(statTest);
     }
 
     // Update is called once per frame
