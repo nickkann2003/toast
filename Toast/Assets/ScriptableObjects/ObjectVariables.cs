@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectVariables : MonoBehaviour
 {
-    public Object objectId;
+    public Objects objectId;
     public List<Attribute> attributes = new List<Attribute>();
     public void AddAttribute(Attribute attribute)
     {
