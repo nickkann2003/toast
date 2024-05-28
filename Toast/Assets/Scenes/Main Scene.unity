@@ -2444,7 +2444,7 @@ MonoBehaviour:
   listening: 1
   type: 5
   targetAttributes: 536870912
-  goalName: Drag Bread (Left  Click)
+  goalName: Drag Bread (<sprite=46>)
   goal: 1
   alwaysListening: 0
 --- !u!1 &244741720
@@ -7899,6 +7899,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
+      propertyPath: m_text
+      value: 'To-Do:
+
+        - Eat Toast 0/5
+
+        - Eat Toast with Jam 0/5
+
+        <sprite=46>
+        <sprite=47> <sprite=78>'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
+        type: 3}
       propertyPath: m_fontSize
       value: 13
       objectReference: {fileID: 0}
@@ -7907,6 +7919,17 @@ PrefabInstance:
       propertyPath: m_margin.w
       value: -4.590576
       objectReference: {fileID: 0}
+    - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
+        type: 3}
+      propertyPath: m_margin.x
+      value: 0.61709213
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
+        type: 3}
+      propertyPath: m_spriteAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e427ec189849369459d3a86974b3078a,
+        type: 2}
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
       propertyPath: m_fontSizeBase
@@ -10987,7 +11010,7 @@ MonoBehaviour:
   listening: 1
   type: 6
   targetAttributes: 536870912
-  goalName: PIck Up Bread (Right Click)
+  goalName: PIck Up Bread (<sprite=47>)
   goal: 1
   alwaysListening: 0
 --- !u!4 &1030770490
@@ -18209,7 +18232,7 @@ MonoBehaviour:
   listening: 1
   type: 0
   targetAttributes: 536870912
-  goalName: Eat Bread (E)
+  goalName: Eat Bread (<sprite=78>)
   goal: 1
   alwaysListening: 0
 --- !u!4 &1369015608 stripped
@@ -22787,7 +22810,7 @@ MonoBehaviour:
   listening: 1
   type: 7
   targetAttributes: 536870912
-  goalName: Drop Bread (Right Click)
+  goalName: Drop Bread (<sprite=47>)
   goal: 1
   alwaysListening: 0
 --- !u!1001 &1782458429
