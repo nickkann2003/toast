@@ -5228,7 +5228,7 @@ MonoBehaviour:
   type: 12
   targetAttributes: 1073741824
   goalName: Give him Jam!
-  goal: 2
+  goal: 1
   alwaysListening: 0
 --- !u!1 &528448389 stripped
 GameObject:
@@ -6507,6 +6507,7 @@ Transform:
   - {fileID: 1530452499}
   - {fileID: 1328183969}
   - {fileID: 557415514}
+  - {fileID: 1568520792}
   m_Father: {fileID: 1608233084}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10847,6 +10848,56 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1025830954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1025830955}
+  - component: {fileID: 1025830956}
+  m_Layer: 0
+  m_Name: Give Little Fella Toast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1025830955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025830954}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1470586855}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1025830956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025830954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af866e473c2a3040aa075a67984daed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listening: 1
+  type: 12
+  targetAttributes: 536870913
+  goalName: Give him Toast!
+  goal: 1
+  alwaysListening: 0
 --- !u!1 &1030340069
 GameObject:
   m_ObjectHideFlags: 0
@@ -17165,7 +17216,7 @@ MonoBehaviour:
   type: 12
   targetAttributes: 536870912
   goalName: Give him Bread!
-  goal: 2
+  goal: 1
   alwaysListening: 0
 --- !u!1 &1196674905
 GameObject:
@@ -19176,6 +19227,7 @@ Transform:
   m_Children:
   - {fileID: 1179296098}
   - {fileID: 521085835}
+  - {fileID: 1025830955}
   m_Father: {fileID: 1756709728}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19197,6 +19249,7 @@ MonoBehaviour:
   requirements:
   - {fileID: 1179296099}
   - {fileID: 521085836}
+  - {fileID: 1025830956}
   activatables:
   - {fileID: 1114574182}
   objectiveObjects: []
@@ -20325,6 +20378,156 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ff63f25d1ab4344b3bd1f858dfaec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1568520791
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 629212538}
+    m_Modifications:
+    - target: {fileID: 2156279441693846201, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0499995
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8087417
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0500002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.627142
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.2699018
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.7113547
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7015723
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.088297114
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7015723
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.088297114
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 14.347
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282048991565472453, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_text
+      value: 'Cabinet Monster Care Manual 1:
+
+
+        Little Fella likes to hang
+        out in the bottom-right cabinet on the right wall.
+
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282048991565472453, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282048991565472453, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282048991565472453, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282048991565472453, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282048991565472453, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282048991565472453, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6128066476398826411, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_Name
+      value: PLAYTESTER HINT
+      objectReference: {fileID: 0}
+    - target: {fileID: 8107703516816757036, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0089
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6349898389663075025, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: 40fb11b78cec3194d8836dc141c0f45f, type: 3}
+--- !u!4 &1568520792 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1568520791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1576778802
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20937,8 +21140,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.6081405, y: 4.681203, z: 0.32075933}
-  m_Center: {x: -0.678636, y: 2.3189225, z: 0.65255296}
+  m_Size: {x: 5.6081405, y: 2.4276578, z: 0.32075927}
+  m_Center: {x: -0.678636, y: 1.19215, z: 0.65255296}
 --- !u!65 &1645101104
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20958,8 +21161,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.551372, y: 2.1594224, z: 1.6410949}
-  m_Center: {x: -1.2120494, y: 1.0580323, z: -0.007614664}
+  m_Size: {x: 4.208189, y: 2.1594224, z: 1.6410949}
+  m_Center: {x: -1.0404544, y: 1.0580323, z: -0.007614664}
 --- !u!1 &1650479183
 GameObject:
   m_ObjectHideFlags: 0
@@ -21846,6 +22049,26 @@ PrefabInstance:
         type: 3}
       propertyPath: rotateAround.z
       value: -0.00000011920929
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576619279273486195, guid: c6f98435754710345a05c5ae8b16efa0,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.7835851
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576619279273486195, guid: c6f98435754710345a05c5ae8b16efa0,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.4831234
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576619279273486195, guid: c6f98435754710345a05c5ae8b16efa0,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.011695285
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576619279273486195, guid: c6f98435754710345a05c5ae8b16efa0,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.88480365
       objectReference: {fileID: 0}
     - target: {fileID: 7644476977096142908, guid: c6f98435754710345a05c5ae8b16efa0,
         type: 3}
@@ -31038,6 +31261,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2122773136}
     m_Modifications:
+    - target: {fileID: 2156279441693846201, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4140123715763030888, guid: 40fb11b78cec3194d8836dc141c0f45f,
         type: 3}
       propertyPath: m_RootOrder
@@ -31111,7 +31339,7 @@ PrefabInstance:
     - target: {fileID: 4282048991565472453, guid: 40fb11b78cec3194d8836dc141c0f45f,
         type: 3}
       propertyPath: m_text
-      value: 'Cabinet Monster Care Manual:
+      value: 'Cabinet Monster Care Manual 2:
 
 
         Little Fella is shy and will
@@ -31154,6 +31382,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ToastNinjaHint
+      objectReference: {fileID: 0}
+    - target: {fileID: 8107703516816757036, guid: 40fb11b78cec3194d8836dc141c0f45f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0089
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31957,8 +32190,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.4002686, y: 1.761189, z: 0.31899315}
-  m_Center: {x: 0.5805714, y: 0.8164842, z: -1.2010787}
+  m_Size: {x: 2.4002686, y: 0.43294355, z: 0.31899315}
+  m_Center: {x: 0.5805714, y: 0.15236159, z: -1.2010787}
 --- !u!65 &2122773143
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37180,6 +37413,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1868476149723511574, guid: 88088e9976b9d9f45ae6cb915ff38d64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2056229179995850091, guid: 88088e9976b9d9f45ae6cb915ff38d64,
         type: 3}
       propertyPath: m_Name
@@ -37189,6 +37427,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361061105218499272, guid: 88088e9976b9d9f45ae6cb915ff38d64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3035016141518037473, guid: 88088e9976b9d9f45ae6cb915ff38d64,
         type: 3}
@@ -37248,6 +37491,11 @@ PrefabInstance:
     - target: {fileID: 7079829406258092727, guid: 88088e9976b9d9f45ae6cb915ff38d64,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483582183188606122, guid: 88088e9976b9d9f45ae6cb915ff38d64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
