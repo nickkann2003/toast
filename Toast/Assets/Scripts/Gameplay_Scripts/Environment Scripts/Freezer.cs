@@ -57,8 +57,11 @@ public class Freezer : MonoBehaviour
         {
             GameObject ice = Instantiate(icePrefab);
             ice.transform.position = obj.transform.position;
-            ice.transform.localScale = obj.GetComponent<Renderer>().bounds.size;
+            ice.GetComponent<MeshFilter>().sharedMesh = obj.GetComponent<MeshFilter>().sharedMesh;
             ice.transform.parent = obj.transform;
+            ice.transform.localEulerAngles = Vector3.zero;
+            ice.transform.localScale = new Vector3(1.1f, 1.1f, 1.4f);
+
             prop.AddAttribute(PropFlags.Frozen);
         }
     }
