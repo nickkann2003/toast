@@ -42,9 +42,10 @@ public class Station : MonoBehaviour
     [SerializeField] private UnityEvent arrive;
     [SerializeField] private UnityEvent leave;
 
+#if UNITY_EDITOR
     [SerializeField, Button]
     private void SetCameraPositionAndRotation() { cameraPos = SceneView.GetAllSceneCameras()[0].transform.position; cameraRotation = SceneView.GetAllSceneCameras()[0].transform.rotation; }
-
+#endif
 
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
