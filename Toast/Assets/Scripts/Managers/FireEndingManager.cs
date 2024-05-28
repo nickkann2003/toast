@@ -50,6 +50,10 @@ public class FireEndingManager : MonoBehaviour
     void Update()
     {
         float smokeValue = (antiSmokeRate + smokeRate * fireObjects.Count) * Time.deltaTime;
+        if (smokeValue < 0)
+        {
+            smokeValue *= 4;
+        }
 
         if (smokiness + smokeValue < 0)
         {
