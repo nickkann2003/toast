@@ -84,6 +84,7 @@ MonoBehaviour:
   firePrefab: {fileID: 0}
   frozenness: 0
   baseMat: {fileID: 0}
+  useEffects: []
   PD_Rb: {fileID: 11400000, guid: d3ae1b2fdb425e444bf164890cc0da98, type: 2}
 --- !u!114 &5951264499587906993
 MonoBehaviour:
@@ -101,7 +102,7 @@ MonoBehaviour:
   remaining: -1
   objPrefab: {fileID: 8306667316286608774, guid: 82ebec8b54fd6f54fb5c45f2d778337c,
     type: 3}
-  mat: {fileID: 2100000, guid: 05e15fbe6bfebb849b2990b5c19bf280, type: 2}
+  mat: {fileID: 2100000, guid: ff95c8d98d790474e980ef56c1eea394, type: 2}
   isJam: 1
   jam: {fileID: 4876395570248877967}
 --- !u!23 &2184660583607016673
@@ -272,6 +273,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8729105005065095253, guid: 0892ab3fd3028854ebe8bc2aaf4aa908,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ff95c8d98d790474e980ef56c1eea394, type: 2}
     m_RemovedComponents:
     - {fileID: 752175349598117897, guid: 0892ab3fd3028854ebe8bc2aaf4aa908, type: 3}
     - {fileID: 7126840205008280183, guid: 0892ab3fd3028854ebe8bc2aaf4aa908, type: 3}

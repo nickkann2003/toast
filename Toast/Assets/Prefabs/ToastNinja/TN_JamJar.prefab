@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 05e15fbe6bfebb849b2990b5c19bf280, type: 2}
+  - {fileID: 2100000, guid: ff95c8d98d790474e980ef56c1eea394, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,10 +102,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429bde5dd05b54548b37ef4292b26c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMat: {fileID: 0}
   attributes: 1610615808
   toastiness: 0
+  fireTrigger: 1.5
+  firePrefab: {fileID: 0}
   frozenness: 0
+  baseMat: {fileID: 0}
+  useEffects: []
+  PD_Rb: {fileID: 0}
 --- !u!65 &2438161293089515129
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -252,7 +256,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 05e15fbe6bfebb849b2990b5c19bf280, type: 2}
+  - {fileID: 2100000, guid: ff95c8d98d790474e980ef56c1eea394, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
