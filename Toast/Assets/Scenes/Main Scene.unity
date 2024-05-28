@@ -2444,7 +2444,7 @@ MonoBehaviour:
   listening: 1
   type: 5
   targetAttributes: 536870912
-  goalName: Drag Bread (Left  Click)
+  goalName: Drag Bread (<sprite=46>)
   goal: 1
   alwaysListening: 0
 --- !u!1 &244741720
@@ -2736,7 +2736,7 @@ MonoBehaviour:
   listening: 1
   type: 6
   targetAttributes: -2147483648
-  goalName: Equip Knife
+  goalName: Pickup Knife (<sprite=46>)
   goal: 1
   alwaysListening: 0
 --- !u!1 &277629638
@@ -7278,7 +7278,7 @@ MonoBehaviour:
   listening: 1
   type: 9
   targetAttributes: -2147483648
-  goalName: Use Knife on Knife (E with Knife in Hand)
+  goalName: Use Knife on Knife (<sprite=78>)
   goal: 1
   alwaysListening: 0
 --- !u!1001 &739983632
@@ -7899,6 +7899,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
+      propertyPath: m_text
+      value: 'To-Do:
+
+        - Eat Toast 0/5
+
+        - Eat Toast with Jam 0/5
+
+        <sprite=46>
+        <sprite=47> <sprite=78>'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
+        type: 3}
       propertyPath: m_fontSize
       value: 13
       objectReference: {fileID: 0}
@@ -7907,6 +7919,17 @@ PrefabInstance:
       propertyPath: m_margin.w
       value: -4.590576
       objectReference: {fileID: 0}
+    - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
+        type: 3}
+      propertyPath: m_margin.x
+      value: 0.61709213
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
+        type: 3}
+      propertyPath: m_spriteAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e427ec189849369459d3a86974b3078a,
+        type: 2}
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
       propertyPath: m_fontSizeBase
@@ -10987,7 +11010,7 @@ MonoBehaviour:
   listening: 1
   type: 6
   targetAttributes: 536870912
-  goalName: PIck Up Bread (Right Click)
+  goalName: PIck Up Bread (<sprite=47>)
   goal: 1
   alwaysListening: 0
 --- !u!4 &1030770490
@@ -18069,6 +18092,12 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 9081385932958293357, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_spriteAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e427ec189849369459d3a86974b3078a,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 5778722227008366223, guid: 32723a66bbfbd074ebca3cf7530de75c, type: 3}
     m_RemovedGameObjects: []
@@ -18209,7 +18238,7 @@ MonoBehaviour:
   listening: 1
   type: 0
   targetAttributes: 536870912
-  goalName: Eat Bread (E)
+  goalName: Eat Bread (<sprite=78>)
   goal: 1
   alwaysListening: 0
 --- !u!4 &1369015608 stripped
@@ -22787,7 +22816,7 @@ MonoBehaviour:
   listening: 1
   type: 7
   targetAttributes: 536870912
-  goalName: Drop Bread (Right Click)
+  goalName: Drop Bread (<sprite=47>)
   goal: 1
   alwaysListening: 0
 --- !u!1001 &1782458429
@@ -31215,6 +31244,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7941216370206959529, guid: a40f22d72011ee441b5b708075b47a17,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941216370206959529, guid: a40f22d72011ee441b5b708075b47a17,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
       propertyPath: m_text
@@ -31226,13 +31265,19 @@ PrefabInstance:
         - Don''t forget to feed
         the cabinet monster
 
-        - Items in your hand can be used with (E)'
+        - Items in your hand can be used with (<sprite=78>)'
       objectReference: {fileID: 0}
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
       propertyPath: m_fontSize
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
+        type: 3}
+      propertyPath: m_spriteAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e427ec189849369459d3a86974b3078a,
+        type: 2}
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
       propertyPath: m_fontSizeBase
@@ -31636,7 +31681,7 @@ MonoBehaviour:
   listening: 1
   type: 11
   targetAttributes: 0
-  goalName: 'Hint: Return to <b>Starting Station</b> to try Toast Ninja!'
+  goalName: '<size=-2>Hint: Return to <b>Starting Station</b> to try Toast Ninja!</size>'
   goal: 20
   alwaysListening: 0
 --- !u!1001 &2094594533
@@ -37699,6 +37744,21 @@ PrefabInstance:
     - target: {fileID: 4884511794457003773, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
       propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964772187994868195, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
+        type: 3}
+      propertyPath: m_Name
+      value: Settings
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964772187994868195, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467318394461107949, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5909785810738492490, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
