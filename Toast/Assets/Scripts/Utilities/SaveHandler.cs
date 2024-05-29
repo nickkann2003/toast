@@ -3,58 +3,113 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Security;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SaveHandler : MonoBehaviour
 {
+    // ------------------------------- Variables -------------------------------
+    [Header("Singleton Variables")]
+    public static SaveHandler instance;
+
     [Header("Path Variables")]
     [SerializeField]
     private string basePath = "text.txt";
     private string path = "";
+    private string objValuePath = "Assets/Resources/obj.txt";
 
+    [Header("Save Variables")]
+    [SerializeField]
+    public int numSaveFiles = 3;
+
+    private int currentSaveFile = 0;
+    private string currentSaveFileName = string.Empty;
+
+    private string saveFileParser = "\n";
+    private string fileDataParser = "|";
+
+    private int saveFileSections = 2;
+    private int saveFileNameLocation = 0;
+    private int objectiveDataLocation = 1;
+
+    // ------------------------------- Buttons -------------------------------
     [SerializeField, Button]
-    private void TestSave() {
-        //SetPath(); 
-        //AppendLine("TESTING TESTING!"); 
-        StreamWriter wr = new StreamWriter("Assets/Resources/text.txt");
-        wr.WriteLine("Editor Test");
-        wr.Close();
-    }
-    // Start is called before the first frame update
-    void Start()
+    private void CreateSaveFile() { CreateFormattedSaveFile(); }
+    [SerializeField, Button]
+    private void SaveAllGameData() { SaveAllData(); }
+
+    // ------------------------------- Functions -------------------------------
+    private void Awake()
     {
+        instance = this;
         SetPath();
+    }
 
-        // Read in file, if its first line is not 'toasty', delete the file and start again
-        StreamReader sr = new StreamReader(path);
-        string firstLine = sr.ReadLine();
-        sr.Close();
+    /// <summary>
+    /// Collects and saves all data for the current save file
+    /// </summary>
+    public void SaveAllData()
+    {
+        string objectiveData = ObjectiveManager.instance.GetObjectiveStorageString();
 
-        if (firstLine != "toasty")
+        SaveObjectiveData(objectiveData);
+    }
+
+    /// <summary>
+    /// Creates an empty file with the format for saving information set up
+    /// </summary>
+    public void CreateFormattedSaveFile()
+    {
+        string formattedEmptyFileString = "";
+        for (int i = 0; i < numSaveFiles; i++)
         {
-            StreamWriter fileCreator = new StreamWriter(path, false);
-            fileCreator.WriteLine("toasty");
-            fileCreator.Close();
+            for (int j = 0; j < saveFileSections; j++)
+            {
+                formattedEmptyFileString += fileDataParser;
+            }
+            formattedEmptyFileString += saveFileParser;
         }
-
-        AppendLine("Test Line");
-        AppendString(" AND a test string");
-    }
-
-    private void AppendLine(string output)
-    {
-        StreamWriter writer = new StreamWriter(path, true);
-        writer.WriteLine(output);
+        StreamWriter writer = new StreamWriter(path);
+        writer.Write(formattedEmptyFileString);
         writer.Close();
     }
 
-    private void AppendString(string output)
+    public void SetSaveFileName(string filename)
     {
-        StreamWriter writer = new StreamWriter(path, true);
-        writer.Write(output);
-        writer.Close();
+        string cData = GetCurrentFileInfo();
+        string[] parsedDat = cData.Split(fileDataParser);
+        parsedDat[saveFileNameLocation] = filename;
+        SetCurrentFileInfo(ArrayToFileData(parsedDat));
     }
 
+    /// <summary>
+    /// Takes a given string of objective data and saves it to the current save file
+    /// </summary>
+    /// <param name="objDat">Data to save</param>
+    public void SaveObjectiveData(string objDat)
+    {
+        string allDat = GetCurrentFileInfo();
+        string[] parsedDat = allDat.Split(fileDataParser);
+        parsedDat[objectiveDataLocation] = objDat;
+        SetCurrentFileInfo(ArrayToFileData(parsedDat));
+    }
+
+    /// <summary>
+    /// Reads in and returns the objective data for the current save file
+    /// </summary>
+    /// <returns>Objective data string for current save file</returns>
+    public string ReadObjectiveData()
+    {
+        string allDat = GetCurrentFileInfo();
+        string[] parsedDat = allDat.Split(fileDataParser);
+
+        return parsedDat[objectiveDataLocation];
+    }
+
+    /// <summary>
+    /// Sets the save file path based on editor or not
+    /// </summary>
     private void SetPath()
     {
         path = Application.persistentDataPath + "/" + basePath;
@@ -65,18 +120,82 @@ public class SaveHandler : MonoBehaviour
 #endif
     }
 
-    private void SerializeObjectives()
+    /// <summary>
+    /// Sets the current save file by ID
+    /// </summary>
+    /// <param name="fileNum">ID of file to change to</param>
+    public void SetCurrentSaveFileByID(int fileNum)
     {
-        // Read in the file and get the current ID of objectives
-        string objSerialPath = "Assets/Resources/objs.txt";
-        StreamReader sr = new StreamReader(objSerialPath);
-        string firstLine = sr.ReadLine();
-        int cId = int.Parse(firstLine);
+        currentSaveFile = fileNum;
+    }
+
+    /// <summary>
+    /// Returns the save string for the current save file
+    /// </summary>
+    /// <returns></returns>
+    private string GetCurrentFileInfo()
+    {
+        StreamReader sr = new StreamReader(path);
+        string allDat = sr.ReadToEnd();
         sr.Close();
 
-        // Write out the new cID of objectives
+        string[] parsedDat = allDat.Split(saveFileParser);
+
+        return parsedDat[currentSaveFile];
+    }
+
+    /// <summary>
+    /// Sets the current save file data to a given string
+    /// </summary>
+    /// <param name="newSaveData">Save string to set file data to</param>
+    private void SetCurrentFileInfo(string newSaveData)
+    {
+        StreamReader sr = new StreamReader(path);
+        string allDat = sr.ReadToEnd();
+        sr.Close();
+
+        string[] parsedDat = allDat.Split(saveFileParser);
+
+        parsedDat[currentSaveFile] = newSaveData;
+
+        allDat = ArrayToSaveData(parsedDat);
+
         StreamWriter wr = new StreamWriter(path);
-        wr.Write(cId);
+        wr.Write(allDat);
         wr.Close();
+    }
+
+    /// <summary>
+    /// Turns an array of file data into a formatted file string
+    /// </summary>
+    /// <param name="data">Singular save file data array</param>
+    /// <returns>Formatted save string</returns>
+    private string ArrayToFileData(string[] data)
+    {
+        string newDat = string.Empty;
+        foreach (string dat in data)
+        {
+            newDat += dat;
+            newDat += fileDataParser;
+        }
+        newDat = newDat.Substring(0, newDat.Length - 1);
+        return newDat;
+    }
+
+    /// <summary>
+    /// Turns an array of all saved files into a formatted save string
+    /// </summary>
+    /// <param name="data">All saved files as an array</param>
+    /// <returns>Formatted save string</returns>
+    private string ArrayToSaveData(string[] data)
+    {
+        string allDat = string.Empty;
+        foreach (string file in data)
+        {
+            allDat += file;
+            allDat += saveFileParser;
+        }
+        allDat = allDat.Substring(0, allDat.Length - 1);
+        return allDat;
     }
 }

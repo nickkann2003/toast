@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject settingMenu;
     [SerializeField] private GameObject objectiveNote;
+    [SerializeField] private GameObject fileSelectMenu;
+    [SerializeField] private GameObject saveFileNameMenu;
     public bool objectiveOpened = false;
 
     [Header("UI Buttons")]
@@ -176,5 +178,37 @@ public class UIManager : MonoBehaviour
             pauseMenu.SetActive(true);
         }
  
+    }
+
+    /// <summary>
+    /// Opens the file select menu
+    /// </summary>
+    public void OpenFileSelectMenu()
+    {
+        fileSelectMenu.SetActive(true);
+    }
+
+    /// <summary>
+    /// Closes the file select menu
+    /// </summary>
+    public void CloseFileSelectMenu()
+    {
+        fileSelectMenu?.SetActive(false);
+    }
+
+    /// <summary>
+    /// Opens the file naming menu
+    /// </summary>
+    public void OpenFileNamingMenu()
+    {
+        saveFileNameMenu.SetActive(true);
+    }
+
+    /// <summary>
+    /// Closes the file naming menu
+    /// </summary>
+    public void CloseFileNamingMenu()
+    {
+        saveFileNameMenu?.SetActive(false);
     }
 }

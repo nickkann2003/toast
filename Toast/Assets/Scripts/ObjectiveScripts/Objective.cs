@@ -36,7 +36,7 @@ public class Objective : MonoBehaviour
     private bool available = false;
 
     // ID TRACKER DO NOT CHANGE
-    private int id = -1;
+    public int id = -1;
 
     // ------------------------------- Properties -------------------------------
     public bool Complete { get => complete; }

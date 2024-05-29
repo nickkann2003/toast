@@ -15,12 +15,18 @@ public class ObjectiveManager : MonoBehaviour
     [Header("Objective Groups")]
     [SerializeField]
     public List<ObjectiveGroup> groups = new List<ObjectiveGroup>();
+    private Dictionary<int, Objective> objectivesById = new Dictionary<int, Objective>();
 
     private string objSerialPath = "Assets/Resources/objs.txt";
 
-    [SerializeField, Button]
-    private void SerializeAllObjectives() { SerializeObjectives(); }
-    [SerializeField, Button]
+    // ------------------------------- Buttons -------------------------------
+
+    /// <summary>
+    /// WARNING: This will reset all objective IDs, this can cause potential issues with
+    /// saved file data. Make sure you know what you are doing before pressing this
+    /// </summary>
+    public bool ResetObjectives = false;
+    [SerializeField, Button, EnableIf("ResetObjectives")]
     private void DONOTPRESSResetObjectiveSerialization() 
     { 
         foreach(ObjectiveGroup g in groups)
@@ -35,6 +41,18 @@ public class ObjectiveManager : MonoBehaviour
         wr.Write(0);
         wr.Close();
     }
+
+    /// <summary>
+    /// Button for Serializing all Objectives, gives an ID to all OBJS without one
+    /// </summary>
+    [SerializeField, Button]
+    private void SerializeAllObjectives() { SerializeObjectives(); }
+
+    [SerializeField, Button]
+    private void CompileStorageString() { GetObjectiveStorageString(); }
+
+    [SerializeField, Button]
+    private void SaveObjectiveData() { SaveHandler.instance.SaveObjectiveData(GetObjectiveStorageString()); }
 
     // ------------------------------- Functions -------------------------------
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
@@ -105,16 +123,19 @@ public class ObjectiveManager : MonoBehaviour
         int cId = int.Parse(firstLine);
         sr.Close();
 
+        List<int> foundIds = new List<int>();
+
         foreach(ObjectiveGroup g in groups)
         {
             foreach (Objective o in g.objectives)
             {
-                if (o.ID == -1)
+                if (o.ID == -1 || foundIds.Contains(o.ID))
                 {
                     o.ID = cId;
                     cId += 1;
                 }
                 o.SerializeRequirements();
+                foundIds.Add(o.ID);
             }
         }
 
@@ -124,5 +145,57 @@ public class ObjectiveManager : MonoBehaviour
         wr.Close();
 
         Debug.Log("Serialize Success! Next ID: " + cId);
+    }
+
+    /// <summary>
+    /// Returns a formatted string for saving Objective information
+    /// </summary>
+    /// <returns></returns>
+    public string GetObjectiveStorageString()
+    {
+        SortObjectivesById();
+        string formattedString = string.Empty;
+
+        char objectiveMarker = '~';
+        char spacer = '_';
+        char requirementStartMarker = '[';
+        char requirementSpace = ',';
+
+        foreach(Objective o in objectivesById.Values)
+        {
+            formattedString += objectiveMarker;
+            formattedString += o.ID;
+            formattedString += spacer;
+            formattedString += o.Complete ? "1" : "0";
+            formattedString += spacer;
+            formattedString += o.CheckAvailable() ? "1" : "0";
+            formattedString += requirementStartMarker;
+            foreach(Requirement r in o.requirements)
+            {
+                formattedString += r.ID;
+                formattedString += spacer;
+                formattedString += r.CheckComplete() ? "1" : "0";
+                formattedString += spacer;
+                formattedString += r.Current;
+                formattedString += requirementSpace;
+            }
+            formattedString = formattedString.Substring(0, formattedString.Length - 1); // Trims off the last spacer
+        }
+        Debug.Log(formattedString);
+        return formattedString;
+    }
+
+    /// <summary>
+    /// Sorts objectives into a dictionary by ID
+    /// </summary>
+    private void SortObjectivesById()
+    {
+        foreach (ObjectiveGroup g in groups)
+        {
+            foreach(Objective o in g.objectives)
+            {
+                objectivesById[o.ID] = o;
+            }
+        }
     }
 }

@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,9 +28,10 @@ public class Requirement : MonoBehaviour
     private bool completeOnNextFrame = false;
 
     // ID TRACKER DO NOT CHANGE
-    private int id = -1;
+    public int id = -1;
 
     // ------------------------------- Properties -------------------------------
+    public int Current { get => current; set => current = value; }
     public int ID { get => id; set => id = value; }
 
 
