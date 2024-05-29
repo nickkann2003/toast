@@ -7,11 +7,14 @@ public class AchievementManager : MonoBehaviour
 {
     public static AchievementManager instance;
 
+    // The full list of achievements in the game
     public List<Achievement> achievements;
 
-    // Tester, remove later
-    Achievement tester;
+    // The list of acheievements the player has unlocked
+    public List<Achievement> unlockedAchievements;
 
+    // Testers, remove later
+    Achievement tester;
     Achievement statTest;
 
     // Basic singleton
@@ -59,6 +62,7 @@ public class AchievementManager : MonoBehaviour
             // Unlock code goes here
             achievement.IsUnlocked = true;
             Debug.Log("Achievement Unlocked: " + achievement.AchievementName + ": " + achievement.Description);
+            unlockedAchievements.Add(achievement);
         }
     }
 
