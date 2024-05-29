@@ -26,6 +26,13 @@ public class Requirement : MonoBehaviour
     private bool complete = false;
     private bool completeOnNextFrame = false;
 
+    // ID TRACKER DO NOT CHANGE
+    private int id = -1;
+
+    // ------------------------------- Properties -------------------------------
+    public int ID { get => id; set => id = value; }
+
+
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()

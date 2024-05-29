@@ -1,6 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Unity.VisualScripting;
+
+
 //using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Events;
@@ -31,8 +35,12 @@ public class Objective : MonoBehaviour
     private bool complete = false;
     private bool available = false;
 
+    // ID TRACKER DO NOT CHANGE
+    private int id = -1;
+
     // ------------------------------- Properties -------------------------------
     public bool Complete { get => complete; }
+    public int ID { get => id; set => id = value; }
 
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
@@ -183,4 +191,16 @@ public class Objective : MonoBehaviour
             return "";
         }
     }
+
+    /// <summary>
+    /// Sets the interal IDs of each requirement
+    /// </summary>
+    public void SerializeRequirements()
+    {
+        for(int i = 0; i < requirements.Count; i ++)
+        {
+            requirements[i].ID = i;
+        }
+    }
+
 }
