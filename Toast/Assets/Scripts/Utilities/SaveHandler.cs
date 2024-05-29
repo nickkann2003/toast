@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Security;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class SaveHandler : MonoBehaviour
 {
@@ -33,6 +35,14 @@ public class SaveHandler : MonoBehaviour
     private int saveFileNameLocation = 0;
     private int objectiveDataLocation = 1;
 
+    [Header("UI References")]
+    [SerializeField]
+    private TextMeshProUGUI SaveFile1;
+    [SerializeField]
+    private TextMeshProUGUI SaveFile2;
+    [SerializeField]
+    private TextMeshProUGUI SaveFile3;
+
     // ------------------------------- Buttons -------------------------------
     [SerializeField, Button]
     private void CreateSaveFile() { CreateFormattedSaveFile(); }
@@ -44,6 +54,25 @@ public class SaveHandler : MonoBehaviour
     {
         instance = this;
         SetPath();
+    }
+
+    private void Start()
+    {
+        string file3Name;
+        SetCurrentSaveFileByID(2);
+        file3Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
+
+        string file2Name;
+        SetCurrentSaveFileByID(1);
+        file2Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
+
+        string file1Name;
+        SetCurrentSaveFileByID(0);
+        file1Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
+        
+        SaveFile1.text = file1Name == "" ? "NEW SAVE" : file1Name;
+        SaveFile2.text = file2Name == "" ? "NEW SAVE" : file2Name;
+        SaveFile3.text = file3Name == "" ? "NEW SAVE" : file3Name;
     }
 
     /// <summary>
@@ -75,6 +104,15 @@ public class SaveHandler : MonoBehaviour
         writer.Close();
     }
 
+    public void GetCurrentSaveFileStringFromUI(TextMeshProUGUI uiElement)
+    {
+        SetSaveFileName(uiElement.text);
+    }
+
+    /// <summary>
+    /// Sets the current save files name to a given string
+    /// </summary>
+    /// <param name="filename">New file name</param>
     public void SetSaveFileName(string filename)
     {
         string cData = GetCurrentFileInfo();
