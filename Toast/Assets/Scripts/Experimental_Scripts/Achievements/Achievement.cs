@@ -1,15 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
+using System.Diagnostics;
 
-public class Achievement : MonoBehaviour
+[CreateAssetMenu(fileName ="New Achievement", menuName ="Achievement", order = 51)]
+public class Achievement : ScriptableObject
 {
+    [Header("Achievement Text Information")]
+    [SerializeField]
     private string achievementName; // The name of the achievement
+    [SerializeField]
     private string description; // The description of the achievement
+
+    [Header("Unlocked Status")]
+    [SerializeField]
     private bool isUnlocked; // Is the achievement unlocked?
+
+    [Header("Does the achievement have a target number?")]
+    [SerializeField]
     private bool hasNumericGoal; // Does the achievement have a target number of actions that must be reached?
+
+    [Header("Goal amount")]
+    [SerializeField,ShowIf("hasNumericGoal")]
     private int achievementGoal; // The target number for the achievement
+
+    [Header("Progress Towards Goal")]
+    [SerializeField,ReadOnly,ShowIf("hasNumericGoal")]
     private int currentCount; // The current progress towards the target
+
+    [Header("Achievement ID Number")]
+    [SerializeField,ReadOnly]
     private int id;
 
     public int AchievementProgress
@@ -36,6 +57,7 @@ public class Achievement : MonoBehaviour
 
     public int ID { get { return id; } }
 
+    /*
     /// <summary>
     /// Non-stat-based achievements with only a name and descriptiom
     /// </summary>
@@ -64,4 +86,5 @@ public class Achievement : MonoBehaviour
         hasNumericGoal = true;
         currentCount = 0;
     }
+    */
 }

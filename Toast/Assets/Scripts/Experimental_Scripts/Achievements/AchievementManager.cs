@@ -27,10 +27,10 @@ public class AchievementManager : MonoBehaviour
     void Start()
     {
         // Test Achievement
-        tester = new Achievement("Test", "Passed the test");
-        statTest = new Achievement("Stat Test", "Got some stats", 5);
-        achievements.Add(tester);
-        achievements.Add(statTest);
+        //tester = new Achievement("Test", "Passed the test");
+        //statTest = new Achievement("Stat Test", "Got some stats", 5);
+        //achievements.Add(tester);
+        //achievements.Add(statTest);
     }
 
     // Update is called once per frame
