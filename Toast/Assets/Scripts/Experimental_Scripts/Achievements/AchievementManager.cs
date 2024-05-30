@@ -39,17 +39,6 @@ public class AchievementManager : MonoBehaviour
         
     }
 
-    /*
-    public void EventReceived(GameEvent e)
-    {
-        switch(e)
-        {
-            default:
-                Unlock(tester);
-                break;
-        }
-    }
-    */
 
     /// <summary>
     /// Performs the steps of unlocking an achievement

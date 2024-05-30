@@ -10,6 +10,7 @@ public class Achievement : MonoBehaviour
     private bool hasNumericGoal; // Does the achievement have a target number of actions that must be reached?
     private int achievementGoal; // The target number for the achievement
     private int currentCount; // The current progress towards the target
+    private int id;
 
     public int AchievementProgress
     {
@@ -32,6 +33,8 @@ public class Achievement : MonoBehaviour
         get { return hasNumericGoal; }
         set { hasNumericGoal = value; }
     }
+
+    public int ID { get { return id; } }
 
     /// <summary>
     /// Non-stat-based achievements with only a name and descriptiom
