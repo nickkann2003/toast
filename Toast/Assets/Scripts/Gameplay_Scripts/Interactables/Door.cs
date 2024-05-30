@@ -23,9 +23,9 @@ public class Door : MonoBehaviour
     [SerializeField, Button]
     private void setDoorClosed() { rotator.transform.localEulerAngles = minRot; isOpen = false; }
     [SerializeField, Button]
-    private void setMinToCurrentRotation() { minRot = transform.localEulerAngles; }
+    private void setMinToCurrentRotation() { minRot = rotator.transform.localEulerAngles; }
     [SerializeField, Button]
-    private void setMaxToCurrentRotation() { maxRot = transform.localEulerAngles; }
+    private void setMaxToCurrentRotation() { maxRot = rotator.transform.localEulerAngles; }
 
     // amount that the door has opened
     private float interpolateAmount;
