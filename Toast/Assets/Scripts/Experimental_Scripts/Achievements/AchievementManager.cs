@@ -2,9 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class AchievementManager : MonoBehaviour
 {
+    // DECLARE ACHIEVEMENTS============================================
+    [Header("Achievement Objects")]
+    public Achievement ACHIEVEMENT_CLEAR_TUTORIAL;
+
+
+
+
+
+
     public static AchievementManager instance;
 
     // The full list of achievements in the game
@@ -55,9 +65,20 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-    public void AchievementTest()
+    /// <summary>
+    /// Unlocks an achievement using ID
+    /// </summary>
+    /// <param name="ID">The ID of the requested achievement</param>
+    private void UnlockByID(int ID)
     {
-        Debug.Log("Testing Achievement!");
-        Unlock(tester);
+        Unlock(achievements[ID]);
+    }
+
+    /// <summary>
+    /// Achievements Relating to the tutorial
+    /// </summary>
+    public void TutorialCleared()
+    {
+        Unlock(ACHIEVEMENT_CLEAR_TUTORIAL);
     }
 }

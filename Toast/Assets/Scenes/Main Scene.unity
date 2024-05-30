@@ -4285,7 +4285,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 336314292}
           m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
-          m_MethodName: AchievementTest
+          m_MethodName: TutorialCleared
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4319,8 +4319,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439905330e9ce314199562dd2300cc05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ACHIEVEMENT_CLEAR_TUTORIAL: {fileID: 11400000, guid: 44519b983e4fe3d4ca616aebd14a5cf2,
+    type: 2}
   achievements:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 44519b983e4fe3d4ca616aebd14a5cf2, type: 2}
   unlockedAchievements: []
 --- !u!1 &345937438
 GameObject:
