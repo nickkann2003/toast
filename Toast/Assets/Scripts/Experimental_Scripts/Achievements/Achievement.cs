@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using System.Diagnostics;
+using Unity.VisualScripting;
 
 [CreateAssetMenu(fileName ="New Achievement", menuName ="Achievement", order = 51)]
 public class Achievement : ScriptableObject
@@ -30,7 +31,7 @@ public class Achievement : ScriptableObject
     private int currentCount; // The current progress towards the target
 
     [Header("Achievement ID Number")]
-    [SerializeField,ReadOnly]
+    [SerializeField]
     private int id;
 
     public int AchievementProgress
@@ -57,7 +58,7 @@ public class Achievement : ScriptableObject
 
     public int ID { get { return id; } }
 
-    /*
+    /* // Constructors
     /// <summary>
     /// Non-stat-based achievements with only a name and descriptiom
     /// </summary>

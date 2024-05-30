@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,14 +8,16 @@ using UnityEngine.SocialPlatforms.Impl;
 public class AchievementManager : MonoBehaviour
 {
     // DECLARE ACHIEVEMENTS============================================
-    [Header("Achievement Objects")]
+    [Foldout("Achievement Objects")]
     public Achievement ACHIEVEMENT_CLEAR_TUTORIAL;
+    [Foldout("Achievement Objects")]
+    public Achievement ACHIEVEMENT_EAT_5_BREAD;
 
 
 
 
 
-
+    // MAIN MANAGER====================================================
     public static AchievementManager instance;
 
     // The full list of achievements in the game
@@ -22,10 +25,6 @@ public class AchievementManager : MonoBehaviour
 
     // The list of acheievements the player has unlocked
     public List<Achievement> unlockedAchievements;
-
-    // Testers, remove later
-    Achievement tester;
-    Achievement statTest;
 
     // Basic singleton
     private void Awake()
@@ -36,12 +35,9 @@ public class AchievementManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Test Achievement
-        //tester = new Achievement("Test", "Passed the test");
-        //statTest = new Achievement("Stat Test", "Got some stats", 5);
-        //achievements.Add(tester);
-        //achievements.Add(statTest);
+
     }
+    
 
     // Update is called once per frame
     void Update()
@@ -80,5 +76,30 @@ public class AchievementManager : MonoBehaviour
     public void TutorialCleared()
     {
         Unlock(ACHIEVEMENT_CLEAR_TUTORIAL);
+    }
+
+    /// <summary>
+    /// Achievements Relating to eating
+    /// </summary>
+    public void ReceivedEat()
+    {
+        // Needs a way to check what is being eaten
+        IncrementAchievement(ACHIEVEMENT_EAT_5_BREAD);
+    }
+
+    void IncrementAchievement(Achievement achievement)
+    {
+        // Check that achievement has goal and that it is greater than 0
+        if(achievement.HasNumericGoal && achievement.AchievementGoal > 0)
+        {
+            // Increase progress
+            achievement.AchievementProgress++;
+
+            // If goal has been reached, unlock
+            if(achievement.AchievementProgress >= achievement.AchievementGoal)
+            {
+                Unlock(achievement);
+            }
+        }
     }
 }
