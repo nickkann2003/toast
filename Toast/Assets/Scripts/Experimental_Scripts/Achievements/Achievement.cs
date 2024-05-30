@@ -26,7 +26,7 @@ public class Achievement : ScriptableObject
     private int achievementGoal; // The target number for the achievement
 
     [Header("Progress Towards Goal")]
-    [SerializeField,ReadOnly,ShowIf("hasNumericGoal")]
+    [SerializeField,ReadOnly,ShowIf("hasNumericGoal"),ProgressBar("Current Count", "achievementGoal", EColor.Blue)]
     private int currentCount; // The current progress towards the target
 
     [Header("Achievement ID Number")]
