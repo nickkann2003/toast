@@ -13,7 +13,6 @@ public class Station : MonoBehaviour
     [Header("------------ Transform Variables ------------")]
     public Vector3 cameraPos;
     public Quaternion cameraRotation = Quaternion.identity;
-    private Quaternion prevRot;
 
     [Header("------------ Obj Offset ------------")]
     public Vector3 objectOffset;
@@ -47,10 +46,8 @@ public class Station : MonoBehaviour
     [SerializeField, Button]
     private void SetCameraPositionAndRotation() 
     {
-        prevRot = transform.rotation;
         cameraPos = transform.InverseTransformPoint(SceneView.GetAllSceneCameras()[0].transform.position);
-        cameraRotation = Quaternion.Euler(transform.InverseTransformDirection(SceneView.GetAllSceneCameras()[0].transform.eulerAngles));
-        prevRot = transform.rotation;
+        cameraRotation = Quaternion.Euler(-transform.rotation.eulerAngles + transform.InverseTransformDirection(SceneView.GetAllSceneCameras()[0].transform.eulerAngles));
     }
 
     // ------------------------------- Functions -------------------------------
@@ -122,20 +119,15 @@ public class Station : MonoBehaviour
     /// Blue wire sphere for drop location
     /// </summary>
     void OnDrawGizmosSelected()
-    {
-        Quaternion rotChange = Quaternion.Euler(transform.rotation.eulerAngles - prevRot.eulerAngles);
-        cameraRotation = Quaternion.Euler(cameraRotation.eulerAngles + rotChange.eulerAngles);
-        
+    {        
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.TransformPoint(objectOffset), 0.1f);
 
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.TransformPoint(cameraPos), 0.1f);
-        Matrix4x4 matrix = Matrix4x4.Translate(transform.TransformPoint(cameraPos)) * Matrix4x4.Rotate(cameraRotation);
+        Matrix4x4 matrix = Matrix4x4.Translate(transform.TransformPoint(cameraPos)) * Matrix4x4.Rotate(Quaternion.Euler(transform.rotation.eulerAngles + cameraRotation.eulerAngles));
         Gizmos.matrix = matrix;
         Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane, Camera.main.nearClipPlane, Camera.main.aspect);
-
-        prevRot = transform.rotation;
     }
 
     /// <summary>
@@ -230,7 +222,7 @@ public class Station : MonoBehaviour
     /// <returns></returns>
     public Quaternion camRotWorldCoords()
     {
-        return Quaternion.Euler(transform.TransformDirection(cameraRotation.eulerAngles));
+        return Quaternion.Euler(transform.rotation.eulerAngles + cameraRotation.eulerAngles);
     }
 
 }
