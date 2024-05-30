@@ -14,6 +14,18 @@ public class DestroyerVolume : MonoBehaviour
         GameObject parent = other.gameObject;
         RequirementEvent rEvent;
         PropFlags flags = PropFlags.None;
+        // Check if object has new prop
+        if(other.gameObject.GetComponent<NewProp>() != null)
+        {
+            parent = other.gameObject;
+            flags = parent.GetComponent<NewProp>().attributes;
+            rEvent = new RequirementEvent(RequirementType.DestroyObject, flags, true);
+            ObjectiveManager.instance.UpdateObjectives(rEvent);
+            Destroy(parent);
+            return;
+        }
+
+        // Check if its parent has new prop
         if (parent.GetComponent<NewProp>() != null)
         {
             flags = parent.GetComponent<NewProp>().attributes;
