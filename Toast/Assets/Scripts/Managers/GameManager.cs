@@ -68,8 +68,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator tutorialFinish;
 
     //  ------------------------------- Events (Test) -------------------------------
-    [Header("Events for Testing")]
-    [SerializeField] GameEvent eventTest; // Remove event raise at Line 220
+    //[Header("Events for Testing")]
+    //[SerializeField] GameEvent eventTest; // Remove event raise at Line 220
 
     // ------------------------------- Functions -------------------------------
     private void Awake()
@@ -217,7 +217,7 @@ public class GameManager : MonoBehaviour
     public void TutorialToGame()
     {
         tutorialFinish.SetTrigger("FinishTutorial");
-        eventTest.RaiseEvent();
+        //eventTest.RaiseEvent();
         StartCoroutine(WaitForTutorialAnimation());
     }
 

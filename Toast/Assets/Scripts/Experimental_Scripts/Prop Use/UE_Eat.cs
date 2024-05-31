@@ -10,8 +10,8 @@ public class UE_Eat : UseEffect
     public bool invokeEvents;
 
     // events
-    [EnableIf("invokeEvents")]
-    public GameEvent gameEvent;
+    //[EnableIf("invokeEvents")]
+    //public GameEvent gameEvent;
 
     // audio
     public AudioSource audioSource;
