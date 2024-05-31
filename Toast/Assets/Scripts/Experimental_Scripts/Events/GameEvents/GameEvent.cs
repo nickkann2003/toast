@@ -1,10 +1,11 @@
 using NaughtyAttributes;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 /* https://www.kodeco.com/2826197-scriptableobject-tutorial-getting-started/page/2 */
 
-[CreateAssetMenu(fileName = "New Game Event", menuName = "Game Event", order = 52)] // adds GameEvent as an asset in the asset menu
+//[CreateAssetMenu(fileName = "New Game Event", menuName = "Game Event", order = 52)] // adds GameEvent as an asset in the asset menu
 public class GameEvent : ScriptableObject
 {
     // ------------------------------- Variables -------------------------------

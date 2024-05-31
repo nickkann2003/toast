@@ -61,6 +61,9 @@ public class GameEventListener
 
     public void OnEventRaised() // when the event is invoked, invoke the response
     {
+        if (response == null) return;
+
         response.Invoke();
     }
 }
+
