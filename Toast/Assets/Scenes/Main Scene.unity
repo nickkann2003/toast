@@ -416,6 +416,9 @@ MonoBehaviour:
   goalName: Have Toast In Inventory
   goal: 2
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 1
 --- !u!1 &12018580
 GameObject:
@@ -466,12 +469,24 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 1884462760}
   requirements:
-  - {fileID: 2088536431}
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
   activatables: []
   objectiveObjects: []
   completionEvents:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
+  complete: 0
+  available: 0
   id: 10
 --- !u!1001 &25347457
 PrefabInstance:
@@ -1444,12 +1459,24 @@ MonoBehaviour:
   objectiveName: Hello There, Little Fella
   prerequisites: []
   requirements:
-  - {fileID: 1612587182}
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
   activatables: []
   objectiveObjects: []
   completionEvents:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
+  complete: 0
+  available: 0
   id: 11
 --- !u!1 &122066555
 GameObject:
@@ -1501,6 +1528,9 @@ MonoBehaviour:
   goalName: Have Bread In Inventory
   goal: 3
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 0
 --- !u!1 &124748872
 GameObject:
@@ -2869,13 +2899,34 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 1030340071}
   requirements:
-  - {fileID: 1069450543}
-  - {fileID: 952015933}
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
   activatables: []
   objectiveObjects: []
   completionEvents:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
+  complete: 0
+  available: 0
   id: 5
 --- !u!4 &235295375
 Transform:
@@ -2944,8 +2995,26 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 1923559744}
   requirements:
-  - {fileID: 402989471}
-  - {fileID: 907840066}
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
   activatables:
   - {fileID: 2004133387}
   - {fileID: 1636474726}
@@ -2953,18 +3022,12 @@ MonoBehaviour:
   completionEvents:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2044246238}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      - {m_Target: {fileID: 2044246238}, m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine, m_MethodName: SetActive, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0},
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
+          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
+    m_CallsDirty: 1
+  complete: 0
+  available: 0
   id: 7
 --- !u!1 &242067162
 GameObject:
@@ -3016,6 +3079,9 @@ MonoBehaviour:
   goalName: Drag Bread (<sprite=46>)
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 0
 --- !u!1 &244741720
 GameObject:
@@ -3309,6 +3375,9 @@ MonoBehaviour:
   goalName: Pickup Knife (<sprite=46>)
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 0
 --- !u!1 &277629638
 GameObject:
@@ -4976,6 +5045,9 @@ MonoBehaviour:
   goalName: TOOOOOOOOAST!!!!
   goal: 4
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 0
 --- !u!1 &405085897 stripped
 GameObject:
@@ -6033,6 +6105,9 @@ MonoBehaviour:
   goalName: Eat Toast
   goal: 2
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 1
 --- !u!4 &515605794
 Transform:
@@ -6223,6 +6298,9 @@ MonoBehaviour:
   goalName: Give him Jam!
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 1
 --- !u!1 &528448389 stripped
 GameObject:
@@ -6393,6 +6471,9 @@ MonoBehaviour:
   goalName: Use Knife on Knife
   goal: 4
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 0
 --- !u!114 &553312024 stripped
 MonoBehaviour:
@@ -7636,6 +7717,9 @@ MonoBehaviour:
   goalName: Toast.
   goal: 2
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 0
 --- !u!1 &629212537
 GameObject:
@@ -8540,6 +8624,9 @@ MonoBehaviour:
   goalName: Have Knife in Inventory
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 3
 --- !u!1 &722077342
 GameObject:
@@ -8591,6 +8678,9 @@ MonoBehaviour:
   goalName: Use Knife on Knife (<sprite=78>)
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 1
 --- !u!1001 &739983632
 PrefabInstance:
@@ -9329,6 +9419,9 @@ MonoBehaviour:
   goalName: Make
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 4
 --- !u!1001 &792756045
 PrefabInstance:
@@ -9743,29 +9836,77 @@ MonoBehaviour:
   objectiveName: Learning The Ropes
   prerequisites: []
   requirements:
-  - {fileID: 242067164}
-  - {fileID: 1030770489}
-  - {fileID: 1780170094}
-  - {fileID: 1366592690}
-  - {fileID: 1529303603}
-  - {fileID: 1224051955}
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
   activatables: []
   objectiveObjects: []
   completionEvents:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1135898837}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: TutorialToGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      - {m_Target: {fileID: 1135898837}, m_TargetAssemblyTypeName: GameManager, Assembly-CSharp, m_MethodName: TutorialToGame, m_Mode: 1, m_Arguments: {m_ObjectArgument: {fileID: 0},
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
+          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
+    m_CallsDirty: 1
+  complete: 0
+  available: 0
   id: 0
 --- !u!4 &809895352
 Transform:
@@ -10017,6 +10158,9 @@ MonoBehaviour:
   goalName: Make Toast
   goal: 2
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 0
 --- !u!4 &864901107
 Transform:
@@ -10656,6 +10800,9 @@ MonoBehaviour:
   goalName: EEEAAAAAAT!!!!!!!!!!!
   goal: 4
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 1
 --- !u!1 &910010506
 GameObject:
@@ -11061,6 +11208,9 @@ MonoBehaviour:
   goalName: EAT!
   goal: 2
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 1
 --- !u!4 &952015934
 Transform:
@@ -12787,6 +12937,9 @@ MonoBehaviour:
   goalName: Give him Toast!
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 2
 --- !u!1 &1030340069
 GameObject:
@@ -12838,13 +12991,34 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 1888029176}
   requirements:
-  - {fileID: 624742266}
-  - {fileID: 1154300638}
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
   activatables: []
   objectiveObjects: []
   completionEvents:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
+  complete: 0
+  available: 0
   id: 4
 --- !u!1 &1030770488
 GameObject:
@@ -12881,6 +13055,9 @@ MonoBehaviour:
   goalName: PIck Up Bread (<sprite=47>)
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 1
 --- !u!4 &1030770490
 Transform:
@@ -13057,6 +13234,9 @@ MonoBehaviour:
   goalName: Jam it up! (Press E with Jam Jar in hand)
   goal: 10
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 0
 --- !u!1 &1044125327
 GameObject:
@@ -13421,6 +13601,9 @@ MonoBehaviour:
   goalName: TOAST!
   goal: 2
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 0
 --- !u!4 &1069450544
 Transform:
@@ -14056,6 +14239,7 @@ Transform:
   - {fileID: 179354645}
   - {fileID: 1607341445}
   - {fileID: 995659375}
+  - {fileID: 1424800096}
   - {fileID: 1756709728}
   - {fileID: 1824830529}
   - {fileID: 1045180541}
@@ -14271,6 +14455,9 @@ MonoBehaviour:
   goalName: Eat.
   goal: 2
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 1
 --- !u!1 &1157242146
 GameObject:
@@ -19239,6 +19426,9 @@ MonoBehaviour:
   goalName: Give him Bread!
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 0
 --- !u!1 &1196674905
 GameObject:
@@ -19605,6 +19795,9 @@ MonoBehaviour:
   goalName: Burn Toast
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 5
 --- !u!224 &1234936871 stripped
 RectTransform:
@@ -19771,6 +19964,9 @@ MonoBehaviour:
   goalName: PIck Up
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 1
 --- !u!1 &1251238058
 GameObject:
@@ -19861,17 +20057,74 @@ MonoBehaviour:
   objectiveName: Default Objective
   prerequisites: []
   requirements:
-  - {fileID: 1611349350}
-  - {fileID: 1237361393}
-  - {fileID: 1881258102}
-  - {fileID: 1435498174}
-  - {fileID: 788581449}
-  - {fileID: 1803179093}
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
   activatables: []
   objectiveObjects: []
   completionEvents:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
+  complete: 0
+  available: 0
   id: -1
 --- !u!114 &1265558161 stripped
 MonoBehaviour:
@@ -20093,6 +20346,9 @@ MonoBehaviour:
   goalName: Have Jam in Inventory
   goal: 2
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 2
 --- !u!114 &1316256767 stripped
 MonoBehaviour:
@@ -20359,6 +20615,9 @@ MonoBehaviour:
   goalName: Eat Bread (<sprite=78>)
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 3
 --- !u!1 &1367695737
 GameObject:
@@ -20863,6 +21122,61 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.6370195, y: 1.150545, z: 0.13905722}
   m_Center: {x: -0.0065611466, y: 0.61428237, z: 0.54370546}
+--- !u!1 &1424800095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1424800096}
+  - component: {fileID: 1424800097}
+  m_Layer: 0
+  m_Name: NewObjectiveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1424800096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424800095}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1135898838}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1424800097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424800095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eff1a8436ea9b4548a77a9a63db04c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groups:
+  - name: 
+    objectives:
+    - objectiveInfo: {fileID: 0}
+      prerequisites: []
+      activatables: []
+      completionEvents:
+        m_PersistentCalls:
+          m_Calls: []
+    displays: []
+    displaysUI: []
 --- !u!1 &1435498172
 GameObject:
   m_ObjectHideFlags: 0
@@ -20913,6 +21227,9 @@ MonoBehaviour:
   goalName: Eat
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 3
 --- !u!1 &1448825835
 GameObject:
@@ -21604,15 +21921,45 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 116087896}
   requirements:
-  - {fileID: 1179296099}
-  - {fileID: 521085836}
-  - {fileID: 1025830956}
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
   activatables:
   - {fileID: 1114574182}
   objectiveObjects: []
   completionEvents:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
+  complete: 0
+  available: 0
   id: 12
 --- !u!1 &1490723303
 GameObject:
@@ -21917,6 +22264,9 @@ MonoBehaviour:
   goalName: Make Toast
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 4
 --- !u!1001 &1530452498
 PrefabInstance:
@@ -23394,6 +23744,9 @@ MonoBehaviour:
   goalName: Drag
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 0
 --- !u!1 &1612587180
 GameObject:
@@ -23445,6 +23798,9 @@ MonoBehaviour:
   goalName: Give him Something
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 0
 --- !u!1 &1615585464
 GameObject:
@@ -24394,6 +24750,9 @@ MonoBehaviour:
   goalName: Score
   goal: -1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 0
 --- !u!1001 &1707342906
 PrefabInstance:
@@ -25195,7 +25554,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1756709728
 Transform:
   m_ObjectHideFlags: 0
@@ -25239,55 +25598,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groups:
   - name: Tutorial Objectives
-    objectives:
-    - {fileID: 809895351}
+    objectives: []
     displays:
     - {fileID: 780163200}
     displaysUI:
     - {fileID: 1776345623}
   - name: Inventory Objectives 1
-    objectives:
-    - {fileID: 1944344249}
+    objectives: []
     displays:
     - {fileID: 1215889903}
     displaysUI:
     - {fileID: 1776345623}
   - name: Toast Ninja
-    objectives:
-    - {fileID: 1814996492}
+    objectives: []
     displays:
     - {fileID: 1015093605}
     displaysUI:
     - {fileID: 1776345623}
   - name: Toast Objective 1.1
-    objectives:
-    - {fileID: 1888029176}
-    - {fileID: 1030340071}
-    - {fileID: 235295374}
-    - {fileID: 1923559744}
-    - {fileID: 241683635}
+    objectives: []
     displays:
     - {fileID: 903455859}
     displaysUI:
     - {fileID: 1776345623}
   - name: Knife Objectives 1
-    objectives:
-    - {fileID: 1884728187}
-    - {fileID: 1884462760}
-    - {fileID: 12018582}
+    objectives: []
     displays:
     - {fileID: 1328183970}
     displaysUI:
     - {fileID: 1776345623}
   - name: Little Fella Objectives 1
-    objectives:
-    - {fileID: 116087896}
-    - {fileID: 1470586856}
+    objectives: []
     displays:
     - {fileID: 158158186}
     displaysUI:
     - {fileID: 1776345623}
-  ResetObjectives: 0
 --- !u!1 &1768009367
 GameObject:
   m_ObjectHideFlags: 0
@@ -25480,6 +25825,9 @@ MonoBehaviour:
   goalName: Drop Bread (<sprite=47>)
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 2
 --- !u!1001 &1782458429
 PrefabInstance:
@@ -25859,6 +26207,9 @@ MonoBehaviour:
   goalName: Burn
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 5
 --- !u!1 &1808474613
 GameObject:
@@ -26044,12 +26395,24 @@ MonoBehaviour:
   objectiveName: Toast Ninja!
   prerequisites: []
   requirements:
-  - {fileID: 1702642544}
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
   activatables: []
   objectiveObjects: []
   completionEvents:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
+  complete: 0
+  available: 0
   id: 2
 --- !u!1001 &1823514896
 PrefabInstance:
@@ -31972,6 +32335,9 @@ MonoBehaviour:
   goalName: Drop
   goal: 1
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 2
 --- !u!1 &1884462758
 GameObject:
@@ -32022,12 +32388,24 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 1884728187}
   requirements:
-  - {fileID: 533598285}
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
   activatables: []
   objectiveObjects: []
   completionEvents:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
+  complete: 0
+  available: 0
   id: 9
 --- !u!1 &1884728185
 GameObject:
@@ -32079,62 +32457,47 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 809895351}
   requirements:
-  - {fileID: 270958865}
-  - {fileID: 722077344}
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
   activatables:
   - {fileID: 557415513}
   objectiveObjects: []
   completionEvents:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 380840820}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1632697380}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1066069055}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 315800904}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      - {m_Target: {fileID: 380840820}, m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine, m_MethodName: SetActive, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0},
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
+          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 1}, m_CallState: 2}
+      - {m_Target: {fileID: 1632697380}, m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine, m_MethodName: SetActive, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0},
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
+          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 1}, m_CallState: 2}
+      - {m_Target: {fileID: 1066069055}, m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine, m_MethodName: SetActive, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0},
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
+          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 1}, m_CallState: 2}
+      - {m_Target: {fileID: 315800904}, m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine, m_MethodName: SetActive, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0},
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
+          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 1}, m_CallState: 2}
+    m_CallsDirty: 1
+  complete: 0
+  available: 0
   id: 8
 --- !u!1 &1888029175
 GameObject:
@@ -32169,14 +32532,35 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 809895351}
   requirements:
-  - {fileID: 864901106}
-  - {fileID: 515605793}
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
   activatables:
   - {fileID: 2044246238}
   objectiveObjects: []
   completionEvents:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
+  complete: 0
+  available: 0
   id: 3
 --- !u!4 &1888029177
 Transform:
@@ -32790,12 +33174,24 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 235295374}
   requirements:
-  - {fileID: 1043600826}
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
   activatables: []
   objectiveObjects: []
   completionEvents:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
+  complete: 0
+  available: 0
   id: 6
 --- !u!1 &1923942719
 GameObject:
@@ -33610,15 +34006,54 @@ MonoBehaviour:
   objectiveName: Stock Up
   prerequisites: []
   requirements:
-  - {fileID: 122066557}
-  - {fileID: 11852756}
-  - {fileID: 1283823348}
-  - {fileID: 714804011}
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
+  - type: 0
+    targetAttributes: 0
+    goalName: 
+    goal: 0
+    alwaysListening: 0
+    current: 0
+    complete: 0
+    completeOnNextFrame: 0
+    id: -1
+    listening: 0
   activatables: []
   objectiveObjects: []
   completionEvents:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
+  complete: 0
+  available: 0
   id: 1
 --- !u!4 &1947912894 stripped
 Transform:
@@ -35877,6 +36312,9 @@ MonoBehaviour:
   goalName: '<size=-2>Hint: Return to <b>Starting Station</b> to try Toast Ninja!</size>'
   goal: 20
   alwaysListening: 0
+  current: 0
+  complete: 0
+  completeOnNextFrame: 0
   id: 0
 --- !u!1001 &2094594533
 PrefabInstance:
