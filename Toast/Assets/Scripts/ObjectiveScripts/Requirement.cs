@@ -6,6 +6,7 @@ using System.ComponentModel.Design.Serialization;
 using System.Drawing;
 using UnityEngine;
 
+[Serializable]
 public class Requirement : MonoBehaviour
 {
     // ------------------------------- Variables -------------------------------
