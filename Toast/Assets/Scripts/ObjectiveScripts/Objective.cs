@@ -9,66 +9,28 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Objective : MonoBehaviour
+public class Objective
 {
     // ------------------------------- Variables -------------------------------
     // Public variables
-    [Header("Objective Information")]
-    public string objectiveName;
+    [Header("Objective Scriptable Object")]
+    [SerializeField]
+    private SO_Objective objectiveInfo;
 
     [Header("Pre-Requisite Objectives")]
     public List<Objective> prerequisites = new List<Objective>();
 
-    [Header("Requirements")]
-    public List<Requirement> requirements = new List<Requirement>();
-
-    [Header("Activtables Upon Completion")]
+    [Header("Activatables Upon Completion")]
     public List<GameObject> activatables = new List<GameObject>();
-    
-    [Header("Objective Related Objects")]
-    public List<ObjectiveObject> objectiveObjects = new List<ObjectiveObject>();
 
     [Header("Unity Events")]
     public UnityEvent completionEvents;
 
-    // Private variables
-    private bool complete = false;
-    private bool available = false;
-
-    // ID TRACKER DO NOT CHANGE
-    public int id = -1;
-
     // ------------------------------- Properties -------------------------------
-    public bool Complete { get => complete; }
-    public int ID { get => id; set => id = value; }
+    public bool Complete { get => objectiveInfo.Complete; }
+    public int ID { get => objectiveInfo.ID; }
 
     // ------------------------------- Functions -------------------------------
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (!complete)
-        {
-            foreach (GameObject obj in activatables)
-            {
-                obj.SetActive(false);
-            }
-        }
-
-        if (!CheckAvailable())
-        {
-            foreach (Requirement req in requirements)
-            {
-                req.listening = false;
-            }
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     // Check if the current task has had its prerequisites complete
     public bool CheckAvailable()
     {
@@ -78,19 +40,19 @@ public class Objective : MonoBehaviour
             {
                 if (!obj.Complete)
                 {
-                    available = false;
+                    objectiveInfo.Available = false;
                     return false;
                 }
             }
         }
-        available = true;
+        objectiveInfo.Available = true;
         return true;
     }
 
     // Check if this objective is complete
     public bool CheckComplete()
     {
-        if (!complete)
+        if (!objectiveInfo.Complete)
         {
             foreach (Requirement r in requirements)
             {

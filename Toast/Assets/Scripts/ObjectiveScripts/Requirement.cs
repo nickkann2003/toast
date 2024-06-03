@@ -7,12 +7,9 @@ using System.Drawing;
 using UnityEngine;
 
 [Serializable]
-public class Requirement : MonoBehaviour
+public class Requirement
 {
     // ------------------------------- Variables -------------------------------
-    // Public variables
-    [Header("Listening for Events")]
-    public bool listening = false;
 
     [Header("Requirement Type and Attribute Flags")]
     public RequirementType type = RequirementType.EatObject;
@@ -28,32 +25,15 @@ public class Requirement : MonoBehaviour
     private bool complete = false;
     private bool completeOnNextFrame = false;
 
+    [NaughtyAttributes.HorizontalLine, Header("Other Variables")]
     // ID TRACKER DO NOT CHANGE
     public int id = -1;
+    // Public variables
+    public bool listening = false;
 
     // ------------------------------- Properties -------------------------------
     public int Current { get => current; set => current = value; }
     public int ID { get => id; set => id = value; }
-
-
-    // ------------------------------- Functions -------------------------------
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    /// <summary>
-    /// Completes objectives the frame after they are actually complete
-    /// </summary>
-    void Update()
-    {
-        if (completeOnNextFrame && !complete)
-        {
-            complete = true;
-            AudioManager.instance.PlayOneShotSound(AudioManager.instance.requirementComplete);
-        }
-    }
 
     /// <summary>
     /// Checks if this goal is complete
