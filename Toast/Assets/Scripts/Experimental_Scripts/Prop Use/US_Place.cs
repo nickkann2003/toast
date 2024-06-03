@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(fileName = "New Place Effect", menuName = "Prop/Use Effect/Place", order = 53)]
-public class UE_Place : UseEffect
+public class US_Place : UseEffect
 {
     // bool
     public bool invokeEvents;

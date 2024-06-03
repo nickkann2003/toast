@@ -59,7 +59,7 @@ public class LaunchObject : MonoBehaviour
     /// <returns>Coroutine</returns>
     IEnumerator DelayedLaunchObj(GameObject objectToLaunch)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0f);
 
         if (!active)
         {
