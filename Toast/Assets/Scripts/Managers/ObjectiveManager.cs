@@ -25,28 +25,28 @@ public class ObjectiveManager : MonoBehaviour
     /// WARNING: This will reset all objective IDs, this can cause potential issues with
     /// saved file data. Make sure you know what you are doing before pressing this
     /// </summary>
-    public bool ResetObjectives = false;
-    [SerializeField, Button, EnableIf("ResetObjectives")]
-    private void DONOTPRESSResetObjectiveSerialization() 
-    { 
-        foreach(ObjectiveGroup g in groups)
-        {
-            foreach(Objective o in g.objectives)
-            {
-                o.ID = -1;
-            }
-        }
-        // Write out reset cId
-        StreamWriter wr = new StreamWriter(objSerialPath);
-        wr.Write(0);
-        wr.Close();
-    }
+    //public bool ResetObjectives = false;
+    //[SerializeField, Button, EnableIf("ResetObjectives")]
+    //private void DONOTPRESSResetObjectiveSerialization() 
+    //{ 
+    //    foreach(ObjectiveGroup g in groups)
+    //    {
+    //        foreach(Objective o in g.objectives)
+    //        {
+    //            o.ID = -1;
+    //        }
+    //    }
+    //    // Write out reset cId
+    //    StreamWriter wr = new StreamWriter(objSerialPath);
+    //    wr.Write(0);
+    //    wr.Close();
+    //}
 
     /// <summary>
     /// Button for Serializing all Objectives, gives an ID to all OBJS without one
     /// </summary>
-    [SerializeField, Button]
-    private void SerializeAllObjectives() { SerializeObjectives(); }
+    //[SerializeField, Button]
+    //private void SerializeAllObjectives() { SerializeObjectives(); }
 
     [SerializeField, Button]
     private void CompileStorageString() { GetObjectiveStorageString(); }
@@ -114,38 +114,38 @@ public class ObjectiveManager : MonoBehaviour
     /// <summary>
     /// Sets the interal IDs of each objective
     /// </summary>
-    private void SerializeObjectives()
-    {
-        // Read in the file and get the current ID of objectives
-        
-        StreamReader sr = new StreamReader(objSerialPath);
-        string firstLine = sr.ReadLine();
-        int cId = int.Parse(firstLine);
-        sr.Close();
-
-        List<int> foundIds = new List<int>();
-
-        foreach(ObjectiveGroup g in groups)
-        {
-            foreach (Objective o in g.objectives)
-            {
-                if (o.ID == -1 || foundIds.Contains(o.ID))
-                {
-                    o.ID = cId;
-                    cId += 1;
-                }
-                o.SerializeRequirements();
-                foundIds.Add(o.ID);
-            }
-        }
-
-        // Write out the new cID of objectives
-        StreamWriter wr = new StreamWriter(objSerialPath);
-        wr.Write(cId);
-        wr.Close();
-
-        Debug.Log("Serialize Success! Next ID: " + cId);
-    }
+    //private void SerializeObjectives()
+    //{
+    //    // Read in the file and get the current ID of objectives
+    //    
+    //    StreamReader sr = new StreamReader(objSerialPath);
+    //    string firstLine = sr.ReadLine();
+    //    int cId = int.Parse(firstLine);
+    //    sr.Close();
+    //
+    //    List<int> foundIds = new List<int>();
+    //
+    //    foreach(ObjectiveGroup g in groups)
+    //    {
+    //        foreach (Objective o in g.objectives)
+    //        {
+    //            if (o.ID == -1 || foundIds.Contains(o.ID))
+    //            {
+    //                o.ID = cId;
+    //                cId += 1;
+    //            }
+    //            o.SerializeRequirements();
+    //            foundIds.Add(o.ID);
+    //        }
+    //    }
+    //
+    //    // Write out the new cID of objectives
+    //    StreamWriter wr = new StreamWriter(objSerialPath);
+    //    wr.Write(cId);
+    //    wr.Close();
+    //
+    //    Debug.Log("Serialize Success! Next ID: " + cId);
+    //}
 
     /// <summary>
     /// Returns a formatted string for saving Objective information
@@ -170,7 +170,7 @@ public class ObjectiveManager : MonoBehaviour
             formattedString += spacer;
             formattedString += o.CheckAvailable() ? "1" : "0";
             formattedString += requirementStartMarker;
-            foreach(Requirement r in o.requirements)
+            foreach(Requirement r in o.ObjectiveInfo.Requirements)
             {
                 formattedString += r.ID;
                 formattedString += spacer;

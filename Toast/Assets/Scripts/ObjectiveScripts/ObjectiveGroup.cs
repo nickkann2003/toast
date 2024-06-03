@@ -29,7 +29,7 @@ public class ObjectiveGroup
         for(int i = objectives.Count - 1; i >= 0; i --)
         {
             Objective obj = objectives[i];
-            obj.UpdateObjective(e);
+            //obj.UpdateObjective(e);
             if (obj.CheckComplete())
             {
                 completedObjectives++;
@@ -39,7 +39,7 @@ public class ObjectiveGroup
         {
             Objective obj = objectives[i];
             obj.CheckAvailable();
-            obj.CheckListening();
+            //obj.CheckListening();
         }
         if (completedObjectives > oldCompletedObjectives)
         {

@@ -57,4 +57,52 @@ public class SO_Objective : ScriptableObject
 
         return allComplete;
     }
+
+    /// <summary>
+    /// Checks if this objective should be listening and changes its value
+    /// </summary>
+    public void CheckListening()
+    {
+        if (available)
+        {
+            foreach (Requirement requirement in requirements)
+            {
+                requirement.listening = true;
+            }
+        }
+    }
+
+    public void ForceComplete()
+    {
+        foreach (Requirement r in requirements)
+        {
+            r.ForceComplete();
+        }
+        CheckAllRequirementsComplete();
+    }
+
+    new public string ToString
+    {
+        get
+        {
+            if (available)
+            {
+                string value = "";
+                value = objectiveName + "";
+                foreach (Requirement r in requirements)
+                {
+                    if (r.listening)
+                    {
+                        value += "\n    - <size=-2>" + r.ToString + "</size>";
+                    }
+                }
+                if (CheckAllRequirementsComplete())
+                {
+                    value = "<color=#111><s>" + objectiveName + "</s></color>";
+                }
+                return value;
+            }
+            return "";
+        }
+    }
 }

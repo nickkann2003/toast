@@ -20,6 +20,9 @@ public class Requirement
     public int goal;
     public bool alwaysListening = false;
 
+    [SerializeField, Header("Event Listeners")]
+    private PropIntEventListenerGroup listeners = new PropIntEventListenerGroup();
+
     // Private variables
     private int current;
     private bool complete = false;
@@ -30,6 +33,7 @@ public class Requirement
     public int id = -1;
     // Public variables
     public bool listening = false;
+
 
     // ------------------------------- Properties -------------------------------
     public int Current { get => current; set => current = value; }
