@@ -22,6 +22,17 @@ public class ObjectiveGroup
     private float oldCompletedObjectives = 0; // Used to check if some new objective completed
 
     // ------------------------------- Functions -------------------------------
+    /// <summary>
+    /// Runs when this objective group is loaded
+    /// </summary>
+    public void OnLoad()
+    {
+        foreach(Objective o in objectives)
+        {
+            o.OnLoad();
+        }
+    }
+
     // Update Objectives
     public void UpdateObjectives(RequirementEvent e)
     {
@@ -50,6 +61,9 @@ public class ObjectiveGroup
         UpdateText();
     }
 
+    /// <summary>
+    /// Updates the display texts with objective info
+    /// </summary>
     public void UpdateText()
     {
         foreach (TextMeshPro display in displays)
@@ -63,6 +77,9 @@ public class ObjectiveGroup
         }
     }
 
+    /// <summary>
+    /// To String, formatted for user display
+    /// </summary>
     new public string ToString
     {
         get

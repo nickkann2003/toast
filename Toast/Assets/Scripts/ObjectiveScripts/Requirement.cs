@@ -11,22 +11,21 @@ public class Requirement
 {
     // ------------------------------- Variables -------------------------------
 
-    [Header("Requirement Type and Attribute Flags")]
-    public RequirementType type = RequirementType.EatObject;
+    [Header("Attribute Flags and Event Listener")]
+    //public RequirementType type = RequirementType.EatObject;
     public PropFlags targetAttributes;
+    [SerializeField, Label("Do Not Add Response Event")]
+    private PropIntGameEventListener listener = new PropIntGameEventListener();
 
     [Header("Goal Information")]
     public string goalName;
     public int goal;
+    public bool exactValueGoal = false;
     public bool alwaysListening = false;
-
-    [SerializeField, Header("Event Listeners")]
-    private PropIntEventListenerGroup listeners = new PropIntEventListenerGroup();
 
     // Private variables
     private int current;
     private bool complete = false;
-    private bool completeOnNextFrame = false;
 
     [NaughtyAttributes.HorizontalLine, Header("Other Variables")]
     // ID TRACKER DO NOT CHANGE
@@ -38,6 +37,27 @@ public class Requirement
     // ------------------------------- Properties -------------------------------
     public int Current { get => current; set => current = value; }
     public int ID { get => id; set => id = value; }
+
+    // ------------------------------- Functions -------------------------------
+    /// <summary>
+    /// Runs when this requirement is loaded
+    /// </summary>
+    public void OnLoad()
+    {
+        // Reset values on game start
+        current = 0;
+        complete = false;
+
+        // Save event type
+        PropIntGameEvent e = listener.GameEvent;
+        // Recreate listener (issue with SO)
+        listener = new PropIntGameEventListener();
+        listener.GameEvent = e;
+        // Enable it
+        listener.OnEnable();
+        // Add function to listener
+        listener.Response.AddListener(UpdateRequirement);
+    }
 
     /// <summary>
     /// Checks if this goal is complete
@@ -51,7 +71,7 @@ public class Requirement
             {
                 if (!complete) // If it was not complete, run one-shot effects
                 {
-                    completeOnNextFrame = true;
+                    complete = true;
                 }
                 return true;
             }
@@ -64,27 +84,21 @@ public class Requirement
     /// Updates this requirement with an event
     /// </summary>
     /// <param name="e"></param>
-    public void UpdateRequirement(RequirementEvent e)
+    public void UpdateRequirement(NewProp e, int value)
     {
         // If listening and correct type and incomplete
-        if((listening || alwaysListening) && e.type == type && !complete) // Ensure type, target, and listening
+        if((listening || alwaysListening) && !complete) // Ensure type, target, and listening
         {
+        Debug.Log("Updating Event");
             // If does not contain all necessary flags, return
             if(!(e.attributes.HasFlag(targetAttributes)))
             {
                 return;
             }
-            
-            if (e.increase) // Increase or Decrease
-            {
-                current += 1;
-            }
-            else
-            {
-                current = current > 0 ? current - 1 : 0;
-            }
 
-            if(type != RequirementType.HaveObject) // If not [exact number type], don't allow overflow
+            current += value;
+        
+            if(!exactValueGoal) // If not [exact number type], don't allow overflow
             {
                 if(goal > 0)
                 {
@@ -92,33 +106,6 @@ public class Requirement
                     {
                         current = goal;
                     }
-                }
-            }
-
-            // Specific case for handling Toast Ninja score
-            if(type == RequirementType.ToastNinjaScore)
-            {
-                // Undo previous increase
-                current -= 1;
-
-                // Check for Jam, Toast, Bread
-                if (e.attributes.HasFlag(PropFlags.Jam))
-                {
-                    current += 2;
-                }
-                else if (e.attributes.HasFlag(PropFlags.Toast))
-                {
-                    current -= 2;
-                }
-                else
-                {
-                    current += 1;
-                }
-
-                // Reset if not increase
-                if (!e.increase)
-                {
-                    current = 0;
                 }
             }
         }

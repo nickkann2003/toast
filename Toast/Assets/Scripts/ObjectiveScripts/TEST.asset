@@ -15,14 +15,17 @@ MonoBehaviour:
   objectiveName: Test Objective
   description: Eat 1 Toast
   complete: 0
-  available: 0
+  available: 1
   requirements:
-  - type: 0
-    targetAttributes: 0
-    goalName: 
-    goal: 0
+  - targetAttributes: 536870912
+    listener:
+      gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
+      response:
+        m_PersistentCalls:
+          m_Calls: []
+    goalName: Eat Bread
+    goal: 1
     alwaysListening: 0
-    listeners: {fileID: 0}
     id: 0
     listening: 0
   id: 0

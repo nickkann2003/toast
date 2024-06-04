@@ -19,7 +19,7 @@ public class Objective
     private SO_Objective objectiveInfo;
 
     [Header("Pre-Requisite Objectives")]
-    public List<Objective> prerequisites = new List<Objective>();
+    public List<int> prerequisiteIds = new List<int>();
 
     [Header("Activatables Upon Completion")]
     public List<GameObject> activatables = new List<GameObject>();
@@ -33,13 +33,25 @@ public class Objective
     public SO_Objective ObjectiveInfo { get => objectiveInfo; set => objectiveInfo = value; }
 
     // ------------------------------- Functions -------------------------------
+    /// <summary>
+    /// Functions to be run once this objective loads
+    /// </summary>
+    public void OnLoad()
+    {
+        foreach(Requirement r in objectiveInfo.Requirements)
+        {
+            r.OnLoad();
+        }
+    }
+
     // Check if the current task has had its prerequisites complete
     public bool CheckAvailable()
     {
-        if (prerequisites.Count > 0)
+        if (prerequisiteIds.Count > 0)
         {
-            foreach (Objective obj in prerequisites)
+            foreach (int i in prerequisiteIds)
             {
+                Objective obj = ObjectiveManager.instance.ObjectivesById[i];
                 if (!obj.Complete)
                 {
                     objectiveInfo.Available = false;

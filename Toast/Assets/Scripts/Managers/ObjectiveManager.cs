@@ -54,6 +54,10 @@ public class ObjectiveManager : MonoBehaviour
     [SerializeField, Button]
     private void SaveObjectiveData() { SaveHandler.instance.SaveObjectiveData(GetObjectiveStorageString()); }
 
+    // ------------------------------- Properties -------------------------------
+    public Dictionary<int, Objective> ObjectivesById { get => objectivesById; set => objectivesById = value; }
+
+
     // ------------------------------- Functions -------------------------------
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
@@ -65,6 +69,10 @@ public class ObjectiveManager : MonoBehaviour
     void Start()
     {
         UpdateText();
+        foreach(ObjectiveGroup group in groups)
+        {
+            group.OnLoad();
+        }
     }
 
     // Update is called once per frame
@@ -111,6 +119,7 @@ public class ObjectiveManager : MonoBehaviour
             return value;
         }
     }
+
     /// <summary>
     /// Sets the interal IDs of each objective
     /// </summary>
