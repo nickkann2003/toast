@@ -24,6 +24,12 @@ public class Hand : MonoBehaviour
     // TEMP FIX ATTEMPT
     private float pickupCooldown = 0.1f;
 
+    [Header("Event References")]
+    [SerializeField]
+    private PropIntGameEvent pickUpEvent;
+    [SerializeField]
+    private PropIntGameEvent dropEvent;
+
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
@@ -95,16 +101,7 @@ public class Hand : MonoBehaviour
             {
                 currentItem = item;
                 holdingItem = true;
-                RequirementEvent rEvent;
-                if (currentItem.GetComponent<NewProp>() != null)
-                {
-                    rEvent = new RequirementEvent(RequirementType.PickUpObject, currentItem.GetComponent<NewProp>().attributes, true);
-                }
-                else
-                {
-                    rEvent = new RequirementEvent(RequirementType.PickUpObject, PropFlags.None, true);
-                }
-                ObjectiveManager.instance.UpdateObjectives(rEvent);
+                pickUpEvent.RaiseEvent(currentItem.GetComponent<NewProp>(), 1);
             }
             else
             {
@@ -200,19 +197,6 @@ public class Hand : MonoBehaviour
                 if (currentItem.GetComponent<IEatable>() != null)
                 {
                     PlayEatParticles(currentItem);
-                    RequirementEvent rEvent;
-                    if (currentItem.GetComponent<IEatable>().BitesLeft() <= 1)
-                    {
-                        if (currentItem.GetComponent<NewProp>() != null)
-                        {
-                            rEvent = new RequirementEvent(RequirementType.EatObject, currentItem.GetComponent<NewProp>().attributes, true);
-                        }
-                        else
-                        {
-                            rEvent = new RequirementEvent(RequirementType.EatObject, PropFlags.None, true);
-                        }
-                        ObjectiveManager.instance.UpdateObjectives(rEvent);
-                    }
                     currentItem.GetComponent<IEatable>().TakeBite();
                     if (currentItem == null)
                     {

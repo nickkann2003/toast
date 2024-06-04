@@ -17,6 +17,7 @@ public class Objective
     [Header("Objective Scriptable Object")]
     [SerializeField]
     private SO_Objective objectiveInfo;
+    private bool complete = false;
 
     [Header("Pre-Requisite Objectives")]
     public List<int> prerequisiteIds = new List<int>();
@@ -62,7 +63,7 @@ public class Objective
     // Check if this objective is complete
     public bool CheckComplete()
     {
-        if (!objectiveInfo.Complete)
+        if (!complete)
         {
             if (objectiveInfo.CheckAllRequirementsComplete())
             {
@@ -71,6 +72,7 @@ public class Objective
                     if (ob != null)
                     {
                         ob.SetActive(true);
+                        complete = true;
                     }
                 }
                 completionEvents.Invoke();
@@ -89,6 +91,14 @@ public class Objective
     public void ForceCompleteObjective()
     {
         objectiveInfo.ForceComplete();
+        foreach (GameObject ob in activatables)
+        {
+            if (ob != null)
+            {
+                ob.SetActive(true);
+            }
+        }
+        completionEvents.Invoke();
     }
 
     // Override ToString to return formatted for To-Do list

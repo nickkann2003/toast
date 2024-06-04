@@ -44,32 +44,15 @@ public class ObjectiveGroup
         }
     }
 
-    // Update Objectives
-    public void UpdateObjectives(RequirementEvent e)
+    /// <summary>
+    /// Has each objective check if it is complete
+    /// </summary>
+    public void CheckAllComplete()
     {
-        completedObjectives = 0;
-        for(int i = objectives.Count - 1; i >= 0; i --)
+        foreach(Objective o in objectives)
         {
-            Objective obj = objectives[i];
-            //obj.UpdateObjective(e);
-            if (obj.CheckComplete())
-            {
-                completedObjectives++;
-            }
+            o.CheckComplete();
         }
-        for (int i = objectives.Count - 1; i >= 0; i--)
-        {
-            Objective obj = objectives[i];
-            obj.CheckAvailable();
-            //obj.CheckListening();
-        }
-        if (completedObjectives > oldCompletedObjectives)
-        {
-            AudioManager.instance.PlayOneShotSound(AudioManager.instance.objectiveComplete, 0.3f, 1);
-            Debug.LogWarning("new objective complete");
-        }
-        oldCompletedObjectives = completedObjectives;
-        UpdateText();
     }
 
     /// <summary>

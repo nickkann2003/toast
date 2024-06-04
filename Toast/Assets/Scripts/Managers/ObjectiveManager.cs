@@ -68,6 +68,8 @@ public class ObjectiveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SortObjectivesById();
+
         // Run each groups OnLoad
         foreach(ObjectiveGroup group in groups)
         {
@@ -88,26 +90,23 @@ public class ObjectiveManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates all objectives with a given requirement event
+    /// Updates the text of all objective groups
     /// </summary>
-    /// <param name="e">Event</param>
-    public void UpdateObjectives(RequirementEvent e)
+    public void UpdateText()
     {
-        foreach(ObjectiveGroup g in groups)
+        foreach (ObjectiveGroup g in groups)
         {
-            g.UpdateObjectives(e);
+            g.CheckAllComplete();
+            g.UpdateText();
         }
     }
 
     /// <summary>
-    /// Updates the text of all objective groups
+    /// Force completes an objective with a given ID
     /// </summary>
-    private void UpdateText()
+    public void ForceCompleteObjective(int id)
     {
-        foreach (ObjectiveGroup g in groups)
-        {
-            g.UpdateText();
-        }
+        ObjectivesById[id].ForceCompleteObjective();
     }
 
     /// <summary>

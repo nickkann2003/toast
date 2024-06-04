@@ -14,6 +14,7 @@ public class Eat : MonoBehaviour, IUseStrategy
     
     private NewProp propScript;
 
+    [Header("Event References")]
     [SerializeField]
     PropIntGameEvent eatEvent;
 
@@ -37,7 +38,6 @@ public class Eat : MonoBehaviour, IUseStrategy
     private void EatWhole()
     {
         eatEvent.RaiseEvent(propScript, 1);
-        ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.EatObject, propScript.attributes, true));
         Destroy(gameObject);
     }
 

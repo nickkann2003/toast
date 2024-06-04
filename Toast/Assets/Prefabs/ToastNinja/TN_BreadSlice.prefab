@@ -199,10 +199,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429bde5dd05b54548b37ef4292b26c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMat: {fileID: 0}
   attributes: 536873984
   toastiness: 0
+  fireTrigger: 1.5
+  firePrefab: {fileID: 0}
   frozenness: 0
+  baseMat: {fileID: 0}
+  useEffects: []
+  PD_Rb: {fileID: 0}
+  createObjectEvent: {fileID: 0}
+  thawObjectEvent: {fileID: 0}
 --- !u!33 &5454151039170499192
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -286,3 +292,5 @@ MonoBehaviour:
     type: 3}
   pointObject: {fileID: 4248212264634314053, guid: 3e95289709a1df743a9e73a6b4baef7d,
     type: 3}
+  toastNinjaScoreEvent: {fileID: 11400000, guid: bace4ac0805980a46a61fa39ad9af797,
+    type: 2}

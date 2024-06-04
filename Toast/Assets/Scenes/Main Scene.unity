@@ -3645,6 +3645,7 @@ MonoBehaviour:
   moveProgress: 0
   giftPrefab: {fileID: 6128066476398826411, guid: 40fb11b78cec3194d8836dc141c0f45f,
     type: 3}
+  littleFellaEvent: {fileID: 0}
 --- !u!65 &324063651
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4289,6 +4290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb22ecb773155d4a849f5323f1fe2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyEvent: {fileID: 11400000, guid: 7938a98252c17b54e8a42aac711d4550, type: 2}
 --- !u!1 &396490694
 GameObject:
   m_ObjectHideFlags: 0
@@ -6870,13 +6872,13 @@ PrefabInstance:
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1424800097}
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -6890,7 +6892,7 @@ PrefabInstance:
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Objective, Assembly-CSharp
+      value: ObjectiveManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
@@ -8558,6 +8560,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handPos: {fileID: 793096296}
+  pickUpEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
+  dropEvent: {fileID: 11400000, guid: 5088c6d0c89b46f448451041d58e1733, type: 2}
 --- !u!23 &793096298
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12121,6 +12125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb22ecb773155d4a849f5323f1fe2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyEvent: {fileID: 11400000, guid: 7938a98252c17b54e8a42aac711d4550, type: 2}
 --- !u!65 &1119517337
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17771,10 +17776,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd3a3d9485e70d4d93fd6f4f71f6d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6994967846282815134, guid: c3f3c7f25a39a19419714892b4c2aa0d, type: 3}
-  spawnPosition: {x: -0.77, y: -0.19, z: -0.31}
+  prefab: {fileID: 6159402422035253104, guid: 2ebe0331dc6a5ca40abf98a139a76dae, type: 3}
+  spawnPosition: {x: -0.42, y: 0.37, z: -0.31}
   spawnRotation: {x: 0, y: 0, z: 0, w: 0}
-  spawnRandomness: {x: 0.72, y: 0.27, z: 0.67}
+  spawnRandomness: {x: 0.01, y: 0.01, z: 0.01}
   spawnRotationRandomness: {x: 0.00864982, y: 0.008802123, z: 0.008802123, w: -0.9998851}
 --- !u!1001 &1209526679
 PrefabInstance:
@@ -18240,6 +18245,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handPos: {fileID: 1271085851}
+  pickUpEvent: {fileID: 0}
+  dropEvent: {fileID: 0}
 --- !u!23 &1271085854
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18351,6 +18358,7 @@ MonoBehaviour:
   inventory: {fileID: 694911873}
   transitionMask: {fileID: 0}
   atInventory: 0
+  inventoryEvent: {fileID: 11400000, guid: 6d1b224677ea7ff4583d2e8af35f0cff, type: 2}
 --- !u!114 &1316256767 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8067559168292584180, guid: 1c17e514c8d966241be47df8881aef91,
@@ -19102,14 +19110,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groups:
-  - name: Test Objective
+  - name: Tutorial
     objectives:
-    - objectiveInfo: {fileID: 11400000, guid: dabe571754c9c59429400847cd149ce8, type: 2}
-      prerequisites: []
+    - objectiveInfo: {fileID: 11400000, guid: 23909871752b38546a4c3988047b99de, type: 2}
+      prerequisiteIds: 
       activatables: []
       completionEvents:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 1135898837}
+            m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+            m_MethodName: TutorialToGame
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
     displays:
     - {fileID: 780163200}
     displaysUI: []
@@ -24576,6 +24596,7 @@ MonoBehaviour:
   maxDistance: 15
   scrollSpeed: 1
   stationMaxTimer: 0.4
+  onDragEvent: {fileID: 11400000, guid: 10214217ff36875449f9423d59d23193, type: 2}
 --- !u!4 &1872210366
 Transform:
   m_ObjectHideFlags: 0
@@ -29461,6 +29482,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0.36, y: -0.2, z: 0.6}
   EatParticles: {fileID: 1872210368}
+  pickUpEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
+  dropEvent: {fileID: 11400000, guid: 5088c6d0c89b46f448451041d58e1733, type: 2}
 --- !u!114 &1872210370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33696,7 +33719,7 @@ PrefabInstance:
     - target: {fileID: 4714759722280616962, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.07
+      value: -1.322
       objectReference: {fileID: 0}
     - target: {fileID: 4714759722280616962, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
@@ -33706,7 +33729,7 @@ PrefabInstance:
     - target: {fileID: 4714759722280616962, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.037
+      value: -0.769
       objectReference: {fileID: 0}
     - target: {fileID: 4714759722280616962, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
@@ -38885,6 +38908,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 2917319131460006124, guid: 88088e9976b9d9f45ae6cb915ff38d64,
+        type: 3}
+      propertyPath: destroyEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 7938a98252c17b54e8a42aac711d4550,
+        type: 2}
     - target: {fileID: 3035016141518037473, guid: 88088e9976b9d9f45ae6cb915ff38d64,
         type: 3}
       propertyPath: m_RootOrder

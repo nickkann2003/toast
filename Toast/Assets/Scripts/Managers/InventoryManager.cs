@@ -21,6 +21,10 @@ public class InventoryManager : MonoBehaviour
     public bool HoveringInventory { get => hoveringInventory; }
     private bool hoveringInventory = false;
 
+    [Header("Event References")]
+    [SerializeField]
+    private PropIntGameEvent inventoryEvent;
+
     // ------------------------------- Functions -------------------------------
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
@@ -102,7 +106,7 @@ public class InventoryManager : MonoBehaviour
     /// <param name="item">Item to be added</param>
     public void AddItemToInventory(GameObject item)
     {
-        ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.HaveObjectsInInventory, item.GetComponent<NewProp>().attributes, true));
+        inventoryEvent.RaiseEvent(item.GetComponent<NewProp>(), 1);
         item.transform.position = InventoryStation.objectOffset;
     }
 
@@ -112,7 +116,7 @@ public class InventoryManager : MonoBehaviour
     /// <param name="item">Item to be removed</param>
     public void RemoveItemFromInventory(GameObject item)
     {
-        ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.HaveObjectsInInventory, item.GetComponent<NewProp>().attributes, false));
+        inventoryEvent.RaiseEvent(item.GetComponent<NewProp>(), -1);
         if (atInventory)
         {
             // TODO this is almost code!

@@ -9,6 +9,12 @@ public class NewHand : MonoBehaviour
     private GameObject heldObject;
     private IUseStrategy _useStrategy;
 
+    [Header("Event References")]
+    [SerializeField]
+    private PropIntGameEvent pickUpEvent;
+    [SerializeField]
+    private PropIntGameEvent dropEvent;
+
     // ------------------------------- Functions -------------------------------
     public void Update()
     {
@@ -78,7 +84,7 @@ public class NewHand : MonoBehaviour
             }
 
             // Update drop objectives
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.DropObject, itemToReturn.GetComponent<NewProp>().attributes, true));
+            dropEvent.RaiseEvent(heldObject.GetComponent<NewProp>(), 1);
             
             heldObject.transform.parent = null;
             heldObject = null;
@@ -115,7 +121,7 @@ public class NewHand : MonoBehaviour
             }
 
             // Objective calls
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.PickUpObject, heldObject.GetComponent<NewProp>().attributes, true));
+            pickUpEvent.RaiseEvent(heldObject.GetComponent<NewProp>(), 1);
             
             // Set object transform
             heldObject.transform.parent = this.gameObject.transform;
