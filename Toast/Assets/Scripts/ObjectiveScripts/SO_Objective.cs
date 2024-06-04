@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 [CreateAssetMenu(fileName = "New Objective", menuName = "Objective", order = 51)]
 public class SO_Objective : ScriptableObject
 {
+    // ------------------------------- Variables -------------------------------
     [Header("Display Info")]
     [SerializeField]
     private string objectiveName; // The name of the objective
@@ -28,12 +29,24 @@ public class SO_Objective : ScriptableObject
     [SerializeField]
     private int id;
 
+    // ------------------------------- Properties -------------------------------
     public string ObjectiveName { get => objectiveName; set => objectiveName = value; }
     public bool Complete { get => complete; set => complete = value; }
     public bool Available { get => available; set => available = value; }
     public string Description { get { return description; } }
     public List<Requirement> Requirements { get => requirements; set => requirements = value; }
     public int ID { get { return id; } }
+
+    // ------------------------------- Functions -------------------------------
+    public void OnLoad()
+    {
+        complete = false;
+        available = false;
+        foreach (Requirement r in requirements)
+        {
+            r.OnLoad();
+        }
+    }
 
     /// <summary>
     /// Checks all the requirements and returns true if all are complete
@@ -59,6 +72,15 @@ public class SO_Objective : ScriptableObject
     }
 
     /// <summary>
+    /// Sets available to true and sets listening values of all requirements
+    /// </summary>
+    public void SetAvailable()
+    {
+        available = true;
+        CheckListening();
+    }
+
+    /// <summary>
     /// Checks if this objective should be listening and changes its value
     /// </summary>
     public void CheckListening()
@@ -72,6 +94,9 @@ public class SO_Objective : ScriptableObject
         }
     }
 
+    /// <summary>
+    /// Force completes this objective and all its requirements
+    /// </summary>
     public void ForceComplete()
     {
         foreach (Requirement r in requirements)
@@ -88,7 +113,7 @@ public class SO_Objective : ScriptableObject
             if (available)
             {
                 string value = "";
-                value = objectiveName + "";
+                value = objectiveName + "<size=-5>\n<color=#111>" + description + "</color></size>";
                 foreach (Requirement r in requirements)
                 {
                     if (r.listening)

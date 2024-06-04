@@ -68,11 +68,17 @@ public class ObjectiveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateText();
+        // Run each groups OnLoad
         foreach(ObjectiveGroup group in groups)
         {
             group.OnLoad();
         }
+
+        // Run each groups LoadSaveData
+        
+        // Run each groups CheckAvailable
+        
+        UpdateText();
     }
 
     // Update is called once per frame
@@ -170,16 +176,17 @@ public class ObjectiveManager : MonoBehaviour
         char requirementStartMarker = '[';
         char requirementSpace = ',';
 
-        foreach(Objective o in objectivesById.Values)
+        foreach(Objective obj in objectivesById.Values)
         {
+            SO_Objective o = obj.ObjectiveInfo;
             formattedString += objectiveMarker;
             formattedString += o.ID;
             formattedString += spacer;
             formattedString += o.Complete ? "1" : "0";
             formattedString += spacer;
-            formattedString += o.CheckAvailable() ? "1" : "0";
+            formattedString += obj.CheckAvailable() ? "1" : "0";
             formattedString += requirementStartMarker;
-            foreach(Requirement r in o.ObjectiveInfo.Requirements)
+            foreach(Requirement r in o.Requirements)
             {
                 formattedString += r.ID;
                 formattedString += spacer;

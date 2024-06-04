@@ -33,6 +33,17 @@ public class ObjectiveGroup
         }
     }
 
+    /// <summary>
+    /// Has each objective check if it is available
+    /// </summary>
+    public void CheckAvailable()
+    {
+        foreach (Objective o in objectives)
+        {
+            o.CheckAvailable();
+        }
+    }
+
     // Update Objectives
     public void UpdateObjectives(RequirementEvent e)
     {
@@ -91,7 +102,7 @@ public class ObjectiveGroup
             {
                 if (obj.CheckAvailable())
                 {
-                    value += "\n- " + "<size=-1>" + obj.ToString + "</size>";
+                    value += "\n" + "<size=-1>" + obj.ToString + "</size>";
                 }
             }
             return value;

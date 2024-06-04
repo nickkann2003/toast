@@ -38,10 +38,7 @@ public class Objective
     /// </summary>
     public void OnLoad()
     {
-        foreach(Requirement r in objectiveInfo.Requirements)
-        {
-            r.OnLoad();
-        }
+        objectiveInfo.OnLoad();
     }
 
     // Check if the current task has had its prerequisites complete
@@ -54,12 +51,11 @@ public class Objective
                 Objective obj = ObjectiveManager.instance.ObjectivesById[i];
                 if (!obj.Complete)
                 {
-                    objectiveInfo.Available = false;
                     return false;
                 }
             }
         }
-        objectiveInfo.Available = true;
+        objectiveInfo.SetAvailable();
         return true;
     }
 
@@ -87,58 +83,20 @@ public class Objective
         return true;
     }
 
-    ///// <summary>
-    ///// Updates this objective with a requirement event, updating all of its requirements
-    ///// </summary>
-    ///// <param name="e">Event to update with</param>
-    //public void UpdateObjective(RequirementEvent e)
-    //{
-    //    CheckAvailable();
-    //    foreach (Requirement r in requirements)
-    //    {
-    //        r.UpdateRequirement(e);
-    //    }
-    //    if (!complete)
-    //    {
-    //        foreach (ObjectiveObject obj in objectiveObjects)
-    //        {
-    //            obj.CheckObjectiveObject();
-    //        }
-    //    }
-    //}
-
     /// <summary>
     /// Force completes all requirements in this objective
     /// </summary>
-    //public void ForceCompleteObjective()
-    //{
-    //    foreach(Requirement r in requirements)
-    //    {
-    //        r.ForceComplete();
-    //    }
-    //    UpdateObjective(new RequirementEvent(RequirementType.CompleteMinigame, PropFlags.None, true));
-    //    ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CompleteMinigame, PropFlags.None, true));
-    //}
+    public void ForceCompleteObjective()
+    {
+        objectiveInfo.ForceComplete();
+    }
 
     // Override ToString to return formatted for To-Do list
     new public string ToString
     {
         get
         {
-            return objectiveInfo.ToString();
+            return objectiveInfo.ToString;
         }
     }
-
-
-    ///// <summary>
-    ///// Sets the interal IDs of each requirement
-    ///// </summary>
-    //public void SerializeRequirements()
-    //{
-    //    for(int i = 0; i < requirements.Count; i ++)
-    //    {
-    //        requirements[i].ID = i;
-    //    }
-    //}
-
 }
