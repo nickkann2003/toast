@@ -78,8 +78,10 @@ public class Objective
                         ob.SetActive(true);
                     }
                 }
+                // One Shot Effects
                 complete = true;
                 completionEvents.Invoke();
+                AudioManager.instance.PlayOneShotSound(AudioManager.instance.objectiveComplete);
             }
             else
             {

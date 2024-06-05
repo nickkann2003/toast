@@ -15,8 +15,7 @@ MonoBehaviour:
   objectiveName: New High Score!
   description: Start Toast Ninja by clicking the red button!
   completeText: 
-  complete: 1
-  available: 1
+  unavailableText: ???
   requirements:
   - targetAttributes: 0
     listener:
@@ -24,10 +23,12 @@ MonoBehaviour:
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Score 50 Points
-    goal: 50
+    goalName: Score 20 Points
+    goal: 20
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
     listening: 1
   id: 7
+  complete: 1
+  available: 1

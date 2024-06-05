@@ -73,6 +73,7 @@ public class Requirement
                 if (!complete) // If it was not complete, run one-shot effects
                 {
                     complete = true;
+                    AudioManager.instance.PlayOneShotSound(AudioManager.instance.requirementComplete);
                 }
                 return true;
             }
