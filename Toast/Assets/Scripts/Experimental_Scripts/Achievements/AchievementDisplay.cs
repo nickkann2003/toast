@@ -26,15 +26,28 @@ public class AchievementDisplay : MonoBehaviour
     {
         if(associatedAchievement != null)
         {
-            if (!isHiddenAchievement)
+            if (isHiddenAchievement)
             {
                 nameText.text = "???";
                 descriptionText.text = "???";
             }
+            else
+            {
+                nameText.text = associatedAchievement.AchievementName;
+                descriptionText.text = associatedAchievement.Description;
+            }
 
             if (associatedAchievement.HasNumericGoal)
             {
-                progressText.text = "?/?";
+                if(isHiddenAchievement)
+                {
+                    progressText.text = "?/?";
+                }
+                else
+                {
+                    progressText.text = $"{associatedAchievement.AchievementProgress}/{associatedAchievement.AchievementGoal}";
+                }
+                
             }
             else
             {

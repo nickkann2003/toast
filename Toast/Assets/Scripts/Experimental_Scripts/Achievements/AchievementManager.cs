@@ -1,9 +1,11 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class AchievementManager : MonoBehaviour
 {
@@ -26,6 +28,14 @@ public class AchievementManager : MonoBehaviour
     // The list of acheievements the player has unlocked
     public List<Achievement> unlockedAchievements;
 
+    // Prefab for achievement menu UI
+    [SerializeField]
+    private GameObject UIPrefab;
+
+    // The panel containing the achievement list
+    [SerializeField]
+    private GameObject menuPanel;
+
     // Basic singleton
     private void Awake()
     {
@@ -35,7 +45,7 @@ public class AchievementManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        CreateMenu();
     }
     
 
@@ -100,6 +110,16 @@ public class AchievementManager : MonoBehaviour
             {
                 Unlock(achievement);
             }
+        }
+    }
+
+    void CreateMenu()
+    {
+        for(int i = 0; i < achievements.Count; i++)
+        {
+            GameObject newItem = Instantiate(UIPrefab);
+            newItem.GetComponent<AchievementDisplay>().associatedAchievement = achievements[i];
+            newItem.transform.SetParent(menuPanel.transform, false);
         }
     }
 }
