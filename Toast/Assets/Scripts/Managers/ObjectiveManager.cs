@@ -97,6 +97,7 @@ public class ObjectiveManager : MonoBehaviour
         foreach (ObjectiveGroup g in groups)
         {
             g.CheckAllComplete();
+            g.CheckAvailable();
             g.UpdateText();
         }
     }
@@ -107,6 +108,7 @@ public class ObjectiveManager : MonoBehaviour
     public void ForceCompleteObjective(int id)
     {
         ObjectivesById[id].ForceCompleteObjective();
+        UpdateText();
     }
 
     /// <summary>

@@ -40,6 +40,10 @@ public class Objective
     public void OnLoad()
     {
         objectiveInfo.OnLoad();
+        foreach(var obj in activatables)
+        {
+            obj.SetActive(false);
+        }
     }
 
     // Check if the current task has had its prerequisites complete

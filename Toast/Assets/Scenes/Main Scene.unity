@@ -2853,6 +2853,70 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 252033957}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &268021172
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 268021173}
+  - component: {fileID: 268021174}
+  m_Layer: 3
+  m_Name: ToasterBreadRespawner2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &268021173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268021172}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.409, y: 2.5899, z: -4.511}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1448825836}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &268021174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268021172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b19bf611c1b9d842be4c2b1abc3d354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects:
+  - prefab: {fileID: 6994967846282815134, guid: c3f3c7f25a39a19419714892b4c2aa0d,
+      type: 3}
+    spawnPosition: {x: 0, y: 0, z: 0.11}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  - prefab: {fileID: 6994967846282815134, guid: c3f3c7f25a39a19419714892b4c2aa0d,
+      type: 3}
+    spawnPosition: {x: 0, y: 0, z: -0.04}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  - prefab: {fileID: 6994967846282815134, guid: c3f3c7f25a39a19419714892b4c2aa0d,
+      type: 3}
+    spawnPosition: {x: 0, y: 0, z: -0.08}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  - prefab: {fileID: 6994967846282815134, guid: c3f3c7f25a39a19419714892b4c2aa0d,
+      type: 3}
+    spawnPosition: {x: 0, y: 0, z: 0.07}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  waitForAll: 1
+  autoRespawnItems: 1
+  spawnOnStart: 0
 --- !u!1 &277629638
 GameObject:
   m_ObjectHideFlags: 0
@@ -19076,7 +19140,7 @@ GameObject:
   - component: {fileID: 1424800096}
   - component: {fileID: 1424800097}
   m_Layer: 0
-  m_Name: NewObjectiveManager
+  m_Name: ObjectiveManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19133,6 +19197,61 @@ MonoBehaviour:
     displays:
     - {fileID: 780163200}
     displaysUI: []
+  - name: Toaster Objectives 1
+    objectives:
+    - objectiveInfo: {fileID: 11400000, guid: e9b375991c68e114ab3067847e8eb70a, type: 2}
+      prerequisiteIds: 00000000
+      activatables:
+      - {fileID: 2044246238}
+      completionEvents:
+        m_PersistentCalls:
+          m_Calls: []
+    - objectiveInfo: {fileID: 11400000, guid: 53e332daac28ad84aab094a36b820441, type: 2}
+      prerequisiteIds: 01000000
+      activatables: []
+      completionEvents:
+        m_PersistentCalls:
+          m_Calls: []
+    - objectiveInfo: {fileID: 11400000, guid: 15e072a6e2100e541829eeaa23fb914b, type: 2}
+      prerequisiteIds: 02000000
+      activatables:
+      - {fileID: 268021172}
+      completionEvents:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 2044246238}
+            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_MethodName: SetActive
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    - objectiveInfo: {fileID: 11400000, guid: b66fbc0911d69034d8554f7bef12864a, type: 2}
+      prerequisiteIds: 03000000
+      activatables: []
+      completionEvents:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 268021172}
+            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_MethodName: SetActive
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    displays:
+    - {fileID: 1634747471}
+    displaysUI: []
 --- !u!1 &1448825835
 GameObject:
   m_ObjectHideFlags: 0
@@ -19175,6 +19294,7 @@ Transform:
   - {fileID: 996439901}
   - {fileID: 903455858}
   - {fileID: 2044246239}
+  - {fileID: 268021173}
   m_Father: {fileID: 1608233084}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21699,6 +21819,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1621186604}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1634747471 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9081385932958293357, guid: 32723a66bbfbd074ebca3cf7530de75c,
+    type: 3}
+  m_PrefabInstance: {fileID: 903455857}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1636474727 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4714759722280616962, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
