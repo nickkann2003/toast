@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 [CreateAssetMenu(fileName = "New TN Pattern Wave", menuName = "Minigames/Toast Ninja/Firing Patterns/Wave", order = 55)]
 public class TN_Pattern_Wave : TN_FiringPatterns
 {
+    // ------------------------------- Variables -------------------------------
+
+    [SerializeField, Range(0,10), ValidateInput("ValidateIndex", "index out of range")]
+    protected int index = 5;
     [SerializeField]
-    private int index = 5;
+    protected float timeBetweenShots = .2f;
     [SerializeField]
-    private float timeBetweenShots = .3f;
+    protected int step = 1;
+
+    // ------------------------------- Functions -------------------------------
 
     public override void Launch(ToastNinja toastNinja)
     {
@@ -22,28 +29,28 @@ public class TN_Pattern_Wave : TN_FiringPatterns
         launchers[index].Launch(toastNinja.RandPrefab());
 
         yield return new WaitForSeconds(timeBetweenShots);
-        if (index -1 >= 0)
+        if (ValidateIndex(index - step))
         {
-            toastNinja.StartCoroutine(Fire(toastNinja, index - 1, -1));
+            toastNinja.StartCoroutine(Fire(toastNinja, index - step, -1));
         }
-        if (index + 1 < launchers.Length)
+        if (ValidateIndex(index + step))
         {
-            toastNinja.StartCoroutine(Fire(toastNinja, index + 1, 1));
+            toastNinja.StartCoroutine(Fire(toastNinja, index + step, 1));
         }
     }
 
-    IEnumerator Fire(ToastNinja toastNinja, int index, int add)
+    IEnumerator Fire(ToastNinja toastNinja, int index, int polarity)
     {
         LaunchObject[] launchers = toastNinja.LaunchObjects;
 
         launchers[index].Launch(toastNinja.RandPrefab());
 
-        index += add;
+        index += polarity * step;
 
-        if (index >= 0 && index < launchers.Length)
+        if (ValidateIndex(index))
         {
             yield return new WaitForSeconds(timeBetweenShots);
-            toastNinja.StartCoroutine(Fire(toastNinja, index, add));
+            toastNinja.StartCoroutine(Fire(toastNinja, index, polarity * step));
         }
 
         yield return new WaitForSeconds(0);
