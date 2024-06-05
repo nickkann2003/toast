@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: 4_Toaster Objective 4
+  m_Name: 1_Toaster Objective 1
   m_EditorClassIdentifier: 
-  objectiveName: MORE!!!
-  description: FINAL PUSH!!! 4/4
-  complete: 1
-  available: 1
+  objectiveName: Toast Bread
+  description: Turn some bread into toast. 1/4
+  complete: 0
+  available: 0
   requirements:
   - targetAttributes: 536870913
     listener:
@@ -24,11 +24,11 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     goalName: Toast Bread
-    goal: 4
+    goal: 2
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
-    listening: 1
+    listening: 0
   - targetAttributes: 536870913
     listener:
       gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
@@ -36,9 +36,9 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     goalName: Eat Toast
-    goal: 4
+    goal: 2
     exactValueGoal: 0
     alwaysListening: 0
     id: 1
-    listening: 1
-  id: 4
+    listening: 0
+  id: 1

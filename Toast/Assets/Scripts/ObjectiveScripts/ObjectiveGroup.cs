@@ -8,15 +8,19 @@ using UnityEngine;
 public class ObjectiveGroup
 {
     // ------------------------------- Variables -------------------------------
-    [Header("Display Name")]
     public string name;
-
-    [Header("Objectives")]
     public List<Objective> objectives;
-
-    [Header("Displays")]
     public List<TextMeshPro> displays;
     public List<TextMeshProUGUI> displaysUI;
+
+    [Button, SerializeField]
+    private void ForceCompleteAll()
+    {
+        foreach (Objective obj in objectives)
+        {
+            obj.ForceCompleteObjective();
+        }
+    }
 
     private float completedObjectives = 0;
     private float oldCompletedObjectives = 0; // Used to check if some new objective completed

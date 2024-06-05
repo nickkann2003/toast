@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,9 +13,8 @@ public class ObjectiveManager : MonoBehaviour
     // ------------------------------- Variables -------------------------------
     public static ObjectiveManager instance;
 
-    [Header("Objective Groups")]
     [SerializeField]
-    public List<ObjectiveGroup> groups = new List<ObjectiveGroup>();
+    public List<ObjectiveGroup> objectiveGroups = new List<ObjectiveGroup>(); // DO NOT CHANGE VARIABLE NAME IT WILL WIPE ALL EDITOR INFO (im unbelievably sad)
     private Dictionary<int, Objective> objectivesById = new Dictionary<int, Objective>();
 
     private string objSerialPath = "Assets/Resources/objs.txt";
@@ -48,11 +48,11 @@ public class ObjectiveManager : MonoBehaviour
     //[SerializeField, Button]
     //private void SerializeAllObjectives() { SerializeObjectives(); }
 
-    [SerializeField, Button]
-    private void CompileStorageString() { GetObjectiveStorageString(); }
-
-    [SerializeField, Button]
-    private void SaveObjectiveData() { SaveHandler.instance.SaveObjectiveData(GetObjectiveStorageString()); }
+    //[SerializeField, Button]
+    //private void CompileStorageString() { GetObjectiveStorageString(); }
+    //
+    //[SerializeField, Button]
+    //private void SaveObjectiveData() { SaveHandler.instance.SaveObjectiveData(GetObjectiveStorageString()); }
 
     // ------------------------------- Properties -------------------------------
     public Dictionary<int, Objective> ObjectivesById { get => objectivesById; set => objectivesById = value; }
@@ -71,7 +71,7 @@ public class ObjectiveManager : MonoBehaviour
         SortObjectivesById();
 
         // Run each groups OnLoad
-        foreach(ObjectiveGroup group in groups)
+        foreach(ObjectiveGroup group in objectiveGroups)
         {
             group.OnLoad();
         }
@@ -94,7 +94,13 @@ public class ObjectiveManager : MonoBehaviour
     /// </summary>
     public void UpdateText()
     {
-        foreach (ObjectiveGroup g in groups)
+        StartCoroutine(RunTextUpdate());
+    }
+
+    private IEnumerator RunTextUpdate()
+    {
+        yield return new WaitForFixedUpdate();
+        foreach (ObjectiveGroup g in objectiveGroups)
         {
             g.CheckAllComplete();
             g.CheckAvailable();
@@ -119,7 +125,7 @@ public class ObjectiveManager : MonoBehaviour
         get
         {
             string value = "";
-            foreach (ObjectiveGroup g in groups)
+            foreach (ObjectiveGroup g in objectiveGroups)
             {
                 value += g.ToString();
             }
@@ -207,7 +213,7 @@ public class ObjectiveManager : MonoBehaviour
     /// </summary>
     private void SortObjectivesById()
     {
-        foreach (ObjectiveGroup g in groups)
+        foreach (ObjectiveGroup g in objectiveGroups)
         {
             foreach(Objective o in g.objectives)
             {

@@ -113,12 +113,12 @@ public class SO_Objective : ScriptableObject
             if (available)
             {
                 string value = "";
-                value = objectiveName + "<size=-5>\n<color=#111>" + description + "</color></size>";
+                value = objectiveName + " <size=-5>\n<color=#111>" + description + "</color></size>";
                 foreach (Requirement r in requirements)
                 {
                     if (r.listening)
                     {
-                        value += "\n    - <size=-2>" + r.ToString + "</size>";
+                        value += "<size=-3>\n -" + r.ToString + "</size>";
                     }
                 }
                 if (CheckAllRequirementsComplete())

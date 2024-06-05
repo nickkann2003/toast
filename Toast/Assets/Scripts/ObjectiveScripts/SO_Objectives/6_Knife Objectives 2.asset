@@ -10,35 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: 4_Toaster Objective 4
+  m_Name: 6_Knife Objectives 2
   m_EditorClassIdentifier: 
-  objectiveName: MORE!!!
-  description: FINAL PUSH!!! 4/4
+  objectiveName: ...on a Knife, on a Knife, on a Knife
+  description: <sprite=78> on more Knives to conftinue stacking. 2/3
   complete: 1
   available: 1
   requirements:
-  - targetAttributes: 536870913
+  - targetAttributes: -2147483648
     listener:
-      gameEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
+      gameEvent: {fileID: 11400000, guid: fb0064d8f2f9be342b9136075c8542c7, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Toast Bread
+    goalName: Use a Knife on a Knife <sprite=78>
     goal: 4
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
     listening: 1
-  - targetAttributes: 536870913
-    listener:
-      gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
-      response:
-        m_PersistentCalls:
-          m_Calls: []
-    goalName: Eat Toast
-    goal: 4
-    exactValueGoal: 0
-    alwaysListening: 0
-    id: 1
-    listening: 1
-  id: 4
+  id: 6

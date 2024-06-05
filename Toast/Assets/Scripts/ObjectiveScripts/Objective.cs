@@ -76,9 +76,9 @@ public class Objective
                     if (ob != null)
                     {
                         ob.SetActive(true);
-                        complete = true;
                     }
                 }
+                complete = true;
                 completionEvents.Invoke();
             }
             else
@@ -94,15 +94,19 @@ public class Objective
     /// </summary>
     public void ForceCompleteObjective()
     {
-        objectiveInfo.ForceComplete();
-        foreach (GameObject ob in activatables)
+        if (!complete)
         {
-            if (ob != null)
+            objectiveInfo.ForceComplete();
+            foreach (GameObject ob in activatables)
             {
-                ob.SetActive(true);
+                if (ob != null)
+                {
+                    ob.SetActive(true);
+                }
             }
+            complete = true;
+            completionEvents.Invoke();
         }
-        completionEvents.Invoke();
     }
 
     // Override ToString to return formatted for To-Do list

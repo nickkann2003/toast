@@ -47,6 +47,7 @@ public class Requirement
         // Reset values on game start
         current = 0;
         complete = false;
+        listening = false;
 
         // Save event type
         PropIntGameEvent e = listener.GameEvent;
@@ -129,7 +130,7 @@ public class Requirement
             string value = "";
             if (CheckComplete())
             {
-                value += "<color=#111><s><size=-2>";
+                value += "<color=#111><s>";
                 value += goalName + " ";
                 value += "DONE!";
             }
@@ -137,19 +138,19 @@ public class Requirement
             {
                 if(goal > 0)
                 {
-                    value += "<color=#000><size=+0>";
+                    value += "<color=#000>";
                     value += goalName + " ";
                     value += current + "/" + goal;
                 }
                 else
                 {
-                    value += "<color=#000><size=+0>";
+                    value += "<color=#000>";
                     value += goalName + " ";
                     value += current;
                 }
                 
             }
-            value += "</size></s></color>";
+            value += "</s></color>";
             return value;
         }
     }
