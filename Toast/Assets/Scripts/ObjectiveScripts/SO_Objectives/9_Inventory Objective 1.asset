@@ -10,22 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: TEST
+  m_Name: 9_Inventory Objective 1
   m_EditorClassIdentifier: 
-  objectiveName: Test Objective
-  description: Eat 1 Toast
-  complete: 0
+  objectiveName: 'Stock Up: Bread!'
+  description: Store some bread (Just in case)
+  completeText: 
+  unavailableText: ???
+  complete: 1
   available: 1
   requirements:
   - targetAttributes: 536870912
     listener:
-      gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
+      gameEvent: {fileID: 11400000, guid: 6d1b224677ea7ff4583d2e8af35f0cff, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Eat Bread
-    goal: 1
-    alwaysListening: 0
+    goalName: Drop 4 Bread in your Inventory
+    goal: 4
+    exactValueGoal: 0
+    alwaysListening: 1
     id: 0
-    listening: 0
-  id: 0
+    listening: 1
+  id: 9

@@ -10,24 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: 6_Knife Objectives 2
+  m_Name: 11_Inventory Objective 3
   m_EditorClassIdentifier: 
-  objectiveName: ...on a Knife...
-  description: Knives can stack objects! 2/3
-  completeText: Toast Ninja has been unlocked!
+  objectiveName: 'Stock Up: Jam!'
+  description: That Toast will need some flavor
+  completeText: 
+  unavailableText: ???
   complete: 1
   available: 1
   requirements:
-  - targetAttributes: -2147483648
+  - targetAttributes: 1073741824
     listener:
-      gameEvent: {fileID: 11400000, guid: fb0064d8f2f9be342b9136075c8542c7, type: 2}
+      gameEvent: {fileID: 11400000, guid: 6d1b224677ea7ff4583d2e8af35f0cff, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Use a Knife on a Knife <sprite=78>
-    goal: 4
+    goalName: Drop 2 Jam in your Inventory
+    goal: 2
     exactValueGoal: 0
-    alwaysListening: 0
+    alwaysListening: 1
     id: 0
     listening: 1
-  id: 6
+  id: 11

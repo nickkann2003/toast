@@ -14,6 +14,10 @@ public class SO_Objective : ScriptableObject
     private string objectiveName; // The name of the objective
     [SerializeField]
     private string description; // The description of the objective
+    [SerializeField]
+    private string completeText = ""; // Text displayed once this objective is complete
+    [SerializeField]
+    private string unavailableText = "???";
 
     [Header("Progress Info")]
     [SerializeField]
@@ -124,8 +128,16 @@ public class SO_Objective : ScriptableObject
                 if (CheckAllRequirementsComplete())
                 {
                     value = "<color=#111><s>" + objectiveName + "</s></color>";
+                    if(completeText != "")
+                    {
+                        value += "\n<color=#080808>" + completeText + "</color>";
+                    }
                 }
                 return value;
+            }
+            else if(unavailableText != "")
+            {
+                return "\n<size=-4><color=#111>" + unavailableText + "</color></size>";
             }
             return "";
         }

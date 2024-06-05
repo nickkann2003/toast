@@ -91,6 +91,10 @@ public class ObjectiveGroup
                 {
                     value += "\n" + "<size=-1>" + obj.ToString + "</size>";
                 }
+                else
+                {
+                    value += "\n" + "<size=-2>" + obj.ToString + "</size>";
+                }
             }
             return value;
         }
