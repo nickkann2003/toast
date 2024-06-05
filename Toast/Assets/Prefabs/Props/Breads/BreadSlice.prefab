@@ -104,7 +104,10 @@ MonoBehaviour:
   firePrefab: {fileID: 0}
   frozenness: 0
   baseMat: {fileID: 0}
+  useEffects: []
   PD_Rb: {fileID: 11400000, guid: 05d3ab828c2d3cc4f9f0aad4a9ba8bf2, type: 2}
+  createObjectEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
+  thawObjectEvent: {fileID: 11400000, guid: d26239510d487054e9b40255a0a441bf, type: 2}
 --- !u!114 &2034697763943219299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalBites: 1
   bitesRemaining: 1
+  eatEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
 --- !u!33 &4579674392767978358
 MeshFilter:
   m_ObjectHideFlags: 0

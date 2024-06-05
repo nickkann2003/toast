@@ -39,6 +39,14 @@ public class PropIntGameEventListener
     [SerializeField]
     private PropIntUnityEvent response; // the response that will be invoked
 
+    public PropIntGameEvent GameEvent { get => gameEvent; set => gameEvent = value; }
+    public PropIntUnityEvent Response { get => response; set => response = value; }
+
+    public PropIntGameEventListener()
+    {
+        response = new PropIntUnityEvent();
+    }
+
     public void OnEnable() // when enabled, subscribe to the GameEvent
     {
         if (gameEvent == null || enabled) return;

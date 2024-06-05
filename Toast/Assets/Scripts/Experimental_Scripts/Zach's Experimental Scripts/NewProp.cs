@@ -37,6 +37,12 @@ public class NewProp : MonoBehaviour
     [SerializeField]
     private PD_Rigidbody PD_Rb;
 
+    [Header("Event References")]
+    [SerializeField]
+    private PropIntGameEvent createObjectEvent;
+    [SerializeField]
+    private PropIntGameEvent thawObjectEvent;
+
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
@@ -136,7 +142,7 @@ public class NewProp : MonoBehaviour
             AddAttribute(PropFlags.Toast);
 
             // Trigger Objectives
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, attributes, true));
+            createObjectEvent.RaiseEvent(this, 1);
         }
 
         if (toastiness > .9f && !attributes.HasFlag(PropFlags.Burnt)) // Burnt event
@@ -145,7 +151,7 @@ public class NewProp : MonoBehaviour
             AddAttribute(PropFlags.Burnt);
 
             // Trigger Objectives
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, attributes, true));
+            createObjectEvent.RaiseEvent(this, 1);
         }
         if (!attributes.HasFlag(PropFlags.OnFire) && toastiness > fireTrigger && firePrefab != null) // On Fire event
         {
@@ -160,7 +166,7 @@ public class NewProp : MonoBehaviour
             AddAttribute(PropFlags.OnFire);
 
             // Trigger objectives
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, attributes, true));
+            createObjectEvent.RaiseEvent(this, 1);
             
             // Add flaming object
             FireEndingManager.instance.addFireObject(gameObject);
@@ -175,7 +181,7 @@ public class NewProp : MonoBehaviour
         {
             Destroy(gameObject.transform.GetChild(0).gameObject);
             attributes &= ~PropFlags.Frozen;
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.ThawObject, attributes, true));
+            thawObjectEvent.RaiseEvent(this, 1);
         }
     }
 

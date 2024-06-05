@@ -80,6 +80,10 @@ public class Raycast : MonoBehaviour
     private Highlights highlightable;
     private Highlights prevHighligtable;
 
+    [Header("Game Event References")]
+    [SerializeField]
+    private PropIntGameEvent onDragEvent;
+
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Awake()
@@ -457,7 +461,7 @@ public class Raycast : MonoBehaviour
                 Debug.Log("Forcibly removing from hand");
                 hitGO.GetComponent<NewProp>().ForceRemoveFromHand();
             }
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.DragObject, hitGO.GetComponent<NewProp>().attributes, true));
+            onDragEvent.RaiseEvent(hitGO.GetComponent<NewProp>(), 1);
         }
 
         if (hitGO.GetComponent<Rigidbody>() != null || hitGO.name == "Toaster_Lever" || hitGO.name == "Toaster_Dial") // HARDCODE FOR NOW CHANGE LATER
@@ -488,7 +492,6 @@ public class Raycast : MonoBehaviour
     {
         if (selectGO != null)
         {
-            Debug.Log("obj not null");
             if (InventoryManager.instance.HoveringInventory)
             {
                 Debug.Log("hovering inv");

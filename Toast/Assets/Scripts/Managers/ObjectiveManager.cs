@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,9 +13,8 @@ public class ObjectiveManager : MonoBehaviour
     // ------------------------------- Variables -------------------------------
     public static ObjectiveManager instance;
 
-    [Header("Objective Groups")]
     [SerializeField]
-    public List<ObjectiveGroup> groups = new List<ObjectiveGroup>();
+    public List<ObjectiveGroup> objectiveGroups = new List<ObjectiveGroup>(); // DO NOT CHANGE VARIABLE NAME IT WILL WIPE ALL EDITOR INFO (im unbelievably sad)
     private Dictionary<int, Objective> objectivesById = new Dictionary<int, Objective>();
 
     private string objSerialPath = "Assets/Resources/objs.txt";
@@ -25,34 +25,38 @@ public class ObjectiveManager : MonoBehaviour
     /// WARNING: This will reset all objective IDs, this can cause potential issues with
     /// saved file data. Make sure you know what you are doing before pressing this
     /// </summary>
-    public bool ResetObjectives = false;
-    [SerializeField, Button, EnableIf("ResetObjectives")]
-    private void DONOTPRESSResetObjectiveSerialization() 
-    { 
-        foreach(ObjectiveGroup g in groups)
-        {
-            foreach(Objective o in g.objectives)
-            {
-                o.ID = -1;
-            }
-        }
-        // Write out reset cId
-        StreamWriter wr = new StreamWriter(objSerialPath);
-        wr.Write(0);
-        wr.Close();
-    }
+    //public bool ResetObjectives = false;
+    //[SerializeField, Button, EnableIf("ResetObjectives")]
+    //private void DONOTPRESSResetObjectiveSerialization() 
+    //{ 
+    //    foreach(ObjectiveGroup g in groups)
+    //    {
+    //        foreach(Objective o in g.objectives)
+    //        {
+    //            o.ID = -1;
+    //        }
+    //    }
+    //    // Write out reset cId
+    //    StreamWriter wr = new StreamWriter(objSerialPath);
+    //    wr.Write(0);
+    //    wr.Close();
+    //}
 
     /// <summary>
     /// Button for Serializing all Objectives, gives an ID to all OBJS without one
     /// </summary>
-    [SerializeField, Button]
-    private void SerializeAllObjectives() { SerializeObjectives(); }
+    //[SerializeField, Button]
+    //private void SerializeAllObjectives() { SerializeObjectives(); }
 
-    [SerializeField, Button]
-    private void CompileStorageString() { GetObjectiveStorageString(); }
+    //[SerializeField, Button]
+    //private void CompileStorageString() { GetObjectiveStorageString(); }
+    //
+    //[SerializeField, Button]
+    //private void SaveObjectiveData() { SaveHandler.instance.SaveObjectiveData(GetObjectiveStorageString()); }
 
-    [SerializeField, Button]
-    private void SaveObjectiveData() { SaveHandler.instance.SaveObjectiveData(GetObjectiveStorageString()); }
+    // ------------------------------- Properties -------------------------------
+    public Dictionary<int, Objective> ObjectivesById { get => objectivesById; set => objectivesById = value; }
+
 
     // ------------------------------- Functions -------------------------------
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
@@ -64,6 +68,18 @@ public class ObjectiveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SortObjectivesById();
+
+        // Run each groups OnLoad
+        foreach(ObjectiveGroup group in objectiveGroups)
+        {
+            group.OnLoad();
+        }
+
+        // Run each groups LoadSaveData
+        
+        // Run each groups CheckAvailable
+        
         UpdateText();
     }
 
@@ -74,26 +90,31 @@ public class ObjectiveManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates all objectives with a given requirement event
+    /// Updates the text of all objective groups
     /// </summary>
-    /// <param name="e">Event</param>
-    public void UpdateObjectives(RequirementEvent e)
+    public void UpdateText()
     {
-        foreach(ObjectiveGroup g in groups)
+        StartCoroutine(RunTextUpdate());
+    }
+
+    private IEnumerator RunTextUpdate()
+    {
+        yield return new WaitForFixedUpdate();
+        foreach (ObjectiveGroup g in objectiveGroups)
         {
-            g.UpdateObjectives(e);
+            g.CheckAllComplete();
+            g.CheckAvailable();
+            g.UpdateText();
         }
     }
 
     /// <summary>
-    /// Updates the text of all objective groups
+    /// Force completes an objective with a given ID
     /// </summary>
-    private void UpdateText()
+    public void ForceCompleteObjective(int id)
     {
-        foreach (ObjectiveGroup g in groups)
-        {
-            g.UpdateText();
-        }
+        ObjectivesById[id].ForceCompleteObjective();
+        UpdateText();
     }
 
     /// <summary>
@@ -104,48 +125,49 @@ public class ObjectiveManager : MonoBehaviour
         get
         {
             string value = "";
-            foreach (ObjectiveGroup g in groups)
+            foreach (ObjectiveGroup g in objectiveGroups)
             {
                 value += g.ToString();
             }
             return value;
         }
     }
+
     /// <summary>
     /// Sets the interal IDs of each objective
     /// </summary>
-    private void SerializeObjectives()
-    {
-        // Read in the file and get the current ID of objectives
-        
-        StreamReader sr = new StreamReader(objSerialPath);
-        string firstLine = sr.ReadLine();
-        int cId = int.Parse(firstLine);
-        sr.Close();
-
-        List<int> foundIds = new List<int>();
-
-        foreach(ObjectiveGroup g in groups)
-        {
-            foreach (Objective o in g.objectives)
-            {
-                if (o.ID == -1 || foundIds.Contains(o.ID))
-                {
-                    o.ID = cId;
-                    cId += 1;
-                }
-                o.SerializeRequirements();
-                foundIds.Add(o.ID);
-            }
-        }
-
-        // Write out the new cID of objectives
-        StreamWriter wr = new StreamWriter(objSerialPath);
-        wr.Write(cId);
-        wr.Close();
-
-        Debug.Log("Serialize Success! Next ID: " + cId);
-    }
+    //private void SerializeObjectives()
+    //{
+    //    // Read in the file and get the current ID of objectives
+    //    
+    //    StreamReader sr = new StreamReader(objSerialPath);
+    //    string firstLine = sr.ReadLine();
+    //    int cId = int.Parse(firstLine);
+    //    sr.Close();
+    //
+    //    List<int> foundIds = new List<int>();
+    //
+    //    foreach(ObjectiveGroup g in groups)
+    //    {
+    //        foreach (Objective o in g.objectives)
+    //        {
+    //            if (o.ID == -1 || foundIds.Contains(o.ID))
+    //            {
+    //                o.ID = cId;
+    //                cId += 1;
+    //            }
+    //            o.SerializeRequirements();
+    //            foundIds.Add(o.ID);
+    //        }
+    //    }
+    //
+    //    // Write out the new cID of objectives
+    //    StreamWriter wr = new StreamWriter(objSerialPath);
+    //    wr.Write(cId);
+    //    wr.Close();
+    //
+    //    Debug.Log("Serialize Success! Next ID: " + cId);
+    //}
 
     /// <summary>
     /// Returns a formatted string for saving Objective information
@@ -161,16 +183,17 @@ public class ObjectiveManager : MonoBehaviour
         char requirementStartMarker = '[';
         char requirementSpace = ',';
 
-        foreach(Objective o in objectivesById.Values)
+        foreach(Objective obj in objectivesById.Values)
         {
+            SO_Objective o = obj.ObjectiveInfo;
             formattedString += objectiveMarker;
             formattedString += o.ID;
             formattedString += spacer;
             formattedString += o.Complete ? "1" : "0";
             formattedString += spacer;
-            formattedString += o.CheckAvailable() ? "1" : "0";
+            formattedString += obj.CheckAvailable() ? "1" : "0";
             formattedString += requirementStartMarker;
-            foreach(Requirement r in o.requirements)
+            foreach(Requirement r in o.Requirements)
             {
                 formattedString += r.ID;
                 formattedString += spacer;
@@ -190,7 +213,7 @@ public class ObjectiveManager : MonoBehaviour
     /// </summary>
     private void SortObjectivesById()
     {
-        foreach (ObjectiveGroup g in groups)
+        foreach (ObjectiveGroup g in objectiveGroups)
         {
             foreach(Objective o in g.objectives)
             {

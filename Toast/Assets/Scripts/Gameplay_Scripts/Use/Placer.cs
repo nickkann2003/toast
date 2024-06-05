@@ -30,6 +30,10 @@ public class Placer : MonoBehaviour, IUseStrategy
     [SerializeField]
     private Jam jam;
 
+    [Header("Event References")]
+    [SerializeField]
+    private PropIntGameEvent useEvent;
+
     // ------------------------------- Functions -------------------------------
     /// <summary>
     /// Use function for this item
@@ -62,7 +66,7 @@ public class Placer : MonoBehaviour, IUseStrategy
             obj.transform.parent = parentPlacementObj.transform;
             obj.transform.GetChild(0).Rotate(new Vector3(0, 0, Random.Range(-30, 30)*2), Space.Self);
             obj.GetComponentInChildren<Renderer>().material.color = mat.color;
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.UseObject, gameObject.GetComponent<NewProp>().attributes, true));
+            useEvent.RaiseEvent(gameObject.GetComponent<NewProp>(), 1);
         }
     }
 

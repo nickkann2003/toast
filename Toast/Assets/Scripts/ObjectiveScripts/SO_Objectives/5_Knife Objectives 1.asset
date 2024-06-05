@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
+  m_Name: 5_Knife Objectives 1
+  m_EditorClassIdentifier: 
+  objectiveName: Knife on a Knife
+  description: Pick Up items and Use items. 1/3
+  completeText: 
+  complete: 1
+  available: 1
+  requirements:
+  - targetAttributes: -2147483648
+    listener:
+      gameEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
+      response:
+        m_PersistentCalls:
+          m_Calls: []
+    goalName: Pick Up a Knife <sprite=47>
+    goal: 1
+    exactValueGoal: 0
+    alwaysListening: 0
+    id: 0
+    listening: 1
+  - targetAttributes: -2147483648
+    listener:
+      gameEvent: {fileID: 11400000, guid: fb0064d8f2f9be342b9136075c8542c7, type: 2}
+      response:
+        m_PersistentCalls:
+          m_Calls: []
+    goalName: Use a Knife on a Knife <sprite=78>
+    goal: 1
+    exactValueGoal: 0
+    alwaysListening: 0
+    id: 1
+    listening: 1
+  id: 5
