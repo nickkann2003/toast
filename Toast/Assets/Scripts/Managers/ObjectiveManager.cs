@@ -103,6 +103,9 @@ public class ObjectiveManager : MonoBehaviour
         foreach (ObjectiveGroup g in objectiveGroups)
         {
             g.CheckAllComplete();
+        }
+        foreach (ObjectiveGroup g in objectiveGroups)
+        {
             g.CheckAvailable();
             g.UpdateText();
         }

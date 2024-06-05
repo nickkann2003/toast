@@ -84,7 +84,8 @@ public class NewHand : MonoBehaviour
             }
 
             // Update drop objectives
-            dropEvent.RaiseEvent(heldObject.GetComponent<NewProp>(), 1);
+            if(dropEvent != null)
+                dropEvent.RaiseEvent(heldObject.GetComponent<NewProp>(), 1);
             
             heldObject.transform.parent = null;
             heldObject = null;
@@ -121,7 +122,11 @@ public class NewHand : MonoBehaviour
             }
 
             // Objective calls
-            pickUpEvent.RaiseEvent(heldObject.GetComponent<NewProp>(), 1);
+            if (pickUpEvent != null)
+                pickUpEvent.RaiseEvent(heldObject.GetComponent<NewProp>(), 1);
+            
+
+            
             
             // Set object transform
             heldObject.transform.parent = this.gameObject.transform;

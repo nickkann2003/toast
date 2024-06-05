@@ -19,11 +19,6 @@ public class SO_Objective : ScriptableObject
     [SerializeField]
     private string unavailableText = "???";
 
-    [Header("Progress Info")]
-    [SerializeField]
-    private bool complete;
-    [SerializeField]
-    private bool available;
 
     [Header("Requirements")]
     [SerializeField]
@@ -32,6 +27,12 @@ public class SO_Objective : ScriptableObject
     [Header("ID")]
     [SerializeField]
     private int id;
+
+    [Header("Progress Info")]
+    [SerializeField]
+    private bool complete;
+    [SerializeField]
+    private bool available;
 
     // ------------------------------- Properties -------------------------------
     public string ObjectiveName { get => objectiveName; set => objectiveName = value; }

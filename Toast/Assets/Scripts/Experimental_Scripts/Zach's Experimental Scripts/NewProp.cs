@@ -142,7 +142,8 @@ public class NewProp : MonoBehaviour
             AddAttribute(PropFlags.Toast);
 
             // Trigger Objectives
-            createObjectEvent.RaiseEvent(this, 1);
+            if(createObjectEvent != null)
+                createObjectEvent.RaiseEvent(this, 1);
         }
 
         if (toastiness > .9f && !attributes.HasFlag(PropFlags.Burnt)) // Burnt event
@@ -151,7 +152,8 @@ public class NewProp : MonoBehaviour
             AddAttribute(PropFlags.Burnt);
 
             // Trigger Objectives
-            createObjectEvent.RaiseEvent(this, 1);
+            if(createObjectEvent != null)
+                createObjectEvent.RaiseEvent(this, 1);
         }
         if (!attributes.HasFlag(PropFlags.OnFire) && toastiness > fireTrigger && firePrefab != null) // On Fire event
         {
@@ -166,7 +168,8 @@ public class NewProp : MonoBehaviour
             AddAttribute(PropFlags.OnFire);
 
             // Trigger objectives
-            createObjectEvent.RaiseEvent(this, 1);
+            if(createObjectEvent != null)
+                createObjectEvent.RaiseEvent(this, 1);
             
             // Add flaming object
             FireEndingManager.instance.addFireObject(gameObject);
@@ -181,7 +184,8 @@ public class NewProp : MonoBehaviour
         {
             Destroy(gameObject.transform.GetChild(0).gameObject);
             attributes &= ~PropFlags.Frozen;
-            thawObjectEvent.RaiseEvent(this, 1);
+            if(thawObjectEvent != null)
+                thawObjectEvent.RaiseEvent(this, 1);
         }
     }
 
