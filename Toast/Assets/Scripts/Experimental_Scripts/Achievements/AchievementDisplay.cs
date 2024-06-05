@@ -18,25 +18,28 @@ public class AchievementDisplay : MonoBehaviour
     bool isHiddenAchievement;
 
     [SerializeField]
-    TextMesh nameText, descriptionText, progressText;
+    TextMeshProUGUI nameText, descriptionText, progressText;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        if(!isHiddenAchievement)
+        if(associatedAchievement != null)
         {
-            nameText.text = "???";
-            descriptionText.text = "???";
-        }
+            if (!isHiddenAchievement)
+            {
+                nameText.text = "???";
+                descriptionText.text = "???";
+            }
 
-        if(associatedAchievement.HasNumericGoal)
-        {
-            progressText.text = "?/?";
-        }
-        else
-        {
-            progressText.text = string.Empty;
+            if (associatedAchievement.HasNumericGoal)
+            {
+                progressText.text = "?/?";
+            }
+            else
+            {
+                progressText.text = string.Empty;
+            }
         }
     }
 
