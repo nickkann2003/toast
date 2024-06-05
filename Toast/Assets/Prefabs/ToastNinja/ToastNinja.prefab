@@ -52,28 +52,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toastObj: {fileID: 2950159470662937063, guid: ad3fbf94d4a4fd54aae412cb046d6f7c,
     type: 3}
-  jamObj: {fileID: 114980983469498281, guid: d91ff8f81b2351d49b2978563bbcb3e6, type: 3}
+  jamObj: {fileID: 9151275387196103944, guid: f82350a8842efb4478fefe87a1f7d825, type: 3}
   burningObj: {fileID: 3768063983184406459, guid: c053f85a826a07647acde7340a0657cb,
+    type: 3}
+  swordPrefab: {fileID: 4936896631024130430, guid: 207260535d5f673429238ac8a35076b1,
     type: 3}
   timeRandMin: 4
   timeRandMax: 5
   toastNinjaObjects: {fileID: 0}
   launchObjects:
-  - {fileID: 4351004435381671773}
-  - {fileID: 767180766718719796}
-  - {fileID: 7403907872228681942}
-  - {fileID: 8457902917808724735}
-  - {fileID: 1901033109506388687}
   - {fileID: 4993865058958895486}
   - {fileID: 4617568679173412072}
   - {fileID: 715512657565964448}
-  - {fileID: 1036838599976851066}
-  - {fileID: 2761537297870140362}
+  - {fileID: 1901033109506388687}
+  - {fileID: 8457902917808724735}
+  - {fileID: 7403907872228681942}
+  - {fileID: 767180766718719796}
+  - {fileID: 4351004435381671773}
   - {fileID: 5924414423709942607}
+  - {fileID: 2761537297870140362}
+  - {fileID: 1036838599976851066}
+  firingPatterns:
+  - {fileID: 11400000, guid: c8b59a53b9b1f9e408a0ac4b4645555e, type: 2}
+  - {fileID: 11400000, guid: 900eaab0b40790941a27a8967557f6e9, type: 2}
+  - {fileID: 11400000, guid: 929162973fa7e3f49a38ad91b47f6ddf, type: 2}
+  - {fileID: 11400000, guid: 5aeff8b9518b22a44b3f33887a824a1b, type: 2}
   destroyerVolumes:
   - {fileID: 2917319131460006124}
-  swordPrefab: {fileID: 4936896631024130430, guid: 207260535d5f673429238ac8a35076b1,
-    type: 3}
   moveBlocker: {fileID: 7079829406258092727}
 --- !u!1 &6422219837421747326
 GameObject:
@@ -395,10 +400,25 @@ PrefabInstance:
       propertyPath: launchVelocity
       value: 600
       objectReference: {fileID: 0}
+    - target: {fileID: 3434925650494712846, guid: b5d59bbdffae9b8458dca0260f01635d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9659258
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434925650494712846, guid: b5d59bbdffae9b8458dca0260f01635d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.2588191
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434925650494712846, guid: b5d59bbdffae9b8458dca0260f01635d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3459128049545606734, guid: b5d59bbdffae9b8458dca0260f01635d,
         type: 3}
       propertyPath: launchVelocity
-      value: 525
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 4928071242065725131, guid: b5d59bbdffae9b8458dca0260f01635d,
         type: 3}
@@ -717,7 +737,22 @@ PrefabInstance:
     - target: {fileID: 1041468692370222468, guid: 2de70d6eb24ccda43a00298b2f8a804b,
         type: 3}
       propertyPath: launchVelocity
-      value: 525
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 3189013112309730057, guid: 2de70d6eb24ccda43a00298b2f8a804b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9659259
+      objectReference: {fileID: 0}
+    - target: {fileID: 3189013112309730057, guid: 2de70d6eb24ccda43a00298b2f8a804b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.258819
+      objectReference: {fileID: 0}
+    - target: {fileID: 3189013112309730057, guid: 2de70d6eb24ccda43a00298b2f8a804b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 5156320886301712844, guid: 2de70d6eb24ccda43a00298b2f8a804b,
         type: 3}

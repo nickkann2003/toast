@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Eat Effect", menuName = "Prop/Use Effect/Eat", order = 53)]
-public class UE_Eat : UseEffect
+public class US_Eat : UseEffect
 {
     // bool
     public bool invokeEvents;
