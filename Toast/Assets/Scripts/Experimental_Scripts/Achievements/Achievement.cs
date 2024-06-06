@@ -64,6 +64,11 @@ public class Achievement : ScriptableObject
 
     public bool StartsHidden { get { return startsHidden; } }
 
+    private void OnEnable()
+    {
+        isUnlocked = false;
+    }
+
     /* // Constructors
     /// <summary>
     /// Non-stat-based achievements with only a name and descriptiom
