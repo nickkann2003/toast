@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
+  m_Name: 17_Oven Objectives 1
+  m_EditorClassIdentifier: 
+  objectiveName: High Volume Toasting
+  description: What's that red button for?
+  completeText: Flaming toast is a fire hazard, be sure to clean it all up!
+  unavailableText: Finish Fridge to unlock
+  requirements:
+  - targetAttributes: 536870913
+    listener:
+      gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
+      response:
+        m_PersistentCalls:
+          m_Calls: []
+    goalName: Eat Toast
+    goal: 50
+    exactValueGoal: 0
+    alwaysListening: 0
+    id: 0
+    listening: 1
+  id: 17
+  complete: 0
+  available: 1
