@@ -19,6 +19,16 @@ public class ObjectiveManager : MonoBehaviour
 
     private string objSerialPath = "Assets/Resources/objs.txt";
 
+    [Header("Complete Objectives by ID")]
+    [SerializeField]
+    private int objectiveToComplete;
+    [SerializeField, Button]
+    private void ForceCompleteSpecificObjective()
+    {
+        ForceCompleteObjective(objectiveToComplete);
+        objectiveToComplete++;
+    }
+
     // ------------------------------- Buttons -------------------------------
 
     /// <summary>

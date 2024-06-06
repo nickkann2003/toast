@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,6 +28,13 @@ public class Objective
 
     [Header("Unity Events")]
     public UnityEvent completionEvents;
+    
+    [Button, SerializeField]
+    private void ForceCompleteAll()
+    {
+        ForceCompleteObjective();
+    }
+
 
     // ------------------------------- Properties -------------------------------
     public bool Complete { get => objectiveInfo.Complete; }
