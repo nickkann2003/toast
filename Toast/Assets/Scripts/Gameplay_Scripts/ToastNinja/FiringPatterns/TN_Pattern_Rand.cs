@@ -20,9 +20,12 @@ public class TN_Pattern_Rand : TN_FiringPatterns
     {
         LaunchObject[] launchers = toastNinja.LaunchObjects;
 
-        int launcher = Random.Range(0, launchers.Length);
+        int launcher = Random.Range(Min, Max);
 
-        launchers[launcher].Launch(toastNinja.RandPrefab());
+        if (ValidateIndex(launcher))
+        {
+            launchers[launcher].Launch(toastNinja.RandPrefab());
+        }
 
         amount--;
 
@@ -32,6 +35,6 @@ public class TN_Pattern_Rand : TN_FiringPatterns
             toastNinja.StartCoroutine(Fire(toastNinja, amount));
         }
 
-        yield return new WaitForSeconds(0);
+        yield return null;
     }
 }

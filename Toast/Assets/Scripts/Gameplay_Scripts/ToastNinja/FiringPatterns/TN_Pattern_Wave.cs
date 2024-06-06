@@ -28,15 +28,19 @@ public class TN_Pattern_Wave : TN_FiringPatterns
 
         launchers[index].Launch(toastNinja.RandPrefab());
 
-        yield return new WaitForSeconds(timeBetweenShots);
+        
         if (ValidateIndex(index - step))
         {
+            yield return new WaitForSeconds(timeBetweenShots);
             toastNinja.StartCoroutine(Fire(toastNinja, index - step, -1));
         }
         if (ValidateIndex(index + step))
         {
+            yield return new WaitForSeconds(timeBetweenShots);
             toastNinja.StartCoroutine(Fire(toastNinja, index + step, 1));
         }
+
+        yield return null;
     }
 
     IEnumerator Fire(ToastNinja toastNinja, int index, int polarity)
@@ -53,6 +57,6 @@ public class TN_Pattern_Wave : TN_FiringPatterns
             toastNinja.StartCoroutine(Fire(toastNinja, index, polarity * step));
         }
 
-        yield return new WaitForSeconds(0);
+        yield return null;
     }
 }
