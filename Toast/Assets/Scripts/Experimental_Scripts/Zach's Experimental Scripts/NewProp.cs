@@ -61,6 +61,15 @@ public class NewProp : MonoBehaviour
         }
 
         CreateAndUpdateRigidbody();
+
+        float colorStrength = toastiness;
+        if (colorStrength > 1)
+        {
+            colorStrength = 1;
+        }
+
+        // Set renderer color
+        gameObject.GetComponent<Renderer>().material.color = initialColor + (colorOffset * colorStrength);
     }
 
     // Update is called once per frame
