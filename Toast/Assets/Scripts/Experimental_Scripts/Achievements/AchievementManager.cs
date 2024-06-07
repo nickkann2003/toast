@@ -45,7 +45,7 @@ public class AchievementManager : MonoBehaviour
     TextMeshProUGUI bannerText;
 
     //Temporary before animation, remove later********
-    int bannerShowTime;
+    float bannerShowTime;
 
     // Basic singleton
     private void Awake()
@@ -63,6 +63,8 @@ public class AchievementManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bannerShowTime += Time.deltaTime;
+
         if(notificationBanner.activeSelf == true && bannerShowTime >= 3)
         {
             notificationBanner.SetActive(false);
@@ -82,6 +84,7 @@ public class AchievementManager : MonoBehaviour
             achievement.IsUnlocked = true;
             Debug.Log("Achievement Unlocked: " + achievement.AchievementName + ": " + achievement.Description);
             unlockedAchievements.Add(achievement);
+            achievement.MenuSquare.displayImage.sprite = achievement.MenuSquare.unlockedSprite;
             PlayNotification(achievement);
         }
     }
@@ -133,14 +136,18 @@ public class AchievementManager : MonoBehaviour
         for(int i = 0; i < achievements.Count; i++)
         {
             GameObject newItem = Instantiate(UIPrefab);
+
+            // Link up references between achievement and its display
             newItem.GetComponent<AchievementDisplay>().associatedAchievement = achievements[i];
+            achievements[i].MenuSquare = newItem.GetComponent<AchievementDisplay>();
+
             newItem.transform.SetParent(menuPanel.transform, false);
         }
     }
 
     void PlayNotification(Achievement achievement)
     {
-        bannerText.text = $"Achievement Unlocked: {achievement.AchievementName}: {achievement.Description}";
+        bannerText.text = $"Achievement Unlocked: {achievement.AchievementName} ({achievement.Description})";
         // Play a sound here
         notificationBanner.SetActive(true);
         bannerShowTime = 0;
