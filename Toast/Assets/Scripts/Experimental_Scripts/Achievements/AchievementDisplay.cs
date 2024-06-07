@@ -22,9 +22,9 @@ public class AchievementDisplay : MonoBehaviour
     TextMeshProUGUI nameText, descriptionText, progressText;
 
     [SerializeField]
-    Sprite lockedSprite, unlockedSprite;
+    public Sprite lockedSprite, unlockedSprite;
 
-    UnityEngine.UI.Image displayImage;
+    public UnityEngine.UI.Image displayImage;
 
 
     // Start is called before the first frame update

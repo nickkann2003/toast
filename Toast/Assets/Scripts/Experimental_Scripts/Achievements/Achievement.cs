@@ -38,6 +38,8 @@ public class Achievement : ScriptableObject
     [SerializeField]
     private bool startsHidden;
 
+    private AchievementDisplay menuSquare;
+
     public int AchievementProgress
     {
         get { return currentCount; }
@@ -63,6 +65,12 @@ public class Achievement : ScriptableObject
     public int ID { get { return id; } }
 
     public bool StartsHidden { get { return startsHidden; } }
+
+    public AchievementDisplay MenuSquare
+    {
+        get { return menuSquare; }
+        set { menuSquare = value; }
+    }
 
     private void OnEnable()
     {

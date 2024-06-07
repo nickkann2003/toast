@@ -5507,6 +5507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 476747431}
   - component: {fileID: 476747432}
+  - component: {fileID: 476747433}
   m_Layer: 0
   m_Name: AchievementManager
   m_TagString: Untagged
@@ -5554,6 +5555,35 @@ MonoBehaviour:
   menuPanel: {fileID: 1662942522}
   notificationBanner: {fileID: 1140447888}
   bannerText: {fileID: 1726223291}
+--- !u!114 &476747433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476747430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcbdeb1d87dc9c641b95e70c5a5093b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEventListeners:
+  - gameEvent: {fileID: 11400000, guid: 687cd3439350ae849b273efb34ef82f9, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 476747432}
+          m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
+          m_MethodName: TutorialCleared
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &477186068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21445,6 +21475,18 @@ MonoBehaviour:
           - m_Target: {fileID: 1135898837}
             m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
             m_MethodName: TutorialToGame
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 11400000, guid: 687cd3439350ae849b273efb34ef82f9, type: 2}
+            m_TargetAssemblyTypeName: VoidGameEvent, Assembly-CSharp
+            m_MethodName: RaiseEvent
             m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
