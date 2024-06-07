@@ -1024,12 +1024,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 99921142}
-  m_LocalRotation: {x: -0, y: 0.56283617, z: -0, w: 0.8265685}
-  m_LocalPosition: {x: -1, y: -14.06, z: 4.34}
-  m_LocalScale: {x: 5.0709286, y: 5.0709286, z: 5.0709286}
+  m_LocalRotation: {x: -0, y: 0.8265685, z: -0, w: -0.56283617}
+  m_LocalPosition: {x: -0.49300003, y: -14.470801, z: 0.1975255}
+  m_LocalScale: {x: 6.085114, y: 6.0851145, z: 6.085114}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1486272783}
+  m_Father: {fileID: 1819411563}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 68.504, z: 0}
 --- !u!65 &99921144
@@ -22012,6 +22012,8 @@ MonoBehaviour:
       activatables:
       - {fileID: 1494823208}
       - {fileID: 627457049}
+      - {fileID: 1819411562}
+      - {fileID: 627457049}
       completionEvents:
         m_PersistentCalls:
           m_Calls: []
@@ -22850,12 +22852,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1486272783 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6818368286448217010, guid: b96f8822def7310459f14263ed204367,
-    type: 3}
-  m_PrefabInstance: {fileID: 2122773135}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1490723303
 GameObject:
   m_ObjectHideFlags: 0
@@ -28047,6 +28043,7 @@ Transform:
   - {fileID: 1902940981}
   - {fileID: 1739308694}
   - {fileID: 1017388132}
+  - {fileID: 99921143}
   m_Father: {fileID: 1040521847}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -38976,10 +38973,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1974292584}
-    - targetCorrespondingSourceObject: {fileID: 6818368286448217010, guid: b96f8822def7310459f14263ed204367,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 99921143}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8640145604440160602, guid: b96f8822def7310459f14263ed204367,
         type: 3}
