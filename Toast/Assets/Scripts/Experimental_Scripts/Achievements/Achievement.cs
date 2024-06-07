@@ -34,6 +34,10 @@ public class Achievement : ScriptableObject
     [SerializeField]
     private int id;
 
+    [Header("Achievement Starts Hidden in Menu?")]
+    [SerializeField]
+    private bool startsHidden;
+
     public int AchievementProgress
     {
         get { return currentCount; }
@@ -57,6 +61,13 @@ public class Achievement : ScriptableObject
     }
 
     public int ID { get { return id; } }
+
+    public bool StartsHidden { get { return startsHidden; } }
+
+    private void OnEnable()
+    {
+        isUnlocked = false;
+    }
 
     /* // Constructors
     /// <summary>
