@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
+  m_Name: 8_Toast Ninja Objective 2
+  m_EditorClassIdentifier: 
+  objectiveName: Toast it Up!
+  description: Slice, slice, slice!
+  completeText: You are a Toast Ninja master!
+  unavailableText: ???
+  requirements:
+  - targetAttributes: 0
+    listener:
+      gameEvent: {fileID: 11400000, guid: bace4ac0805980a46a61fa39ad9af797, type: 2}
+      response:
+        m_PersistentCalls:
+          m_Calls: []
+    goalName: Score 50 Points
+    goal: 50
+    exactValueGoal: 0
+    alwaysListening: 1
+    id: 0
+    listening: 1
+  id: 8
+  complete: 0
+  available: 1

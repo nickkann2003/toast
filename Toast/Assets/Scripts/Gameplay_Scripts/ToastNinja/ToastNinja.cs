@@ -38,6 +38,8 @@ public class ToastNinja : MonoBehaviour
     private GameObject toastNinjaObjects;
     [SerializeField]
     private LaunchObject[] launchObjects;
+    [SerializeField]
+    private TN_FiringPatterns[] firingPatterns;
 
     [Header("Destroyer Volumes")]
     [SerializeField]
@@ -47,6 +49,12 @@ public class ToastNinja : MonoBehaviour
 
     [SerializeField]
     private GameObject moveBlocker;
+
+    // ------------------------------- Properties -------------------------------
+    public LaunchObject[] LaunchObjects
+    {
+        get { return launchObjects; }
+    }
 
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
@@ -69,7 +77,8 @@ public class ToastNinja : MonoBehaviour
                 
                 if (timer <= 0)
                 {
-                    StartCoroutine(RapidFire(5));
+                    //StartCoroutine(RapidFire(5));
+                    firingPatterns[0].Launch(this);
                     timer = Random.Range(timeRandMin, timeRandMax);
                 }
 
@@ -77,43 +86,48 @@ public class ToastNinja : MonoBehaviour
         }
     }
 
-    // Fires toast recursively
-    IEnumerator RapidFire(int amount)
-    {
-        if (amount > 0)
-        {
-            LaunchToast();
-            yield return new WaitForSeconds(.4f);
-            StartCoroutine(RapidFire(amount - 1));
-        }
-        else
-        {
-            yield return new WaitForSeconds(.1f);
-        }
-    }
+    //// Fires toast recursively
+    //IEnumerator RapidFire(int amount)
+    //{
+    //    if (amount > 0)
+    //    {
+    //        LaunchToast();
+    //        yield return new WaitForSeconds(.4f);
+    //        StartCoroutine(RapidFire(amount - 1));
+    //    }
+    //    else
+    //    {
+    //        yield return new WaitForSeconds(.1f);
+    //    }
+    //}
 
     // Randomly creates a wave of items
     void LaunchToast()
     {
-        float rand = Random.value;
-        if (rand < .8)
-        {
-            launchObjects[Random.Range(0, launchObjects.Length)].Launch(toastObj);
-        }
-        else if(rand < .95)
-        {
-            launchObjects[Random.Range(0, launchObjects.Length)].Launch(jamObj);
-        }
-        else
-        {
-            launchObjects[Random.Range(0, launchObjects.Length)].Launch(burningObj);
-        }
+        launchObjects[Random.Range(0, launchObjects.Length)].Launch(RandPrefab());
 
         //for (int i = 0; i < launchObjects.Length; i++)
         //{
         //    launchObjects[i].Use();
         //}
         //launchObjects[Random.Range(0, launchObjects.Length)].Launch();
+    }
+
+    public GameObject RandPrefab()
+    {
+        float rand = Random.value;
+        if (rand < .8)
+        {
+            return toastObj;
+        }
+        else if (rand < .95)
+        {
+            return jamObj;
+        }
+        else
+        {
+            return burningObj;
+        }
     }
 
     // Toggles toast ninja active state

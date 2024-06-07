@@ -9,6 +9,12 @@ public class NewHand : MonoBehaviour
     private GameObject heldObject;
     private IUseStrategy _useStrategy;
 
+    [Header("Event References")]
+    [SerializeField]
+    private PropIntGameEvent pickUpEvent;
+    [SerializeField]
+    private PropIntGameEvent dropEvent;
+
     // ------------------------------- Functions -------------------------------
     public void Update()
     {
@@ -72,13 +78,14 @@ public class NewHand : MonoBehaviour
             heldObject.GetComponent<NewProp>()?.RemoveAttribute(PropFlags.InHand);
             
             // Check if dropping in inventory
-            if (StationManager.instance.playerLocation == InventoryManager.instance.InventoryStation)
+            if (StationManager.instance.playerLocation.stationLabel == Stations.Inventory)
             {
                 InventoryManager.instance.AddItemToInventory(itemToReturn);
             }
 
             // Update drop objectives
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.DropObject, itemToReturn.GetComponent<NewProp>().attributes, true));
+            if(dropEvent != null)
+                dropEvent.RaiseEvent(heldObject.GetComponent<NewProp>(), 1);
             
             heldObject.transform.parent = null;
             heldObject = null;
@@ -109,13 +116,17 @@ public class NewHand : MonoBehaviour
             _useStrategy = heldObject.GetComponent<IUseStrategy>();
             
             // Inventory checks
-            if (StationManager.instance.playerLocation == InventoryManager.instance.InventoryStation)
+            if (StationManager.instance.playerLocation.stationLabel == Stations.Inventory)
             {
                 InventoryManager.instance.RemoveItemFromInventory(itemToPickup);
             }
 
             // Objective calls
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.PickUpObject, heldObject.GetComponent<NewProp>().attributes, true));
+            if (pickUpEvent != null)
+                pickUpEvent.RaiseEvent(heldObject.GetComponent<NewProp>(), 1);
+            
+
+            
             
             // Set object transform
             heldObject.transform.parent = this.gameObject.transform;

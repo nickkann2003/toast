@@ -16,7 +16,12 @@ public class Door : MonoBehaviour
     public Vector3 minRot; // Closed
     public Vector3 maxRot; // Open
     public float speed = 3;
-    public bool isOpen;
+
+    [Header("------------ Bool Values ------------")]
+    [SerializeField]
+    private bool clickable;
+    [SerializeField, ReadOnly]
+    private bool isOpen;
 
     [SerializeField, Button]
     private void setDoorOpen() { rotator.transform.localEulerAngles = maxRot; isOpen = true; }
@@ -87,16 +92,18 @@ public class Door : MonoBehaviour
         isOpen = false;
     }
 
-    //// On mouse down, toggle open - POTENTIALLY DESIRED ON CLICK FUNCTIONALITY
-    //private void OnMouseDown()
-    //{
-    //    if (!isOpen)
-    //    {
-    //        Open();
-    //    }
-    //    else
-    //    {
-    //        Close();
-    //    }
-    //}
+    // On mouse down, toggle open - POTENTIALLY DESIRED ON CLICK FUNCTIONALITY
+    private void OnMouseDown()
+    {
+        if (!clickable) return;
+
+        if (!isOpen)
+        {
+            Open();
+        }
+        else
+        {
+            Close();
+        }
+    }
 }

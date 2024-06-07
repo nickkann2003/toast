@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Rigidbody", menuName = "Prop/Rigidbody", order = 53)] // adds Rigidbody as an asset in the asset menu under the Prop menu
 public class PD_Rigidbody : ScriptableObject
 {
-    [MinValue(.01f)]
+    [MinValue(.001f)]
     public float mass = 1.0f;
     [MinValue(0)]
     public float drag = .5f;

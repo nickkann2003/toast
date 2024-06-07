@@ -8,48 +8,48 @@ using UnityEngine;
 public class ObjectiveGroup
 {
     // ------------------------------- Variables -------------------------------
-    [Header("Display Name")]
     public string name;
-
-    [Header("Objectives")]
     public List<Objective> objectives;
-
-    [Header("Displays")]
     public List<TextMeshPro> displays;
     public List<TextMeshProUGUI> displaysUI;
 
-    private float completedObjectives = 0;
-    private float oldCompletedObjectives = 0; // Used to check if some new objective completed
-
     // ------------------------------- Functions -------------------------------
-    // Update Objectives
-    public void UpdateObjectives(RequirementEvent e)
+    /// <summary>
+    /// Runs when this objective group is loaded
+    /// </summary>
+    public void OnLoad()
     {
-        completedObjectives = 0;
-        for(int i = objectives.Count - 1; i >= 0; i --)
+        foreach(Objective o in objectives)
         {
-            Objective obj = objectives[i];
-            obj.UpdateObjective(e);
-            if (obj.CheckComplete())
-            {
-                completedObjectives++;
-            }
+            o.OnLoad();
         }
-        for (int i = objectives.Count - 1; i >= 0; i--)
-        {
-            Objective obj = objectives[i];
-            obj.CheckAvailable();
-            obj.CheckListening();
-        }
-        if (completedObjectives > oldCompletedObjectives)
-        {
-            AudioManager.instance.PlayOneShotSound(AudioManager.instance.objectiveComplete, 0.3f, 1);
-            Debug.LogWarning("new objective complete");
-        }
-        oldCompletedObjectives = completedObjectives;
-        UpdateText();
     }
 
+    /// <summary>
+    /// Has each objective check if it is available
+    /// </summary>
+    public void CheckAvailable()
+    {
+        foreach (Objective o in objectives)
+        {
+            o.CheckAvailable();
+        }
+    }
+
+    /// <summary>
+    /// Has each objective check if it is complete
+    /// </summary>
+    public void CheckAllComplete()
+    {
+        foreach(Objective o in objectives)
+        {
+            o.CheckComplete();
+        }
+    }
+
+    /// <summary>
+    /// Updates the display texts with objective info
+    /// </summary>
     public void UpdateText()
     {
         foreach (TextMeshPro display in displays)
@@ -63,6 +63,9 @@ public class ObjectiveGroup
         }
     }
 
+    /// <summary>
+    /// To String, formatted for user display
+    /// </summary>
     new public string ToString
     {
         get
@@ -74,7 +77,11 @@ public class ObjectiveGroup
             {
                 if (obj.CheckAvailable())
                 {
-                    value += "\n- " + "<size=-1>" + obj.ToString + "</size>";
+                    value += "\n" + "<size=-1>" + obj.ToString + "</size>";
+                }
+                else
+                {
+                    value += "\n" + "<size=-2>" + obj.ToString + "</size>";
                 }
             }
             return value;
