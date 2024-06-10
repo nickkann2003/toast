@@ -26,6 +26,26 @@ public class AchievementDisplay : MonoBehaviour
 
     public UnityEngine.UI.Image displayImage;
 
+    public string NameText
+    {
+        get { return nameText.text; }
+        set { nameText.text = value; }
+    }
+
+    public string DescriptionText
+    {
+        get { return descriptionText.text; }
+        set { descriptionText.text = value; }
+    }
+
+    public string ProgressText
+    {
+        get { return progressText.text; }
+        set { progressText.text = value; }
+    }
+
+    public bool IsHiddenAchievement { get { return isHiddenAchievement; } }
+
 
     // Start is called before the first frame update
     void Start()

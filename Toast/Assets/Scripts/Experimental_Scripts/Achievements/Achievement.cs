@@ -74,7 +74,15 @@ public class Achievement : ScriptableObject
 
     private void OnEnable()
     {
+        // Set unlocked to false by default
         isUnlocked = false;
+
+        // Set progress to 0 by default
+        if(this.HasNumericGoal)
+        {
+            currentCount = 0;
+        }
+        
     }
 
     /* // Constructors

@@ -109,19 +109,32 @@ public class AchievementManager : MonoBehaviour
     /// <summary>
     /// Achievements Relating to eating
     /// </summary>
-    public void ReceivedEat()
+    public void ReceivedEat(NewProp prop, int increment)
     {
-        // Needs a way to check what is being eaten
-        IncrementAchievement(ACHIEVEMENT_EAT_5_BREAD);
+        // BREAD =======================================
+        if(prop.HasAttribute(PropFlags.Bread))
+        {
+            IncrementAchievement(ACHIEVEMENT_EAT_5_BREAD);
+        }
+       
     }
 
     void IncrementAchievement(Achievement achievement)
     {
         // Check that achievement has goal and that it is greater than 0
-        if(achievement.HasNumericGoal && achievement.AchievementGoal > 0)
+        if(achievement.HasNumericGoal && achievement.AchievementGoal > 0 && !achievement.IsUnlocked)
         {
             // Increase progress
             achievement.AchievementProgress++;
+
+            // Update visual progress
+            achievement.MenuSquare.ProgressText = $"{achievement.AchievementProgress}/{achievement.AchievementGoal}";
+
+            if(achievement.MenuSquare.IsHiddenAchievement)
+            {
+                achievement.MenuSquare.NameText = achievement.AchievementName;
+                achievement.MenuSquare.DescriptionText = achievement.Description;
+            }
 
             // If goal has been reached, unlock
             if(achievement.AchievementProgress >= achievement.AchievementGoal)
