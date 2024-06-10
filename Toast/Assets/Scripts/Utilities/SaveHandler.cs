@@ -70,9 +70,9 @@ public class SaveHandler : MonoBehaviour
         SetCurrentSaveFileByID(0);
         file1Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
         
-        SaveFile1.text = file1Name == "" ? "NEW SAVE" : file1Name;
-        SaveFile2.text = file2Name == "" ? "NEW SAVE" : file2Name;
-        SaveFile3.text = file3Name == "" ? "NEW SAVE" : file3Name;
+        SaveFile1.text = file1Name.Equals("") ? "NEW SAVE" : file1Name;
+        SaveFile2.text = file2Name.Equals("") ? "NEW SAVE" : file2Name;
+        SaveFile3.text = file3Name.Equals("") ? "NEW SAVE" : file3Name;
     }
 
     /// <summary>
@@ -83,6 +83,25 @@ public class SaveHandler : MonoBehaviour
         string objectiveData = ObjectiveManager.instance.GetObjectiveStorageString();
 
         SaveObjectiveData(objectiveData);
+    }
+
+    /// <summary>
+    /// Performs all functions for loading the currently selected save file
+    /// </summary>
+    public void LoadSaveFile()
+    {
+        if (currentSaveFileName.Equals("")){
+            UIManager.instance.CloseFileSelectMenu();
+            UIManager.instance.OpenFileNamingMenu();
+        }
+        else
+        {
+            UIManager.instance.CloseFileNamingMenu();
+            UIManager.instance.CloseFileSelectMenu();
+            GameManager.Instance.MainMenuToTutorial();
+
+            ObjectiveManager.instance.LoadObjectives(ReadObjectiveData());
+        }
     }
 
     /// <summary>
@@ -165,6 +184,7 @@ public class SaveHandler : MonoBehaviour
     public void SetCurrentSaveFileByID(int fileNum)
     {
         currentSaveFile = fileNum;
+        currentSaveFileName = GetCurrentFileInfo().Split(fileDataParser)[0];
     }
 
     /// <summary>

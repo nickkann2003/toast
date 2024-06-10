@@ -72,6 +72,24 @@ public class Objective
         return true;
     }
 
+    public void SetRequirement(int rId, bool complete, int progress)
+    {
+        if (complete)
+        {
+            objectiveInfo.GetRequirement(rId).ForceComplete();
+        }
+        else
+        {
+            Requirement r = objectiveInfo.GetRequirement(rId);
+            if(r == null)
+            {
+                return;
+            }
+
+            r.Current = progress;
+        }
+    }
+
     // Check if this objective is complete
     public bool CheckComplete()
     {

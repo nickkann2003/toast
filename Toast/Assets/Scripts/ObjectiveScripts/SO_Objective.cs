@@ -99,6 +99,18 @@ public class SO_Objective : ScriptableObject
         }
     }
 
+    public Requirement GetRequirement(int id)
+    {
+        foreach(Requirement r in requirements)
+        {
+            if(r.id == id)
+            {
+                return r;
+            }
+        }
+        return null;
+    }
+
     /// <summary>
     /// Force completes this objective and all its requirements
     /// </summary>

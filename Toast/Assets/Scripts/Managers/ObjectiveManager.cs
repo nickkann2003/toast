@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class ObjectiveManager : MonoBehaviour
@@ -29,40 +30,11 @@ public class ObjectiveManager : MonoBehaviour
         objectiveToComplete++;
     }
 
-    // ------------------------------- Buttons -------------------------------
-
-    /// <summary>
-    /// WARNING: This will reset all objective IDs, this can cause potential issues with
-    /// saved file data. Make sure you know what you are doing before pressing this
-    /// </summary>
-    //public bool ResetObjectives = false;
-    //[SerializeField, Button, EnableIf("ResetObjectives")]
-    //private void DONOTPRESSResetObjectiveSerialization() 
-    //{ 
-    //    foreach(ObjectiveGroup g in groups)
-    //    {
-    //        foreach(Objective o in g.objectives)
-    //        {
-    //            o.ID = -1;
-    //        }
-    //    }
-    //    // Write out reset cId
-    //    StreamWriter wr = new StreamWriter(objSerialPath);
-    //    wr.Write(0);
-    //    wr.Close();
-    //}
-
-    /// <summary>
-    /// Button for Serializing all Objectives, gives an ID to all OBJS without one
-    /// </summary>
-    //[SerializeField, Button]
-    //private void SerializeAllObjectives() { SerializeObjectives(); }
-
-    //[SerializeField, Button]
-    //private void CompileStorageString() { GetObjectiveStorageString(); }
-    //
-    //[SerializeField, Button]
-    //private void SaveObjectiveData() { SaveHandler.instance.SaveObjectiveData(GetObjectiveStorageString()); }
+    // Save Info
+    private char objectiveMarker = '~';
+    private char spacer = '_';
+    private char requirementStartMarker = '[';
+    private char requirementSpace = ',';
 
     // ------------------------------- Properties -------------------------------
     public Dictionary<int, Objective> ObjectivesById { get => objectivesById; set => objectivesById = value; }
@@ -147,42 +119,6 @@ public class ObjectiveManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the interal IDs of each objective
-    /// </summary>
-    //private void SerializeObjectives()
-    //{
-    //    // Read in the file and get the current ID of objectives
-    //    
-    //    StreamReader sr = new StreamReader(objSerialPath);
-    //    string firstLine = sr.ReadLine();
-    //    int cId = int.Parse(firstLine);
-    //    sr.Close();
-    //
-    //    List<int> foundIds = new List<int>();
-    //
-    //    foreach(ObjectiveGroup g in groups)
-    //    {
-    //        foreach (Objective o in g.objectives)
-    //        {
-    //            if (o.ID == -1 || foundIds.Contains(o.ID))
-    //            {
-    //                o.ID = cId;
-    //                cId += 1;
-    //            }
-    //            o.SerializeRequirements();
-    //            foundIds.Add(o.ID);
-    //        }
-    //    }
-    //
-    //    // Write out the new cID of objectives
-    //    StreamWriter wr = new StreamWriter(objSerialPath);
-    //    wr.Write(cId);
-    //    wr.Close();
-    //
-    //    Debug.Log("Serialize Success! Next ID: " + cId);
-    //}
-
-    /// <summary>
     /// Returns a formatted string for saving Objective information
     /// </summary>
     /// <returns></returns>
@@ -190,11 +126,6 @@ public class ObjectiveManager : MonoBehaviour
     {
         SortObjectivesById();
         string formattedString = string.Empty;
-
-        char objectiveMarker = '~';
-        char spacer = '_';
-        char requirementStartMarker = '[';
-        char requirementSpace = ',';
 
         foreach(Objective obj in objectivesById.Values)
         {
@@ -231,6 +162,42 @@ public class ObjectiveManager : MonoBehaviour
             foreach(Objective o in g.objectives)
             {
                 objectivesById[o.ID] = o;
+            }
+        }
+    }
+
+    public void LoadObjectives(string fileDat)
+    {
+        SortObjectivesById();
+        string[] allObjs = fileDat.Split(objectiveMarker);
+        foreach (string ob in allObjs)
+        {
+            if (ob.Equals(""))
+            {
+                continue;
+            }
+
+            string[] tempObj = ob.Split(requirementStartMarker);
+            string[] objDatSplit = tempObj[0].Split(spacer);
+            int tId = int.Parse(objDatSplit[0]);
+            bool tComplete = objDatSplit[1].Equals("1") ? true : false;
+            bool tAvailable = objDatSplit[2].Equals("1") ? true : false;
+
+            if (tComplete)
+            {
+                ObjectivesById[tId].ForceCompleteObjective();
+                continue;
+            }
+
+            if (tAvailable)
+            {
+                string[] reqs = tempObj[1].Split(requirementSpace);
+                foreach(string req in reqs)
+                {
+                    string[] reqsSplit = req.Split(spacer);
+                    Debug.Log(req);
+                    objectivesById[tId].SetRequirement(int.Parse(reqsSplit[0]), (reqsSplit[1].Equals("1") ? true : false), int.Parse(reqsSplit[2]));
+                }
             }
         }
     }
