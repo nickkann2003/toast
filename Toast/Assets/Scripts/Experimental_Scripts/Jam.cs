@@ -49,7 +49,7 @@ public class Jam : MonoBehaviour
             isCapped = false;
             SetJamLidVisible(isCapped);
             GameObject newLid = GameObject.Instantiate(jamJarLidPrefab);
-            newLid.transform.position = StationManager.instance.playerLocation.objectOffset;
+            newLid.transform.position = StationManager.instance.playerLocation.ObjectOffset;
         }
     }
 

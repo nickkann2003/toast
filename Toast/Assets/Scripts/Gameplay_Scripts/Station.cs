@@ -15,7 +15,8 @@ public class Station : MonoBehaviour
     public Quaternion cameraRotation = Quaternion.identity;
 
     [Header("------------ Obj Offset ------------")]
-    public Vector3 objectOffset;
+    [SerializeField]
+    private Vector3 objectOffset;
 
     [Header("------------ Station Variables ------------")]
     public Station parentLoc;
@@ -23,6 +24,8 @@ public class Station : MonoBehaviour
 
     public Collider clickableCollider;
     private Collider[] myClickableColliders;
+
+    public bool invertXCameraRotation;
 
     // List of props and stations that can be reached from here
     public List<Station> interactables;
@@ -42,6 +45,8 @@ public class Station : MonoBehaviour
     [Header("------------ Events ------------")]
     [SerializeField] private UnityEvent arrive;
     [SerializeField] private UnityEvent leave;
+
+    public Vector3 ObjectOffset { get => transform.TransformPoint(objectOffset); set => objectOffset = value; }
 
     [SerializeField, Button]
     private void SetCameraPositionAndRotation() 
@@ -125,7 +130,13 @@ public class Station : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.TransformPoint(cameraPos), 0.1f);
-        Matrix4x4 matrix = Matrix4x4.Translate(transform.TransformPoint(cameraPos)) * Matrix4x4.Rotate(Quaternion.Euler(transform.rotation.eulerAngles + cameraRotation.eulerAngles));
+        
+        Vector3 eAngle = transform.rotation.eulerAngles;
+        if (invertXCameraRotation)
+        {
+            eAngle.x = -eAngle.x;
+        }
+        Matrix4x4 matrix = Matrix4x4.Translate(transform.TransformPoint(cameraPos)) * Matrix4x4.Rotate(Quaternion.Euler(eAngle + cameraRotation.eulerAngles));
         Gizmos.matrix = matrix;
         Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane, Camera.main.nearClipPlane, Camera.main.aspect);
     }
@@ -222,7 +233,12 @@ public class Station : MonoBehaviour
     /// <returns></returns>
     public Quaternion camRotWorldCoords()
     {
-        return Quaternion.Euler(transform.rotation.eulerAngles + cameraRotation.eulerAngles);
+        Vector3 eAngle = transform.rotation.eulerAngles;
+        if (invertXCameraRotation)
+        {
+            eAngle.x = -eAngle.x;
+        }
+        return Quaternion.Euler(eAngle + cameraRotation.eulerAngles);
     }
 
 }
