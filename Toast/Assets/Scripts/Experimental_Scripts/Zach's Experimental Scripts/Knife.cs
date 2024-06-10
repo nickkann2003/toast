@@ -11,6 +11,10 @@ public class Knife : NewProp
     
     private GrabFromContainer grabStrategy;
 
+    [Header("Event References")]
+    [SerializeField]
+    private PropIntGameEvent useEvent;
+
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
@@ -30,7 +34,7 @@ public class Knife : NewProp
             else
             {
                 bool pickedUp = Raycast.Instance.PickupRaycast(hand);
-                if(pickedUp) ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.UseObject, attributes, true));
+                if(pickedUp) useEvent.RaiseEvent(this, 1);
             }
         }
     }

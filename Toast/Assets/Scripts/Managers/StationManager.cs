@@ -16,7 +16,8 @@ public enum Stations
     Defualt,
     Table,
     Toaster,
-    Fridge
+    Fridge,
+    Inventory
 }
 public class StationManager : MonoBehaviour
 {

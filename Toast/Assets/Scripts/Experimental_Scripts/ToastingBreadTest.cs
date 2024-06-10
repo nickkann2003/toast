@@ -164,7 +164,6 @@ public class ToastingBreadTest : MonoBehaviour
                         force.y = 2.5f + 2 * (1 - (timer / maxTime));
 
                         rb.velocity += force;
-                        print(force);
                     }
                 }
             }

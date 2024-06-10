@@ -53,6 +53,10 @@ public class LittleFella : MonoBehaviour
 
     GameObject giftObject;
 
+    [Header("Event References")]
+    [SerializeField]
+    private PropIntGameEvent littleFellaEvent;
+
     // ------------------------------- Functions -------------------------------
     // Update is called once per frame
     void Update()
@@ -87,8 +91,7 @@ public class LittleFella : MonoBehaviour
                 moveProgress += Time.deltaTime * grabSpeed;
                 if (moveProgress >= 1.0f)
                 {
-                    ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.GiveLittleFella, edibleObject.GetComponent<NewProp>().attributes, true));
-
+                    littleFellaEvent.RaiseEvent(edibleObject.GetComponent<NewProp>(), 1);
                     if(edibleObject.GetComponent<IEatable>() == null && edibleObject.GetComponent<Eat>() == null)
                     {
                         status = GrabStatus.Returning;
@@ -97,20 +100,7 @@ public class LittleFella : MonoBehaviour
                     else
                     //if (edibleObject.GetComponent<IEatable>() != null || edibleObject.GetComponent<Eat>() != null)
                     {
-                        AudioManager.instance.PlayOneShotSound(AudioManager.instance.eatingBread);
-                        Destroy(edibleObject);
-
-                        RequirementEvent rEvent;
-                        if (edibleObject.GetComponent<NewProp>() != null)
-                        {
-                            rEvent = new RequirementEvent(RequirementType.EatObject, edibleObject.GetComponent<NewProp>().attributes, true);
-                        }
-                        else
-                        {
-                            rEvent = new RequirementEvent(RequirementType.EatObject, PropFlags.None, true);
-                        }
-
-                        ObjectiveManager.instance.UpdateObjectives(rEvent);
+                        edibleObject.GetComponent<IEatable>().EatWhole();
                         
                         currentGifts++;
 

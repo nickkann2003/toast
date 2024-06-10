@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
+  m_Name: 16_Fridge Objectives 1
+  m_EditorClassIdentifier: 
+  objectiveName: Mid-night (day?) Snack
+  description: Fridge food respawns when you aren't looking!
+  completeText: The oven's gotten an upgrade!
+  unavailableText: Finish Toaster to unlock
+  requirements:
+  - targetAttributes: 536870912
+    listener:
+      gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
+      response:
+        m_PersistentCalls:
+          m_Calls: []
+    goalName: Eat Bread
+    goal: 10
+    exactValueGoal: 0
+    alwaysListening: 0
+    id: 0
+    listening: 1
+  id: 16
+  complete: 1
+  available: 1

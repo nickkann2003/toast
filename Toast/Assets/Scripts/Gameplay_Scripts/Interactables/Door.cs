@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class Door : MonoBehaviour
 {
@@ -17,16 +16,21 @@ public class Door : MonoBehaviour
     public Vector3 minRot; // Closed
     public Vector3 maxRot; // Open
     public float speed = 3;
-    public bool isOpen;
+
+    [Header("------------ Bool Values ------------")]
+    [SerializeField]
+    private bool clickable;
+    [SerializeField, ReadOnly]
+    private bool isOpen;
 
     [SerializeField, Button]
     private void setDoorOpen() { rotator.transform.localEulerAngles = maxRot; isOpen = true; }
     [SerializeField, Button]
     private void setDoorClosed() { rotator.transform.localEulerAngles = minRot; isOpen = false; }
     [SerializeField, Button]
-    private void setMinToCurrentRotation() { minRot = transform.localEulerAngles; }
+    private void setMinToCurrentRotation() { minRot = rotator.transform.localEulerAngles; }
     [SerializeField, Button]
-    private void setMaxToCurrentRotation() { maxRot = transform.localEulerAngles; }
+    private void setMaxToCurrentRotation() { maxRot = rotator.transform.localEulerAngles; }
 
     // amount that the door has opened
     private float interpolateAmount;
@@ -88,16 +92,18 @@ public class Door : MonoBehaviour
         isOpen = false;
     }
 
-    //// On mouse down, toggle open - POTENTIALLY DESIRED ON CLICK FUNCTIONALITY
-    //private void OnMouseDown()
-    //{
-    //    if (!isOpen)
-    //    {
-    //        Open();
-    //    }
-    //    else
-    //    {
-    //        Close();
-    //    }
-    //}
+    // On mouse down, toggle open - POTENTIALLY DESIRED ON CLICK FUNCTIONALITY
+    private void OnMouseDown()
+    {
+        if (!clickable) return;
+
+        if (!isOpen)
+        {
+            Open();
+        }
+        else
+        {
+            Close();
+        }
+    }
 }

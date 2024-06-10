@@ -1,7 +1,12 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class ObjectiveManager : MonoBehaviour
@@ -9,9 +14,31 @@ public class ObjectiveManager : MonoBehaviour
     // ------------------------------- Variables -------------------------------
     public static ObjectiveManager instance;
 
-    [Header("Objective Groups")]
     [SerializeField]
-    public List<ObjectiveGroup> groups = new List<ObjectiveGroup>();
+    public List<ObjectiveGroup> objectiveGroups = new List<ObjectiveGroup>(); // DO NOT CHANGE VARIABLE NAME IT WILL WIPE ALL EDITOR INFO (im unbelievably sad)
+    private Dictionary<int, Objective> objectivesById = new Dictionary<int, Objective>();
+
+    private string objSerialPath = "Assets/Resources/objs.txt";
+
+    [Header("Complete Objectives by ID")]
+    [SerializeField]
+    private int objectiveToComplete;
+    [SerializeField, Button]
+    private void ForceCompleteSpecificObjective()
+    {
+        ForceCompleteObjective(objectiveToComplete);
+        objectiveToComplete++;
+    }
+
+    // Save Info
+    private char objectiveMarker = '~';
+    private char spacer = '_';
+    private char requirementStartMarker = '[';
+    private char requirementSpace = ',';
+
+    // ------------------------------- Properties -------------------------------
+    public Dictionary<int, Objective> ObjectivesById { get => objectivesById; set => objectivesById = value; }
+
 
     // ------------------------------- Functions -------------------------------
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
@@ -23,6 +50,18 @@ public class ObjectiveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SortObjectivesById();
+
+        // Run each groups OnLoad
+        foreach(ObjectiveGroup group in objectiveGroups)
+        {
+            group.OnLoad();
+        }
+
+        // Run each groups LoadSaveData
+        
+        // Run each groups CheckAvailable
+        
         UpdateText();
     }
 
@@ -33,26 +72,34 @@ public class ObjectiveManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates all objectives with a given requirement event
+    /// Updates the text of all objective groups
     /// </summary>
-    /// <param name="e">Event</param>
-    public void UpdateObjectives(RequirementEvent e)
+    public void UpdateText()
     {
-        foreach(ObjectiveGroup g in groups)
+        StartCoroutine(RunTextUpdate());
+    }
+
+    private IEnumerator RunTextUpdate()
+    {
+        yield return new WaitForFixedUpdate();
+        foreach (ObjectiveGroup g in objectiveGroups)
         {
-            g.UpdateObjectives(e);
+            g.CheckAllComplete();
+        }
+        foreach (ObjectiveGroup g in objectiveGroups)
+        {
+            g.CheckAvailable();
+            g.UpdateText();
         }
     }
 
     /// <summary>
-    /// Updates the text of all objective groups
+    /// Force completes an objective with a given ID
     /// </summary>
-    private void UpdateText()
+    public void ForceCompleteObjective(int id)
     {
-        foreach (ObjectiveGroup g in groups)
-        {
-            g.UpdateText();
-        }
+        ObjectivesById[id].ForceCompleteObjective();
+        UpdateText();
     }
 
     /// <summary>
@@ -63,11 +110,95 @@ public class ObjectiveManager : MonoBehaviour
         get
         {
             string value = "";
-            foreach (ObjectiveGroup g in groups)
+            foreach (ObjectiveGroup g in objectiveGroups)
             {
                 value += g.ToString();
             }
             return value;
         }
+    }
+
+    /// <summary>
+    /// Returns a formatted string for saving Objective information
+    /// </summary>
+    /// <returns></returns>
+    public string GetObjectiveStorageString()
+    {
+        SortObjectivesById();
+        string formattedString = string.Empty;
+
+        foreach(Objective obj in objectivesById.Values)
+        {
+            SO_Objective o = obj.ObjectiveInfo;
+            formattedString += objectiveMarker;
+            formattedString += o.ID;
+            formattedString += spacer;
+            formattedString += o.Complete ? "1" : "0";
+            formattedString += spacer;
+            formattedString += obj.CheckAvailable() ? "1" : "0";
+            formattedString += requirementStartMarker;
+            foreach(Requirement r in o.Requirements)
+            {
+                formattedString += r.ID;
+                formattedString += spacer;
+                formattedString += r.CheckComplete() ? "1" : "0";
+                formattedString += spacer;
+                formattedString += r.Current;
+                formattedString += requirementSpace;
+            }
+            formattedString = formattedString.Substring(0, formattedString.Length - 1); // Trims off the last spacer
+        }
+        Debug.Log(formattedString);
+        return formattedString;
+    }
+
+    /// <summary>
+    /// Sorts objectives into a dictionary by ID
+    /// </summary>
+    private void SortObjectivesById()
+    {
+        foreach (ObjectiveGroup g in objectiveGroups)
+        {
+            foreach(Objective o in g.objectives)
+            {
+                objectivesById[o.ID] = o;
+            }
+        }
+    }
+
+    public void LoadObjectives(string fileDat)
+    {
+        SortObjectivesById();
+        string[] allObjs = fileDat.Split(objectiveMarker);
+        foreach (string ob in allObjs)
+        {
+            if (ob.Equals(""))
+            {
+                continue;
+            }
+
+            string[] tempObj = ob.Split(requirementStartMarker);
+            string[] objDatSplit = tempObj[0].Split(spacer);
+            int tId = int.Parse(objDatSplit[0]);
+            bool tComplete = objDatSplit[1].Equals("1") ? true : false;
+            bool tAvailable = objDatSplit[2].Equals("1") ? true : false;
+
+            if (tComplete)
+            {
+                ObjectivesById[tId].ForceCompleteObjective();
+                continue;
+            }
+
+            if (tAvailable)
+            {
+                string[] reqs = tempObj[1].Split(requirementSpace);
+                foreach(string req in reqs)
+                {
+                    string[] reqsSplit = req.Split(spacer);
+                    objectivesById[tId].SetRequirement(int.Parse(reqsSplit[0]), (reqsSplit[1].Equals("1") ? true : false), int.Parse(reqsSplit[2]));
+                }
+            }
+        }
+        UpdateText();
     }
 }

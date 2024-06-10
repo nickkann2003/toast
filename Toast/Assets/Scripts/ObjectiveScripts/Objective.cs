@@ -1,82 +1,93 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Unity.VisualScripting;
+
+
 //using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Objective : MonoBehaviour
+[Serializable]
+public class Objective
 {
     // ------------------------------- Variables -------------------------------
     // Public variables
-    [Header("Objective Information")]
-    public string objectiveName;
+    [Header("Objective Scriptable Object")]
+    [SerializeField]
+    private SO_Objective objectiveInfo;
+    private bool complete = false;
 
     [Header("Pre-Requisite Objectives")]
-    public List<Objective> prerequisites = new List<Objective>();
+    public List<int> prerequisiteIds = new List<int>();
 
-    [Header("Requirements")]
-    public List<Requirement> requirements = new List<Requirement>();
-
-    [Header("Activtables Upon Completion")]
+    [Header("Activatables Upon Completion")]
     public List<GameObject> activatables = new List<GameObject>();
-    
-    [Header("Objective Related Objects")]
-    public List<ObjectiveObject> objectiveObjects = new List<ObjectiveObject>();
 
     [Header("Unity Events")]
     public UnityEvent completionEvents;
-
-    // Private variables
-    private bool complete = false;
-    private bool available = false;
-
-    // ------------------------------- Properties -------------------------------
-    public bool Complete { get => complete; }
-
-    // ------------------------------- Functions -------------------------------
-    // Start is called before the first frame update
-    void Start()
+    
+    [Button, SerializeField]
+    private void ForceCompleteAll()
     {
-        if (!complete)
-        {
-            foreach (GameObject obj in activatables)
-            {
-                obj.SetActive(false);
-            }
-        }
-
-        if (!CheckAvailable())
-        {
-            foreach (Requirement req in requirements)
-            {
-                req.listening = false;
-            }
-        }
+        ForceCompleteObjective();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
+    // ------------------------------- Properties -------------------------------
+    public bool Complete { get => objectiveInfo.Complete; }
+    public int ID { get => objectiveInfo.ID; }
+    public SO_Objective ObjectiveInfo { get => objectiveInfo; set => objectiveInfo = value; }
+
+    // ------------------------------- Functions -------------------------------
+    /// <summary>
+    /// Functions to be run once this objective loads
+    /// </summary>
+    public void OnLoad()
+    {
+        objectiveInfo.OnLoad();
+        foreach(var obj in activatables)
+        {
+            obj.SetActive(false);
+        }
     }
 
     // Check if the current task has had its prerequisites complete
     public bool CheckAvailable()
     {
-        if (prerequisites.Count > 0)
+        if (prerequisiteIds.Count > 0)
         {
-            foreach (Objective obj in prerequisites)
+            foreach (int i in prerequisiteIds)
             {
+                Objective obj = ObjectiveManager.instance.ObjectivesById[i];
                 if (!obj.Complete)
                 {
-                    available = false;
                     return false;
                 }
             }
         }
-        available = true;
+        objectiveInfo.SetAvailable();
         return true;
+    }
+
+    public void SetRequirement(int rId, bool complete, int progress)
+    {
+        if (complete)
+        {
+            objectiveInfo.GetRequirement(rId).ForceComplete();
+        }
+        else
+        {
+            Requirement r = objectiveInfo.GetRequirement(rId);
+            if(r == null)
+            {
+                return;
+            }
+
+            r.Current = progress;
+        }
     }
 
     // Check if this objective is complete
@@ -84,59 +95,26 @@ public class Objective : MonoBehaviour
     {
         if (!complete)
         {
-            foreach (Requirement r in requirements)
+            if (objectiveInfo.CheckAllRequirementsComplete())
             {
-                if (!r.CheckComplete())
+                foreach (GameObject ob in activatables)
                 {
-                    complete = false;
-                    return false;
+                    if (ob != null)
+                    {
+                        ob.SetActive(true);
+                    }
                 }
+                // One Shot Effects
+                complete = true;
+                completionEvents.Invoke();
+                AudioManager.instance.PlayOneShotSound(AudioManager.instance.objectiveComplete);
             }
-            foreach (GameObject ob in activatables)
+            else
             {
-                if (ob != null)
-                {
-                    ob.SetActive(true);
-                }
+                return false;
             }
-            completionEvents.Invoke();
-            complete = true;
         }
         return true;
-    }
-
-    /// <summary>
-    /// Checks if this objective should be listening and changes its value
-    /// </summary>
-    public void CheckListening()
-    {
-        if (available)
-        {
-            foreach (Requirement requirement in requirements)
-            {
-                requirement.listening = true;
-            }
-        }
-    }
-
-    /// <summary>
-    /// Updates this objective with a requirement event, updating all of its requirements
-    /// </summary>
-    /// <param name="e">Event to update with</param>
-    public void UpdateObjective(RequirementEvent e)
-    {
-        CheckAvailable();
-        foreach (Requirement r in requirements)
-        {
-            r.UpdateRequirement(e);
-        }
-        if (!complete)
-        {
-            foreach (ObjectiveObject obj in objectiveObjects)
-            {
-                obj.CheckObjectiveObject();
-            }
-        }
     }
 
     /// <summary>
@@ -144,12 +122,19 @@ public class Objective : MonoBehaviour
     /// </summary>
     public void ForceCompleteObjective()
     {
-        foreach(Requirement r in requirements)
+        if (!complete)
         {
-            r.ForceComplete();
+            objectiveInfo.ForceComplete();
+            foreach (GameObject ob in activatables)
+            {
+                if (ob != null)
+                {
+                    ob.SetActive(true);
+                }
+            }
+            complete = true;
+            completionEvents.Invoke();
         }
-        UpdateObjective(new RequirementEvent(RequirementType.CompleteMinigame, PropFlags.None, true));
-        ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CompleteMinigame, PropFlags.None, true));
     }
 
     // Override ToString to return formatted for To-Do list
@@ -157,30 +142,7 @@ public class Objective : MonoBehaviour
     {
         get
         {
-            if (CheckAvailable())
-            {
-                string value = "";
-                value = objectiveName + "";
-                bool allDone = true;
-                foreach (Requirement r in requirements)
-                {
-                    if (r.listening)
-                    {
-                        value += "\n    - <size=-2>" + r.ToString + "</size>";
-                    }
-                    if (!r.CheckComplete())
-                    {
-                        allDone = false;
-                    }
-                }
-                if (allDone)
-                {
-                    CheckComplete();
-                    value = "<color=#111><s>" + objectiveName + "</s></color>";
-                }
-                return value;
-            }
-            return "";
+            return objectiveInfo.ToString;
         }
     }
 }

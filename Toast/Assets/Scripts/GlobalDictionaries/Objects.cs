@@ -1,4 +1,4 @@
-public enum Object
+public enum Objects
 {
     Bread,
     Jam,

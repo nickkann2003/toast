@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handPos: {fileID: 980282111546057802}
+  pickUpEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
+  dropEvent: {fileID: 11400000, guid: 5088c6d0c89b46f448451041d58e1733, type: 2}
 --- !u!1 &1099820441112653305
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,8 +237,12 @@ MonoBehaviour:
   firePrefab: {fileID: 0}
   frozenness: 0
   baseMat: {fileID: 0}
-  PD_Rb: {fileID: 0}
+  useEffects: []
+  PD_Rb: {fileID: 11400000, guid: 9b3d1433e9869ce4b9bfd8a4b04afefb, type: 2}
+  createObjectEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
+  thawObjectEvent: {fileID: 11400000, guid: d26239510d487054e9b40255a0a441bf, type: 2}
   hand: {fileID: 1488870372979239520}
+  useEvent: {fileID: 11400000, guid: fb0064d8f2f9be342b9136075c8542c7, type: 2}
 --- !u!1001 &706060012230338213
 PrefabInstance:
   m_ObjectHideFlags: 0

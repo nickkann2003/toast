@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DestroyerVolume : MonoBehaviour
 {
+    [Header("Event References")]
+    [SerializeField]
+    private PropIntGameEvent destroyEvent;
     // ------------------------------- Functions -------------------------------
     /// <summary>
     /// On trigger enter, destroy other and send event
@@ -14,20 +17,20 @@ public class DestroyerVolume : MonoBehaviour
         GameObject parent = other.gameObject;
         RequirementEvent rEvent;
         PropFlags flags = PropFlags.None;
-        if (parent.GetComponent<NewProp>() != null)
+        // Check if object has new prop
+        if(other.gameObject.GetComponent<NewProp>() != null)
         {
-            flags = parent.GetComponent<NewProp>().attributes;
+            parent = other.gameObject;
+            destroyEvent.RaiseEvent(parent.GetComponent<NewProp>(), 1);
+            Destroy(parent);
+            return;
         }
-        while (parent.transform.parent != null)
+
+        while (parent.transform.parent != null && parent.GetComponent<NewProp>() == null)
         {
             parent = parent.transform.parent.gameObject;
-            if (parent.GetComponent<NewProp>() != null)
-            {
-                flags = parent.GetComponent<NewProp>().attributes;
-            }
         }
-        rEvent = new RequirementEvent(RequirementType.DestroyObject, flags, true);
-        ObjectiveManager.instance.UpdateObjectives(rEvent);
+        destroyEvent.RaiseEvent(parent.GetComponent<NewProp>(), 1);
         Destroy(parent);
     }
 }

@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,44 +6,58 @@ using System.ComponentModel.Design.Serialization;
 using System.Drawing;
 using UnityEngine;
 
-public class Requirement : MonoBehaviour
+[Serializable]
+public class Requirement
 {
     // ------------------------------- Variables -------------------------------
-    // Public variables
-    [Header("Listening for Events")]
-    public bool listening = false;
 
-    [Header("Requirement Type and Attribute Flags")]
-    public RequirementType type = RequirementType.EatObject;
+    [Header("Attribute Flags and Event Listener")]
+    //public RequirementType type = RequirementType.EatObject;
     public PropFlags targetAttributes;
+    [SerializeField, Label("Do Not Add Response Event")]
+    private PropIntGameEventListener listener = new PropIntGameEventListener();
 
     [Header("Goal Information")]
     public string goalName;
     public int goal;
+    public bool exactValueGoal = false;
     public bool alwaysListening = false;
 
     // Private variables
     private int current;
     private bool complete = false;
-    private bool completeOnNextFrame = false;
+
+    [NaughtyAttributes.HorizontalLine, Header("Other Variables")]
+    // ID TRACKER DO NOT CHANGE
+    public int id = -1;
+    // Public variables
+    public bool listening = false;
+
+
+    // ------------------------------- Properties -------------------------------
+    public int Current { get => current; set => current = value; }
+    public int ID { get => id; set => id = value; }
 
     // ------------------------------- Functions -------------------------------
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     /// <summary>
-    /// Completes objectives the frame after they are actually complete
+    /// Runs when this requirement is loaded
     /// </summary>
-    void Update()
+    public void OnLoad()
     {
-        if (completeOnNextFrame && !complete)
-        {
-            complete = true;
-            AudioManager.instance.PlayOneShotSound(AudioManager.instance.requirementComplete);
-        }
+        // Reset values on game start
+        current = 0;
+        complete = false;
+        listening = false;
+
+        // Save event type
+        PropIntGameEvent e = listener.GameEvent;
+        // Recreate listener (issue with SO)
+        listener = new PropIntGameEventListener();
+        listener.GameEvent = e;
+        // Enable it
+        listener.OnEnable();
+        // Add function to listener
+        listener.Response.AddListener(UpdateRequirement);
     }
 
     /// <summary>
@@ -57,7 +72,8 @@ public class Requirement : MonoBehaviour
             {
                 if (!complete) // If it was not complete, run one-shot effects
                 {
-                    completeOnNextFrame = true;
+                    complete = true;
+                    AudioManager.instance.PlayOneShotSound(AudioManager.instance.requirementComplete);
                 }
                 return true;
             }
@@ -70,27 +86,20 @@ public class Requirement : MonoBehaviour
     /// Updates this requirement with an event
     /// </summary>
     /// <param name="e"></param>
-    public void UpdateRequirement(RequirementEvent e)
+    public void UpdateRequirement(NewProp e, int value)
     {
         // If listening and correct type and incomplete
-        if((listening || alwaysListening) && e.type == type && !complete) // Ensure type, target, and listening
+        if((listening || alwaysListening) && !complete) // Ensure type, target, and listening
         {
             // If does not contain all necessary flags, return
             if(!(e.attributes.HasFlag(targetAttributes)))
             {
                 return;
             }
-            
-            if (e.increase) // Increase or Decrease
-            {
-                current += 1;
-            }
-            else
-            {
-                current = current > 0 ? current - 1 : 0;
-            }
 
-            if(type != RequirementType.HaveObject) // If not [exact number type], don't allow overflow
+            current += value;
+        
+            if(!exactValueGoal) // If not [exact number type], don't allow overflow
             {
                 if(goal > 0)
                 {
@@ -100,33 +109,7 @@ public class Requirement : MonoBehaviour
                     }
                 }
             }
-
-            // Specific case for handling Toast Ninja score
-            if(type == RequirementType.ToastNinjaScore)
-            {
-                // Undo previous increase
-                current -= 1;
-
-                // Check for Jam, Toast, Bread
-                if (e.attributes.HasFlag(PropFlags.Jam))
-                {
-                    current += 2;
-                }
-                else if (e.attributes.HasFlag(PropFlags.Toast))
-                {
-                    current -= 2;
-                }
-                else
-                {
-                    current += 1;
-                }
-
-                // Reset if not increase
-                if (!e.increase)
-                {
-                    current = 0;
-                }
-            }
+            ObjectiveManager.instance.UpdateText();
         }
     }
 
@@ -148,7 +131,7 @@ public class Requirement : MonoBehaviour
             string value = "";
             if (CheckComplete())
             {
-                value += "<color=#111><s><size=-2>";
+                value += "<color=#111><s>";
                 value += goalName + " ";
                 value += "DONE!";
             }
@@ -156,19 +139,19 @@ public class Requirement : MonoBehaviour
             {
                 if(goal > 0)
                 {
-                    value += "<color=#000><size=+0>";
+                    value += "<color=#000>";
                     value += goalName + " ";
                     value += current + "/" + goal;
                 }
                 else
                 {
-                    value += "<color=#000><size=+0>";
+                    value += "<color=#000>";
                     value += goalName + " ";
                     value += current;
                 }
                 
             }
-            value += "</size></s></color>";
+            value += "</s></color>";
             return value;
         }
     }

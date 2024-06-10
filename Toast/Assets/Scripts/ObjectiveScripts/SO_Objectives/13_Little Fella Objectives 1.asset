@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
+  m_Name: 13_Little Fella Objectives 1
+  m_EditorClassIdentifier: 
+  objectiveName: Hey There, Little Fella
+  description: He's a bit shy, and won't act while theres motion near him
+  completeText: You've made a new friend!
+  unavailableText: Complete the Toast Ninja goals
+  requirements:
+  - targetAttributes: 0
+    listener:
+      gameEvent: {fileID: 11400000, guid: 6b5b7c99d0548e9478e16c409f30b6e8, type: 2}
+      response:
+        m_PersistentCalls:
+          m_Calls: []
+    goalName: Give him something
+    goal: 1
+    exactValueGoal: 0
+    alwaysListening: 1
+    id: 0
+    listening: 1
+  id: 13
+  complete: 1
+  available: 1

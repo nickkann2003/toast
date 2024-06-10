@@ -51,7 +51,7 @@ public class Dial : MonoBehaviour
     public float maxRotation = 110;
 
     [Header("------------- Unity Events ------------")]
-    public FloatEvent onDialChange;
+    public FloatUnityEvent onDialChange;
 
     
     [Header("Freeze Dial")]

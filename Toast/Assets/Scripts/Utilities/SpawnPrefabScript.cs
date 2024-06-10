@@ -38,6 +38,15 @@ public class SpawnPrefabScript : MonoBehaviour
     }
 
     /// <summary>
+    /// Sets this spawners prefab to a given prefab
+    /// </summary>
+    /// <param name="prefab">New prefab</param>
+    public void SetPrefab(GameObject prefab)
+    {
+        this.prefab = prefab;
+    }
+
+    /// <summary>
     /// Gizmos, shows red square for position with randomness
     /// </summary>
     void OnDrawGizmosSelected()

@@ -31,8 +31,17 @@ public class NewProp : MonoBehaviour
 
     protected IUseStrategy _useStrategy;
 
+    [Header("------------ Prop Data ------------")]
+    [SerializeField]
+    private List<UseEffect> useEffects;
     [SerializeField]
     private PD_Rigidbody PD_Rb;
+
+    [Header("Event References")]
+    [SerializeField]
+    private PropIntGameEvent createObjectEvent;
+    [SerializeField]
+    private PropIntGameEvent thawObjectEvent;
 
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
@@ -50,6 +59,17 @@ public class NewProp : MonoBehaviour
         {
             firePrefab = FireEndingManager.instance.firePrefab;
         }
+
+        CreateAndUpdateRigidbody();
+
+        float colorStrength = toastiness;
+        if (colorStrength > 1)
+        {
+            colorStrength = 1;
+        }
+
+        // Set renderer color
+        gameObject.GetComponent<Renderer>().material.color = initialColor + (colorOffset * colorStrength);
     }
 
     // Update is called once per frame
@@ -131,7 +151,8 @@ public class NewProp : MonoBehaviour
             AddAttribute(PropFlags.Toast);
 
             // Trigger Objectives
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, attributes, true));
+            if(createObjectEvent != null)
+                createObjectEvent.RaiseEvent(this, 1);
         }
 
         if (toastiness > .9f && !attributes.HasFlag(PropFlags.Burnt)) // Burnt event
@@ -140,7 +161,8 @@ public class NewProp : MonoBehaviour
             AddAttribute(PropFlags.Burnt);
 
             // Trigger Objectives
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, attributes, true));
+            if(createObjectEvent != null)
+                createObjectEvent.RaiseEvent(this, 1);
         }
         if (!attributes.HasFlag(PropFlags.OnFire) && toastiness > fireTrigger && firePrefab != null) // On Fire event
         {
@@ -155,7 +177,8 @@ public class NewProp : MonoBehaviour
             AddAttribute(PropFlags.OnFire);
 
             // Trigger objectives
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.CreateObject, attributes, true));
+            if(createObjectEvent != null)
+                createObjectEvent.RaiseEvent(this, 1);
             
             // Add flaming object
             FireEndingManager.instance.addFireObject(gameObject);
@@ -170,7 +193,8 @@ public class NewProp : MonoBehaviour
         {
             Destroy(gameObject.transform.GetChild(0).gameObject);
             attributes &= ~PropFlags.Frozen;
-            ObjectiveManager.instance.UpdateObjectives(new RequirementEvent(RequirementType.ThawObject, attributes, true));
+            if(thawObjectEvent != null)
+                thawObjectEvent.RaiseEvent(this, 1);
         }
     }
 
@@ -191,7 +215,10 @@ public class NewProp : MonoBehaviour
 
     public void CreateAndUpdateRigidbody()
     {
-        this.AddComponent<Rigidbody>();
+        if (this.GetComponent<Rigidbody>() == null)
+        {
+            this.AddComponent<Rigidbody>();
+        }
         UpdateRigidbody();
     }
 }

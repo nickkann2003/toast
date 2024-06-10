@@ -65,7 +65,7 @@ public class ObjectRespawner : MonoBehaviour
                     }
                 }
             }
-            if (empty)
+            if (empty && waitForAll)
             {
                 foreach (RespawnableObject obj in objects)
                 {
