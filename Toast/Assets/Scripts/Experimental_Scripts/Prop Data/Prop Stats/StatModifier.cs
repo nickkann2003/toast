@@ -18,3 +18,15 @@ public class StatModifier
     public float Value => value;
     public StatModifierTypes ModifierType => modifierType;
 }
+
+[Serializable]
+public class StatModifierContainer
+{
+    [SerializeField]
+    private StatType statType;
+    [SerializeField]
+    private StatModifier statModifier;
+
+    public StatType Type => statType;
+    public StatModifier StatModifier => statModifier;
+}

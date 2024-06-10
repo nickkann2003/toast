@@ -86,7 +86,7 @@ public class Jam : MonoBehaviour
         NewProp oth = other.gameObject.GetComponent<NewProp>();
         if(oth != null)
         {
-            if(oth.attributes.HasFlag(PropFlags.JamLid))
+            if(oth.propFlags.HasFlag(PropFlags.JamLid))
             {
                 CapJam(other.gameObject);
             }

@@ -66,7 +66,7 @@ public class ToastingBreadTest : MonoBehaviour
                     if (prop != null)
                     {
                         // If not frozen, then toast
-                        if (!prop.attributes.HasFlag(PropFlags.Frozen))
+                        if (!prop.propFlags.HasFlag(PropFlags.Frozen))
                         {
                             prop.IncreaseToastiness((Time.deltaTime / maxTime) * targetStrength);
                         }
@@ -110,16 +110,7 @@ public class ToastingBreadTest : MonoBehaviour
                 }
 
                 // Get attributes and check specific interactions
-                ObjectVariables objVar = obj.GetComponent<ObjectVariables>();
-                if (objVar != null && objVar.attributes.Contains(Attribute.Metal))
-                {
-                    //// METAL EXPLODE
-                    //Vector3 explosionVel = new Vector3(Random.Range(-1,1), Random.value, 0);
-                    //explosionVel *= 10;
-                    //explosionVel += new Vector3((explosionVel.x / Mathf.Abs(explosionVel.x)) * 10, 10, 0);
-                    //transform.GetComponent<Rigidbody>().velocity = explosionVel;
-                }
-                else if (!toastingObjects.ContainsKey(obj))
+                if (!toastingObjects.ContainsKey(obj))
                 {
                     toastingObjects.Add(obj, new ToastingObject(obj, toastiness, strongestStrength, weakestStrength, targetStrength));
                 }

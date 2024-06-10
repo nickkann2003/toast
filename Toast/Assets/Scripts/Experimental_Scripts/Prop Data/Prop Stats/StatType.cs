@@ -9,7 +9,9 @@ public class StatType : ScriptableObject /*IStatType*/
 {
     [SerializeField] private new string name = "New Stat Type Name";
     [SerializeField] private float defaultValue = 0f;
+    [SerializeField] private float defaultRateOfChange = 1f;
 
     public string Name => name;
     public float DefaultValue => defaultValue;
+    public float DefaultRateOfChange => defaultRateOfChange;
 }

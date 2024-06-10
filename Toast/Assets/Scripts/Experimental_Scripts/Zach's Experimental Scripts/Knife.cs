@@ -25,7 +25,7 @@ public class Knife : NewProp
     // Called when this item is used
     public override void Use()
     {
-        if (attributes.HasFlag(PropFlags.InHand))
+        if (propFlags.HasFlag(PropFlags.InHand))
         {
             if (hand.CheckObject())
             {

@@ -30,7 +30,7 @@ public class Freezer : MonoBehaviour
 
                 prop.frozenness += Time.deltaTime;
 
-                if (prop.frozenness >= 5f && !prop.attributes.HasFlag(PropFlags.Frozen))
+                if (prop.frozenness >= 5f && !prop.propFlags.HasFlag(PropFlags.Frozen))
                 {
                     Freeze(obj, prop);
                     prop.frozenness = 0.0f;
@@ -47,13 +47,13 @@ public class Freezer : MonoBehaviour
     void Freeze(GameObject obj, NewProp prop)
     {
         // Put out fire if on fire, otherwise freeze
-        if (prop.attributes.HasFlag(PropFlags.OnFire))
+        if (prop.propFlags.HasFlag(PropFlags.OnFire))
         {
             FireEndingManager.instance.removeFireObject(obj);
             prop.RemoveAttribute(PropFlags.OnFire);
             Destroy(obj.transform.GetChild(0).gameObject);
         }
-        else if (!prop.attributes.HasFlag(PropFlags.Frozen) && prop.attributes.HasFlag(PropFlags.Bread)) 
+        else if (!prop.propFlags.HasFlag(PropFlags.Frozen) && prop.propFlags.HasFlag(PropFlags.Bread)) 
         {
             GameObject ice = Instantiate(icePrefab);
             ice.transform.position = obj.transform.position;

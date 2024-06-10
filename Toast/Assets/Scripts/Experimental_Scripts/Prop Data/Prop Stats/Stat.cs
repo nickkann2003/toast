@@ -1,3 +1,5 @@
+using NaughtyAttributes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -5,15 +7,26 @@ using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.Rendering;
 
+[Serializable]
 public class Stat
 {
-    private readonly List<StatModifier> modifiers = new List<StatModifier>();
+    [SerializeField]
+    private StatType type; // rename later to be just statType
 
+    public StatType Type { get { return type; } }
+
+    [SerializeField]
     private float baseValue = 0f;
+    [SerializeField]
+    private float rateOfChange = 1f;
+
+    [SerializeField]
+    private List<StatModifier> modifiers = new List<StatModifier>();
+
     private bool isDirty = true;
 
+    [SerializeField, ReadOnly, AllowNesting]
     private float value;
-    private float rateOfChange = 1;
 
     public float Value
     {
@@ -28,14 +41,27 @@ public class Stat
         }
     }
 
-    public Stat(float initialValue) => baseValue = initialValue;
-    public Stat(StatType statType) => baseValue = statType.DefaultValue;
+    public float RateOfChange { get { return rateOfChange; } }
 
-    public void UpdateBaseValue(float amount)
+    public Stat(float initialValue) => baseValue = initialValue;
+    public Stat(StatType statType)
+    {
+        baseValue = statType.DefaultValue;
+        rateOfChange = statType.DefaultRateOfChange;
+    }
+
+    public Stat(Stat _stat)
+    {
+        type = _stat.Type;
+        baseValue = _stat.baseValue;
+        rateOfChange = _stat.RateOfChange;
+    }
+
+    public void IncreaseValue(float amount)
     {
         isDirty = true;
 
-        value += amount * rateOfChange;
+        baseValue += amount * rateOfChange;
     }
 
     public void AddModifier(StatModifier modifier)
@@ -81,7 +107,7 @@ public class Stat
                     break;
 
                 case StatModifierTypes.PercentMultiplicative:
-                    totalPercentMultiplicative *= 1 + modifier.Value;
+                    totalPercentMultiplicative *= modifier.Value;
                     break;
             }
         }
@@ -100,5 +126,10 @@ public class Stat
             if (x.ModifierType < y.ModifierType) { return -1; }
             return 0;
         }
+    }
+
+    public override string ToString()
+    {
+        return $"{type.Name}: {Value}";
     }
 }

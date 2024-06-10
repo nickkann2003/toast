@@ -25,7 +25,7 @@ public class NewHand : MonoBehaviour
             heldObject.transform.rotation = handPos.transform.rotation;            
 
             // If held item does not have hand flag, set it
-            if (!heldObject.GetComponent<NewProp>().attributes.HasFlag(PropFlags.InHand))
+            if (!heldObject.GetComponent<NewProp>().propFlags.HasFlag(PropFlags.InHand))
             {
                 heldObject.GetComponent<NewProp>().AddAttribute(PropFlags.InHand);
             }
