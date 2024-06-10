@@ -9,6 +9,7 @@ using NaughtyAttributes;
 
 public class NewProp : MonoBehaviour
 {
+
     // ------------------------------- Variables -------------------------------
     [SerializeField]
     private PropObject propObject;
@@ -73,6 +74,16 @@ public class NewProp : MonoBehaviour
         attributesList.Add(attributeToGive);
         attributeToGive.OnEquip(this);
     }
+    [SerializeField]
+    private int indexToRemove = 0;
+    [SerializeField, Button]
+    private void RemoveAttributeAtIndex()
+    {
+        if (attributesList.Count < 0 || indexToRemove >= attributesList.Count) { return; }
+
+        attributesList[indexToRemove].OnRemove(this);
+        attributesList.RemoveAt(indexToRemove);
+    }
 
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
@@ -84,7 +95,7 @@ public class NewProp : MonoBehaviour
         _useStrategy = this.gameObject.GetComponent<IUseStrategy>();
 
         // Grab initial color and set color variables
-        initialColor = gameObject.GetComponent<Renderer>().material.color;
+        initialColor = gameObject.GetComponentInChildren<Renderer>().material.color;
         colorOffset = strongestStrength - initialColor;
         
         // If fire prefab not given, get it from manager
@@ -102,7 +113,7 @@ public class NewProp : MonoBehaviour
         }
 
         // Set renderer color
-        gameObject.GetComponent<Renderer>().material.color = initialColor + (colorOffset * colorStrength);
+        gameObject.GetComponentInChildren<Renderer>().material.color = initialColor + (colorOffset * colorStrength);
     }
 
     private void OnEnable()
@@ -132,12 +143,17 @@ public class NewProp : MonoBehaviour
     public void RecalcSize()
     {
         Stat sizeStat = Stats.GetStat(sizeType);
-        transform.localScale = transform.localScale * sizeStat.Value;
+        transform.localScale = Vector3.one * sizeStat.Value;
     }
 
     public void RecalcWeight()
     {
-
+        Stat massStat = Stats.GetStat(massType);
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.mass = massStat.Value;
+        }
     }
 
     //public void AddStat(Stat stat)
@@ -294,7 +310,7 @@ public class NewProp : MonoBehaviour
         }
 
         // Set renderer color
-        gameObject.GetComponent<Renderer>().material.color = initialColor + (colorOffset * colorStrength);
+        gameObject.GetComponentInChildren<Renderer>().material.color = initialColor + (colorOffset * colorStrength);
 
         // Adjust prop flags and trigger requirement events
         if (testToastiness > .15f && !propFlags.HasFlag(PropFlags.Toast)) // Toasted event

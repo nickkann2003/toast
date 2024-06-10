@@ -218,7 +218,7 @@ public class Hand : MonoBehaviour
     /// <param name="item">Item that was eaten</param>
     public void PlayEatParticles(GameObject item)
     {
-        Color c = item.GetComponent<Renderer>().material.color;
+        Color c = item.GetComponentInChildren<Renderer>().material.color;
         var main = EatParticles.main;
         main.startColor = c;       
         EatParticles.Play();

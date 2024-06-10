@@ -18,6 +18,7 @@ public class SizeAttributeObject : PropAttributeObject
         }
         
         newProp.RecalcSize();
+        newProp.RecalcWeight();
     }
 
     public override void OnRemove(NewProp newProp)
@@ -29,5 +30,8 @@ public class SizeAttributeObject : PropAttributeObject
                 newProp.Stats.RemoveModifier(statModifierContainer[i].Type, statModifierContainer[i].StatModifier);
             }
         }
+
+        newProp.RecalcSize();
+        newProp.RecalcWeight();
     }
 }
