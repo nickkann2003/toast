@@ -12700,6 +12700,7 @@ MonoBehaviour:
   fileSelectMenu: {fileID: 304169981}
   saveFileNameMenu: {fileID: 214447269}
   achievementMenu: {fileID: 885162173}
+  notificationBanner: {fileID: 1140447888}
   objectiveOpened: 0
   backButton: {fileID: 1514345163}
   inventoryButton: {fileID: 1218421967}
@@ -14721,6 +14722,7 @@ GameObject:
   - component: {fileID: 1140447889}
   - component: {fileID: 1140447891}
   - component: {fileID: 1140447890}
+  - component: {fileID: 1140447892}
   m_Layer: 5
   m_Name: NotificationBanner
   m_TagString: Untagged
@@ -14787,6 +14789,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140447888}
   m_CullTransparentMesh: 1
+--- !u!114 &1140447892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140447888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 995659374}
+          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+          m_MethodName: SetAchievementMenu
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1146147951
 PrefabInstance:
   m_ObjectHideFlags: 0

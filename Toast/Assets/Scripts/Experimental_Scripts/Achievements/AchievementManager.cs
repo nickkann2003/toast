@@ -147,8 +147,12 @@ public class AchievementManager : MonoBehaviour
 
     void PlayNotification(Achievement achievement)
     {
-        bannerText.text = $"Achievement Unlocked: {achievement.AchievementName} ({achievement.Description})";
+        // Change text
+        bannerText.text = $"Achievement Unlocked: {achievement.AchievementName} ({achievement.Description}) - Click to view achievements";
         // Play a sound here
+
+        //
+        // Show banner and start timer
         notificationBanner.SetActive(true);
         bannerShowTime = 0;
     }

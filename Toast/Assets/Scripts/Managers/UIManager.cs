@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject fileSelectMenu;
     [SerializeField] private GameObject saveFileNameMenu;
     [SerializeField] private GameObject achievementMenu;
+    [SerializeField] private GameObject notificationBanner;
     public bool objectiveOpened = false;
 
     [Header("UI Buttons")]
@@ -214,12 +215,27 @@ public class UIManager : MonoBehaviour
         saveFileNameMenu?.SetActive(false);
     }
 
+    /// <summary>
+    /// Opens the achievement menu
+    /// </summary>
     public void SetAchievementMenu()
     {
+        // Hide banner
+        notificationBanner.SetActive(false);
+
+        // Pause game (in case menu is accessed via banner click)
+        GameManager.Instance.PauseGame();
+
+        // Show achievement menu
         achievementMenu.SetActive(true);
+
+        // Hide pause menu
         pauseMenu.SetActive(false);
     }
 
+    /// <summary>
+    /// Closes the achievement menu
+    /// </summary>
     public void CloseAchievementMenu()
     {
         achievementMenu?.SetActive(false);
