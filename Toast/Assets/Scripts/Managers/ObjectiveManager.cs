@@ -195,10 +195,10 @@ public class ObjectiveManager : MonoBehaviour
                 foreach(string req in reqs)
                 {
                     string[] reqsSplit = req.Split(spacer);
-                    Debug.Log(req);
                     objectivesById[tId].SetRequirement(int.Parse(reqsSplit[0]), (reqsSplit[1].Equals("1") ? true : false), int.Parse(reqsSplit[2]));
                 }
             }
         }
+        UpdateText();
     }
 }
