@@ -81,7 +81,7 @@ public class NewProp : MonoBehaviour
     {
         if (attributesList.Count < 0 || indexToRemove >= attributesList.Count) { return; }
 
-        attributesList[indexToRemove].OnRemove(this);
+        attributesList[indexToRemove]?.OnRemove(this);
         attributesList.RemoveAt(indexToRemove);
     }
 
@@ -360,7 +360,7 @@ public class NewProp : MonoBehaviour
         if (propFlags.HasFlag(PropFlags.Frozen))
         {
             Destroy(gameObject.transform.GetChild(0).gameObject);
-            propFlags &= ~PropFlags.Frozen;
+            RemoveAttribute(PropFlags.Frozen);
             if(thawObjectEvent != null)
                 thawObjectEvent.RaiseEvent(this, 1);
         }

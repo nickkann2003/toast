@@ -8,7 +8,7 @@ public class OnFireAttribute : PropAttributeObject
     [SerializeField]
     private StatType toastType;
 
-    private StatModifier modifier = new StatModifier(StatModifierTypes.Flat, 100);
+    private StatModifier modifier = new StatModifier(StatModifierTypes.AddOn, 2f);
 
     public override void OnEquip(NewProp newProp)
     {
@@ -19,6 +19,7 @@ public class OnFireAttribute : PropAttributeObject
 
     public override void OnRemove(NewProp newProp)
     {
+        newProp.Stats.RemoveModifier(toastType, modifier);
         FireEndingManager.instance.removeFireObject(newProp.gameObject);
     }
 }

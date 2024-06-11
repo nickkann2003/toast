@@ -91,6 +91,7 @@ public class Stat
         float finalValue = baseValue;
         float sumPercentAdditive = 1f;
         float totalPercentMultiplicative = 1f;
+        float addOn = 0f;
 
         for (int i = 0; i < modifiers.Count; i++)
         {
@@ -109,10 +110,14 @@ public class Stat
                 case StatModifierTypes.PercentMultiplicative:
                     totalPercentMultiplicative *= modifier.Value;
                     break;
+
+                case StatModifierTypes.AddOn:
+                    addOn += modifier.Value;
+                    break;
             }
         }
 
-        finalValue = finalValue * sumPercentAdditive * totalPercentMultiplicative;
+        finalValue = finalValue * sumPercentAdditive * totalPercentMultiplicative + addOn;
 
         return finalValue;
     }
