@@ -6,6 +6,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SubsystemsImplementation;
 using UnityEngine.UI;
 
 public class AchievementManager : MonoBehaviour
@@ -25,6 +26,7 @@ public class AchievementManager : MonoBehaviour
 
     // The full list of achievements in the game
     public List<Achievement> achievements;
+    private Dictionary<int, Achievement> achievementsById = new Dictionary<int, Achievement>(); // List of achievements sorted by ID
 
     // The list of acheievements the player has unlocked
     public List<Achievement> unlockedAchievements;
@@ -43,6 +45,10 @@ public class AchievementManager : MonoBehaviour
     private GameObject notificationBanner;
     [SerializeField]
     TextMeshProUGUI bannerText;
+
+    // ------------------------------- Save Variables -------------------------------
+    private string achievementSeparator = "~";
+    private string spacer = "_";
 
     //Temporary before animation, remove later********
     float bannerShowTime;
@@ -168,5 +174,100 @@ public class AchievementManager : MonoBehaviour
         // Show banner and start timer
         notificationBanner.SetActive(true);
         bannerShowTime = 0;
+    }
+
+    /// <summary>
+    /// Sorts achievements by ID into the dictionary, used for loading data
+    /// </summary>
+    private void SortAchievementsById()
+    {
+        foreach (Achievement achievement in achievements)
+        {
+            achievementsById[achievement.ID] = achievement;
+        }
+    }
+
+    /// <summary>
+    /// Formats and returns a save string for all achievements
+    /// </summary>
+    /// <returns>Save string data</returns>
+    public string GetAchievementSaveString()
+    {
+        string dat = "";
+
+        foreach(Achievement achievement in achievements)
+        {
+            dat += achievementSeparator;
+            dat += achievement.ID;
+            dat += spacer;
+            dat += (achievement.IsUnlocked == true ? "1" : "0");
+            dat += spacer;
+            dat += achievement.AchievementProgress;
+        }
+
+        dat = dat.Substring(1, dat.Length-1);
+
+        return dat;
+    }
+
+    /// <summary>
+    /// Loads in a string of data and sets achievement values based on it
+    /// </summary>
+    /// <param name="data">Achievement save string</param>
+    public void LoadAchievementSaveString(string data)
+    {
+        SortAchievementsById();
+        string[] allAch = data.Split(achievementSeparator);
+        foreach(string a in allAch)
+        {
+            if(a == "")
+            {
+                continue;
+            }
+
+            string[] aDat = a.Split(spacer);
+            int aId = int.Parse(aDat[0]);
+            bool aUnlocked = int.Parse(aDat[1]) == 1;
+            int aProgress = int.Parse(aDat[2]);
+
+            // Debug.Log($"Loading achievement, id {aId}, complete: {aUnlocked}, current progress: {aProgress}");
+
+            Achievement target = achievementsById[aId];
+            target.AchievementProgress = aProgress;
+            target.IsUnlocked = aUnlocked;
+        }
+
+        //SortObjectivesById();
+        //string[] allObjs = fileDat.Split(objectiveMarker);
+        //foreach (string ob in allObjs)
+        //{
+        //    if (ob.Equals(""))
+        //    {
+        //        continue;
+        //    }
+        //
+        //    string[] tempObj = ob.Split(requirementStartMarker);
+        //    string[] objDatSplit = tempObj[0].Split(spacer);
+        //    int tId = int.Parse(objDatSplit[0]);
+        //    bool tComplete = objDatSplit[1].Equals("1") ? true : false;
+        //    bool tAvailable = objDatSplit[2].Equals("1") ? true : false;
+        //
+        //    if (tComplete)
+        //    {
+        //        ObjectivesById[tId].ForceCompleteObjective();
+        //        continue;
+        //    }
+        //
+        //    if (tAvailable)
+        //    {
+        //        string[] reqs = tempObj[1].Split(requirementSpace);
+        //        foreach (string req in reqs)
+        //        {
+        //            string[] reqsSplit = req.Split(spacer);
+        //            objectivesById[tId].SetRequirement(int.Parse(reqsSplit[0]), (reqsSplit[1].Equals("1") ? true : false), int.Parse(reqsSplit[2]));
+        //        }
+        //    }
+        //}
+        //UpdateText();
     }
 }

@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -34,6 +35,7 @@ public class SaveHandler : MonoBehaviour
     private int saveFileSections = 2;
     private int saveFileNameLocation = 0;
     private int objectiveDataLocation = 1;
+    private int achievementDataLocation = 2;
 
     [Header("UI References")]
     [SerializeField]
@@ -81,8 +83,10 @@ public class SaveHandler : MonoBehaviour
     public void SaveAllData()
     {
         string objectiveData = ObjectiveManager.instance.GetObjectiveStorageString();
+        string achievementData = AchievementManager.instance.GetAchievementSaveString();
 
         SaveObjectiveData(objectiveData);
+        SaveAchievementData(achievementData);
     }
 
     /// <summary>
@@ -101,6 +105,7 @@ public class SaveHandler : MonoBehaviour
             GameManager.Instance.MainMenuToTutorial();
 
             ObjectiveManager.instance.LoadObjectives(ReadObjectiveData());
+            AchievementManager.instance.LoadAchievementSaveString(ReadAchievementData());
         }
     }
 
@@ -162,6 +167,30 @@ public class SaveHandler : MonoBehaviour
         string[] parsedDat = allDat.Split(fileDataParser);
 
         return parsedDat[objectiveDataLocation];
+    }
+
+    /// <summary>
+    /// Takes a given string of achievement data and saves it to the current file
+    /// </summary>
+    /// <param name="achievementData"></param>
+    public void SaveAchievementData(string achievementData)
+    {
+        string allDat = GetCurrentFileInfo();
+        string[] parsedDat = allDat.Split(fileDataParser);
+        parsedDat[achievementDataLocation] = achievementData;
+        SetCurrentFileInfo(ArrayToFileData(parsedDat));
+    }
+
+    /// <summary>
+    /// Reads in and returns the achievement data for the current save file
+    /// </summary>
+    /// <returns>Objective data string for current save file</returns>
+    public string ReadAchievementData()
+    {
+        string allDat = GetCurrentFileInfo();
+        string[] parsedDat = allDat.Split(fileDataParser);
+
+        return parsedDat[achievementDataLocation];
     }
 
     /// <summary>
