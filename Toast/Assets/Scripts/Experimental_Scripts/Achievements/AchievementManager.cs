@@ -136,9 +136,13 @@ public class AchievementManager : MonoBehaviour
        
     }
 
-    public void ReceivedLittleFella()
+    public void ReceivedLittleFella(NewProp prop, int increment)
     {
-        
+        if(prop.HasAttribute(PropFlags.Bread) || prop.HasAttribute(PropFlags.Jam))
+        {
+            // Feed little fella achievement
+            Unlock(ACHIEVEMENT_FEED_LITTLE_FELLA);
+        }
     }
 
     void IncrementAchievement(Achievement achievement)
