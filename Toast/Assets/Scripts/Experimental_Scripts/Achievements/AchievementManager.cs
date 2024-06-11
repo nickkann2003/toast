@@ -236,38 +236,5 @@ public class AchievementManager : MonoBehaviour
             target.AchievementProgress = aProgress;
             target.IsUnlocked = aUnlocked;
         }
-
-        //SortObjectivesById();
-        //string[] allObjs = fileDat.Split(objectiveMarker);
-        //foreach (string ob in allObjs)
-        //{
-        //    if (ob.Equals(""))
-        //    {
-        //        continue;
-        //    }
-        //
-        //    string[] tempObj = ob.Split(requirementStartMarker);
-        //    string[] objDatSplit = tempObj[0].Split(spacer);
-        //    int tId = int.Parse(objDatSplit[0]);
-        //    bool tComplete = objDatSplit[1].Equals("1") ? true : false;
-        //    bool tAvailable = objDatSplit[2].Equals("1") ? true : false;
-        //
-        //    if (tComplete)
-        //    {
-        //        ObjectivesById[tId].ForceCompleteObjective();
-        //        continue;
-        //    }
-        //
-        //    if (tAvailable)
-        //    {
-        //        string[] reqs = tempObj[1].Split(requirementSpace);
-        //        foreach (string req in reqs)
-        //        {
-        //            string[] reqsSplit = req.Split(spacer);
-        //            objectivesById[tId].SetRequirement(int.Parse(reqsSplit[0]), (reqsSplit[1].Equals("1") ? true : false), int.Parse(reqsSplit[2]));
-        //        }
-        //    }
-        //}
-        //UpdateText();
     }
 }
