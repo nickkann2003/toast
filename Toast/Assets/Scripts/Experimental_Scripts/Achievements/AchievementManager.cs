@@ -16,6 +16,17 @@ public class AchievementManager : MonoBehaviour
     public Achievement ACHIEVEMENT_CLEAR_TUTORIAL;
     [Foldout("Achievement Objects")]
     public Achievement ACHIEVEMENT_EAT_5_BREAD;
+    [Foldout("Achievement Objects")]
+    public Achievement ACHIEVEMENT_FIRE_ENDING;
+    [Foldout("Achievement Objects")]
+    public Achievement ACHIEVEMENT_FIRST_TOAST;
+    [Foldout("Achievement Objects")]
+    public Achievement ACHIEVEMENT_FEED_LITTLE_FELLA;
+    [Foldout("Achievement Objects")]
+    public Achievement ACHIEVEMENT_TOAST_NINJA_SCORE_50;
+    [Foldout("Achievement Objects")]
+    public Achievement ACHIEVEMENT_TOAST_NINJA_SCORE_100;
+
 
 
 
@@ -123,6 +134,11 @@ public class AchievementManager : MonoBehaviour
             IncrementAchievement(ACHIEVEMENT_EAT_5_BREAD);
         }
        
+    }
+
+    public void ReceivedLittleFella()
+    {
+        
     }
 
     void IncrementAchievement(Achievement achievement)
