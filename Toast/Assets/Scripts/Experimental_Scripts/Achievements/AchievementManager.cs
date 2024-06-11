@@ -57,6 +57,10 @@ public class AchievementManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI bannerText;
 
+    [Header("Achievement Progress Text")]
+    [SerializeField]
+    TextMeshProUGUI unlockedProgressText;
+
     // ------------------------------- Save Variables -------------------------------
     private string achievementSeparator = "~";
     private string spacer = "_";
@@ -103,6 +107,7 @@ public class AchievementManager : MonoBehaviour
             unlockedAchievements.Add(achievement);
             achievement.MenuSquare.displayImage.sprite = achievement.MenuSquare.unlockedSprite;
             PlayNotification(achievement);
+            unlockedProgressText.text = $"{unlockedAchievements.Count}/{achievements.Count}";
         }
     }
 
@@ -136,12 +141,26 @@ public class AchievementManager : MonoBehaviour
        
     }
 
+    /// <summary>
+    /// Achievements related to little fella
+    /// </summary>
     public void ReceivedLittleFella(NewProp prop, int increment)
     {
         if(prop.HasAttribute(PropFlags.Bread) || prop.HasAttribute(PropFlags.Jam))
         {
             // Feed little fella achievement
             Unlock(ACHIEVEMENT_FEED_LITTLE_FELLA);
+        }
+    }
+
+    /// <summary>
+    /// Achievements relating to toasting
+    /// </summary>
+    public void ReceivedToasting(NewProp prop, int increment)
+    {
+        if(prop.HasAttribute(PropFlags.Toast))
+        {
+            Unlock(ACHIEVEMENT_FIRST_TOAST);
         }
     }
 
@@ -182,6 +201,8 @@ public class AchievementManager : MonoBehaviour
 
             newItem.transform.SetParent(menuPanel.transform, false);
         }
+
+        unlockedProgressText.text = $"{unlockedAchievements.Count}/{achievements.Count}";
     }
 
     void PlayNotification(Achievement achievement)
