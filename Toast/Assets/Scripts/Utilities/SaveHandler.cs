@@ -75,6 +75,8 @@ public class SaveHandler : MonoBehaviour
         SaveFile1.text = file1Name.Equals("") ? "NEW SAVE" : file1Name;
         SaveFile2.text = file2Name.Equals("") ? "NEW SAVE" : file2Name;
         SaveFile3.text = file3Name.Equals("") ? "NEW SAVE" : file3Name;
+
+        currentSaveFile = -1;
     }
 
     /// <summary>
@@ -82,11 +84,14 @@ public class SaveHandler : MonoBehaviour
     /// </summary>
     public void SaveAllData()
     {
-        string objectiveData = ObjectiveManager.instance.GetObjectiveStorageString();
-        string achievementData = AchievementManager.instance.GetAchievementSaveString();
+        if(currentSaveFile != -1)
+        {
+            string objectiveData = ObjectiveManager.instance.GetObjectiveStorageString();
+            string achievementData = AchievementManager.instance.GetAchievementSaveString();
 
-        SaveObjectiveData(objectiveData);
-        SaveAchievementData(achievementData);
+            SaveObjectiveData(objectiveData);
+            SaveAchievementData(achievementData);
+        }
     }
 
     /// <summary>

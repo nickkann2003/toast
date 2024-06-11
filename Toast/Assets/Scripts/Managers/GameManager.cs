@@ -191,6 +191,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void QuitGame()
     {
+        SaveHandler.instance.SaveAllData();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
