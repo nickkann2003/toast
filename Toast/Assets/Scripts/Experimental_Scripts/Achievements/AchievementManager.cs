@@ -172,13 +172,18 @@ public class AchievementManager : MonoBehaviour
         Unlock(ACHIEVEMENT_FIRE_ENDING);
     }
 
-    void IncrementAchievement(Achievement achievement)
+    public void ReceivedToastNinja(NewProp prop, int increment)
+    {
+        
+    }
+
+    void IncrementAchievement(Achievement achievement, int increment = 1)
     {
         // Check that achievement has goal and that it is greater than 0
         if(achievement.HasNumericGoal && achievement.AchievementGoal > 0 && !achievement.IsUnlocked)
         {
             // Increase progress
-            achievement.AchievementProgress++;
+            achievement.AchievementProgress += increment;
 
             // Update visual progress
             achievement.MenuSquare.ProgressText = $"{achievement.AchievementProgress}/{achievement.AchievementGoal}";
