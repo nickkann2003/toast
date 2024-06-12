@@ -164,6 +164,14 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Achievements related to endings
+    /// </summary>
+    public void ReceivedEnding()
+    {
+        Unlock(ACHIEVEMENT_FIRE_ENDING);
+    }
+
     void IncrementAchievement(Achievement achievement)
     {
         // Check that achievement has goal and that it is greater than 0
