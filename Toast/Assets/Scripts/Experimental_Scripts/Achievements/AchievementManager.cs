@@ -25,9 +25,9 @@ public class AchievementManager : MonoBehaviour
     [Foldout("Achievement Objects")]
     public Achievement ACHIEVEMENT_FEED_LITTLE_FELLA;
     [Foldout("Achievement Objects")]
-    public Achievement ACHIEVEMENT_TOAST_NINJA_SCORE_50;
+    public Achievement ACHIEVEMENT_TOAST_NINJA_SCORE_20;
     [Foldout("Achievement Objects")]
-    public Achievement ACHIEVEMENT_TOAST_NINJA_SCORE_100;
+    public Achievement ACHIEVEMENT_TOAST_NINJA_SCORE_50;
 
 
 
@@ -166,13 +166,26 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-    void IncrementAchievement(Achievement achievement)
+    /// <summary>
+    /// Achievements related to endings
+    /// </summary>
+    public void ReceivedEnding()
+    {
+        Unlock(ACHIEVEMENT_FIRE_ENDING);
+    }
+
+    public void ReceivedToastNinja(NewProp prop, int increment)
+    {
+        
+    }
+
+    void IncrementAchievement(Achievement achievement, int increment = 1)
     {
         // Check that achievement has goal and that it is greater than 0
         if(achievement.HasNumericGoal && achievement.AchievementGoal > 0 && !achievement.IsUnlocked)
         {
             // Increase progress
-            achievement.AchievementProgress++;
+            achievement.AchievementProgress += increment;
 
             // Update visual progress
             achievement.MenuSquare.ProgressText = $"{achievement.AchievementProgress}/{achievement.AchievementGoal}";

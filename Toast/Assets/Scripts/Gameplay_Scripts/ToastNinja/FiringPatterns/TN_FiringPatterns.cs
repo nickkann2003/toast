@@ -4,6 +4,8 @@ using UnityEngine;
 public abstract class TN_FiringPatterns : ScriptableObject
 {
     // ------------------------------- Variables -------------------------------
+    [SerializeField]
+    protected TN_ObjectPool _objectPool;
 
     [SerializeField, MinMaxSlider(0, 10), Label("Min/Max Indices")]
     protected Vector2Int minMaxIndices = new Vector2Int(0, 10);
@@ -32,5 +34,10 @@ public abstract class TN_FiringPatterns : ScriptableObject
         }
 
         return true;
+    }
+
+    protected virtual GameObject RandomPrefab()
+    {
+        return _objectPool.RandomItem();
     }
 }
