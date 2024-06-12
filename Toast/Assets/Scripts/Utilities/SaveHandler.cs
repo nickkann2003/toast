@@ -32,7 +32,7 @@ public class SaveHandler : MonoBehaviour
     private string saveFileParser = "\n";
     private string fileDataParser = "|";
 
-    private int saveFileSections = 2;
+    private int saveFileSections = 6;
     private int saveFileNameLocation = 0;
     private int objectiveDataLocation = 1;
     private int achievementDataLocation = 2;
@@ -44,6 +44,9 @@ public class SaveHandler : MonoBehaviour
     private TextMeshProUGUI SaveFile2;
     [SerializeField]
     private TextMeshProUGUI SaveFile3;
+
+    [SerializeField]
+    private TextMeshProUGUI DEBUGOUTPUT;
 
     // ------------------------------- Buttons -------------------------------
     [SerializeField, Button]
@@ -60,9 +63,50 @@ public class SaveHandler : MonoBehaviour
 
     private void Start()
     {
+        currentSaveFile = -1;
+        
+        if (!File.Exists(path))
+        {
+            DEBUGOUTPUT.text += "Save file not found, creating save file";  //DEBUG
+            File.CreateText(path);
+        }
+        DEBUGOUTPUT.text += "File found at path, checking file info";  //DEBUG
+
+
+        StreamReader sr = new StreamReader(path);
+        string allDat = sr.ReadToEnd();
+        sr.Close();
+        DEBUGOUTPUT.text += allDat + "\n";  //DEBUG
+        if (allDat == "")
+        {
+            DEBUGOUTPUT.text += "Save file found empty, creating formatted save file";  //DEBUG
+            CreateFormattedSaveFile();
+        }
+        DEBUGOUTPUT.text += "Formatted save file located, verifying format";  //DEBUG
+
+        string[] datSplit = allDat.Split(saveFileParser);
+        if (!(datSplit.Length > 1))
+        {
+            DEBUGOUTPUT.text += "Save files not formatted correctly, rewriting data";  //DEBUG
+            CreateFormattedSaveFile();
+        }
+        else
+        {
+            if (!(datSplit[0].Split(fileDataParser).Length > 1))
+            {
+                DEBUGOUTPUT.text += "Save file data not formatted correctly, rewriting data";  //DEBUG
+                CreateFormattedSaveFile();
+            }
+        }
+        DEBUGOUTPUT.text += "Save file format verified, loading files"; //DEBUG
+
+        currentSaveFile = -1;
+
         string file3Name;
-        SetCurrentSaveFileByID(2);
+        SetCurrentSaveFileByID(2); 
+        DEBUGOUTPUT.text += "PARSING SAVE FILE NAME";  //DEBUG
         file3Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
+        DEBUGOUTPUT.text += "SAVE FILE NAME SUCCESSFULLY PARSED\n";  //DEBUG
 
         string file2Name;
         SetCurrentSaveFileByID(1);
@@ -99,12 +143,15 @@ public class SaveHandler : MonoBehaviour
     /// </summary>
     public void LoadSaveFile()
     {
+        DEBUGOUTPUT.text += "Loading save file";  //DEBUG
         if (currentSaveFileName.Equals("")){
+            DEBUGOUTPUT.text += "Name empty, opening file naming menu";  //DEBUG
             UIManager.instance.CloseFileSelectMenu();
             UIManager.instance.OpenFileNamingMenu();
         }
         else
         {
+            DEBUGOUTPUT.text += "Name not empty,";  //DEBUG
             UIManager.instance.CloseFileNamingMenu();
             UIManager.instance.CloseFileSelectMenu();
             GameManager.Instance.MainMenuToTutorial();
@@ -147,6 +194,7 @@ public class SaveHandler : MonoBehaviour
         string cData = GetCurrentFileInfo();
         string[] parsedDat = cData.Split(fileDataParser);
         parsedDat[saveFileNameLocation] = filename;
+        currentSaveFileName = filename;
         SetCurrentFileInfo(ArrayToFileData(parsedDat));
     }
 
@@ -203,11 +251,21 @@ public class SaveHandler : MonoBehaviour
     /// </summary>
     private void SetPath()
     {
-        path = Application.persistentDataPath + "/" + basePath;
+        path = Application.persistentDataPath;
+        DEBUGOUTPUT.text += "PATH: " + path + "\n";  //DEBUG
+        DEBUGOUTPUT.text += "Checking directory";  //DEBUG
+
+        if (!Directory.Exists(path))
+        {
+            DEBUGOUTPUT.text += "Directory not found, creating directory";  //DEBUG
+            Directory.CreateDirectory(path);
+        }
+        DEBUGOUTPUT.text += "Directory found, checking path";  //DEBUG
+        path += "/" + basePath;
 
 #if UNITY_EDITOR
         path = "Assets/Resources/" + basePath;
-        Debug.Log("In Editor, changing read/write path to " + path);
+        Debug.Log("In Editor, changing read/write path to " + path); 
 #endif
     }
 
@@ -227,13 +285,26 @@ public class SaveHandler : MonoBehaviour
     /// <returns></returns>
     private string GetCurrentFileInfo()
     {
+        DEBUGOUTPUT.text += "Creating Stream Reader";  //DEBUG
         StreamReader sr = new StreamReader(path);
+        DEBUGOUTPUT.text += "Stream Reader CREATED";  //DEBUG
         string allDat = sr.ReadToEnd();
+        DEBUGOUTPUT.text += "STREAM READER READ DATA";  //DEBUG
         sr.Close();
+        DEBUGOUTPUT.text += "STREAM READER CLOSED";  //DEBUG
 
         string[] parsedDat = allDat.Split(saveFileParser);
-
-        return parsedDat[currentSaveFile];
+        DEBUGOUTPUT.text += "STREAM READER parsed data";  //DEBUG
+        if (parsedDat.Length > 1)
+        {
+            DEBUGOUTPUT.text += "Parsed data found, returning info\n";  //DEBUG
+            return parsedDat[currentSaveFile];
+        }
+        else
+        {
+            DEBUGOUTPUT.text += "Parsed data no length, returning empty\n";  //DEBUG
+            return "";
+        }
     }
 
     /// <summary>
