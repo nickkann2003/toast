@@ -9894,6 +9894,67 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 767060069}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &767147268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 767147269}
+  - component: {fileID: 767147270}
+  m_Layer: 0
+  m_Name: PieManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &767147269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767147268}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1135898838}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &767147270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767147268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c65f672066de0f4a8908b3dc6a9c80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BurnObject: {fileID: 11400000, guid: c82d2be328055f047a2e68ceda0fe55d, type: 2}
+  CompleteMinigame: {fileID: 11400000, guid: 55bde69cd43f2d1419f678d4f6f66534, type: 2}
+  CreateObject: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
+  DestroyObjects: {fileID: 11400000, guid: 7938a98252c17b54e8a42aac711d4550, type: 2}
+  DragObject: {fileID: 11400000, guid: 10214217ff36875449f9423d59d23193, type: 2}
+  DropObject: {fileID: 11400000, guid: 5088c6d0c89b46f448451041d58e1733, type: 2}
+  EatObject: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
+  GiveLittleFella: {fileID: 11400000, guid: 6b5b7c99d0548e9478e16c409f30b6e8, type: 2}
+  HaveObject: {fileID: 11400000, guid: a78a1fbd3eb89984b9ec3163ba95fcae, type: 2}
+  HaveObjectInInventory: {fileID: 11400000, guid: 6d1b224677ea7ff4583d2e8af35f0cff,
+    type: 2}
+  PickUpObject: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
+  SetObjectOnFire: {fileID: 11400000, guid: 99b14f71824556f42934334a90527563, type: 2}
+  ThawObject: {fileID: 11400000, guid: d26239510d487054e9b40255a0a441bf, type: 2}
+  ToastNinjaScore: {fileID: 11400000, guid: bace4ac0805980a46a61fa39ad9af797, type: 2}
+  ToastObject: {fileID: 11400000, guid: e101c82c1dd11aa47985d3853517143f, type: 2}
+  UseObject: {fileID: 11400000, guid: fb0064d8f2f9be342b9136075c8542c7, type: 2}
 --- !u!1 &779680019 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8317045835413974375, guid: 7354718f332bbc646bb3feaa82d6f316,
@@ -14787,6 +14848,7 @@ Transform:
   - {fileID: 1281661261}
   - {fileID: 1490723304}
   - {fileID: 476747431}
+  - {fileID: 767147269}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

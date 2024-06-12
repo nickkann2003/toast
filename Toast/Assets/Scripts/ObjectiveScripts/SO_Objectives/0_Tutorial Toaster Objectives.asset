@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveName: Learning the Ropes
   description: Get the hang of using the toaster
-  complete: 0
-  available: 0
+  completeText: 
+  unavailableText: ???
   requirements:
   - targetAttributes: 536870912
     listener:
@@ -28,7 +28,7 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
-    listening: 0
+    listening: 1
   - targetAttributes: 536870912
     listener:
       gameEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
@@ -40,7 +40,7 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 1
-    listening: 0
+    listening: 1
   - targetAttributes: 536870912
     listener:
       gameEvent: {fileID: 11400000, guid: 5088c6d0c89b46f448451041d58e1733, type: 2}
@@ -52,7 +52,7 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 2
-    listening: 0
+    listening: 1
   - targetAttributes: 536870912
     listener:
       gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
@@ -64,10 +64,10 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 3
-    listening: 0
+    listening: 1
   - targetAttributes: 536870913
     listener:
-      gameEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
+      gameEvent: {fileID: 11400000, guid: e101c82c1dd11aa47985d3853517143f, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
@@ -76,10 +76,10 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 4
-    listening: 0
+    listening: 1
   - targetAttributes: 536871424
     listener:
-      gameEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
+      gameEvent: {fileID: 11400000, guid: c82d2be328055f047a2e68ceda0fe55d, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
@@ -88,5 +88,7 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 5
-    listening: 0
+    listening: 1
   id: 0
+  complete: 1
+  available: 1
