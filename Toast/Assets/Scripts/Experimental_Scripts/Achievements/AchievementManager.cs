@@ -23,9 +23,9 @@ public class AchievementManager : MonoBehaviour
     [Foldout("Achievement Objects")]
     public Achievement ACHIEVEMENT_FEED_LITTLE_FELLA;
     [Foldout("Achievement Objects")]
-    public Achievement ACHIEVEMENT_TOAST_NINJA_SCORE_50;
+    public Achievement ACHIEVEMENT_TOAST_NINJA_SCORE_20;
     [Foldout("Achievement Objects")]
-    public Achievement ACHIEVEMENT_TOAST_NINJA_SCORE_100;
+    public Achievement ACHIEVEMENT_TOAST_NINJA_SCORE_50;
 
 
 
