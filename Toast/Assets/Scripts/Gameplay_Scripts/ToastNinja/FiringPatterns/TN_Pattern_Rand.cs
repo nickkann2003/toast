@@ -24,7 +24,7 @@ public class TN_Pattern_Rand : TN_FiringPatterns
 
         if (ValidateIndex(launcher))
         {
-            launchers[launcher].Launch(toastNinja.RandPrefab());
+            launchers[launcher].Launch(RandomPrefab());
         }
 
         amount--;

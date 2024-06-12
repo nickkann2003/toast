@@ -8,7 +8,7 @@ public class TN_Pattern_Wave : TN_FiringPatterns
 {
     // ------------------------------- Variables -------------------------------
 
-    [SerializeField, Range(0,10), ValidateInput("ValidateIndex", "index out of range")]
+    [SerializeField, Range(0,10)]
     protected int index = 5;
     [SerializeField]
     protected float timeBetweenShots = .2f;
@@ -26,8 +26,10 @@ public class TN_Pattern_Wave : TN_FiringPatterns
     {
         LaunchObject[] launchers = toastNinja.LaunchObjects;
 
-        launchers[index].Launch(toastNinja.RandPrefab());
-
+        if (ValidateIndex(index))
+        {
+            launchers[index].Launch(RandomPrefab());
+        }
         
         if (ValidateIndex(index - step))
         {
@@ -47,7 +49,7 @@ public class TN_Pattern_Wave : TN_FiringPatterns
     {
         LaunchObject[] launchers = toastNinja.LaunchObjects;
 
-        launchers[index].Launch(toastNinja.RandPrefab());
+        launchers[index].Launch(RandomPrefab());
 
         index += polarity * step;
 
