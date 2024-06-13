@@ -5,7 +5,7 @@ public abstract class TN_FiringPatterns : ScriptableObject
 {
     // ------------------------------- Variables -------------------------------
     [SerializeField]
-    protected TN_ObjectPool _objectPool;
+    protected TN_ItemPool _objectPool;
 
     [SerializeField, MinMaxSlider(0, 10), Label("Min/Max Indices")]
     protected Vector2Int minMaxIndices = new Vector2Int(0, 10);
@@ -36,7 +36,7 @@ public abstract class TN_FiringPatterns : ScriptableObject
         return true;
     }
 
-    protected virtual GameObject RandomPrefab()
+    protected virtual TN_ItemScriptableObject RandomPrefab()
     {
         return _objectPool.RandomItem();
     }

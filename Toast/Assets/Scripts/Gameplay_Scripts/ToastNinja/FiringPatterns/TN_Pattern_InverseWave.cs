@@ -14,14 +14,16 @@ public class TN_Pattern_InverseWave : TN_FiringPatterns
     [SerializeField, MinValue(1)]
     protected int step = 1;
     [SerializeField]
+    protected int maxIterations = 5;
+    [SerializeField]
     protected int startDistance = 2;
 
     public override void Launch(ToastNinja toastNinja)
     {
-        toastNinja.StartCoroutine(Fire(toastNinja, startDistance));
+        toastNinja.StartCoroutine(Fire(toastNinja, startDistance, maxIterations));
     }
 
-    IEnumerator Fire(ToastNinja toastNinja, int distanceFromCenter)
+    IEnumerator Fire(ToastNinja toastNinja, int distanceFromCenter, int iteration)
     {
         LaunchObject[] launchers = toastNinja.LaunchObjects;
 
@@ -32,22 +34,30 @@ public class TN_Pattern_InverseWave : TN_FiringPatterns
 
             if (ValidateIndex(leftIndex))
             {
-                launchers[leftIndex].Launch(RandomPrefab());
+                launchers[leftIndex].LaunchSO(RandomPrefab());
             }
             if (ValidateIndex(rightIndex))
             {
-                launchers[rightIndex].Launch(RandomPrefab());
+                launchers[rightIndex].LaunchSO(RandomPrefab());
             }
 
             distanceFromCenter -= step;
+            iteration--;
 
             if (distanceFromCenter < 0)
             {
                 distanceFromCenter = 0;
             }
 
-            yield return new WaitForSeconds(timeBetweenShots);
-            toastNinja.StartCoroutine(Fire(toastNinja, distanceFromCenter));
+            if (iteration > 0)
+            {
+                yield return new WaitForSeconds(timeBetweenShots);
+                toastNinja.StartCoroutine(Fire(toastNinja, distanceFromCenter, iteration));
+            }
+            else
+            {
+                yield return null;
+            }
         }
         else
         {

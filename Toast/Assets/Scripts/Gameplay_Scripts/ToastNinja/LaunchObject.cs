@@ -9,7 +9,9 @@ public class LaunchObject : MonoBehaviour
     [SerializeField]
     public GameObject objPrefab;
     [SerializeField]
-    ParticleSystem particles;
+    ParticleSystem smokeParticles;
+    [SerializeField]
+    ParticleSystem bombParticles;
 
     [Header("Launch Values")]
     [SerializeField]
@@ -47,9 +49,25 @@ public class LaunchObject : MonoBehaviour
         {
             return;
         }
-        particles.Play();
+        smokeParticles.Play();
         StartCoroutine(DelayedLaunchObj(objectToLaunch));
 
+    }
+
+    public void LaunchSO(TN_ItemScriptableObject scriptableObject)
+    {
+        if (!active || scriptableObject == null) { return; }
+
+        if (scriptableObject.IsBomb)
+        {
+            bombParticles.Play();
+        }
+        else
+        {
+            smokeParticles.Play();
+        }
+
+        StartCoroutine(DelayedLaunchObj(scriptableObject.Prefab));
     }
 
     /// <summary>
@@ -59,7 +77,7 @@ public class LaunchObject : MonoBehaviour
     /// <returns>Coroutine</returns>
     IEnumerator DelayedLaunchObj(GameObject objectToLaunch)
     {
-        yield return new WaitForSeconds(0f);
+        yield return new WaitForSeconds(.1f);
 
         if (!active)
         {
