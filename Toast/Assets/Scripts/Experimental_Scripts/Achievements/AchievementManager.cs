@@ -176,7 +176,8 @@ public class AchievementManager : MonoBehaviour
 
     public void ReceivedToastNinja(NewProp prop, int increment)
     {
-        
+        IncrementAchievement(ACHIEVEMENT_TOAST_NINJA_SCORE_50, increment);
+        IncrementAchievement(ACHIEVEMENT_TOAST_NINJA_SCORE_100, increment);
     }
 
     void IncrementAchievement(Achievement achievement, int increment = 1)
