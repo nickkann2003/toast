@@ -30,7 +30,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7379713870014619200}
   m_Father: {fileID: 5108859777102492620}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90, y: -90, z: 90}
@@ -115,6 +116,7 @@ GameObject:
   - component: {fileID: 376886392173239908}
   - component: {fileID: 3166624547178151170}
   - component: {fileID: 5038043028989626870}
+  - component: {fileID: 4794038713409986137}
   m_Layer: 7
   m_Name: TN_Burning
   m_TagString: Untagged
@@ -135,7 +137,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7555542501939814242}
-  - {fileID: 7379713870014619200}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: -90, z: 90}
@@ -209,9 +210,6 @@ MonoBehaviour:
   PD_Rb: {fileID: 0}
   createObjectEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
   thawObjectEvent: {fileID: 11400000, guid: d26239510d487054e9b40255a0a441bf, type: 2}
-  toastObjectEvent: {fileID: 0}
-  burnObjectEvent: {fileID: 0}
-  setObjectOnFireEvent: {fileID: 0}
 --- !u!33 &376886392173239908
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -281,13 +279,29 @@ MonoBehaviour:
     type: 3}
   toastNinjaScoreEvent: {fileID: 11400000, guid: bace4ac0805980a46a61fa39ad9af797,
     type: 2}
+--- !u!114 &4794038713409986137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3768063983184406459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902f118e886d20d43b1ff6bff5092b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHighlightSetting: {fileID: 11400000, guid: 66f8fe3eb1012ef40aa66410722286fc,
+    type: 2}
+  isHighlightedEnabled: 1
+  outline: []
 --- !u!1001 &440413841421439165
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 5108859777102492620}
+    m_TransformParent: {fileID: 7555542501939814242}
     m_Modifications:
     - target: {fileID: 3313279580185439241, guid: 797bc0bd80e510e489d3a8dbd4aff7d7,
         type: 3}
@@ -302,17 +316,17 @@ PrefabInstance:
     - target: {fileID: 6950928499270586109, guid: 797bc0bd80e510e489d3a8dbd4aff7d7,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6950928499270586109, guid: 797bc0bd80e510e489d3a8dbd4aff7d7,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6950928499270586109, guid: 797bc0bd80e510e489d3a8dbd4aff7d7,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6950928499270586109, guid: 797bc0bd80e510e489d3a8dbd4aff7d7,
         type: 3}
