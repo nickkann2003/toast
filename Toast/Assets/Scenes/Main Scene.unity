@@ -1524,9 +1524,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 124748873}
-  - component: {fileID: 124748876}
   - component: {fileID: 124748875}
   - component: {fileID: 124748874}
+  - component: {fileID: 124748876}
   - component: {fileID: 124748877}
   - component: {fileID: 124748878}
   m_Layer: 3
@@ -1570,7 +1570,7 @@ MonoBehaviour:
   objectOffset: {x: -4.37, y: 2.99, z: -4.02}
   parentLoc: {fileID: 1448825837}
   stationLabel: 1
-  clickableCollider: {fileID: 124748876}
+  clickableCollider: {fileID: 0}
   interactables: []
   isEnabled: 0
   dragPlanes: []
@@ -1614,7 +1614,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.6101818, y: 2.7826629, z: 4.53368}
   m_Center: {x: -4.9127913, y: 3.2196524, z: -4.13039}
@@ -1635,7 +1635,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.6473141, y: 0.28210568, z: 4.1234035}
   m_Center: {x: -4.394225, y: 1.9197446, z: -4.3355284}
@@ -1656,7 +1656,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.1643858, y: 0.6509559, z: 0.67694473}
   m_Center: {x: -4.3360934, y: 2.3572936, z: -4.4948225}
@@ -5941,7 +5941,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 748192a60d7dba14aa60ca30208ebe2f, type: 2}
   - {fileID: 11400000, guid: cd23c95dfeaf20944aeb83011d6da0aa, type: 2}
   unlockedAchievements: []
-  UIPrefab: {fileID: 9134229435737705100, guid: 54adf1b91ca220f4e92b8d2cd4812fce,
+  UIPrefab: {fileID: 4698171833950961960, guid: 54adf1b91ca220f4e92b8d2cd4812fce,
     type: 3}
   menuPanel: {fileID: 1662942522}
   notificationBanner: {fileID: 1140447888}
@@ -10872,7 +10872,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22746,7 +22746,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.57084465, y: 6.8337746, z: 8.667039}
   m_Center: {x: -4.89373, y: 3.3640456, z: -5.248011}
@@ -22783,7 +22783,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.4426689, y: 0.67663383, z: 0.71485996}
   m_Center: {x: -4.4738283, y: 2.3593998, z: -4.493524}
@@ -22804,7 +22804,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.6753044, y: 2.2093604, z: 4.107453}
   m_Center: {x: -4.3575106, y: 0.98069966, z: -4.3603764}
@@ -22825,7 +22825,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.1890354, y: 4.5671043, z: 2.403151}
   m_Center: {x: -4.100645, y: 2.1595716, z: -7.5748386}
@@ -28112,6 +28112,11 @@ PrefabInstance:
       propertyPath: stationSpecificHints.Array.data[0]
       value: 
       objectReference: {fileID: 316126447}
+    - target: {fileID: 8536966151002778007, guid: 087a36c7a73205049bb1d1992e3f01ce,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6141326252567759442, guid: 087a36c7a73205049bb1d1992e3f01ce, type: 3}
     m_RemovedGameObjects: []
@@ -28517,7 +28522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.80900675, g: 0.95262825, b: 0.990566, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -38887,7 +38892,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 130}
-  m_SizeDelta: {x: 320, y: 60}
+  m_SizeDelta: {x: 350, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2069856488
 MonoBehaviour:
@@ -45143,6 +45148,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 819621938}
     m_Modifications:
+    - target: {fileID: 517397072198354514, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 757751717345780805, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 1053099644256037104, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
       propertyPath: m_text
@@ -45153,6 +45168,11 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1607341444}
+    - target: {fileID: 1937036421460201489, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 1947452075646458553, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -45228,6 +45248,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1607341444}
+    - target: {fileID: 3369562498264112481, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 3369562498264112481, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -45555,6 +45580,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1135898837}
+    - target: {fileID: 9194177234058242254, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 350
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6261507943025297533, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8, type: 3}
     m_RemovedGameObjects: []
