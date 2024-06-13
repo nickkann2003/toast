@@ -302,7 +302,7 @@ public class Raycast : MonoBehaviour
             Station currentStation = StationManager.instance.playerLocation;
 
             // Grab world pos from the current station
-            Vector3 objectPos = currentStation.objectOffset;
+            Vector3 objectPos = currentStation.ObjectOffset;
 
             //RaycastHit hitTest = RaycastHelper(~mask_Station);
             //if (hitTest.collider != null)

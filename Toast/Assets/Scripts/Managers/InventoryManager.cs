@@ -107,7 +107,7 @@ public class InventoryManager : MonoBehaviour
     public void AddItemToInventory(GameObject item)
     {
         inventoryEvent.RaiseEvent(item.GetComponent<NewProp>(), 1);
-        item.transform.position = InventoryStation.objectOffset;
+        item.transform.position = InventoryStation.ObjectOffset;
     }
 
     /// <summary>
@@ -121,7 +121,7 @@ public class InventoryManager : MonoBehaviour
         {
             // TODO this is almost code!
             Station temp = StationManager.instance.playerPath.Pop();
-            item.transform.position = StationManager.instance.playerPath.Peek().objectOffset;
+            item.transform.position = StationManager.instance.playerPath.Peek().ObjectOffset;
             StationManager.instance.playerPath.Push(temp);
         }
     }
