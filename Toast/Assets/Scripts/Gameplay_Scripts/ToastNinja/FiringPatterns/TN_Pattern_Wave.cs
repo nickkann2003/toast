@@ -28,6 +28,8 @@ public class TN_Pattern_Wave : TN_FiringPatterns
     {
         LaunchObject[] launchers = toastNinja.LaunchObjects;
 
+        //AudioManager.instance.PlayOneShotSound(AudioManager.instance.launch);
+
         if (distanceFromCenter > 0)
         {
             int leftIndex = centralIndex - distanceFromCenter;

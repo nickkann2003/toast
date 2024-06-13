@@ -24,6 +24,7 @@ public class TN_Pattern_Rand : TN_FiringPatterns
 
         if (ValidateIndex(launcher))
         {
+            //AudioManager.instance.PlayOneShotSound(AudioManager.instance.launch);
             launchers[launcher].LaunchSO(RandomPrefab());
         }
 

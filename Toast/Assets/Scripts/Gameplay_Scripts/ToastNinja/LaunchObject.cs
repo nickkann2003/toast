@@ -67,6 +67,7 @@ public class LaunchObject : MonoBehaviour
             smokeParticles.Play();
         }
 
+        //AudioManager.instance.PlayOneShotSound(AudioManager.instance.launch);
         StartCoroutine(DelayedLaunchObj(scriptableObject.Prefab));
     }
 
