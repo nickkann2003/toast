@@ -107,14 +107,17 @@ public class StationManager : MonoBehaviour
         }
         
         // Enable collider before leaving
-        if(StationManager.instance.playerLocation.clickableCollider != null && StationManager.instance.playerLocation != loc.parentLoc)
+        if(StationManager.instance.playerLocation != null)
         {
-            if(instance.playerLocation != loc.parentLoc)
+            if(StationManager.instance.playerLocation.clickableCollider != null && StationManager.instance.playerLocation != loc.parentLoc)
             {
-                StationManager.instance.playerLocation.EnableColliders();
-            }    
-            
-            StationManager.instance.playerLocation.OnLeave();
+                if(instance.playerLocation != loc.parentLoc)
+                {
+                    StationManager.instance.playerLocation.EnableColliders();
+                }    
+                
+                StationManager.instance.playerLocation.OnLeave();
+            }
         }
 
         // Update player's current location
