@@ -10,25 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: 19_F3
+  m_Name: 23_Fr4
   m_EditorClassIdentifier: 
-  objectiveName: Nice And Cool
-  description: Pick Up some Bread from the Fridge. 1/3
-  completeText: 
-  unavailableText: Check the Toaster first!
+  objectiveName: Fire Stopper
+  description: Put out a Flaming Toast using the Freezer. 4/4
+  completeText: You saved the house!
+  unavailableText: ???
   requirements:
-  - targetAttributes: 536870912
+  - targetAttributes: 536871168
+    hasExclusions: 0
+    excludeAttributes: 0
     listener:
-      gameEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
+      gameEvent: {fileID: 11400000, guid: 6cbdcf27414bfd34c932bb1ee33dafe9, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Pick Up Bread
+    goalName: Freeze a Flaming Bread
     goal: 1
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
-    listening: 1
-  id: 19
+    listening: 0
+  id: 23
   complete: 1
   available: 1

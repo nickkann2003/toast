@@ -15,8 +15,8 @@ public class Requirement
     //public RequirementType type = RequirementType.EatObject;
     public PropFlags targetAttributes;
     public bool hasExclusions = false;
-    [EnableIf("hasExclusions")]
-    public PropFlags excludeAttributes;
+    [SerializeField, ShowIf("hasExclusions")]
+    private PropFlags excludeAttributes;
     [SerializeField, Label("Do Not Add Response Event")]
     private PropIntGameEventListener listener = new PropIntGameEventListener();
 

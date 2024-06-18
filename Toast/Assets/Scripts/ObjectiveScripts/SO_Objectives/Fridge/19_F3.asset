@@ -10,25 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: 18_F2
+  m_Name: 19_F3
   m_EditorClassIdentifier: 
-  objectiveName: Jam It Up!
-  description: Pick Up the Jam, Take Off the Lid, and Use It on anything! 2/4
+  objectiveName: Infinite Bread?
+  description: Eat Bread and have it Respawn. 3/3
   completeText: 
   unavailableText: ???
   requirements:
-  - targetAttributes: 1073741824
+  - targetAttributes: 536870912
+    hasExclusions: 0
+    excludeAttributes: 0
     listener:
-      gameEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
+      gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Pick Up Jam
-    goal: 1
+    goalName: Eat Bread
+    goal: 10
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
     listening: 1
-  id: 18
+  id: 19
   complete: 1
   available: 1
