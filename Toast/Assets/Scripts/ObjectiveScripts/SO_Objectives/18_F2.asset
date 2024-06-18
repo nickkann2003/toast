@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: 13_Little Fella Objectives 1
+  m_Name: 18_F2
   m_EditorClassIdentifier: 
-  objectiveName: Hey There, Little Fella
-  description: He's a bit shy, and won't act while theres motion near him
-  completeText: You've made a new friend!
-  unavailableText: Complete the Toast Ninja goals
+  objectiveName: Jam It Up!
+  description: Pick Up the Jam, Take Off the Lid, and Use It on anything! 2/4
+  completeText: 
+  unavailableText: ???
   requirements:
-  - targetAttributes: 0
+  - targetAttributes: 1073741824
     listener:
-      gameEvent: {fileID: 11400000, guid: 6b5b7c99d0548e9478e16c409f30b6e8, type: 2}
+      gameEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Give him something
+    goalName: Pick Up Jam
     goal: 1
     exactValueGoal: 0
-    alwaysListening: 1
+    alwaysListening: 0
     id: 0
     listening: 1
-  id: 13
+  id: 18
   complete: 1
   available: 1

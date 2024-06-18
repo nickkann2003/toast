@@ -10,37 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: 14_Little Fella Objectives 2
+  m_Name: 11_I3
   m_EditorClassIdentifier: 
-  objectiveName: What's your favorite food?
-  description: Little Fella can eat some things, but not others
+  objectiveName: 'Stock Up: Jam!'
+  description: That Toast will need some flavor
   completeText: 
   unavailableText: ???
-  requirements:
-  - targetAttributes: 1
-    listener:
-      gameEvent: {fileID: 11400000, guid: 6b5b7c99d0548e9478e16c409f30b6e8, type: 2}
-      response:
-        m_PersistentCalls:
-          m_Calls: []
-    goalName: Give him Toast
-    goal: 1
-    exactValueGoal: 0
-    alwaysListening: 1
-    id: 0
-    listening: 1
-  - targetAttributes: 1073741824
-    listener:
-      gameEvent: {fileID: 11400000, guid: 6b5b7c99d0548e9478e16c409f30b6e8, type: 2}
-      response:
-        m_PersistentCalls:
-          m_Calls: []
-    goalName: Give him Jam
-    goal: 1
-    exactValueGoal: 0
-    alwaysListening: 1
-    id: 0
-    listening: 1
-  id: 14
   complete: 1
   available: 1
+  requirements:
+  - targetAttributes: 1073741824
+    listener:
+      gameEvent: {fileID: 11400000, guid: 6d1b224677ea7ff4583d2e8af35f0cff, type: 2}
+      response:
+        m_PersistentCalls:
+          m_Calls: []
+    goalName: Drop 2 Jam in your Inventory
+    goal: 2
+    exactValueGoal: 0
+    alwaysListening: 1
+    id: 0
+    listening: 1
+  id: 11

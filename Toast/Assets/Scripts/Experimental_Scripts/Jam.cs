@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 // Author: Nick Kannnenberg
 // Experimental Jam script, handles capping/uncapping
@@ -32,7 +33,14 @@ public class Jam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (isCapped && gameObject.GetComponent<NewProp>() != null)
+        {
+            gameObject.GetComponent<NewProp>().AddAttribute(PropFlags.JamLid);
+        }
+        if (!isCapped && gameObject.GetComponent<NewProp>() != null)
+        {
+            gameObject.GetComponent<NewProp>().RemoveAttribute(PropFlags.JamLid);
+        }
     }
 
     // Update is called once per frame
@@ -50,6 +58,7 @@ public class Jam : MonoBehaviour
             SetJamLidVisible(isCapped);
             GameObject newLid = GameObject.Instantiate(jamJarLidPrefab);
             newLid.transform.position = StationManager.instance.playerLocation.ObjectOffset;
+            gameObject.GetComponent<NewProp>()?.RemoveAttribute(PropFlags.JamLid);
         }
     }
 
@@ -61,6 +70,7 @@ public class Jam : MonoBehaviour
             isCapped = true;
             SetJamLidVisible(isCapped);
             Destroy(lid);
+            gameObject.GetComponent<NewProp>()?.AddAttribute(PropFlags.JamLid);
         }
     }
 
@@ -71,6 +81,7 @@ public class Jam : MonoBehaviour
         {
             isCapped = true;
             SetJamLidVisible(isCapped);
+            gameObject.GetComponent<NewProp>()?.AddAttribute(PropFlags.JamLid);
         }
     }
 

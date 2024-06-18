@@ -10,24 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: 6_Knife Objectives 2
+  m_Name: 13_LF1
   m_EditorClassIdentifier: 
-  objectiveName: ...on a Knife...
-  description: Knives can stack objects! 2/3
-  completeText: Toast Ninja has been unlocked!
-  complete: 1
-  available: 1
+  objectiveName: Hey There, Little Fella
+  description: He's a bit shy, and won't act while theres motion near him
+  completeText: You've made a new friend!
+  unavailableText: Complete the Toast Ninja goals
   requirements:
-  - targetAttributes: -2147483648
+  - targetAttributes: 0
     listener:
-      gameEvent: {fileID: 11400000, guid: fb0064d8f2f9be342b9136075c8542c7, type: 2}
+      gameEvent: {fileID: 11400000, guid: 6b5b7c99d0548e9478e16c409f30b6e8, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Use a Knife on a Knife <sprite=78>
-    goal: 4
+    goalName: Give him something
+    goal: 1
     exactValueGoal: 0
-    alwaysListening: 0
+    alwaysListening: 1
     id: 0
     listening: 1
-  id: 6
+  id: 13
+  complete: 1
+  available: 1

@@ -10,36 +10,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: 5_Knife Objectives 1
+  m_Name: 3_T3
   m_EditorClassIdentifier: 
-  objectiveName: Knife on a Knife
-  description: Pick Up items and Use items. 1/3
+  objectiveName: MORE.
+  description: AGAIN. 3/4
   completeText: 
-  complete: 1
-  available: 1
+  unavailableText: ???
   requirements:
-  - targetAttributes: -2147483648
+  - targetAttributes: 536870913
     listener:
-      gameEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
+      gameEvent: {fileID: 11400000, guid: e101c82c1dd11aa47985d3853517143f, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Pick Up a Knife <sprite=47>
-    goal: 1
+    goalName: Toast Bread
+    goal: 2
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
     listening: 1
-  - targetAttributes: -2147483648
+  - targetAttributes: 536870913
     listener:
-      gameEvent: {fileID: 11400000, guid: fb0064d8f2f9be342b9136075c8542c7, type: 2}
+      gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Use a Knife on a Knife <sprite=78>
-    goal: 1
+    goalName: Eat Toast
+    goal: 2
     exactValueGoal: 0
     alwaysListening: 0
     id: 1
     listening: 1
-  id: 5
+  id: 3
+  complete: 1
+  available: 1

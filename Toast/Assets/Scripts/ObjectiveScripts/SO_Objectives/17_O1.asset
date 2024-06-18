@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: 4_Toaster Objective 4
+  m_Name: 17_O1
   m_EditorClassIdentifier: 
-  objectiveName: MORE!!!
-  description: FINAL PUSH!!! 4/4
-  completeText: 'New Objectives Unlocked - Look around to find them!         Tip:
-    Scroll Up/Down to navigate To/From stations'
-  unavailableText: ???
+  objectiveName: High Volume Toasting
+  description: What's that red button for?
+  completeText: Flaming toast is a fire hazard, be sure to clean it all up!
+  unavailableText: Finish Fridge to unlock
   requirements:
   - targetAttributes: 536870913
     listener:
@@ -24,24 +23,12 @@ MonoBehaviour:
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Toast Bread
-    goal: 4
+    goalName: Eat Toast
+    goal: 50
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
     listening: 1
-  - targetAttributes: 536870913
-    listener:
-      gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
-      response:
-        m_PersistentCalls:
-          m_Calls: []
-    goalName: Eat Toast
-    goal: 4
-    exactValueGoal: 0
-    alwaysListening: 0
-    id: 1
-    listening: 1
-  id: 4
+  id: 17
   complete: 1
   available: 1

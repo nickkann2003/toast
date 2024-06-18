@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: 17_Oven Objectives 1
+  m_Name: 8_TN2
   m_EditorClassIdentifier: 
-  objectiveName: High Volume Toasting
-  description: What's that red button for?
-  completeText: Flaming toast is a fire hazard, be sure to clean it all up!
-  unavailableText: Finish Fridge to unlock
+  objectiveName: Toast it Up!
+  description: Slice, slice, slice!
+  completeText: You are a Toast Ninja master!
+  unavailableText: ???
   requirements:
-  - targetAttributes: 536870913
+  - targetAttributes: 0
     listener:
-      gameEvent: {fileID: 11400000, guid: e101c82c1dd11aa47985d3853517143f, type: 2}
+      gameEvent: {fileID: 11400000, guid: bace4ac0805980a46a61fa39ad9af797, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Eat Toast
+    goalName: Score 50 Points
     goal: 50
     exactValueGoal: 0
-    alwaysListening: 0
+    alwaysListening: 1
     id: 0
     listening: 1
-  id: 17
-  complete: 1
+  id: 8
+  complete: 0
   available: 1
