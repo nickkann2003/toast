@@ -6,8 +6,15 @@ public class RotationSetter : MonoBehaviour
 {
     // ------------------------------- Variables -------------------------------
     public Vector3 targetRotationEuler = new Vector3(0, 90, -90);
+    private Vector3 actualTarget;
 
     // ------------------------------- Functions -------------------------------
+    private void Start()
+    {
+        actualTarget = transform.rotation.eulerAngles;
+        actualTarget += targetRotationEuler;
+    }
+
     /// <summary>
     /// Sets the rotational velocity of a collider
     /// </summary>
@@ -22,7 +29,7 @@ public class RotationSetter : MonoBehaviour
             //otherRigidbody.angularVelocity = Vector3.zero;
             
             // Convert Euler angles to a Quaternion for rotation.
-            Quaternion targetRotation = Quaternion.Euler(targetRotationEuler);
+            Quaternion targetRotation = Quaternion.Euler(actualTarget);
 
             if(objectTransform.rotation != targetRotation)
             {

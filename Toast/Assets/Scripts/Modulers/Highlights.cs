@@ -11,7 +11,8 @@ public enum ObjectsType
 { 
     Station,
     Prop,
-    HintInfo
+    HintInfo,
+    Objective
 }
 
 

@@ -14,6 +14,9 @@ public class Requirement
     [Header("Attribute Flags and Event Listener")]
     //public RequirementType type = RequirementType.EatObject;
     public PropFlags targetAttributes;
+    public bool hasExclusions = false;
+    [SerializeField, ShowIf("hasExclusions")]
+    private PropFlags excludeAttributes;
     [SerializeField, Label("Do Not Add Response Event")]
     private PropIntGameEventListener listener = new PropIntGameEventListener();
 
@@ -93,6 +96,11 @@ public class Requirement
         {
             // If does not contain all necessary flags, return
             if(!(e.attributes.HasFlag(targetAttributes)))
+            {
+                return;
+            }
+
+            if(hasExclusions && e.attributes.HasFlag(excludeAttributes))
             {
                 return;
             }

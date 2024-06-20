@@ -25,6 +25,7 @@ public class PieManager : MonoBehaviour
     public PropIntGameEvent ToastNinjaScore;
     public PropIntGameEvent ToastObject;
     public PropIntGameEvent UseObject;
+    public PropIntGameEvent FreezeObject;
 
     // Singleton
     public static PieManager instance;

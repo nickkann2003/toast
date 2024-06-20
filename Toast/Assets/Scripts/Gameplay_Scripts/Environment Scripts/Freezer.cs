@@ -7,6 +7,9 @@ public class Freezer : MonoBehaviour
     // ------------------------------- Variables -------------------------------
     [Header("------------- Ice Prefab ------------")]
     public GameObject icePrefab;
+
+    [SerializeField]
+    private PropIntGameEvent freezeEvent;
     
     private List<GameObject> collidingObjects = new List<GameObject>();
 
@@ -14,7 +17,10 @@ public class Freezer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(freezeEvent == null)
+        {
+            freezeEvent = PieManager.instance.FreezeObject;
+        }
     }
 
     // Update is called once per frame
@@ -49,12 +55,14 @@ public class Freezer : MonoBehaviour
         // Put out fire if on fire, otherwise freeze
         if (prop.attributes.HasFlag(PropFlags.OnFire))
         {
+            freezeEvent.RaiseEvent(prop, 1);
             FireEndingManager.instance.removeFireObject(obj);
             prop.RemoveAttribute(PropFlags.OnFire);
             Destroy(obj.transform.GetChild(0).gameObject);
         }
         else if (!prop.attributes.HasFlag(PropFlags.Frozen) && prop.attributes.HasFlag(PropFlags.Bread)) 
         {
+            freezeEvent.RaiseEvent(prop, 1);
             GameObject ice = Instantiate(icePrefab);
             ice.transform.position = obj.transform.position;
             ice.GetComponent<MeshFilter>().sharedMesh = obj.GetComponent<MeshFilter>().sharedMesh;
