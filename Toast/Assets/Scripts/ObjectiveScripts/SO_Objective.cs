@@ -150,7 +150,7 @@ public class SO_Objective : ScriptableObject
             }
             else if(unavailableText != "")
             {
-                return "\n<size=-4><color=#111>" + unavailableText + "</color></size>";
+                return "<size=-4><color=#111>" + unavailableText + "</color></size>";
             }
             return "";
         }

@@ -415,7 +415,7 @@ public class Raycast : MonoBehaviour
                 {
                     if ((scrollInput > 0f || Input.GetButtonDown("Drag")) && stationMoveTimer <= 0)
                     {
-                        Debug.Log("Try to zoom in" + hightLocation);
+                        //Debug.Log("Try to zoom in" + hightLocation);
                         StationManager.instance.MoveToStation(hightLocation);
                         stationMoveTimer = stationMaxTimer;
                     }

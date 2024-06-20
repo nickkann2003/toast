@@ -14,29 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveName: Toast Bread
   description: Turn some bread into toast. 1/4
-  completeText: 
+  completeText: Check the Fridge to find more Bread, then come back here!
   unavailableText: ???
   requirements:
   - targetAttributes: 536870913
+    hasExclusions: 0
+    excludeAttributes: 0
     listener:
       gameEvent: {fileID: 11400000, guid: e101c82c1dd11aa47985d3853517143f, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
     goalName: Toast Bread
-    goal: 2
+    goal: 1
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
     listening: 1
   - targetAttributes: 536870913
+    hasExclusions: 0
+    excludeAttributes: 0
     listener:
       gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
     goalName: Eat Toast
-    goal: 2
+    goal: 1
     exactValueGoal: 0
     alwaysListening: 0
     id: 1
