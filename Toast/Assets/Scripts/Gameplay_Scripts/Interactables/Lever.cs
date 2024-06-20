@@ -54,6 +54,8 @@ public class Lever : MonoBehaviour
         {
             parent = transform.parent;
         }
+
+
     }
 
     // Update each frame
