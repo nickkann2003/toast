@@ -5,17 +5,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-[CreateAssetMenu(fileName = "New TN Object Pool", menuName = "Minigames/Toast Ninja/Object Pool", order = 55)]
+[CreateAssetMenu(fileName = "New TN Item Pool", menuName = "Minigames/Toast Ninja/Item Pool", order = 55)]
 
-public class TN_ObjectPool : ScriptableObject
+public class TN_ItemPool : ScriptableObject
 {
     [SerializeField, OnValueChanged("UpdateWeights")]
-    private TN_ObjectPoolItem[] _items;
+    private TN_ItemPoolItem[] _items;
 
     [SerializeField, ReadOnly]
     private int totalWeight;
 
-    public GameObject RandomItem()
+    public TN_ItemScriptableObject RandomItem()
     {
         if (_items == null) { return null; }
 
@@ -48,16 +48,16 @@ public class TN_ObjectPool : ScriptableObject
 }
 
 [Serializable]
-public class TN_ObjectPoolItem
+public class TN_ItemPoolItem
 {
     [SerializeField]
-    private GameObject ToastNinjaObject;
+    private TN_ItemScriptableObject ToastNinjaObject;
 
     [SerializeField, MinValue(1), AllowNesting]
     private int weight;
 
     public int Weight { get { return weight; } }
 
-    public GameObject Object { get { return ToastNinjaObject; } }
+    public TN_ItemScriptableObject Object { get { return ToastNinjaObject; } }
 
 }

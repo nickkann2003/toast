@@ -77,8 +77,8 @@ public class ToastNinja : MonoBehaviour
                 
                 if (timer <= 0)
                 {
-                    //StartCoroutine(RapidFire(5));
-                    firingPatterns[0].Launch(this);
+                    //firingPatterns[0].Launch(this);
+                    firingPatterns[Random.Range(0, firingPatterns.Length - 1)].Launch(this);
                     timer = Random.Range(timeRandMin, timeRandMax);
                 }
 
