@@ -59,11 +59,17 @@ public class NewProp : MonoBehaviour
     [SerializeField]
     private PD_Rigidbody PD_Rb;
 
-    [Header("Event References")]
+    [Header("Event References - Only set if purposefully changing them from the norm")]
     [SerializeField]
     private PropIntGameEvent createObjectEvent;
     [SerializeField]
     private PropIntGameEvent thawObjectEvent;
+    [SerializeField]
+    private PropIntGameEvent toastObjectEvent;
+    [SerializeField]
+    private PropIntGameEvent burnObjectEvent;
+    [SerializeField]
+    private PropIntGameEvent setObjectOnFireEvent;
 
     [Header("------------ TESTING ------------")]
     [SerializeField]
@@ -114,6 +120,17 @@ public class NewProp : MonoBehaviour
 
         // Set renderer color
         gameObject.GetComponentInChildren<Renderer>().material.color = initialColor + (colorOffset * colorStrength);
+
+        if(createObjectEvent == null)
+            createObjectEvent = PieManager.instance.CreateObject;
+        if (thawObjectEvent == null)
+            thawObjectEvent = PieManager.instance.ThawObject;
+        if (toastObjectEvent == null)
+            toastObjectEvent = PieManager.instance.ToastObject;
+        if (burnObjectEvent == null)
+            burnObjectEvent = PieManager.instance.BurnObject;
+        if (setObjectOnFireEvent == null)
+            setObjectOnFireEvent = PieManager.instance.SetObjectOnFire;
     }
 
     private void OnEnable()
@@ -319,8 +336,8 @@ public class NewProp : MonoBehaviour
             AddAttribute(PropFlags.Toast);
 
             // Trigger Objectives
-            if(createObjectEvent != null)
-                createObjectEvent.RaiseEvent(this, 1);
+            if(toastObjectEvent != null)
+                toastObjectEvent.RaiseEvent(this, 1);
         }
 
         if (testToastiness > .9f && !propFlags.HasFlag(PropFlags.Burnt)) // Burnt event
@@ -329,8 +346,8 @@ public class NewProp : MonoBehaviour
             AddAttribute(PropFlags.Burnt);
 
             // Trigger Objectives
-            if(createObjectEvent != null)
-                createObjectEvent.RaiseEvent(this, 1);
+            if(burnObjectEvent != null)
+                burnObjectEvent.RaiseEvent(this, 1);
         }
         if (!propFlags.HasFlag(PropFlags.OnFire) && testToastiness > fireTrigger && firePrefab != null) // On Fire event
         {
@@ -345,8 +362,8 @@ public class NewProp : MonoBehaviour
             AddAttribute(PropFlags.OnFire);
 
             // Trigger objectives
-            if(createObjectEvent != null)
-                createObjectEvent.RaiseEvent(this, 1);
+            if(setObjectOnFireEvent != null)
+                setObjectOnFireEvent.RaiseEvent(this, 1);
             
             // Add flaming object
             FireEndingManager.instance.addFireObject(gameObject);

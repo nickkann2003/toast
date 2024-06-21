@@ -34,6 +34,8 @@ public class TN_Object : MonoBehaviour, IUseStrategy
     // Use for TNObject destroys the object and grants points
     public void Use()
     {
+        AudioManager.instance.PlayOneShotSound(AudioManager.instance.eatingBread);
+
         GameObject obj = Instantiate(splatter, transform.position, transform.rotation);
         obj.GetComponent<Renderer>().material.color = this.GetComponent<Renderer>().material.color;
         obj.transform.Rotate(new Vector3(0, 0, Random.Range(-30, 30)*2), Space.Self);

@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,7 +15,8 @@ public class Station : MonoBehaviour
     public Quaternion cameraRotation = Quaternion.identity;
 
     [Header("------------ Obj Offset ------------")]
-    public Vector3 objectOffset;
+    [SerializeField]
+    private Vector3 objectOffset;
 
     [Header("------------ Station Variables ------------")]
     public Station parentLoc;
@@ -22,6 +24,8 @@ public class Station : MonoBehaviour
 
     public Collider clickableCollider;
     private Collider[] myClickableColliders;
+
+    public bool invertXCameraRotation;
 
     // List of props and stations that can be reached from here
     public List<Station> interactables;
@@ -42,10 +46,14 @@ public class Station : MonoBehaviour
     [SerializeField] private UnityEvent arrive;
     [SerializeField] private UnityEvent leave;
 
-#if UNITY_EDITOR
+    public Vector3 ObjectOffset { get => transform.TransformPoint(objectOffset); set => objectOffset = value; }
+
     [SerializeField, Button]
-    private void SetCameraPositionAndRotation() { cameraPos = SceneView.GetAllSceneCameras()[0].transform.position; cameraRotation = SceneView.GetAllSceneCameras()[0].transform.rotation; }
-#endif
+    private void SetCameraPositionAndRotation() 
+    {
+        cameraPos = transform.InverseTransformPoint(SceneView.GetAllSceneCameras()[0].transform.position);
+        cameraRotation = Quaternion.Euler(-transform.rotation.eulerAngles + transform.InverseTransformDirection(SceneView.GetAllSceneCameras()[0].transform.eulerAngles));
+    }
 
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
@@ -116,16 +124,21 @@ public class Station : MonoBehaviour
     /// Blue wire sphere for drop location
     /// </summary>
     void OnDrawGizmosSelected()
-    {
+    {        
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(objectOffset, 0.1f);
+        Gizmos.DrawWireSphere(transform.TransformPoint(objectOffset), 0.1f);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(cameraPos, 0.1f);
-        Matrix4x4 matrix = Matrix4x4.Translate(cameraPos) * Matrix4x4.Rotate(cameraRotation);
+        Gizmos.DrawSphere(transform.TransformPoint(cameraPos), 0.1f);
+        
+        Vector3 eAngle = transform.rotation.eulerAngles;
+        if (invertXCameraRotation)
+        {
+            eAngle.x = -eAngle.x;
+        }
+        Matrix4x4 matrix = Matrix4x4.Translate(transform.TransformPoint(cameraPos)) * Matrix4x4.Rotate(Quaternion.Euler(eAngle + cameraRotation.eulerAngles));
         Gizmos.matrix = matrix;
         Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane, Camera.main.nearClipPlane, Camera.main.aspect);
-
     }
 
     /// <summary>
@@ -203,6 +216,29 @@ public class Station : MonoBehaviour
             clickableCollider.enabled = true;
         }
        
+    }
+
+    /// <summary>
+    /// Returns the camera position in world coords
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 camPosWorldCoords()
+    {
+        return transform.TransformPoint(cameraPos);
+    }
+
+    /// <summary>
+    /// Returns the rotation of the camera in world coords
+    /// </summary>
+    /// <returns></returns>
+    public Quaternion camRotWorldCoords()
+    {
+        Vector3 eAngle = transform.rotation.eulerAngles;
+        if (invertXCameraRotation)
+        {
+            eAngle.x = -eAngle.x;
+        }
+        return Quaternion.Euler(eAngle + cameraRotation.eulerAngles);
     }
 
 }

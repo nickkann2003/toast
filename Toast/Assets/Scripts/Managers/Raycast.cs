@@ -302,7 +302,7 @@ public class Raycast : MonoBehaviour
             Station currentStation = StationManager.instance.playerLocation;
 
             // Grab world pos from the current station
-            Vector3 objectPos = currentStation.objectOffset;
+            Vector3 objectPos = currentStation.ObjectOffset;
 
             //RaycastHit hitTest = RaycastHelper(~mask_Station);
             //if (hitTest.collider != null)
@@ -415,7 +415,7 @@ public class Raycast : MonoBehaviour
                 {
                     if ((scrollInput > 0f || Input.GetButtonDown("Drag")) && stationMoveTimer <= 0)
                     {
-                        Debug.Log("Try to zoom in" + hightLocation);
+                        //Debug.Log("Try to zoom in" + hightLocation);
                         StationManager.instance.MoveToStation(hightLocation);
                         stationMoveTimer = stationMaxTimer;
                     }

@@ -33,6 +33,9 @@ public class FireEndingManager : MonoBehaviour
     [Header("References")]
     public GameManager gameManager;
 
+    [Header("Events")]
+    [SerializeField]VoidGameEvent endingEvent;
+
     // ------------------------------- Functions -------------------------------
     private void Awake()
     {
@@ -61,6 +64,9 @@ public class FireEndingManager : MonoBehaviour
         }
         else if (smokiness >= fireEndingThreshold)
         {
+            // Raise event to trigger achievement;
+            endingEvent.RaiseEvent();
+
             if (gameManager != null)
             {
                 gameManager.LoadGame(0);

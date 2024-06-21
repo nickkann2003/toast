@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -31,9 +32,10 @@ public class SaveHandler : MonoBehaviour
     private string saveFileParser = "\n";
     private string fileDataParser = "|";
 
-    private int saveFileSections = 2;
+    private int saveFileSections = 6;
     private int saveFileNameLocation = 0;
     private int objectiveDataLocation = 1;
+    private int achievementDataLocation = 2;
 
     [Header("UI References")]
     [SerializeField]
@@ -42,6 +44,9 @@ public class SaveHandler : MonoBehaviour
     private TextMeshProUGUI SaveFile2;
     [SerializeField]
     private TextMeshProUGUI SaveFile3;
+
+    [SerializeField]
+    private TextMeshProUGUI DEBUGOUTPUT;
 
     // ------------------------------- Buttons -------------------------------
     [SerializeField, Button]
@@ -58,9 +63,50 @@ public class SaveHandler : MonoBehaviour
 
     private void Start()
     {
+        currentSaveFile = -1;
+        
+        if (!File.Exists(path))
+        {
+            DEBUGOUTPUT.text += "Save file not found, creating save file";  //DEBUG
+            File.CreateText(path);
+        }
+        DEBUGOUTPUT.text += "File found at path, checking file info";  //DEBUG
+
+
+        StreamReader sr = new StreamReader(path);
+        string allDat = sr.ReadToEnd();
+        sr.Close();
+        DEBUGOUTPUT.text += allDat + "\n";  //DEBUG
+        if (allDat == "")
+        {
+            DEBUGOUTPUT.text += "Save file found empty, creating formatted save file";  //DEBUG
+            CreateFormattedSaveFile();
+        }
+        DEBUGOUTPUT.text += "Formatted save file located, verifying format";  //DEBUG
+
+        string[] datSplit = allDat.Split(saveFileParser);
+        if (!(datSplit.Length > 1))
+        {
+            DEBUGOUTPUT.text += "Save files not formatted correctly, rewriting data";  //DEBUG
+            CreateFormattedSaveFile();
+        }
+        else
+        {
+            if (!(datSplit[0].Split(fileDataParser).Length > 1))
+            {
+                DEBUGOUTPUT.text += "Save file data not formatted correctly, rewriting data";  //DEBUG
+                CreateFormattedSaveFile();
+            }
+        }
+        DEBUGOUTPUT.text += "Save file format verified, loading files"; //DEBUG
+
+        currentSaveFile = -1;
+
         string file3Name;
-        SetCurrentSaveFileByID(2);
+        SetCurrentSaveFileByID(2); 
+        DEBUGOUTPUT.text += "PARSING SAVE FILE NAME";  //DEBUG
         file3Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
+        DEBUGOUTPUT.text += "SAVE FILE NAME SUCCESSFULLY PARSED\n";  //DEBUG
 
         string file2Name;
         SetCurrentSaveFileByID(1);
@@ -70,9 +116,11 @@ public class SaveHandler : MonoBehaviour
         SetCurrentSaveFileByID(0);
         file1Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
         
-        SaveFile1.text = file1Name == "" ? "NEW SAVE" : file1Name;
-        SaveFile2.text = file2Name == "" ? "NEW SAVE" : file2Name;
-        SaveFile3.text = file3Name == "" ? "NEW SAVE" : file3Name;
+        SaveFile1.text = file1Name.Equals("") ? "NEW SAVE" : file1Name;
+        SaveFile2.text = file2Name.Equals("") ? "NEW SAVE" : file2Name;
+        SaveFile3.text = file3Name.Equals("") ? "NEW SAVE" : file3Name;
+
+        currentSaveFile = -1;
     }
 
     /// <summary>
@@ -80,9 +128,37 @@ public class SaveHandler : MonoBehaviour
     /// </summary>
     public void SaveAllData()
     {
-        string objectiveData = ObjectiveManager.instance.GetObjectiveStorageString();
+        if(currentSaveFile != -1)
+        {
+            string objectiveData = ObjectiveManager.instance.GetObjectiveStorageString();
+            string achievementData = AchievementManager.instance.GetAchievementSaveString();
 
-        SaveObjectiveData(objectiveData);
+            SaveObjectiveData(objectiveData);
+            SaveAchievementData(achievementData);
+        }
+    }
+
+    /// <summary>
+    /// Performs all functions for loading the currently selected save file
+    /// </summary>
+    public void LoadSaveFile()
+    {
+        DEBUGOUTPUT.text += "Loading save file";  //DEBUG
+        if (currentSaveFileName.Equals("")){
+            DEBUGOUTPUT.text += "Name empty, opening file naming menu";  //DEBUG
+            UIManager.instance.CloseFileSelectMenu();
+            UIManager.instance.OpenFileNamingMenu();
+        }
+        else
+        {
+            DEBUGOUTPUT.text += "Name not empty,";  //DEBUG
+            UIManager.instance.CloseFileNamingMenu();
+            UIManager.instance.CloseFileSelectMenu();
+            GameManager.Instance.MainMenuToTutorial();
+
+            ObjectiveManager.instance.LoadObjectives(ReadObjectiveData());
+            AchievementManager.instance.LoadAchievementSaveString(ReadAchievementData());
+        }
     }
 
     /// <summary>
@@ -118,6 +194,7 @@ public class SaveHandler : MonoBehaviour
         string cData = GetCurrentFileInfo();
         string[] parsedDat = cData.Split(fileDataParser);
         parsedDat[saveFileNameLocation] = filename;
+        currentSaveFileName = filename;
         SetCurrentFileInfo(ArrayToFileData(parsedDat));
     }
 
@@ -146,15 +223,49 @@ public class SaveHandler : MonoBehaviour
     }
 
     /// <summary>
+    /// Takes a given string of achievement data and saves it to the current file
+    /// </summary>
+    /// <param name="achievementData"></param>
+    public void SaveAchievementData(string achievementData)
+    {
+        string allDat = GetCurrentFileInfo();
+        string[] parsedDat = allDat.Split(fileDataParser);
+        parsedDat[achievementDataLocation] = achievementData;
+        SetCurrentFileInfo(ArrayToFileData(parsedDat));
+    }
+
+    /// <summary>
+    /// Reads in and returns the achievement data for the current save file
+    /// </summary>
+    /// <returns>Objective data string for current save file</returns>
+    public string ReadAchievementData()
+    {
+        string allDat = GetCurrentFileInfo();
+        string[] parsedDat = allDat.Split(fileDataParser);
+
+        return parsedDat[achievementDataLocation];
+    }
+
+    /// <summary>
     /// Sets the save file path based on editor or not
     /// </summary>
     private void SetPath()
     {
-        path = Application.persistentDataPath + "/" + basePath;
+        path = Application.persistentDataPath;
+        DEBUGOUTPUT.text += "PATH: " + path + "\n";  //DEBUG
+        DEBUGOUTPUT.text += "Checking directory";  //DEBUG
+
+        if (!Directory.Exists(path))
+        {
+            DEBUGOUTPUT.text += "Directory not found, creating directory";  //DEBUG
+            Directory.CreateDirectory(path);
+        }
+        DEBUGOUTPUT.text += "Directory found, checking path";  //DEBUG
+        path += "/" + basePath;
 
 #if UNITY_EDITOR
         path = "Assets/Resources/" + basePath;
-        Debug.Log("In Editor, changing read/write path to " + path);
+        Debug.Log("In Editor, changing read/write path to " + path); 
 #endif
     }
 
@@ -165,6 +276,7 @@ public class SaveHandler : MonoBehaviour
     public void SetCurrentSaveFileByID(int fileNum)
     {
         currentSaveFile = fileNum;
+        currentSaveFileName = GetCurrentFileInfo().Split(fileDataParser)[0];
     }
 
     /// <summary>
@@ -173,13 +285,26 @@ public class SaveHandler : MonoBehaviour
     /// <returns></returns>
     private string GetCurrentFileInfo()
     {
+        DEBUGOUTPUT.text += "Creating Stream Reader";  //DEBUG
         StreamReader sr = new StreamReader(path);
+        DEBUGOUTPUT.text += "Stream Reader CREATED";  //DEBUG
         string allDat = sr.ReadToEnd();
+        DEBUGOUTPUT.text += "STREAM READER READ DATA";  //DEBUG
         sr.Close();
+        DEBUGOUTPUT.text += "STREAM READER CLOSED";  //DEBUG
 
         string[] parsedDat = allDat.Split(saveFileParser);
-
-        return parsedDat[currentSaveFile];
+        DEBUGOUTPUT.text += "STREAM READER parsed data";  //DEBUG
+        if (parsedDat.Length > 1)
+        {
+            DEBUGOUTPUT.text += "Parsed data found, returning info\n";  //DEBUG
+            return parsedDat[currentSaveFile];
+        }
+        else
+        {
+            DEBUGOUTPUT.text += "Parsed data no length, returning empty\n";  //DEBUG
+            return "";
+        }
     }
 
     /// <summary>

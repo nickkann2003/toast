@@ -62,13 +62,13 @@ public class LittleFella : MonoBehaviour
     void Update()
     {
         // Switch based on current GrabStatus
-        switch(status)
+        switch (status)
         {
             // Reaching for the player's object
             case GrabStatus.Reaching:
 
                 // PLayer moved object, withdraw
-                if(edibleObject.GetComponent<Rigidbody>().velocity != Vector3.zero)
+                if (edibleObject.GetComponent<Rigidbody>().velocity != Vector3.zero)
                 {
                     status = GrabStatus.Withdrawing;
                     break;
@@ -92,19 +92,14 @@ public class LittleFella : MonoBehaviour
                 if (moveProgress >= 1.0f)
                 {
                     littleFellaEvent.RaiseEvent(edibleObject.GetComponent<NewProp>(), 1);
-                    if(edibleObject.GetComponent<IEatable>() == null && edibleObject.GetComponent<Eat>() == null)
+                    if (edibleObject.GetComponent<NewProp>().HasAttribute(PropFlags.Bread) || edibleObject.GetComponent<NewProp>().HasAttribute(PropFlags.Jam))
                     {
-                        status = GrabStatus.Returning;
-                        moveProgress = 0.0f;
-                    }
-                    else
-                    //if (edibleObject.GetComponent<IEatable>() != null || edibleObject.GetComponent<Eat>() != null)
-                    {
-                        edibleObject.GetComponent<IEatable>().EatWhole();
-                        
+                        Destroy(edibleObject);
+                        AudioManager.instance.PlaySound(AudioManager.instance.eatingBread);
+
                         currentGifts++;
 
-                        if(currentGifts == giftTarget)
+                        if (currentGifts == giftTarget)
                         {
                             GiveGift();
                         }
@@ -113,7 +108,11 @@ public class LittleFella : MonoBehaviour
                             status = GrabStatus.Withdrawing;
                         }
                     }
-                    
+                    else
+                    {
+                        status = GrabStatus.Returning;
+                        moveProgress = 0.0f;
+                    }       
                 }
                 break;
 

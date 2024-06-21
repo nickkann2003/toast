@@ -8,36 +8,53 @@ public class TN_Pattern_Wave : TN_FiringPatterns
 {
     // ------------------------------- Variables -------------------------------
 
-    [SerializeField, Range(0,10), ValidateInput("ValidateIndex", "index out of range")]
-    protected int index = 5;
+    [SerializeField, Range(0,10)]
+    protected int centralIndex = 5;
     [SerializeField]
     protected float timeBetweenShots = .2f;
-    [SerializeField]
+    [SerializeField, MinValue(1)]
     protected int step = 1;
+    [SerializeField]
+    protected int startDistance = 0;
 
     // ------------------------------- Functions -------------------------------
 
     public override void Launch(ToastNinja toastNinja)
     {
-        toastNinja.StartCoroutine(InitialFire(toastNinja, index));
+        toastNinja.StartCoroutine(InitialFire(toastNinja, startDistance));
     }
 
-    IEnumerator InitialFire(ToastNinja toastNinja, int index)
+    IEnumerator InitialFire(ToastNinja toastNinja, int distanceFromCenter)
     {
         LaunchObject[] launchers = toastNinja.LaunchObjects;
 
-        launchers[index].Launch(toastNinja.RandPrefab());
+        //AudioManager.instance.PlayOneShotSound(AudioManager.instance.launch);
 
-        
-        if (ValidateIndex(index - step))
+        if (distanceFromCenter > 0)
         {
-            yield return new WaitForSeconds(timeBetweenShots);
-            toastNinja.StartCoroutine(Fire(toastNinja, index - step, -1));
+            int leftIndex = centralIndex - distanceFromCenter;
+            int rightIndex = centralIndex + distanceFromCenter;
+
+            if (ValidateIndex(leftIndex))
+            {
+                launchers[leftIndex].LaunchSO(RandomPrefab());
+            }
+            if (ValidateIndex(rightIndex))
+            {
+                launchers[rightIndex].LaunchSO(RandomPrefab());
+            }
         }
-        if (ValidateIndex(index + step))
+        else
+        {
+            launchers[centralIndex].Launch(toastNinja.RandPrefab());
+        }
+
+        distanceFromCenter += step;
+
+        if (ValidateIndex(centralIndex + distanceFromCenter) || ValidateIndex(centralIndex - distanceFromCenter))
         {
             yield return new WaitForSeconds(timeBetweenShots);
-            toastNinja.StartCoroutine(Fire(toastNinja, index + step, 1));
+            toastNinja.StartCoroutine(InitialFire(toastNinja, distanceFromCenter));
         }
 
         yield return null;
@@ -47,7 +64,7 @@ public class TN_Pattern_Wave : TN_FiringPatterns
     {
         LaunchObject[] launchers = toastNinja.LaunchObjects;
 
-        launchers[index].Launch(toastNinja.RandPrefab());
+        launchers[index].LaunchSO(RandomPrefab());
 
         index += polarity * step;
 

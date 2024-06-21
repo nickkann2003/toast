@@ -99,6 +99,18 @@ public class SO_Objective : ScriptableObject
         }
     }
 
+    public Requirement GetRequirement(int id)
+    {
+        foreach(Requirement r in requirements)
+        {
+            if(r.id == id)
+            {
+                return r;
+            }
+        }
+        return null;
+    }
+
     /// <summary>
     /// Force completes this objective and all its requirements
     /// </summary>
@@ -138,7 +150,7 @@ public class SO_Objective : ScriptableObject
             }
             else if(unavailableText != "")
             {
-                return "\n<size=-4><color=#111>" + unavailableText + "</color></size>";
+                return "<size=-4><color=#111>" + unavailableText + "</color></size>";
             }
             return "";
         }
