@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,13 +17,30 @@ public class Electricity : MonoBehaviour
         
     }
 
+    /*
     private void OnCollisionEnter(Collision collision)
     {
-        if(TryGetComponent<NewProp>(out NewProp other))
+        Debug.Log("Collision");
+
+        if(collision.gameObject.TryGetComponent(out NewProp other))
         {
             if(other.attributes.HasFlag(PropFlags.Metal))
             {
+                Debug.Log("Electricity");
+            }
+        }
+    }
+    */
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Collision");
+
+        if (other.gameObject.TryGetComponent(out NewProp prop))
+        {
+            if (prop.attributes.HasFlag(PropFlags.Metal))
+            {
+                Debug.Log("Electricity");
             }
         }
     }
