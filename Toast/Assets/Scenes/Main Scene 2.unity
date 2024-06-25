@@ -4633,6 +4633,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ramp
       objectReference: {fileID: 0}
+    - target: {fileID: 2464258088691777877, guid: 0d73fce123e46b8408971ad34ff4f0b2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4866,6 +4871,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563268218}
   m_CullTransparentMesh: 1
+--- !u!1 &568959567 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8227942000197139453, guid: b12dfba366db54b41801343de0fc8582,
+    type: 3}
+  m_PrefabInstance: {fileID: 787716601}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &585195041
 GameObject:
   m_ObjectHideFlags: 0
@@ -6878,7 +6889,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 181718771}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8227942000197139453, guid: b12dfba366db54b41801343de0fc8582,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 787716606}
   m_SourcePrefab: {fileID: 100100000, guid: b12dfba366db54b41801343de0fc8582, type: 3}
 --- !u!4 &787716602 stripped
 Transform:
@@ -6886,6 +6901,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 787716601}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &787716606
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568959567}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.6641338, y: 1.0175697, z: 0.15189984}
+  m_Center: {x: 0.026590625, y: 2.092354, z: -0.5179578}
 --- !u!1 &793096296
 GameObject:
   m_ObjectHideFlags: 0
@@ -9366,6 +9402,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6417858676202441132, guid: 9dd22da3d320b4248b5339a9cd7262ca,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1eaa054106669464995e69f719e37e77, type: 2}
     - target: {fileID: 8680141164444009952, guid: 9dd22da3d320b4248b5339a9cd7262ca,
         type: 3}
       propertyPath: m_Name
@@ -16935,6 +16976,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6417858676202441132, guid: 9dd22da3d320b4248b5339a9cd7262ca,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1eaa054106669464995e69f719e37e77, type: 2}
     - target: {fileID: 8680141164444009952, guid: 9dd22da3d320b4248b5339a9cd7262ca,
         type: 3}
       propertyPath: m_Name
