@@ -26,6 +26,11 @@ public class PieManager : MonoBehaviour
     public PropIntGameEvent ToastObject;
     public PropIntGameEvent UseObject;
     public PropIntGameEvent FreezeObject;
+    public PropIntGameEvent ToastStrength1;
+    public PropIntGameEvent ToastStrength2;
+    public PropIntGameEvent ToastStrength3;
+    public PropIntGameEvent ToastStrength4;
+    public PropIntGameEvent ToastStrength5;
 
     // Singleton
     public static PieManager instance;

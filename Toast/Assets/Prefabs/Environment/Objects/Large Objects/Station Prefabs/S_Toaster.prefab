@@ -1161,6 +1161,10 @@ MonoBehaviour:
   leave:
     m_PersistentCalls:
       m_Calls: []
+  separateArriveAndReturn: 0
+  returnTo:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5986225429861783730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7306,6 +7310,12 @@ MonoBehaviour:
   smokeParticles: {fileID: 6579856914684212897}
   firePrefab: {fileID: 7603904604651950810, guid: 3930a776d7b66ce40b0b4fe84b802838,
     type: 3}
+  customEvents: 0
+  toastStrength1: {fileID: 0}
+  toastStrength2: {fileID: 0}
+  toastStrength3: {fileID: 0}
+  toastStrength4: {fileID: 0}
+  toastStrength5: {fileID: 0}
 --- !u!1 &7464800361301515771
 GameObject:
   m_ObjectHideFlags: 0
@@ -9005,11 +9015,38 @@ MonoBehaviour:
   dialValue: 0
   numSnapPoints: 5
   snapAngle: 10
-  rotateAround: {x: 1, y: 0, z: 0}
+  rotateAround: {x: 0, y: 0, z: 1}
   maxRotation: 110
   onDialChange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1134104944049419510}
+        m_TargetAssemblyTypeName: ToastingBreadTest, Assembly-CSharp
+        m_MethodName: setDialValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDialSnap:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1134104944049419510}
+        m_TargetAssemblyTypeName: ToastingBreadTest, Assembly-CSharp
+        m_MethodName: setDialSnap
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   freeze: 0
 --- !u!114 &1300943606030481070
 MonoBehaviour:

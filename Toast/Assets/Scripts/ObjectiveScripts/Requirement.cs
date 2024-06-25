@@ -141,7 +141,7 @@ public class Requirement
             string value = "";
             if (CheckComplete())
             {
-                value += "<color=#111><s>";
+                value += "<size=-2><color=#111><s>";
                 value += goalName + " ";
                 value += "DONE!";
             }
@@ -163,7 +163,7 @@ public class Requirement
                 }
                 
             }
-            value += "</s></color>";
+            value += "</size></s></color>";
             return value;
         }
     }

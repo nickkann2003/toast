@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,17 @@ public class ToastingBreadTest : MonoBehaviour
     [SerializeField] private ParticleSystem smokeParticles;
     [SerializeField] private GameObject firePrefab;
 
+    [SerializeField] private bool customEvents = false;
+    [Header("PIE Event References"), ShowIf("customEvents")]
+    [SerializeField] private PropIntGameEvent toastStrength1;
+    [SerializeField, ShowIf("customEvents")] private PropIntGameEvent toastStrength2;
+    [SerializeField, ShowIf("customEvents")] private PropIntGameEvent toastStrength3;
+    [SerializeField, ShowIf("customEvents")] private PropIntGameEvent toastStrength4;
+    [SerializeField, ShowIf("customEvents")] private PropIntGameEvent toastStrength5;
+
     private bool defrost = false;
+
+    private int snapPoint;
 
     // ------------------------------- Properties -------------------------------
     public bool IsActive { get => isActive; }
@@ -43,6 +54,20 @@ public class ToastingBreadTest : MonoBehaviour
     public void Awake()
     {
         baseTime = maxTime;
+    }
+
+    private void Start()
+    {
+        if(toastStrength1 == null)
+            toastStrength1 = PieManager.instance.ToastStrength1;
+        if (toastStrength2 == null)
+            toastStrength2 = PieManager.instance.ToastStrength2;
+        if (toastStrength3 == null)
+            toastStrength3 = PieManager.instance.ToastStrength3;
+        if (toastStrength4 == null)
+            toastStrength4 = PieManager.instance.ToastStrength4;
+        if (toastStrength5 == null)
+            toastStrength5 = PieManager.instance.ToastStrength5;
     }
 
     public void Update()
@@ -154,7 +179,30 @@ public class ToastingBreadTest : MonoBehaviour
                     {
                         if(defrost)
                             prop.DefrostToast();
+
+                        switch (snapPoint)
+                        {
+                            case 0:
+                                break;
+                            case 1:
+                                toastStrength1.RaiseEvent(prop, 1);
+                                break;
+                            case 2:
+                                toastStrength2.RaiseEvent(prop, 1);
+                                break;
+                            case 3:
+                                toastStrength3.RaiseEvent(prop, 1);
+                                break;
+                            case 4:
+                                toastStrength4.RaiseEvent(prop, 1);
+                                break;
+                            case 5:
+                                toastStrength5.RaiseEvent(prop, 1);
+                                break;
+
+                        }
                     }
+
 
                     // Apply force to objs
                     Rigidbody rb = obj.GetComponent<Rigidbody>();
@@ -187,6 +235,11 @@ public class ToastingBreadTest : MonoBehaviour
     {
         targetStrength = value;
         maxTime = baseTime + (targetStrength - .5f) * baseTime; // between -baseTime/2 and baseTime/2
+    }
+
+    public void setDialSnap(int snapPoint)
+    {
+        this.snapPoint = snapPoint;
     }
 
     // When entering trigger, add to toasting object list
