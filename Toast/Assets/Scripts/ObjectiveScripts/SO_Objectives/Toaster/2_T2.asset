@@ -15,9 +15,11 @@ MonoBehaviour:
   objectiveName: Toast Some More
   description: Check the fridge for more bread! 2/4
   completeText: 
-  unavailableText: ???
+  unavailableText: 
   requirements:
   - targetAttributes: 536870913
+    hasExclusions: 0
+    excludeAttributes: 0
     listener:
       gameEvent: {fileID: 11400000, guid: e101c82c1dd11aa47985d3853517143f, type: 2}
       response:
@@ -28,8 +30,10 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
-    listening: 1
+    listening: 0
   - targetAttributes: 536870913
+    hasExclusions: 0
+    excludeAttributes: 0
     listener:
       gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
       response:
@@ -40,7 +44,7 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 1
-    listening: 1
+    listening: 0
   id: 2
-  complete: 1
-  available: 1
+  complete: 0
+  available: 0

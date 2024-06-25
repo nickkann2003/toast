@@ -16,7 +16,7 @@ public class NewHand : MonoBehaviour
     private PropIntGameEvent dropEvent;
 
     // ------------------------------- Functions -------------------------------
-    public void Update()
+    public void FixedUpdate()
     {
         // Sets objects position every frame, if there is a held object
         if (heldObject != null)
@@ -106,7 +106,7 @@ public class NewHand : MonoBehaviour
                 itemToPickup.GetComponent<NewProp>().ForceRemoveFromHand();
             }
 
-            itemToPickup.transform.position = Vector3.zero;
+            //itemToPickup.transform.position = Vector3.zero;
 
             // Otherwise, grab item reference
             heldObject = itemToPickup;
@@ -128,14 +128,8 @@ public class NewHand : MonoBehaviour
                 pickUpEvent.RaiseEvent(heldObject.GetComponent<NewProp>(), 1);
 
             // Set object transform
-            StartCoroutine(setParentTransform(heldObject));
+            heldObject.transform.parent = this.gameObject.transform;
         }
-    }
-
-    private IEnumerator setParentTransform(GameObject heldObject)
-    {
-        yield return new WaitForSeconds(2f);
-        heldObject.transform.parent = this.gameObject.transform;
     }
 
     // Sets the current use strategy

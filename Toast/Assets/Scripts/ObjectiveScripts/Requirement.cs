@@ -40,6 +40,8 @@ public class Requirement
     // ------------------------------- Properties -------------------------------
     public int Current { get => current; set => current = value; }
     public int ID { get => id; set => id = value; }
+    public bool Complete { get => complete; set => complete = value; }
+
 
     // ------------------------------- Functions -------------------------------
     /// <summary>
@@ -149,12 +151,14 @@ public class Requirement
                 {
                     value += "<color=#000>";
                     value += goalName + " ";
+                    value += "<pos=80%>";
                     value += current + "/" + goal;
                 }
                 else
                 {
                     value += "<color=#000>";
                     value += goalName + " ";
+                    value += "<pos=80%>";
                     value += current;
                 }
                 

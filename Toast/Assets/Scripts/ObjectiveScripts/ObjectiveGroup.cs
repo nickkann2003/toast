@@ -71,7 +71,7 @@ public class ObjectiveGroup
         get
         {
             string value = "";
-            value += "<u>To-Do List:</u>";
+            value += "<u><b>To-Do List:</b></u>";
             //value += "\n" + "<color=#111><size=-1>" + "Objectives Completed: " + completedObjectives + "</size></color>";
             foreach (Objective obj in objectives)
             {

@@ -130,12 +130,24 @@ public class SO_Objective : ScriptableObject
             if (available)
             {
                 string value = "";
-                value = objectiveName + " <size=-5>\n<color=#111>" + description + "</color></size>";
+                bool firstIncompleteRequirement = true;
+                value = objectiveName + " <size=-5>\n<color=#111><i>" + description + "</i></color></size>";
                 foreach (Requirement r in requirements)
                 {
                     if (r.listening)
                     {
-                        value += "<size=-3>\n -" + r.ToString + "</size>";
+                        if (firstIncompleteRequirement && !r.Complete)
+                        {
+                            value += "<size=-2>\n -" + r.ToString + "</size>";
+                        }
+                        else 
+                        {
+                            value += "<size=-6>\n-" + r.ToString + "</size>";
+                        }
+                    }
+                    if (!r.Complete)
+                    {
+                        firstIncompleteRequirement = false;
                     }
                 }
                 if (CheckAllRequirementsComplete())
@@ -143,7 +155,7 @@ public class SO_Objective : ScriptableObject
                     value = "<color=#111><s>" + objectiveName + "</s></color>";
                     if(completeText != "")
                     {
-                        value += "\n<color=#080808>" + completeText + "</color>";
+                        value += "\n<color=#080808><size=-3>" + completeText + "</size></color>";
                     }
                 }
                 return value;
