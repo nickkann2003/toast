@@ -17,6 +17,8 @@ public class ObjectRespawner : MonoBehaviour
     [SerializeField] public bool autoRespawnItems = true;
     [SerializeField] public bool spawnOnStart = true;
 
+    private List<RespawnableObject> objectsToRespawn = new List<RespawnableObject>();
+
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
@@ -53,7 +55,7 @@ public class ObjectRespawner : MonoBehaviour
             // Innefficient, temp solution
             foreach (RespawnableObject obj in objects)
             {
-                if (!obj.CheckNull())
+                if (!obj.CheckNull() && !objectsToRespawn.Contains(obj))
                 {
                     empty = false;
                 }
@@ -71,6 +73,11 @@ public class ObjectRespawner : MonoBehaviour
                 {
                     obj.RespawnObject(transform.position);
                 }
+                objectsToRespawn.Clear();
+            }
+            if (!waitForAll)
+            {
+                objectsToRespawn.Clear();
             }
         }
     }
@@ -86,6 +93,29 @@ public class ObjectRespawner : MonoBehaviour
             Gizmos.DrawWireSphere(obj.spawnPosition + transform.position, 0.05f);
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        foreach(RespawnableObject obj in objects)
+        {
+            if (other.gameObject == obj.ObjRef)
+            {
+                objectsToRespawn.Add(obj);
+                Debug.Log("Added item to respawn list"); //DEBUG
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        foreach (RespawnableObject obj in objectsToRespawn)
+        {
+            if (other.gameObject == obj.ObjRef)
+            {
+                objectsToRespawn.Remove(obj);
+                Debug.Log("Removed object from respawn list"); //DEBUG
+            }
+        }
+    }
 }
 
 [Serializable]
@@ -96,6 +126,8 @@ public class RespawnableObject
     [SerializeField] public Vector3 spawnPosition;
     [SerializeField] public Quaternion spawnRotation;
     private GameObject objRef = null;
+
+    public GameObject ObjRef { get => objRef; set => objRef = value; }
 
     // ------------------------------- Functions -------------------------------
     /// <summary>

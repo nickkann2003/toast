@@ -106,6 +106,8 @@ public class NewHand : MonoBehaviour
                 itemToPickup.GetComponent<NewProp>().ForceRemoveFromHand();
             }
 
+            itemToPickup.transform.position = Vector3.zero;
+
             // Otherwise, grab item reference
             heldObject = itemToPickup;
 
@@ -124,13 +126,16 @@ public class NewHand : MonoBehaviour
             // Objective calls
             if (pickUpEvent != null)
                 pickUpEvent.RaiseEvent(heldObject.GetComponent<NewProp>(), 1);
-            
 
-            
-            
             // Set object transform
-            heldObject.transform.parent = this.gameObject.transform;
+            StartCoroutine(setParentTransform(heldObject));
         }
+    }
+
+    private IEnumerator setParentTransform(GameObject heldObject)
+    {
+        yield return new WaitForSeconds(2f);
+        heldObject.transform.parent = this.gameObject.transform;
     }
 
     // Sets the current use strategy

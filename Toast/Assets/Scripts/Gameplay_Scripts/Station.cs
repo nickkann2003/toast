@@ -45,6 +45,8 @@ public class Station : MonoBehaviour
     [Header("------------ Events ------------")]
     [SerializeField] private UnityEvent arrive;
     [SerializeField] private UnityEvent leave;
+    [SerializeField] private bool separateArriveAndReturn;
+    [SerializeField, ShowIf("separateArriveAndReturn")] private UnityEvent returnTo;
 
     public Vector3 ObjectOffset { get => transform.TransformPoint(objectOffset); set => objectOffset = value; }
 
@@ -97,9 +99,16 @@ public class Station : MonoBehaviour
     /// <summary>
     /// Calls necessary arrival functions for this station
     /// </summary>
-    public void OnArrive()
+    public void OnArrive(bool forward)
     {
-        arrive.Invoke();
+        if (separateArriveAndReturn && !forward)
+        {
+            returnTo.Invoke();
+        }
+        else
+        {
+            arrive.Invoke();
+        }
         foreach(GameObject obj in stationSpecificHints)
         {
             obj.SetActive(true);
