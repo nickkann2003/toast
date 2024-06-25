@@ -14,18 +14,18 @@ public class USE_Eat : UseEffectSO
     [SerializeField]
     private int totalBites;
 
+    //// audio
+    //private AudioSource audioSource;
+    //private AudioEvent eatAudioEvent;
+
+    // particles
+
     // events
     [Header("Event References")]
     [SerializeField]
     private bool invokeEvents;
     [SerializeField, EnableIf("invokeEvents")]
     private PropIntGameEvent eatEvent;
-
-    //// audio
-    //private AudioSource audioSource;
-    //private AudioEvent eatAudioEvent;
-
-    // particles
 
     public override void OnEquip(NewProp newProp)
     {

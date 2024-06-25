@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7050918024714049291}
   - component: {fileID: 7513674130122873842}
   - component: {fileID: 4780482702598531710}
-  - component: {fileID: 7300113876602585919}
   m_Layer: 2
   m_Name: Splatter
   m_TagString: Untagged
@@ -107,21 +106,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &7300113876602585919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8172897209021068880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9d6496ec0742b94b8f09d79c166232b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBeforeFade: 0.5
-  fadeTime: 1
-  speed: 0.1
 --- !u!1 &8306667316286608774
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,6 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 971853387188467489}
+  - component: {fileID: 2416373987504186125}
   m_Layer: 2
   m_Name: SplatterObj
   m_TagString: Untagged
@@ -154,3 +139,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2416373987504186125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8306667316286608774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9d6496ec0742b94b8f09d79c166232b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 7513674130122873842}
+  timeBeforeFade: 0.5
+  fadeTime: 1
+  speed: 0.1

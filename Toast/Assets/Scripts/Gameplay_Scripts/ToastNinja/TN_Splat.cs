@@ -6,6 +6,7 @@ using UnityEngine;
 public class TN_Splat : MonoBehaviour
 {
     // ------------------------------- Variables -------------------------------
+    [SerializeField]
     private Renderer renderer;
     private Color splatColor;
     private float transparency;
@@ -23,8 +24,13 @@ public class TN_Splat : MonoBehaviour
     void Start()
     {
         transparency = fadeTime + timeBeforeFade;
-        renderer = GetComponent<Renderer>();
-        splatColor = GetComponent<Renderer>().material.color;
+
+        if (renderer == null)
+        {
+            renderer = GetComponent<Renderer>();
+        }
+
+        splatColor = renderer.material.color;
     }
 
     // Update is called once per frame
