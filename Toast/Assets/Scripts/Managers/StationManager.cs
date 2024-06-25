@@ -166,8 +166,6 @@ public class StationManager : MonoBehaviour
                 if (playerPath.Count > 1)
                 {
                     playerPath.Pop();
-
-                    Debug.Log("MOVE TO BACK" + playerPath.Peek());
                     MoveToStation(playerPath.Peek(), false);
                 }
                    
@@ -181,8 +179,6 @@ public class StationManager : MonoBehaviour
                 {
                     playerPath.Pop();
                 }
-
-                Debug.Log("MOVE TO PARENT" + playerLocation.parentLoc);
                 MoveToStation(playerLocation.parentLoc, false);
             }
     }
