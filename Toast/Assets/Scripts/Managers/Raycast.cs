@@ -248,6 +248,7 @@ public class Raycast : MonoBehaviour
         if (hit.collider != null)
         {
             itemToUse = hit.collider.gameObject;
+            Debug.Log(itemToUse);
         }
         
 

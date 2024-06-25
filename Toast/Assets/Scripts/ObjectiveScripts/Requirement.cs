@@ -94,13 +94,14 @@ public class Requirement
         // If listening and correct type and incomplete
         if((listening || alwaysListening) && !complete) // Ensure type, target, and listening
         {
+            Debug.Log(e.propFlags.HasFlag(targetAttributes));
             // If does not contain all necessary flags, return
-            if(!(e.attributes.HasFlag(targetAttributes)))
+            if(!(e.propFlags.HasFlag(targetAttributes)))
             {
                 return;
             }
 
-            if(hasExclusions && e.attributes.HasFlag(excludeAttributes))
+            if(hasExclusions && e.propFlags.HasFlag(excludeAttributes))
             {
                 return;
             }

@@ -12,7 +12,10 @@ public class NewProp : MonoBehaviour
 
     // ------------------------------- Variables -------------------------------
     [SerializeField]
-    private PropObject propObject;
+    private PropSO propObject;
+
+    [NonSerialized]
+    public GameObject fireObject;
 
     [Header("------------ Attributes ------------")]
     public PropFlags propFlags;
@@ -32,6 +35,13 @@ public class NewProp : MonoBehaviour
     private StatType sizeType;
     [SerializeField]
     private StatType massType;
+
+    [Header("------------ UseEffects ------------")]
+    [SerializeField]
+    private List<UseEffectSO> useEffects;
+
+    [HorizontalLine(color: EColor.Gray)]
+
 
     // Toast Values
     [Header("------------ Toastiness ------------")]
@@ -54,8 +64,6 @@ public class NewProp : MonoBehaviour
     protected IUseStrategy _useStrategy;
 
     [Header("------------ Prop Data ------------")]
-    [SerializeField]
-    private List<UseEffect> useEffects;
     [SerializeField]
     private PD_Rigidbody PD_Rb;
 
@@ -138,6 +146,13 @@ public class NewProp : MonoBehaviour
         if (propObject != null)
         {
             propObject.PopulateProp(this);
+            if (useEffects.Count  > 0)
+            {
+                for (int i = 0; i < useEffects.Count; i++)
+                {
+                    useEffects[i].OnEquip(this);
+                }
+            }
         }
     }
 
@@ -173,103 +188,27 @@ public class NewProp : MonoBehaviour
         }
     }
 
-    //public void AddStat(Stat stat)
-    //{
-    //    bool existsAlready = false;
+    public bool TryUse()
+    {
+        if (useEffects.Count <= 0) { return false; }
 
-    //    if (stats.Count > 0)
-    //    {
-    //        for (int i = 0; i < stats.Count; i++)
-    //        {
-    //            if (stats[i].Type == stat.Type)
-    //            {
-    //                existsAlready = true;
-    //                return;
-    //            }
-    //        }
-    //    }
+        for (int i = 0; i < useEffects.Count; i++)
+        {
+            useEffects[i].Use(this);
+        }
 
-    //    if (!existsAlready)
-    //    {
-    //        stats.Add(stat);
-    //    }
-    //}
-
-    //public void AddStatOfType(StatType type)
-    //{
-    //    bool existsAlready = false;
-
-    //    if (stats.Count > 0)
-    //    {
-    //        for (int i = 0; i < stats.Count; i++)
-    //        {
-    //            if (stats[i].Type == type)
-    //            {
-    //                existsAlready = true;
-    //                return;
-    //            }
-    //        }
-    //    }
-
-    //    if (!existsAlready)
-    //    {
-    //        stats.Add(new Stat(type));
-    //    }
-    //}
-
-    //public void RemoveStat(Stat stat)
-    //{
-    //    stats.Remove(stat);
-    //}
-
-    //public void RemoveStatOfType(StatType statType)
-    //{
-    //    if (stats.Count > 0)
-    //    {
-    //        for (int i = 0; i < stats.Count; i++)
-    //        {
-    //            if (stats[i].Type == statType)
-    //            {
-    //                stats.RemoveAt(i);
-    //                return;
-    //            }
-    //        }
-    //    }
-    //}
-
-    //public void AddModifier(StatType type, StatModifier statModifier)
-    //{
-    //    if (stats.Count > 0)
-    //    {
-    //        for (int i = 0; i < stats.Count; i++)
-    //        {
-    //            if (stats[i].Type == type)
-    //            {
-    //                stats[i].AddModifier(statModifier);
-    //            }
-    //        }
-    //    }
-    //}
-
-    //public void IncreaseStat(StatType type, float amount)
-    //{
-    //    if (stats.Count > 0)
-    //    {
-    //        for (int i = 0; i < stats.Count; i++)
-    //        {
-    //            if (stats[i].Type == type)
-    //            {
-    //                stats[i].IncreaseValue(amount);
-    //                return;
-    //            }
-    //        }
-    //    }
-    //}
+        return true;
+    }
 
     // Use this prop's strategy
     public virtual void Use()
     {
-        _useStrategy?.Use();
+        if (useEffects.Count <= 0 ) { return; }
+
+        for (int i = 0; i < useEffects.Count; i++)
+        {
+            useEffects[i].Use(this);
+        }
     }
 
     // Force removes this item from hand
@@ -351,12 +290,19 @@ public class NewProp : MonoBehaviour
         }
         if (!propFlags.HasFlag(PropFlags.OnFire) && testToastiness > fireTrigger && firePrefab != null) // On Fire event
         {
+            if (firePrefab == null)
+            {
+                FireEndingManager.instance.firePrefab = firePrefab;
+            }
+
             // Instantiate fire
             GameObject fire = Instantiate(firePrefab);
             fire.transform.parent = gameObject.transform;
             fire.transform.localPosition = Vector3.zero;
             fire.transform.eulerAngles = Vector3.zero;
             fire.transform.localScale = Vector3.one;
+
+            fireObject = fire;
 
             // Add attribute
             AddAttribute(PropFlags.OnFire);

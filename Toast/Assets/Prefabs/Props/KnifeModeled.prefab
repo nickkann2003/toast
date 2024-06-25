@@ -135,7 +135,7 @@ Transform:
   - {fileID: 6976110134124021105}
   - {fileID: 1028743393215611214}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3589054759992536755
 BoxCollider:
@@ -231,7 +231,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c2c1da8861533a44916226753aa62a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attributes: -2147483644
+  propObject: {fileID: 0}
+  propFlags: 0
+  attributesList: []
+  statsSystem:
+    statList: []
+  toastType: {fileID: 11400000, guid: ed769c6990786b0428bfb3911e9f608b, type: 2}
+  sizeType: {fileID: 11400000, guid: e4f0d536b759caf468fa4f8a983f5ce2, type: 2}
+  massType: {fileID: 11400000, guid: 263ef62346c87a54e8aec3fc8b974bf7, type: 2}
   toastiness: 0
   fireTrigger: 1.5
   firePrefab: {fileID: 0}
@@ -241,6 +248,8 @@ MonoBehaviour:
   PD_Rb: {fileID: 11400000, guid: 9b3d1433e9869ce4b9bfd8a4b04afefb, type: 2}
   createObjectEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
   thawObjectEvent: {fileID: 11400000, guid: d26239510d487054e9b40255a0a441bf, type: 2}
+  attributeToGive: {fileID: 0}
+  indexToRemove: 0
   hand: {fileID: 1488870372979239520}
   useEvent: {fileID: 11400000, guid: fb0064d8f2f9be342b9136075c8542c7, type: 2}
 --- !u!1001 &706060012230338213

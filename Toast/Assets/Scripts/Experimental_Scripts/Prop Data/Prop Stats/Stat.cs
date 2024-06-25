@@ -44,8 +44,17 @@ public class Stat
     public float RateOfChange { get { return rateOfChange; } }
 
     public Stat(float initialValue) => baseValue = initialValue;
+
+    public Stat(float initialValue, StatType statType)
+    {
+        type = statType;
+        baseValue = initialValue;
+        rateOfChange = statType.DefaultRateOfChange;
+    }
+
     public Stat(StatType statType)
     {
+        type = statType;
         baseValue = statType.DefaultValue;
         rateOfChange = statType.DefaultRateOfChange;
     }

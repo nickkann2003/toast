@@ -20,7 +20,7 @@ public class Electricity : MonoBehaviour
     {
         if(TryGetComponent<NewProp>(out NewProp other))
         {
-            if(other.attributes.HasFlag(PropFlags.Metal))
+            if(other.propFlags.HasFlag(PropFlags.Metal))
             {
 
             }

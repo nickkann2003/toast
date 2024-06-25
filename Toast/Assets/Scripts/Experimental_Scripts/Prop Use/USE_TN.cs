@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New TN Effect", menuName = "Prop/Use Effect/TN", order = 53)]
-public class US_TN : UseEffect
+public class USE_TN : UseEffectSO
 {
     [SerializeField]
     private int points;

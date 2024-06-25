@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Prop Object", menuName = "Prop/Object", order = 53)]
-public class PropObject : ScriptableObject
+public class PropSO : ScriptableObject
 {
     // contexts (inHand, etc.)
 
@@ -25,10 +25,15 @@ public class PropObject : ScriptableObject
             }
         }
 
-        //if (attributes != null)
-        //{
-            
-        //}
+        if (attributes != null)
+        {
+            for (int i = 0; i < attributes.Length; i++)
+            {
+                PropAttributeObject attributeToAdd = attributes[i];
+                newProp.attributesList.Add(attributeToAdd);
+                attributeToAdd.OnEquip(newProp);
+            }
+        }
     }
 }
 

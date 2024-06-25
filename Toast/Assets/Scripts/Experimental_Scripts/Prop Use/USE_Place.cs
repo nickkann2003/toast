@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(fileName = "New Place Effect", menuName = "Prop/Use Effect/Place", order = 53)]
-public class US_Place : UseEffect
+public class USE_Place : UseEffectSO
 {
     // bool
     public bool invokeEvents;
@@ -18,6 +18,8 @@ public class US_Place : UseEffect
 
     // obj to place
     public GameObject objPrefab;
+
+    //TargetSO
 
     public override void Use(NewProp prop)
     {

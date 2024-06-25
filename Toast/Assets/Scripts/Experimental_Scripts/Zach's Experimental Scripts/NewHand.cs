@@ -38,15 +38,16 @@ public class NewHand : MonoBehaviour
         // If holding an item, get use strategy and Use it
         if (heldObject != null)
         {
-            _useStrategy = heldObject.GetComponent<IUseStrategy>();
-            if (_useStrategy != null)
-            {
-                _useStrategy.Use();
-            }
-            else if (heldObject.GetComponent<NewProp>() != null)
-            {
-                heldObject.GetComponent<NewProp>().Use();
-            }
+            heldObject.GetComponent<NewProp>().TryUse();
+            //_useStrategy = heldObject.GetComponent<IUseStrategy>();
+            //if (_useStrategy != null)
+            //{
+            //    _useStrategy.Use();
+            //}
+            //else if (heldObject.GetComponent<NewProp>() != null)
+            //{
+            //    heldObject.GetComponent<NewProp>().Use();
+            //}
         }
     }
 

@@ -13,13 +13,13 @@ public class StatsSystem
     [SerializeField]
     private List<Stat> statList = new List<Stat>();
 
-    public StatsSystem(BaseStats baseStats)
-    {
-        foreach (var stat in baseStats.Stats)
-        {
-            stats.Add(stat.StatType, new Stat(stat.Value));
-        }
-    }
+    //public StatsSystem(BaseStats baseStats)
+    //{
+    //    foreach (var stat in baseStats.Stats)
+    //    {
+    //        stats.Add(stat.StatType, new Stat(stat.Value));
+    //    }
+    //}
     public StatsSystem() { }
 
     public Stat GetStat(StatType type)
