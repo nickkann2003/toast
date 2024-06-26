@@ -92,7 +92,7 @@ public class LittleFella : MonoBehaviour
                 if (moveProgress >= 1.0f)
                 {
                     littleFellaEvent.RaiseEvent(edibleObject.GetComponent<NewProp>(), 1);
-                    if (edibleObject.GetComponent<NewProp>().HasAttribute(PropFlags.Bread) || edibleObject.GetComponent<NewProp>().HasAttribute(PropFlags.Jam))
+                    if (edibleObject.GetComponent<NewProp>().HasFlag(PropFlags.Bread) || edibleObject.GetComponent<NewProp>().HasFlag(PropFlags.Jam))
                     {
                         Destroy(edibleObject);
                         AudioManager.instance.PlaySound(AudioManager.instance.eatingBread);

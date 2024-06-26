@@ -57,7 +57,7 @@ public class Freezer : MonoBehaviour
         {
             freezeEvent.RaiseEvent(prop, 1);
             FireEndingManager.instance.removeFireObject(obj);
-            prop.RemoveAttribute(PropFlags.OnFire);
+            prop.RemoveFlag(PropFlags.OnFire);
             Destroy(obj.transform.GetChild(0).gameObject);
         }
         else if (!prop.propFlags.HasFlag(PropFlags.Frozen) && prop.propFlags.HasFlag(PropFlags.Bread)) 
@@ -70,7 +70,7 @@ public class Freezer : MonoBehaviour
             ice.transform.localEulerAngles = Vector3.zero;
             ice.transform.localScale = new Vector3(1.1f, 1.1f, 1.4f);
 
-            prop.AddAttribute(PropFlags.Frozen);
+            prop.AddFlag(PropFlags.Frozen);
         }
     }
 

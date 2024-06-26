@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Size Attribute", menuName = "Prop/Attribute/OnFire", order = 53)]
-public class OnFireAttribute : PropAttributeObject
+[CreateAssetMenu(fileName = "New Fire Attribute", menuName = "Prop/Attribute/OnFire", order = 53)]
+public class OnFireAttribute : PropAttributeSO
 {
     [SerializeField]
     private StatType toastType;
@@ -21,7 +19,7 @@ public class OnFireAttribute : PropAttributeObject
     {
         newProp.Stats.RemoveModifier(toastType, modifier);
         FireEndingManager.instance.removeFireObject(newProp.gameObject);
-        newProp.RemoveAttribute(PropFlags.OnFire);
+        newProp.RemoveFlag(PropFlags.OnFire);
 
         Destroy(newProp.fireObject);
         newProp.fireObject = null;

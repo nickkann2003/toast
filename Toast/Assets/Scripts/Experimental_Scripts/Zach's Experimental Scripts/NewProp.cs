@@ -6,20 +6,24 @@ using Unity.VisualScripting;
 using UnityEngine.InputSystem;
 using UnityEditor.Rendering;
 using NaughtyAttributes;
+using System.Linq;
 
 public class NewProp : MonoBehaviour
 {
 
     // ------------------------------- Variables -------------------------------
     [SerializeField]
-    private PropSO propObject;
+    private PropSO propSO;
 
     [NonSerialized]
     public GameObject fireObject;
+    [NonSerialized]
+    public GameObject iceObject;
 
     [Header("------------ Attributes ------------")]
+    // MAYBE REMOVE
     public PropFlags propFlags;
-    public List<PropAttributeObject> attributesList;
+    public List<PropAttributeSO> attributesList;
 
     [Header("------------ Stats ------------")]
     //[SerializeField]
@@ -61,6 +65,7 @@ public class NewProp : MonoBehaviour
     [SerializeField]
     private Material baseMat;
 
+    // REMOVE
     protected IUseStrategy _useStrategy;
 
     [Header("------------ Prop Data ------------")]
@@ -81,7 +86,7 @@ public class NewProp : MonoBehaviour
 
     [Header("------------ TESTING ------------")]
     [SerializeField]
-    private PropAttributeObject attributeToGive;
+    private PropAttributeSO attributeToGive;
     [SerializeField, Button]
     private void GiveAttribute()
     {
@@ -143,9 +148,9 @@ public class NewProp : MonoBehaviour
 
     private void OnEnable()
     {
-        if (propObject != null)
+        if (propSO != null)
         {
-            propObject.PopulateProp(this);
+            propSO.PopulateProp(this);
             if (useEffects.Count  > 0)
             {
                 for (int i = 0; i < useEffects.Count; i++)
@@ -171,7 +176,26 @@ public class NewProp : MonoBehaviour
             CreateAndUpdateRigidbody();
         }
     }
-    
+
+    // ------------------------------- ATTRIBUTE METHODS -------------------------------
+    // ------------------------------- ATTRIBUTE METHODS -------------------------------
+    public void AddAttribute(PropAttributeSO att)
+    {
+        attributesList.Add(att);
+        att.OnEquip(this);
+    }
+    public void RemoveAttribute(PropAttributeSO att)
+    {
+        att.OnRemove(this);
+        attributesList.Remove(att);
+    }
+    public bool HasAttribute(PropAttributeSO attributeToGet)
+    {
+        return attributesList.Contains(attributeToGet);
+    }
+    // ------------------------------- ATTRIBUTE METHODS -------------------------------
+    // ------------------------------- ATTRIBUTE METHODS -------------------------------
+
     public void RecalcSize()
     {
         Stat sizeStat = Stats.GetStat(sizeType);
@@ -215,7 +239,7 @@ public class NewProp : MonoBehaviour
     public void ForceRemoveFromHand()
     {
         // If this item is in hand, then force hand to drop it
-        if (HasAttribute(PropFlags.InHand))
+        if (HasFlag(PropFlags.InHand))
         {
             transform.parent.GetComponent<NewHand>()?.Drop();
 
@@ -228,19 +252,19 @@ public class NewProp : MonoBehaviour
     }
 
     // Add an attribute to this prop
-    public void AddAttribute(PropFlags flagToAdd)
+    public void AddFlag(PropFlags flagToAdd)
     {
         propFlags |= flagToAdd;
     }
 
     // Remove an attribute from this prop
-    public void RemoveAttribute(PropFlags flagToRemove)
+    public void RemoveFlag(PropFlags flagToRemove)
     {
         propFlags &= ~flagToRemove;
     }
 
     // Check if a prop has attributes
-    public bool HasAttribute(PropFlags flagToCheck)
+    public bool HasFlag(PropFlags flagToCheck)
     {
         return propFlags.HasFlag(flagToCheck);
     }
@@ -272,7 +296,7 @@ public class NewProp : MonoBehaviour
         if (testToastiness > .15f && !propFlags.HasFlag(PropFlags.Toast)) // Toasted event
         {
             // Add attribtue
-            AddAttribute(PropFlags.Toast);
+            AddFlag(PropFlags.Toast);
 
             // Trigger Objectives
             if(toastObjectEvent != null)
@@ -282,7 +306,7 @@ public class NewProp : MonoBehaviour
         if (testToastiness > .9f && !propFlags.HasFlag(PropFlags.Burnt)) // Burnt event
         {
             // Add attributes
-            AddAttribute(PropFlags.Burnt);
+            AddFlag(PropFlags.Burnt);
 
             // Trigger Objectives
             if(burnObjectEvent != null)
@@ -305,7 +329,7 @@ public class NewProp : MonoBehaviour
             fireObject = fire;
 
             // Add attribute
-            AddAttribute(PropFlags.OnFire);
+            AddFlag(PropFlags.OnFire);
 
             // Trigger objectives
             if(setObjectOnFireEvent != null)
@@ -323,7 +347,7 @@ public class NewProp : MonoBehaviour
         if (propFlags.HasFlag(PropFlags.Frozen))
         {
             Destroy(gameObject.transform.GetChild(0).gameObject);
-            RemoveAttribute(PropFlags.Frozen);
+            RemoveFlag(PropFlags.Frozen);
             if(thawObjectEvent != null)
                 thawObjectEvent.RaiseEvent(this, 1);
         }

@@ -35,11 +35,11 @@ public class Jam : MonoBehaviour
     {
         if (isCapped && gameObject.GetComponent<NewProp>() != null)
         {
-            gameObject.GetComponent<NewProp>().AddAttribute(PropFlags.JamLid);
+            gameObject.GetComponent<NewProp>().AddFlag(PropFlags.JamLid);
         }
         if (!isCapped && gameObject.GetComponent<NewProp>() != null)
         {
-            gameObject.GetComponent<NewProp>().RemoveAttribute(PropFlags.JamLid);
+            gameObject.GetComponent<NewProp>().RemoveFlag(PropFlags.JamLid);
         }
     }
 
@@ -58,7 +58,7 @@ public class Jam : MonoBehaviour
             SetJamLidVisible(isCapped);
             GameObject newLid = GameObject.Instantiate(jamJarLidPrefab);
             newLid.transform.position = StationManager.instance.playerLocation.ObjectOffset;
-            gameObject.GetComponent<NewProp>()?.RemoveAttribute(PropFlags.JamLid);
+            gameObject.GetComponent<NewProp>()?.RemoveFlag(PropFlags.JamLid);
         }
     }
 
@@ -70,7 +70,7 @@ public class Jam : MonoBehaviour
             isCapped = true;
             SetJamLidVisible(isCapped);
             Destroy(lid);
-            gameObject.GetComponent<NewProp>()?.AddAttribute(PropFlags.JamLid);
+            gameObject.GetComponent<NewProp>()?.AddFlag(PropFlags.JamLid);
         }
     }
 
@@ -81,7 +81,7 @@ public class Jam : MonoBehaviour
         {
             isCapped = true;
             SetJamLidVisible(isCapped);
-            gameObject.GetComponent<NewProp>()?.AddAttribute(PropFlags.JamLid);
+            gameObject.GetComponent<NewProp>()?.AddFlag(PropFlags.JamLid);
         }
     }
 

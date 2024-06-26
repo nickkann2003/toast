@@ -99,6 +99,7 @@ MonoBehaviour:
   handPos: {fileID: 980282111546057802}
   pickUpEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
   dropEvent: {fileID: 11400000, guid: 5088c6d0c89b46f448451041d58e1733, type: 2}
+  inHandAttribute: {fileID: 11400000, guid: 6cac2a5c331557a47a12f4ccee4105ba, type: 2}
 --- !u!1 &1099820441112653305
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +136,7 @@ Transform:
   - {fileID: 6976110134124021105}
   - {fileID: 1028743393215611214}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3589054759992536755
 BoxCollider:
@@ -239,15 +240,18 @@ MonoBehaviour:
   toastType: {fileID: 11400000, guid: ed769c6990786b0428bfb3911e9f608b, type: 2}
   sizeType: {fileID: 11400000, guid: e4f0d536b759caf468fa4f8a983f5ce2, type: 2}
   massType: {fileID: 11400000, guid: 263ef62346c87a54e8aec3fc8b974bf7, type: 2}
+  useEffects: []
   toastiness: 0
   fireTrigger: 1.5
   firePrefab: {fileID: 0}
   frozenness: 0
   baseMat: {fileID: 0}
-  useEffects: []
   PD_Rb: {fileID: 11400000, guid: 9b3d1433e9869ce4b9bfd8a4b04afefb, type: 2}
   createObjectEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
   thawObjectEvent: {fileID: 11400000, guid: d26239510d487054e9b40255a0a441bf, type: 2}
+  toastObjectEvent: {fileID: 0}
+  burnObjectEvent: {fileID: 0}
+  setObjectOnFireEvent: {fileID: 0}
   attributeToGive: {fileID: 0}
   indexToRemove: 0
   hand: {fileID: 1488870372979239520}

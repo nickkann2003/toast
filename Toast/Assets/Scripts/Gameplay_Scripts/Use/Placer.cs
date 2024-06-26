@@ -50,7 +50,7 @@ public class Placer : MonoBehaviour, IUseStrategy
             }
         }
 
-        if (remaining == 0 || objPrefab == null || !transform.GetComponent<NewProp>().HasAttribute(PropFlags.InHand))
+        if (remaining == 0 || objPrefab == null || !transform.GetComponent<NewProp>().HasFlag(PropFlags.InHand))
         {
             return;
         }

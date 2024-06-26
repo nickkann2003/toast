@@ -199,19 +199,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429bde5dd05b54548b37ef4292b26c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attributes: 536873984
+  propObject: {fileID: 0}
+  propFlags: 0
+  attributesList: []
+  statsSystem:
+    statList: []
+  toastType: {fileID: 0}
+  sizeType: {fileID: 0}
+  massType: {fileID: 0}
+  useEffects:
+  - {fileID: 11400000, guid: 7b733d7783711a741b1588b963776e4f, type: 2}
   toastiness: 0
   fireTrigger: 1.5
   firePrefab: {fileID: 0}
   frozenness: 0
   baseMat: {fileID: 0}
-  useEffects: []
   PD_Rb: {fileID: 0}
   createObjectEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
   thawObjectEvent: {fileID: 11400000, guid: d26239510d487054e9b40255a0a441bf, type: 2}
   toastObjectEvent: {fileID: 0}
   burnObjectEvent: {fileID: 0}
   setObjectOnFireEvent: {fileID: 0}
+  attributeToGive: {fileID: 0}
+  indexToRemove: 0
 --- !u!33 &5454151039170499192
 MeshFilter:
   m_ObjectHideFlags: 0

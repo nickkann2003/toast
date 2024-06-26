@@ -136,7 +136,7 @@ public class AchievementManager : MonoBehaviour
     public void ReceivedEat(NewProp prop, int increment)
     {
         // BREAD =======================================
-        if(prop.HasAttribute(PropFlags.Bread))
+        if(prop.HasFlag(PropFlags.Bread))
         {
             IncrementAchievement(ACHIEVEMENT_EAT_5_BREAD);
         }
@@ -148,7 +148,7 @@ public class AchievementManager : MonoBehaviour
     /// </summary>
     public void ReceivedLittleFella(NewProp prop, int increment)
     {
-        if(prop.HasAttribute(PropFlags.Bread) || prop.HasAttribute(PropFlags.Jam))
+        if(prop.HasFlag(PropFlags.Bread) || prop.HasFlag(PropFlags.Jam))
         {
             // Feed little fella achievement
             Unlock(ACHIEVEMENT_FEED_LITTLE_FELLA);
@@ -160,7 +160,7 @@ public class AchievementManager : MonoBehaviour
     /// </summary>
     public void ReceivedToasting(NewProp prop, int increment)
     {
-        if(prop.HasAttribute(PropFlags.Toast))
+        if(prop.HasFlag(PropFlags.Toast))
         {
             Unlock(ACHIEVEMENT_FIRST_TOAST);
         }

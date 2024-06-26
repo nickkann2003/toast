@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PropAttributeObject : ScriptableObject
+public abstract class PropAttributeSO : ScriptableObject
 {
     [SerializeField]
     protected StatModifierContainer[] statModifierContainer;

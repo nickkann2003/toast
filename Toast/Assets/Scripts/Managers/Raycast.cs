@@ -248,7 +248,7 @@ public class Raycast : MonoBehaviour
         if (hit.collider != null)
         {
             itemToUse = hit.collider.gameObject;
-            Debug.Log(itemToUse);
+            //Debug.Log(itemToUse);
         }
         
 
@@ -330,7 +330,7 @@ public class Raycast : MonoBehaviour
 
         if (dragging && selectGO.GetComponent<NewProp>() != null)
         {
-            if (selectGO.GetComponent<NewProp>().HasAttribute(PropFlags.ImmuneToPickup))
+            if (selectGO.GetComponent<NewProp>().HasFlag(PropFlags.ImmuneToPickup))
             {
                 return false;
             }
@@ -355,7 +355,7 @@ public class Raycast : MonoBehaviour
 
         if (itemToPickup.GetComponent<NewProp>() != null) // Interactable layer
         {
-            if (itemToPickup.GetComponent<NewProp>().HasAttribute(PropFlags.ImmuneToPickup))
+            if (itemToPickup.GetComponent<NewProp>().HasFlag(PropFlags.ImmuneToPickup))
             {
                 return false;
             }
@@ -453,11 +453,11 @@ public class Raycast : MonoBehaviour
 
         if (hitGO.GetComponent<NewProp>() != null)
         {
-            if (hitGO.GetComponent<NewProp>().HasAttribute(PropFlags.ImmuneToDrag))
+            if (hitGO.GetComponent<NewProp>().HasFlag(PropFlags.ImmuneToDrag))
             {
                 return;
             }
-            if (hitGO.GetComponent<NewProp>().HasAttribute(PropFlags.InHand))
+            if (hitGO.GetComponent<NewProp>().HasFlag(PropFlags.InHand))
             {
                 Debug.Log("Forcibly removing from hand");
                 hitGO.GetComponent<NewProp>().ForceRemoveFromHand();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Size Attribute", menuName = "Prop/Attribute/Size", order = 53)]
-public class SizeAttributeObject : PropAttributeObject
+public class SizeAttribute : PropAttributeSO
 {
     public override void OnEquip(NewProp newProp)
     {

@@ -9,7 +9,7 @@ public class PropSO : ScriptableObject
 
     // attributes (onFire, frozen, giant, bread)
     [SerializeField]
-    private PropAttributeObject[] attributes;
+    private PropAttributeSO[] attributes;
 
     [SerializeField]
     private Stat[] stats;
@@ -29,7 +29,7 @@ public class PropSO : ScriptableObject
         {
             for (int i = 0; i < attributes.Length; i++)
             {
-                PropAttributeObject attributeToAdd = attributes[i];
+                PropAttributeSO attributeToAdd = attributes[i];
                 newProp.attributesList.Add(attributeToAdd);
                 attributeToAdd.OnEquip(newProp);
             }

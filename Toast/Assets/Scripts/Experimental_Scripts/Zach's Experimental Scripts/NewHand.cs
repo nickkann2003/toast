@@ -15,6 +15,9 @@ public class NewHand : MonoBehaviour
     [SerializeField]
     private PropIntGameEvent dropEvent;
 
+    [SerializeField]
+    private InHandAttribute inHandAttribute;
+
     // ------------------------------- Functions -------------------------------
     public void Update()
     {
@@ -27,7 +30,7 @@ public class NewHand : MonoBehaviour
             // If held item does not have hand flag, set it
             if (!heldObject.GetComponent<NewProp>().propFlags.HasFlag(PropFlags.InHand))
             {
-                heldObject.GetComponent<NewProp>().AddAttribute(PropFlags.InHand);
+                heldObject.GetComponent<NewProp>().AddFlag(PropFlags.InHand);
             }
         }
     }
@@ -67,7 +70,7 @@ public class NewHand : MonoBehaviour
         if (heldObject != null)
         {
             // If item can't be dropped, don't drop it
-            if (heldObject.GetComponent<NewProp>().HasAttribute(PropFlags.ImmuneToDrop))
+            if (heldObject.GetComponent<NewProp>().HasFlag(PropFlags.ImmuneToDrop))
             {
                 return null;
             }
@@ -76,8 +79,9 @@ public class NewHand : MonoBehaviour
             itemToReturn = heldObject;
 
             // Set prop flogs
-            heldObject.GetComponent<NewProp>()?.RemoveAttribute(PropFlags.InHand);
-            
+            heldObject.GetComponent<NewProp>()?.RemoveFlag(PropFlags.InHand);
+            //heldObject.GetComponent<NewProp>()?.DestroyAttribute(inHandAttribute);
+
             // Check if dropping in inventory
             if (StationManager.instance.playerLocation.stationLabel == Stations.Inventory)
             {
@@ -102,7 +106,7 @@ public class NewHand : MonoBehaviour
         if (itemToPickup != null)
         {
             // If clicked object in hand, remove it instead
-            if (itemToPickup.GetComponent<NewProp>() != null && itemToPickup.GetComponent<NewProp>().HasAttribute(PropFlags.InHand))
+            if (itemToPickup.GetComponent<NewProp>() != null && itemToPickup.GetComponent<NewProp>().HasFlag(PropFlags.InHand))
             {
                 itemToPickup.GetComponent<NewProp>().ForceRemoveFromHand();
             }
@@ -111,7 +115,9 @@ public class NewHand : MonoBehaviour
             heldObject = itemToPickup;
 
             // Set prop flags
-            heldObject.GetComponent<NewProp>()?.AddAttribute(PropFlags.InHand);
+            heldObject.GetComponent<NewProp>()?.AddFlag(PropFlags.InHand);
+
+            //heldObject.GetComponent<NewProp>()?.GiveAttribute(inHandAttribute);
             
             // Set use strategy
             _useStrategy = heldObject.GetComponent<IUseStrategy>();
