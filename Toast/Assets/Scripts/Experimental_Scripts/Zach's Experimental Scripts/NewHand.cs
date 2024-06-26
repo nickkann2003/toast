@@ -127,6 +127,8 @@ public class NewHand : MonoBehaviour
             if (pickUpEvent != null)
                 pickUpEvent.RaiseEvent(heldObject.GetComponent<NewProp>(), 1);
 
+            heldObject.transform.position = Vector3.zero;
+
             // Set object transform
             heldObject.transform.parent = this.gameObject.transform;
         }

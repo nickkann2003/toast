@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.Universal.Internal;
 
 public class ObjectRespawner : MonoBehaviour
 {
@@ -17,7 +19,11 @@ public class ObjectRespawner : MonoBehaviour
     [SerializeField] public bool autoRespawnItems = true;
     [SerializeField] public bool spawnOnStart = true;
 
-    private List<RespawnableObject> objectsToRespawn = new List<RespawnableObject>();
+    /// <summary>
+    /// Option respawn trigger collider, any object with this script and a trigger collider will automatically function off of this
+    /// </summary>
+    private BoxCollider respawnCollider;
+    private LayerMask mask; // Layer mask for masking everything but interactable objects
 
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
@@ -33,6 +39,22 @@ public class ObjectRespawner : MonoBehaviour
                 }
             }
         }
+
+        respawnCollider = null;
+        if(gameObject.GetComponent<BoxCollider>() != null)
+        {
+            BoxCollider[] allColliders = gameObject.GetComponents<BoxCollider>();
+            foreach(BoxCollider c in allColliders)
+            {
+                if (c.isTrigger)
+                {
+                    // Loop all colliders of this object, take the first trigger collider as the respawn collider
+                    respawnCollider = c;
+                    break;
+                }
+            }
+        }
+        mask = LayerMask.GetMask("Interactable");
     }
 
     // Update is called once per frame
@@ -52,12 +74,21 @@ public class ObjectRespawner : MonoBehaviour
         if(gameObject.activeSelf)
         {
             bool empty = true;
+
             // Innefficient, temp solution
             foreach (RespawnableObject obj in objects)
             {
-                if (!obj.CheckNull() && !objectsToRespawn.Contains(obj))
+                if (!obj.CheckNull() && respawnCollider == null)
                 {
                     empty = false;
+                } 
+                else if(!obj.CheckNull() && respawnCollider != null)
+                {
+                    Collider[] colliders = Physics.OverlapBox(respawnCollider.center, (respawnCollider.size / 2f));
+                    if (colliders.Contains(obj.ObjRef.GetComponent<Collider>()))
+                    {
+                        empty = false;
+                    }
                 }
                 else
                 {
@@ -67,17 +98,52 @@ public class ObjectRespawner : MonoBehaviour
                     }
                 }
             }
+
             if (empty && waitForAll)
             {
                 foreach (RespawnableObject obj in objects)
                 {
                     obj.RespawnObject(transform.position);
                 }
-                objectsToRespawn.Clear();
             }
-            if (!waitForAll)
+
+            StartCoroutine(RunColliderRespawnCheck(empty));
+        }
+    }
+
+    private IEnumerator RunColliderRespawnCheck(bool empty)
+    {
+        yield return new WaitForFixedUpdate();
+        if (respawnCollider != null)
+        {
+            Vector3 rSize = new Vector3(Math.Abs(respawnCollider.size.x / 2f), Math.Abs(respawnCollider.size.y / 2f), Math.Abs(respawnCollider.size.z / 2f));
+            Collider[] colliders = Physics.OverlapBox(transform.TransformPoint(respawnCollider.center), rSize, Quaternion.identity, mask);
+            List<GameObject> objsUndetected = new List<GameObject>();
+
+            foreach (RespawnableObject o in objects)
             {
-                objectsToRespawn.Clear();
+                objsUndetected.Add(o.ObjRef);
+            }
+            foreach (Collider c in colliders)
+            {
+                if (objsUndetected.Contains(c.gameObject))
+                {
+                    objsUndetected.Remove(c.gameObject);
+                }
+            }
+
+            foreach (GameObject o in objsUndetected)
+            {
+                foreach (RespawnableObject r in objects)
+                {
+                    if (r.ObjRef.Equals(o))
+                    {
+                        if (!waitForAll || empty)
+                        {
+                            r.RespawnObject(transform.position);
+                        }
+                    }
+                }
             }
         }
     }
@@ -91,29 +157,6 @@ public class ObjectRespawner : MonoBehaviour
         foreach(RespawnableObject obj in objects)
         {
             Gizmos.DrawWireSphere(obj.spawnPosition + transform.position, 0.05f);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        foreach(RespawnableObject obj in objects)
-        {
-            if (other.gameObject == obj.ObjRef)
-            {
-                objectsToRespawn.Add(obj);
-                Debug.Log("Added item to respawn list"); //DEBUG
-            }
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        foreach (RespawnableObject obj in objectsToRespawn)
-        {
-            if (other.gameObject == obj.ObjRef)
-            {
-                objectsToRespawn.Remove(obj);
-                Debug.Log("Removed object from respawn list"); //DEBUG
-            }
         }
     }
 }
