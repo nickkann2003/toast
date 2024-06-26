@@ -241,6 +241,9 @@ MonoBehaviour:
   PD_Rb: {fileID: 11400000, guid: 9b3d1433e9869ce4b9bfd8a4b04afefb, type: 2}
   createObjectEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
   thawObjectEvent: {fileID: 11400000, guid: d26239510d487054e9b40255a0a441bf, type: 2}
+  toastObjectEvent: {fileID: 0}
+  burnObjectEvent: {fileID: 0}
+  setObjectOnFireEvent: {fileID: 0}
   hand: {fileID: 1488870372979239520}
   useEvent: {fileID: 11400000, guid: fb0064d8f2f9be342b9136075c8542c7, type: 2}
 --- !u!1001 &706060012230338213
@@ -306,6 +309,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9cf8d86b097529e4fb5f41ef1b243c4a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e731d58a0c3a29e48a0eb5f595a8a1ab, type: 2}
     - target: {fileID: 919132149155446097, guid: 9cf8d86b097529e4fb5f41ef1b243c4a,
         type: 3}
       propertyPath: m_Name
