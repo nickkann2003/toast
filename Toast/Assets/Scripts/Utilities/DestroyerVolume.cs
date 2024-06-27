@@ -8,6 +8,14 @@ public class DestroyerVolume : MonoBehaviour
     [SerializeField]
     private PropIntGameEvent destroyEvent;
     // ------------------------------- Functions -------------------------------
+    private void Start()
+    {
+        if(destroyEvent == null)
+        {
+            destroyEvent = PieManager.instance.DestroyObjects;
+        }
+    }
+
     /// <summary>
     /// On trigger enter, destroy other and send event
     /// </summary>
@@ -15,12 +23,10 @@ public class DestroyerVolume : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         GameObject parent = other.gameObject;
-        RequirementEvent rEvent;
-        PropFlags flags = PropFlags.None;
         // Check if object has new prop
-        if(other.gameObject.GetComponent<NewProp>() != null)
+        parent = other.gameObject;
+        if(parent.GetComponent<NewProp>() != null)
         {
-            parent = other.gameObject;
             destroyEvent.RaiseEvent(parent.GetComponent<NewProp>(), 1);
             Destroy(parent);
             return;

@@ -5,10 +5,23 @@ using UnityEngine;
 
 public class Electricity : MonoBehaviour
 {
+    [SerializeField]
+    List<ParticleSystem> particles;
+
+    [SerializeField]
+    ParticleSystem burstP;
+
+    [SerializeField]
+    float radius, power;
+
+    LayerMask mask;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        mask = LayerMask.GetMask("Interactable");
     }
 
     // Update is called once per frame
@@ -34,14 +47,41 @@ public class Electricity : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision");
-
         if (other.gameObject.TryGetComponent(out NewProp prop))
         {
             if (prop.attributes.HasFlag(PropFlags.Metal))
             {
-                Debug.Log("Electricity");
+                // Play visual
+                foreach(ParticleSystem p in particles)
+                {
+    
+                    p.Play();
+                }
+
+                TriggerExplosion();
             }
         }
+    }
+
+    private void TriggerExplosion()
+    {
+        Vector3 explosionPos = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, radius, mask);
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+            if (rb != null)
+                rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
+        }
+
+        Debug.Log(colliders.Length + "Colliders detected");
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }
