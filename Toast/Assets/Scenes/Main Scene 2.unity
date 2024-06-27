@@ -6863,6 +6863,8 @@ MonoBehaviour:
   ToastStrength3: {fileID: 11400000, guid: f9598bffcdb8ec7479795b61cd987b7d, type: 2}
   ToastStrength4: {fileID: 11400000, guid: 5b3bd490607fbd746ba37fd9be8ad1ea, type: 2}
   ToastStrength5: {fileID: 11400000, guid: 970b092f003cb444aaefd5a473fc0faf, type: 2}
+  CapObject: {fileID: 11400000, guid: 37dbb2dba7947e04e976ca18170b7def, type: 2}
+  UncapObject: {fileID: 11400000, guid: 46b2c46956b62cb48a48aa52aa198095, type: 2}
 --- !u!1 &773572430
 GameObject:
   m_ObjectHideFlags: 0
@@ -18098,33 +18100,38 @@ PrefabInstance:
       objectReference: {fileID: 1492756981}
     - target: {fileID: 7958088596070710736, guid: 1750db23407feb64f9c5084a643ae3ae,
         type: 3}
+      propertyPath: cameraPos.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958088596070710736, guid: 1750db23407feb64f9c5084a643ae3ae,
+        type: 3}
       propertyPath: cameraPos.y
-      value: 0.9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7958088596070710736, guid: 1750db23407feb64f9c5084a643ae3ae,
         type: 3}
       propertyPath: cameraPos.z
-      value: 2
+      value: 1.7825037
       objectReference: {fileID: 0}
     - target: {fileID: 7958088596070710736, guid: 1750db23407feb64f9c5084a643ae3ae,
         type: 3}
       propertyPath: cameraRotation.w
-      value: -0.00000004359616
+      value: -0.000000043013785
       objectReference: {fileID: 0}
     - target: {fileID: 7958088596070710736, guid: 1750db23407feb64f9c5084a643ae3ae,
         type: 3}
       propertyPath: cameraRotation.x
-      value: -0.000000007670709
+      value: -0.000000007778159
       objectReference: {fileID: 0}
     - target: {fileID: 7958088596070710736, guid: 1750db23407feb64f9c5084a643ae3ae,
         type: 3}
       propertyPath: cameraRotation.y
-      value: 0.9914449
+      value: 0.9840407
       objectReference: {fileID: 0}
     - target: {fileID: 7958088596070710736, guid: 1750db23407feb64f9c5084a643ae3ae,
         type: 3}
       propertyPath: cameraRotation.z
-      value: -0.1305262
+      value: -0.17794354
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18354,21 +18361,57 @@ MonoBehaviour:
       - {fileID: 212700123}
       completionEvents:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 212700125}
+            m_TargetAssemblyTypeName: ObjectRespawner, Assembly-CSharp
+            m_MethodName: RespawnItems
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
     - objectiveInfo: {fileID: 11400000, guid: 7d7c4eb96da4b284ebe92423fac2fe36, type: 2}
       prerequisiteIds: 10000000
       activatables:
       - {fileID: 1943937526}
       completionEvents:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 1943937529}
+            m_TargetAssemblyTypeName: ObjectRespawner, Assembly-CSharp
+            m_MethodName: RespawnItems
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
     - objectiveInfo: {fileID: 11400000, guid: 8d9a8c378507d2040ba12a3acf7d6feb, type: 2}
       prerequisiteIds: 12000000
       activatables:
       - {fileID: 1129715439}
       completionEvents:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 1129715441}
+            m_TargetAssemblyTypeName: ObjectRespawner, Assembly-CSharp
+            m_MethodName: RespawnItems
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
     displays:
     - {fileID: 739542199}
     displaysUI: []
