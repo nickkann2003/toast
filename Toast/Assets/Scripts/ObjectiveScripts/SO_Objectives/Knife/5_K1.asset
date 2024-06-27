@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: 5_K1
   m_EditorClassIdentifier: 
   objectiveName: Pick Up a Knife
-  description: Simple as that! 1/4
+  description: Simple as that!
   completeText: 
   unavailableText: ???
   requirements:
   - targetAttributes: -2147483648
+    hasExclusions: 0
+    excludeAttributes: 0
     listener:
       gameEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
       response:
@@ -28,7 +30,8 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
-    listening: 1
+    listening: 0
+  sequentialRequirements: 0
   id: 5
-  complete: 1
-  available: 1
+  complete: 0
+  available: 0

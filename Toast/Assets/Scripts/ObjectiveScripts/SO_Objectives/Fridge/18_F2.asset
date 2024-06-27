@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 18_F2
   m_EditorClassIdentifier: 
   objectiveName: Jam It Up!
-  description: Pick Up the Jam, Take Off the Lid, and Use It on anything! 2/3
+  description: Pick Up the Jam, Take Off the Lid, and Use It on anything!
   completeText: 
   unavailableText: ???
   requirements:
@@ -30,7 +30,7 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
-    listening: 1
+    listening: 0
   - targetAttributes: 1342177280
     hasExclusions: 0
     excludeAttributes: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 1
-    listening: 1
+    listening: 0
   - targetAttributes: 1073741824
     hasExclusions: 1
     excludeAttributes: 268435456
@@ -58,7 +58,8 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 2
-    listening: 1
+    listening: 0
+  sequentialRequirements: 1
   id: 18
   complete: 0
-  available: 1
+  available: 0

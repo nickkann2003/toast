@@ -23,6 +23,8 @@ public class SO_Objective : ScriptableObject
     [Header("Requirements")]
     [SerializeField]
     private List<Requirement> requirements = new List<Requirement>(); // List of all requirements for this objective
+    [SerializeField]
+    private bool sequentialRequirements = true;
 
     [Header("ID")]
     [SerializeField]
@@ -92,9 +94,24 @@ public class SO_Objective : ScriptableObject
     {
         if (available)
         {
-            foreach (Requirement requirement in requirements)
+            if (!sequentialRequirements)
             {
-                requirement.listening = true;
+                foreach (Requirement requirement in requirements)
+                {
+                    requirement.listening = true;
+                }
+            }
+            else
+            {
+                foreach(Requirement requirement in requirements)
+                {
+                    if (requirement.Complete)
+                    {
+                        continue;
+                    }
+                    requirement.listening = true;
+                    break;
+                }
             }
         }
     }
@@ -131,25 +148,34 @@ public class SO_Objective : ScriptableObject
             {
                 string value = "";
                 bool firstIncompleteRequirement = true;
-                value = objectiveName + " <size=-5>\n<color=#111><i>" + description + "</i></color></size>";
+                int complete = 0;
+                int total = 0;
+                value = objectiveName + " <size=-5><color=#111>~ \n<i>" + description + "</i></color></size>";
                 foreach (Requirement r in requirements)
                 {
                     if (r.listening)
                     {
                         if (firstIncompleteRequirement && !r.Complete)
                         {
-                            value += "<size=-2>\n -" + r.ToString + "</size>";
+                            value += "<size=-2>\n" + r.ToString + "</size>";
                         }
                         else 
                         {
-                            value += "<size=-6>\n-" + r.ToString + "</size>";
+                            value += "<size=-6>\n" + r.ToString + "</size>";
                         }
                     }
                     if (!r.Complete)
                     {
                         firstIncompleteRequirement = false;
                     }
+                    else
+                    {
+                        complete++;
+                    }
+                    total++;
                 }
+                string[] subs = value.Split('~');
+                value = subs[0].Substring(0, subs[0].Length) + complete + "/" + total + subs[1];
                 if (CheckAllRequirementsComplete())
                 {
                     value = "<color=#111><s>" + objectiveName + "</s></color>";
@@ -158,6 +184,8 @@ public class SO_Objective : ScriptableObject
                         value += "\n<color=#080808><size=-3>" + completeText + "</size></color>";
                     }
                 }
+
+
                 return value;
             }
             else if(unavailableText != "")

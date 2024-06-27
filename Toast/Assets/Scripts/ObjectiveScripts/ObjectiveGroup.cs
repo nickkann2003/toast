@@ -71,10 +71,13 @@ public class ObjectiveGroup
         get
         {
             string value = "";
-            value += "<u><b>To-Do List:</b></u>";
+            value += "<u><b>To-Do List: <size=-5><color=#111><pos=85%>~</pos></size></color></b></u>";
+            int complete = 0;
+            int total = 0;
             //value += "\n" + "<color=#111><size=-1>" + "Objectives Completed: " + completedObjectives + "</size></color>";
             foreach (Objective obj in objectives)
             {
+                total++;
                 if (obj.CheckAvailable())
                 {
                     value += "\n" + "<size=-1>" + obj.ToString + "</size>";
@@ -83,7 +86,14 @@ public class ObjectiveGroup
                 {
                     value += "\n" + "<size=-2>" + obj.ToString + "</size>";
                 }
+
+                if (obj.Complete)
+                {
+                    complete++;
+                }
             }
+            string[] subs = value.Split('~');
+            value = subs[0].Substring(0, subs[0].Length) + complete + "/" + total + subs[1];
             return value;
         }
     }

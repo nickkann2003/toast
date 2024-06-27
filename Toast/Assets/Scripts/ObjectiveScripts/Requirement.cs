@@ -139,31 +139,34 @@ public class Requirement
         get
         {
             string value = "";
-            if (CheckComplete())
+            if (listening)
             {
-                value += "<size=-2><color=#111><s>";
-                value += goalName + " ";
-                value += "DONE!";
-            }
-            else
-            {
-                if(goal > 0)
+                if (CheckComplete())
                 {
-                    value += "<color=#000>";
+                    value += "<size=-6><color=#333> - <s>";
                     value += goalName + " ";
-                    value += "<pos=80%>";
-                    value += current + "/" + goal;
+                    //value += "DONE!";
                 }
                 else
                 {
-                    value += "<color=#000>";
-                    value += goalName + " ";
-                    value += "<pos=80%>";
-                    value += current;
+                    if(goal > 0)
+                    {
+                        value += "<color=#000> - ";
+                        value += goalName + " ";
+                        value += "<pos=80%>";
+                        value += current + "/" + goal;
+                    }
+                    else
+                    {
+                        value += "<color=#000> - ";
+                        value += goalName + " ";
+                        value += "<pos=80%>";
+                        value += current;
+                    }
+                    
                 }
-                
+                value += "</size></s></color>";
             }
-            value += "</size></s></color>";
             return value;
         }
     }

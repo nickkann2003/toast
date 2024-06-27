@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: 6_K2
   m_EditorClassIdentifier: 
   objectiveName: Pick Up WITH A Knife
-  description: Knives can stack objects! 2/4
+  description: Knives can stack objects!
   completeText: 
   unavailableText: ???
   requirements:
   - targetAttributes: -2147483648
+    hasExclusions: 0
+    excludeAttributes: 0
     listener:
       gameEvent: {fileID: 11400000, guid: fb0064d8f2f9be342b9136075c8542c7, type: 2}
       response:
@@ -28,7 +30,8 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
-    listening: 1
+    listening: 0
+  sequentialRequirements: 0
   id: 6
-  complete: 1
-  available: 1
+  complete: 0
+  available: 0
