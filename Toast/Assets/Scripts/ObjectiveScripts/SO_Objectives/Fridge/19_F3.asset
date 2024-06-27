@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 19_F3
   m_EditorClassIdentifier: 
   objectiveName: Infinite Bread?
-  description: Eat Bread and have it Respawn
+  description: The Fridge respawns items while closed!
   completeText: 
   unavailableText: ???
   requirements:
@@ -26,12 +26,13 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     goalName: Eat Bread
-    goal: 10
+    goal: 6
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
-    listening: 0
+    listening: 1
   sequentialRequirements: 1
   id: 19
-  complete: 0
-  available: 0
+  complete: 1
+  available: 1
+  successorComplete: 0

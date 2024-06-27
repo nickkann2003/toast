@@ -49,6 +49,11 @@ public class NewProp : MonoBehaviour
     [SerializeField]
     private PropIntGameEvent setObjectOnFireEvent;
 
+
+    // Currently Toasting Checks
+    private bool toasting = false;
+    private float toastCd = 0f;
+
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()
@@ -103,6 +108,16 @@ public class NewProp : MonoBehaviour
         {
             CreateAndUpdateRigidbody();
         }
+
+        if(toastCd < 0 && toasting)
+        {
+            RunEventChecks();
+            toasting = false;
+        }
+        if(toasting)
+        {
+            toastCd -= Time.deltaTime;
+        }
     }
 
     // Use this prop's strategy
@@ -153,14 +168,20 @@ public class NewProp : MonoBehaviour
 
         // Get color strength and cap it
         float colorStrength = toastiness;
-        if (colorStrength > 1)
+        if (colorStrength > 0.95f)
         {
-            colorStrength = 1;
+            colorStrength = 0.95f;
         }
 
         // Set renderer color
         gameObject.GetComponent<Renderer>().material.color = initialColor + (colorOffset * colorStrength);
 
+        toasting = true;
+        toastCd = 0.2f;
+    }
+
+    private void RunEventChecks()
+    {
         // Adjust prop flags and trigger requirement events
         if (toastiness > .15f && !attributes.HasFlag(PropFlags.Toast)) // Toasted event
         {
@@ -168,7 +189,7 @@ public class NewProp : MonoBehaviour
             AddAttribute(PropFlags.Toast);
 
             // Trigger Objectives
-            if(toastObjectEvent != null)
+            if (toastObjectEvent != null)
                 toastObjectEvent.RaiseEvent(this, 1);
         }
 
@@ -178,7 +199,7 @@ public class NewProp : MonoBehaviour
             AddAttribute(PropFlags.Burnt);
 
             // Trigger Objectives
-            if(burnObjectEvent != null)
+            if (burnObjectEvent != null)
                 burnObjectEvent.RaiseEvent(this, 1);
         }
         if (!attributes.HasFlag(PropFlags.OnFire) && toastiness > fireTrigger && firePrefab != null) // On Fire event
@@ -194,9 +215,9 @@ public class NewProp : MonoBehaviour
             AddAttribute(PropFlags.OnFire);
 
             // Trigger objectives
-            if(setObjectOnFireEvent != null)
+            if (setObjectOnFireEvent != null)
                 setObjectOnFireEvent.RaiseEvent(this, 1);
-            
+
             // Add flaming object
             FireEndingManager.instance.addFireObject(gameObject);
         }

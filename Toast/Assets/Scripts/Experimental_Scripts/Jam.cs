@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,12 @@ public class Jam : MonoBehaviour
     [SerializeField]
     GameObject jamJarLidPrefab;
 
+    [Header("Event References - Grabbed automatically, only change if there's a specific reason")]
+    [SerializeField]
+    private PropIntGameEvent capEvent;
+    [SerializeField]
+    private PropIntGameEvent uncapEvent;
+
     // ------------------------------- Properties -------------------------------
     public bool IsCapped { get => isCapped; set => isCapped = value; }
 
@@ -41,6 +48,15 @@ public class Jam : MonoBehaviour
         {
             gameObject.GetComponent<NewProp>().RemoveAttribute(PropFlags.JamLid);
         }
+
+        if(capEvent == null)
+        {
+            capEvent = PieManager.instance.CapObject;
+        }
+        if (uncapEvent == null)
+        {
+            uncapEvent = PieManager.instance.UncapObject;
+        }
     }
 
     // Update is called once per frame
@@ -58,6 +74,7 @@ public class Jam : MonoBehaviour
             SetJamLidVisible(isCapped);
             GameObject newLid = GameObject.Instantiate(jamJarLidPrefab);
             newLid.transform.position = StationManager.instance.playerLocation.ObjectOffset;
+            uncapEvent.RaiseEvent(gameObject.GetComponent<NewProp>(), 1);
             gameObject.GetComponent<NewProp>()?.RemoveAttribute(PropFlags.JamLid);
         }
     }
@@ -71,6 +88,7 @@ public class Jam : MonoBehaviour
             SetJamLidVisible(isCapped);
             Destroy(lid);
             gameObject.GetComponent<NewProp>()?.AddAttribute(PropFlags.JamLid);
+            capEvent.RaiseEvent(gameObject.GetComponent<NewProp>(), 1);
         }
     }
 

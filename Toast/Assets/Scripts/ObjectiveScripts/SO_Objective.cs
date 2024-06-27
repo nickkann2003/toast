@@ -35,6 +35,8 @@ public class SO_Objective : ScriptableObject
     private bool complete;
     [SerializeField]
     private bool available;
+    [SerializeField]
+    private bool successorComplete;
 
     // ------------------------------- Properties -------------------------------
     public string ObjectiveName { get => objectiveName; set => objectiveName = value; }
@@ -49,6 +51,7 @@ public class SO_Objective : ScriptableObject
     {
         complete = false;
         available = false;
+        successorComplete = false;
         foreach (Requirement r in requirements)
         {
             r.OnLoad();
@@ -128,6 +131,11 @@ public class SO_Objective : ScriptableObject
         return null;
     }
 
+    public void CompleteSuccessor()
+    {
+        successorComplete = true;
+    }
+
     /// <summary>
     /// Force completes this objective and all its requirements
     /// </summary>
@@ -179,9 +187,9 @@ public class SO_Objective : ScriptableObject
                 if (CheckAllRequirementsComplete())
                 {
                     value = "<color=#111><s>" + objectiveName + "</s></color>";
-                    if(completeText != "")
+                    if (completeText != "" && !successorComplete)
                     {
-                        value += "\n<color=#080808><size=-3>" + completeText + "</size></color>";
+                        value += "\n<color=#080808><size=-6>" + completeText + "</size></color>";
                     }
                 }
 
