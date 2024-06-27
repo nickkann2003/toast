@@ -1108,6 +1108,7 @@ Transform:
   - {fileID: 779321587488391923}
   - {fileID: 4145015745761059406}
   - {fileID: 3599741352716315986}
+  - {fileID: 7322967204096269549}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1130,8 +1131,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5331732, y: 0.602665, z: 0.99141586}
-  m_Center: {x: 0.00075632334, y: 0.29544112, z: 0.018546522}
+  m_Size: {x: 0.5331732, y: 0.602665, z: 0.9336226}
+  m_Center: {x: 0.00075632334, y: 0.29544112, z: -0.010350108}
 --- !u!114 &7958088596070710736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,7 +1155,8 @@ MonoBehaviour:
   interactables: []
   isEnabled: 0
   dragPlanes: []
-  stationSpecificHints: []
+  stationSpecificHints:
+  - {fileID: 4093385508950063369}
   arrive:
     m_PersistentCalls:
       m_Calls: []
@@ -7305,7 +7307,7 @@ MonoBehaviour:
   weakestStrength: {r: 0.8396226, g: 0.5951148, b: 0.368325, a: 1}
   strongestStrength: {r: 0.084905684, g: 0.043337278, b: 0, a: 1}
   timer: 0
-  maxTime: 4
+  maxTime: 3
   fireTrigger: 1.5
   smokeParticles: {fileID: 6579856914684212897}
   firePrefab: {fileID: 7603904604651950810, guid: 3930a776d7b66ce40b0b4fe84b802838,
@@ -8463,6 +8465,165 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6918027006615564049, guid: 9026df4eb884b7c4095ed057dd280303,
     type: 3}
   m_PrefabInstance: {fileID: 5905658753919844931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6119878435735351087
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7673949830678707445}
+    m_Modifications:
+    - target: {fileID: 1712212108398342824, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552859468342129602, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552859468342129602, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.838256
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552859468342129602, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3615042
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552859468342129602, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.8382561
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552859468342129602, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.816
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552859468342129602, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.444
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552859468342129602, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.428
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552859468342129602, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.07998358
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552859468342129602, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.009955063
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552859468342129602, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.99297863
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552859468342129602, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.086585425
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552859468342129602, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 9.994
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552859468342129602, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -170.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552859468342129602, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.344
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791382856842286630, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_Name
+      value: Toaster Info
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791382856842286630, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791382856842286630, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326977620914549370, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.04489673
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326977620914549370, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326977620914549370, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.102
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681640785766934926, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9081385932958293357, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_text
+      value: '<size=+6><b>The Toaster:</b></size>
+
+
+        The Classic!
+
+
+        Adjust
+        the dial for temp, hit "defrost" for frozen items, and then just drag down
+        and wait!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 9081385932958293357, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_margin.w
+      value: -2.2702913
+      objectReference: {fileID: 0}
+    - target: {fileID: 9081385932958293357, guid: 32723a66bbfbd074ebca3cf7530de75c,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5778722227008366223, guid: 32723a66bbfbd074ebca3cf7530de75c, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 32723a66bbfbd074ebca3cf7530de75c, type: 3}
+--- !u!1 &4093385508950063369 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7791382856842286630, guid: 32723a66bbfbd074ebca3cf7530de75c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6119878435735351087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7322967204096269549 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3552859468342129602, guid: 32723a66bbfbd074ebca3cf7530de75c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6119878435735351087}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6571729118555155710
 PrefabInstance:
