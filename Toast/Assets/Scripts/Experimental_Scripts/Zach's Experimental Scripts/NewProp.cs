@@ -174,7 +174,8 @@ public class NewProp : MonoBehaviour
         }
 
         // Set renderer color
-        gameObject.GetComponent<Renderer>().material.color = initialColor + (colorOffset * colorStrength);
+        if(gameObject.GetComponent<Renderer>() != null)
+            gameObject.GetComponent<Renderer>().material.color = initialColor + (colorOffset * colorStrength);
 
         toasting = true;
         toastCd = 0.2f;
