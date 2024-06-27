@@ -5,10 +5,19 @@ using UnityEngine;
 
 public class Electricity : MonoBehaviour
 {
+    [SerializeField]
+    List<ParticleSystem> particles;
+
+    [SerializeField]
+    ParticleSystem burstP; 
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        foreach(ParticleSystem particle in particles)
+        {
+            particle.Stop();
+        }
     }
 
     // Update is called once per frame
@@ -34,13 +43,17 @@ public class Electricity : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision");
-
         if (other.gameObject.TryGetComponent(out NewProp prop))
         {
             if (prop.attributes.HasFlag(PropFlags.Metal))
             {
-                Debug.Log("Electricity");
+                // Play visual
+                foreach(ParticleSystem p in particles)
+                {
+    
+                    p.Play();
+                    
+                }
             }
         }
     }
