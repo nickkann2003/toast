@@ -9,15 +9,19 @@ public class Electricity : MonoBehaviour
     List<ParticleSystem> particles;
 
     [SerializeField]
-    ParticleSystem burstP; 
+    ParticleSystem burstP;
+
+    [SerializeField]
+    float radius, power;
+
+    LayerMask mask;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach(ParticleSystem particle in particles)
-        {
-            particle.Stop();
-        }
+        mask = LayerMask.GetMask("Interactable");
     }
 
     // Update is called once per frame
@@ -52,9 +56,32 @@ public class Electricity : MonoBehaviour
                 {
     
                     p.Play();
-                    
                 }
+
+                TriggerExplosion();
             }
         }
+    }
+
+    private void TriggerExplosion()
+    {
+        Vector3 explosionPos = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, radius, mask);
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+            if (rb != null)
+                rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
+        }
+
+        Debug.Log(colliders.Length + "Colliders detected");
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }
