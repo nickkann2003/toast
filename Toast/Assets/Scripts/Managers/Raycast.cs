@@ -303,6 +303,8 @@ public class Raycast : MonoBehaviour
 
             // Grab world pos from the current station
             Vector3 objectPos = currentStation.ObjectOffset;
+            Vector3 objectDropRotation = new Vector3(0, 90, 0);
+            objectDropRotation += currentStation.gameObject.transform.rotation.eulerAngles;
 
             //RaycastHit hitTest = RaycastHelper(~mask_Station);
             //if (hitTest.collider != null)
@@ -312,6 +314,8 @@ public class Raycast : MonoBehaviour
 
             // Set the current position of the object
             itemToDrop.transform.position = objectPos;
+            itemToDrop.transform.rotation = Quaternion.identity;
+            itemToDrop.transform.Rotate(objectDropRotation);
 
             // Try setting rigidbody, catch if object doesnt have a rigidbody
             try

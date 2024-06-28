@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Door : MonoBehaviour
 {
@@ -22,6 +23,14 @@ public class Door : MonoBehaviour
     private bool clickable;
     [SerializeField, ReadOnly]
     private bool isOpen;
+
+    [Header("------------ Open/Close Events ------------")]
+    [SerializeField]
+    private bool hasEvents = false;
+    [SerializeField, ShowIf("hasEvents")]
+    private UnityEvent onOpen;
+    [SerializeField, ShowIf("hasEvents")]
+    private UnityEvent onClose;
 
     [SerializeField, Button]
     private void setDoorOpen() { rotator.transform.localEulerAngles = maxRot; isOpen = true; }
@@ -84,12 +93,14 @@ public class Door : MonoBehaviour
     public void Open()
     {
         isOpen = true;
+        onOpen.Invoke();
     }
 
     // Closes the door
     public void Close()
     {
         isOpen = false;
+        onClose.Invoke();
     }
 
     // On mouse down, toggle open - POTENTIALLY DESIRED ON CLICK FUNCTIONALITY

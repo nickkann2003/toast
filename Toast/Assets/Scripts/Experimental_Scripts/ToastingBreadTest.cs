@@ -93,12 +93,12 @@ public class ToastingBreadTest : MonoBehaviour
                         // If not frozen, then toast
                         if (!prop.attributes.HasFlag(PropFlags.Frozen))
                         {
-                            prop.IncreaseToastiness((Time.deltaTime / maxTime) * targetStrength);
+                            prop.IncreaseToastiness((Time.deltaTime / maxTime) * targetStrength, true);
                         }
                         else if (defrost)
                         {
                             // If frozen and defrosting, toast slowly
-                            prop.IncreaseToastiness((Time.deltaTime / maxTime) * targetStrength/2f);
+                            prop.IncreaseToastiness((Time.deltaTime / maxTime) * targetStrength/2f, true);
                         }
                     }
                 }

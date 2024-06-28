@@ -15,9 +15,11 @@ MonoBehaviour:
   objectiveName: High Volume Toasting
   description: What's that red button for?
   completeText: Flaming toast is a fire hazard, be sure to clean it all up!
-  unavailableText: Finish Fridge to unlock
+  unavailableText: Finish Freezer to Unlock
   requirements:
   - targetAttributes: 536870913
+    hasExclusions: 0
+    excludeAttributes: 0
     listener:
       gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
       response:
@@ -28,7 +30,9 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
-    listening: 1
+    listening: 0
+  sequentialRequirements: 1
   id: 17
   complete: 0
-  available: 1
+  available: 0
+  successorComplete: 0

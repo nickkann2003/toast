@@ -161,7 +161,7 @@ public class NewProp : MonoBehaviour
     }
 
     // Increase toastiness by a given value
-    public void IncreaseToastiness(float val)
+    public void IncreaseToastiness(float val, bool causeDelay = false)
     {
         // Increase toastiness
         toastiness += val;
@@ -178,7 +178,10 @@ public class NewProp : MonoBehaviour
             gameObject.GetComponent<Renderer>().material.color = initialColor + (colorOffset * colorStrength);
 
         toasting = true;
-        toastCd = 0.2f;
+        if (causeDelay)
+        {
+            toastCd = 0.2f;
+        }
     }
 
     private void RunEventChecks()

@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6fe55942e134141860f13b0b95ff6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMaxValue: {x: 0.2, y: 0.6}
+  minMaxValue: {x: 0, y: 0.1}
   dialValue: 0
   numSnapPoints: 5
   snapAngle: 15
@@ -142,6 +142,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDialSnap:
+    m_PersistentCalls:
+      m_Calls: []
   freeze: 0
 --- !u!114 &4076336079754028045
 MonoBehaviour:
@@ -280,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6fe55942e134141860f13b0b95ff6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMaxValue: {x: 0.2, y: 0.6}
+  minMaxValue: {x: 0, y: 0.1}
   dialValue: 0
   numSnapPoints: 5
   snapAngle: 15
@@ -301,6 +304,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDialSnap:
+    m_PersistentCalls:
+      m_Calls: []
   freeze: 0
 --- !u!114 &1422732393394207076
 MonoBehaviour:
@@ -541,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6fe55942e134141860f13b0b95ff6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMaxValue: {x: 0.2, y: 0.6}
+  minMaxValue: {x: 0, y: 0.1}
   dialValue: 0
   numSnapPoints: 5
   snapAngle: 15
@@ -562,6 +568,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDialSnap:
+    m_PersistentCalls:
+      m_Calls: []
   freeze: 0
 --- !u!114 &7624316206303214715
 MonoBehaviour:
@@ -1322,7 +1331,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.07
-  m_Height: 0.1777268
+  m_Height: 0
   m_Direction: 1
   m_Center: {x: 0, y: -0.000000014516475, z: 0.023146091}
 --- !u!114 &1988072832941401357
@@ -1337,7 +1346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6fe55942e134141860f13b0b95ff6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMaxValue: {x: 0.2, y: 0.6}
+  minMaxValue: {x: 0, y: 0.1}
   dialValue: 0.08
   numSnapPoints: 5
   snapAngle: 15
@@ -1358,6 +1367,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDialSnap:
+    m_PersistentCalls:
+      m_Calls: []
   freeze: 0
 --- !u!114 &5522255138211912552
 MonoBehaviour:
@@ -1634,7 +1646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6fe55942e134141860f13b0b95ff6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMaxValue: {x: 0.2, y: 0.6}
+  minMaxValue: {x: 0, y: 0.15}
   dialValue: 0
   numSnapPoints: 5
   snapAngle: 15
@@ -1655,6 +1667,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDialSnap:
+    m_PersistentCalls:
+      m_Calls: []
   freeze: 0
 --- !u!114 &4221137151806647976
 MonoBehaviour:
@@ -1879,6 +1894,10 @@ MonoBehaviour:
   leave:
     m_PersistentCalls:
       m_Calls: []
+  separateArriveAndReturn: 0
+  returnTo:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &2103029747172952424
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2010,6 +2029,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  separateArriveAndReturn: 0
+  returnTo:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &6576619279273486195
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2531,6 +2554,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  separateArriveAndReturn: 0
+  returnTo:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2263059918528607822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3626,6 +3653,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   leave:
+    m_PersistentCalls:
+      m_Calls: []
+  separateArriveAndReturn: 0
+  returnTo:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &7318231107308941249
