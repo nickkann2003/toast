@@ -86,11 +86,6 @@ public class NewHand : MonoBehaviour
             {
                 itemToPickup.GetComponent<NewProp>().ForceRemoveFromHand();
             }
-
-            // Set prop flags
-            itemToPickup.GetComponent<NewProp>()?.AddFlag(PropFlags.InHand);
-            itemToPickup.GetComponent<NewProp>()?.AddAttribute(inHandAttribute);
-            
             
             // Inventory checks
             if (StationManager.instance.playerLocation.stationLabel == Stations.Inventory)
@@ -110,6 +105,10 @@ public class NewHand : MonoBehaviour
 
             //heldObjects.Add(itemToPickup);
             heldObject = itemToPickup;
+
+            // Set prop flags
+            itemToPickup.GetComponent<NewProp>()?.AddFlag(PropFlags.InHand);
+            itemToPickup.GetComponent<NewProp>()?.AddAttribute(inHandAttribute);
         }
     }
 }

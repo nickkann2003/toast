@@ -30,17 +30,17 @@ public class USE_Eat : UseEffectSO
     public override void OnEquip(NewProp newProp)
     {
         // TEMP FIX
-        int actualTotalBites = totalBites - 1;
+        int actualTotalBites = totalBites;
 
         //newProp.Stats.AddStat(new Stat());
         if (newProp.Stats.GetStat(biteType) != null)
         {
-            newProp.Stats.AddStat(new Stat(actualTotalBites, biteType));
+            newProp.Stats.AddStat(new Stat(actualTotalBites, biteType, newProp.Stats));
         }
-        else
-        {
-            newProp.Stats.AddModifier(biteType, new StatModifier(StatModifierTypes.Flat, actualTotalBites));
-        }
+        //else
+        //{
+        //    newProp.Stats.AddModifier(biteType, new StatModifier(StatModifierTypes.Flat, actualTotalBites));
+        //}
     }
 
     public override void Use(NewProp newProp)
@@ -62,20 +62,23 @@ public class USE_Eat : UseEffectSO
         // decrease bitesRemaining
         newProp.Stats.IncrementStat(biteType, -1);
 
-        // if bitesRemaining <= 0, then Eat
-        if (newProp.Stats.GetStat(biteType).Value == 0)
-        {
-            EatWhole(newProp);
-        }
+        newProp.Stats.GetStat(biteType).UpdateValue();
+
+        //// if bitesRemaining <= 0, then Eat
+        //if (newProp.Stats.GetStat(biteType).Value == 0)
+        //{
+        //    EatWhole(newProp);
+        //}
     }
 
-    private void EatWhole(NewProp newProp)
-    {
-        if (invokeEvents)
-        {
-            eatEvent.RaiseEvent(newProp, 1);
-        }
+    // MOVED TO EATEN ATTRIBUTE !!!!!!!
+    //private void EatWhole(NewProp newProp)
+    //{
+    //    if (invokeEvents)
+    //    {
+    //        eatEvent.RaiseEvent(newProp, 1);
+    //    }
 
-        Destroy(newProp.gameObject);
-    }
+    //    Destroy(newProp.gameObject);
+    //}
 }

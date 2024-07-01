@@ -60,9 +60,6 @@ public class NewProp : MonoBehaviour
     public float toastiness;
 
     [Header("------------ Fire Variables ------------")]
-    public float fireTrigger = 1.5f;
-    public GameObject firePrefab;
-    private float targetStrength = 0.5f;
     private Color strongestStrength = Color.black;
     private Color initialColor;
     private Color colorOffset;
@@ -72,9 +69,6 @@ public class NewProp : MonoBehaviour
 
     [SerializeField]
     private Material baseMat;
-
-    // REMOVE
-    protected IUseStrategy _useStrategy;
 
     [Header("------------ Prop Data ------------")]
     [SerializeField]
@@ -119,14 +113,8 @@ public class NewProp : MonoBehaviour
         // Grab initial color and set color variables
         initialColor = gameObject.GetComponentInChildren<Renderer>().material.color;
         colorOffset = strongestStrength - initialColor;
-        
-        // If fire prefab not given, get it from manager
-        if(firePrefab == null)
-        {
-            firePrefab = FireEndingManager.instance.firePrefab;
-        }
 
-        CreateAndUpdateRigidbody();
+        //CreateAndUpdateRigidbody();
 
         float colorStrength = toastiness;
         if (colorStrength > 1)
@@ -151,10 +139,11 @@ public class NewProp : MonoBehaviour
 
     private void OnEnable()
     {
+        statsSystem.SetBaseProp(this);
         if (propSO != null)
         {
             propSO.PopulateProp(this);
-            if (useEffects.Count  > 0)
+            if (useEffects.Count > 0)
             {
                 for (int i = 0; i < useEffects.Count; i++)
                 {
@@ -162,6 +151,8 @@ public class NewProp : MonoBehaviour
                 }
             }
         }
+
+        UpdateRigidbody();
     }
 
 
@@ -177,12 +168,31 @@ public class NewProp : MonoBehaviour
         att.OnRemove(this);
         attributesList.Remove(att);
     }
+    public void RemoveAttributeWithoutOnRemove(PropAttributeSO att)
+    {
+        attributesList.Remove(att);
+    }
     public bool HasAttribute(PropAttributeSO attributeToGet)
     {
         return attributesList.Contains(attributeToGet);
     }
     // ------------------------------- ATTRIBUTE METHODS -------------------------------
     // ------------------------------- ATTRIBUTE METHODS -------------------------------
+
+    public void AddUseEffect(UseEffectSO useEffect)
+    {
+        useEffects.Add(useEffect);
+        useEffect.OnEquip(this);
+    }
+    public void RemoveUseEffect(UseEffectSO useEffect)
+    {
+        useEffect.OnRemove(this);
+        useEffects.Remove(useEffect);
+    }
+    public bool HasUseEffect(UseEffectSO useEffect)
+    {
+        return useEffects.Contains(useEffect);
+    }
 
     public void RecalcSize()
     {
@@ -269,7 +279,7 @@ public class NewProp : MonoBehaviour
         if (toastType != null)
         {
             statsSystem.IncrementStat(toastType, val);
-            testToastiness = statsSystem.GetStat(toastType).Value;
+            testToastiness = statsSystem.GetStat(toastType).UpdateValue();
         }
 
         // Get color strength and cap it
@@ -281,53 +291,6 @@ public class NewProp : MonoBehaviour
 
         // Set renderer color
         gameObject.GetComponentInChildren<Renderer>().material.color = initialColor + (colorOffset * colorStrength);
-
-        // Adjust prop flags and trigger requirement events
-        if (testToastiness > .15f && !propFlags.HasFlag(PropFlags.Toast)) // Toasted event
-        {
-            // Add attribtue
-            AddFlag(PropFlags.Toast);
-
-            // Trigger Objectives
-            if(toastObjectEvent != null)
-                toastObjectEvent.RaiseEvent(this, 1);
-        }
-
-        if (testToastiness > .9f && !propFlags.HasFlag(PropFlags.Burnt)) // Burnt event
-        {
-            // Add attributes
-            AddFlag(PropFlags.Burnt);
-
-            // Trigger Objectives
-            if(burnObjectEvent != null)
-                burnObjectEvent.RaiseEvent(this, 1);
-        }
-        if (!propFlags.HasFlag(PropFlags.OnFire) && testToastiness > fireTrigger && firePrefab != null) // On Fire event
-        {
-            if (firePrefab == null)
-            {
-                FireEndingManager.instance.firePrefab = firePrefab;
-            }
-
-            // Instantiate fire
-            GameObject fire = Instantiate(firePrefab);
-            fire.transform.parent = gameObject.transform;
-            fire.transform.localPosition = Vector3.zero;
-            fire.transform.eulerAngles = Vector3.zero;
-            fire.transform.localScale = Vector3.one * Stats.GetStat(sizeType).Value;
-
-            fireObject = fire;
-
-            // Add attribute
-            AddFlag(PropFlags.OnFire);
-
-            // Trigger objectives
-            if(setObjectOnFireEvent != null)
-                setObjectOnFireEvent.RaiseEvent(this, 1);
-            
-            // Add flaming object
-            FireEndingManager.instance.addFireObject(gameObject);
-        }
     }
 
     // Defrosts this object

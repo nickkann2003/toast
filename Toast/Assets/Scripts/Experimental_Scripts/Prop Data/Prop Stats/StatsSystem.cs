@@ -7,6 +7,9 @@ using UnityEngine;
 [Serializable]
 public class StatsSystem
 {
+    private NewProp baseProp;
+    public NewProp BaseProp { get { return baseProp; } }
+
     private readonly Dictionary<StatType, Stat> stats = new Dictionary<StatType, Stat>();
 
     // PURELY FOR EDITOR
@@ -36,7 +39,7 @@ public class StatsSystem
     {
         if (!stats.TryGetValue(type, out Stat stat))
         {
-            stat = new Stat(type);
+            stat = new Stat(type, this);
 
             stats.Add(type, stat);
             statList.Add(stat);
@@ -59,7 +62,7 @@ public class StatsSystem
         // if the item doesn't have the stat, add it
         if (!stats.TryGetValue(type, out Stat stat))
         {
-            stat = new Stat(type);
+            stat = new Stat(type, this);
 
             stats.Add(type, stat);
             statList.Add(stat);
@@ -76,6 +79,26 @@ public class StatsSystem
         }
 
         stat.RemoveModifier(modifier);
+    }
+
+    public void AddConditional(StatType type, StatConditional conditional)
+    {
+        if (!stats.TryGetValue(type, out Stat stat))
+        {
+            return;
+        }
+        
+        stat.AddConditional(conditional);
+    }
+
+    public void RemoveConditional(StatType type, StatConditional conditional)
+    {
+        if (!stats.TryGetValue(type, out Stat stat))
+        {
+            return;
+        }
+
+        stat.RemoveConditional(conditional);
     }
 
     public override string ToString()
@@ -96,5 +119,10 @@ public class StatsSystem
         }
 
         return base.ToString() + stringToReturn;
+    }
+
+    public void SetBaseProp(NewProp newProp)
+    {
+        baseProp = newProp;
     }
 }

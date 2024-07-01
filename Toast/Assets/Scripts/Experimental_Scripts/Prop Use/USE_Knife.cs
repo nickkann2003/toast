@@ -3,8 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Knife Effect", menuName = "Prop/Use Effect/Knife", order = 53)]
 public class USE_Knife : UseEffectSO
 {
+    //[SerializeField]
+    //private InHandAttribute inHandAttribute;
+
     [SerializeField]
-    private InHandAttribute inHandAttribute;
+    private InHandAttribute inMainHandAttribute;
 
     [Header("Event References")]
     [SerializeField]
@@ -14,9 +17,10 @@ public class USE_Knife : UseEffectSO
     {
         NewHand newHand = newProp.GetComponentInChildren<NewHand>();
         if (newHand == null) { return; }
-
-        if (newProp.HasAttribute(inHandAttribute))
+        Debug.Log(newProp.HasAttribute(inMainHandAttribute));
+        if (newProp.HasAttribute(inMainHandAttribute))
         {
+            Debug.Log("Passed");
             if (newHand.CheckObject())
             {
                 newHand.UseInHand();

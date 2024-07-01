@@ -4,6 +4,12 @@ using UnityEngine;
 public class FrozenAttribute : PropAttributeSO
 {
     [SerializeField]
+    private StatType freezeType;
+
+    [SerializeField]
+    private StatConditional FreezeConditional;
+
+    [SerializeField]
     private GameObject icePrefab;
 
     [SerializeField]
@@ -12,11 +18,27 @@ public class FrozenAttribute : PropAttributeSO
     [SerializeField]
     private PropIntGameEvent thawEvent;
 
+    [SerializeField]
+    private PropAttributeSO onFireAtt;
+
     //NEEDS WORK
     public override void OnEquip(NewProp newProp)
     {
+        if (newProp.HasAttribute(onFireAtt))
+        {
+            newProp.RemoveAttribute(onFireAtt);
+            newProp.RemoveAttributeWithoutOnRemove(this);
+            return;
+        }
         // check to see if it is on fire
         // if it is on fire remove fire and this
+
+        float distToFreeze = FreezeConditional.Target - newProp.Stats.GetStat(freezeType).Value;
+        if (distToFreeze < 0)
+        {
+            distToFreeze = 0;
+        }
+        newProp.Stats.IncrementStat(freezeType, distToFreeze);
 
         // CALL FREEZE EVENT???
         freezeEvent?.RaiseEvent(newProp, 1);

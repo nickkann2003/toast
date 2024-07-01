@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Freezer : MonoBehaviour
 {
+    [SerializeField]
+    private StatType freezeType;
+
     // ------------------------------- Variables -------------------------------
     [Header("------------- Ice Prefab ------------")]
     public GameObject icePrefab;
@@ -36,14 +39,17 @@ public class Freezer : MonoBehaviour
             NewProp prop = collidingObjects[i];
             if (prop != null)
             {
+                prop.Stats.IncrementStat(freezeType, Time.deltaTime);
+                prop.Stats.GetStat(freezeType).UpdateValue();
 
-                prop.frozenness += Time.deltaTime;
+                //prop.frozenness += Time.deltaTime;
 
-                if (prop.frozenness >= 5f && !prop.propFlags.HasFlag(PropFlags.Frozen))
-                {
-                    Freeze(prop);
-                    prop.frozenness = 0.0f;
-                }
+                //if (prop.frozenness >= 5f)
+                //{
+                //    Freeze(prop);
+                //    prop.frozenness = 0.0f;
+                //}
+
             }
             else
             {
@@ -55,19 +61,20 @@ public class Freezer : MonoBehaviour
     // Freezes a given prop
     void Freeze(NewProp prop)
     {
-        // Put out fire if on fire, otherwise freeze
-        if (prop.propFlags.HasFlag(PropFlags.OnFire))
-        {
-            freezeEvent.RaiseEvent(prop, 1);
-            FireEndingManager.instance.removeFireObject(prop.gameObject);
-            prop.RemoveFlag(PropFlags.OnFire);
-            Destroy(prop.transform.GetChild(0).gameObject);
-        }
-        else if (!prop.HasAttribute(frozenAttribute)) 
-        {
-            freezeEvent?.RaiseEvent(prop, 1);
-            prop.AddAttribute(frozenAttribute);
-        }
+        prop.AddAttribute(frozenAttribute);
+        //// Put out fire if on fire, otherwise freeze
+        //if (prop.propFlags.HasFlag(PropFlags.OnFire))
+        //{
+        //    freezeEvent.RaiseEvent(prop, 1);
+        //    FireEndingManager.instance.removeFireObject(prop.gameObject);
+        //    prop.RemoveFlag(PropFlags.OnFire);
+        //    Destroy(prop.transform.GetChild(0).gameObject);
+        //}
+        //else if (!prop.HasAttribute(frozenAttribute)) 
+        //{
+        //    freezeEvent?.RaiseEvent(prop, 1);
+        //    prop.AddAttribute(frozenAttribute);
+        //}
     }
 
     // On enter trigger, add to freezing list
@@ -81,8 +88,6 @@ public class Freezer : MonoBehaviour
                 !collidingObjects.Contains(prop))
             {
                 collidingObjects.Add(prop);
-                Debug.Log(prop);
-
             }
         }
         catch
@@ -98,12 +103,10 @@ public class Freezer : MonoBehaviour
         try
         {
             NewProp prop = other.gameObject.GetComponent<NewProp>();
-
             if (prop != null &&
-                !collidingObjects.Contains(prop))
+                collidingObjects.Contains(prop))
             {
                 collidingObjects.Remove(prop);
-                Debug.Log("OUT");
                 prop.frozenness = 0.0f;
             }
 

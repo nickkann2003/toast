@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b29d8382865d74fbb228972a05fd00, type: 3}
+  m_Name: Att_Bread
+  m_EditorClassIdentifier: 
+  statModifierContainer:
+  - statType: {fileID: 11400000, guid: 263ef62346c87a54e8aec3fc8b974bf7, type: 2}
+    statModifier:
+      modifierType: 2
+      value: 0.025
+  - statType: {fileID: 11400000, guid: e4f0d536b759caf468fa4f8a983f5ce2, type: 2}
+    statModifier:
+      modifierType: 2
+      value: 1.1
+  stats:
+  - type: {fileID: 11400000, guid: ed769c6990786b0428bfb3911e9f608b, type: 2}
+    baseValue: 0
+    rateOfChange: 1
+    modifiers: []
+    conditionals: []
+    value: 0
+  - type: {fileID: 11400000, guid: 0cc6f983230650f4d86c48a0d7871a73, type: 2}
+    baseValue: 1
+    rateOfChange: 1
+    modifiers: []
+    conditionals: []
+    value: 0
+  statConditionalContainer:
+  - statType: {fileID: 11400000, guid: ed769c6990786b0428bfb3911e9f608b, type: 2}
+    statConditional: {fileID: 11400000, guid: 8e686bd7e178e79439579e3965c11ed2, type: 2}
+  - statType: {fileID: 11400000, guid: 0cc6f983230650f4d86c48a0d7871a73, type: 2}
+    statConditional: {fileID: 11400000, guid: e08963e10d53cc045827c1931132b44c, type: 2}
+  useEffects:
+  - {fileID: 11400000, guid: 84a132cf6fe2e284091621b6a3f0ad25, type: 2}
