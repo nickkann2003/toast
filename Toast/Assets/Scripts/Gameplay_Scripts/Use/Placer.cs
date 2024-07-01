@@ -73,7 +73,7 @@ public class Placer : MonoBehaviour, IUseStrategy
             obj.GetComponentInChildren<Renderer>().material.color = mat.color;
             
             Color c = obj.GetComponentInChildren<Renderer>().material.color;
-            float colorRandVal = 0.1f;
+            float colorRandVal = 0.25f;
             c.r *= (Random.value * colorRandVal - colorRandVal / 2f) + 1.0f;
             c.g *= (Random.value * colorRandVal - colorRandVal / 2f) + 1.0f;
             c.b *= (Random.value * colorRandVal - colorRandVal / 2f) + 1.0f;
