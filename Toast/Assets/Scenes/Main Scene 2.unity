@@ -2781,7 +2781,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262728154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.33795, y: 20.13, z: -49.52}
+  m_LocalPosition: {x: 0.33795, y: 20.13, z: 14.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4506,7 +4506,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520773474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.9, z: 0}
+  m_LocalPosition: {x: -0.09, y: 4.9, z: 63.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10573,9 +10573,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 637800062}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 1218421967}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10585,9 +10585,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1034055944}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 1034055948}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12925,7 +12925,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172059271}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.966, y: 1.624, z: -1.362}
+  m_LocalPosition: {x: -0.966, y: -0.42, z: -1.362}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30629,7 +30629,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872210364}
   m_LocalRotation: {x: -0.09679003, y: 0.19193055, z: -0.01902522, w: 0.9764387}
-  m_LocalPosition: {x: 2.463, y: 24.299, z: -48.156}
+  m_LocalPosition: {x: 2.463, y: 24.299, z: 15.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -44735,12 +44735,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 637800062}
+      objectReference: {fileID: 1218421967}
     - target: {fileID: 4714577618801154327, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 1034055944}
+      objectReference: {fileID: 1034055948}
     - target: {fileID: 4714577618801154327, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
@@ -44764,12 +44764,12 @@ PrefabInstance:
     - target: {fileID: 4714577618801154327, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: SetActive
+      value: set_enabled
       objectReference: {fileID: 0}
     - target: {fileID: 4714577618801154327, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: SetActive
+      value: set_enabled
       objectReference: {fileID: 0}
     - target: {fileID: 4714577618801154327, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
@@ -44784,12 +44784,12 @@ PrefabInstance:
     - target: {fileID: 4714577618801154327, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: UnityEngine.Behaviour, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4714577618801154327, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: UnityEngine.Behaviour, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4714577618801154327, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
@@ -44892,6 +44892,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 2763e6e7c1b37014381cc4a97baec0f8,
         type: 3}
+    - target: {fileID: 6489324165506951008, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6489324165506951008, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
       propertyPath: m_Color.b
