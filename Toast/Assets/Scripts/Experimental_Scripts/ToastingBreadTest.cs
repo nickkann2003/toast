@@ -33,6 +33,7 @@ public class ToastingBreadTest : MonoBehaviour
     [Header("References")]
     [SerializeField] private ParticleSystem smokeParticles;
     [SerializeField] private GameObject firePrefab;
+    [SerializeField] private Electricity electricity;
 
     [SerializeField] private bool customEvents = false;
     [Header("PIE Event References"), ShowIf("customEvents")]
@@ -161,6 +162,9 @@ public class ToastingBreadTest : MonoBehaviour
 
         // Start toastig event
         startToasting.Invoke();
+
+        // Turn on electricity
+        electricity.enabled = true;
     }
 
     // Deactivates toasting
@@ -221,6 +225,8 @@ public class ToastingBreadTest : MonoBehaviour
             isActive = false;
             smokeParticles.Stop();
             stopToasting.Invoke();
+
+            electricity.enabled = false;
         }
     }
 

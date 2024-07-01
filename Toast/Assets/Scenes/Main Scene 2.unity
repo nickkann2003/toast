@@ -19029,6 +19029,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 381856738}
     m_Modifications:
+    - target: {fileID: 1134104944049419510, guid: 1750db23407feb64f9c5084a643ae3ae,
+        type: 3}
+      propertyPath: electricity
+      value: 
+      objectReference: {fileID: 1465030112}
     - target: {fileID: 1756044758546025044, guid: 1750db23407feb64f9c5084a643ae3ae,
         type: 3}
       propertyPath: InitialModule.startSpeed.scalar
@@ -19048,6 +19053,11 @@ PrefabInstance:
         type: 3}
       propertyPath: rotateAround.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293500021430403112, guid: 1750db23407feb64f9c5084a643ae3ae,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3704584830139008556, guid: 1750db23407feb64f9c5084a643ae3ae,
         type: 3}
@@ -19169,7 +19179,8 @@ PrefabInstance:
       propertyPath: cameraRotation.z
       value: -0.17794354
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3293500021430403112, guid: 1750db23407feb64f9c5084a643ae3ae, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7673949830678707445, guid: 1750db23407feb64f9c5084a643ae3ae,
@@ -20005,7 +20016,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1465030107}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fab1d14682b7df408de2d8178b2789e, type: 3}
   m_Name: 

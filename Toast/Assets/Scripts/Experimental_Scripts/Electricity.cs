@@ -46,6 +46,11 @@ public class Electricity : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(!this.enabled)
+        {
+            return;
+        }
+
         if (other.gameObject.TryGetComponent(out NewProp prop))
         {
             if (prop.attributes.HasFlag(PropFlags.Metal))
