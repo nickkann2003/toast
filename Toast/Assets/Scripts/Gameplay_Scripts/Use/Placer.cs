@@ -14,7 +14,7 @@ public class Placer : MonoBehaviour, IUseStrategy
 
     [Header("Prefabs")]
     [SerializeField]
-    private GameObject objPrefab;
+    private List<GameObject> objPrefabs = new List<GameObject>();
     [SerializeField]
     private Material mat;
 
@@ -50,7 +50,7 @@ public class Placer : MonoBehaviour, IUseStrategy
             }
         }
 
-        if (remaining == 0 || objPrefab == null || !transform.GetComponent<NewProp>().HasAttribute(PropFlags.InHand))
+        if (remaining == 0 || objPrefabs.Count <= 0 || !transform.GetComponent<NewProp>().HasAttribute(PropFlags.InHand))
         {
             return;
         }
@@ -59,13 +59,24 @@ public class Placer : MonoBehaviour, IUseStrategy
 
         if (parentPlacementObj != null)
         {
-            GameObject obj = GameObject.Instantiate(objPrefab);
+            float rand = Random.value;
+            float segmenter = 1.01f/objPrefabs.Count;
+            int result = (int) (rand / segmenter);
+            GameObject obj = GameObject.Instantiate(objPrefabs[result]);
             obj.transform.position = placementLocation;
             obj.transform.up = placementRotation;
-            
+
+            float randVal = 0.4f;
+            obj.transform.localScale = new Vector3(0.8f + (Random.value * randVal - randVal/2f), 0.8f + (Random.value * randVal - randVal / 2f), 0.8f + (Random.value * randVal - randVal / 2f));
             obj.transform.parent = parentPlacementObj.transform;
             obj.transform.GetChild(0).Rotate(new Vector3(0, 0, Random.Range(-30, 30)*2), Space.Self);
             obj.GetComponentInChildren<Renderer>().material.color = mat.color;
+            Color c = obj.GetComponentInChildren<Renderer>().material.color;
+            float colorRandVal = 0.05f;
+            c.r *= (Random.value * colorRandVal - colorRandVal / 2f) + 1.0f;
+            c.g *= (Random.value * colorRandVal - colorRandVal / 2f) + 1.0f;
+            c.b *= (Random.value * colorRandVal - colorRandVal / 2f) + 1.0f;
+            obj.GetComponentInChildren<Renderer>().material.color = c;
             useEvent.RaiseEvent(gameObject.GetComponent<NewProp>(), 1);
         }
     }

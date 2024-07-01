@@ -88,6 +88,9 @@ MonoBehaviour:
   PD_Rb: {fileID: 11400000, guid: d3ae1b2fdb425e444bf164890cc0da98, type: 2}
   createObjectEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
   thawObjectEvent: {fileID: 11400000, guid: d26239510d487054e9b40255a0a441bf, type: 2}
+  toastObjectEvent: {fileID: 0}
+  burnObjectEvent: {fileID: 0}
+  setObjectOnFireEvent: {fileID: 0}
 --- !u!114 &5951264499587906993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,8 +105,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   total: -1
   remaining: -1
-  objPrefab: {fileID: 8306667316286608774, guid: 82ebec8b54fd6f54fb5c45f2d778337c,
-    type: 3}
+  objPrefabs:
+  - {fileID: 8306667316286608774, guid: 82ebec8b54fd6f54fb5c45f2d778337c, type: 3}
+  - {fileID: 8306667316286608774, guid: d1994ae033e05334494e64eee36936df, type: 3}
   mat: {fileID: 2100000, guid: ff95c8d98d790474e980ef56c1eea394, type: 2}
   isJam: 1
   jam: {fileID: 4876395570248877967}
@@ -203,6 +207,8 @@ MonoBehaviour:
   jamJarLid: {fileID: 7483129214720482922}
   jamJarLidPrefab: {fileID: 1000392157583233769, guid: eb8873735e8458744b40bc8d58c32d04,
     type: 3}
+  capEvent: {fileID: 0}
+  uncapEvent: {fileID: 0}
 --- !u!1001 &4650851537403715372
 PrefabInstance:
   m_ObjectHideFlags: 0
