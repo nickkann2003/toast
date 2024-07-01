@@ -15,6 +15,14 @@ public class NewProp : MonoBehaviour
     [SerializeField]
     private PropSO propSO;
 
+    [SerializeField]
+    private GameObject staticMesh;
+    public GameObject StaticMesh {  get { return staticMesh; } }
+
+    [SerializeField]
+    private IceConfig iceConfig;
+    public IceConfig IceConfig { get { return iceConfig; } }
+
     [NonSerialized]
     public GameObject fireObject;
     [NonSerialized]
@@ -42,7 +50,7 @@ public class NewProp : MonoBehaviour
 
     [Header("------------ UseEffects ------------")]
     [SerializeField]
-    private List<UseEffectSO> useEffects;
+    public List<UseEffectSO> useEffects;
 
     [HorizontalLine(color: EColor.Gray)]
 
@@ -108,11 +116,6 @@ public class NewProp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-
-        // Get use strategy on start
-        _useStrategy = this.gameObject.GetComponent<IUseStrategy>();
-
         // Grab initial color and set color variables
         initialColor = gameObject.GetComponentInChildren<Renderer>().material.color;
         colorOffset = strongestStrength - initialColor;
@@ -161,21 +164,6 @@ public class NewProp : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // If in hand and has a rigid body, destroy rigidbody
-        if (propFlags.HasFlag(PropFlags.InHand) && this.GetComponent<Rigidbody>() != null)
-        {
-            Destroy(this.GetComponent<Rigidbody>());
-        }
-
-        // If not in hand and doesn't have a rigid body, give it a rigidbody
-        if (!propFlags.HasFlag(PropFlags.InHand) && this.GetComponent<Rigidbody>() == null)
-        {
-            CreateAndUpdateRigidbody();
-        }
-    }
 
     // ------------------------------- ATTRIBUTE METHODS -------------------------------
     // ------------------------------- ATTRIBUTE METHODS -------------------------------
@@ -211,6 +199,8 @@ public class NewProp : MonoBehaviour
             rb.mass = massStat.Value;
         }
     }
+
+    // TryUse (input)
 
     public bool TryUse()
     {
@@ -324,7 +314,7 @@ public class NewProp : MonoBehaviour
             fire.transform.parent = gameObject.transform;
             fire.transform.localPosition = Vector3.zero;
             fire.transform.eulerAngles = Vector3.zero;
-            fire.transform.localScale = Vector3.one;
+            fire.transform.localScale = Vector3.one * Stats.GetStat(sizeType).Value;
 
             fireObject = fire;
 
@@ -353,6 +343,9 @@ public class NewProp : MonoBehaviour
         }
     }
 
+    // ------------------------------- RIGIDBODY METHODS -------------------------------
+    // ------------------------------- RIGIDBODY METHODS -------------------------------
+
     public void UpdateRigidbody()
     {
         if (PD_Rb == null) return;
@@ -375,5 +368,13 @@ public class NewProp : MonoBehaviour
             this.AddComponent<Rigidbody>();
         }
         UpdateRigidbody();
+    }
+
+    public void RemoveRigidbody()
+    {
+        if (this.GetComponent<Rigidbody>() != null)
+        {
+            Destroy(this.GetComponent<Rigidbody>());
+        }
     }
 }

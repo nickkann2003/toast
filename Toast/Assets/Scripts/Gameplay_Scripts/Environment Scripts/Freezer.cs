@@ -9,9 +9,13 @@ public class Freezer : MonoBehaviour
     public GameObject icePrefab;
 
     [SerializeField]
+    private FrozenAttribute frozenAttribute;
+
+    [SerializeField]
     private PropIntGameEvent freezeEvent;
-    
-    private List<GameObject> collidingObjects = new List<GameObject>();
+
+    [SerializeField]
+    private List<NewProp> collidingObjects = new List<NewProp>();
 
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
@@ -29,48 +33,40 @@ public class Freezer : MonoBehaviour
         // Loop all objects, set frozenness, freeze if over threshold
         for (int i = 0; i < collidingObjects.Count; i++)
         {
-            GameObject obj = collidingObjects[i];
-            if (obj != null && obj.GetComponent<Rigidbody>() != null)
+            NewProp prop = collidingObjects[i];
+            if (prop != null)
             {
-                NewProp prop = obj.GetComponent<NewProp>();
 
                 prop.frozenness += Time.deltaTime;
 
                 if (prop.frozenness >= 5f && !prop.propFlags.HasFlag(PropFlags.Frozen))
                 {
-                    Freeze(obj, prop);
+                    Freeze(prop);
                     prop.frozenness = 0.0f;
                 }
             }
             else
             {
-                collidingObjects.Remove(obj);
+                collidingObjects.Remove(prop);
             }
         }
     }
 
     // Freezes a given prop
-    void Freeze(GameObject obj, NewProp prop)
+    void Freeze(NewProp prop)
     {
         // Put out fire if on fire, otherwise freeze
         if (prop.propFlags.HasFlag(PropFlags.OnFire))
         {
             freezeEvent.RaiseEvent(prop, 1);
-            FireEndingManager.instance.removeFireObject(obj);
+            FireEndingManager.instance.removeFireObject(prop.gameObject);
             prop.RemoveFlag(PropFlags.OnFire);
-            Destroy(obj.transform.GetChild(0).gameObject);
+            Destroy(prop.transform.GetChild(0).gameObject);
         }
-        else if (!prop.propFlags.HasFlag(PropFlags.Frozen) && prop.propFlags.HasFlag(PropFlags.Bread)) 
+        else if (!prop.HasAttribute(frozenAttribute)) 
         {
-            freezeEvent.RaiseEvent(prop, 1);
-            GameObject ice = Instantiate(icePrefab);
-            ice.transform.position = obj.transform.position;
-            ice.GetComponent<MeshFilter>().sharedMesh = obj.GetComponent<MeshFilter>().sharedMesh;
-            ice.transform.parent = obj.transform;
-            ice.transform.localEulerAngles = Vector3.zero;
-            ice.transform.localScale = new Vector3(1.1f, 1.1f, 1.4f);
-
-            prop.AddFlag(PropFlags.Frozen);
+            freezeEvent?.RaiseEvent(prop, 1);
+            prop.AddAttribute(frozenAttribute);
         }
     }
 
@@ -79,10 +75,14 @@ public class Freezer : MonoBehaviour
     {
         try
         {
-            if (!collidingObjects.Contains(other.gameObject) 
-                && other.gameObject.GetComponent<NewProp>() != null)
+            NewProp prop = other.gameObject.GetComponent<NewProp>();
+
+            if (prop != null &&
+                !collidingObjects.Contains(prop))
             {
-                collidingObjects.Add(other.gameObject);
+                collidingObjects.Add(prop);
+                Debug.Log(prop);
+
             }
         }
         catch
@@ -94,20 +94,17 @@ public class Freezer : MonoBehaviour
     // On trigger exist, remove from freezing list
     void OnTriggerExit(Collider other)
     {
+        Debug.Log("HELP");
         try
         {
-            
-            if (collidingObjects.Contains(other.gameObject))
+            NewProp prop = other.gameObject.GetComponent<NewProp>();
+
+            if (prop != null &&
+                !collidingObjects.Contains(prop))
             {
-                //if (!other.gameObject.GetComponent<ObjectVariables>().attributes.Contains(Attribute.Frozen))
-                //{
-                //    other.gameObject.GetComponent<Prop>().frozenness = 0.0f;
-                //}
-                if (other != null)
-                {
-                    other.gameObject.GetComponent<NewProp>().frozenness = 0.0f;
-                }
-                collidingObjects.Remove(other.gameObject);
+                collidingObjects.Remove(prop);
+                Debug.Log("OUT");
+                prop.frozenness = 0.0f;
             }
 
         }

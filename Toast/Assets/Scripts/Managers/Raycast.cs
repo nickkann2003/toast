@@ -315,14 +315,14 @@ public class Raycast : MonoBehaviour
             itemToDrop.transform.position = objectPos;
 
             // Try setting rigidbody, catch if object doesnt have a rigidbody
-            try
-            {
-                itemToDrop.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            }
-            catch
-            {
-                Debug.Log("Dropped item without a rigid body");
-            }
+            //try
+            //{
+            //    itemToDrop.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            //}
+            //catch
+            //{
+            //    Debug.Log("Dropped item without a rigid body");
+            //}
 
 
             return true;

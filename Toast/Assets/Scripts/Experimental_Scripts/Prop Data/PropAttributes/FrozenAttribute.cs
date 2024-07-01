@@ -6,8 +6,11 @@ public class FrozenAttribute : PropAttributeSO
     [SerializeField]
     private GameObject icePrefab;
 
-    //[SerializeField]
-    //private PropIntGameEvent freezeEvent;
+    [SerializeField]
+    private PropIntGameEvent freezeEvent;
+
+    [SerializeField]
+    private PropIntGameEvent thawEvent;
 
     //NEEDS WORK
     public override void OnEquip(NewProp newProp)
@@ -15,15 +18,20 @@ public class FrozenAttribute : PropAttributeSO
         // check to see if it is on fire
         // if it is on fire remove fire and this
 
-        GameObject obj = newProp.gameObject;
+        // CALL FREEZE EVENT???
+        freezeEvent?.RaiseEvent(newProp, 1);
+
+        GameObject obj = newProp.StaticMesh;
 
         // add the ice prefab to it
         GameObject ice = Instantiate(icePrefab);
-        ice.transform.position = obj.transform.position;
+        //ice.transform.position = obj.transform.position;
         ice.GetComponent<MeshFilter>().sharedMesh = obj.GetComponentInChildren<MeshFilter>().sharedMesh;
         ice.transform.parent = obj.transform;
+        ice.transform.localPosition = newProp.IceConfig.Offset;
         ice.transform.localEulerAngles = Vector3.zero;
-        ice.transform.localScale = new Vector3(1.1f, 1.1f, 1.4f);
+        ice.transform.localScale = newProp.IceConfig.Scale;
+        //ice.transform.localScale = new Vector3(1.1f, 1.1f, 1.4f);
 
         newProp.iceObject = ice;
 
@@ -32,6 +40,8 @@ public class FrozenAttribute : PropAttributeSO
 
     public override void OnRemove(NewProp newProp)
     {
+        thawEvent?.RaiseEvent(newProp, 1);
+
         newProp.RemoveFlag(PropFlags.Frozen);
 
         Destroy(newProp.iceObject);

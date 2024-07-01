@@ -23,6 +23,9 @@ public class Stat
     [SerializeField]
     private List<StatModifier> modifiers = new List<StatModifier>();
 
+    //[SerializeField]
+    //private List<StatCondition>
+
     private bool isDirty = true;
 
     [SerializeField, ReadOnly, AllowNesting]

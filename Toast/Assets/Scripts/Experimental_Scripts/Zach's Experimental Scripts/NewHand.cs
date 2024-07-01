@@ -7,7 +7,7 @@ public class NewHand : MonoBehaviour
     // ------------------------------- Variables -------------------------------
     [SerializeField] protected GameObject handPos;
     private GameObject heldObject;
-    private IUseStrategy _useStrategy;
+    private List<GameObject> heldObjects = new List<GameObject>();
 
     [Header("Event References")]
     [SerializeField]
@@ -19,21 +19,6 @@ public class NewHand : MonoBehaviour
     private InHandAttribute inHandAttribute;
 
     // ------------------------------- Functions -------------------------------
-    public void Update()
-    {
-        // Sets objects position every frame, if there is a held object
-        if (heldObject != null)
-        {
-            heldObject.transform.position = handPos.transform.position;
-            heldObject.transform.rotation = handPos.transform.rotation;            
-
-            // If held item does not have hand flag, set it
-            if (!heldObject.GetComponent<NewProp>().propFlags.HasFlag(PropFlags.InHand))
-            {
-                heldObject.GetComponent<NewProp>().AddFlag(PropFlags.InHand);
-            }
-        }
-    }
 
     // Uses the item in hand
     public void UseInHand()
@@ -42,15 +27,6 @@ public class NewHand : MonoBehaviour
         if (heldObject != null)
         {
             heldObject.GetComponent<NewProp>().TryUse();
-            //_useStrategy = heldObject.GetComponent<IUseStrategy>();
-            //if (_useStrategy != null)
-            //{
-            //    _useStrategy.Use();
-            //}
-            //else if (heldObject.GetComponent<NewProp>() != null)
-            //{
-            //    heldObject.GetComponent<NewProp>().Use();
-            //}
         }
     }
 
@@ -80,7 +56,7 @@ public class NewHand : MonoBehaviour
 
             // Set prop flogs
             heldObject.GetComponent<NewProp>()?.RemoveFlag(PropFlags.InHand);
-            //heldObject.GetComponent<NewProp>()?.DestroyAttribute(inHandAttribute);
+            heldObject.GetComponent<NewProp>()?.RemoveAttribute(inHandAttribute);
 
             // Check if dropping in inventory
             if (StationManager.instance.playerLocation.stationLabel == Stations.Inventory)
@@ -111,16 +87,10 @@ public class NewHand : MonoBehaviour
                 itemToPickup.GetComponent<NewProp>().ForceRemoveFromHand();
             }
 
-            // Otherwise, grab item reference
-            heldObject = itemToPickup;
-
             // Set prop flags
-            heldObject.GetComponent<NewProp>()?.AddFlag(PropFlags.InHand);
-
-            //heldObject.GetComponent<NewProp>()?.GiveAttribute(inHandAttribute);
+            itemToPickup.GetComponent<NewProp>()?.AddFlag(PropFlags.InHand);
+            itemToPickup.GetComponent<NewProp>()?.AddAttribute(inHandAttribute);
             
-            // Set use strategy
-            _useStrategy = heldObject.GetComponent<IUseStrategy>();
             
             // Inventory checks
             if (StationManager.instance.playerLocation.stationLabel == Stations.Inventory)
@@ -130,22 +100,16 @@ public class NewHand : MonoBehaviour
 
             // Objective calls
             if (pickUpEvent != null)
-                pickUpEvent.RaiseEvent(heldObject.GetComponent<NewProp>(), 1);
-            
+                pickUpEvent.RaiseEvent(itemToPickup.GetComponent<NewProp>(), 1);
 
-            
-            
             // Set object transform
-            heldObject.transform.parent = this.gameObject.transform;
-        }
-    }
+            itemToPickup.transform.parent = this.gameObject.transform;
 
-    // Sets the current use strategy
-    public void SwapUse(IUseStrategy strategy)
-    {
-        if (strategy != null)
-        {
-            _useStrategy = strategy;
+            itemToPickup.transform.position = handPos.transform.position;
+            itemToPickup.transform.rotation = handPos.transform.rotation;
+
+            //heldObjects.Add(itemToPickup);
+            heldObject = itemToPickup;
         }
     }
 }

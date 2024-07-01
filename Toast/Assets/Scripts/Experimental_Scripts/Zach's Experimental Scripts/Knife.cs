@@ -11,6 +11,9 @@ public class Knife : NewProp
     
     private GrabFromContainer grabStrategy;
 
+    [SerializeField]
+    private InHandAttribute inHandAttribute;
+
     [Header("Event References")]
     [SerializeField]
     private PropIntGameEvent useEvent;
@@ -25,7 +28,7 @@ public class Knife : NewProp
     // Called when this item is used
     public override void Use()
     {
-        if (propFlags.HasFlag(PropFlags.InHand))
+        if (HasAttribute(inHandAttribute))
         {
             if (hand.CheckObject())
             {

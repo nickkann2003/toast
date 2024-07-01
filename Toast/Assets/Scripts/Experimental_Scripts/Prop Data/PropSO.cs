@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,15 @@ public class PropSO : ScriptableObject
 
     [SerializeField]
     private Stat[] stats;
+
+    [SerializeField]
+    private UseEffectSO[] useEffects;
+
+    [SerializeField, Foldout("Configs")]
+    private IceConfig iceConfig;
+
+    [SerializeField, Foldout("Configs")]
+    private PD_Rigidbody rigidbody;
 
     public void PopulateProp(NewProp newProp)
     {
@@ -32,6 +42,15 @@ public class PropSO : ScriptableObject
                 PropAttributeSO attributeToAdd = attributes[i];
                 newProp.attributesList.Add(attributeToAdd);
                 attributeToAdd.OnEquip(newProp);
+            }
+        }
+
+        if (useEffects != null)
+        {
+            for (int i = 0; i < attributes.Length; i++)
+            {
+                UseEffectSO useEffectToAdd = useEffects[i];
+                newProp.useEffects.Add(useEffectToAdd);
             }
         }
     }
