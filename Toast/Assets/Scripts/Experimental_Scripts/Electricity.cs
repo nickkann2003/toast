@@ -76,7 +76,13 @@ public class Electricity : MonoBehaviour
 
         Debug.Log(colliders.Length + "Colliders detected");
 
+
+        Time.timeScale = 0.2f;
+
+        StationManager.instance.playerPath.Clear();
         StationManager.instance.MoveToStation(endingStation);
+
+        StartCoroutine(GiveEnding());
 
     }
 
@@ -84,5 +90,12 @@ public class Electricity : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
+    private IEnumerator GiveEnding()
+    {
+        yield return new WaitForSecondsRealtime(3);
+
+        GameManager.Instance.LoadGame(0);
     }
 }

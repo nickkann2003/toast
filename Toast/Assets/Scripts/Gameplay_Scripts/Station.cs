@@ -217,10 +217,15 @@ public class Station : MonoBehaviour
     /// </summary>
     public void EnableColliders()
     {
-        foreach (Collider c in myClickableColliders)
+        if(myClickableColliders.Length > 0)
         {
-            c.enabled = true;
+            foreach (Collider c in myClickableColliders)
+            {
+                c.enabled = true;
+            }
         }
+
+       
 
         if(clickableCollider != null)
         {
