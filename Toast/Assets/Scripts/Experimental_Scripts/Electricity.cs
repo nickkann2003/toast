@@ -11,8 +11,10 @@ public class Electricity : MonoBehaviour
     [SerializeField]
     float radius, power;
 
-    LayerMask mask;
+    [SerializeField]
+    Station endingStation;
 
+    LayerMask mask;
 
 
     // Start is called before the first frame update
@@ -73,6 +75,8 @@ public class Electricity : MonoBehaviour
         }
 
         Debug.Log(colliders.Length + "Colliders detected");
+
+        StationManager.instance.MoveToStation(endingStation);
 
     }
 
