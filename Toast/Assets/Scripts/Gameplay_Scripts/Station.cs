@@ -50,12 +50,14 @@ public class Station : MonoBehaviour
 
     public Vector3 ObjectOffset { get => transform.TransformPoint(objectOffset); set => objectOffset = value; }
 
+#if UNITY_EDITOR
     [SerializeField, Button]
     private void SetCameraPositionAndRotation() 
     {
         cameraPos = transform.InverseTransformPoint(SceneView.GetAllSceneCameras()[0].transform.position);
         cameraRotation = Quaternion.Euler(-transform.rotation.eulerAngles + transform.InverseTransformDirection(SceneView.GetAllSceneCameras()[0].transform.eulerAngles));
     }
+#endif
 
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
