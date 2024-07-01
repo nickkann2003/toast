@@ -9,9 +9,6 @@ public class Electricity : MonoBehaviour
     List<ParticleSystem> particles;
 
     [SerializeField]
-    ParticleSystem burstP;
-
-    [SerializeField]
     float radius, power;
 
     LayerMask mask;

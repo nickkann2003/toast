@@ -18735,6 +18735,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 381856738}
     m_Modifications:
+    - target: {fileID: 1756044758546025044, guid: 1750db23407feb64f9c5084a643ae3ae,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756044758546025044, guid: 1750db23407feb64f9c5084a643ae3ae,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2173321787491599160, guid: 1750db23407feb64f9c5084a643ae3ae,
         type: 3}
       propertyPath: rotateAround.x
@@ -19621,9 +19631,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles:
-  - {fileID: 0}
+  - {fileID: 2118529408}
   - {fileID: 1570359189}
-  burstP: {fileID: 1570359189}
   radius: 2
   power: 50
 --- !u!1 &1467304606
@@ -20950,7 +20959,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -38611,6 +38620,12 @@ Transform:
   m_Father: {fileID: 870630264}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &2118529408 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2513447508674022322, guid: 1750db23407feb64f9c5084a643ae3ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1391671525}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2119595978
 PrefabInstance:
   m_ObjectHideFlags: 0
