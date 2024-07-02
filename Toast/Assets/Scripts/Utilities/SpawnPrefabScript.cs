@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -18,10 +19,32 @@ public class SpawnPrefabScript : MonoBehaviour
     public Vector3 spawnRandomness;
     public Quaternion spawnRotationRandomness;
 
+    [SerializeField]
+    private bool automaticSpawning;
+    [Header("----------------- Automatic Spawning -----------------"), ShowIf("automaticSpawning")]
+    [SerializeField]
+    private float spawnRatePerSecond;
+    private float spawnDelay;
+    private float cd;
+
     // ------------------------------- Functions -------------------------------
     public void Start()
     {
         actualSpawnPos = spawnPosition + transform.position;
+        spawnDelay = 1f / spawnRatePerSecond;
+    }
+
+    private void Update()
+    {
+        if (automaticSpawning && gameObject.activeSelf)
+        {
+            cd -= Time.deltaTime;
+            if (cd < 0f)
+            {
+                TriggerSpawn();
+                cd = spawnDelay;
+            }
+        }
     }
 
     /// <summary>
@@ -35,6 +58,15 @@ public class SpawnPrefabScript : MonoBehaviour
         
         spawnedObject.transform.position = actualSpawnPos + randomness;
         spawnedObject.transform.rotation = rotationRandomness;
+    }
+
+    /// <summary>
+    /// Sets the automatic spawn rate of this spawner
+    /// </summary>
+    /// <param name="rate">New rate, in spawns per second</param>
+    public void SetAutomaticSpawnRate(float rate)
+    {
+        spawnRatePerSecond = rate;
     }
 
     /// <summary>

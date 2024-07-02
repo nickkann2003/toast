@@ -1,13 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Electricity : MonoBehaviour
 {
+    [SerializeField]
+    List<ParticleSystem> particles;
+
+    [SerializeField]
+    float radius, power;
+
+    [SerializeField]
+    Station endingStation;
+
+    LayerMask mask;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        mask = LayerMask.GetMask("Interactable");
     }
 
     // Update is called once per frame
@@ -16,14 +29,78 @@ public class Electricity : MonoBehaviour
         
     }
 
+    /*
     private void OnCollisionEnter(Collision collision)
     {
-        if(TryGetComponent<NewProp>(out NewProp other))
+        Debug.Log("Collision");
+
+        if(collision.gameObject.TryGetComponent(out NewProp other))
         {
             if(other.propFlags.HasFlag(PropFlags.Metal))
             {
-
+                Debug.Log("Electricity");
             }
         }
+    }
+    */
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(!this.enabled)
+        {
+            return;
+        }
+
+        if (other.gameObject.TryGetComponent(out NewProp prop))
+        {
+            if (prop.attributes.HasFlag(PropFlags.Metal))
+            {
+                // Play visual
+                foreach(ParticleSystem p in particles)
+                {
+    
+                    p.Play();
+                }
+
+                TriggerExplosion();
+            }
+        }
+    }
+
+    private void TriggerExplosion()
+    {
+        Vector3 explosionPos = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, radius, mask);
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+            if (rb != null)
+                rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
+        }
+
+        Debug.Log(colliders.Length + "Colliders detected");
+
+
+        Time.timeScale = 0.2f;
+
+        StationManager.instance.playerPath.Clear();
+        StationManager.instance.MoveToStation(endingStation);
+
+        StartCoroutine(GiveEnding());
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
+    private IEnumerator GiveEnding()
+    {
+        yield return new WaitForSecondsRealtime(3);
+
+        GameManager.Instance.LoadGame(0);
     }
 }

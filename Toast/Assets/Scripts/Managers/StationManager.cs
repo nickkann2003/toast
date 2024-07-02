@@ -90,7 +90,7 @@ public class StationManager : MonoBehaviour
     /// The player moves to a station upon clicking
     /// </summary>
     /// <param name="loc">The station being targeted to move to</param>
-    public void MoveToStation(Station loc)
+    public void MoveToStation(Station loc, bool forwards = true)
     {
         //foreach(var i in playerLocation.interactables)
         //{
@@ -122,7 +122,7 @@ public class StationManager : MonoBehaviour
 
         // Update player's current location
         StationManager.instance.playerLocation = loc;
-        StationManager.instance.playerLocation.OnArrive();
+        StationManager.instance.playerLocation.OnArrive(forwards);
 
 
         loc.DisableColliders();
@@ -166,9 +166,7 @@ public class StationManager : MonoBehaviour
                 if (playerPath.Count > 1)
                 {
                     playerPath.Pop();
-
-                    Debug.Log("MOVE TO BACK" + playerPath.Peek());
-                    MoveToStation(playerPath.Peek());
+                    MoveToStation(playerPath.Peek(), false);
                 }
                    
 
@@ -181,9 +179,7 @@ public class StationManager : MonoBehaviour
                 {
                     playerPath.Pop();
                 }
-
-                Debug.Log("MOVE TO PARENT" + playerLocation.parentLoc);
-                MoveToStation(playerLocation.parentLoc);
+                MoveToStation(playerLocation.parentLoc, false);
             }
     }
 

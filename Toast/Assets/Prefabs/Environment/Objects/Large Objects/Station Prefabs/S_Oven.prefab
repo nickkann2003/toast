@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6fe55942e134141860f13b0b95ff6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMaxValue: {x: 0.2, y: 0.6}
+  minMaxValue: {x: 0, y: 0.1}
   dialValue: 0
   numSnapPoints: 5
   snapAngle: 15
@@ -142,6 +142,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDialSnap:
+    m_PersistentCalls:
+      m_Calls: []
   freeze: 0
 --- !u!114 &4076336079754028045
 MonoBehaviour:
@@ -280,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6fe55942e134141860f13b0b95ff6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMaxValue: {x: 0.2, y: 0.6}
+  minMaxValue: {x: 0, y: 0.1}
   dialValue: 0
   numSnapPoints: 5
   snapAngle: 15
@@ -301,6 +304,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDialSnap:
+    m_PersistentCalls:
+      m_Calls: []
   freeze: 0
 --- !u!114 &1422732393394207076
 MonoBehaviour:
@@ -541,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6fe55942e134141860f13b0b95ff6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMaxValue: {x: 0.2, y: 0.6}
+  minMaxValue: {x: 0, y: 0.1}
   dialValue: 0
   numSnapPoints: 5
   snapAngle: 15
@@ -562,6 +568,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDialSnap:
+    m_PersistentCalls:
+      m_Calls: []
   freeze: 0
 --- !u!114 &7624316206303214715
 MonoBehaviour:
@@ -1322,7 +1331,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.07
-  m_Height: 0.1777268
+  m_Height: 0
   m_Direction: 1
   m_Center: {x: 0, y: -0.000000014516475, z: 0.023146091}
 --- !u!114 &1988072832941401357
@@ -1337,7 +1346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6fe55942e134141860f13b0b95ff6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMaxValue: {x: 0.2, y: 0.6}
+  minMaxValue: {x: 0, y: 0.1}
   dialValue: 0.08
   numSnapPoints: 5
   snapAngle: 15
@@ -1358,6 +1367,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDialSnap:
+    m_PersistentCalls:
+      m_Calls: []
   freeze: 0
 --- !u!114 &5522255138211912552
 MonoBehaviour:
@@ -1634,7 +1646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6fe55942e134141860f13b0b95ff6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMaxValue: {x: 0.2, y: 0.6}
+  minMaxValue: {x: 0, y: 0.15}
   dialValue: 0
   numSnapPoints: 5
   snapAngle: 15
@@ -1655,6 +1667,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDialSnap:
+    m_PersistentCalls:
+      m_Calls: []
   freeze: 0
 --- !u!114 &4221137151806647976
 MonoBehaviour:
@@ -1879,6 +1894,10 @@ MonoBehaviour:
   leave:
     m_PersistentCalls:
       m_Calls: []
+  separateArriveAndReturn: 0
+  returnTo:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &2103029747172952424
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2010,6 +2029,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  separateArriveAndReturn: 0
+  returnTo:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &6576619279273486195
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2531,6 +2554,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  separateArriveAndReturn: 0
+  returnTo:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2263059918528607822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3206,8 +3233,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5774705471000848194}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.005, y: 1.9350951, z: -0.123}
-  m_LocalScale: {x: 0.15604246, y: 0.38061008, z: 0.115369804}
+  m_LocalPosition: {x: 0.005, y: 1.978, z: 0.022}
+  m_LocalScale: {x: 0.15604246, y: 0.38061008, z: 0.14875783}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8595929904908990528}
@@ -3628,6 +3655,10 @@ MonoBehaviour:
   leave:
     m_PersistentCalls:
       m_Calls: []
+  separateArriveAndReturn: 0
+  returnTo:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &7318231107308941249
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3837,6 +3868,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3509209113500601904}
+  - {fileID: 376506588808517065}
   - {fileID: 3880611152637421804}
   - {fileID: 1578488655716828065}
   - {fileID: 9189772996981759768}
@@ -4323,6 +4355,13 @@ MonoBehaviour:
   speed: 3
   clickable: 0
   isOpen: 0
+  hasEvents: 0
+  onOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  onClose:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &3203193790308525704
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4344,6 +4383,112 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.6, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &9086878997546618800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 376506588808517065}
+  - component: {fileID: 5699689918211186516}
+  - component: {fileID: 99075439546993065}
+  - component: {fileID: 6438151824609520761}
+  m_Layer: 10
+  m_Name: Stove Plane 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &376506588808517065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9086878997546618800}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.005, y: 2.142, z: -0.648}
+  m_LocalScale: {x: 0.17553216, y: 0.38061008, z: 0.052372586}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8595929904908990528}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!33 &5699689918211186516
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9086878997546618800}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &99075439546993065
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9086878997546618800}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6438151824609520761
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9086878997546618800}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &6099496476765526264
 PrefabInstance:
   m_ObjectHideFlags: 0

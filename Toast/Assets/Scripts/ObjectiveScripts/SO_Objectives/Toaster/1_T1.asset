@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1_T1
   m_EditorClassIdentifier: 
   objectiveName: Toast Bread
-  description: Turn some bread into toast. 1/4
-  completeText: Check the Fridge to find more Bread, then come back here!
+  description: Turn some bread into toast
+  completeText: Find additional Bread in the Fridge, then return here!
   unavailableText: ???
   requirements:
   - targetAttributes: 536870913
@@ -44,7 +44,8 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 1
-    listening: 1
+    listening: 0
+  sequentialRequirements: 1
   id: 1
-  complete: 1
+  complete: 0
   available: 1

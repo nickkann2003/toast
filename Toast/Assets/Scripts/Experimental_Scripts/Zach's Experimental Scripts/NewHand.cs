@@ -95,6 +95,8 @@ public class NewHand : MonoBehaviour
                 Debug.Log("HELLO");
                 itemToPickup.GetComponent<NewProp>().ForceRemoveFromHand();
             }
+
+            //itemToPickup.transform.position = Vector3.zero;
             
             // Inventory checks
             if (StationManager.instance.playerLocation.stationLabel == Stations.Inventory)

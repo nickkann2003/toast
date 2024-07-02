@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,6 +30,12 @@ public class Jam : MonoBehaviour
     private NewHand newHand;
 
     //public NewHand Hand { get { return newHand; } }
+
+    [Header("Event References - Grabbed automatically, only change if there's a specific reason")]
+    [SerializeField]
+    private PropIntGameEvent capEvent;
+    [SerializeField]
+    private PropIntGameEvent uncapEvent;
 
     // ------------------------------- Properties -------------------------------
     public bool IsCapped
@@ -65,6 +72,24 @@ public class Jam : MonoBehaviour
         {
             gameObject.GetComponent<NewProp>().RemoveFlag(PropFlags.JamLid);
         }
+
+        if(capEvent == null)
+        {
+            capEvent = PieManager.instance.CapObject;
+        }
+        if (uncapEvent == null)
+        {
+            uncapEvent = PieManager.instance.UncapObject;
+        }
+
+        if(capEvent == null)
+        {
+            capEvent = PieManager.instance.CapObject;
+        }
+        if (uncapEvent == null)
+        {
+            uncapEvent = PieManager.instance.UncapObject;
+        }
     }
 
     // Update is called once per frame
@@ -89,6 +114,7 @@ public class Jam : MonoBehaviour
             //SetJamLidVisible(isCapped);
             //GameObject newLid = GameObject.Instantiate(jamJarLidPrefab);
             //newLid.transform.position = StationManager.instance.playerLocation.ObjectOffset;
+            //uncapEvent.RaiseEvent(gameObject.GetComponent<NewProp>(), 1);
             //gameObject.GetComponent<NewProp>()?.RemoveFlag(PropFlags.JamLid);
         }
     }
@@ -103,6 +129,7 @@ public class Jam : MonoBehaviour
             //SetJamLidVisible(isCapped);
             //Destroy(lid);
             //gameObject.GetComponent<NewProp>()?.AddFlag(PropFlags.JamLid);
+            //capEvent.RaiseEvent(gameObject.GetComponent<NewProp>(), 1);
         }
     }
 

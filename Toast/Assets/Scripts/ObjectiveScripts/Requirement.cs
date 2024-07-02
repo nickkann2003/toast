@@ -40,6 +40,8 @@ public class Requirement
     // ------------------------------- Properties -------------------------------
     public int Current { get => current; set => current = value; }
     public int ID { get => id; set => id = value; }
+    public bool Complete { get => complete; set => complete = value; }
+
 
     // ------------------------------- Functions -------------------------------
     /// <summary>
@@ -137,29 +139,34 @@ public class Requirement
         get
         {
             string value = "";
-            if (CheckComplete())
+            if (listening)
             {
-                value += "<color=#111><s>";
-                value += goalName + " ";
-                value += "DONE!";
-            }
-            else
-            {
-                if(goal > 0)
+                if (CheckComplete())
                 {
-                    value += "<color=#000>";
+                    value += "<size=-6><color=#333> - <s>";
                     value += goalName + " ";
-                    value += current + "/" + goal;
+                    //value += "DONE!";
                 }
                 else
                 {
-                    value += "<color=#000>";
-                    value += goalName + " ";
-                    value += current;
+                    if(goal > 0)
+                    {
+                        value += "<color=#000> - ";
+                        value += goalName + " ";
+                        value += "<pos=80%>";
+                        value += current + "/" + goal;
+                    }
+                    else
+                    {
+                        value += "<color=#000> - ";
+                        value += goalName + " ";
+                        value += "<pos=80%>";
+                        value += current;
+                    }
+                    
                 }
-                
+                value += "</size></s></color>";
             }
-            value += "</s></color>";
             return value;
         }
     }

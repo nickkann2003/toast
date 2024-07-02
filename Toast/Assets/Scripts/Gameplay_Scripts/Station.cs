@@ -45,15 +45,19 @@ public class Station : MonoBehaviour
     [Header("------------ Events ------------")]
     [SerializeField] private UnityEvent arrive;
     [SerializeField] private UnityEvent leave;
+    [SerializeField] private bool separateArriveAndReturn;
+    [SerializeField, ShowIf("separateArriveAndReturn")] private UnityEvent returnTo;
 
     public Vector3 ObjectOffset { get => transform.TransformPoint(objectOffset); set => objectOffset = value; }
 
+#if UNITY_EDITOR
     [SerializeField, Button]
     private void SetCameraPositionAndRotation() 
     {
         cameraPos = transform.InverseTransformPoint(SceneView.GetAllSceneCameras()[0].transform.position);
         cameraRotation = Quaternion.Euler(-transform.rotation.eulerAngles + transform.InverseTransformDirection(SceneView.GetAllSceneCameras()[0].transform.eulerAngles));
     }
+#endif
 
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
@@ -97,9 +101,16 @@ public class Station : MonoBehaviour
     /// <summary>
     /// Calls necessary arrival functions for this station
     /// </summary>
-    public void OnArrive()
+    public void OnArrive(bool forward)
     {
-        arrive.Invoke();
+        if (separateArriveAndReturn && !forward)
+        {
+            returnTo.Invoke();
+        }
+        else
+        {
+            arrive.Invoke();
+        }
         foreach(GameObject obj in stationSpecificHints)
         {
             obj.SetActive(true);
@@ -206,10 +217,15 @@ public class Station : MonoBehaviour
     /// </summary>
     public void EnableColliders()
     {
-        foreach (Collider c in myClickableColliders)
+        if(myClickableColliders.Length > 0)
         {
-            c.enabled = true;
+            foreach (Collider c in myClickableColliders)
+            {
+                c.enabled = true;
+            }
         }
+
+       
 
         if(clickableCollider != null)
         {

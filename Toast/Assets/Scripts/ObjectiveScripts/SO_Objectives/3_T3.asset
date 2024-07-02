@@ -12,35 +12,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
   m_Name: 3_T3
   m_EditorClassIdentifier: 
-  objectiveName: MORE.
-  description: AGAIN. 3/4
+  objectiveName: Using The Dial
+  description: Toasty perfection
   completeText: 
-  unavailableText: ???
+  unavailableText: 
   requirements:
-  - targetAttributes: 536870913
+  - targetAttributes: 536870912
+    hasExclusions: 0
+    excludeAttributes: 0
     listener:
-      gameEvent: {fileID: 11400000, guid: e101c82c1dd11aa47985d3853517143f, type: 2}
+      gameEvent: {fileID: 11400000, guid: f22c03b7efca1db4eaddede215bf0fa5, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Toast Bread
-    goal: 2
+    goalName: Toast at Power 1
+    goal: 1
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
-    listening: 1
+    listening: 0
   - targetAttributes: 536870913
+    hasExclusions: 0
+    excludeAttributes: 0
     listener:
-      gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
+      gameEvent: {fileID: 11400000, guid: 970b092f003cb444aaefd5a473fc0faf, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Eat Toast
-    goal: 2
+    goalName: Toast at Power 5
+    goal: 1
     exactValueGoal: 0
     alwaysListening: 0
     id: 1
-    listening: 1
+    listening: 0
+  sequentialRequirements: 1
   id: 3
-  complete: 1
-  available: 1
+  complete: 0
+  available: 0

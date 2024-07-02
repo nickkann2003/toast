@@ -98,7 +98,15 @@ public class ObjectiveManager : MonoBehaviour
     /// </summary>
     public void ForceCompleteObjective(int id)
     {
-        ObjectivesById[id].ForceCompleteObjective();
+        if (objectivesById.ContainsKey(id))
+        {
+            ObjectivesById[id].ForceCompleteObjective();
+        }
+        else
+        {
+            Debug.Log("Tried to force complete key " + id + ", which did not exist");
+        }
+
         UpdateText();
     }
 
@@ -185,17 +193,20 @@ public class ObjectiveManager : MonoBehaviour
 
             if (tComplete)
             {
-                ObjectivesById[tId].ForceCompleteObjective();
+                ForceCompleteObjective(tId);
                 continue;
             }
 
             if (tAvailable)
             {
-                string[] reqs = tempObj[1].Split(requirementSpace);
-                foreach(string req in reqs)
+                if (objectivesById.ContainsKey(tId))
                 {
-                    string[] reqsSplit = req.Split(spacer);
-                    objectivesById[tId].SetRequirement(int.Parse(reqsSplit[0]), (reqsSplit[1].Equals("1") ? true : false), int.Parse(reqsSplit[2]));
+                    string[] reqs = tempObj[1].Split(requirementSpace);
+                    foreach (string req in reqs)
+                    {
+                        string[] reqsSplit = req.Split(spacer);
+                        objectivesById[tId].SetRequirement(int.Parse(reqsSplit[0]), (reqsSplit[1].Equals("1") ? true : false), int.Parse(reqsSplit[2]));
+                    }
                 }
             }
         }

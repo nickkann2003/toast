@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +33,19 @@ public class ToastingBreadTest : MonoBehaviour
     [Header("References")]
     [SerializeField] private ParticleSystem smokeParticles;
     [SerializeField] private GameObject firePrefab;
+    [SerializeField] private Electricity electricity;
+
+    [SerializeField] private bool customEvents = false;
+    [Header("PIE Event References"), ShowIf("customEvents")]
+    [SerializeField] private PropIntGameEvent toastStrength1;
+    [SerializeField, ShowIf("customEvents")] private PropIntGameEvent toastStrength2;
+    [SerializeField, ShowIf("customEvents")] private PropIntGameEvent toastStrength3;
+    [SerializeField, ShowIf("customEvents")] private PropIntGameEvent toastStrength4;
+    [SerializeField, ShowIf("customEvents")] private PropIntGameEvent toastStrength5;
 
     private bool defrost = false;
+
+    private int snapPoint;
 
     // ------------------------------- Properties -------------------------------
     public bool IsActive { get => isActive; }
@@ -43,6 +55,20 @@ public class ToastingBreadTest : MonoBehaviour
     public void Awake()
     {
         baseTime = maxTime;
+    }
+
+    private void Start()
+    {
+        if(toastStrength1 == null)
+            toastStrength1 = PieManager.instance.ToastStrength1;
+        if (toastStrength2 == null)
+            toastStrength2 = PieManager.instance.ToastStrength2;
+        if (toastStrength3 == null)
+            toastStrength3 = PieManager.instance.ToastStrength3;
+        if (toastStrength4 == null)
+            toastStrength4 = PieManager.instance.ToastStrength4;
+        if (toastStrength5 == null)
+            toastStrength5 = PieManager.instance.ToastStrength5;
     }
 
     public void Update()
@@ -68,12 +94,12 @@ public class ToastingBreadTest : MonoBehaviour
                         // If not frozen, then toast
                         if (!prop.propFlags.HasFlag(PropFlags.Frozen))
                         {
-                            prop.IncreaseToastiness((Time.deltaTime / maxTime) * targetStrength);
+                            prop.IncreaseToastiness((Time.deltaTime / maxTime) * targetStrength, true);
                         }
                         else if (defrost)
                         {
                             // If frozen and defrosting, toast slowly
-                            prop.IncreaseToastiness((Time.deltaTime / maxTime) * targetStrength/2f);
+                            prop.IncreaseToastiness((Time.deltaTime / maxTime) * targetStrength/2f, true);
                         }
                     }
                 }
@@ -127,6 +153,9 @@ public class ToastingBreadTest : MonoBehaviour
 
         // Start toastig event
         startToasting.Invoke();
+
+        // Turn on electricity
+        electricity.enabled = true;
     }
 
     // Deactivates toasting
@@ -145,7 +174,30 @@ public class ToastingBreadTest : MonoBehaviour
                     {
                         if(defrost)
                             prop.DefrostToast();
+
+                        switch (snapPoint)
+                        {
+                            case 0:
+                                break;
+                            case 1:
+                                toastStrength1.RaiseEvent(prop, 1);
+                                break;
+                            case 2:
+                                toastStrength2.RaiseEvent(prop, 1);
+                                break;
+                            case 3:
+                                toastStrength3.RaiseEvent(prop, 1);
+                                break;
+                            case 4:
+                                toastStrength4.RaiseEvent(prop, 1);
+                                break;
+                            case 5:
+                                toastStrength5.RaiseEvent(prop, 1);
+                                break;
+
+                        }
                     }
+
 
                     // Apply force to objs
                     Rigidbody rb = obj.GetComponent<Rigidbody>();
@@ -164,6 +216,8 @@ public class ToastingBreadTest : MonoBehaviour
             isActive = false;
             smokeParticles.Stop();
             stopToasting.Invoke();
+
+            electricity.enabled = false;
         }
     }
 
@@ -178,6 +232,11 @@ public class ToastingBreadTest : MonoBehaviour
     {
         targetStrength = value;
         maxTime = baseTime + (targetStrength - .5f) * baseTime; // between -baseTime/2 and baseTime/2
+    }
+
+    public void setDialSnap(int snapPoint)
+    {
+        this.snapPoint = snapPoint;
     }
 
     // When entering trigger, add to toasting object list

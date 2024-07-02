@@ -14,6 +14,8 @@ public class Dial : MonoBehaviour
     private bool mouse;
     private Vector3 pos;
 
+    private int snapPoint = 3;
+
     /* CHANGE LATER??? */
     //public Vector3 localRotationPlane = new Vector3(0,0,1);
 
@@ -52,6 +54,7 @@ public class Dial : MonoBehaviour
 
     [Header("------------- Unity Events ------------")]
     public FloatUnityEvent onDialChange;
+    public IntUnityEvent onDialSnap;
 
     
     [Header("Freeze Dial")]
@@ -174,18 +177,27 @@ public class Dial : MonoBehaviour
             //    rotation.z = maxRotation * rotation.z / Mathf.Abs(rotation.z);
             //}
 
+            bool isSnapped = false;
             for (int i = 0; i < numSnapPoints;  i++)
             {
                 if (Mathf.Abs(snapPoints[i] - rotation.z) < snapAngle)
                 {
                     rotation.z = snapPoints[i];
+                    snapPoint = i+1;
+                    isSnapped = true;
                     break;
                 }
+            }
+
+            if (!isSnapped)
+            {
+                snapPoint = 0;
             }
 
             dialValue = (rotation.z + maxRotation) / (maxRotation * 2);
 
             dialValue = dialValue * (MaxValue - MinValue) + MinValue;
+            onDialSnap.Invoke(snapPoint);
             onDialChange.Invoke(dialValue);
 
             transform.localEulerAngles = rotation;
