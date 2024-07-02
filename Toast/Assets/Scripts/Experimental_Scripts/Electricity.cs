@@ -53,7 +53,7 @@ public class Electricity : MonoBehaviour
 
         if (other.gameObject.TryGetComponent(out NewProp prop))
         {
-            if (prop.attributes.HasFlag(PropFlags.Metal))
+            if (prop.HasFlag(PropFlags.Metal))
             {
                 // Play visual
                 foreach(ParticleSystem p in particles)

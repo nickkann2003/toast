@@ -322,45 +322,45 @@ public class NewProp : MonoBehaviour
 
     private void RunEventChecks()
     {
-        // Adjust prop flags and trigger requirement events
-        if (toastiness > .15f && !attributes.HasFlag(PropFlags.Toast)) // Toasted event
-        {
-            // Add attribtue
-            AddAttribute(PropFlags.Toast);
+        //// Adjust prop flags and trigger requirement events
+        //if (toastiness > .15f && !attributes.HasFlag(PropFlags.Toast)) // Toasted event
+        //{
+        //    // Add attribtue
+        //    AddAttribute(PropFlags.Toast);
 
-            // Trigger Objectives
-            if (toastObjectEvent != null)
-                toastObjectEvent.RaiseEvent(this, 1);
-        }
+        //    // Trigger Objectives
+        //    if (toastObjectEvent != null)
+        //        toastObjectEvent.RaiseEvent(this, 1);
+        //}
 
-        if (toastiness > .9f && !attributes.HasFlag(PropFlags.Burnt)) // Burnt event
-        {
-            // Add attributes
-            AddAttribute(PropFlags.Burnt);
+        //if (toastiness > .9f && !attributes.HasFlag(PropFlags.Burnt)) // Burnt event
+        //{
+        //    // Add attributes
+        //    AddAttribute(PropFlags.Burnt);
 
-            // Trigger Objectives
-            if (burnObjectEvent != null)
-                burnObjectEvent.RaiseEvent(this, 1);
-        }
-        if (!attributes.HasFlag(PropFlags.OnFire) && toastiness > fireTrigger && firePrefab != null) // On Fire event
-        {
-            // Instantiate fire
-            GameObject fire = Instantiate(firePrefab);
-            fire.transform.parent = gameObject.transform;
-            fire.transform.localPosition = Vector3.zero;
-            fire.transform.eulerAngles = Vector3.zero;
-            fire.transform.localScale = Vector3.one;
+        //    // Trigger Objectives
+        //    if (burnObjectEvent != null)
+        //        burnObjectEvent.RaiseEvent(this, 1);
+        //}
+        //if (!attributes.HasFlag(PropFlags.OnFire) && toastiness > fireTrigger && firePrefab != null) // On Fire event
+        //{
+        //    // Instantiate fire
+        //    GameObject fire = Instantiate(firePrefab);
+        //    fire.transform.parent = gameObject.transform;
+        //    fire.transform.localPosition = Vector3.zero;
+        //    fire.transform.eulerAngles = Vector3.zero;
+        //    fire.transform.localScale = Vector3.one;
 
-            // Add attribute
-            AddAttribute(PropFlags.OnFire);
+        //    // Add attribute
+        //    AddAttribute(PropFlags.OnFire);
 
-            // Trigger objectives
-            if (setObjectOnFireEvent != null)
-                setObjectOnFireEvent.RaiseEvent(this, 1);
+        //    // Trigger objectives
+        //    if (setObjectOnFireEvent != null)
+        //        setObjectOnFireEvent.RaiseEvent(this, 1);
 
-            // Add flaming object
-            FireEndingManager.instance.addFireObject(gameObject);
-        }
+        //    // Add flaming object
+        //    FireEndingManager.instance.addFireObject(gameObject);
+        //}
     }
 
     // Defrosts this object
