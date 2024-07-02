@@ -88,10 +88,9 @@ MonoBehaviour:
   toastType: {fileID: 11400000, guid: ed769c6990786b0428bfb3911e9f608b, type: 2}
   sizeType: {fileID: 11400000, guid: e4f0d536b759caf468fa4f8a983f5ce2, type: 2}
   massType: {fileID: 11400000, guid: 263ef62346c87a54e8aec3fc8b974bf7, type: 2}
+  inHandAtt: {fileID: 11400000, guid: 6cac2a5c331557a47a12f4ccee4105ba, type: 2}
   useEffects:
   - {fileID: 11400000, guid: 12415585f8ce5ac44a20d6055ccf3bc7, type: 2}
-  toastiness: 0
-  frozenness: 0
   baseMat: {fileID: 0}
   PD_Rb: {fileID: 11400000, guid: d3ae1b2fdb425e444bf164890cc0da98, type: 2}
   createObjectEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
@@ -214,8 +213,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jamJar: {fileID: 2499456441536345772}
   jamJarLid: {fileID: 7483129214720482922}
+  lidAtt: {fileID: 11400000, guid: dd487103649cd7245b62df80a130f900, type: 2}
+  isCapped: 1
   jamJarLidPrefab: {fileID: 1000392157583233769, guid: eb8873735e8458744b40bc8d58c32d04,
     type: 3}
+  newHand: {fileID: 6608085103669162423}
 --- !u!1001 &4650851537403715372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224,6 +226,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8483031752779676798}
     m_Modifications:
+    - target: {fileID: 1963436057320435355, guid: 0892ab3fd3028854ebe8bc2aaf4aa908,
+        type: 3}
+      propertyPath: mainHandAttribute
+      value: 
+      objectReference: {fileID: 11400000, guid: c648eea8a816eb945a12e153e0e17bdd,
+        type: 2}
     - target: {fileID: 2833413476184228166, guid: 0892ab3fd3028854ebe8bc2aaf4aa908,
         type: 3}
       propertyPath: m_IsActive
@@ -315,14 +323,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 435060222293763973}
+    - targetCorrespondingSourceObject: {fileID: 7290631129689462611, guid: 0892ab3fd3028854ebe8bc2aaf4aa908,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6730589178313606353}
     - targetCorrespondingSourceObject: {fileID: 2833413476184228166, guid: 0892ab3fd3028854ebe8bc2aaf4aa908,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3142411576352050789}
-    - targetCorrespondingSourceObject: {fileID: 2833413476184228166, guid: 0892ab3fd3028854ebe8bc2aaf4aa908,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3929299961002284323}
   m_SourcePrefab: {fileID: 100100000, guid: 0892ab3fd3028854ebe8bc2aaf4aa908, type: 3}
 --- !u!1 &2499456441536345772 stripped
 GameObject:
@@ -352,12 +360,51 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7065439566198968859, guid: 7bddc53cfd9b04e469afd316bc3db291, type: 3}
+--- !u!1 &2713034729976531071 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7290631129689462611, guid: 0892ab3fd3028854ebe8bc2aaf4aa908,
+    type: 3}
+  m_PrefabInstance: {fileID: 4650851537403715372}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6730589178313606353
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2713034729976531071}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.28, y: 0.04, z: 0.28}
+  m_Center: {x: 0, y: 0.02, z: 0}
 --- !u!4 &3018549506701896726 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7597341796169069370, guid: 0892ab3fd3028854ebe8bc2aaf4aa908,
     type: 3}
   m_PrefabInstance: {fileID: 4650851537403715372}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6608085103669162423 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1963436057320435355, guid: 0892ab3fd3028854ebe8bc2aaf4aa908,
+    type: 3}
+  m_PrefabInstance: {fileID: 4650851537403715372}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbbe6ef099815a49ad7be57db5a60e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7483129214720482922 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2833413476184228166, guid: 0892ab3fd3028854ebe8bc2aaf4aa908,
@@ -381,45 +428,11 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7699666271181864620, guid: d3800c753cfb58d4ba6ea135d2c65ec0, type: 3}
---- !u!114 &3929299961002284323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7483129214720482922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 429bde5dd05b54548b37ef4292b26c5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  propSO: {fileID: 11400000, guid: ab7a9e6bb3863054e9b0366d1f444453, type: 2}
-  staticMesh: {fileID: 7483129214720482922}
-  iceConfig: {fileID: 11400000, guid: 7c993078cd8a8e7489c4ac452eb9f246, type: 2}
-  propFlags: 0
-  attributesList: []
-  statsSystem:
-    statList: []
-  toastType: {fileID: 0}
-  sizeType: {fileID: 0}
-  massType: {fileID: 0}
-  useEffects: []
-  toastiness: 0
-  frozenness: 0
-  baseMat: {fileID: 0}
-  PD_Rb: {fileID: 0}
-  createObjectEvent: {fileID: 0}
-  thawObjectEvent: {fileID: 0}
-  toastObjectEvent: {fileID: 0}
-  burnObjectEvent: {fileID: 0}
-  setObjectOnFireEvent: {fileID: 0}
-  attributeToGive: {fileID: 0}
-  indexToRemove: 0
 --- !u!1001 &5761777036586028116
 PrefabInstance:
   m_ObjectHideFlags: 0

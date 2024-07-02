@@ -22,6 +22,15 @@ public class BreadAttribute : PropAttributeSO
                 newProp.Stats.AddStat(statToAdd);
             }
         }
+        if (statModifierContainer.Length > 0)
+        {
+            for (int i = 0; i < statModifierContainer.Length; i++)
+            {
+                newProp.Stats.AddModifier(statModifierContainer[i].Type, statModifierContainer[i].StatModifier);
+            }
+            newProp.RecalcSize();
+            newProp.RecalcWeight();
+        }
         if (statConditionalContainer.Length > 0)
         {
             for (int i = 0; i < statConditionalContainer.Length; i++)

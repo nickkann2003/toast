@@ -48,6 +48,9 @@ public class NewProp : MonoBehaviour
     [SerializeField]
     private StatType massType;
 
+    [SerializeField]
+    private PropAttributeSO inHandAtt;
+
     [Header("------------ UseEffects ------------")]
     [SerializeField]
     public List<UseEffectSO> useEffects;
@@ -55,17 +58,10 @@ public class NewProp : MonoBehaviour
     [HorizontalLine(color: EColor.Gray)]
 
 
-    // Toast Values
-    [Header("------------ Toastiness ------------")]
-    public float toastiness;
-
     [Header("------------ Fire Variables ------------")]
     private Color strongestStrength = Color.black;
     private Color initialColor;
     private Color colorOffset;
-
-    [Header("------------ Freeze Variables ------------")]
-    public float frozenness;
 
     [SerializeField]
     private Material baseMat;
@@ -116,7 +112,13 @@ public class NewProp : MonoBehaviour
 
         //CreateAndUpdateRigidbody();
 
-        float colorStrength = toastiness;
+        float colorStrength = 0;
+
+        if (Stats.GetStat(StatTypeManager.instance.toastType) != null)
+        {
+            colorStrength = Stats.GetStat(StatTypeManager.instance.toastType).Value;
+        }
+
         if (colorStrength > 1)
         {
             colorStrength = 1;
@@ -218,7 +220,10 @@ public class NewProp : MonoBehaviour
 
         for (int i = 0; i < useEffects.Count; i++)
         {
-            useEffects[i].Use(this);
+            if (!useEffects[i].TryUse(this))
+            {
+                return false;
+            }
         }
 
         return true;
@@ -231,7 +236,7 @@ public class NewProp : MonoBehaviour
 
         for (int i = 0; i < useEffects.Count; i++)
         {
-            useEffects[i].Use(this);
+            useEffects[i].TryUse(this);
         }
     }
 
@@ -239,8 +244,9 @@ public class NewProp : MonoBehaviour
     public void ForceRemoveFromHand()
     {
         // If this item is in hand, then force hand to drop it
-        if (HasFlag(PropFlags.InHand))
+        if (HasAttribute(inHandAtt))
         {
+            RemoveAttribute(inHandAtt);
             transform.parent.GetComponent<NewHand>()?.Drop();
 
             // If no rigidbody when dropped, get one
@@ -273,7 +279,7 @@ public class NewProp : MonoBehaviour
     public void IncreaseToastiness(float val)
     {
         // Increase toastiness
-        toastiness += val;
+        //toastiness += val;
 
         float testToastiness = 0f;
         if (toastType != null)

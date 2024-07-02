@@ -106,7 +106,7 @@ public class ToastingBreadTest : MonoBehaviour
                 float toastiness = 0.0f;
                 if (obj.GetComponent<NewProp>() != null)
                 {
-                    toastiness = obj.GetComponent<NewProp>().toastiness;
+                    toastiness = obj.GetComponent<NewProp>().Stats.GetStat(StatTypeManager.instance.toastType).Value;
                 }
 
                 // Get attributes and check specific interactions

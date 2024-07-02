@@ -10,6 +10,10 @@ public class InHandAttribute : PropAttributeSO
 
     public override void OnEquip(NewProp newProp)
     {
+        if (!newProp.GetComponent<Rigidbody>())
+        {
+            return;
+        }
         if (inMainHand)
         {
             newProp.GetComponent<Rigidbody>().isKinematic = true;
@@ -22,7 +26,7 @@ public class InHandAttribute : PropAttributeSO
 
     public override void OnRemove(NewProp newProp)
     {
-        if (inMainHand)
+        if (inMainHand && newProp.GetComponent<Rigidbody>())
         {
             newProp.GetComponent<Rigidbody>().isKinematic = false;
         }

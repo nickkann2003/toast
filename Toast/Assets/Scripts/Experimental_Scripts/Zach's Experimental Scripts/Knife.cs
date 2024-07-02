@@ -32,7 +32,7 @@ public class Knife : NewProp
         {
             if (hand.CheckObject())
             {
-                hand.UseInHand();
+                hand.TryUseInHand();
             }
             else
             {

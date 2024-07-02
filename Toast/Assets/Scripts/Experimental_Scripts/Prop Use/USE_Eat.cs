@@ -43,11 +43,13 @@ public class USE_Eat : UseEffectSO
         //}
     }
 
-    public override void Use(NewProp newProp)
+    public override bool TryUse(NewProp newProp)
     {
-        if (newProp.Stats.GetStat(biteType) == null) { return; }
+        if (newProp.Stats.GetStat(biteType) == null) { return false; }
 
         TakeBite(newProp);
+
+        return true;
     }
 
     private void TakeBite(NewProp newProp)

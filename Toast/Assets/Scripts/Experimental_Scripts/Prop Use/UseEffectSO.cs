@@ -9,7 +9,7 @@ public abstract class UseEffectSO : ScriptableObject
         return;
     }
 
-    public abstract void Use(NewProp prop);
+    public abstract bool TryUse(NewProp prop);
 
     public virtual void OnRemove(NewProp prop)
     {

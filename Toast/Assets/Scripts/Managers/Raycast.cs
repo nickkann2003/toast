@@ -148,7 +148,7 @@ public class Raycast : MonoBehaviour
         {
             if (hand.CheckObject())
             {
-                hand.UseInHand();
+                hand.TryUseInHand();
                 return;
             }
             UseRaycast();

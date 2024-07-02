@@ -107,7 +107,7 @@ public class Freezer : MonoBehaviour
                 collidingObjects.Contains(prop))
             {
                 collidingObjects.Remove(prop);
-                prop.frozenness = 0.0f;
+                //prop.frozenness = 0.0f;
             }
 
         }

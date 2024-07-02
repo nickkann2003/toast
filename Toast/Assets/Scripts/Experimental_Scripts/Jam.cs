@@ -15,14 +15,38 @@ public class Jam : MonoBehaviour
     [SerializeField]
     GameObject jamJarLid;
 
+    [SerializeField]
+    PropAttributeSO lidAtt;
+
+    [SerializeField, ReadOnly]
     private bool isCapped = true;
 
     [Header("Prefab References")]
     [SerializeField]
     GameObject jamJarLidPrefab;
 
+    [SerializeField]
+    private NewHand newHand;
+
+    //public NewHand Hand { get { return newHand; } }
+
     // ------------------------------- Properties -------------------------------
-    public bool IsCapped { get => isCapped; set => isCapped = value; }
+    public bool IsCapped
+    {
+        get
+        {
+            if (newHand.CheckObject())
+            {
+                isCapped = true;
+            }
+            else
+            {
+                isCapped = false;
+            }
+
+            return isCapped;
+        }
+    }
 
     [Button]
     private void CapJamLid() { CapJamNoLid(); }
@@ -52,32 +76,40 @@ public class Jam : MonoBehaviour
     // Uncaps the Jam
     public void UncapJam()
     {
-        if (isCapped)
+        if (IsCapped)
         {
             isCapped = false;
-            SetJamLidVisible(isCapped);
-            GameObject newLid = GameObject.Instantiate(jamJarLidPrefab);
-            newLid.transform.position = StationManager.instance.playerLocation.ObjectOffset;
-            gameObject.GetComponent<NewProp>()?.RemoveFlag(PropFlags.JamLid);
+            GameObject lid = newHand.Drop();
+            if (lid != null)
+            {
+                // CHANGE LATER
+                lid.transform.position = StationManager.instance.playerLocation.ObjectOffset;
+            }
+
+            //SetJamLidVisible(isCapped);
+            //GameObject newLid = GameObject.Instantiate(jamJarLidPrefab);
+            //newLid.transform.position = StationManager.instance.playerLocation.ObjectOffset;
+            //gameObject.GetComponent<NewProp>()?.RemoveFlag(PropFlags.JamLid);
         }
     }
 
     // Recaps the Jam, destroys cap object
     public void CapJam(GameObject lid)
     {
-        if(!isCapped)
+        if(!IsCapped)
         {
             isCapped = true;
-            SetJamLidVisible(isCapped);
-            Destroy(lid);
-            gameObject.GetComponent<NewProp>()?.AddFlag(PropFlags.JamLid);
+            newHand.Pickup(lid);
+            //SetJamLidVisible(isCapped);
+            //Destroy(lid);
+            //gameObject.GetComponent<NewProp>()?.AddFlag(PropFlags.JamLid);
         }
     }
 
     // Recaps the jam, does not require a lid object
     public void CapJamNoLid()
     {
-        if (!isCapped)
+        if (!IsCapped)
         {
             isCapped = true;
             SetJamLidVisible(isCapped);
@@ -94,10 +126,10 @@ public class Jam : MonoBehaviour
     // Caps the jam when a lid collides with the top of it
     private void OnTriggerEnter(Collider other)
     {
-        NewProp oth = other.gameObject.GetComponent<NewProp>();
-        if(oth != null)
+        NewProp prop = other.gameObject.GetComponent<NewProp>();
+        if(prop != null)
         {
-            if(oth.propFlags.HasFlag(PropFlags.JamLid))
+            if (prop.HasAttribute(lidAtt))
             {
                 CapJam(other.gameObject);
             }

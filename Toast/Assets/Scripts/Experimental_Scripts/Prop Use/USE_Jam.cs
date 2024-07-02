@@ -1,6 +1,4 @@
 using NaughtyAttributes;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(fileName = "New Place Effect", menuName = "Prop/Use Effect/Place", order = 53)]
 public class USE_Jam : UseEffectSO
@@ -10,6 +8,9 @@ public class USE_Jam : UseEffectSO
     //private int total = -1;
     //[SerializeField]
     //private int remaining = -1;
+
+    [SerializeField]
+    private PropAttributeSO lidAtt;
 
     [Header("Prefabs")]
     [SerializeField]
@@ -35,14 +36,35 @@ public class USE_Jam : UseEffectSO
         
     //}
 
-    public override void Use(NewProp newProp)
+    public override bool TryUse(NewProp newProp)
     {
+        Jam jam = newProp.GetComponent<Jam>();
+        if (jam == null)
+        {
+            return false;
+        }
+
+        if (jam.IsCapped)
+        {
+            jam.UncapJam();
+            return true;
+        }
         // get placement
         // CHANGE LATER
         RaycastHit hit = Raycast.Instance.RaycastHelper(~(1 << 10) & ~(1 << 3));
 
         if (hit.collider.gameObject != null)
         {
+            NewProp prop = hit.collider.gameObject.GetComponent<NewProp>();
+            if (prop != null)
+            {
+                if (prop.HasAttribute(lidAtt))
+                {
+                    jam.CapJam(prop.gameObject);
+                    return true;
+                }
+            }
+
             GameObject obj = GameObject.Instantiate(objPrefab);
             obj.transform.position = hit.point + hit.normal * .01f;
             obj.transform.up = hit.normal;
@@ -51,6 +73,10 @@ public class USE_Jam : UseEffectSO
             obj.transform.GetChild(0).Rotate(new Vector3(0, 0, Random.Range(-30, 30) * 2), Space.Self);
             obj.GetComponentInChildren<Renderer>().material.color = mat.color;
             useEvent.RaiseEvent(newProp, 1);
+
+            return true;
         }
+
+        return false;
     }
 }

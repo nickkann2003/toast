@@ -20,7 +20,7 @@ public class USE_TN : UseEffectSO
     [SerializeField, EnableIf("invokeEvents")]
     private PropIntGameEvent toastNinjaScoreEvent;
 
-    public override void Use(NewProp newProp)
+    public override bool TryUse(NewProp newProp)
     {
         AudioManager.instance.PlayOneShotSound(AudioManager.instance.eatingBread);
         //if (onDestroy == null) return;
@@ -43,5 +43,7 @@ public class USE_TN : UseEffectSO
         pointsObj.GetComponent<TextMeshPro>().text += points;
 
         Destroy(newProp.gameObject);
+
+        return true;
     }
 }

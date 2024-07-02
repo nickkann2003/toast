@@ -13,23 +13,33 @@ public class USE_Knife : UseEffectSO
     [SerializeField]
     private PropIntGameEvent useEvent;
 
-    public override void Use(NewProp newProp)
+    public override bool TryUse(NewProp newProp)
     {
         NewHand newHand = newProp.GetComponentInChildren<NewHand>();
-        if (newHand == null) { return; }
-        Debug.Log(newProp.HasAttribute(inMainHandAttribute));
+        if (newHand == null) { return false; }
         if (newProp.HasAttribute(inMainHandAttribute))
         {
-            Debug.Log("Passed");
             if (newHand.CheckObject())
             {
-                newHand.UseInHand();
+                if (!newHand.TryUseInHand())
+                {
+                    // CHANGE LATER
+                    newHand.Drop().transform.position = StationManager.instance.playerLocation.ObjectOffset; // CHANGE LATER
+                }
+
+                return true;
             }
             else
             {
                 bool pickedUp = Raycast.Instance.PickupRaycast(newHand);
-                if (pickedUp) useEvent.RaiseEvent(newProp, 1);
+                if (pickedUp)
+                {
+                    useEvent.RaiseEvent(newProp, 1);
+                    return true;
+                }
             }
         }
+
+        return false;
     }
 }
