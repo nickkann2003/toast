@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Electricity : MonoBehaviour
@@ -16,59 +17,69 @@ public class Electricity : MonoBehaviour
 
     LayerMask mask;
 
+    [SerializeField]
+    private bool metalInserted;
+
+    private bool poweredOn;
+
+    public bool PoweredOn { get { return poweredOn; } set { poweredOn = value; } }
+
 
     // Start is called before the first frame update
     void Start()
     {
+        metalInserted = false;
+        poweredOn = false;
         mask = LayerMask.GetMask("Interactable");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Collision");
-
-        if(collision.gameObject.TryGetComponent(out NewProp other))
+        // Electricity is on and metal is inserted, explode
+        if(poweredOn && metalInserted)
         {
-            if(other.attributes.HasFlag(PropFlags.Metal))
-            {
-                Debug.Log("Electricity");
-            }
+            TriggerExplosion();
+            metalInserted = false;
         }
     }
-    */
 
+
+ 
     private void OnTriggerEnter(Collider other)
     {
-        if(!this.enabled)
-        {
-            return;
-        }
-
+        // If prop is metal, set that metal is inserted
         if (other.gameObject.TryGetComponent(out NewProp prop))
         {
             if (prop.attributes.HasFlag(PropFlags.Metal))
             {
-                // Play visual
-                foreach(ParticleSystem p in particles)
-                {
-    
-                    p.Play();
-                }
+                metalInserted = true;
+            }
+        }
+    }
 
-                TriggerExplosion();
+    private void OnTriggerExit(Collider other)
+    {
+        // If prop is metal, set that metal is removed
+        if (other.gameObject.TryGetComponent(out NewProp prop))
+        {
+            if (prop.attributes.HasFlag(PropFlags.Metal))
+            {
+                metalInserted = false;
             }
         }
     }
 
     private void TriggerExplosion()
     {
+        // Play visual
+        foreach (ParticleSystem p in particles)
+        {
+
+            p.Play();
+        }
+
+        // Add force
         Vector3 explosionPos = transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius, mask);
         foreach (Collider hit in colliders)
@@ -79,9 +90,7 @@ public class Electricity : MonoBehaviour
                 rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
         }
 
-        Debug.Log(colliders.Length + "Colliders detected");
-
-
+        // Play ending "animation"
         Time.timeScale = 0.2f;
 
         StationManager.instance.playerPath.Clear();
@@ -91,6 +100,9 @@ public class Electricity : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Draw the radius of the explosion force
+    /// </summary>
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
