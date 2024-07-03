@@ -167,14 +167,14 @@ public class Requirement
                     {
                         value += "<color=#000> - ";
                         value += goalName + " ";
-                        value += "<pos=80%>";
+                        value += "<pos=77%>";
                         value += current + "/" + goal;
                     }
                     else
                     {
                         value += "<color=#000> - ";
                         value += goalName + " ";
-                        value += "<pos=80%>";
+                        value += "<pos=77%>";
                         value += current;
                     }
                     

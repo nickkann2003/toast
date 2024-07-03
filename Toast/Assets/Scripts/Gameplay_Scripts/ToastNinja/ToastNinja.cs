@@ -48,7 +48,7 @@ public class ToastNinja : MonoBehaviour
     private ToastNinjaState toastNinjaState;
 
     [SerializeField]
-    private GameObject moveBlocker;
+    private List<GameObject> moveBlockers;
 
     // ------------------------------- Properties -------------------------------
     public LaunchObject[] LaunchObjects
@@ -169,7 +169,10 @@ public class ToastNinja : MonoBehaviour
         {
             destroyerVolumes[i].gameObject.SetActive(true);
         }
-        moveBlocker.SetActive(true);
+        foreach(GameObject blocker in moveBlockers)
+        {
+            blocker.SetActive(true);
+        }
     }
 
     // Stops Toast Ninja
@@ -197,7 +200,10 @@ public class ToastNinja : MonoBehaviour
         {
             destroyerVolumes[i].gameObject.SetActive(false);
         }
-        moveBlocker.SetActive(false);
+        foreach (GameObject blocker in moveBlockers)
+        {
+            blocker.SetActive(false);
+        }
     }
 
     // Readies the game
