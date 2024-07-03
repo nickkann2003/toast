@@ -69,6 +69,11 @@ public class ToastingBreadTest : MonoBehaviour
             toastStrength4 = PieManager.instance.ToastStrength4;
         if (toastStrength5 == null)
             toastStrength5 = PieManager.instance.ToastStrength5;
+
+        if(electricity == null)
+        {
+            electricity = gameObject.GetComponent<Electricity>();
+        }
     }
 
     public void Update()
