@@ -45,13 +45,13 @@ public class ObjectiveManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        SortObjectivesById();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        SortObjectivesById();
-
         // Run each groups OnLoad
         foreach(ObjectiveGroup group in objectiveGroups)
         {

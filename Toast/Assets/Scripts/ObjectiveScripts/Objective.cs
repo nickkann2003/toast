@@ -141,8 +141,13 @@ public class Objective
                     ob.SetActive(true);
                 }
             }
+            // One shot effects
             complete = true;
             completionEvents.Invoke();
+            foreach (int i in prerequisiteIds)
+            {
+                ObjectiveManager.instance.ObjectivesById[i].ObjectiveInfo.CompleteSuccessor();
+            }
         }
     }
 
