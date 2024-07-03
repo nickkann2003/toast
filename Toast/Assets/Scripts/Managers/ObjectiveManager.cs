@@ -184,27 +184,36 @@ public class ObjectiveManager : MonoBehaviour
 
     public void LoadObjectives(string fileDat)
     {
+        // Sort objectives by ID into fictionary
         SortObjectivesById();
+
+        // Get array of all objective objects from file data
         string[] allObjs = fileDat.Split(objectiveMarker);
+
+        // For each objective array object
         foreach (string ob in allObjs)
         {
+            // If its an empty string, ignore
             if (ob.Equals(""))
             {
                 continue;
             }
 
+            // Split obj info into obj and requirement info
             string[] tempObj = ob.Split(requirementStartMarker);
             string[] objDatSplit = tempObj[0].Split(spacer);
             int tId = int.Parse(objDatSplit[0]);
             bool tComplete = objDatSplit[1].Equals("1") ? true : false;
             bool tAvailable = objDatSplit[2].Equals("1") ? true : false;
 
+            // If it was complete, force complete the objective
             if (tComplete)
             {
                 ForceCompleteObjective(tId);
                 continue;
             }
 
+            // If incomplete, but available, update requirement data
             if (tAvailable)
             {
                 if (objectivesById.ContainsKey(tId))
