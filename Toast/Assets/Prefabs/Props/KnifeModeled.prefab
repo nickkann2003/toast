@@ -97,8 +97,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handPos: {fileID: 980282111546057802}
+  heldObject: {fileID: 0}
   pickUpEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
   dropEvent: {fileID: 11400000, guid: 5088c6d0c89b46f448451041d58e1733, type: 2}
+  inHandAttribute: {fileID: 0}
 --- !u!1 &1099820441112653305
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,6 +114,7 @@ GameObject:
   - component: {fileID: 3901534030299875764}
   - component: {fileID: 1256678978654817974}
   - component: {fileID: 7331708190106897204}
+  - component: {fileID: 3818136254278315561}
   m_Layer: 7
   m_Name: KnifeModeled
   m_TagString: Untagged
@@ -203,21 +206,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c2c1da8861533a44916226753aa62a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attributes: -2147483644
-  toastiness: 0
-  fireTrigger: 1.5
-  firePrefab: {fileID: 0}
-  frozenness: 0
-  baseMat: {fileID: 0}
+  propSO: {fileID: 11400000, guid: f4c31927dc7921442b6aa0a4d19c271c, type: 2}
+  staticMesh: {fileID: 363951572982815732}
+  iceConfig: {fileID: 11400000, guid: 542cd0291499ed34ab10eba67ef64fd7, type: 2}
+  propFlags: 4
+  attributesList: []
+  statsSystem:
+    statList: []
+  toastType: {fileID: 11400000, guid: ed769c6990786b0428bfb3911e9f608b, type: 2}
+  sizeType: {fileID: 11400000, guid: e4f0d536b759caf468fa4f8a983f5ce2, type: 2}
+  massType: {fileID: 11400000, guid: 263ef62346c87a54e8aec3fc8b974bf7, type: 2}
+  inHandAtt: {fileID: 11400000, guid: 6cac2a5c331557a47a12f4ccee4105ba, type: 2}
   useEffects: []
+  baseMat: {fileID: 0}
   PD_Rb: {fileID: 11400000, guid: 9b3d1433e9869ce4b9bfd8a4b04afefb, type: 2}
   createObjectEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
   thawObjectEvent: {fileID: 11400000, guid: d26239510d487054e9b40255a0a441bf, type: 2}
   toastObjectEvent: {fileID: 0}
   burnObjectEvent: {fileID: 0}
   setObjectOnFireEvent: {fileID: 0}
+  attributeToGive: {fileID: 0}
+  indexToRemove: 0
   hand: {fileID: 1488870372979239520}
+  inHandAttribute: {fileID: 0}
   useEvent: {fileID: 11400000, guid: fb0064d8f2f9be342b9136075c8542c7, type: 2}
+--- !u!54 &3818136254278315561
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099820441112653305}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &706060012230338213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301,6 +340,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cf8d86b097529e4fb5f41ef1b243c4a, type: 3}
+--- !u!1 &363951572982815732 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9cf8d86b097529e4fb5f41ef1b243c4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 706060012230338213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1028743393215611214 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9cf8d86b097529e4fb5f41ef1b243c4a,

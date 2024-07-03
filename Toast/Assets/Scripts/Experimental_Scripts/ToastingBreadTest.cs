@@ -132,7 +132,11 @@ public class ToastingBreadTest : MonoBehaviour
                 float toastiness = 0.0f;
                 if (obj.GetComponent<NewProp>() != null)
                 {
-                    toastiness = obj.GetComponent<NewProp>().Stats.GetStat(StatTypeManager.instance.toastType).Value;
+                    Stat toastStat = obj.GetComponent<NewProp>().Stats.GetStat(StatTypeManager.instance.toastType);
+                    if (toastStat != null)
+                    {
+                        toastiness = toastStat.Value;
+                    }
                 }
 
                 // Get attributes and check specific interactions
@@ -154,8 +158,8 @@ public class ToastingBreadTest : MonoBehaviour
         // Start toastig event
         startToasting.Invoke();
 
-        // Turn on electricity
-        electricity.enabled = true;
+        //// Turn on electricity
+        //electricity.enabled = true;
     }
 
     // Deactivates toasting
@@ -217,7 +221,7 @@ public class ToastingBreadTest : MonoBehaviour
             smokeParticles.Stop();
             stopToasting.Invoke();
 
-            electricity.enabled = false;
+            //electricity.enabled = false;
         }
     }
 
