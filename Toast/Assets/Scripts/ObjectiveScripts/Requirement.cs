@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using System.Drawing;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
@@ -59,6 +60,8 @@ public class Requirement
         // Recreate listener (issue with SO)
         listener = new PropIntGameEventListener();
         listener.GameEvent = e;
+        // Remove all listeners
+        listener.Response.RemoveAllListeners();
         // Enable it
         listener.OnEnable();
         // Add function to listener
@@ -129,6 +132,11 @@ public class Requirement
     public void ForceComplete()
     {
         current = goal;
+    }
+
+    public void OnDisable()
+    {
+        listener.OnDisable();
     }
 
     /// <summary>

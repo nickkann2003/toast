@@ -280,6 +280,8 @@ public class GameManager : MonoBehaviour
     /// <param name="sceneIndex"></param>
     public void LoadGame(int sceneIndex)
     {
+        SaveHandler.instance.SaveAllData();
+        ObjectiveManager.instance.OnDisable();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

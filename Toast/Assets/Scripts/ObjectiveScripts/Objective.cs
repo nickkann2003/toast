@@ -54,6 +54,11 @@ public class Objective
         }
     }
 
+    public void OnDisable()
+    {
+        objectiveInfo.OnDisable();
+    }
+
     // Check if the current task has had its prerequisites complete
     public bool CheckAvailable()
     {

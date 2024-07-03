@@ -148,6 +148,14 @@ public class SO_Objective : ScriptableObject
         CheckAllRequirementsComplete();
     }
 
+    public void OnDisable()
+    {
+        foreach(Requirement r in requirements)
+        {
+            r.OnDisable();
+        }
+    }
+
     new public string ToString
     {
         get

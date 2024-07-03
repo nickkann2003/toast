@@ -37,6 +37,8 @@ public class SaveHandler : MonoBehaviour
     private int objectiveDataLocation = 1;
     private int achievementDataLocation = 2;
 
+    private string saveFileBaseFormat = "";
+
     [Header("UI References")]
     [SerializeField]
     private TextMeshProUGUI SaveFile1;
@@ -101,26 +103,17 @@ public class SaveHandler : MonoBehaviour
         DEBUGOUTPUT.text += "Save file format verified, loading files"; //DEBUG
 
         currentSaveFile = -1;
+        SetFileDisplayNames();
 
-        string file3Name;
-        SetCurrentSaveFileByID(2); 
-        DEBUGOUTPUT.text += "PARSING SAVE FILE NAME";  //DEBUG
-        file3Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
-        DEBUGOUTPUT.text += "SAVE FILE NAME SUCCESSFULLY PARSED\n";  //DEBUG
-
-        string file2Name;
-        SetCurrentSaveFileByID(1);
-        file2Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
-
-        string file1Name;
-        SetCurrentSaveFileByID(0);
-        file1Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
-        
-        SaveFile1.text = file1Name.Equals("") ? "NEW SAVE" : file1Name;
-        SaveFile2.text = file2Name.Equals("") ? "NEW SAVE" : file2Name;
-        SaveFile3.text = file3Name.Equals("") ? "NEW SAVE" : file3Name;
-
-        currentSaveFile = -1;
+        saveFileBaseFormat = "";
+        for (int i = 0; i < numSaveFiles; i++)
+        {
+            for (int j = 0; j < saveFileSections; j++)
+            {
+                saveFileBaseFormat += fileDataParser;
+            }
+            saveFileBaseFormat += saveFileParser;
+        }
     }
 
     /// <summary>
@@ -360,5 +353,43 @@ public class SaveHandler : MonoBehaviour
         }
         allDat = allDat.Substring(0, allDat.Length - 1);
         return allDat;
+    }
+
+    private void SetFileDisplayNames()
+    {
+        int cFileId = currentSaveFile;
+
+        string file3Name;
+        SetCurrentSaveFileByID(2);
+        DEBUGOUTPUT.text += "PARSING SAVE FILE NAME";  //DEBUG
+        file3Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
+        DEBUGOUTPUT.text += "SAVE FILE NAME SUCCESSFULLY PARSED\n";  //DEBUG
+
+        string file2Name;
+        SetCurrentSaveFileByID(1);
+        file2Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
+
+        string file1Name;
+        SetCurrentSaveFileByID(0);
+        file1Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
+
+        SaveFile1.text = file1Name.Equals("") ? "NEW SAVE" : file1Name;
+        SaveFile2.text = file2Name.Equals("") ? "NEW SAVE" : file2Name;
+        SaveFile3.text = file3Name.Equals("") ? "NEW SAVE" : file3Name;
+
+        currentSaveFile = cFileId;
+    }
+
+    /// <summary>
+    /// Deletes all information for a given save file
+    /// </summary>
+    /// <param name="fileId">File ID to be replaced</param>
+    public void DeleteAllFileData(int fileId)
+    {
+        SetCurrentSaveFileByID(fileId);
+        SetCurrentFileInfo(saveFileBaseFormat);
+        SetFileDisplayNames();
+
+        currentSaveFile = -1;
     }
 }

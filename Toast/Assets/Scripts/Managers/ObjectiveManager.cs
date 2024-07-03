@@ -71,6 +71,14 @@ public class ObjectiveManager : MonoBehaviour
         
     }
 
+    public void OnDisable()
+    {
+        foreach(ObjectiveGroup group in objectiveGroups)
+        {
+            group.OnDisable();
+        }
+    }
+
     /// <summary>
     /// Updates the text of all objective groups
     /// </summary>
