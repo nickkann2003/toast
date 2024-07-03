@@ -103,7 +103,7 @@ public class Electricity : MonoBehaviour
     /// <summary>
     /// Draw the radius of the explosion force
     /// </summary>
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, radius);
