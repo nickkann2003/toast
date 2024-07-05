@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveName: Pick Up WITH A Knife
   description: Knives can stack objects!
-  completeText: 
+  completeText: Toast Ninja Unlocked! Right-Click the Sword in the Stone to being,
+    Right Click again to stop
   unavailableText: ???
   requirements:
   - targetAttributes: -2147483648
@@ -30,8 +31,9 @@ MonoBehaviour:
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
-    listening: 0
+    listening: 1
   sequentialRequirements: 0
   id: 6
-  complete: 0
-  available: 0
+  complete: 1
+  available: 1
+  successorComplete: 0
