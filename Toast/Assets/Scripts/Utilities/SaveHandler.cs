@@ -105,7 +105,7 @@ public class SaveHandler : MonoBehaviour
         currentSaveFile = -1;
         SetFileDisplayNames();
 
-        saveFileBaseFormat = "";
+        saveFileBaseFormat = string.Empty;
         for (int i = 0; i < numSaveFiles; i++)
         {
             for (int j = 0; j < saveFileSections; j++)
