@@ -7,8 +7,10 @@ public class SwordBlade : MonoBehaviour
     // ------------------------------- Functions -------------------------------
     public void OnTriggerEnter(Collider other)
     {
+        Debug.Log("HELLO");
         if (other.gameObject.GetComponent<TN_Object>() != null)
         {
+            Debug.Log("HELLO");
             other.gameObject.GetComponent<TN_Object>().Use();
         }
 

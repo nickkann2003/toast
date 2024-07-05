@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handPos: {fileID: 1945931318903890854}
+  pickUpEvent: {fileID: 0}
+  dropEvent: {fileID: 0}
 --- !u!1 &4936896631024130430
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,11 +145,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a19fc511327464c99c07ebcdcaf535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMat: {fileID: 0}
   attributes: 4096
   toastiness: 0
+  fireTrigger: 1.5
+  firePrefab: {fileID: 0}
   frozenness: 0
+  baseMat: {fileID: 0}
+  useEffects: []
+  PD_Rb: {fileID: 0}
+  createObjectEvent: {fileID: 0}
+  thawObjectEvent: {fileID: 0}
+  toastObjectEvent: {fileID: 0}
+  burnObjectEvent: {fileID: 0}
+  setObjectOnFireEvent: {fileID: 0}
   hand: {fileID: 1770776306743515512}
+  toastNinja: {fileID: 0}
+  unsheathedRot: {x: 0, y: 0, z: 0}
+  sheathedPos: {fileID: 0}
 --- !u!1 &8159279534390868430
 GameObject:
   m_ObjectHideFlags: 0

@@ -146,19 +146,21 @@ public class ToastNinja : MonoBehaviour
     // Starts Toast Ninja
     public void GameStart()
     {
-        if (Raycast.Instance.CheckKnifeStack() >= 3)
-        {
-            if (swordPrefab != null)
-            {
-                swordObject = Instantiate(swordPrefab);
-                Sword swordScript = swordObject.GetComponent<Sword>();
-                swordScript.hand.Pickup(Raycast.Instance.hand.CheckObject());
-                Raycast.Instance.hand.Pickup(swordObject);
+        //if (Raycast.Instance.CheckKnifeStack() >= 3)
+        //{
+        //    if (swordPrefab != null)
+        //    {
+        //        swordObject = Instantiate(swordPrefab);
+        //        Sword swordScript = swordObject.GetComponent<Sword>();
+        //        swordScript.hand.Pickup(Raycast.Instance.hand.CheckObject());
+        //        Raycast.Instance.hand.Pickup(swordObject);
 
-                Raycast.Instance.noDrop = true;
-                Raycast.Instance.noDrag = true;
-            }
-        }
+        //        Raycast.Instance.noDrop = true;
+        //        Raycast.Instance.noDrag = true;
+        //    }
+        //}
+
+        Raycast.Instance.noDrag = true;
 
         toastNinjaState = ToastNinjaState.Active;
         for (int i = 0; i < launchObjects.Length; i++)
@@ -178,18 +180,20 @@ public class ToastNinja : MonoBehaviour
     // Stops Toast Ninja
     public void GameStop()
     {
-        if (swordObject != null)
-        {
-            Raycast.Instance.noDrop = false;
-            Raycast.Instance.noDrag = false;
+        //if (swordObject != null)
+        //{
+        //    Raycast.Instance.noDrop = false;
+        //    Raycast.Instance.noDrag = false;
 
-            Sword swordScript = swordObject.GetComponent<Sword>();
+        //    Sword swordScript = swordObject.GetComponent<Sword>();
 
-            Raycast.Instance.hand.Pickup(swordScript.hand.CheckObject());
+        //    Raycast.Instance.hand.Pickup(swordScript.hand.CheckObject());
 
-            Destroy(swordObject);
-            swordObject = null;
-        }
+        //    Destroy(swordObject);
+        //    swordObject = null;
+        //}
+
+        Raycast.Instance.noDrag = false;
 
         toastNinjaState = ToastNinjaState.Inactive;
         for (int i = 0; i < launchObjects.Length; i++)

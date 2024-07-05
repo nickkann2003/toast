@@ -112,6 +112,11 @@ public class PhysicalButtons : MonoBehaviour
         }
     }
 
+    public void ForceActivate()
+    {
+        buttonTrigger.Invoke();
+    }
+
     // pushes button down
     void Press()
     {
