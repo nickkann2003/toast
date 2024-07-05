@@ -85,7 +85,7 @@ public class AchievementManager : MonoBehaviour
     {
         bannerShowTime += Time.deltaTime;
 
-        if(notificationBanner.activeSelf == true && bannerShowTime >= 3)
+        if(notificationBanner.activeSelf == true && bannerShowTime >= 6)
         {
             notificationBanner.SetActive(false);
         }
@@ -229,7 +229,7 @@ public class AchievementManager : MonoBehaviour
     void PlayNotification(Achievement achievement)
     {
         // Change text
-        bannerText.text = $"Achievement Unlocked: {achievement.AchievementName} ({achievement.Description}) - Click to view achievements";
+        bannerText.text = $"\"{achievement.AchievementName}\" Unlocked - Click to view achievements";
         // Play a sound here
 
         //
