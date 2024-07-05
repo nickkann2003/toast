@@ -15,19 +15,16 @@ public class AchievementManager : MonoBehaviour
 {
     // DECLARE ACHIEVEMENTS============================================
     [Foldout("Achievement Objects")]
-    public Achievement ACHIEVEMENT_CLEAR_TUTORIAL;
-    [Foldout("Achievement Objects")]
-    public Achievement ACHIEVEMENT_EAT_5_BREAD;
-    [Foldout("Achievement Objects")]
-    public Achievement ACHIEVEMENT_FIRE_ENDING;
-    [Foldout("Achievement Objects")]
-    public Achievement ACHIEVEMENT_FIRST_TOAST;
-    [Foldout("Achievement Objects")]
-    public Achievement ACHIEVEMENT_FEED_LITTLE_FELLA;
-    [Foldout("Achievement Objects")]
-    public Achievement ACHIEVEMENT_TOAST_NINJA_SCORE_50;
-    [Foldout("Achievement Objects")]
-    public Achievement ACHIEVEMENT_TOAST_NINJA_SCORE_100;
+    public Achievement
+        ACHIEVEMENT_CLEAR_TUTORIAL,
+        ACHIEVEMENT_EAT_5_BREAD,
+        ACHIEVEMENT_FIRE_ENDING,
+        ACHIEVEMENT_FIRST_TOAST,
+        ACHIEVEMENT_FEED_LITTLE_FELLA,
+        ACHIEVEMENT_TOAST_NINJA_SCORE_50,
+        ACHIEVEMENT_TOAST_NINJA_SCORE_100,
+        ACHIEVEMENT_ELECTROCUTION;
+
 
 
 
@@ -172,6 +169,14 @@ public class AchievementManager : MonoBehaviour
     public void ReceivedEnding()
     {
         Unlock(ACHIEVEMENT_FIRE_ENDING);
+    }
+
+    /// <summary>
+    /// Achievements relating to Electricity/Explosions
+    /// </summary>
+    public void ReceivedElectricity(NewProp prop, int increment)
+    {
+        Unlock(ACHIEVEMENT_ELECTROCUTION);
     }
 
     public void ReceivedToastNinja(NewProp prop, int increment)
