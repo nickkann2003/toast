@@ -38,6 +38,7 @@ public class SaveHandler : MonoBehaviour
     private int achievementDataLocation = 2;
 
     private string saveFileBaseFormat = "";
+    private string singleFileBaseFormat = "";
 
     [Header("UI References")]
     [SerializeField]
@@ -106,11 +107,13 @@ public class SaveHandler : MonoBehaviour
         SetFileDisplayNames();
 
         saveFileBaseFormat = string.Empty;
+        singleFileBaseFormat = string.Empty;
         for (int i = 0; i < numSaveFiles; i++)
         {
             for (int j = 0; j < saveFileSections; j++)
             {
                 saveFileBaseFormat += fileDataParser;
+                singleFileBaseFormat += fileDataParser;
             }
             saveFileBaseFormat += saveFileParser;
         }
@@ -387,7 +390,7 @@ public class SaveHandler : MonoBehaviour
     public void DeleteAllFileData(int fileId)
     {
         SetCurrentSaveFileByID(fileId);
-        SetCurrentFileInfo(saveFileBaseFormat);
+        SetCurrentFileInfo(singleFileBaseFormat);
         SetFileDisplayNames();
 
         currentSaveFile = -1;
