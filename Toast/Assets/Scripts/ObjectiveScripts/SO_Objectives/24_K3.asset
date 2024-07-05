@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: 20_Fr1
+  m_Name: 24_K3
   m_EditorClassIdentifier: 
-  objectiveName: A Cold One
-  description: Freeze a slice of Bread
-  completeText: 
-  unavailableText: Complete Toaster 3
+  objectiveName: Knife of a Knife
+  description: Knives can stack Knives can stack Knives...
+  completeText: A fine sword should make Toast Ninja easier!
+  unavailableText: ???
   requirements:
-  - targetAttributes: 536870912
+  - targetAttributes: -2147483648
     hasExclusions: 0
     excludeAttributes: 0
     listener:
-      gameEvent: {fileID: 11400000, guid: 6cbdcf27414bfd34c932bb1ee33dafe9, type: 2}
+      gameEvent: {fileID: 11400000, guid: fb0064d8f2f9be342b9136075c8542c7, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Freeze Bread
-    goal: 1
+    goalName: Use a Knife on a Knife <sprite=78>\n
+    goal: 4
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
     listening: 0
-  sequentialRequirements: 1
-  id: 20
+  sequentialRequirements: 0
+  id: 24
   complete: 0
   available: 0
   successorComplete: 0
