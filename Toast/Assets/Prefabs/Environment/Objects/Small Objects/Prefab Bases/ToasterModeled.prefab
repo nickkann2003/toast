@@ -88,9 +88,17 @@ MonoBehaviour:
   strongestStrength: {r: 0.084905684, g: 0.043337278, b: 0, a: 1}
   timer: 0
   maxTime: 0
+  fireTrigger: 1.5
   smokeParticles: {fileID: 3992009934678706487}
   firePrefab: {fileID: 0}
-  fireTrigger: 1.5
+  frozenAtt: {fileID: 11400000, guid: fe5b4706877f05c4b89e837b2a623c8d, type: 2}
+  electricity: {fileID: 0}
+  customEvents: 0
+  toastStrength1: {fileID: 0}
+  toastStrength2: {fileID: 0}
+  toastStrength3: {fileID: 0}
+  toastStrength4: {fileID: 0}
+  toastStrength5: {fileID: 0}
 --- !u!1 &1955597983955280020
 GameObject:
   m_ObjectHideFlags: 0
@@ -5840,9 +5848,12 @@ MonoBehaviour:
   dialValue: 0
   numSnapPoints: 2
   snapAngle: 5
-  normal: {x: 0, y: 1, z: 0}
+  rotateAround: {x: -1, y: 0, z: 0}
   maxRotation: 110
   onDialChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onDialSnap:
     m_PersistentCalls:
       m_Calls: []
   freeze: 0

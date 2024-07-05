@@ -3046,6 +3046,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
         type: 3}
+      propertyPath: frozenAtt
+      value: 
+      objectReference: {fileID: 11400000, guid: fe5b4706877f05c4b89e837b2a623c8d,
+        type: 2}
+    - target: {fileID: 7172836254959586144, guid: 35113bd6e1073544387b346e18ac6a57,
+        type: 3}
       propertyPath: firePrefab
       value: 
       objectReference: {fileID: 7603904604651950810, guid: 3930a776d7b66ce40b0b4fe84b802838,
@@ -3504,6 +3510,7 @@ MonoBehaviour:
   parentLoc: {fileID: 0}
   stationLabel: 2
   clickableCollider: {fileID: 8536966151002778007}
+  invertXCameraRotation: 0
   interactables: []
   isEnabled: 0
   dragPlanes: []
@@ -3512,6 +3519,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   leave:
+    m_PersistentCalls:
+      m_Calls: []
+  separateArriveAndReturn: 0
+  returnTo:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &5986225429861783730

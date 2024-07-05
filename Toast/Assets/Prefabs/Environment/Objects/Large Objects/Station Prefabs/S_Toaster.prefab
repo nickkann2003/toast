@@ -1111,7 +1111,7 @@ Transform:
   - {fileID: 7322967204096269549}
   - {fileID: 2572956098616876166}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8536966151002778007
 BoxCollider:
@@ -7314,6 +7314,8 @@ MonoBehaviour:
   smokeParticles: {fileID: 6579856914684212897}
   firePrefab: {fileID: 7603904604651950810, guid: 3930a776d7b66ce40b0b4fe84b802838,
     type: 3}
+  frozenAtt: {fileID: 11400000, guid: fe5b4706877f05c4b89e837b2a623c8d, type: 2}
+  electricity: {fileID: 0}
   customEvents: 0
   toastStrength1: {fileID: 0}
   toastStrength2: {fileID: 0}
@@ -7335,9 +7337,9 @@ MonoBehaviour:
   particles:
   - {fileID: 2513447508674022322}
   - {fileID: 1756044758546025044}
-  burstP: {fileID: 0}
   radius: 2
   power: 100
+  endingStation: {fileID: 0}
 --- !u!1 &7464800361301515771
 GameObject:
   m_ObjectHideFlags: 0

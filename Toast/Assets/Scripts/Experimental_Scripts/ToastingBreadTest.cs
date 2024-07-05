@@ -33,6 +33,7 @@ public class ToastingBreadTest : MonoBehaviour
     [Header("References")]
     [SerializeField] private ParticleSystem smokeParticles;
     [SerializeField] private GameObject firePrefab;
+    [SerializeField] private PropAttributeSO frozenAtt;
     [SerializeField] private Electricity electricity;
 
     [SerializeField] private bool customEvents = false;
@@ -176,8 +177,8 @@ public class ToastingBreadTest : MonoBehaviour
                     NewProp prop = obj.GetComponent<NewProp>();
                     if (prop != null)
                     {
-                        if(defrost)
-                            prop.DefrostToast();
+                        if (defrost && frozenAtt != null)
+                            prop.RemoveAttribute(frozenAtt);
 
                         switch (snapPoint)
                         {

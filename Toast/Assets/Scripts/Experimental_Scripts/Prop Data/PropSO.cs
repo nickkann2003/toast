@@ -15,8 +15,11 @@ public class PropSO : ScriptableObject
     [SerializeField]
     private BaseStats baseStats;
 
-    //[SerializeField]
-    //private Stat[] stats;
+    [SerializeField]
+    private Stat[] stats;
+
+    [SerializeField]
+    private UseEffectSO[] useEffects;
 
     [SerializeField, Foldout("Configs")]
     private IceConfig iceConfig;
@@ -26,14 +29,14 @@ public class PropSO : ScriptableObject
 
     public void PopulateProp(NewProp newProp)
     {
-        //if (stats != null)
-        //{
-        //    for (int i = 0; i < stats.Length; i++)
-        //    {
-        //        Stat statToAdd = new Stat(stats[i], newProp.Stats);
-        //        newProp.Stats.AddStat(statToAdd);
-        //    }
-        //}
+        if (stats != null)
+        {
+            for (int i = 0; i < stats.Length; i++)
+            {
+                Stat statToAdd = new Stat(stats[i], newProp.Stats);
+                newProp.Stats.AddStat(statToAdd);
+            }
+        }
 
         if (baseStats != null)
         {
@@ -55,14 +58,14 @@ public class PropSO : ScriptableObject
             }
         }
 
-        //if (useEffects != null)
-        //{
-        //    for (int i = 0; i < useEffects.Length; i++)
-        //    {
-        //        UseEffectSO useEffectToAdd = useEffects[i];
-        //        newProp.useEffects.Add(useEffectToAdd);
-        //    }
-        //}
+        if (useEffects != null)
+        {
+            for (int i = 0; i < useEffects.Length; i++)
+            {
+                UseEffectSO useEffectToAdd = useEffects[i];
+                newProp.useEffects.Add(useEffectToAdd);
+            }
+        }
     }
 }
 

@@ -233,15 +233,15 @@ public class NewProp : MonoBehaviour
 
         return true;
 
-        if(toastCd < 0 && toasting)
-        {
-            RunEventChecks();
-            toasting = false;
-        }
-        if(toasting)
-        {
-            toastCd -= Time.deltaTime;
-        }
+        //if(toastCd < 0 && toasting)
+        //{
+        //    RunEventChecks();
+        //    toasting = false;
+        //}
+        //if(toasting)
+        //{
+        //    toastCd -= Time.deltaTime;
+        //}
     }
 
     // Use this prop's strategy
@@ -364,17 +364,17 @@ public class NewProp : MonoBehaviour
     }
 
     // Defrosts this object
-    public void DefrostToast()
-    {
-        // If frozen, destroy top game object and remove frozen flag
-        if (propFlags.HasFlag(PropFlags.Frozen))
-        {
-            Destroy(gameObject.transform.GetChild(0).gameObject);
-            RemoveFlag(PropFlags.Frozen);
-            if(thawObjectEvent != null)
-                thawObjectEvent.RaiseEvent(this, 1);
-        }
-    }
+    //public void DefrostToast()
+    //{
+    //    // If frozen, destroy top game object and remove frozen flag
+    //    if (propFlags.HasFlag(PropFlags.Frozen))
+    //    {
+    //        Destroy(gameObject.transform.GetChild(0).gameObject);
+    //        RemoveFlag(PropFlags.Frozen);
+    //        if(thawObjectEvent != null)
+    //            thawObjectEvent.RaiseEvent(this, 1);
+    //    }
+    //}
 
     // ------------------------------- RIGIDBODY METHODS -------------------------------
     // ------------------------------- RIGIDBODY METHODS -------------------------------

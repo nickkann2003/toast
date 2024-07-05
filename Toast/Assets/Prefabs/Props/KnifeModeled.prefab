@@ -100,7 +100,7 @@ MonoBehaviour:
   heldObject: {fileID: 0}
   pickUpEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
   dropEvent: {fileID: 11400000, guid: 5088c6d0c89b46f448451041d58e1733, type: 2}
-  inHandAttribute: {fileID: 0}
+  inHandAttribute: {fileID: 11400000, guid: 6cac2a5c331557a47a12f4ccee4105ba, type: 2}
 --- !u!1 &1099820441112653305
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
   propSO: {fileID: 11400000, guid: f4c31927dc7921442b6aa0a4d19c271c, type: 2}
   staticMesh: {fileID: 363951572982815732}
   iceConfig: {fileID: 11400000, guid: 542cd0291499ed34ab10eba67ef64fd7, type: 2}
-  propFlags: 4
+  propFlags: -2147483644
   attributesList: []
   statsSystem:
     statList: []
@@ -217,7 +217,8 @@ MonoBehaviour:
   sizeType: {fileID: 11400000, guid: e4f0d536b759caf468fa4f8a983f5ce2, type: 2}
   massType: {fileID: 11400000, guid: 263ef62346c87a54e8aec3fc8b974bf7, type: 2}
   inHandAtt: {fileID: 11400000, guid: 6cac2a5c331557a47a12f4ccee4105ba, type: 2}
-  useEffects: []
+  useEffects:
+  - {fileID: 11400000, guid: a69585ce2e284ae43b493895457a36e0, type: 2}
   baseMat: {fileID: 0}
   PD_Rb: {fileID: 11400000, guid: 9b3d1433e9869ce4b9bfd8a4b04afefb, type: 2}
   createObjectEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
@@ -228,7 +229,7 @@ MonoBehaviour:
   attributeToGive: {fileID: 0}
   indexToRemove: 0
   hand: {fileID: 1488870372979239520}
-  inHandAttribute: {fileID: 0}
+  inHandAttribute: {fileID: 11400000, guid: 6cac2a5c331557a47a12f4ccee4105ba, type: 2}
   useEvent: {fileID: 11400000, guid: fb0064d8f2f9be342b9136075c8542c7, type: 2}
 --- !u!54 &3818136254278315561
 Rigidbody:

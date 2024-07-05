@@ -86,13 +86,9 @@ public class NewHand : MonoBehaviour
         // If item being picked up is not null
         if (itemToPickup != null)
         {
-            //Debug.Log(itemToPickup);
-            //Debug.Log(itemToPickup.GetComponent<NewProp>());
-            //Debug.Log(itemToPickup.GetComponent<NewProp>().HasAttribute(mainHandAttribute));
             // If clicked object in hand, remove it instead
             if (itemToPickup.GetComponent<NewProp>() != null && itemToPickup.GetComponent<NewProp>().HasAttribute(inHandAttribute))
             {
-                Debug.Log("HELLO");
                 itemToPickup.GetComponent<NewProp>().ForceRemoveFromHand();
             }
 

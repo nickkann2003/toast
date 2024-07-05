@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class OnFireAttribute : PropAttributeSO
     private StatType toastType;
 
     [SerializeField]
-    private StatConditional OnFireConditional;
+    private StatConditionalContainer OnFireConditional;
 
     [SerializeField]
     private GameObject firePrefab;
@@ -26,12 +27,13 @@ public class OnFireAttribute : PropAttributeSO
     {
         if (newProp.HasAttribute(frozenAtt))
         {
-            newProp.RemoveAttribute(frozenAtt);
-            newProp.RemoveAttributeWithoutOnRemove(this);
+            //newProp.RemoveAttribute(frozenAtt);
+            //newProp.RemoveAttributeWithoutOnRemove(this);
+            newProp.StartCoroutine(RemoveNextFrame(newProp));
             return;
         }
 
-        float distToFire = OnFireConditional.Target - newProp.Stats.GetStat(toastType).Value;
+        float distToFire = OnFireConditional.StatConditional.Target - newProp.Stats.GetStat(toastType).Value;
         if (distToFire < 0)
         {
             distToFire = 0;
@@ -58,8 +60,22 @@ public class OnFireAttribute : PropAttributeSO
         //FireEndingManager.instance.addFireObject(newProp.gameObject);
     }
 
+    IEnumerator RemoveNextFrame(NewProp newProp)
+    {
+        newProp.RemoveAttribute(frozenAtt);
+        yield return new WaitForSeconds(0);
+        newProp.RemoveAttributeWithoutOnRemove(this);
+        newProp.Stats.IncrementStat(toastType, -.3f);
+
+        newProp.Stats.AddConditional(OnFireConditional.Type, OnFireConditional.StatConditional);
+    }
+
     public override void OnRemove(NewProp newProp)
     {
+        newProp.Stats.IncrementStat(toastType, -.3f);
+
+        newProp.Stats.AddConditional(OnFireConditional.Type, OnFireConditional.StatConditional);
+
         FireEndingManager.instance.removeFireObject(newProp.gameObject);
         newProp.RemoveFlag(PropFlags.OnFire);
 
