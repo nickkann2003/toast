@@ -312,7 +312,6 @@ public class Raycast : MonoBehaviour
             // Check for hit
             if (Physics.Raycast(ray, out hitTest, Mathf.Infinity, (~mask_IgnoreRaycast & ~mask_Station)))
             {
-                Debug.Log(hitTest.normal.y);
                 Vector3 offset = new Vector3(0, .3f * hitTest.normal.y, 0);
                 if (offset.y == 0)
                 {
