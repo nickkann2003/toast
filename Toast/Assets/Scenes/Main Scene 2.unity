@@ -4294,6 +4294,8 @@ MonoBehaviour:
     type: 2}
   ACHIEVEMENT_TOAST_NINJA_SCORE_100: {fileID: 11400000, guid: cd23c95dfeaf20944aeb83011d6da0aa,
     type: 2}
+  ACHIEVEMENT_ELECTROCUTION: {fileID: 11400000, guid: c67638b804190a04caccd28baf76dbaf,
+    type: 2}
   achievements:
   - {fileID: 11400000, guid: 44519b983e4fe3d4ca616aebd14a5cf2, type: 2}
   - {fileID: 11400000, guid: c70411c4c03041f48aa495ecc1181b44, type: 2}
@@ -4302,6 +4304,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2b29e217be28d0d48b66b9faa89e4e8f, type: 2}
   - {fileID: 11400000, guid: 748192a60d7dba14aa60ca30208ebe2f, type: 2}
   - {fileID: 11400000, guid: cd23c95dfeaf20944aeb83011d6da0aa, type: 2}
+  - {fileID: 11400000, guid: c67638b804190a04caccd28baf76dbaf, type: 2}
   unlockedAchievements: []
   UIPrefab: {fileID: 4698171833950961960, guid: 54adf1b91ca220f4e92b8d2cd4812fce,
     type: 3}
@@ -4422,6 +4425,22 @@ MonoBehaviour:
         - m_Target: {fileID: 476747432}
           m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
           m_MethodName: ReceivedToastNinja
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: 44f19204819a7524e8b69faddb683130, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 476747432}
+          m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
+          m_MethodName: ReceivedElectricity
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -11037,7 +11056,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 117, y: 118}
+  m_AnchoredPosition: {x: 117, y: 0}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1034055946
@@ -20614,6 +20633,7 @@ MonoBehaviour:
   power: 50
   endingStation: {fileID: 1392973461}
   metalInserted: 0
+  electricityExplodeEvent: {fileID: 0}
 --- !u!1 &1467304606
 GameObject:
   m_ObjectHideFlags: 0
@@ -27702,6 +27722,7 @@ MonoBehaviour:
   power: 50
   endingStation: {fileID: 1392973461}
   metalInserted: 0
+  electricityExplodeEvent: {fileID: 0}
 --- !u!1 &1653158262
 GameObject:
   m_ObjectHideFlags: 0
@@ -45786,7 +45807,7 @@ PrefabInstance:
     - target: {fileID: 2035163972675096155, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 118
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2035163972675096155, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
