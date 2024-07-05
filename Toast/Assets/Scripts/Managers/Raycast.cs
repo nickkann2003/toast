@@ -306,11 +306,21 @@ public class Raycast : MonoBehaviour
             Vector3 objectDropRotation = new Vector3(0, 90, 0);
             objectDropRotation += currentStation.gameObject.transform.rotation.eulerAngles;
 
-            //RaycastHit hitTest = RaycastHelper(~mask_Station);
-            //if (hitTest.collider != null)
-            //{
-            //    objectPos = hitTest.point + hitTest.normal * .4f;
-            //}
+            RaycastHit hitTest;
+            Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
+
+            // Check for hit
+            if (Physics.Raycast(ray, out hitTest, Mathf.Infinity, (~mask_IgnoreRaycast & ~mask_Station)))
+            {
+                Debug.Log(hitTest.normal.y);
+                Vector3 offset = new Vector3(0, .3f * hitTest.normal.y, 0);
+                if (offset.y == 0)
+                {
+                    offset.y = .3f;
+                }
+
+                objectPos = hitTest.point + offset;
+            }
 
             // Set the current position of the object
             itemToDrop.transform.position = objectPos;
