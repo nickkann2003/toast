@@ -22,6 +22,11 @@ public class Electricity : MonoBehaviour
 
     private bool poweredOn;
 
+    [SerializeField]
+    private PropIntGameEvent electricityExplodeEvent;
+
+    private List<NewProp> metalObjects = new List<NewProp>();
+
     public bool PoweredOn { get { return poweredOn; } set { poweredOn = value; } }
 
 
@@ -31,6 +36,11 @@ public class Electricity : MonoBehaviour
         metalInserted = false;
         poweredOn = false;
         mask = LayerMask.GetMask("Interactable");
+
+        if(electricityExplodeEvent == null)
+        {
+            electricityExplodeEvent = PieManager.instance.ElectricityExplodeObject;
+        }
     }
 
     // Update is called once per frame
@@ -54,6 +64,10 @@ public class Electricity : MonoBehaviour
             if (prop.attributes.HasFlag(PropFlags.Metal))
             {
                 metalInserted = true;
+                if (!metalObjects.Contains(prop))
+                {
+                    metalObjects.Add(prop);
+                }
             }
         }
     }
@@ -66,6 +80,10 @@ public class Electricity : MonoBehaviour
             if (prop.attributes.HasFlag(PropFlags.Metal))
             {
                 metalInserted = false;
+                if (metalObjects.Contains(prop))
+                {
+                    metalObjects.Remove(prop);
+                }
             }
         }
     }
@@ -75,7 +93,6 @@ public class Electricity : MonoBehaviour
         // Play visual
         foreach (ParticleSystem p in particles)
         {
-
             p.Play();
         }
 
@@ -92,6 +109,13 @@ public class Electricity : MonoBehaviour
 
         // Play ending "animation"
         Time.timeScale = 0.2f;
+
+        // Trigger event
+
+        foreach (NewProp prop in metalObjects)
+        {
+            electricityExplodeEvent.RaiseEvent(prop, 1);
+        }
 
         StationManager.instance.playerPath.Clear();
         StationManager.instance.MoveToStation(endingStation);
