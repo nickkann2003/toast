@@ -371,11 +371,17 @@ public class Raycast : MonoBehaviour
             {
                 return false;
             }
-            _hand.Pickup(itemToPickup);
+            hit.collider.gameObject.transform.position = new Vector3(100, 100, 100);
+            StartCoroutine(PickupItem(itemToPickup, _hand));
             return true;
         }
-
         return false;
+    }
+
+    private IEnumerator PickupItem(GameObject itemToPickup, NewHand _hand)
+    {
+        yield return new WaitForFixedUpdate();
+        _hand.Pickup(itemToPickup);
     }
 
     /// <summary>
