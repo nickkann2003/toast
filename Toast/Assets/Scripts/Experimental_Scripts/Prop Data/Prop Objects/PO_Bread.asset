@@ -14,6 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attributes:
   - {fileID: 11400000, guid: bbd5aaa18dace3f42971001a1a94ac56, type: 2}
-  baseStats: {fileID: 11400000, guid: 683114ca40824db4b8c9164dad70aae9, type: 2}
+  stats:
+  - type: {fileID: 11400000, guid: 263ef62346c87a54e8aec3fc8b974bf7, type: 2}
+    baseValue: 0.025
+    rateOfChange: 0
+    modifiers: []
+    conditionals: []
+    value: 0
+  - type: {fileID: 11400000, guid: ed769c6990786b0428bfb3911e9f608b, type: 2}
+    baseValue: 0
+    rateOfChange: 1
+    modifiers: []
+    conditionals: []
+    value: 0
+  useBaseStats: 1
+  baseStats: {fileID: 11400000, guid: 49db2081bde07f049b21eb070cdef3f8, type: 2}
+  useEffects: []
   iceConfig: {fileID: 11400000, guid: 99b3630b9b825f0488da0f53c9c12162, type: 2}
   rigidbody: {fileID: 11400000, guid: 05d3ab828c2d3cc4f9f0aad4a9ba8bf2, type: 2}

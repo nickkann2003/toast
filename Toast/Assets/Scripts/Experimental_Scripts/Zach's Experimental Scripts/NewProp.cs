@@ -34,19 +34,10 @@ public class NewProp : MonoBehaviour
     public List<PropAttributeSO> attributesList;
 
     [Header("------------ Stats ------------")]
-    //[SerializeField]
-    //private List<Stat> stats = new List<Stat>();
     [SerializeField]
     private StatsSystem statsSystem = new StatsSystem();
 
     public StatsSystem Stats { get { return statsSystem; } }
-
-    [SerializeField]
-    private StatType toastType;
-    [SerializeField]
-    private StatType sizeType;
-    [SerializeField]
-    private StatType massType;
 
     [SerializeField]
     private PropAttributeSO inHandAtt;
@@ -150,13 +141,13 @@ public class NewProp : MonoBehaviour
         if (propSO != null)
         {
             propSO.PopulateProp(this);
-            if (useEffects.Count > 0)
-            {
-                for (int i = 0; i < useEffects.Count; i++)
-                {
-                    useEffects[i].OnEquip(this);
-                }
-            }
+            //if (useEffects.Count > 0)
+            //{
+            //    for (int i = 0; i < useEffects.Count; i++)
+            //    {
+            //        useEffects[i].OnEquip(this);
+            //    }
+            //}
         }
 
         UpdateRigidbody();
@@ -203,13 +194,13 @@ public class NewProp : MonoBehaviour
 
     public void RecalcSize()
     {
-        Stat sizeStat = Stats.GetStat(sizeType);
+        Stat sizeStat = Stats.GetStat(StatTypeManager.instance.sizeType);
         transform.localScale = Vector3.one * sizeStat.Value;
     }
 
     public void RecalcWeight()
     {
-        Stat massStat = Stats.GetStat(massType);
+        Stat massStat = Stats.GetStat(StatTypeManager.instance.massType);
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb != null)
         {
@@ -297,10 +288,11 @@ public class NewProp : MonoBehaviour
         //toastiness += val;
 
         float testToastiness = 0f;
-        if (toastType != null)
+        Stat toastStat = statsSystem.GetStat(StatTypeManager.instance.toastType);
+        if (toastStat != null)
         {
-            statsSystem.IncrementStat(toastType, val);
-            testToastiness = statsSystem.GetStat(toastType).UpdateValue();
+            toastStat.IncreaseValue(val);
+            testToastiness = toastStat.UpdateValue();
         }
 
         // Get color strength and cap it

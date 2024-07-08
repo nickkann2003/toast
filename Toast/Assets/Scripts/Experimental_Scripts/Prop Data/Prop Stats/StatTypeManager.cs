@@ -5,6 +5,7 @@ using UnityEngine;
 public class StatTypeManager : MonoBehaviour
 {
     // ------------------------------- Variables -------------------------------
+    public StatType massType;
     public StatType sizeType;
     public StatType toastType;
     public StatType frozenType;

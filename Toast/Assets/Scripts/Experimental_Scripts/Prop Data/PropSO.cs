@@ -13,10 +13,13 @@ public class PropSO : ScriptableObject
     private PropAttributeSO[] attributes;
 
     [SerializeField]
-    private BaseStats baseStats;
+    private Stat[] stats;
 
     [SerializeField]
-    private Stat[] stats;
+    private bool useBaseStats = true;
+
+    [SerializeField, EnableIf("useBaseStats")]
+    private BaseStats baseStats;
 
     [SerializeField]
     private UseEffectSO[] useEffects;
@@ -38,7 +41,7 @@ public class PropSO : ScriptableObject
             }
         }
 
-        if (baseStats != null)
+        if (useBaseStats && baseStats != null)
         {
             Stat[] stats = baseStats.Stats;
             for (int i  = 0; i < stats.Length; i++)
@@ -53,8 +56,7 @@ public class PropSO : ScriptableObject
             for (int i = 0; i < attributes.Length; i++)
             {
                 PropAttributeSO attributeToAdd = attributes[i];
-                newProp.attributesList.Add(attributeToAdd);
-                attributeToAdd.OnEquip(newProp);
+                newProp.AddAttribute(attributeToAdd);
             }
         }
 
@@ -65,6 +67,16 @@ public class PropSO : ScriptableObject
                 UseEffectSO useEffectToAdd = useEffects[i];
                 newProp.useEffects.Add(useEffectToAdd);
             }
+        }
+
+        if (iceConfig != null)
+        {
+
+        }
+
+        if (rigidbody != null)
+        {
+
         }
     }
 }
