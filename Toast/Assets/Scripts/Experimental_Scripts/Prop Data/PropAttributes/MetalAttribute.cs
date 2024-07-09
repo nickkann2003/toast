@@ -5,6 +5,7 @@ public class MetalAttribute : PropAttributeSO
 {
     public override void OnEquip(NewProp newProp)
     {
+        newProp.AddFlag(PropFlags.Metal);
         // ADD METALLIC TEXTURE
 
         // ADD EXPLOSIVE PROPERTIES

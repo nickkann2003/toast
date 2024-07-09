@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1599825513767853333}
   - component: {fileID: 3387116080285311660}
   - component: {fileID: 6191729515764921831}
+  - component: {fileID: 5276686312966539172}
   m_Layer: 7
   m_Name: Pan
   m_TagString: Untagged
@@ -115,19 +116,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   propSO: {fileID: 11400000, guid: 9a02a173e7e5de546babe736cb1060f3, type: 2}
-  staticMesh: {fileID: 0}
-  iceConfig: {fileID: 0}
+  staticMesh: {fileID: 398694847599950210}
   propFlags: 0
   attributesList: []
   statsSystem:
     statList: []
-  toastType: {fileID: 0}
-  sizeType: {fileID: 0}
-  massType: {fileID: 0}
-  inHandAtt: {fileID: 0}
   useEffects: []
-  baseMat: {fileID: 0}
-  PD_Rb: {fileID: 11400000, guid: f65fc30bd01167f4b8dc50d2634f944f, type: 2}
   createObjectEvent: {fileID: 0}
   thawObjectEvent: {fileID: 0}
   toastObjectEvent: {fileID: 0}
@@ -157,3 +151,30 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3289431309809287290, guid: f27c7a349150b6f4c82d8714bd0280e4, type: 3}
+--- !u!54 &5276686312966539172
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398694847599950210}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
