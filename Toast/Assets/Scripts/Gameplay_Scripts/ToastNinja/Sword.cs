@@ -46,7 +46,7 @@ public class Sword : NewProp
     {
         
         //container.transform.position = GetMouseWorldPos();
-        if (attributes.HasFlag(PropFlags.InHand))
+        if (propFlags.HasFlag(PropFlags.InHand))
         {
             if (sheathed)
             {

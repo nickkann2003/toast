@@ -139,7 +139,7 @@ public class DetectItem : MonoBehaviour
         }
 
         // Run attribtue checks
-        if (prop.HasAttribute(attributes) || flagsAreCumulative)
+        if (prop.HasFlag(attributes) || flagsAreCumulative)
         {
             if (!propsInTrigger.Contains(prop))
             {
@@ -221,7 +221,7 @@ public class DetectItem : MonoBehaviour
         cumulativeFlags = PropFlags.None;
         foreach (NewProp prop in propsInTrigger)
         {
-            cumulativeFlags |= prop.attributes;
+            cumulativeFlags |= prop.propFlags;
         }
     }
 

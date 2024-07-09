@@ -61,7 +61,7 @@ public class Electricity : MonoBehaviour
         // If prop is metal, set that metal is inserted
         if (other.gameObject.TryGetComponent(out NewProp prop))
         {
-            if (prop.attributes.HasFlag(PropFlags.Metal))
+            if (prop.HasFlag(PropFlags.Metal))
             {
                 metalInserted = true;
                 if (!metalObjects.Contains(prop))
@@ -77,7 +77,7 @@ public class Electricity : MonoBehaviour
         // If prop is metal, set that metal is removed
         if (other.gameObject.TryGetComponent(out NewProp prop))
         {
-            if (prop.attributes.HasFlag(PropFlags.Metal))
+            if (prop.HasFlag(PropFlags.Metal))
             {
                 metalInserted = false;
                 if (metalObjects.Contains(prop))
