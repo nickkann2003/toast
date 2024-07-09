@@ -507,7 +507,7 @@ public class Raycast : MonoBehaviour
     /// <summary>
     /// Perform stop dragging operations
     /// </summary>
-    void StopDragging()
+    public void StopDragging()
     {
         if (selectGO != null)
         {
