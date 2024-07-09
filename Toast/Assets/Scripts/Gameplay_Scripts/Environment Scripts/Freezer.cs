@@ -37,7 +37,7 @@ public class Freezer : MonoBehaviour
         for (int i = 0; i < collidingObjects.Count; i++)
         {
             NewProp prop = collidingObjects[i];
-            if (prop != null && prop.GetComponent<Rigidbody>() != null)
+            if (prop != null)
             {
                 if (prop.HasAttribute(frozenAttribute))
                 {

@@ -12,11 +12,11 @@ public class USE_Jam : UseEffectSO
     [SerializeField]
     private PropAttributeSO lidAtt;
 
-    [Header("Prefabs")]
-    [SerializeField]
-    private GameObject objPrefab;
-    [SerializeField]
-    private Material mat;
+    //[Header("Prefabs")]
+    //[SerializeField]
+    //private GameObject objPrefab;
+    //[SerializeField]
+    //private Material mat;
 
     // audio
     //public AudioSource audioSource;
@@ -43,6 +43,7 @@ public class USE_Jam : UseEffectSO
         {
             return false;
         }
+        JamConfig config = jam.Config;
 
         if (jam.IsCapped)
         {
@@ -65,13 +66,13 @@ public class USE_Jam : UseEffectSO
                 }
             }
 
-            GameObject obj = GameObject.Instantiate(objPrefab);
+            GameObject obj = GameObject.Instantiate(config.SplatPrefab);
             obj.transform.position = hit.point + hit.normal * .01f;
             obj.transform.up = hit.normal;
 
             obj.transform.parent = hit.collider.gameObject.transform;
             obj.transform.GetChild(0).Rotate(new Vector3(0, 0, Random.Range(-30, 30) * 2), Space.Self);
-            obj.GetComponentInChildren<Renderer>().material.color = mat.color;
+            obj.GetComponentInChildren<Renderer>().material.color = config.Material.color;
             useEvent.RaiseEvent(newProp, 1);
 
             return true;

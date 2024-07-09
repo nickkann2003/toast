@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Prop Toast Config", menuName = "Prop/Config/Toast", order = 53)]
 public class ToastConfigObject : ScriptableObject
 {
     [SerializeField, CurveRange(0,0,1,1)]

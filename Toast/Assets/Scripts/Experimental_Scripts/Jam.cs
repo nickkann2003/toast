@@ -19,6 +19,10 @@ public class Jam : MonoBehaviour
     [SerializeField]
     PropAttributeSO lidAtt;
 
+    [SerializeField]
+    private JamConfig config;
+    public JamConfig Config { get { return config; } }
+
     [SerializeField, ReadOnly]
     private bool isCapped = true;
 
