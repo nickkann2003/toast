@@ -1,3 +1,17 @@
+/*
+ * Detect Prop script - Author: Nick Kannenberg
+ * 
+ * This script is part of the puzzles utilities story
+ * It is used to detect props within a given volume, then trigger set events when those props meet set requirements
+ * This script has two modes:
+ * Non-Cumulative
+ *      Checks for a specific number of props in the area, each with the specified attributes
+ * 
+ * Cumulative
+ *      Checks for an (optional) specific number of props in the area,
+ *      with the cumulative attributes of all props in the area equaling the specified list of attributes 
+ */
+
 using NaughtyAttributes;
 using System;
 using System.Collections;
@@ -13,77 +27,75 @@ public class DetectItem : MonoBehaviour
 {
     // ------------------------------- Variables -------------------------------
     [Header("Prop Variables")]
-    [SerializeField]
+    [SerializeField] // List of attributes to chekc for
     private PropFlags attributes;
-    [SerializeField]
+    [SerializeField] // Is this cumulative
     private bool flagsAreCumulative = false;
     private PropFlags cumulativeFlags;
 
     [Header("Completion Variables")]
-    [SerializeField]
+    [SerializeField] // Number of items to check for
     private int numItems;
     private int curItems;
     private bool itemReqsMet = false;
-    [SerializeField]
+    [SerializeField] // Does it need to be an exact number of items
     private bool exactValue = false;
-    [SerializeField]
+    [SerializeField] // Amount of time items need to stay to complete goal (0 for instant)
     private float itemStayTime;
     private float cStayTime;
-    [SerializeField]
+    [SerializeField] // Text displaying the reward
     private string rewardText;
-    [SerializeField]
+    [SerializeField] // Destroy items in volume when complete?
     private bool destroyItemsOnComplete = false;
-    [SerializeField]
+    [SerializeField] // Destroy this when complete?
     private bool destroyOnComplete = false;
-    [SerializeField]
+    [SerializeField] // Reference to physical display UI
     private TextMeshPro displayReference;
 
     private bool complete = false;
 
     [Header("Unity Events")]
-    [SerializeField]
+    [SerializeField] // Event run when this is complete
     private UnityEvent completionEvent;
 
-    [SerializeField]
+    [SerializeField] // Does this have an event on start?
     private bool eventOnStart;
     [ShowIf("eventOnStart")]
-    [SerializeField]
+    [SerializeField] // Event run when first object is placed in here
     private UnityEvent startEvent;
-    [ShowIf("eventOnStart")]
-    [SerializeField]
     private bool interacted = false;
 
-    [SerializeField]
+    [SerializeField] // Does this have an event at specific progress?
     private bool eventOnProgress;
     [ShowIf("eventOnProgress")]
-    [SerializeField]
+    [SerializeField] // Progress value to trigger event at
     private int progressValue;
     private bool progressTriggered = false;
     [ShowIf("eventOnProgress")]
-    [SerializeField]
+    [SerializeField] // Event that is triggered upon reaching that progress
     private UnityEvent progressEvent;
 
     [Header("Requirement Events")]
-    [SerializeField]
+    [SerializeField] // Event for completing 
     private PropIntGameEvent rCompleteEvent;
     [ShowIf("eventOnStart")]
-    [SerializeField]
+    [SerializeField] // Event for starting
     private PropIntGameEvent rStartEvent;
     [ShowIf("eventOnProgress")]
-    [SerializeField]
+    [SerializeField] // Event for hitting progress
     private PropIntGameEvent rProgressEvent;
 
     private List<NewProp> propsInTrigger = new List<NewProp>();
 
     // ------------------------------- Functions -------------------------------
-    // Start is called before the first frame update
+    // On start, set stay time and display text
     void Start()
     {
         cStayTime = itemStayTime;
         UpdateDisplayText();
     }
 
-    // Update is called once per frame
+    // On update, only if Reqs met, check stay time for completion and decrement time
     void Update()
     {
         if (itemReqsMet)
