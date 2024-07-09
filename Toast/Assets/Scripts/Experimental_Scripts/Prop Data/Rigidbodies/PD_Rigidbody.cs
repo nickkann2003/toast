@@ -27,4 +27,17 @@ public class PD_Rigidbody : ScriptableObject
             { "Continuous Speculative",    CollisionDetectionMode.ContinuousSpeculative }
         };
     }
+
+    public void UpdateRigidbody(NewProp newProp)
+    {
+        Rigidbody rb = newProp.GetComponent<Rigidbody>();
+
+        if (rb == null) return;
+
+        rb.mass = mass;
+        rb.drag = drag;
+        rb.angularDrag = angularDrag;
+        rb.useGravity = useGravity;
+        rb.collisionDetectionMode = collisionDetection;
+    }
 }

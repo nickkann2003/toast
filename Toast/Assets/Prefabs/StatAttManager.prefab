@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6490103310010262966}
-  - component: {fileID: 2427913163319792171}
+  - component: {fileID: 1531639256685303951}
   m_Layer: 0
-  m_Name: StatTypeManager
+  m_Name: StatAttManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,9 +30,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2427913163319792171
+--- !u!114 &1531639256685303951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4297427761457757578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b3c614cb6e6c544dbd85d8fb2a99414, type: 3}
+  m_Script: {fileID: 11500000, guid: 35875b2fab4828d4182fc4fc867181d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  massType: {fileID: 11400000, guid: 263ef62346c87a54e8aec3fc8b974bf7, type: 2}
   sizeType: {fileID: 11400000, guid: e4f0d536b759caf468fa4f8a983f5ce2, type: 2}
   toastType: {fileID: 11400000, guid: ed769c6990786b0428bfb3911e9f608b, type: 2}
   frozenType: {fileID: 11400000, guid: 116c5ef1396ca6849b1af65fe4cefb27, type: 2}
+  inHandAtt: {fileID: 11400000, guid: 6cac2a5c331557a47a12f4ccee4105ba, type: 2}

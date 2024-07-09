@@ -65,18 +65,18 @@ public class PropSO : ScriptableObject
             for (int i = 0; i < useEffects.Length; i++)
             {
                 UseEffectSO useEffectToAdd = useEffects[i];
-                newProp.useEffects.Add(useEffectToAdd);
+                newProp.AddUseEffect(useEffectToAdd);
             }
         }
 
         if (iceConfig != null)
         {
-
+            newProp.iceConfig = iceConfig;
         }
 
         if (rigidbody != null)
         {
-
+            newProp.PD_Rb = rigidbody;
         }
     }
 }

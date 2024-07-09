@@ -63,9 +63,9 @@ public class FrozenAttribute : PropAttributeSO
         //ice.transform.position = obj.transform.position;
         ice.GetComponent<MeshFilter>().sharedMesh = obj.GetComponentInChildren<MeshFilter>().sharedMesh;
         ice.transform.parent = obj.transform;
-        ice.transform.localPosition = newProp.IceConfig.Offset;
+        ice.transform.localPosition = newProp.iceConfig.Offset;
         ice.transform.localEulerAngles = Vector3.zero;
-        ice.transform.localScale = newProp.IceConfig.Scale;
+        ice.transform.localScale = newProp.iceConfig.Scale;
         //ice.transform.localScale = new Vector3(1.1f, 1.1f, 1.4f);
 
         newProp.iceObject = ice;

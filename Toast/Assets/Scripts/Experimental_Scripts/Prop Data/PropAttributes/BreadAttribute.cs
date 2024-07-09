@@ -42,7 +42,7 @@ public class BreadAttribute : PropAttributeSO
         {
             for (int i = 0; i < useEffects.Length; i++)
             {
-                newProp.useEffects.Add(useEffects[i]);
+                newProp.AddUseEffect(useEffects[i]);
             }
         }
     }

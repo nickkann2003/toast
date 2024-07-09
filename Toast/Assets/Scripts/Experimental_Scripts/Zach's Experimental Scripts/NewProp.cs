@@ -19,19 +19,23 @@ public class NewProp : MonoBehaviour
     private GameObject staticMesh;
     public GameObject StaticMesh {  get { return staticMesh; } }
 
-    [SerializeField]
-    private IceConfig iceConfig;
-    public IceConfig IceConfig { get { return iceConfig; } }
+    [NonSerialized]
+    public IceConfig iceConfig;
+    [NonSerialized]
+    public PD_Rigidbody PD_Rb;
 
     [NonSerialized]
     public GameObject fireObject;
     [NonSerialized]
     public GameObject iceObject;
 
+    [HorizontalLine(color: EColor.Gray)]
     [Header("------------ Attributes ------------")]
     // MAYBE REMOVE
     public PropFlags propFlags;
-    public List<PropAttributeSO> attributesList;
+    [SerializeField]
+    private List<PropAttributeSO> attributesList;
+    
 
     [Header("------------ Stats ------------")]
     [SerializeField]
@@ -39,28 +43,19 @@ public class NewProp : MonoBehaviour
 
     public StatsSystem Stats { get { return statsSystem; } }
 
-    [SerializeField]
-    private PropAttributeSO inHandAtt;
-
     [Header("------------ UseEffects ------------")]
     [SerializeField]
-    public List<UseEffectSO> useEffects;
-
-    [HorizontalLine(color: EColor.Gray)]
+    private List<UseEffectSO> useEffects;
 
 
-    [Header("------------ Fire Variables ------------")]
+    //[Header("------------ Fire Variables ------------")]
     private Color strongestStrength = Color.black;
     private Color initialColor;
     private Color colorOffset;
 
-    [SerializeField]
-    private Material baseMat;
-
-    [Header("------------ Prop Data ------------")]
-    [SerializeField]
-    private PD_Rigidbody PD_Rb;
-
+    //[SerializeField]
+    //private Material baseMat;
+    [HorizontalLine(color: EColor.Gray)]
     [Header("Event References - Only set if purposefully changing them from the norm")]
     [SerializeField]
     private PropIntGameEvent createObjectEvent;
@@ -102,17 +97,15 @@ public class NewProp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Grab initial color and set color variables
+        // Grab initial color and set color variables   // CHANGE TO staticMesh.GetComponent
         initialColor = gameObject.GetComponentInChildren<Renderer>().material.color;
         colorOffset = strongestStrength - initialColor;
 
-        //CreateAndUpdateRigidbody();
-
         float colorStrength = 0;
 
-        if (Stats.GetStat(StatTypeManager.instance.toastType) != null)
+        if (Stats.GetStat(StatAttManager.instance.toastType) != null)
         {
-            colorStrength = Stats.GetStat(StatTypeManager.instance.toastType).Value;
+            colorStrength = Stats.GetStat(StatAttManager.instance.toastType).Value;
         }
 
         if (colorStrength > 1)
@@ -120,7 +113,7 @@ public class NewProp : MonoBehaviour
             colorStrength = 1;
         }
 
-        // Set renderer color
+        // Set renderer color   // CHANGE TO staticMesh.GetComponent
         gameObject.GetComponentInChildren<Renderer>().material.color = initialColor + (colorOffset * colorStrength);
 
         if(createObjectEvent == null)
@@ -141,13 +134,6 @@ public class NewProp : MonoBehaviour
         if (propSO != null)
         {
             propSO.PopulateProp(this);
-            //if (useEffects.Count > 0)
-            //{
-            //    for (int i = 0; i < useEffects.Count; i++)
-            //    {
-            //        useEffects[i].OnEquip(this);
-            //    }
-            //}
         }
 
         UpdateRigidbody();
@@ -192,22 +178,6 @@ public class NewProp : MonoBehaviour
         return useEffects.Contains(useEffect);
     }
 
-    public void RecalcSize()
-    {
-        Stat sizeStat = Stats.GetStat(StatTypeManager.instance.sizeType);
-        transform.localScale = Vector3.one * sizeStat.Value;
-    }
-
-    public void RecalcWeight()
-    {
-        Stat massStat = Stats.GetStat(StatTypeManager.instance.massType);
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.mass = massStat.Value;
-        }
-    }
-
     // TryUse (input)
 
     public bool TryUse()
@@ -224,15 +194,6 @@ public class NewProp : MonoBehaviour
 
         return true;
 
-        //if(toastCd < 0 && toasting)
-        //{
-        //    RunEventChecks();
-        //    toasting = false;
-        //}
-        //if(toasting)
-        //{
-        //    toastCd -= Time.deltaTime;
-        //}
     }
 
     // Use this prop's strategy
@@ -250,9 +211,9 @@ public class NewProp : MonoBehaviour
     public void ForceRemoveFromHand()
     {
         // If this item is in hand, then force hand to drop it
-        if (HasAttribute(inHandAtt))
+        if (HasAttribute(StatAttManager.instance.inHandAtt))
         {
-            RemoveAttribute(inHandAtt);
+            RemoveAttribute(StatAttManager.instance.inHandAtt);
             transform.parent.GetComponent<NewHand>()?.Drop();
 
             // If no rigidbody when dropped, get one
@@ -288,7 +249,7 @@ public class NewProp : MonoBehaviour
         //toastiness += val;
 
         float testToastiness = 0f;
-        Stat toastStat = statsSystem.GetStat(StatTypeManager.instance.toastType);
+        Stat toastStat = statsSystem.GetStat(StatAttManager.instance.toastType);
         if (toastStat != null)
         {
             toastStat.IncreaseValue(val);
@@ -312,59 +273,46 @@ public class NewProp : MonoBehaviour
         }
     }
 
-    private void RunEventChecks()
-    {
-        //// Adjust prop flags and trigger requirement events
-        //if (toastiness > .15f && !attributes.HasFlag(PropFlags.Toast)) // Toasted event
-        //{
-        //    // Add attribtue
-        //    AddAttribute(PropFlags.Toast);
-
-        //    // Trigger Objectives
-        //    if (toastObjectEvent != null)
-        //        toastObjectEvent.RaiseEvent(this, 1);
-        //}
-
-        //if (toastiness > .9f && !attributes.HasFlag(PropFlags.Burnt)) // Burnt event
-        //{
-        //    // Add attributes
-        //    AddAttribute(PropFlags.Burnt);
-
-        //    // Trigger Objectives
-        //    if (burnObjectEvent != null)
-        //        burnObjectEvent.RaiseEvent(this, 1);
-        //}
-        //if (!attributes.HasFlag(PropFlags.OnFire) && toastiness > fireTrigger && firePrefab != null) // On Fire event
-        //{
-        //    // Instantiate fire
-        //    GameObject fire = Instantiate(firePrefab);
-        //    fire.transform.parent = gameObject.transform;
-        //    fire.transform.localPosition = Vector3.zero;
-        //    fire.transform.eulerAngles = Vector3.zero;
-        //    fire.transform.localScale = Vector3.one;
-
-        //    // Add attribute
-        //    AddAttribute(PropFlags.OnFire);
-
-        //    // Trigger objectives
-        //    if (setObjectOnFireEvent != null)
-        //        setObjectOnFireEvent.RaiseEvent(this, 1);
-
-        //    // Add flaming object
-        //    FireEndingManager.instance.addFireObject(gameObject);
-        //}
-    }
-
-    // Defrosts this object
-    //public void DefrostToast()
+    //private void RunEventChecks()
     //{
-    //    // If frozen, destroy top game object and remove frozen flag
-    //    if (propFlags.HasFlag(PropFlags.Frozen))
+    //    // Adjust prop flags and trigger requirement events
+    //    if (toastiness > .15f && !attributes.HasFlag(PropFlags.Toast)) // Toasted event
     //    {
-    //        Destroy(gameObject.transform.GetChild(0).gameObject);
-    //        RemoveFlag(PropFlags.Frozen);
-    //        if(thawObjectEvent != null)
-    //            thawObjectEvent.RaiseEvent(this, 1);
+    //        // Add attribtue
+    //        AddAttribute(PropFlags.Toast);
+
+    //        // Trigger Objectives
+    //        if (toastObjectEvent != null)
+    //            toastObjectEvent.RaiseEvent(this, 1);
+    //    }
+
+    //    if (toastiness > .9f && !attributes.HasFlag(PropFlags.Burnt)) // Burnt event
+    //    {
+    //        // Add attributes
+    //        AddAttribute(PropFlags.Burnt);
+
+    //        // Trigger Objectives
+    //        if (burnObjectEvent != null)
+    //            burnObjectEvent.RaiseEvent(this, 1);
+    //    }
+    //    if (!attributes.HasFlag(PropFlags.OnFire) && toastiness > fireTrigger && firePrefab != null) // On Fire event
+    //    {
+    //        // Instantiate fire
+    //        GameObject fire = Instantiate(firePrefab);
+    //        fire.transform.parent = gameObject.transform;
+    //        fire.transform.localPosition = Vector3.zero;
+    //        fire.transform.eulerAngles = Vector3.zero;
+    //        fire.transform.localScale = Vector3.one;
+
+    //        // Add attribute
+    //        AddAttribute(PropFlags.OnFire);
+
+    //        // Trigger objectives
+    //        if (setObjectOnFireEvent != null)
+    //            setObjectOnFireEvent.RaiseEvent(this, 1);
+
+    //        // Add flaming object
+    //        FireEndingManager.instance.addFireObject(gameObject);
     //    }
     //}
 
@@ -375,15 +323,7 @@ public class NewProp : MonoBehaviour
     {
         if (PD_Rb == null) return;
 
-        Rigidbody rb = GetComponent<Rigidbody>();
-
-        if (rb == null) return;
-
-        rb.mass = PD_Rb.mass;
-        rb.drag = PD_Rb.drag;
-        rb.angularDrag = PD_Rb.angularDrag;
-        rb.useGravity = PD_Rb.useGravity;
-        rb.collisionDetectionMode = PD_Rb.collisionDetection;
+        PD_Rb.UpdateRigidbody(this);
     }
 
     public void CreateAndUpdateRigidbody()
@@ -400,6 +340,21 @@ public class NewProp : MonoBehaviour
         if (this.GetComponent<Rigidbody>() != null)
         {
             Destroy(this.GetComponent<Rigidbody>());
+        }
+    }
+
+    public void RecalcSize()
+    {
+        Stat sizeStat = Stats.GetStat(StatAttManager.instance.sizeType);
+        transform.localScale = Vector3.one * sizeStat.Value;
+    }
+    public void RecalcWeight()
+    {
+        Stat massStat = Stats.GetStat(StatAttManager.instance.massType);
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.mass = massStat.Value;
         }
     }
 }
