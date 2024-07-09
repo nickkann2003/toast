@@ -15,11 +15,6 @@ public class NewHand : MonoBehaviour
     [SerializeField]
     private PropIntGameEvent dropEvent;
 
-    [SerializeField]
-    private InHandAttribute inHandAttribute;
-    //[SerializeField]
-    //private InHandAttribute mainHandAttribute;
-
     // ------------------------------- Functions -------------------------------
 
     // Uses the item in hand
@@ -61,7 +56,7 @@ public class NewHand : MonoBehaviour
             // Set prop flogs
             heldObject.GetComponent<NewProp>()?.RemoveFlag(PropFlags.InHand);
             
-            heldObject.GetComponent<NewProp>()?.RemoveAttribute(inHandAttribute);
+            heldObject.GetComponent<NewProp>()?.RemoveAttribute(StatAttManager.instance.inHandAtt);
 
             // Check if dropping in inventory
             if (StationManager.instance.playerLocation.stationLabel == Stations.Inventory)
@@ -87,7 +82,7 @@ public class NewHand : MonoBehaviour
         if (itemToPickup != null)
         {
             // If clicked object in hand, remove it instead
-            if (itemToPickup.GetComponent<NewProp>() != null && itemToPickup.GetComponent<NewProp>().HasAttribute(inHandAttribute))
+            if (itemToPickup.GetComponent<NewProp>() != null && itemToPickup.GetComponent<NewProp>().HasAttribute(StatAttManager.instance.inHandAtt))
             {
                 itemToPickup.GetComponent<NewProp>().ForceRemoveFromHand();
             }
@@ -116,7 +111,7 @@ public class NewHand : MonoBehaviour
             // Set prop flags
             itemToPickup.GetComponent<NewProp>()?.AddFlag(PropFlags.InHand);
 
-            itemToPickup.GetComponent<NewProp>()?.AddAttribute(inHandAttribute);
+            itemToPickup.GetComponent<NewProp>()?.AddAttribute(StatAttManager.instance.inHandAtt);
         }
     }
 }

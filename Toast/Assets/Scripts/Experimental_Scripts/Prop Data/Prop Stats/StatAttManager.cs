@@ -11,6 +11,8 @@ public class StatAttManager : MonoBehaviour
 
     [HorizontalLine(color: EColor.Gray)]
 
+    public PropAttributeSO onFireAtt;
+    public PropAttributeSO frozenAtt;
     public PropAttributeSO inHandAtt;
 
     // Singleton

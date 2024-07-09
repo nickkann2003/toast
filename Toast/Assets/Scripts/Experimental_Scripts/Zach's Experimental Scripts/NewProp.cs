@@ -329,6 +329,8 @@ public class NewProp : MonoBehaviour
 
     public void CreateAndUpdateRigidbody()
     {
+        if (PD_Rb == null) return;
+
         if (this.GetComponent<Rigidbody>() == null)
         {
             this.AddComponent<Rigidbody>();
@@ -338,6 +340,8 @@ public class NewProp : MonoBehaviour
 
     public void RemoveRigidbody()
     {
+        if (PD_Rb == null) return;
+
         if (this.GetComponent<Rigidbody>() != null)
         {
             Destroy(this.GetComponent<Rigidbody>());
