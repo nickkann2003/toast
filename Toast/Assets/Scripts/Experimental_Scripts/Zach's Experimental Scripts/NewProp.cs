@@ -68,6 +68,7 @@ public class NewProp : MonoBehaviour
     [SerializeField]
     private PropIntGameEvent setObjectOnFireEvent;
 
+    [HorizontalLine(color: EColor.Gray)]
     [Header("------------ TESTING ------------")]
     [SerializeField]
     private PropAttributeSO attributeToGive;

@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4547361857935294153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8592722751040644829}
+  - component: {fileID: 3417306781808039016}
+  - component: {fileID: 3281197361500810433}
+  m_Layer: 2
+  m_Name: Cabinet Item Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8592722751040644829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4547361857935294153}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.798, y: 5.646, z: -0.8639}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3417306781808039016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4547361857935294153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b19bf611c1b9d842be4c2b1abc3d354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects:
+  - prefab: {fileID: 4694625356087204816, guid: a972d48ad32cfe34eaa7bed664688645,
+      type: 3}
+    spawnPosition: {x: -0.58, y: 0, z: -0.01}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  - prefab: {fileID: 4694625356087204816, guid: a972d48ad32cfe34eaa7bed664688645,
+      type: 3}
+    spawnPosition: {x: -0.27, y: 0, z: -0.06}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  - prefab: {fileID: 4694625356087204816, guid: a972d48ad32cfe34eaa7bed664688645,
+      type: 3}
+    spawnPosition: {x: -0.57, y: 0, z: 0.23}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  - prefab: {fileID: 4694625356087204816, guid: a972d48ad32cfe34eaa7bed664688645,
+      type: 3}
+    spawnPosition: {x: -0.28, y: 0, z: 0.29}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  - prefab: {fileID: 7683221741135406388, guid: fe1fd1e7f6bff4a4d90d7e62c5886f1c,
+      type: 3}
+    spawnPosition: {x: 0.68, y: 0, z: -0.16}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  - prefab: {fileID: 7683221741135406388, guid: fe1fd1e7f6bff4a4d90d7e62c5886f1c,
+      type: 3}
+    spawnPosition: {x: 0.3, y: 0, z: -0.16}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  - prefab: {fileID: 7683221741135406388, guid: fe1fd1e7f6bff4a4d90d7e62c5886f1c,
+      type: 3}
+    spawnPosition: {x: 0.31, y: 0, z: 0.25}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  - prefab: {fileID: 7683221741135406388, guid: fe1fd1e7f6bff4a4d90d7e62c5886f1c,
+      type: 3}
+    spawnPosition: {x: 0.73, y: 0, z: 0.25}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  - prefab: {fileID: 4168674122169654064, guid: a90e32852b80aab4a99636608229c338,
+      type: 3}
+    spawnPosition: {x: -0.3, y: -1.3, z: 0.06}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  - prefab: {fileID: 4168674122169654064, guid: a90e32852b80aab4a99636608229c338,
+      type: 3}
+    spawnPosition: {x: -0.3, y: -1.22, z: 0.06}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  - prefab: {fileID: 4168674122169654064, guid: a90e32852b80aab4a99636608229c338,
+      type: 3}
+    spawnPosition: {x: -0.3, y: -1.11, z: 0.06}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  - prefab: {fileID: 4168674122169654064, guid: a90e32852b80aab4a99636608229c338,
+      type: 3}
+    spawnPosition: {x: -0.3, y: -0.99, z: 0.06}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  - prefab: {fileID: 7564301329878422352, guid: 63efd955708d9ac4a9f799d2928975b1,
+      type: 3}
+    spawnPosition: {x: 0.55, y: -0.99, z: -0.07}
+    spawnRotation: {x: 0, y: 0, z: 0, w: 0}
+  waitForAll: 0
+  autoRespawnItems: 0
+  spawnOnStart: 1
+--- !u!65 &3281197361500810433
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4547361857935294153}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.8429067, y: 2.0844865, z: 0.9877474}
+  m_Center: {x: 0.1385194, y: -0.59082294, z: -0.020862311}

@@ -24,10 +24,10 @@ public class PropSO : ScriptableObject
     [SerializeField]
     private UseEffectSO[] useEffects;
 
-    [SerializeField, Foldout("Configs")]
+    [SerializeField, BoxGroup("Configs")]
     private IceConfig iceConfig;
 
-    [SerializeField, Foldout("Configs")]
+    [SerializeField, BoxGroup("Configs")]
     private PD_Rigidbody rigidbody;
 
     public void PopulateProp(NewProp newProp)
