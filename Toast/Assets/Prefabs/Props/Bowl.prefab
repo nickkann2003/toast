@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5716177448186523780}
   - component: {fileID: 3474368482129516496}
   - component: {fileID: 7592348262546618263}
-  - component: {fileID: 1805291966677211848}
   m_Layer: 7
   m_Name: SM_Bowl
   m_TagString: Untagged
@@ -29,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2370372565732981676}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 443566109387795814}
@@ -101,28 +100,6 @@ MonoBehaviour:
     type: 2}
   isHighlightedEnabled: 1
   outline: []
---- !u!64 &1805291966677211848
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2370372565732981676}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2542112853833809232, guid: 7d6a9fac399f68541bf1f7644a9e1ca5, type: 3}
 --- !u!1 &7564301329878422352
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,6 +111,7 @@ GameObject:
   - component: {fileID: 443566109387795814}
   - component: {fileID: 3582580032432063970}
   - component: {fileID: 2352343336068135818}
+  - component: {fileID: 1803221708377619970}
   m_Layer: 0
   m_Name: Bowl
   m_TagString: Untagged
@@ -171,18 +149,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   propSO: {fileID: 11400000, guid: 3979d1513c421734d98c83cd3f0224be, type: 2}
   staticMesh: {fileID: 2370372565732981676}
-  iceConfig: {fileID: 11400000, guid: 7c993078cd8a8e7489c4ac452eb9f246, type: 2}
   propFlags: 0
   attributesList: []
   statsSystem:
     statList: []
-  toastType: {fileID: 11400000, guid: ed769c6990786b0428bfb3911e9f608b, type: 2}
-  sizeType: {fileID: 11400000, guid: e4f0d536b759caf468fa4f8a983f5ce2, type: 2}
-  massType: {fileID: 11400000, guid: 263ef62346c87a54e8aec3fc8b974bf7, type: 2}
-  inHandAtt: {fileID: 11400000, guid: 6cac2a5c331557a47a12f4ccee4105ba, type: 2}
   useEffects: []
-  baseMat: {fileID: 0}
-  PD_Rb: {fileID: 11400000, guid: 9a8c182790fbbb8428deb22cb32618a0, type: 2}
   createObjectEvent: {fileID: 0}
   thawObjectEvent: {fileID: 0}
   toastObjectEvent: {fileID: 0}
@@ -217,3 +188,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &1803221708377619970
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7564301329878422352}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}

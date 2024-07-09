@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5412477321138650768}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.77903, y: 0.77903, z: 0.77903}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9107998614616886192}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 7812886072692239924}
   - component: {fileID: 7223033985678076375}
   - component: {fileID: 6670579495120846605}
-  - component: {fileID: 2549675288270374488}
+  - component: {fileID: 5531611943713307770}
   m_Layer: 7
   m_Name: Cup
   m_TagString: Untagged
@@ -173,18 +173,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   propSO: {fileID: 11400000, guid: 969ff30f638313e47a56baa4e983c5b5, type: 2}
   staticMesh: {fileID: 5412477321138650768}
-  iceConfig: {fileID: 11400000, guid: 7c993078cd8a8e7489c4ac452eb9f246, type: 2}
   propFlags: 0
   attributesList: []
   statsSystem:
     statList: []
-  toastType: {fileID: 11400000, guid: ed769c6990786b0428bfb3911e9f608b, type: 2}
-  sizeType: {fileID: 11400000, guid: e4f0d536b759caf468fa4f8a983f5ce2, type: 2}
-  massType: {fileID: 11400000, guid: 263ef62346c87a54e8aec3fc8b974bf7, type: 2}
-  inHandAtt: {fileID: 11400000, guid: 6cac2a5c331557a47a12f4ccee4105ba, type: 2}
   useEffects: []
-  baseMat: {fileID: 0}
-  PD_Rb: {fileID: 0}
   createObjectEvent: {fileID: 0}
   thawObjectEvent: {fileID: 0}
   toastObjectEvent: {fileID: 0}
@@ -235,7 +228,7 @@ MonoBehaviour:
     type: 2}
   isHighlightedEnabled: 1
   outline: []
---- !u!64 &2549675288270374488
+--- !u!64 &5531611943713307770
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

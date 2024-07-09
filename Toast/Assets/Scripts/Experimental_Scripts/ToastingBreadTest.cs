@@ -163,8 +163,8 @@ public class ToastingBreadTest : MonoBehaviour
         // Start toastig event
         startToasting.Invoke();
 
-        //// Turn on electricity
-        //electricity.PoweredOn = true;
+        // Turn on electricity
+        electricity.PoweredOn = true;
     }
 
     // Deactivates toasting
@@ -226,7 +226,7 @@ public class ToastingBreadTest : MonoBehaviour
             smokeParticles.Stop();
             stopToasting.Invoke();
 
-            //electricity.PoweredOn = false;
+            electricity.PoweredOn = false;
         }
     }
 
