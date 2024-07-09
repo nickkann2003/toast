@@ -54,6 +54,11 @@ public class Objective
         }
     }
 
+    public void OnDisable()
+    {
+        objectiveInfo.OnDisable();
+    }
+
     // Check if the current task has had its prerequisites complete
     public bool CheckAvailable()
     {
@@ -136,8 +141,13 @@ public class Objective
                     ob.SetActive(true);
                 }
             }
+            // One shot effects
             complete = true;
             completionEvents.Invoke();
+            foreach (int i in prerequisiteIds)
+            {
+                ObjectiveManager.instance.ObjectivesById[i].ObjectiveInfo.CompleteSuccessor();
+            }
         }
     }
 

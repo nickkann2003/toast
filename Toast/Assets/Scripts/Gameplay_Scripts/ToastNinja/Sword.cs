@@ -9,8 +9,28 @@ public class Sword : NewProp
     [SerializeField]
     public NewHand hand;
 
+    [SerializeField]
+    private PhysicalButtons button;
+
+    [SerializeField]
+    private GameObject container;
+
+    private bool sheathed = true;
+
     //public Vector3 mOffset;
     private float mZCoord = 6;
+
+    //[SerializeField]
+    //private ToastNinja toastNinja;
+
+    [SerializeField]
+    private GameObject blade;
+
+    [SerializeField]
+    private Vector3 unsheathedRot;
+
+    [SerializeField]
+    private GameObject sheathedPos;
 
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
@@ -19,14 +39,49 @@ public class Sword : NewProp
         
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
-        hand.transform.position = GetMouseWorldPos();
-        //if (attributes.HasFlag(PropFlags.InHand))
-        //{
-        //    this.transform.position = new Vector3(0,3,-5);
-        //}
+        
+        //container.transform.position = GetMouseWorldPos();
+        if (attributes.HasFlag(PropFlags.InHand))
+        {
+            if (sheathed)
+            {
+                // start toast ninja
+                button.ForceActivate();
+                if (blade != null)
+                {
+                    this.GetComponent<BoxCollider>().enabled = false;
+                    blade.SetActive(true);
+                }
+
+                sheathed = false;
+            }
+            container.transform.localEulerAngles = unsheathedRot;
+            container.transform.position = GetMouseWorldPos();
+        }
+        else
+        {
+            if (!sheathed)
+            {
+                // stop toast ninja
+                button.ForceActivate();
+                if (blade != null)
+                {
+                    blade.SetActive(false);
+                    this.GetComponent<BoxCollider>().enabled = true;
+
+                    container.transform.localPosition = Vector3.zero;
+                    transform.parent = sheathedPos.transform;
+                    transform.localPosition = Vector3.zero;
+                    transform.localEulerAngles = Vector3.zero;
+                }
+                sheathed = true;
+            }
+        }
     }
 
     /// <summary>

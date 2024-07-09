@@ -1111,7 +1111,7 @@ Transform:
   - {fileID: 7322967204096269549}
   - {fileID: 2572956098616876166}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8536966151002778007
 BoxCollider:
@@ -2015,14 +2015,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.92156863}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: b02e795a6496b8b44975979afa3e8b3e, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7314,7 +7314,6 @@ MonoBehaviour:
   smokeParticles: {fileID: 6579856914684212897}
   firePrefab: {fileID: 7603904604651950810, guid: 3930a776d7b66ce40b0b4fe84b802838,
     type: 3}
-  frozenAtt: {fileID: 11400000, guid: fe5b4706877f05c4b89e837b2a623c8d, type: 2}
   electricity: {fileID: 0}
   customEvents: 0
   toastStrength1: {fileID: 0}
@@ -7340,6 +7339,8 @@ MonoBehaviour:
   radius: 2
   power: 100
   endingStation: {fileID: 0}
+  metalInserted: 0
+  electricityExplodeEvent: {fileID: 0}
 --- !u!1 &7464800361301515771
 GameObject:
   m_ObjectHideFlags: 0
@@ -8256,7 +8257,7 @@ PrefabInstance:
     - target: {fileID: 365891720197560109, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1548398277532767607, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
@@ -8471,7 +8472,7 @@ PrefabInstance:
     - target: {fileID: 8173612472901576158, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4952688417671541935, guid: 54a7b92d33073a046bdb02bccdc9b0a2, type: 3}
@@ -8749,7 +8750,7 @@ PrefabInstance:
     - target: {fileID: 365891720197560109, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1548398277532767607, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
@@ -8934,7 +8935,7 @@ PrefabInstance:
     - target: {fileID: 8173612472901576158, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4952688417671541935, guid: 54a7b92d33073a046bdb02bccdc9b0a2, type: 3}

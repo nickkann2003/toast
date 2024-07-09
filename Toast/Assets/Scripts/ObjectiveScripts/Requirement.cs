@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using System.Drawing;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
@@ -19,6 +20,8 @@ public class Requirement
     private PropFlags excludeAttributes;
     [SerializeField, Label("Do Not Add Response Event")]
     private PropIntGameEventListener listener = new PropIntGameEventListener();
+    // Used to mark if this objective was completed by a load, ensures OneShot effects play at the correct time
+    private bool loadCompleted = false;
 
     [Header("Goal Information")]
     public string goalName;
@@ -59,6 +62,8 @@ public class Requirement
         // Recreate listener (issue with SO)
         listener = new PropIntGameEventListener();
         listener.GameEvent = e;
+        // Remove all listeners
+        listener.Response.RemoveAllListeners();
         // Enable it
         listener.OnEnable();
         // Add function to listener
@@ -75,9 +80,10 @@ public class Requirement
         {
             if(current == goal) // Exact match
             {
-                if (!complete) // If it was not complete, run one-shot effects
+                if (!complete || loadCompleted) // If it was not complete, run one-shot effects
                 {
                     complete = true;
+                    loadCompleted = false;
                     AudioManager.instance.PlayOneShotSound(AudioManager.instance.requirementComplete);
                 }
                 return true;
@@ -129,6 +135,14 @@ public class Requirement
     public void ForceComplete()
     {
         current = goal;
+        complete = true;
+        loadCompleted = true;
+        listening = true;
+    }
+
+    public void OnDisable()
+    {
+        listener.OnDisable();
     }
 
     /// <summary>
@@ -153,14 +167,14 @@ public class Requirement
                     {
                         value += "<color=#000> - ";
                         value += goalName + " ";
-                        value += "<pos=80%>";
+                        value += "<pos=77%>";
                         value += current + "/" + goal;
                     }
                     else
                     {
                         value += "<color=#000> - ";
                         value += goalName + " ";
-                        value += "<pos=80%>";
+                        value += "<pos=77%>";
                         value += current;
                     }
                     

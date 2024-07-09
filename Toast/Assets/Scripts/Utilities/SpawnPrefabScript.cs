@@ -67,6 +67,7 @@ public class SpawnPrefabScript : MonoBehaviour
     public void SetAutomaticSpawnRate(float rate)
     {
         spawnRatePerSecond = rate;
+        spawnDelay = 1f / spawnRatePerSecond;
     }
 
     /// <summary>

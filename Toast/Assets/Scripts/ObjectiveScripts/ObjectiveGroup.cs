@@ -25,6 +25,14 @@ public class ObjectiveGroup
         }
     }
 
+    public void OnDisable()
+    {
+        foreach (Objective o in objectives)
+        {
+            o.OnDisable();
+        }
+    }
+
     /// <summary>
     /// Has each objective check if it is available
     /// </summary>
