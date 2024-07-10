@@ -47,9 +47,9 @@ public class AttributeVolume : MonoBehaviour
             Debug.Log("Prop script");
 
             // Break if has ignore flags
-            if (flagsToIgnore != PropFlags.None && prop.attributes.HasFlag(flagsToIgnore)) { return; }
+            if (flagsToIgnore != PropFlags.None && prop.HasFlag(flagsToIgnore)) { return; }
             // Break if has the flags that are being applied
-            if(prop.attributes.HasFlag(flagsToApply)) { return; }
+            if(prop.HasFlag(flagsToApply)) { return; }
 
 
             if (!props.Contains(prop))
@@ -64,7 +64,7 @@ public class AttributeVolume : MonoBehaviour
                 props.Add(prop);
 
                 // Give prop the attributes
-                prop.attributes |= flagsToApply;
+                prop.propFlags |= flagsToApply;
             }
         }
     }
@@ -81,7 +81,7 @@ public class AttributeVolume : MonoBehaviour
                 if (removeOnExit)
                 {
                     // Remove the attributes from the prop
-                    prop.attributes ^= flagsToApply;
+                    prop.propFlags ^= flagsToApply;
                 }
             }
         }
