@@ -9,6 +9,9 @@ public class WarpPipeAnimationHelper : MonoBehaviour
     private GameObject animationEncaps;
 
     [SerializeField]
+    private Collider entranceCollider;
+
+    [SerializeField]
     private Animator animator;
 
     [SerializeField]
@@ -26,7 +29,7 @@ public class WarpPipeAnimationHelper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        animator.speed = 1.0f / lerpTime;
     }
 
     // Update is called once per frame
@@ -48,6 +51,7 @@ public class WarpPipeAnimationHelper : MonoBehaviour
         objectAnimating.SetActive(false);
         copyObject.transform.SetParent(animationEncaps.transform, true);
         lerpProgress = 0;
+        entranceCollider.enabled = false;
     }
 
     public void AnimateOut()
@@ -60,6 +64,7 @@ public class WarpPipeAnimationHelper : MonoBehaviour
         }
         animator.ResetTrigger("StartAnimationIn");
         objectAnimating = null;
+        entranceCollider.enabled = true;
     }
 
     private void CleanCopyObject()
