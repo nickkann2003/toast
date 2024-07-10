@@ -123,6 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spreadColor: {r: 0.69803923, g: 0.7607843, b: 0.28235295, a: 1}
+  splatterPrefab: {fileID: 8306667316286608774, guid: 82ebec8b54fd6f54fb5c45f2d778337c,
+    type: 3}
 --- !u!114 &2373992371872770027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +143,8 @@ MonoBehaviour:
   attributesList: []
   statsSystem:
     statList: []
-  useEffects: []
+  useEffects:
+  - {fileID: 11400000, guid: 00d43e05d0f5dbb488d699bd65c62db8, type: 2}
   createObjectEvent: {fileID: 0}
   thawObjectEvent: {fileID: 0}
   toastObjectEvent: {fileID: 0}
