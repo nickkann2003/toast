@@ -63,13 +63,13 @@ public class Highlights : MonoBehaviour
     {
         if(defaultHighlightSetting!= null)
         {
-
             // Disable all the outlines & set default value;
             foreach (Outline outline in outline)
             {
                 outline.enabled = false;
                 outline.OutlineColor = defaultHighlightSetting.highlightColor;
                 outline.OutlineWidth = defaultHighlightSetting.highlightWidth;
+                outline.OutlineMode = Outline.Mode.OutlineVisible;
             }
         }
         else
