@@ -15,11 +15,7 @@ public class Spread : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Remove toast ninja component
-        if(splatterPrefab.TryGetComponent<TN_Splat>(out TN_Splat tnPart))
-        {
-            tnPart.enabled = false;
-        }
+        
     }
 
     // Update is called once per frame
@@ -39,6 +35,13 @@ public class Spread : MonoBehaviour
         Debug.Log("Applying Spread...");
 
         GameObject obj = Instantiate(splatterPrefab);
+
+        // Remove toast ninja fade component from splatter
+        if (obj.TryGetComponent<TN_Splat>(out TN_Splat tnPart))
+        {
+            tnPart.enabled = false;
+        }
+
         obj.transform.localScale = breadToSpread.transform.localScale * 0.35f;
         obj.transform.parent = breadToSpread.transform;
         obj.transform.rotation = Quaternion.identity;
