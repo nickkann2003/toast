@@ -15,19 +15,19 @@ public class Spread : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void ApplySpread(NewProp breadToSpread)
+    public void ApplySpread(NewProp breadToSpread, float dot)
     {
         // Double check if prop somehow isn't bread
-        if(!breadToSpread.HasFlag(PropFlags.Bread))
+        if (!breadToSpread.HasFlag(PropFlags.Bread))
         {
             return;
         }
@@ -42,10 +42,23 @@ public class Spread : MonoBehaviour
             tnPart.enabled = false;
         }
 
-        obj.transform.localScale = breadToSpread.transform.localScale * 0.35f;
+        // Align the splatter texture
+        obj.transform.localScale = new Vector3(breadToSpread.transform.localScale.x * 0.35f, breadToSpread.transform.localScale.y * 0.5f, breadToSpread.transform.localScale.z * 0.35f);
+        obj.transform.rotation = breadToSpread.transform.rotation;
         obj.transform.parent = breadToSpread.transform;
-        obj.transform.rotation = Quaternion.identity;
-        obj.transform.localPosition = new Vector3(0, 0, 0.03f * breadToSpread.transform.localScale.z);
+
+        // Determine which side is up, put spread on that one
+        if (dot >= 0)
+        {
+            obj.transform.GetChild(0).Rotate(new Vector3(0, 180, 0), Space.Self);
+            obj.transform.localPosition = new Vector3(0, 0, 0.03f * breadToSpread.transform.localScale.z);
+        }
+        else
+        {
+            obj.transform.localPosition = new Vector3(0, 0, -0.03f * breadToSpread.transform.localScale.z);
+        }
+        
+        // Set the color
         obj.GetComponentInChildren<Renderer>().material.color = spreadColor;
 
     }

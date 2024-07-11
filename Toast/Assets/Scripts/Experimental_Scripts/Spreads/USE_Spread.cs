@@ -29,6 +29,8 @@ public class USE_Spread : UseEffectSO
         // Check for collider
         if (hit.collider.gameObject != null)
         {
+            float dot = Vector3.Dot(hit.point, hit.transform.forward);
+
             // Check for prop
             NewProp prop = hit.collider.gameObject.GetComponent<NewProp>();
             if (prop != null)
@@ -37,7 +39,7 @@ public class USE_Spread : UseEffectSO
                 if (prop.HasFlag(PropFlags.Bread))
                 {
                     // Spread application handled in spread class
-                    spread.ApplySpread(prop);
+                    spread.ApplySpread(prop, dot);
                     return true;
                 }
             }
