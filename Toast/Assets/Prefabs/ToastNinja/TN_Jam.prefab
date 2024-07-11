@@ -78,22 +78,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429bde5dd05b54548b37ef4292b26c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  propObject: {fileID: 0}
+  propSO: {fileID: 0}
+  staticMesh: {fileID: 0}
   propFlags: 0
   attributesList: []
   statsSystem:
     statList: []
-  toastType: {fileID: 0}
-  sizeType: {fileID: 0}
-  massType: {fileID: 0}
   useEffects:
   - {fileID: 11400000, guid: c446b2269b5b870468c543c829a50405, type: 2}
-  toastiness: 0
-  fireTrigger: 1.5
-  firePrefab: {fileID: 0}
-  frozenness: 0
-  baseMat: {fileID: 0}
-  PD_Rb: {fileID: 0}
   createObjectEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
   thawObjectEvent: {fileID: 11400000, guid: d26239510d487054e9b40255a0a441bf, type: 2}
   toastObjectEvent: {fileID: 0}
@@ -178,7 +170,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2760918, y: 0.40216342, z: 0.2763628}
+  m_Size: {x: 0.8, y: 0.8, z: 0.8}
   m_Center: {x: -0.00012338161, y: -0.006459847, z: 0.0013170391}
 --- !u!114 &2013594333073668242
 MonoBehaviour:
@@ -194,8 +186,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jamJar: {fileID: 5079398828871168021}
   jamJarLid: {fileID: 219293648057030867}
+  lidAtt: {fileID: 0}
+  config: {fileID: 0}
+  isCapped: 1
   jamJarLidPrefab: {fileID: 1000392157583233769, guid: eb8873735e8458744b40bc8d58c32d04,
     type: 3}
+  newHand: {fileID: 0}
+  capEvent: {fileID: 0}
+  uncapEvent: {fileID: 0}
 --- !u!114 &-2546552491060952317
 MonoBehaviour:
   m_ObjectHideFlags: 0
