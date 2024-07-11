@@ -15,8 +15,21 @@ public class USE_Knife : UseEffectSO
         {
             if (newHand.CheckObject())
             {
+                // If object is a spread, set it on knife
+                if(newHand.CheckObject().TryGetComponent(out Spread spread))
+                {
+                    spread.IsOnKnife = true;
+                }
+
                 if (!newHand.TryUseInHand())
                 {
+
+                    // Object is a spread, set no longer on knife
+                    if (newHand.CheckObject().TryGetComponent(out spread))
+                    {
+                        spread.IsOnKnife = false;
+                    }
+
                     // CHANGE LATER
                     newHand.Drop().transform.position = StationManager.instance.playerLocation.ObjectOffset; // CHANGE LATER
                 }

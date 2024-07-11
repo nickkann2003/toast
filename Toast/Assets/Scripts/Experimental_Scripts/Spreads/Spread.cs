@@ -12,6 +12,9 @@ public class Spread : MonoBehaviour
     [SerializeField]
     GameObject splatterPrefab;
 
+    public bool IsOnKnife;
+    public Knife currentKnife;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,11 @@ public class Spread : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Called when the spread is used to place the visual of the spread
+    /// </summary>
+    /// <param name="breadToSpread">The piece of bread the spread is being applied to</param>
+    /// <param name="dot">The dot product of the bread's forward and the raycast hit</param>
     public void ApplySpread(NewProp breadToSpread, float dot)
     {
         // Double check if prop somehow isn't bread
@@ -32,8 +40,7 @@ public class Spread : MonoBehaviour
             return;
         }
 
-        Debug.Log("Applying Spread...");
-
+        // Create the splatter, probably will be changed later when splatter is replaced
         GameObject obj = Instantiate(splatterPrefab);
 
         // Remove toast ninja fade component from splatter

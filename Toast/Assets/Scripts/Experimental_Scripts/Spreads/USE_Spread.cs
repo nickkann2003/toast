@@ -18,7 +18,9 @@ public class USE_Spread : UseEffectSO
     {
         // Make sure object is a spread
         Spread spread = newProp.GetComponent<Spread>();
-        if(spread == null)
+
+        // If object not a spread or spread isn't on knife, return false
+        if(spread == null || !spread.IsOnKnife)
         {
             return false;
         }
