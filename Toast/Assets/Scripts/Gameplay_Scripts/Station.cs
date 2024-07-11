@@ -137,10 +137,10 @@ public class Station : MonoBehaviour
     void OnDrawGizmosSelected()
     {        
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.TransformPoint(objectOffset), 0.1f);
+        Gizmos.DrawWireSphere(transform.TransformPoint(objectOffset), 0.1f * transform.lossyScale.x);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.TransformPoint(cameraPos), 0.1f);
+        Gizmos.DrawSphere(transform.TransformPoint(cameraPos), 0.1f * transform.lossyScale.x);
         
         Vector3 eAngle = transform.rotation.eulerAngles;
         if (invertXCameraRotation)
@@ -149,7 +149,7 @@ public class Station : MonoBehaviour
         }
         Matrix4x4 matrix = Matrix4x4.Translate(transform.TransformPoint(cameraPos)) * Matrix4x4.Rotate(Quaternion.Euler(eAngle + cameraRotation.eulerAngles));
         Gizmos.matrix = matrix;
-        Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane, Camera.main.nearClipPlane, Camera.main.aspect);
+        Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane * transform.lossyScale.x, Camera.main.nearClipPlane * transform.lossyScale.x, Camera.main.aspect);
     }
 
     /// <summary>
