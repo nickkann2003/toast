@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1342304157069476876}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 7.416395, y: 10.4712, z: 1.2725145}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 605480197552984244}
@@ -132,7 +132,7 @@ Transform:
   m_GameObject: {fileID: 2950159470662937063}
   m_LocalRotation: {x: 0, y: -0.70710677, z: 0.70710677, w: 0}
   m_LocalPosition: {x: -1.6323631e-10, y: 5.263359e-10, z: 0}
-  m_LocalScale: {x: 14.832787, y: 20.9424, z: 2.5450294}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5110438497126172288}
@@ -158,7 +158,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0530578, y: 0.046556816, z: 0.04744588}
+  m_Size: {x: 0.8, y: 0.8, z: 0.8}
   m_Center: {x: -0.00006139167, y: -0.0006742563, z: 0.00012394313}
 --- !u!54 &3702108480223764488
 Rigidbody:
@@ -199,22 +199,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429bde5dd05b54548b37ef4292b26c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  propObject: {fileID: 0}
+  propSO: {fileID: 0}
+  staticMesh: {fileID: 0}
   propFlags: 0
   attributesList: []
   statsSystem:
     statList: []
-  toastType: {fileID: 0}
-  sizeType: {fileID: 0}
-  massType: {fileID: 0}
   useEffects:
   - {fileID: 11400000, guid: 7b733d7783711a741b1588b963776e4f, type: 2}
-  toastiness: 0
-  fireTrigger: 1.5
-  firePrefab: {fileID: 0}
-  frozenness: 0
-  baseMat: {fileID: 0}
-  PD_Rb: {fileID: 0}
   createObjectEvent: {fileID: 11400000, guid: 91c4b8fc96ecda84f9869d23aa448d92, type: 2}
   thawObjectEvent: {fileID: 11400000, guid: d26239510d487054e9b40255a0a441bf, type: 2}
   toastObjectEvent: {fileID: 0}
