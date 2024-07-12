@@ -19,6 +19,8 @@ public class SpawnPrefabScript : MonoBehaviour
     public Vector3 spawnRandomness;
     public Quaternion spawnRotationRandomness;
 
+    public GameObject spawnParent; // Object to set as parent when spawning
+
     [SerializeField]
     private bool automaticSpawning;
     [Header("----------------- Automatic Spawning -----------------"), ShowIf("automaticSpawning")]
@@ -58,6 +60,9 @@ public class SpawnPrefabScript : MonoBehaviour
         
         spawnedObject.transform.position = actualSpawnPos + randomness;
         spawnedObject.transform.rotation = rotationRandomness;
+
+        if (spawnParent != null)
+            spawnedObject.transform.SetParent(spawnParent.transform, true);
     }
 
     /// <summary>

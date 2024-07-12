@@ -18,6 +18,7 @@ public class ObjectRespawner : MonoBehaviour
     [SerializeField] public bool waitForAll = false;
     [SerializeField] public bool autoRespawnItems = true;
     [SerializeField] public bool spawnOnStart = true;
+    [SerializeField] private GameObject spawnParent;
 
     /// <summary>
     /// Option respawn trigger collider, any object with this script and a trigger collider will automatically function off of this
@@ -29,6 +30,13 @@ public class ObjectRespawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (spawnParent != null)
+        {
+            foreach (RespawnableObject obj in objects)
+            {
+                obj.SetSpawnParent(spawnParent);
+            }
+        }
         if(gameObject.activeSelf && spawnOnStart)
         {
             foreach(RespawnableObject obj in objects)
@@ -159,6 +167,18 @@ public class ObjectRespawner : MonoBehaviour
             Gizmos.DrawWireSphere(obj.spawnPosition + transform.position, 0.05f);
         }
     }
+
+    public void SetSpawnParent(GameObject spawnParent)
+    {
+        foreach (RespawnableObject obj in objects)
+        {
+            obj.SetSpawnParent(spawnParent);
+            if(obj.ObjRef != null)
+            {
+                obj.ObjRef.transform.SetParent(spawnParent.transform, true);
+            }
+        }
+    }
 }
 
 [Serializable]
@@ -169,6 +189,8 @@ public class RespawnableObject
     [SerializeField] public Vector3 spawnPosition;
     [SerializeField] public Quaternion spawnRotation;
     private GameObject objRef = null;
+
+    [SerializeField] public GameObject spawnParent;
 
     public GameObject ObjRef { get => objRef; set => objRef = value; }
 
@@ -191,5 +213,13 @@ public class RespawnableObject
         objRef = GameObject.Instantiate(prefab);
         objRef.transform.position = spawnPosition + parentOffset;
         objRef.transform.rotation = spawnRotation;
+
+        if (spawnParent != null)
+            objRef.transform.SetParent(spawnParent.transform, true);
+    }
+
+    public void SetSpawnParent(GameObject parent)
+    {
+        this.spawnParent = parent;
     }
 }
