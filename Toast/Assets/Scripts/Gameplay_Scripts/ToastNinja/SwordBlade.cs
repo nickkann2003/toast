@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class SwordBlade : MonoBehaviour
 {
+    private Vector3 lastPos;
+    private float speed;
+
     // ------------------------------- Functions -------------------------------
+    private void OnEnable()
+    {
+        lastPos = transform.position;
+    }
+
+    private void Update()
+    {
+        speed = (transform.position - lastPos).magnitude / Time.deltaTime;
+        lastPos = transform.position;
+    }
+
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("HELLO");
         if (other.gameObject.GetComponent<TN_Object>() != null)
         {
-            Debug.Log("HELLO");
+            other.gameObject.GetComponent<TN_Object>().Slice(other.transform.position - lastPos, speed);
             other.gameObject.GetComponent<TN_Object>().Use();
         }
 

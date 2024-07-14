@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TN_Object : MonoBehaviour, IUseStrategy
+public class TN_Object : MonoBehaviour
 {
     // ------------------------------- Variables -------------------------------
     [Header("Variables")]
@@ -14,12 +12,16 @@ public class TN_Object : MonoBehaviour, IUseStrategy
     [SerializeField]
     GameObject pointObject;
 
+    [SerializeField]
+    GameObject onDestroyParticles;
+
     [Header("Event References")]
     [SerializeField]
     private PropIntGameEvent toastNinjaScoreEvent;
 
     private Vector3 startPosition;
 
+    [SerializeField]
     private float hitsToDestroy = 1;
 
 
@@ -42,9 +44,9 @@ public class TN_Object : MonoBehaviour, IUseStrategy
         hitsToDestroy--;
         if (hitsToDestroy != 0)
         {
-            Vector3 hitDirection = new Vector3(Random.Range(-.5f, .5f) * 2, 1, 0);
-            this.GetComponent<Rigidbody>().AddForce(hitDirection * 250);
-            Debug.Log("Hit");
+            //Vector3 hitDirection = new Vector3(Random.Range(-.5f, .5f) * 2, 1, 0);
+            //this.GetComponent<Rigidbody>().AddForce(hitDirection * 250);
+            //Debug.Log("Hit");
             return;
         }
 
@@ -62,9 +64,33 @@ public class TN_Object : MonoBehaviour, IUseStrategy
         {
             pointsObj.GetComponent<TextMeshPro>().text += "+";
         }
-
         pointsObj.GetComponent<TextMeshPro>().text += points;
 
+        if (onDestroyParticles != null)
+        {
+            GameObject particleObj = Instantiate(onDestroyParticles);
+            particleObj.transform.position = this.transform.position;
+        }
+
+        Destroy(this.gameObject);
+    }
+
+    public void Slice(Vector3 hitDirection, float speed = 1)
+    {
+        speed = speed / 2f;
+        speed = Mathf.Clamp(speed, 2f, 8f);
+        Debug.Log(speed);
+
+        hitDirection.z = 0;
+        hitDirection.y += .2f * hitDirection.y;
+        //hitDirection = Vector3.Normalize(hitDirection);
+
+        GetComponent<Rigidbody>().AddForce(Vector3.Normalize(hitDirection) * speed * 100);
+        GetComponent<Rigidbody>().AddTorque(new Vector3(0 , 0, speed) * 200);
+    }
+
+    public void Goodbye()
+    {
         Destroy(this.gameObject);
     }
 }

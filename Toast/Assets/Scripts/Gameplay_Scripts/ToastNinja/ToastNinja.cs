@@ -86,21 +86,6 @@ public class ToastNinja : MonoBehaviour
         }
     }
 
-    //// Fires toast recursively
-    //IEnumerator RapidFire(int amount)
-    //{
-    //    if (amount > 0)
-    //    {
-    //        LaunchToast();
-    //        yield return new WaitForSeconds(.4f);
-    //        StartCoroutine(RapidFire(amount - 1));
-    //    }
-    //    else
-    //    {
-    //        yield return new WaitForSeconds(.1f);
-    //    }
-    //}
-
     // Randomly creates a wave of items
     void LaunchToast()
     {
