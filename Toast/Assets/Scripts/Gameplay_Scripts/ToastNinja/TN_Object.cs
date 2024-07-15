@@ -52,10 +52,10 @@ public class TN_Object : MonoBehaviour
 
         AudioManager.instance.PlayOneShotSound(AudioManager.instance.eatingBread);
 
-        GameObject obj = Instantiate(splatter, transform.position, transform.rotation);
-        obj.GetComponent<Renderer>().material.color = this.GetComponent<Renderer>().material.color;
-        obj.transform.Rotate(new Vector3(0, 0, Random.Range(-30, 30)*2), Space.Self);
-        toastNinjaScoreEvent.RaiseEvent(gameObject.GetComponent<NewProp>(), (int)points);
+        //GameObject obj = Instantiate(splatter, transform.position, transform.rotation);
+        //obj.GetComponent<Renderer>().material.color = this.GetComponent<Renderer>().material.color;
+        //obj.transform.Rotate(new Vector3(0, 0, Random.Range(-30, 30)*2), Space.Self);
+        //toastNinjaScoreEvent.RaiseEvent(gameObject.GetComponent<NewProp>(), (int)points);
 
         GameObject pointsObj = Instantiate(pointObject, new Vector3(transform.position.x, transform.position.y, transform.position.z - 1), Quaternion.identity);
         pointsObj.GetComponent<TextMeshPro>().color = this.GetComponent<Renderer>().material.color;
@@ -78,7 +78,7 @@ public class TN_Object : MonoBehaviour
     public void Slice(Vector3 hitDirection, float speed = 1)
     {
         speed = speed / 2f;
-        speed = Mathf.Clamp(speed, 2f, 8f);
+        speed = Mathf.Clamp(speed, 2f, 6f);
         Debug.Log(speed);
 
         hitDirection.z = 0;
