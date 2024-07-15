@@ -40,6 +40,12 @@ public class Spread : MonoBehaviour
             return;
         }
 
+        // Bread already has spread, return
+        if(breadToSpread.HasAttribute(StatAttManager.instance.hasSpreadAtt))
+        {
+            return;
+        }
+
         // Create the splatter, probably will be changed later when splatter is replaced
         GameObject obj = Instantiate(splatterPrefab);
 
@@ -67,6 +73,9 @@ public class Spread : MonoBehaviour
         
         // Set the color
         obj.GetComponentInChildren<Renderer>().material.color = spreadColor;
+
+        // Mark that bread has spread
+        breadToSpread.AddAttribute(StatAttManager.instance.hasSpreadAtt);
 
     }
 }

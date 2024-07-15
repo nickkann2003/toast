@@ -480,6 +480,12 @@ public class Raycast : MonoBehaviour
             {
                 Debug.Log("Forcibly removing from hand");
                 hitGO.GetComponent<NewProp>().ForceRemoveFromHand();
+
+                // Spread specific, mark as not on knife
+                if(hitGO.TryGetComponent(out Spread spread))
+                {
+                    spread.IsOnKnife = false;
+                }
             }
             onDragEvent.RaiseEvent(hitGO.GetComponent<NewProp>(), 1);
         }

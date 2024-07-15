@@ -15,6 +15,10 @@ public class StatAttManager : MonoBehaviour
     public PropAttributeSO frozenAtt;
     public PropAttributeSO inHandAtt;
 
+    [HorizontalLine(color: EColor.Gray)]
+    public PropAttributeSO hasSpreadAtt;
+
+
     // Singleton
     public static StatAttManager instance;
 
