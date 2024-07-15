@@ -21,6 +21,8 @@ public class TN_Object : MonoBehaviour
 
     private Vector3 startPosition;
 
+
+
     [SerializeField]
     private float hitsToDestroy = 1;
 
