@@ -57,16 +57,8 @@ public class TN_Object : MonoBehaviour
         //GameObject obj = Instantiate(splatter, transform.position, transform.rotation);
         //obj.GetComponent<Renderer>().material.color = this.GetComponent<Renderer>().material.color;
         //obj.transform.Rotate(new Vector3(0, 0, Random.Range(-30, 30)*2), Space.Self);
-        //toastNinjaScoreEvent.RaiseEvent(gameObject.GetComponent<NewProp>(), (int)points);
 
-        GameObject pointsObj = Instantiate(pointObject, new Vector3(transform.position.x, transform.position.y, transform.position.z - 1), Quaternion.identity);
-        pointsObj.GetComponent<TextMeshPro>().color = this.GetComponent<Renderer>().material.color;
-        pointsObj.GetComponent<TextMeshPro>().text = "";
-        if (points >= 0)
-        {
-            pointsObj.GetComponent<TextMeshPro>().text += "+";
-        }
-        pointsObj.GetComponent<TextMeshPro>().text += points;
+        
 
         if (onDestroyParticles != null)
         {
@@ -88,7 +80,26 @@ public class TN_Object : MonoBehaviour
         //hitDirection = Vector3.Normalize(hitDirection);
 
         GetComponent<Rigidbody>().AddForce(Vector3.Normalize(hitDirection) * speed * 100);
-        GetComponent<Rigidbody>().AddTorque(new Vector3(0 , 0, speed) * 200);
+        GetComponent<Rigidbody>().AddTorque(new Vector3(0 , 0, speed) * 200 * -hitDirection.x/Mathf.Abs(hitDirection.x));
+
+        SpawnPoints();
+
+        points++;
+    }
+
+    public void SpawnPoints()
+    {
+        GameObject pointsObj = Instantiate(pointObject, new Vector3(transform.position.x, transform.position.y, transform.position.z - 1), Quaternion.identity);
+        pointsObj.GetComponent<TextMeshPro>().color = this.GetComponent<Renderer>().material.color;
+        pointsObj.GetComponent<TextMeshPro>().text = "";
+        if (points >= 0)
+        {
+            pointsObj.GetComponent<TextMeshPro>().text += "+";
+        }
+        pointsObj.GetComponent<TextMeshPro>().text += points;
+        pointsObj.transform.localScale = Vector3.one * .4f * Mathf.Abs(points);
+
+        toastNinjaScoreEvent.RaiseEvent(gameObject.GetComponent<NewProp>(), (int)points);
     }
 
     public void Goodbye()
