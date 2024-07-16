@@ -109,6 +109,7 @@ public class Jam : MonoBehaviour
         {
             isCapped = false;
             GameObject lid = newHand.Drop();
+            AudioManager.instance.PlayOneShotSound(AudioManager.instance.jamOpen);
             if (lid != null)
             {
                 // CHANGE LATER
