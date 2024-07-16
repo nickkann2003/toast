@@ -15,10 +15,16 @@ public class Spread : MonoBehaviour
     public bool IsOnKnife;
     public Knife currentKnife;
 
+    [SerializeField]
+    private PropIntGameEvent spreadEvent;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        if(spreadEvent == null)
+        {
+            spreadEvent = PieManager.instance.SpreadObject;
+        }
     }
 
     // Update is called once per frame
@@ -76,6 +82,9 @@ public class Spread : MonoBehaviour
 
         // Mark that bread has spread
         breadToSpread.AddAttribute(StatAttManager.instance.hasSpreadAtt);
+
+        // Trigger the event
+        spreadEvent.RaiseEvent(breadToSpread, 1);
 
     }
 }
