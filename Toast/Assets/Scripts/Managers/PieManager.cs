@@ -34,6 +34,7 @@ public class PieManager : MonoBehaviour
     public PropIntGameEvent CapObject;
     public PropIntGameEvent UncapObject;
     public PropIntGameEvent ElectricityExplodeObject;
+    public PropIntGameEvent SpreadObject;
 
     // Singleton
     public static PieManager instance;

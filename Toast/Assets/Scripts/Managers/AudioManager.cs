@@ -25,6 +25,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip fireAlarm;
     public AudioClip physicalButton;
     public AudioClip requirementComplete;
+    public AudioClip jamOpen;
+    public AudioClip jamSplash;
 
     // ------------------------------- Functions -------------------------------
     private void Awake()
