@@ -6,14 +6,10 @@ public class TN_Object : MonoBehaviour
     // ------------------------------- Variables -------------------------------
     [Header("Variables")]
     [SerializeField]
-    float points;
-    [SerializeField]
-    GameObject splatter;
-    [SerializeField]
-    GameObject pointObject;
+    private TN_ItemScriptableObject _itemScriptableObject;
 
     [SerializeField]
-    GameObject onDestroyParticles;
+    GameObject splatter;
 
     [Header("Event References")]
     [SerializeField]
@@ -21,10 +17,11 @@ public class TN_Object : MonoBehaviour
 
     private Vector3 startPosition;
 
-
+    private int hitsToDestroy = 0;
+    private int hitsTaken = 0;
 
     [SerializeField]
-    private float hitsToDestroy = 1;
+    private RS_ToastNinja runtimeSet;
 
 
     // ------------------------------- Functions -------------------------------
@@ -32,19 +29,18 @@ public class TN_Object : MonoBehaviour
     void OnEnable()
     {
         startPosition = transform.position;
-    }
+        hitsToDestroy = _itemScriptableObject.HitsToDestroy;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (runtimeSet != null)
+        {
+            runtimeSet.Add(this.GetComponent<TN_Object>());
+        }
     }
 
     // Use for TNObject destroys the object and grants points
     public void Use()
     {
-        hitsToDestroy--;
-        if (hitsToDestroy != 0)
+        if (hitsToDestroy - hitsTaken != 0)
         {
             //Vector3 hitDirection = new Vector3(Random.Range(-.5f, .5f) * 2, 1, 0);
             //this.GetComponent<Rigidbody>().AddForce(hitDirection * 250);
@@ -58,52 +54,47 @@ public class TN_Object : MonoBehaviour
         //obj.GetComponent<Renderer>().material.color = this.GetComponent<Renderer>().material.color;
         //obj.transform.Rotate(new Vector3(0, 0, Random.Range(-30, 30)*2), Space.Self);
 
-        
+        _itemScriptableObject.SpawnDestroyParticles(this.transform.position);
 
-        if (onDestroyParticles != null)
+        if (_itemScriptableObject.IsBomb)
         {
-            GameObject particleObj = Instantiate(onDestroyParticles);
-            particleObj.transform.position = this.transform.position;
+            runtimeSet.DestroyAll();
         }
-
-        Destroy(this.gameObject);
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
-    public void Slice(Vector3 hitDirection, float speed = 1)
+    public void Slice(Vector3 hitPosition, Vector3 hitDirection, float speed = 1)
     {
+        hitsTaken++;
+
         speed = speed / 2f;
-        speed = Mathf.Clamp(speed, 2f, 6f);
-        Debug.Log(speed);
+        speed = Mathf.Clamp(speed, 3f, 6f);
 
         hitDirection.z = 0;
-        hitDirection.y += .2f * hitDirection.y;
+        hitDirection.y += .5f * hitDirection.y;
         //hitDirection = Vector3.Normalize(hitDirection);
 
         GetComponent<Rigidbody>().AddForce(Vector3.Normalize(hitDirection) * speed * 100);
         GetComponent<Rigidbody>().AddTorque(new Vector3(0 , 0, speed) * 200 * -hitDirection.x/Mathf.Abs(hitDirection.x));
 
-        SpawnPoints();
+        _itemScriptableObject.SpawnPoints(hitPosition, hitsTaken);
 
-        points++;
-    }
-
-    public void SpawnPoints()
-    {
-        GameObject pointsObj = Instantiate(pointObject, new Vector3(transform.position.x, transform.position.y, transform.position.z - 1), Quaternion.identity);
-        pointsObj.GetComponent<TextMeshPro>().color = this.GetComponent<Renderer>().material.color;
-        pointsObj.GetComponent<TextMeshPro>().text = "";
-        if (points >= 0)
-        {
-            pointsObj.GetComponent<TextMeshPro>().text += "+";
-        }
-        pointsObj.GetComponent<TextMeshPro>().text += points;
-        pointsObj.transform.localScale = Vector3.one * .4f * Mathf.Abs(points);
-
-        toastNinjaScoreEvent.RaiseEvent(gameObject.GetComponent<NewProp>(), (int)points);
+        toastNinjaScoreEvent?.OnEventRaised(this.GetComponent<NewProp>(), _itemScriptableObject.GetPoints(hitsTaken));
     }
 
     public void Goodbye()
     {
         Destroy(this.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (runtimeSet != null)
+        {
+            runtimeSet.Remove(this);
+        }
     }
 }

@@ -23,7 +23,7 @@ public class SwordBlade : MonoBehaviour
     {
         if (other.gameObject.GetComponent<TN_Object>() != null)
         {
-            other.gameObject.GetComponent<TN_Object>().Slice(other.transform.position - lastPos, speed);
+            other.gameObject.GetComponent<TN_Object>().Slice(this.transform.position, other.transform.position - lastPos, speed);
             other.gameObject.GetComponent<TN_Object>().Use();
         }
 

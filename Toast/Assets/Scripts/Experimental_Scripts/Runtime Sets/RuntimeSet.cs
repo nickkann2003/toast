@@ -1,23 +1,39 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class RuntimeSet<T> : ScriptableObject
 {
-    public List<T> Items = new List<T>();
+    [SerializeField]
+    protected List<T> items = new List<T>();
+    public List<T> Items {  get { return items; } }
     public void Add(T t)
     {
-        if (!Items.Contains(t))
+        if (!items.Contains(t))
         {
-            Items.Add(t);
+            items.Add(t);
         }
     }
 
     public void Remove(T t)
     {
-        if (Items.Contains(t))
+        if (items.Contains(t))
         {
-            Items.Remove(t);
+            items.Remove(t);
         }
+    }
+
+    public bool Contains(T t)
+    {
+        return items.Contains(t);
+    }
+
+    public int Count()
+    {
+        return items.Count;
+    }
+
+    public void Clear()
+    {
+        items.Clear();
     }
 }

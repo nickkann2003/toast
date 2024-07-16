@@ -50,6 +50,12 @@ public class ToastNinja : MonoBehaviour
     [SerializeField]
     private List<GameObject> moveBlockers;
 
+    private float highScore;
+    private float currentScore;
+
+    [SerializeField]
+    private RS_ToastNinja runtimeSet;
+
     // ------------------------------- Properties -------------------------------
     public LaunchObject[] LaunchObjects
     {
@@ -193,6 +199,8 @@ public class ToastNinja : MonoBehaviour
         {
             blocker.SetActive(false);
         }
+
+        runtimeSet.DestroyAll();
     }
 
     // Readies the game
