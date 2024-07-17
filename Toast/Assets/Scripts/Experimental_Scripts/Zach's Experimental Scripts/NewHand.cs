@@ -67,6 +67,8 @@ public class NewHand : MonoBehaviour
             // Update drop objectives
             if(dropEvent != null)
                 dropEvent.RaiseEvent(heldObject.GetComponent<NewProp>(), 1);
+
+            AudioManager.instance.PlayOneShotSound(AudioManager.instance.drop);
             
             heldObject.transform.parent = null;
             heldObject = null;
@@ -98,6 +100,8 @@ public class NewHand : MonoBehaviour
             // Objective calls
             if (pickUpEvent != null)
                 pickUpEvent.RaiseEvent(itemToPickup.GetComponent<NewProp>(), 1);
+
+            AudioManager.instance.PlayOneShotSound(AudioManager.instance.pickUp);
 
             // Set object transform
             itemToPickup.transform.parent = this.gameObject.transform;
