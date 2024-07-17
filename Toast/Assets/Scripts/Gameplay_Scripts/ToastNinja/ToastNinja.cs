@@ -23,7 +23,6 @@ public class ToastNinja : MonoBehaviour
     private GameObject burningObj;
 
     [SerializeField]
-    private GameObject swordPrefab;
     private GameObject swordObject;
 
     [Header("Time Variables")]
@@ -152,6 +151,12 @@ public class ToastNinja : MonoBehaviour
         //        Raycast.Instance.noDrag = true;
         //    }
         //}
+
+        if (Raycast.Instance.hand.CheckObject() != swordObject)
+        {
+            Raycast.Instance.hand.Drop().transform.position = StationManager.instance.playerLocation.ObjectOffset;
+            Raycast.Instance.hand.Pickup(swordObject);
+        }
 
         Raycast.Instance.noDrag = true;
 
