@@ -27,6 +27,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip requirementComplete;
     public AudioClip jamOpen;
     public AudioClip jamSplash;
+    public AudioClip jamEat;
+    public AudioClip pickUp;
+    public AudioClip drop;
+
 
     // ------------------------------- Functions -------------------------------
     private void Awake()
