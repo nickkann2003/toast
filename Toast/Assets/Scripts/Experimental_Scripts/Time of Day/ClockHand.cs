@@ -10,6 +10,9 @@ public class ClockHand : MonoBehaviour
 
     private Vector3 prevPos;
 
+    [SerializeField]
+    private GameObjectGameEvent handMovedEvent;
+
     // ------------------------------- Functions -------------------------------
     private void Start()
     {
@@ -64,6 +67,8 @@ public class ClockHand : MonoBehaviour
 
         // Rotate around
         transform.RotateAround(clockBody.transform.position, clockBody.transform.up, -angleDelta);
+
+        handMovedEvent.RaiseEvent(this.gameObject);
     }
 
 }
