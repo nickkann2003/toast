@@ -23,6 +23,8 @@ public class TN_Object : MonoBehaviour
     [SerializeField]
     private RS_ToastNinja runtimeSet;
 
+    private ToastNinjaScore toastNinjaScore;
+
 
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
@@ -30,6 +32,7 @@ public class TN_Object : MonoBehaviour
     {
         startPosition = transform.position;
         hitsToDestroy = _itemScriptableObject.HitsToDestroy;
+        toastNinjaScore = _itemScriptableObject.ToastNinjaScore;
 
         if (runtimeSet != null)
         {
@@ -58,6 +61,7 @@ public class TN_Object : MonoBehaviour
 
         if (_itemScriptableObject.IsBomb)
         {
+            toastNinjaScore.BombHit();
             runtimeSet.DestroyAll();
         }
         else

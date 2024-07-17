@@ -28,6 +28,9 @@ public class TN_ItemScriptableObject : ScriptableObject
     [SerializeField]
     private Color pointsColor;
 
+    [SerializeField]
+    private ToastNinjaScore toastNinjaScore;
+
     [Header("Event References")]
     [SerializeField]
     private PropIntGameEvent toastNinjaScoreEvent;
@@ -37,6 +40,7 @@ public class TN_ItemScriptableObject : ScriptableObject
     public int BasePoints { get {  return basePoints; } }
     public int PointIncreaseOnHit { get {  return pointIncreaseOnHit; } }
     public int HitsToDestroy { get { return hitsToDestroy; } }
+    public ToastNinjaScore ToastNinjaScore { get { return toastNinjaScore; } }
 
     public void SpawnPoints(Vector3 location, int hitsTaken)
     {
@@ -51,6 +55,8 @@ public class TN_ItemScriptableObject : ScriptableObject
         }
         pointsObj.GetComponent<TextMeshPro>().text += points;
         pointsObj.transform.localScale = Vector3.one * .6f * Mathf.Abs(points);
+
+        toastNinjaScore.AddPoints(points);
     }
 
     public void SpawnDestroyParticles(Vector3 location)

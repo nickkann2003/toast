@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,16 +46,17 @@ public class ToastNinja : MonoBehaviour
     [SerializeField]
     private DestroyerVolume[] destroyerVolumes;
 
+    [SerializeField, ReadOnly]
     private ToastNinjaState toastNinjaState;
 
     [SerializeField]
     private List<GameObject> moveBlockers;
 
-    private float highScore;
-    private float currentScore;
-
     [SerializeField]
     private RS_ToastNinja runtimeSet;
+
+    [SerializeField]
+    ToastNinjaScore scoreSO;
 
     // ------------------------------- Properties -------------------------------
     public LaunchObject[] LaunchObjects
@@ -199,6 +201,8 @@ public class ToastNinja : MonoBehaviour
         {
             blocker.SetActive(false);
         }
+
+        scoreSO.GameEnd();
 
         runtimeSet.DestroyAll();
     }
