@@ -43,6 +43,10 @@ public class ToastingBreadTest : MonoBehaviour
     [SerializeField, ShowIf("customEvents")] private PropIntGameEvent toastStrength4;
     [SerializeField, ShowIf("customEvents")] private PropIntGameEvent toastStrength5;
 
+    [Header("Audio")]
+    [SerializeField]
+    private SimpleAudioEvent sizzleAudio;
+
     private bool defrost = false;
 
     private int snapPoint;
@@ -181,6 +185,8 @@ public class ToastingBreadTest : MonoBehaviour
                     NewProp prop = obj.GetComponent<NewProp>();
                     if (prop != null)
                     {
+                        prop.PlayAudioEvent(sizzleAudio);
+
                         if (defrost)
                             prop.RemoveAttribute(StatAttManager.instance.frozenAtt);
 

@@ -35,6 +35,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip lightOnFire;
     public AudioClip onFireAmbience;
     public AudioClip silence;
+    public AudioClip sizzle;
+    public AudioClip extinguish;
 
     public List<AudioSource> eventSources;
     private int iterator = 0;

@@ -2641,6 +2641,8 @@ MonoBehaviour:
   lightOnFire: {fileID: 8300000, guid: 7ebf92942c57bde4ba7e0661a1c5e65f, type: 3}
   onFireAmbience: {fileID: 8300000, guid: 92d3a78ac3c2d3447bcf97a0569e2b7e, type: 3}
   silence: {fileID: 8300000, guid: deee40c9211f470418d1444d7876d1b5, type: 3}
+  sizzle: {fileID: 8300000, guid: cb4011f2bbadb8543a07cb7a0e2286b3, type: 3}
+  extinguish: {fileID: 8300000, guid: f5150738dd652ad488767a839e8239e9, type: 3}
   eventSources: []
 --- !u!82 &179354647
 AudioSource:
@@ -24066,6 +24068,12 @@ PrefabInstance:
       propertyPath: maxTime
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1134104944049419510, guid: 087a36c7a73205049bb1d1992e3f01ce,
+        type: 3}
+      propertyPath: sizzleAudio
+      value: 
+      objectReference: {fileID: 11400000, guid: 4504246c460afa44ea4d4dd594a1ccfe,
+        type: 2}
     - target: {fileID: 1134104944049419510, guid: 087a36c7a73205049bb1d1992e3f01ce,
         type: 3}
       propertyPath: customEvents

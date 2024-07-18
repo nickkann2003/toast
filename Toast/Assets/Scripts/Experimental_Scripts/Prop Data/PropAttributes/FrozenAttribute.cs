@@ -22,6 +22,9 @@ public class FrozenAttribute : PropAttributeSO
     [SerializeField]
     private PropAttributeSO onFireAtt;
 
+    [SerializeField]
+    private SimpleAudioEvent extinguishAudio;
+
     //NEEDS WORK
     public override void OnEquip(NewProp newProp)
     {
@@ -77,6 +80,7 @@ public class FrozenAttribute : PropAttributeSO
     {
         newProp.RemoveAttribute(onFireAtt);
         yield return new WaitForSeconds(0);
+        newProp.PlayAudioEvent(extinguishAudio);
         newProp.RemoveAttributeWithoutOnRemove(this);
         newProp.Stats.IncrementStat(freezeType, -newProp.Stats.GetStat(freezeType).Value);
 
