@@ -55,7 +55,10 @@ public class ToastNinja : MonoBehaviour
     private RS_ToastNinja runtimeSet;
 
     [SerializeField]
-    ToastNinjaScore scoreSO;
+    private ToastNinjaScore scoreSO;
+
+    [SerializeField]
+    private GameObject toastNinjaUI;
 
     // ------------------------------- Properties -------------------------------
     public LaunchObject[] LaunchObjects
@@ -173,6 +176,8 @@ public class ToastNinja : MonoBehaviour
         {
             blocker.SetActive(true);
         }
+
+        toastNinjaUI.SetActive(true);
     }
 
     // Stops Toast Ninja
@@ -210,6 +215,8 @@ public class ToastNinja : MonoBehaviour
         scoreSO.GameEnd();
 
         runtimeSet.DestroyAll();
+
+        toastNinjaUI.SetActive(false);
     }
 
     // Readies the game
