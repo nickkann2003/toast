@@ -358,6 +358,11 @@ public class NewProp : MonoBehaviour
     {
         Stat sizeStat = Stats.GetStat(StatAttManager.instance.sizeType);
         transform.localScale = Vector3.one * sizeStat.Value;
+
+        if (fireObject != null)
+        {
+            fireObject.transform.localScale = this.transform.localScale;
+        }
     }
     public void RecalcWeight()
     {
