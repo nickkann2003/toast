@@ -36,6 +36,13 @@ public class FireEndingManager : MonoBehaviour
     [Header("Events")]
     [SerializeField]VoidGameEvent endingEvent;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip loopingFireAudio;
+    private float volumeMult;
+
+    private AudioSource fireSource;
+
     // ------------------------------- Functions -------------------------------
     private void Awake()
     {
@@ -47,6 +54,16 @@ public class FireEndingManager : MonoBehaviour
     {
         instance = this;
         InvokeRepeating("removeNull", 0, 1);
+
+        if(fireSource == null)
+        {
+            fireSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        fireSource.clip = loopingFireAudio;
+        fireSource.loop = true;
+
+        volumeMult = AudioManager.instance.volumeMultiplier;
     }
 
     // Update is called once per frame
@@ -58,12 +75,34 @@ public class FireEndingManager : MonoBehaviour
             smokeValue *= 4;
         }
 
+        float fireVol = (smokiness / fireEndingThreshold);
+        if(fireVol <= 0)
+        {
+            fireVol = 0;
+        }
+        else
+        {
+            fireVol *= 0.75f;
+            fireVol += 0.25f;
+        }
+
         if (smokiness + smokeValue < 0)
         {
             smokeValue = 0f;
+            if (fireSource.isPlaying)
+            {
+                fireSource.Pause();
+            }
         }
         else if (smokiness >= fireEndingThreshold)
         {
+            // Fire background audio
+            if(!fireSource.isPlaying)
+            {
+                fireSource.Play();
+            }
+            fireSource.volume = volumeMult * (fireVol);
+
             // Raise event to trigger achievement;
             endingEvent.RaiseEvent();
 
@@ -74,6 +113,13 @@ public class FireEndingManager : MonoBehaviour
         }
         else if (smokiness >= fireEndingThreshold * .85)
         {
+            // Fire background audio
+            if (!fireSource.isPlaying)
+            {
+                fireSource.Play();
+            }
+            fireSource.volume = volumeMult * (fireVol);
+
             smokiness += .3f * Time.deltaTime;
             if (lightTimer <= 0)
             {
@@ -91,6 +137,13 @@ public class FireEndingManager : MonoBehaviour
         }
         else
         {
+            // Fire background audio
+            if (!fireSource.isPlaying)
+            {
+                fireSource.Play();
+            }
+            fireSource.volume = volumeMult * (fireVol);
+
             smokiness += smokeValue;
         }
         

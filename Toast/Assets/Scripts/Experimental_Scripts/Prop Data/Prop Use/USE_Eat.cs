@@ -13,6 +13,8 @@ public class USE_Eat : UseEffectSO
     private StatType biteType;
     [SerializeField]
     private int totalBites;
+    [SerializeField]
+    private SimpleAudioEvent eatSound;
 
     //// audio
     //private AudioSource audioSource;
@@ -56,7 +58,7 @@ public class USE_Eat : UseEffectSO
     {
         // play sound
         //eatAudioEvent.Play(audioSource);
-        AudioManager.instance.PlayOneShotSound(AudioManager.instance.eatingBread);
+        AudioManager.instance.PlayAudioEvent(eatSound);
 
         // play particles
         Camera.main.GetComponent<Hand>().PlayEatParticles(newProp.gameObject);

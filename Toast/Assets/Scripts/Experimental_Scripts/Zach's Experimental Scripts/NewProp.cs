@@ -98,6 +98,12 @@ public class NewProp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Ensure audio player present
+        if(gameObject.GetComponent<AudioSource>() == null) 
+        { 
+            AudioSource s = gameObject.AddComponent<AudioSource>();
+        }
+
         // Grab initial color and set color variables   // CHANGE TO staticMesh.GetComponent
         initialColor = gameObject.GetComponentInChildren<Renderer>().material.color;
         colorOffset = strongestStrength - initialColor;
@@ -361,5 +367,12 @@ public class NewProp : MonoBehaviour
         {
             rb.mass = massStat.Value;
         }
+    }
+
+    public void PlayAudioEvent(SimpleAudioEvent audioEvent)
+    {
+        if (audioEvent == null) return;
+
+        audioEvent.Play(gameObject.GetComponent<AudioSource>());
     }
 }

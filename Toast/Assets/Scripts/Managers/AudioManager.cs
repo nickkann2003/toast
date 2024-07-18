@@ -10,9 +10,11 @@ public class AudioManager : MonoBehaviour
     [Header("Instance")]
     public static AudioManager instance;
 
-    private AudioSource audioPlayer;
+    public AudioSource audioPlayer;
+
     [Header("Volume")]
-    [SerializeField] float volumeMultiplier = 0.8f;
+    [SerializeField] 
+    public float volumeMultiplier = 0.8f;
 
     [Header("-------- Audio Clips --------")]
     public AudioClip eatingBread;
@@ -30,6 +32,12 @@ public class AudioManager : MonoBehaviour
     public AudioClip jamEat;
     public AudioClip pickUp;
     public AudioClip drop;
+    public AudioClip lightOnFire;
+    public AudioClip onFireAmbience;
+    public AudioClip silence;
+
+    public List<AudioSource> eventSources;
+    private int iterator = 0;
 
 
     // ------------------------------- Functions -------------------------------
@@ -49,6 +57,11 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         volumeMultiplier = UIManager.instance.volumeSlider.value;
+
+        for(int i = 0; i < 10; i++)
+        {
+            eventSources.Add(gameObject.AddComponent<AudioSource>());
+        }
     }
 
     /// <summary>
@@ -102,12 +115,14 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void ChangeVolume()
     {
-        volumeMultiplier= UIManager.instance.volumeSlider.value;
+        volumeMultiplier = UIManager.instance.volumeSlider.value;
         audioPlayer.volume = volumeMultiplier;
-        audioPlayer.clip = eatingBread;
-        audioPlayer.Play();
-
+        audioPlayer.PlayOneShot(eatingBread);
     }
 
-    
+    public void PlayAudioEvent(SimpleAudioEvent audioEvent)
+    {
+        iterator = (iterator + 1) % 10;
+        audioEvent.Play(eventSources[iterator]);
+    }
 }
