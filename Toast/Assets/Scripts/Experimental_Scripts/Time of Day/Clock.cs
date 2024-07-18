@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -31,6 +32,12 @@ public enum ClockTimes
     Time23
 }
 
+public enum AMPM
+{
+    AM,
+    PM,
+}
+
 public class Clock : MonoBehaviour
 {
     public ClockHand hourHand;
@@ -38,16 +45,37 @@ public class Clock : MonoBehaviour
 
     public ClockTimes currentTime;
 
+    float hourlyRotation;
+
     // Start is called before the first frame update
     void Start()
     {
         currentTime = ClockTimes.Time0;
+        hourlyRotation = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // Next time reached
+        if (hourlyRotation >= 30)
+        {
+            currentTime++;
+            hourlyRotation = 0;
+        }
+        // Rewind, previous time reached
+        else if (hourlyRotation <= -30)
+        {
+            currentTime--;
+            hourlyRotation = 0;
+        }
+        // Special case at midnight
+        else if(hourlyRotation < 0 && currentTime == ClockTimes.Time0)
+        {
+            currentTime = ClockTimes.Time23;
+        }
+
+        Debug.Log("The current time is " + currentTime.ToString());
     }
 
     public void ReceivedHandRotate(GameObject hand, float moveAmount)
@@ -57,7 +85,7 @@ public class Clock : MonoBehaviour
             // Hour hand moved, move minute hand by corresponding amount
             minuteHand.transform.RotateAround(transform.position, transform.up, moveAmount * 60);
 
-            Debug.Log("Moving Hour Hand");
+            hourlyRotation += moveAmount;
         }
         else if (hand == minuteHand.gameObject)
         {
@@ -65,7 +93,9 @@ public class Clock : MonoBehaviour
             if (Mathf.Abs(moveAmount) < 300)
             {
                 // Minute hand moved, move hour hand by corresponding amount
-                hourHand.transform.RotateAround(transform.position, transform.up, moveAmount / 12);
+                hourHand.transform.RotateAround(transform.position, transform.up, moveAmount / 60);
+
+                hourlyRotation += (moveAmount / 60);
             }
         }
         else
@@ -73,5 +103,7 @@ public class Clock : MonoBehaviour
             // Somehow something else called this event, return
             return;
         }
+
+        
     }
 }
