@@ -219,6 +219,10 @@ public class Hand : MonoBehaviour
     public void PlayEatParticles(GameObject item)
     {
         Color c = item.GetComponentInChildren<Renderer>().material.color;
+        Color toast = new Color(227, 200, 132);
+        c.r = (c.r / 255f) * toast.r;
+        c.g = (c.g / 255f) * toast.g;
+        c.b = (c.b / 255f) * toast.b;
         var main = EatParticles.main;
         main.startColor = c;       
         EatParticles.Play();

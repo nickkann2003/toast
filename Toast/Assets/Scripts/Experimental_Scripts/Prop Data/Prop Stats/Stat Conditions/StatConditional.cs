@@ -20,6 +20,9 @@ public class StatConditional : ScriptableObject
     [SerializeField]
     private bool removeOnCompletion = true;
 
+    [SerializeField]
+    private SimpleAudioEvent audioEvent;
+
     private DropdownList<int> GetOperator()
     {
         return new DropdownList<int>()
@@ -37,6 +40,11 @@ public class StatConditional : ScriptableObject
             if (!stat.BaseSystem.BaseProp.HasAttribute(attToGive))
             {
                 stat.BaseSystem.BaseProp.AddAttribute(attToGive);
+            }
+
+            if(audioEvent != null)
+            {
+                stat.BaseSystem.BaseProp.PlayAudioEvent(audioEvent);
             }
 
             if (removeOnCompletion)
