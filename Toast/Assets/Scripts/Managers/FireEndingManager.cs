@@ -82,8 +82,8 @@ public class FireEndingManager : MonoBehaviour
         }
         else
         {
-            fireVol *= 0.75f;
-            fireVol += 0.25f;
+            fireVol *= 1f;
+            fireVol += 1f;
         }
 
         if (smokiness + smokeValue < 0)
