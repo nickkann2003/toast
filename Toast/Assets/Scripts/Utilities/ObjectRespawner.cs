@@ -1,8 +1,10 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,6 +21,13 @@ public class ObjectRespawner : MonoBehaviour
     [SerializeField] public bool autoRespawnItems = true;
     [SerializeField] public bool spawnOnStart = true;
     [SerializeField] private GameObject spawnParent;
+
+    [Header("Outline Vars")]
+    [SerializeField]
+    private bool tempHighlightOnFirstAppearance = false;
+    [SerializeField, ShowIf("tempHighlightOnFirstAppearance")]
+    private bool onFirstSpawnOnly = true;
+    private bool firstSpawn = true;
 
     /// <summary>
     /// Option respawn trigger collider, any object with this script and a trigger collider will automatically function off of this
@@ -43,7 +52,7 @@ public class ObjectRespawner : MonoBehaviour
             {
                 if (obj.CheckNull())
                 {
-                    obj.RespawnObject(transform.position);
+                    obj.RespawnObject(transform.position, tempHighlightOnFirstAppearance, onFirstSpawnOnly, firstSpawn);
                 }
             }
         }
@@ -102,7 +111,7 @@ public class ObjectRespawner : MonoBehaviour
                 {
                     if (!waitForAll)
                     {
-                        obj.RespawnObject(transform.position);
+                        obj.RespawnObject(transform.position, tempHighlightOnFirstAppearance, onFirstSpawnOnly, firstSpawn);
                     }
                 }
             }
@@ -111,11 +120,13 @@ public class ObjectRespawner : MonoBehaviour
             {
                 foreach (RespawnableObject obj in objects)
                 {
-                    obj.RespawnObject(transform.position);
+                    obj.RespawnObject(transform.position, tempHighlightOnFirstAppearance, onFirstSpawnOnly, firstSpawn);
                 }
             }
 
             StartCoroutine(RunColliderRespawnCheck(empty));
+
+            firstSpawn = false;
         }
     }
 
@@ -148,7 +159,7 @@ public class ObjectRespawner : MonoBehaviour
                     {
                         if (!waitForAll || empty)
                         {
-                            r.RespawnObject(transform.position);
+                            r.RespawnObject(transform.position, tempHighlightOnFirstAppearance, onFirstSpawnOnly, firstSpawn);
                         }
                     }
                 }
@@ -208,7 +219,7 @@ public class RespawnableObject
     /// Respawns this object, taking its parents offset as a parameter
     /// </summary>
     /// <param name="parentOffset"></param>
-    public void RespawnObject(Vector3 parentOffset)
+    public void RespawnObject(Vector3 parentOffset, bool firstAppearanceHighlight = false, bool firstSpawnOnly = false, bool firstSpawn = false)
     {
         objRef = GameObject.Instantiate(prefab);
         objRef.transform.position = spawnPosition + parentOffset;
@@ -216,6 +227,15 @@ public class RespawnableObject
 
         if (spawnParent != null)
             objRef.transform.SetParent(spawnParent.transform, true);
+
+        if (firstAppearanceHighlight)
+        {
+            if((firstSpawnOnly && firstSpawn) || (!firstSpawnOnly))
+            {
+                TemporaryHighlight h = objRef.AddComponent<TemporaryHighlight>();
+                h.TurnOn();
+            }
+        }
     }
 
     public void SetSpawnParent(GameObject parent)

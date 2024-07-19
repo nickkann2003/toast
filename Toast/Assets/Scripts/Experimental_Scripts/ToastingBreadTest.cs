@@ -88,6 +88,7 @@ public class ToastingBreadTest : MonoBehaviour
         }
 
         toasterSource = gameObject.AddComponent<AudioSource>();
+        toasterSource.spatialBlend = 1.0f;
     }
 
     public void Update()

@@ -23,7 +23,7 @@ public class Highlights : MonoBehaviour
 {
     // ------------------------------- Variables -------------------------------
     [Header("Highlight Settings")]
-    [SerializeField] private HighlightSettings defaultHighlightSetting;
+    [SerializeField] public HighlightSettings defaultHighlightSetting;
 
     [Header("Is Hightlight-able")]
     [SerializeField] private bool isHighlightedEnabled = true;  // Default is true
@@ -59,7 +59,7 @@ public class Highlights : MonoBehaviour
     /// <summary>
     /// Disables outline and sets default values
     /// </summary>
-    private void SettingOutline()
+    public void SettingOutline()
     {
         if(defaultHighlightSetting!= null)
         {
@@ -89,10 +89,9 @@ public class Highlights : MonoBehaviour
     {
         if(isHighlightedEnabled)
         {
-            foreach(Outline outline in outline) {
-
+            foreach(Outline outline in outline) 
+            {
                 outline.enabled = true;
-
             }
         }
     }
@@ -104,6 +103,11 @@ public class Highlights : MonoBehaviour
     {
         if (isHighlightedEnabled)
         {
+            TemporaryHighlight tempH = gameObject.GetComponent<TemporaryHighlight>();
+            if(tempH != null)
+            {
+                tempH.TurnOff();
+            }
             foreach (Outline outline in outline)
             {
                 outline.enabled = false;
