@@ -75,7 +75,7 @@ public class Clock : MonoBehaviour
             currentTime = ClockTimes.Time23;
         }
 
-        Debug.Log("The current time is " + currentTime.ToString());
+        //Debug.Log("The current time is " + currentTime.ToString());
     }
 
     public void ReceivedHandRotate(GameObject hand, float moveAmount)
@@ -83,27 +83,31 @@ public class Clock : MonoBehaviour
         if (hand == hourHand.gameObject)
         {
             // Hour hand moved, move minute hand by corresponding amount
-            minuteHand.transform.RotateAround(transform.position, transform.up, moveAmount * 60);
+            minuteHand.transform.RotateAround(transform.position, transform.up, ((moveAmount - 360) * 60));
 
             hourlyRotation += moveAmount;
         }
         else if (hand == minuteHand.gameObject)
         {
             // Bootleg fix, Unity sometimes calculates change as negative 360 instead of starting at 0
-            if (Mathf.Abs(moveAmount) < 300)
+            if(moveAmount < 0)
             {
-                // Minute hand moved, move hour hand by corresponding amount
-                hourHand.transform.RotateAround(transform.position, transform.up, moveAmount / 60);
-
-                hourlyRotation += (moveAmount / 60);
+                moveAmount = 360 + moveAmount;
             }
+            else if (moveAmount > 0)
+            {
+                moveAmount = moveAmount - 360;
+            }
+          
+            // Minute hand moved, move hour hand by corresponding amount
+            hourHand.transform.RotateAround(transform.position, transform.up, -moveAmount / 1800);
+
+            hourlyRotation += (-moveAmount / 1800);            
         }
         else
         {
             // Somehow something else called this event, return
             return;
-        }
-
-        
+        }        
     }
 }
