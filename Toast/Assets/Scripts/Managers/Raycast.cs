@@ -14,6 +14,8 @@ public class Raycast : MonoBehaviour
     [Header("Drag and Drop Prevention")]
     public bool noDrop = false;
     public bool noDrag = false;
+    public bool noStationMove = false;
+    public bool noUse = false;
 
     [Header("Instances")]
     private static Raycast _instance;
@@ -144,7 +146,7 @@ public class Raycast : MonoBehaviour
         }
 
         // OBJECT EAT DETECTION
-        if (Input.GetButtonDown("Use"))
+        if (Input.GetButtonDown("Use") && !noUse)
         {
             if (hand.CheckObject())
             {
@@ -163,7 +165,7 @@ public class Raycast : MonoBehaviour
 
         if (dragging)
         {
-            if (!Input.GetButton("Drag"))
+            if (!Input.GetButton("Drag") || noDrag)
             {
                 StopDragging();
             }
@@ -190,9 +192,6 @@ public class Raycast : MonoBehaviour
 
                         lastPos = new Vector3(hit.point.x, hit.point.y,
                         hit.point.z);
-                    }
-                    else
-                    {   
                     }
                 }
             }
@@ -391,7 +390,7 @@ public class Raycast : MonoBehaviour
     void TestRaycast()
     {
 
-        if (scrollInput < 0f && stationMoveTimer <= 0)
+        if (scrollInput < 0f && stationMoveTimer <= 0 && !noStationMove)
         {
             StationManager.instance.StationMoveBack();
             stationMoveTimer = stationMaxTimer;

@@ -81,7 +81,7 @@ public class Station : MonoBehaviour
     /// </summary>
     private void OnMouseDown()
     {
-        if(this == StationManager.instance.playerLocation.parentLoc)
+        if(this == StationManager.instance.playerLocation.parentLoc || Raycast.Instance.noStationMove)
         {
             return;
         }
