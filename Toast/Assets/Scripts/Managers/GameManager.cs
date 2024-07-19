@@ -74,6 +74,9 @@ public class GameManager : MonoBehaviour
     // ------------------------------- Functions -------------------------------
     private void Awake()
     {
+        // Lock cursor
+        Cursor.lockState = CursorLockMode.Confined;
+
         if (instance == null)
         {
             instance = this;
@@ -170,6 +173,8 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         curState= GameState.Pause;
+        // Unlock cursor
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
         raycaster.enabled= false;
         UIManager.SetPauseMenu();
@@ -181,6 +186,8 @@ public class GameManager : MonoBehaviour
     public void UnPauseGame()
     {
         curState = GameState.inGame;
+        // Confine cursor
+        Cursor.lockState = CursorLockMode.Confined;
         Time.timeScale = 1;
         raycaster.enabled = true;
         UIManager.ClosePauseMenu();
