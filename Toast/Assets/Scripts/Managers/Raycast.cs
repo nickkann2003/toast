@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,9 +13,13 @@ public class Raycast : MonoBehaviour
 {
     // ------------------------------- Variables -------------------------------
     [Header("Drag and Drop Prevention")]
-    public bool noDrop = false;
-    public bool noDrag = false;
+    [ReadOnly]
+    public bool noDrop = false; // also affects pickup
+    [ReadOnly]
+    public bool noDrag = false; // doesn't affect buttons/dials/levers
+    [ReadOnly]
     public bool noStationMove = false;
+    [ReadOnly]
     public bool noUse = false;
 
     [Header("Instances")]
