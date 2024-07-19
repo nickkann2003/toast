@@ -77,6 +77,10 @@ public class GameManager : MonoBehaviour
         // Lock cursor
         Cursor.lockState = CursorLockMode.Confined;
 
+        #if UNITY_EDITOR
+            Cursor.lockState = CursorLockMode.None;
+        #endif
+
         if (instance == null)
         {
             instance = this;
@@ -188,6 +192,9 @@ public class GameManager : MonoBehaviour
         curState = GameState.inGame;
         // Confine cursor
         Cursor.lockState = CursorLockMode.Confined;
+        #if UNITY_EDITOR
+            Cursor.lockState = CursorLockMode.None;
+        #endif
         Time.timeScale = 1;
         raycaster.enabled = true;
         UIManager.ClosePauseMenu();
