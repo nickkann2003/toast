@@ -108,6 +108,6 @@ public class Clock : MonoBehaviour
         {
             // Somehow something else called this event, return
             return;
-        }        
+        }
     }
 }
