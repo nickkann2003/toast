@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 301646066036705874}
   - component: {fileID: 1911922548144310697}
   - component: {fileID: 8732106399042074732}
+  - component: {fileID: 845227812238473291}
   m_Layer: 7
   m_Name: MinuteHand
   m_TagString: Untagged
@@ -120,6 +121,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clockBody: {fileID: 2297082454423422967}
   handMovedEvent: {fileID: 11400000, guid: 431ec456dec18f340956563d16b8e431, type: 2}
+--- !u!114 &845227812238473291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483011836142286227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902f118e886d20d43b1ff6bff5092b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHighlightSetting: {fileID: 11400000, guid: 4e99a902e42de1744966150e6be5e105,
+    type: 2}
+  isHighlightedEnabled: 1
+  outline: []
 --- !u!1 &2297082454423422967
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hourHand: {fileID: 598677453022746263}
   minuteHand: {fileID: 8732106399042074732}
+  currentTime: 0
 --- !u!114 &5966827074105253559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +356,7 @@ GameObject:
   - component: {fileID: 2342910371161252207}
   - component: {fileID: 799028262742320632}
   - component: {fileID: 598677453022746263}
+  - component: {fileID: 4566579209034125091}
   m_Layer: 7
   m_Name: Hour Hand
   m_TagString: Untagged
@@ -445,3 +464,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clockBody: {fileID: 2297082454423422967}
   handMovedEvent: {fileID: 11400000, guid: 431ec456dec18f340956563d16b8e431, type: 2}
+--- !u!114 &4566579209034125091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2950901906536272596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902f118e886d20d43b1ff6bff5092b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHighlightSetting: {fileID: 11400000, guid: 4e99a902e42de1744966150e6be5e105,
+    type: 2}
+  isHighlightedEnabled: 1
+  outline: []

@@ -102,6 +102,7 @@ public class NewProp : MonoBehaviour
         if(gameObject.GetComponent<AudioSource>() == null) 
         { 
             AudioSource s = gameObject.AddComponent<AudioSource>();
+            s.spatialBlend = 1.0f;
         }
 
         // Grab initial color and set color variables   // CHANGE TO staticMesh.GetComponent
