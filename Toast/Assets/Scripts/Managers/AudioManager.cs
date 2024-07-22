@@ -62,7 +62,9 @@ public class AudioManager : MonoBehaviour
 
         for(int i = 0; i < 10; i++)
         {
-            eventSources.Add(gameObject.AddComponent<AudioSource>());
+            AudioSource source = gameObject.AddComponent<AudioSource>();
+            source.dopplerLevel = 0.0f;
+            eventSources.Add(source);
         }
     }
 

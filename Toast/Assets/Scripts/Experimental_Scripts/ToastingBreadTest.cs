@@ -95,6 +95,8 @@ public class ToastingBreadTest : MonoBehaviour
 
         source1.spatialBlend = 1.0f;
         source2.spatialBlend = 1.0f;
+        source1.dopplerLevel = 0.0f;
+        source2.dopplerLevel = 0.0f;
     }
 
     public void Update()

@@ -106,18 +106,7 @@ public class Drawer : MonoBehaviour
     // Opens the drawer
     public void Open()
     {
-        isOpen = true;
-        lerping = false;
-        foreach (GameObject g in inDrawer)
-        {
-            if(g != null)
-            {
-                if (g.GetComponent<Rigidbody>() != null)
-                {
-                    g.GetComponent<Rigidbody>().AddForce((minPos - maxPos) * 100f);
-                }
-            }
-        }
+        StartCoroutine(startOpen());
     }
 
     // Closes the drawer
@@ -135,6 +124,25 @@ public class Drawer : MonoBehaviour
                 }
             }
         }
+    }
+
+    private IEnumerator startOpen()
+    {
+        foreach (GameObject g in inDrawer)
+        {
+            if (g != null)
+            {
+                if (g.GetComponent<Rigidbody>() != null)
+                {
+                    g.GetComponent<Rigidbody>().AddForce((minPos - maxPos) * 100f);
+                }
+            }
+        }
+
+        yield return new WaitForFixedUpdate();
+
+        isOpen = true;
+        lerping = false;
     }
 
     //// On mouse down, toggle open - POTENTIALLY DESIRED ON CLICK FUNCTIONALITY
