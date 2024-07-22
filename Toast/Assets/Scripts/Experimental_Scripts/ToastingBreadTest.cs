@@ -52,8 +52,11 @@ public class ToastingBreadTest : MonoBehaviour
     private SimpleAudioEvent toasterStart;
     [SerializeField]
     private SimpleAudioEvent toasterEnd;
+    [SerializeField]
+    private SimpleAudioEvent toasterPop;
 
-    private AudioSource toasterSource;
+    private AudioSource source1;
+    private AudioSource source2;
 
     private bool defrost = false;
 
@@ -87,8 +90,11 @@ public class ToastingBreadTest : MonoBehaviour
             electricity = gameObject.GetComponent<Electricity>();
         }
 
-        toasterSource = gameObject.AddComponent<AudioSource>();
-        toasterSource.spatialBlend = 1.0f;
+        source1 = gameObject.AddComponent<AudioSource>();
+        source2 = gameObject.AddComponent<AudioSource>();
+
+        source1.spatialBlend = 1.0f;
+        source2.spatialBlend = 1.0f;
     }
 
     public void Update()
@@ -142,8 +148,8 @@ public class ToastingBreadTest : MonoBehaviour
         // Set timer to max time
         timer = maxTime;
 
-        toasterStart.Play(toasterSource);
-        toasterTicking.Play(toasterSource);
+        toasterStart.Play(source1);
+        toasterTicking.Play(source2);
 
         // Get toasting objects from colliding objects
         foreach (GameObject obj in collidingObjects)
@@ -191,8 +197,11 @@ public class ToastingBreadTest : MonoBehaviour
         // If active, loop all objs not null
         if (isActive)
         {
-            toasterSource.Stop();
-            toasterEnd.Play(toasterSource);
+            source1.Stop();
+            source2.Stop();
+
+            toasterEnd.Play(source1);
+            toasterPop.Play(source2);
 
             foreach (GameObject obj in collidingObjects)
             {

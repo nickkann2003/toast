@@ -164,16 +164,12 @@ public class Lever : MonoBehaviour
     // Turns this lever on
     public void TurnOn()
     {
-        AudioManager.instance.PlayOneShotSound(AudioManager.instance.toasterLever);
-        AudioManager.instance.PlayOneShotSound(AudioManager.instance.toasterTimer);
         isOn = true;
     }
 
     // Turns this lever off
     public void TurnOff()
     {
-        AudioManager.instance.PlayOneShotSound(AudioManager.instance.toasterPop);
-        AudioManager.instance.PlayOneShotSound(AudioManager.instance.toasterDing);
         isOn = false;
     }
 

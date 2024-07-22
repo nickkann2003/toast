@@ -22777,6 +22777,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1134104944049419510, guid: 1750db23407feb64f9c5084a643ae3ae,
         type: 3}
+      propertyPath: toasterPop
+      value: 
+      objectReference: {fileID: 11400000, guid: af710b9569b295b45995d57fde335708,
+        type: 2}
+    - target: {fileID: 1134104944049419510, guid: 1750db23407feb64f9c5084a643ae3ae,
+        type: 3}
       propertyPath: electricity
       value: 
       objectReference: {fileID: 1465030112}
@@ -24482,6 +24488,12 @@ PrefabInstance:
       propertyPath: toasterEnd
       value: 
       objectReference: {fileID: 11400000, guid: 543c09741afb3ca418addefa0a69036e,
+        type: 2}
+    - target: {fileID: 1134104944049419510, guid: 087a36c7a73205049bb1d1992e3f01ce,
+        type: 3}
+      propertyPath: toasterPop
+      value: 
+      objectReference: {fileID: 11400000, guid: af710b9569b295b45995d57fde335708,
         type: 2}
     - target: {fileID: 1134104944049419510, guid: 087a36c7a73205049bb1d1992e3f01ce,
         type: 3}
@@ -35669,7 +35681,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -35840,7 +35852,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.02
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -36217,15 +36229,15 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 5
+    type: 0
     angle: 41.01
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
-    radiusThickness: 1
+    radiusThickness: 0
     donutRadius: 0.2
-    m_Position: {x: 0, y: -0.4, z: 0.86}
+    m_Position: {x: 0, y: -0.34, z: 0.86}
     m_Rotation: {x: -67.42, y: 0, z: 0}
-    m_Scale: {x: 2.31, y: 0.13, z: 0.13}
+    m_Scale: {x: 0.32, y: 0.13, z: 0.13}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -36533,8 +36545,8 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 15
-        minScalar: 10
+        scalar: 8
+        minScalar: 4
         maxCurve:
           serializedVersion: 2
           m_Curve:
@@ -37651,22 +37663,22 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.049215447
-          value: 0.0040159654
-          inSlope: 0.039616033
-          outSlope: 0.039616033
+          time: 0.0062756166
+          value: -0.000008260366
+          inSlope: -0.003812801
+          outSlope: -0.003812801
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.51935285
+          outWeight: 0.07626125
         - serializedVersion: 3
-          time: 0.597311
-          value: 0.0021470934
-          inSlope: 0.015056925
-          outSlope: 0.015056925
+          time: 0.59696496
+          value: -0.00017345976
+          inSlope: -0.0076714167
+          outSlope: -0.0076714167
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.053146895
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
