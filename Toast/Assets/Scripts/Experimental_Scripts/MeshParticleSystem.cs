@@ -12,6 +12,16 @@ public class MeshParticleSystem : MonoBehaviour
 
     private int quadIndex;
 
+    [SerializeField]
+    private float size = .05f;
+
+    // Singleton
+    public static MeshParticleSystem instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         mesh = new Mesh();
@@ -20,19 +30,23 @@ public class MeshParticleSystem : MonoBehaviour
         vertices = new Vector3[4 * MAX_QUAD_AMOUNT];
         triangles = new int[6 * MAX_QUAD_AMOUNT];
 
-        Debug.Log(vertices[0]);
-        Debug.Log(triangles[0]);
-
-        for (int i = 0; i < 50; i++)
-        {
-            CreateParticle(new Vector3(Random.Range(-4.0f, 4.0f), Random.Range(-4.0f, 4.0f), Random.Range(-4.0f, 4.0f)), .05f);
-        }
-
-        RemoveParticle(0);
+        //for (int i = 0; i < MAX_QUAD_AMOUNT; i++)
+        //{
+        //    CreateParticle(new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f)));
+        //}
     }
 
-    private void CreateParticle(Vector3 position, float size = 1)
+    private void Update()
     {
+        //CreateParticle(new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f)));
+
+        //RemoveParticle(Random.Range(0, MAX_QUAD_AMOUNT));
+    }
+
+    public void CreateParticle(Vector3 position)
+    {
+        if (quadIndex >= MAX_QUAD_AMOUNT) return;
+
         int vertIndex = quadIndex * 4;
         vertices[vertIndex + 0] = position + new Vector3(-size/2, -size/2, 0);
         vertices[vertIndex + 1] = position + new Vector3(-size/2, size/2, 0);
