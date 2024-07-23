@@ -40,20 +40,32 @@ public enum AMPM
 
 public class Clock : MonoBehaviour
 {
+    [Header("Clock Hands")]
+    // The hands of the clock
     public ClockHand hourHand;
     public ClockHand minuteHand;
 
+    // Current hour
     public ClockTimes currentTime;
 
+    // Used to track times when hour hand has made one revolution from 12-12
     public AMPM currentHalf;
 
     float hourlyRotation;
 
+    // The current range of angles
     Vector2 currentRange;
 
     [SerializeField]
     Skybox currentSkybox;
-     
+
+    [Header("Skybox Materials")]
+    [SerializeField]
+    Material daySkybox, nightSkybox, betweenSkybox;
+
+    [Header("Directional Lighting")]
+    [SerializeField]
+    UnityEngine.Light directionalLight;
 
     // Start is called before the first frame update
     void Start()
@@ -67,7 +79,7 @@ public class Clock : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
         if(currentRange.y > 360)
         {
             // Reset range
@@ -154,160 +166,222 @@ public class Clock : MonoBehaviour
         {
             // 12
             case float i when i >= 0 && i < 30:
+
+                // Changing AM/PM
                 if(currentTime == ClockTimes.Time11)
                 {
                     currentHalf = AMPM.PM;
                 }
-                
                 if(currentTime == ClockTimes.Time23)
                 {
                     currentHalf = AMPM.AM;
                 }
 
-
+                // 12 AM appearance
                 if(currentHalf == AMPM.AM)
                 {
                     currentTime = ClockTimes.Time0;
+                    RenderSettings.skybox = nightSkybox;
                 }
+                // 12 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time12;
+                    RenderSettings.skybox = daySkybox;
                 }
                 break;
             // 1
             case float i when i >= 30 && i < 60:
+                // 1 AM Appearance
                 if (currentHalf == AMPM.AM)
                 {
                     currentTime = ClockTimes.Time1;
+                    RenderSettings.skybox = nightSkybox;
                 }
+                // 1 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time13;
+                    RenderSettings.skybox = daySkybox;
                 }
                 break;
             // 2
             case float i when i >= 60 && i < 90:
+                // 2 AM appearance
                 if(currentHalf == AMPM.AM)
                 {
                     currentTime = ClockTimes.Time2;
+                    RenderSettings.skybox = nightSkybox;
                 }
+                // 2 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time14;
+                    RenderSettings.skybox = daySkybox;
                 }
                 break;
             // 3
             case float i when i >= 90 && i < 120:
+                // 3 AM Appearance
                 if(currentHalf == AMPM.AM)
                 {
                     currentTime = ClockTimes.Time3;
+                    RenderSettings.skybox.Lerp(nightSkybox, betweenSkybox, 0.3f);
                 }
+                // 3 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time15;
+                    RenderSettings.skybox.Lerp(daySkybox, nightSkybox, 0.1f);
                 }
                 break;
             // 4
             case float i when i >= 120 && i < 150:
+                // 4 AM appearance
                 if(currentHalf == AMPM.AM)
                 {
                     currentTime = ClockTimes.Time4;
+                    RenderSettings.skybox.Lerp(nightSkybox, betweenSkybox, 0.5f);
                 }
+                // 4 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time16;
+                    RenderSettings.skybox.Lerp(daySkybox, nightSkybox, 0.3f);
                 }
                 break;
             // 5
             case float i when i >= 150 && i < 180:
+                // 5 AM appearance
                 if(currentHalf == AMPM.AM)
                 {
                     currentTime = ClockTimes.Time5;
+                    RenderSettings.skybox = betweenSkybox;
                 }
+                // 5 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time17;
+                    RenderSettings.skybox.Lerp(daySkybox, nightSkybox, 0.5f);
                 }
                 break;
             // 6
             case float i when i >= 180 && i < 210:
+                // 6 AM appearance
                 if(currentHalf == AMPM.AM)
                 {
                     currentTime = ClockTimes.Time6;
+                    RenderSettings.skybox.Lerp(betweenSkybox, daySkybox, 0.5f);
                 }
+                // 6 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time18;
+                    RenderSettings.skybox.Lerp(daySkybox, nightSkybox, 0.75f);
                 }
                 break;
             // 7
             case float i when i >= 210 && i < 240:
+                // 7 AM appearance
                 if(currentHalf == AMPM.AM)
                 {
                     currentTime = ClockTimes.Time7;
+                    RenderSettings.skybox.Lerp(betweenSkybox, daySkybox, 0.8f);
                 }
+                // 7 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time19;
+                    RenderSettings.skybox = betweenSkybox;
                 }
                 break;
             // 8
             case float i when i >= 240 && i < 270:
+                // 8 AM appearance
                 if(currentHalf == AMPM.AM)
                 {
                     currentTime = ClockTimes.Time8;
+                    RenderSettings.skybox = daySkybox;
                 }
+                // 8 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time20;
+                    RenderSettings.skybox.Lerp(betweenSkybox, nightSkybox, 0.5f);
                 }
                 break;
             // 9 
             case float i when i >= 270 && i < 300:
+                // 9 AM appearance
                 if(currentHalf == AMPM.AM)
                 {
                     currentTime = ClockTimes.Time9;
+                    RenderSettings.skybox = daySkybox;
                 }
+                // 9 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time21;
+                    RenderSettings.skybox = nightSkybox;
                 }
                 break;
             // 10
             case float i when i >= 300 && i < 330:
+                // 10 AM appearance
                 if(currentHalf == AMPM.AM)
                 {
                     currentTime = ClockTimes.Time10;
+                    RenderSettings.skybox = daySkybox;
                 }
+                // 10 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time22;
+                    RenderSettings.skybox = nightSkybox;
                 }
                 break;
             // 11
             case float i when i >= 330 && i < 360:
 
+                // Changing AM/PM
                 if (currentTime == ClockTimes.Time0)
                 {
                     currentHalf = AMPM.PM;
                 }
-
                 if(currentTime == ClockTimes.Time12)
                 {
                     currentHalf = AMPM.AM;
                 }
 
+                // 11 AM appearance
                 if(currentHalf == AMPM.AM)
                 {
                     currentTime = ClockTimes.Time11;
+                    RenderSettings.skybox = daySkybox;
                 }
+                // 11 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time23;
+                    RenderSettings.skybox = nightSkybox;
                 }
                 break;
             
         }
+    }
+
+    void EnvironmentalReset()
+    {
+        // Reset skybox
+        RenderSettings.skybox.SetFloat("_Rotation", 0);
+
+        // Reset clock hands
+        hourHand.transform.RotateAround(transform.position, transform.up, -hourHand.transform.localEulerAngles.y);
+        minuteHand.transform.RotateAround(transform.position, transform.up, -minuteHand.transform.localEulerAngles.y);
+
+        // Reset light color
+        directionalLight.color = new Color(255,255,255,255);
+        directionalLight.intensity = 0.32f;
     }
     
 }
