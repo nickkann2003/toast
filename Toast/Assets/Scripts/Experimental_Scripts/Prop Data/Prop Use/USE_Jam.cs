@@ -77,7 +77,8 @@ public class USE_Jam : UseEffectSO
             obj.transform.GetChild(0).Rotate(new Vector3(0, 0, Random.Range(-30, 30) * 2), Space.Self);
             obj.GetComponentInChildren<Renderer>().material.color = config.Material.color;
             useEvent.RaiseEvent(newProp, 1);
-            AudioManager.instance.PlayOneShotSound(AudioManager.instance.jamSplash);
+
+            AudioManager.instance.PlayAudioEvent(jamSplashEvent);
 
             return true;
         }

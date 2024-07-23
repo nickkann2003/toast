@@ -37,10 +37,28 @@ public class PhysicalButtons : MonoBehaviour
     public Trigger trigger;
     private bool pressed;
 
+    [Header("------------ Audio ------------")]
+    [SerializeField]
+    private AudioEvent buttonDown;
+    [SerializeField]
+    private AudioEvent buttonUp;
+
+    private AudioSource source1;
+    private AudioSource source2;
+
     // ------------------------------- Functions -------------------------------
     private void Start()
     {
         timer = maxTime;
+
+        source1 = gameObject.AddComponent<AudioSource>();
+        source2 = gameObject.AddComponent<AudioSource>();
+
+        source1.dopplerLevel = 0f;
+        source1.spatialBlend = 1.0f;
+
+        source2.dopplerLevel = 0f;
+        source2.spatialBlend = 1.0f;
     }
 
     // On update, interact if pressed
@@ -65,6 +83,11 @@ public class PhysicalButtons : MonoBehaviour
     // On release, activate if on-up
     private void OnMouseUp()
     {
+        if (pressed)
+        {
+            buttonUp.Play(source2);
+        }
+
         pressed = false;
         if (trigger == Trigger.onUp)
         {
@@ -93,7 +116,7 @@ public class PhysicalButtons : MonoBehaviour
         // Play audio on first press
         if (!pressed)
         {
-            AudioManager.instance.PlayOneShotSound(AudioManager.instance.physicalButton);
+            buttonDown.Play(source1);
         }
         pressed = true;
     }
@@ -123,6 +146,7 @@ public class PhysicalButtons : MonoBehaviour
         if (interpolateAmount >= 0 && interpolateAmount < 1)
         {
             interpolateAmount += Time.deltaTime * 50;
+            buttonDown.Play(source1);
         }
         else
         {
@@ -138,6 +162,7 @@ public class PhysicalButtons : MonoBehaviour
         if (interpolateAmount > 0 && interpolateAmount <= 1)
         {
             interpolateAmount -= Time.deltaTime * 50;
+            
         }
         else
         {

@@ -32,6 +32,17 @@ public class Door : MonoBehaviour
     [SerializeField, ShowIf("hasEvents")]
     private UnityEvent onClose;
 
+    private bool lerping;
+
+    [Header("Audio")]
+    [SerializeField]
+    private AudioEvent doorOpen;
+    [SerializeField]
+    private AudioEvent doorClose;
+
+    private AudioSource source1;
+    private AudioSource source2;
+
     [SerializeField, Button]
     private void setDoorOpen() { rotator.transform.localEulerAngles = maxRot; isOpen = true; }
     [SerializeField, Button]
@@ -55,6 +66,23 @@ public class Door : MonoBehaviour
         rotatorTransform = rotator.GetComponent<Transform>();
     }
 
+    private void Start()
+    {
+        if(doorOpen != null)
+        {
+            source1 = gameObject.AddComponent<AudioSource>();
+            source1.dopplerLevel = 0.0f;
+            source1.spatialBlend = 1.0f;
+        }
+
+        if(doorClose != null)
+        {
+            source2 = gameObject.AddComponent<AudioSource>();
+            source2.dopplerLevel = 0.0f;
+            source2.spatialBlend = 1.0f;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -67,6 +95,14 @@ public class Door : MonoBehaviour
             else
             {
                 interpolateAmount = 1;
+                if(lerping == true)
+                {
+                    lerping = false;
+                    if(doorOpen != null)
+                    {
+                        doorOpen.Play(source1);
+                    }
+                }
             }
         }
         else
@@ -78,6 +114,14 @@ public class Door : MonoBehaviour
             else
             {
                 interpolateAmount = 0;
+                if (lerping == true)
+                {
+                    lerping = false;
+                    if (doorClose != null)
+                    {
+                        doorClose.Play(source2);
+                    }
+                }
             }
         }
 
@@ -93,6 +137,7 @@ public class Door : MonoBehaviour
     public void Open()
     {
         isOpen = true;
+        lerping = true;
         onOpen.Invoke();
     }
 
@@ -100,6 +145,7 @@ public class Door : MonoBehaviour
     public void Close()
     {
         isOpen = false;
+        lerping = true;
         onClose.Invoke();
     }
 

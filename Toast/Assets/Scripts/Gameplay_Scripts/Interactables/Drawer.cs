@@ -18,6 +18,15 @@ public class Drawer : MonoBehaviour
     public bool isOpen;
     private bool lerping = false;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioEvent openDrawer;
+    [SerializeField] 
+    private AudioEvent closeDrawer;
+
+    private AudioSource source1;
+    private AudioSource source2;
+
     private List<GameObject> inDrawer = new List<GameObject>();
 
     // amount that the door has opened
@@ -39,6 +48,18 @@ public class Drawer : MonoBehaviour
         {
             objectToMove = transform.parent.gameObject;
         }
+    }
+
+    private void Start()
+    {
+        source1 = gameObject.AddComponent<AudioSource>();
+        source2 = gameObject.AddComponent<AudioSource>();
+
+        source1.dopplerLevel = 0f;
+        source1.spatialBlend = 1.0f;
+
+        source2.dopplerLevel = 0f;
+        source2.spatialBlend = 1.0f;
     }
 
     // Update is called once per frame
@@ -66,6 +87,7 @@ public class Drawer : MonoBehaviour
                 if (lerping)
                 {
                     lerping = false;
+                    openDrawer.Play(source1);
                 }
             }
         }
@@ -91,6 +113,7 @@ public class Drawer : MonoBehaviour
                 if (lerping)
                 {
                     lerping = false;
+                    closeDrawer.Play(source2);
                 }
             }
         }
@@ -124,6 +147,8 @@ public class Drawer : MonoBehaviour
                 }
             }
         }
+
+        
     }
 
     private IEnumerator startOpen()
@@ -139,10 +164,12 @@ public class Drawer : MonoBehaviour
             }
         }
 
+        
+
         yield return new WaitForFixedUpdate();
 
         isOpen = true;
-        lerping = false;
+        lerping = true;
     }
 
     //// On mouse down, toggle open - POTENTIALLY DESIRED ON CLICK FUNCTIONALITY
