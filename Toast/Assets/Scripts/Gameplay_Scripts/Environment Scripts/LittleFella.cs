@@ -57,7 +57,36 @@ public class LittleFella : MonoBehaviour
     [SerializeField]
     private PropIntGameEvent littleFellaEvent;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioEvent alert;
+    [SerializeField]
+    private AudioEvent taking;
+    [SerializeField]
+    private AudioEvent pondering;
+    [SerializeField]
+    private AudioEvent accept;
+    [SerializeField]
+    private AudioEvent reject;
+    [SerializeField]
+    private AudioEvent interrupt;
+
+    private AudioSource source1;
+    private AudioSource source2;
+
+
     // ------------------------------- Functions -------------------------------
+    private void Start()
+    {
+        source1 = gameObject.AddComponent<AudioSource>();
+        source2 = gameObject.AddComponent<AudioSource>();
+
+        source1.spatialBlend = 1.0f;
+        source2.spatialBlend = 1.0f;
+        source1.dopplerLevel = 0.0f;
+        source2.dopplerLevel = 0.0f;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -71,6 +100,7 @@ public class LittleFella : MonoBehaviour
                 if (edibleObject.GetComponent<Rigidbody>().velocity != Vector3.zero)
                 {
                     status = GrabStatus.Withdrawing;
+                    interrupt.Play(source2);
                     break;
                 }
 
@@ -79,6 +109,8 @@ public class LittleFella : MonoBehaviour
                 if (moveProgress >= 1.0f)
                 {
                     status = GrabStatus.Taking;
+                    taking.Play(source2);
+                    pondering.Play(source1);
                     moveProgress = 0.0f;
                 }
 
@@ -96,6 +128,7 @@ public class LittleFella : MonoBehaviour
                     {
                         Destroy(edibleObject);
                         AudioManager.instance.PlayOneShotSound(AudioManager.instance.eatingBread);
+                        accept.Play(source1);
 
                         currentGifts++;
 
@@ -111,6 +144,7 @@ public class LittleFella : MonoBehaviour
                     else
                     {
                         status = GrabStatus.Returning;
+                        reject.Play(source1);
                         moveProgress = 0.0f;
                     }       
                 }
@@ -157,6 +191,7 @@ public class LittleFella : MonoBehaviour
                 {
                     dragGrabPos.y = edibleObject.transform.position.y;
                     status = GrabStatus.Reaching;
+                    alert.Play(source1);
                 }
                 break;
 
