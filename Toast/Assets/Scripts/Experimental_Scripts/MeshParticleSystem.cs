@@ -71,6 +71,50 @@ public class MeshParticleSystem : MonoBehaviour
         UpdateMesh();
     }
 
+    public void CreateParticle(Vector3 position, Vector3 eulerAngles, float sizeMod = 1)
+    {
+        if (quadIndex >= MAX_QUAD_AMOUNT) return;
+
+        float modifiedSize = size * sizeMod;
+
+        int vertIndex = quadIndex * 4;
+        vertices[vertIndex + 0] = new Vector3(-modifiedSize / 2, -modifiedSize / 2, 0);
+        vertices[vertIndex + 1] = new Vector3(-modifiedSize / 2, modifiedSize / 2, 0);
+        vertices[vertIndex + 2] = new Vector3(modifiedSize / 2, -modifiedSize / 2, 0);
+        vertices[vertIndex + 3] = new Vector3(modifiedSize / 2, modifiedSize / 2, 0);
+
+        if (eulerAngles.y != 0)
+        {
+            eulerAngles.x = 0;
+            eulerAngles.z = 0;
+
+            Quaternion rotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
+            Matrix4x4 m = Matrix4x4.Rotate(rotation);
+
+            vertices[vertIndex + 0] = m.MultiplyPoint3x4(vertices[vertIndex + 0]);
+            vertices[vertIndex + 1] = m.MultiplyPoint3x4(vertices[vertIndex + 1]);
+            vertices[vertIndex + 2] = m.MultiplyPoint3x4(vertices[vertIndex + 2]);
+            vertices[vertIndex + 3] = m.MultiplyPoint3x4(vertices[vertIndex + 3]);
+        }
+
+        vertices[vertIndex + 0] += position;
+        vertices[vertIndex + 1] += position;
+        vertices[vertIndex + 2] += position;
+        vertices[vertIndex + 3] += position;
+
+        int triIndex = quadIndex * 6;
+        triangles[triIndex + 0] = vertIndex + 0;
+        triangles[triIndex + 1] = vertIndex + 1;
+        triangles[triIndex + 2] = vertIndex + 2;
+        triangles[triIndex + 3] = vertIndex + 1;
+        triangles[triIndex + 4] = vertIndex + 3;
+        triangles[triIndex + 5] = vertIndex + 2;
+
+        quadIndex++;
+
+        UpdateMesh();
+    }
+
     private void RemoveParticle(int index)
     {
         int vertIndex = index * 4;
