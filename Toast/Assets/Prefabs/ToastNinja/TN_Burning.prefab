@@ -299,16 +299,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemScriptableObject: {fileID: 11400000, guid: e1ccf97fcb475934a9a259b778e62dc7,
     type: 2}
-  points: -5
   splatter: {fileID: 3179817281896253773, guid: d39a902914e42cd4b8aaecfbd78d849e,
-    type: 3}
-  pointObject: {fileID: 4248212264634314053, guid: 3e95289709a1df743a9e73a6b4baef7d,
-    type: 3}
-  onDestroyParticles: {fileID: 2101489868565535912, guid: 1e0d1eca7ed9f3948a2df7c715fbbb9b,
     type: 3}
   toastNinjaScoreEvent: {fileID: 11400000, guid: bace4ac0805980a46a61fa39ad9af797,
     type: 2}
-  hitsToDestroy: 1
   runtimeSet: {fileID: 11400000, guid: 18d15c711e7bc814f9941a4011edd186, type: 2}
 --- !u!114 &4794038713409986137
 MonoBehaviour:
@@ -339,6 +333,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FirePrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313279580185439241, guid: 797bc0bd80e510e489d3a8dbd4aff7d7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6950928499270586109, guid: 797bc0bd80e510e489d3a8dbd4aff7d7,
         type: 3}

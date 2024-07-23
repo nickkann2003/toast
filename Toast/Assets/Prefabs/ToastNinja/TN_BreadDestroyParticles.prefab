@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 8675817532552384479}
   - component: {fileID: 7520020129497390280}
   - component: {fileID: 3119654372269408045}
-  m_Layer: 0
+  - component: {fileID: 1687067217577947433}
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3691,9 +3692,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -3809,7 +3810,7 @@ ParticleSystem:
     m_EnergyLossOnCollision:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3861,14 +3862,14 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 1
+    radiusScale: 0.2
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 9
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -4828,6 +4829,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1687067217577947433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066336578970417724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb3c8e9f3aec08a47bfb69bc63538cf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4017316221994058571
 GameObject:
   m_ObjectHideFlags: 0
@@ -4838,7 +4851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2603453285633317848}
   - component: {fileID: 3733312626927569539}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TN_BreadDestroyParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4887,6 +4900,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SmokeExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 962741197387012477, guid: 3b8d1316f66291e43af6cc78670bca7d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7241590691823229356, guid: 3b8d1316f66291e43af6cc78670bca7d,
         type: 3}

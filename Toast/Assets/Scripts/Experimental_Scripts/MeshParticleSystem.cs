@@ -41,6 +41,11 @@ public class MeshParticleSystem : MonoBehaviour
         //CreateParticle(new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f)));
 
         //RemoveParticle(Random.Range(0, MAX_QUAD_AMOUNT));
+        //for (int i = 0; i < quadIndex; i++)
+        //{
+        //    int vertIndex = quadIndex * 4;
+        //    vertices[i]
+        //}
     }
 
     public void CreateParticle(Vector3 position)
