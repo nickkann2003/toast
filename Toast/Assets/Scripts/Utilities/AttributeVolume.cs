@@ -43,7 +43,7 @@ public class AttributeVolume : MonoBehaviour
     {
         
     }
-    public void SetAttributes(int i)
+    public void SetApplyAttributes(int i)
     {
         BoxCollider attCollider = gameObject.GetComponent<BoxCollider>();
         Vector3 r = transform.TransformVector(attCollider.size);
