@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 483011836142286227}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.23, z: -0.239}
-  m_LocalScale: {x: 0.03, y: 0.2, z: 0.45}
+  m_LocalPosition: {x: 0.225, y: 1.23, z: 0}
+  m_LocalScale: {x: 0.45, y: 0.2, z: 0.03}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5988897422145464967}
@@ -313,7 +313,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hourHand: {fileID: 598677453022746263}
   minuteHand: {fileID: 8732106399042074732}
-  currentTime: 0
+  currentTime: 9
+  currentHalf: 0
+  currentSkybox: {fileID: 0}
+  daySkybox: {fileID: 2100000, guid: 6abe918ee1229b34f8557fc2a5a39825, type: 2}
+  nightSkybox: {fileID: 2100000, guid: aa87107d0c3535c4983a4edb2d0e9f7b, type: 2}
+  betweenSkybox: {fileID: 2100000, guid: 3f698c5d47507d54db2dcb930054532e, type: 2}
+  directionalLight: {fileID: 0}
 --- !u!114 &5966827074105253559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,14 +377,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2950901906536272596}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.04, z: -0.21}
-  m_LocalScale: {x: 0.05, y: 0.2, z: 0.41}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 1.04, z: 0.205}
+  m_LocalScale: {x: 0.41, y: 0.2, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5988897422145464967}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!33 &5864143682450137886
 MeshFilter:
   m_ObjectHideFlags: 0
