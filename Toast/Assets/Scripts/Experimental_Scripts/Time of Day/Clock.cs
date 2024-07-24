@@ -375,14 +375,19 @@ public class Clock : MonoBehaviour
         }
     }
 
-    void EnvironmentalReset()
+    public void EnvironmentalReset()
     {
         // Reset skybox
         RenderSettings.skybox.SetFloat("_Rotation", 0);
 
         // Reset clock hands
-        hourHand.transform.RotateAround(transform.position, transform.up, -hourHand.transform.localEulerAngles.y);
+        hourHand.transform.RotateAround(transform.position, transform.up, 270 - hourHand.transform.localEulerAngles.y);
         minuteHand.transform.RotateAround(transform.position, transform.up, -minuteHand.transform.localEulerAngles.y);
+
+        // Set to AM
+        currentHalf = AMPM.AM;
+
+        SwitchHour();
 
         // Reset light color
         //directionalLight.color = new Color(255,255,255,255);
