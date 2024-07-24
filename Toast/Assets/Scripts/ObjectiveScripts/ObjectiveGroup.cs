@@ -62,7 +62,7 @@ public class ObjectiveGroup
                 allComplete = false;
             }
         }
-        if (allComplete && !complete)
+        if (allComplete && !complete && Application.isPlaying)
         {
             complete = true;
             if (destroyPaperOnCompletion)
