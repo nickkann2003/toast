@@ -166,7 +166,8 @@ public class SO_Objective : ScriptableObject
                 bool firstIncompleteRequirement = true;
                 int complete = 0;
                 int total = 0;
-                value = objectiveName + " <size=-5><color=#111>~ \n<i>" + description + "</i></color></size>";
+                //value = objectiveName + " <size=-5><color=#111>~ \n<i>" + description + "</i></color></size>";
+                value = "<align=center>";
                 foreach (Requirement r in requirements)
                 {
                     if (r.listening)
@@ -190,11 +191,12 @@ public class SO_Objective : ScriptableObject
                     }
                     total++;
                 }
-                string[] subs = value.Split('~');
-                value = subs[0].Substring(0, subs[0].Length) + complete + "/" + total + subs[1];
+                //string[] subs = value.Split('~');
+                //value = subs[0].Substring(0, subs[0].Length) + complete + "/" + total + subs[1];
                 if (CheckAllRequirementsComplete())
                 {
-                    value = "<color=#111><s>" + objectiveName + "</s></color>";
+                    //value = "\n<color=#111>  <s>" + objectiveName + "</s></color>";
+                    value = "<align=center><color=#111>";
                     if (completeText != "" && !successorComplete)
                     {
                         value += "\n<color=#080808><size=-6>" + completeText + "</size></color>";
@@ -206,7 +208,7 @@ public class SO_Objective : ScriptableObject
             }
             else if(unavailableText != "")
             {
-                return "<size=-4><color=#111>" + unavailableText + "</color></size>";
+                return "\n<align=center><size=-4><color=#111>" + unavailableText + "</color></size>";
             }
             return "";
         }

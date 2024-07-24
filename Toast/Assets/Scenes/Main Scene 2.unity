@@ -2797,7 +2797,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2907,17 +2907,17 @@ PrefabInstance:
     - target: {fileID: 7493840370436032115, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6698755
+      value: 0.73498744
       objectReference: {fileID: 0}
     - target: {fileID: 7493840370436032115, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6698755
+      value: 0.6515296
       objectReference: {fileID: 0}
     - target: {fileID: 7493840370436032115, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6698755
+      value: 0.73498744
       objectReference: {fileID: 0}
     - target: {fileID: 7493840370436032115, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
@@ -2927,12 +2927,12 @@ PrefabInstance:
     - target: {fileID: 7493840370436032115, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.97
+      value: 1.9795
       objectReference: {fileID: 0}
     - target: {fileID: 7493840370436032115, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.54683
+      value: -0.54693
       objectReference: {fileID: 0}
     - target: {fileID: 7493840370436032115, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
@@ -2968,6 +2968,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941216370206959529, guid: a40f22d72011ee441b5b708075b47a17,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.06027717
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941216370206959529, guid: a40f22d72011ee441b5b708075b47a17,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.4687
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
+        type: 3}
+      propertyPath: m_text
+      value: '<u><b><pos=-8%>Utensils:</pos> <size=-5><color=#111><pos=85%>0/2</pos></size></color></b></u><size=-2>
+
+        <size=-4><color=#111>Complete
+        the Toaster</color></size></size><size=-2>
+
+        <size=-4><color=#111>???</color></size></size>'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
+        type: 3}
+      propertyPath: m_margin.w
+      value: -4.967003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7520,6 +7545,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPosition: {x: 0, y: 0, z: 4.87}
+  directionalLaunch: 0
+  force: 0
 --- !u!65 &615129572
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9805,19 +9832,15 @@ PrefabInstance:
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
       propertyPath: m_text
-      value: 'To-Do:
+      value: '<u><b><pos=0%>Tutorial:</pos> <size=-5><color=#111><pos=85%>0/1</pos></size></color></b></u><size=-1><align=center><size=-2>
 
-        - Eat Toast 0/5
-
-        - Eat Toast with Jam 0/5
-
-        <sprite=46>
-        <sprite=47> <sprite=78>'
+        <color=#000>Drag
+        Bread (<sprite=46>) </size></s></color></size></size>'
       objectReference: {fileID: 0}
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
       propertyPath: m_fontSize
-      value: 16
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
@@ -9827,7 +9850,7 @@ PrefabInstance:
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
       propertyPath: m_margin.x
-      value: 0.08686638
+      value: 0.21476936
       objectReference: {fileID: 0}
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
@@ -9848,7 +9871,7 @@ PrefabInstance:
     - target: {fileID: 8626900339195893719, guid: a40f22d72011ee441b5b708075b47a17,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 16
+      value: 24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23403,6 +23426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveGroups:
   - name: Tutorial
+    objectivesTitle: Tutorial
     objectives:
     - objectiveInfo: {fileID: 11400000, guid: 23909871752b38546a4c3988047b99de, type: 2}
       prerequisiteIds: 
@@ -23438,6 +23462,7 @@ MonoBehaviour:
     - {fileID: 780163200}
     displaysUI: []
   - name: Toaster Objectives
+    objectivesTitle: Toaster
     objectives:
     - objectiveInfo: {fileID: 11400000, guid: e9b375991c68e114ab3067847e8eb70a, type: 2}
       prerequisiteIds: 00000000
@@ -23481,6 +23506,7 @@ MonoBehaviour:
     - {fileID: 1037877080}
     displaysUI: []
   - name: Fridge Objectives
+    objectivesTitle: Fridge
     objectives:
     - objectiveInfo: {fileID: 11400000, guid: 0d612476a96b72c4ab194293c1c6cb5a, type: 2}
       prerequisiteIds: 01000000
@@ -23543,6 +23569,7 @@ MonoBehaviour:
     - {fileID: 739542199}
     displaysUI: []
   - name: Freezer Objectives
+    objectivesTitle: Freezer
     objectives:
     - objectiveInfo: {fileID: 11400000, guid: 71eda84c00b9ff74ba2f2dc58afcd58a, type: 2}
       prerequisiteIds: 03000000
@@ -23573,6 +23600,7 @@ MonoBehaviour:
     - {fileID: 1656941649}
     displaysUI: []
   - name: Oven Objectives
+    objectivesTitle: Oven
     objectives:
     - objectiveInfo: {fileID: 11400000, guid: 6c7e50e078cb8a64bb212fd37359fe4d, type: 2}
       prerequisiteIds: 15000000
@@ -23584,6 +23612,7 @@ MonoBehaviour:
     - {fileID: 1518105230}
     displaysUI: []
   - name: Knife Objectives
+    objectivesTitle: Utensils
     objectives:
     - objectiveInfo: {fileID: 11400000, guid: f1d982996dac7274cb7c5c8ed31aeeb3, type: 2}
       prerequisiteIds: 04000000
@@ -23602,6 +23631,7 @@ MonoBehaviour:
     - {fileID: 181718770}
     displaysUI: []
   - name: Toast Ninja Objectives
+    objectivesTitle: Toast Ninja!
     objectives:
     - objectiveInfo: {fileID: 11400000, guid: 3a977d40f552dd14e862c5ac6ff3d751, type: 2}
       prerequisiteIds: 06000000
@@ -23619,6 +23649,7 @@ MonoBehaviour:
     - {fileID: 1078149210}
     displaysUI: []
   - name: Little Fella Objectives
+    objectivesTitle: Little Fella?
     objectives:
     - objectiveInfo: {fileID: 11400000, guid: 4cee642aa498606458971b6040e9d24b, type: 2}
       prerequisiteIds: 08000000

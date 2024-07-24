@@ -157,25 +157,29 @@ public class Requirement
             {
                 if (CheckComplete())
                 {
-                    value += "<size=-6><color=#333> - <s>";
+                    value += "<size=-6><color=#333><s>";
                     value += goalName + " ";
                     //value += "DONE!";
                 }
                 else
                 {
-                    if(goal > 0)
+                    if(goal > 1)
                     {
-                        value += "<color=#000> - ";
+                        value += "<color=#000>";
                         value += goalName + " ";
                         value += "<pos=77%>";
                         value += current + "/" + goal;
                     }
-                    else
+                    else if(goal <= 0)
                     {
-                        value += "<color=#000> - ";
+                        value += "<color=#000>";
                         value += goalName + " ";
                         value += "<pos=77%>";
                         value += current;
+                    }else if(goal == 1)
+                    {
+                        value += "<color=#000>";
+                        value += goalName + " ";
                     }
                     
                 }

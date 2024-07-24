@@ -85,15 +85,6 @@ public class Jam : MonoBehaviour
         {
             uncapEvent = PieManager.instance.UncapObject;
         }
-
-        if(capEvent == null)
-        {
-            capEvent = PieManager.instance.CapObject;
-        }
-        if (uncapEvent == null)
-        {
-            uncapEvent = PieManager.instance.UncapObject;
-        }
     }
 
     // Update is called once per frame
@@ -115,6 +106,7 @@ public class Jam : MonoBehaviour
                 // CHANGE LATER
                 lid.transform.position = StationManager.instance.playerLocation.ObjectOffset;
             }
+            uncapEvent.RaiseEvent(gameObject.GetComponentInParent<NewProp>(), 1);
 
             //SetJamLidVisible(isCapped);
             //GameObject newLid = GameObject.Instantiate(jamJarLidPrefab);
@@ -131,6 +123,8 @@ public class Jam : MonoBehaviour
         {
             isCapped = true;
             newHand.Pickup(lid);
+            capEvent.RaiseEvent(gameObject.GetComponentInParent<NewProp>(), 1);
+
             //SetJamLidVisible(isCapped);
             //Destroy(lid);
             //gameObject.GetComponent<NewProp>()?.AddFlag(PropFlags.JamLid);

@@ -156,7 +156,14 @@ public class Objective
     {
         get
         {
-            return objectiveInfo.ToString;
+            if (CheckAvailable())
+            {
+                return "" + "<size=-1>" + objectiveInfo.ToString + "</size>";
+            }
+            else
+            {
+                return "" + "<size=-2>" + objectiveInfo.ToString + "</size>";
+            }
         }
     }
 }
