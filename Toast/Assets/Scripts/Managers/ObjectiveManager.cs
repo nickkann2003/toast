@@ -101,6 +101,19 @@ public class ObjectiveManager : MonoBehaviour
         }
     }
 
+    private void EditorTextUpdate()
+    {
+        foreach (ObjectiveGroup g in objectiveGroups)
+        {
+            g.CheckAllComplete();
+        }
+        foreach (ObjectiveGroup g in objectiveGroups)
+        {
+            g.CheckAvailable();
+            g.UpdateText();
+        }
+    }
+
     /// <summary>
     /// Force completes an objective with a given ID
     /// </summary>
@@ -228,5 +241,12 @@ public class ObjectiveManager : MonoBehaviour
             }
         }
         UpdateText();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        instance = this;
+        SortObjectivesById();
+        EditorTextUpdate();
     }
 }
