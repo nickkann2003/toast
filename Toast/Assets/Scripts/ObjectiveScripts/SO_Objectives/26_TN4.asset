@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: 8_TN2
+  m_Name: 26_TN4
   m_EditorClassIdentifier: 
-  objectiveName: Toast it Up!
-  description: Slice, slice, slice!
-  completeText: You are a Toast Ninja master!
-  unavailableText: ???
+  objectiveName: High Score
+  description: Your high score!
+  completeText: 
+  unavailableText: 
   requirements:
   - targetAttributes: 0
     hasExclusions: 0
@@ -25,16 +25,16 @@ MonoBehaviour:
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Score 50
-    goal: 50
+    goalName: 'Hi-Score:'
+    goal: -1
     exactValueGoal: 0
     alwaysListening: 1
     id: 0
     listening: 1
     isHighScore: 1
     isCurrentScore: 0
-  sequentialRequirements: 1
-  id: 8
+  sequentialRequirements: 0
+  id: 26
   complete: 0
   available: 1
   successorComplete: 0

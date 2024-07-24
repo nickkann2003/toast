@@ -54,24 +54,27 @@ public class ObjectiveGroup
     /// </summary>
     public void CheckAllComplete()
     {
-        bool allComplete = true;
-        foreach(Objective o in objectives)
+        if (Application.isPlaying)
         {
-            if (!o.CheckComplete())
+            bool allComplete = true;
+            foreach(Objective o in objectives)
             {
-                allComplete = false;
-            }
-        }
-        if (allComplete && !complete && Application.isPlaying)
-        {
-            complete = true;
-            if (destroyPaperOnCompletion)
-            {
-                foreach(TextMeshPro display in displays)
+                if (!o.CheckComplete())
                 {
-                    GameObject.Destroy(display.transform.parent.gameObject);
+                    allComplete = false;
                 }
-                displays.Clear();
+            }
+            if (allComplete && !complete)
+            {
+                complete = true;
+                if (destroyPaperOnCompletion)
+                {
+                    foreach(TextMeshPro display in displays)
+                    {
+                        GameObject.Destroy(display.transform.parent.gameObject);
+                    }
+                    displays.Clear();
+                }
             }
         }
     }
