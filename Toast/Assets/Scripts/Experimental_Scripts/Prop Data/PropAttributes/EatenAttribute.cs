@@ -39,6 +39,9 @@ public class EatenAttribute : PropAttributeSO
 
             float size = Mathf.Clamp(newProp.transform.localScale.x, .5f, 3.0f);
             particles.transform.localScale = Vector3.one * size;
+            var main = particles.GetComponent<ParticleSystem>().main;
+
+            float toastiness = newProp.Stats.GetStat(StatAttManager.instance.toastType).Value;
         }
 
         if (eatEvent)
