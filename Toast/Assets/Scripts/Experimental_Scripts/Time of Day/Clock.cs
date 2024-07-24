@@ -101,28 +101,14 @@ public class Clock : MonoBehaviour
 
         if(hourHand.transform.localRotation.eulerAngles.y < currentRange.x)
         {
-            if(currentTime == ClockTimes.Time0)
-            {
-                currentTime = ClockTimes.Time23;
-            }
-            else
-            {
-                SwitchHour();
-            }
-
+            SwitchHour();
+            
             currentRange.x -= 30;
             currentRange.y -= 30;
         }
         else if(hourHand.transform.localRotation.eulerAngles.y >= currentRange.y)
         {
-            if(currentTime == ClockTimes.Time23)
-            {
-                currentTime = ClockTimes.Time0;
-            }
-            else
-            {
-                SwitchHour();
-            }
+            SwitchHour();
 
             currentRange.x += 30;
             currentRange.y += 30;
@@ -136,7 +122,7 @@ public class Clock : MonoBehaviour
         if (hand == hourHand.gameObject)
         {
             // Hour hand moved, move minute hand by corresponding amount
-            minuteHand.transform.RotateAround(transform.position, transform.up, ((moveAmount - 360) * 60));
+            minuteHand.transform.RotateAround(transform.position, transform.up, (moveAmount * 60));
 
             hourlyRotation += moveAmount;
         }
