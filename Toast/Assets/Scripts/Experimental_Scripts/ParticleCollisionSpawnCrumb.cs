@@ -19,7 +19,7 @@ public class ParticleCollisionSpawnCrumb : MonoBehaviour
 
         for (int i = 0; i < numCollisionEvents; i++)
         {
-            MeshParticleSystem.instance.CreateParticle(collisionEvents[i].intersection, Camera.main.transform.eulerAngles, transform.localScale.x);
+            MeshParticleSystem.instance.CreateCube(collisionEvents[i].intersection, transform.localScale.x);
         }
     }
 }

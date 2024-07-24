@@ -26,9 +26,18 @@ public class EatenAttribute : PropAttributeSO
         if (onEatParticles != null)
         {
             GameObject particles = Instantiate(onEatParticles);
+            //if (newProp.HasAttribute(StatAttManager.instance.inHandAtt))
+            //{
+            //    particles.transform.position = Camera.main.transform.position;
+            //}
+            //else
+            //{
+            //    particles.transform.position = newProp.transform.position;
+            //}
+
             particles.transform.position = newProp.transform.position;
 
-            float size = Mathf.Clamp(newProp.transform.localScale.x, .5f, 4.0f);
+            float size = Mathf.Clamp(newProp.transform.localScale.x, .5f, 3.0f);
             particles.transform.localScale = Vector3.one * size;
         }
 

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class MeshParticleSystem : MonoBehaviour
@@ -36,29 +38,35 @@ public class MeshParticleSystem : MonoBehaviour
         //}
     }
 
-    private void Update()
-    {
-        //CreateParticle(new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f)));
+    //private void Update()
+    //{
+    //    for (int i = 0; i < quadIndex; i++)
+    //    {
+    //        Vector3 eulerAngles = Camera.main.transform.eulerAngles;
+    //        Quaternion rotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
+    //        Matrix4x4 m = Matrix4x4.Rotate(rotation);
 
-        //RemoveParticle(Random.Range(0, MAX_QUAD_AMOUNT));
-        //for (int i = 0; i < quadIndex; i++)
-        //{
-        //    int vertIndex = quadIndex * 4;
-        //    vertices[i]
-        //}
-    }
+    //        int vertIndex = i * 4;
+    //        vertices[vertIndex + 0] = m.MultiplyPoint3x4(vertices[vertIndex + 0]);
+    //        vertices[vertIndex + 1] = m.MultiplyPoint3x4(vertices[vertIndex + 1]);
+    //        vertices[vertIndex + 2] = m.MultiplyPoint3x4(vertices[vertIndex + 2]);
+    //        vertices[vertIndex + 3] = m.MultiplyPoint3x4(vertices[vertIndex + 3]);
+    //    }
+
+    //    UpdateMesh();
+    //}
 
     public void CreateParticle(Vector3 position)
     {
         if (quadIndex >= MAX_QUAD_AMOUNT) return;
 
-        int vertIndex = quadIndex * 4;
+        int vertIndex = quadIndex * 8;
         vertices[vertIndex + 0] = position + new Vector3(-size/2, -size/2, 0);
         vertices[vertIndex + 1] = position + new Vector3(-size/2, size/2, 0);
         vertices[vertIndex + 2] = position + new Vector3(size/2, -size/2, 0);
         vertices[vertIndex + 3] = position + new Vector3(size/2, size/2, 0);
 
-        int triIndex = quadIndex * 6;
+        int triIndex = quadIndex * 36;
         triangles[triIndex + 0] = vertIndex + 0;
         triangles[triIndex + 1] = vertIndex + 1;
         triangles[triIndex + 2] = vertIndex + 2;
@@ -109,6 +117,69 @@ public class MeshParticleSystem : MonoBehaviour
         triangles[triIndex + 3] = vertIndex + 1;
         triangles[triIndex + 4] = vertIndex + 3;
         triangles[triIndex + 5] = vertIndex + 2;
+
+        quadIndex++;
+
+        UpdateMesh();
+    }
+
+    public void CreateCube(Vector3 position, float sizeMod = 1)
+    {
+        if (quadIndex >= MAX_QUAD_AMOUNT) return;
+        if (sizeMod >= 2)
+        {
+            sizeMod = 10;
+        }
+
+        float modifiedSize = size * sizeMod;
+
+        int vertIndex = quadIndex * 8;
+        vertices[vertIndex + 0] = position + new Vector3(-modifiedSize / 2, -modifiedSize / 2, -modifiedSize / 2);
+        vertices[vertIndex + 1] = position + new Vector3(modifiedSize / 2, -modifiedSize / 2, -modifiedSize / 2);
+        vertices[vertIndex + 2] = position + new Vector3(modifiedSize / 2, modifiedSize / 2, -modifiedSize / 2);
+        vertices[vertIndex + 3] = position + new Vector3(-modifiedSize / 2, modifiedSize / 2, -modifiedSize / 2);
+        vertices[vertIndex + 4] = position + new Vector3(-modifiedSize / 2, modifiedSize / 2, modifiedSize / 2);
+        vertices[vertIndex + 5] = position + new Vector3(modifiedSize / 2, modifiedSize / 2, modifiedSize / 2);
+        vertices[vertIndex + 6] = position + new Vector3(modifiedSize / 2, -modifiedSize / 2, modifiedSize / 2);
+        vertices[vertIndex + 7] = position + new Vector3(-modifiedSize / 2, -modifiedSize / 2, modifiedSize / 2);
+
+        int triIndex = quadIndex * 36;
+        triangles[triIndex + 0] = vertIndex + 0;
+        triangles[triIndex + 1] = vertIndex + 2;
+        triangles[triIndex + 2] = vertIndex + 1;
+        triangles[triIndex + 3] = vertIndex + 0;
+        triangles[triIndex + 4] = vertIndex + 3;
+        triangles[triIndex + 5] = vertIndex + 2;
+        triangles[triIndex + 6] = vertIndex + 2;
+        triangles[triIndex + 7] = vertIndex + 3;
+        triangles[triIndex + 8] = vertIndex + 4;
+        triangles[triIndex + 9] = vertIndex + 2;
+        triangles[triIndex + 10] = vertIndex + 4;
+        triangles[triIndex + 11] = vertIndex + 5;
+        triangles[triIndex + 12] = vertIndex + 1;
+        triangles[triIndex + 13] = vertIndex + 2;
+        triangles[triIndex + 14] = vertIndex + 5;
+        triangles[triIndex + 15] = vertIndex + 1;
+        triangles[triIndex + 16] = vertIndex + 5;
+        triangles[triIndex + 17] = vertIndex + 6;
+        triangles[triIndex + 18] = vertIndex + 0;
+        triangles[triIndex + 19] = vertIndex + 7;
+        triangles[triIndex + 20] = vertIndex + 4;
+        triangles[triIndex + 21] = vertIndex + 0;
+        triangles[triIndex + 22] = vertIndex + 4;
+        triangles[triIndex + 23] = vertIndex + 3;
+        triangles[triIndex + 24] = vertIndex + 5;
+        triangles[triIndex + 25] = vertIndex + 4;
+        triangles[triIndex + 26] = vertIndex + 7;
+        triangles[triIndex + 27] = vertIndex + 5;
+        triangles[triIndex + 28] = vertIndex + 7;
+        triangles[triIndex + 29] = vertIndex + 6;
+        triangles[triIndex + 30] = vertIndex + 0;
+        triangles[triIndex + 31] = vertIndex + 6;
+        triangles[triIndex + 32] = vertIndex + 7;
+        triangles[triIndex + 33] = vertIndex + 0;
+        triangles[triIndex + 34] = vertIndex + 1;
+        triangles[triIndex + 35] = vertIndex + 6;
 
         quadIndex++;
 
