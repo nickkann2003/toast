@@ -63,9 +63,15 @@ public class Clock : MonoBehaviour
     [SerializeField]
     Material daySkybox, nightSkybox, betweenSkybox;
 
+    /*
     [Header("Directional Lighting")]
     [SerializeField]
     UnityEngine.Light directionalLight;
+    */
+
+    [Header("Lighting Colors")]
+    [SerializeField]
+    Color dayColor, nightColor, sunsetColor, sunriseColor;
 
     // Start is called before the first frame update
     void Start()
@@ -227,12 +233,14 @@ public class Clock : MonoBehaviour
                 {
                     currentTime = ClockTimes.Time3;
                     RenderSettings.skybox.Lerp(nightSkybox, betweenSkybox, 0.3f);
+                    RenderSettings.ambientLight = Color.Lerp(nightColor, sunriseColor, 0.3f);
                 }
                 // 3 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time15;
-                    RenderSettings.skybox.Lerp(daySkybox, nightSkybox, 0.1f);
+                    RenderSettings.skybox.Lerp(daySkybox, betweenSkybox, 0.1f);
+                    RenderSettings.ambientLight = Color.Lerp(dayColor, sunsetColor, 0.1f);
                 }
                 break;
             // 4
@@ -242,12 +250,14 @@ public class Clock : MonoBehaviour
                 {
                     currentTime = ClockTimes.Time4;
                     RenderSettings.skybox.Lerp(nightSkybox, betweenSkybox, 0.5f);
+                    RenderSettings.ambientLight = Color.Lerp(nightColor, sunriseColor, 0.5f);
                 }
                 // 4 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time16;
-                    RenderSettings.skybox.Lerp(daySkybox, nightSkybox, 0.3f);
+                    RenderSettings.skybox.Lerp(daySkybox, betweenSkybox, 0.3f);
+                    RenderSettings.ambientLight = Color.Lerp(dayColor, sunsetColor, 0.3f);
                 }
                 break;
             // 5
@@ -257,12 +267,14 @@ public class Clock : MonoBehaviour
                 {
                     currentTime = ClockTimes.Time5;
                     RenderSettings.skybox = betweenSkybox;
+                    RenderSettings.ambientLight = sunriseColor;
                 }
                 // 5 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time17;
-                    RenderSettings.skybox.Lerp(daySkybox, nightSkybox, 0.5f);
+                    RenderSettings.skybox.Lerp(daySkybox, betweenSkybox, 0.5f);
+                    RenderSettings.ambientLight = Color.Lerp(dayColor, sunsetColor, 0.5f);
                 }
                 break;
             // 6
@@ -272,12 +284,15 @@ public class Clock : MonoBehaviour
                 {
                     currentTime = ClockTimes.Time6;
                     RenderSettings.skybox.Lerp(betweenSkybox, daySkybox, 0.5f);
+                    RenderSettings.ambientLight = Color.Lerp(sunriseColor, dayColor, 0.5f);
+
                 }
                 // 6 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time18;
-                    RenderSettings.skybox.Lerp(daySkybox, nightSkybox, 0.75f);
+                    RenderSettings.skybox.Lerp(daySkybox, betweenSkybox, 0.75f);
+                    RenderSettings.ambientLight = Color.Lerp(dayColor, sunsetColor, 0.75f);
                 }
                 break;
             // 7
@@ -293,6 +308,7 @@ public class Clock : MonoBehaviour
                 {
                     currentTime = ClockTimes.Time19;
                     RenderSettings.skybox = betweenSkybox;
+                    RenderSettings.ambientLight = sunsetColor;
                 }
                 break;
             // 8
@@ -302,12 +318,14 @@ public class Clock : MonoBehaviour
                 {
                     currentTime = ClockTimes.Time8;
                     RenderSettings.skybox = daySkybox;
+                    RenderSettings.ambientLight = dayColor;
                 }
                 // 8 PM appearance
                 else
                 {
                     currentTime = ClockTimes.Time20;
                     RenderSettings.skybox.Lerp(betweenSkybox, nightSkybox, 0.5f);
+                    RenderSettings.ambientLight = Color.Lerp(sunsetColor, nightColor, 0.5f);
                 }
                 break;
             // 9 
@@ -323,6 +341,7 @@ public class Clock : MonoBehaviour
                 {
                     currentTime = ClockTimes.Time21;
                     RenderSettings.skybox = nightSkybox;
+                    RenderSettings.ambientLight = nightColor;
                 }
                 break;
             // 10
@@ -380,8 +399,10 @@ public class Clock : MonoBehaviour
         minuteHand.transform.RotateAround(transform.position, transform.up, -minuteHand.transform.localEulerAngles.y);
 
         // Reset light color
-        directionalLight.color = new Color(255,255,255,255);
-        directionalLight.intensity = 0.32f;
+        //directionalLight.color = new Color(255,255,255,255);
+        //directionalLight.intensity = 0.32f;
+
+        RenderSettings.ambientLight = dayColor;
     }
     
 }
