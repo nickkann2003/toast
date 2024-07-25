@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveName: Nice And Cool
   description: Pick Up some Bread from the Fridge
-  completeText: Bring Brad back to the Toaster
+  completeText: Bring Bread back to the Toaster
   unavailableText: Check the Toaster first!
   requirements:
   - targetAttributes: 536870912
@@ -31,8 +31,10 @@ MonoBehaviour:
     alwaysListening: 0
     id: 0
     listening: 1
+    isHighScore: 0
+    isCurrentScore: 0
   sequentialRequirements: 1
   id: 16
   complete: 1
   available: 1
-  successorComplete: 0
+  successorComplete: 1

@@ -16,6 +16,7 @@ public class ObjectiveGroup
 
     private bool complete = false;
 
+    [SerializeField]
     private bool destroyPaperOnCompletion = true;
 
     // ------------------------------- Functions -------------------------------
