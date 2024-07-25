@@ -1,8 +1,12 @@
+using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ParticleCollisionSpawnCrumb : MonoBehaviour
 {
+    [ReadOnly]
+    public float toastiness;
+
     private ParticleSystem part;
     private List<ParticleCollisionEvent> collisionEvents;
 
