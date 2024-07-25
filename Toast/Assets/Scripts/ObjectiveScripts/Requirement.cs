@@ -39,6 +39,9 @@ public class Requirement
     // Public variables
     public bool listening = false;
 
+    public bool isHighScore = false;
+    public bool isCurrentScore = false;
+
 
     // ------------------------------- Properties -------------------------------
     public int Current { get => current; set => current = value; }
@@ -78,7 +81,7 @@ public class Requirement
     {
         if(goal > 0) // If the goal is a completable goal
         {
-            if(current == goal) // Exact match
+            if(current >= goal) // Exact match
             {
                 if (!complete || loadCompleted) // If it was not complete, run one-shot effects
                 {
@@ -99,11 +102,30 @@ public class Requirement
     /// <param name="e"></param>
     public void UpdateRequirement(NewProp e, int value)
     {
+        // If e is null (Only case is toast ninja), run toast ninja checks
+        if(e == null)
+        {
+            if (isHighScore)
+            {
+                if (value >= current)
+                {
+                    current = value;
+                }
+            }
+            else if (isCurrentScore)
+            {
+                current = value;
+            }
+
+            ObjectiveManager.instance.UpdateText();
+            return;
+        }
+
         // If listening and correct type and incomplete
         if((listening || alwaysListening) && !complete) // Ensure type, target, and listening
         {
             // If does not contain all necessary flags, return
-            if(!(e.propFlags.HasFlag(targetAttributes)))
+            if(!(e.propFlags.HasFlag(targetAttributes)) && !targetAttributes.HasFlag(PropFlags.None))
             {
                 return;
             }
@@ -113,7 +135,20 @@ public class Requirement
                 return;
             }
 
-            current += value;
+            if (isHighScore)
+            {
+                if(value >= current)
+                {
+                    current = value;
+                }
+            }else if (isCurrentScore)
+            {
+                current = value;
+            }
+            else
+            {
+                current += value;
+            }
         
             if(!exactValueGoal) // If not [exact number type], don't allow overflow
             {
@@ -155,27 +190,29 @@ public class Requirement
             string value = "";
             if (listening)
             {
-                if (CheckComplete())
+                if (complete || CheckComplete())
                 {
-                    value += "<size=-6><color=#333> - <s>";
+                    value += "<size=-6><color=#333><s>";
                     value += goalName + " ";
                     //value += "DONE!";
                 }
                 else
                 {
-                    if(goal > 0)
+                    if(goal > 1)
                     {
-                        value += "<color=#000> - ";
-                        value += goalName + " ";
-                        value += "<pos=77%>";
+                        value += "<color=#000>";
+                        value += goalName + "   ";
                         value += current + "/" + goal;
                     }
-                    else
+                    else if(goal <= 0)
                     {
-                        value += "<color=#000> - ";
-                        value += goalName + " ";
-                        value += "<pos=77%>";
+                        value += "<color=#000>";
+                        value += goalName + "   ";
                         value += current;
+                    }else if(goal == 1)
+                    {
+                        value += "<color=#000>";
+                        value += goalName + " ";
                     }
                     
                 }

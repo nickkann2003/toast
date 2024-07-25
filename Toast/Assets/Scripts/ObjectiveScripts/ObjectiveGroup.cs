@@ -9,9 +9,15 @@ public class ObjectiveGroup
 {
     // ------------------------------- Variables -------------------------------
     public string name;
+    public string objectivesTitle;
     public List<Objective> objectives;
     public List<TextMeshPro> displays;
     public List<TextMeshProUGUI> displaysUI;
+
+    private bool complete = false;
+
+    [SerializeField]
+    private bool destroyPaperOnCompletion = true;
 
     // ------------------------------- Functions -------------------------------
     /// <summary>
@@ -49,9 +55,28 @@ public class ObjectiveGroup
     /// </summary>
     public void CheckAllComplete()
     {
-        foreach(Objective o in objectives)
+        if (Application.isPlaying)
         {
-            o.CheckComplete();
+            bool allComplete = true;
+            foreach(Objective o in objectives)
+            {
+                if (!o.CheckComplete())
+                {
+                    allComplete = false;
+                }
+            }
+            if (allComplete && !complete)
+            {
+                complete = true;
+                if (destroyPaperOnCompletion)
+                {
+                    foreach(TextMeshPro display in displays)
+                    {
+                        GameObject.Destroy(display.transform.parent.gameObject);
+                    }
+                    displays.Clear();
+                }
+            }
         }
     }
 
@@ -79,21 +104,14 @@ public class ObjectiveGroup
         get
         {
             string value = "";
-            value += "<u><b>To-Do List: <size=-5><color=#111><pos=85%>~</pos></size></color></b></u>";
+            value += $"<u><b><pos=0%>{objectivesTitle}:</pos> <size=-5><color=#111><pos=85%>~</pos></size></color></b></u>";
             int complete = 0;
             int total = 0;
             //value += "\n" + "<color=#111><size=-1>" + "Objectives Completed: " + completedObjectives + "</size></color>";
             foreach (Objective obj in objectives)
             {
                 total++;
-                if (obj.CheckAvailable())
-                {
-                    value += "\n" + "<size=-1>" + obj.ToString + "</size>";
-                }
-                else
-                {
-                    value += "\n" + "<size=-2>" + obj.ToString + "</size>";
-                }
+                value += obj.ToString;
 
                 if (obj.Complete)
                 {

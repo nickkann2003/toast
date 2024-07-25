@@ -20,7 +20,11 @@ public class FrozenAttribute : PropAttributeSO
     private PropIntGameEvent thawEvent;
 
     [SerializeField]
+    private PropIntGameEvent extinguishEvent;
+
+    [SerializeField]
     private PropAttributeSO onFireAtt;
+
 
     [SerializeField]
     private SimpleAudioEvent extinguishAudio;
@@ -78,6 +82,7 @@ public class FrozenAttribute : PropAttributeSO
 
     IEnumerator RemoveNextFrame(NewProp newProp)
     {
+        extinguishEvent?.RaiseEvent(newProp, 1);
         newProp.RemoveAttribute(onFireAtt);
         yield return new WaitForSeconds(0);
         newProp.PlayAudioEvent(extinguishAudio);

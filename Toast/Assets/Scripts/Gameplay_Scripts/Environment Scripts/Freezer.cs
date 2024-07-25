@@ -71,9 +71,6 @@ public class Freezer : MonoBehaviour
         //if (prop.propFlags.HasFlag(PropFlags.OnFire))
         //{
         //    freezeEvent.RaiseEvent(prop, 1);
-        //    FireEndingManager.instance.removeFireObject(prop.gameObject);
-        //    prop.RemoveFlag(PropFlags.OnFire);
-        //    Destroy(prop.transform.GetChild(0).gameObject);
         //}
         //else if (!prop.HasAttribute(frozenAttribute)) 
         //{

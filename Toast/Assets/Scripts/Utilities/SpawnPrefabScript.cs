@@ -28,12 +28,16 @@ public class SpawnPrefabScript : MonoBehaviour
     private float spawnRatePerSecond;
     private float spawnDelay;
     private float cd;
+    [SerializeField, ShowIf("automaticSpawning")]
+    private float spawnDuration = 0f;
+    private float remainingSpawnDuration;
 
     // ------------------------------- Functions -------------------------------
     public void Start()
     {
         actualSpawnPos = spawnPosition + transform.position;
         spawnDelay = 1f / spawnRatePerSecond;
+        remainingSpawnDuration = spawnDuration;
     }
 
     private void Update()
@@ -43,8 +47,20 @@ public class SpawnPrefabScript : MonoBehaviour
             cd -= Time.deltaTime;
             if (cd < 0f)
             {
-                TriggerSpawn();
-                cd = spawnDelay;
+                if(spawnDuration > 0)
+                {
+                    if(remainingSpawnDuration > 0)
+                    {
+                        TriggerSpawn();
+                        cd = spawnDelay;
+                        remainingSpawnDuration -= Time.deltaTime;
+                    }
+                }
+                else
+                {
+                    TriggerSpawn();
+                    cd = spawnDelay;
+                }
             }
         }
     }

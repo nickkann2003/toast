@@ -316,28 +316,28 @@ public class DetectItem : MonoBehaviour
             // Target num objects, none if 1 and !exactValue, strikethrough otherwise if complete
             if (exactValue)
             {
-                if (curItems == numItems)
+                if (curItems == numItems || numItems <= 0)
                 {
 
                 }
                 else
                 {
-                    value += $"<u>Items Collected</u>: <b>{curItems}</b> of <b>{numItems}</b>\n<u>Target Attributes:</u>\n"; 
+                    value += $"<u>Items Collected</u>: <b>{curItems}</b> of <b>{numItems}</b>\n<u></u>"; 
                 }
             }
             else
             {
                 if(numItems <= 1)
                 {
-                    value += "<u>Target Attributes:</u> \n";
+                    value += "<u></u>";
                 }
                 else if(curItems >= numItems)
                 {
-                    value += "<u>All Items Collected</u>\n<u>Target Attributes:</u>\n";
+                    value += "<u>All Items Collected</u><u></u>\n";
                 }
                 else
                 {
-                    value += $"<u>Items Collected:</u> <b>{curItems}</b> of <b>{numItems}</b>\n<u>Target Attributes:</u>\n";
+                    value += $"<u>Items Collected:</u> <b>{curItems}</b> of <b>{numItems}</b><u></u>\n";
                 }
             }
 
@@ -348,7 +348,7 @@ public class DetectItem : MonoBehaviour
                 {
                     if (cumulativeFlags.HasFlag(f))
                     {
-                        value += $"<s>{f}</s>\n";
+                        value += $"<s><color=#111>{f}</color></s>\n";
                     }
                     else
                     {
@@ -369,7 +369,7 @@ public class DetectItem : MonoBehaviour
             value += $"<u>Items Collected:</u> <b>{curItems}</b> of <b>{numItems}</b>\n";
 
             // Target attributes of objects
-            value += "\n<u>Target Attributes:</u> \n";
+            value += "<u></u> \n";
             foreach (PropFlags f in Enum.GetValues(typeof(PropFlags)))
             {
                 if (attributes.HasFlag(f) && !PropFlags.None.Equals(f))

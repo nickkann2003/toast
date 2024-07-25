@@ -13,6 +13,8 @@ public class ToastNinjaScore : ScriptableObject
     private int bombsToLose;
     [SerializeField, ReadOnly]
     private int bombsHit;
+    [SerializeField]
+    private PropIntGameEvent toastNinjaScoreEvent;
 
     public int Score {  get { return score; } }
     public int HighScore { get {  return highScore; } }
@@ -29,6 +31,8 @@ public class ToastNinjaScore : ScriptableObject
     public void AddPoints(int points)
     {
         score += points;
+
+        toastNinjaScoreEvent?.RaiseEvent(null, score);
 
         if (score > highScore)
         {
@@ -48,12 +52,18 @@ public class ToastNinjaScore : ScriptableObject
 
     public void GameEnd()
     {
+        ResetScore();
+        toastNinjaScoreEvent?.RaiseEvent(null, score);
+    }
+
+    public void ResetScore()
+    {
         score = 0;
         bombsHit = 0;
     }
 
     private void OnEnable()
     {
-        GameEnd();
+        ResetScore();
     }
 }

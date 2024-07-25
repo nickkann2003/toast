@@ -11,10 +11,6 @@ public class TN_Object : MonoBehaviour
     [SerializeField]
     GameObject splatter;
 
-    [Header("Event References")]
-    [SerializeField]
-    private PropIntGameEvent toastNinjaScoreEvent;
-
     private Vector3 startPosition;
 
     private int hitsToDestroy = 0;
@@ -85,8 +81,6 @@ public class TN_Object : MonoBehaviour
         GetComponent<Rigidbody>().AddTorque(new Vector3(0 , 0, speed) * 200 * -hitDirection.x/Mathf.Abs(hitDirection.x));
 
         _itemScriptableObject.SpawnPoints(hitPosition, hitsTaken);
-
-        toastNinjaScoreEvent?.OnEventRaised(this.GetComponent<NewProp>(), _itemScriptableObject.GetPoints(hitsTaken));
     }
 
     public void Goodbye()

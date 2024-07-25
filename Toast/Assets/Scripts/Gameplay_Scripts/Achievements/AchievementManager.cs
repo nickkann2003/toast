@@ -23,7 +23,9 @@ public class AchievementManager : MonoBehaviour
         ACHIEVEMENT_FEED_LITTLE_FELLA,
         ACHIEVEMENT_TOAST_NINJA_SCORE_50,
         ACHIEVEMENT_TOAST_NINJA_SCORE_100,
-        ACHIEVEMENT_ELECTROCUTION;
+        ACHIEVEMENT_ELECTROCUTION,
+        ACHIEVEMENT_USE_50_JAM,
+        ACHIEVEMENT_USE_CLOCK;
 
 
 
@@ -181,8 +183,27 @@ public class AchievementManager : MonoBehaviour
 
     public void ReceivedToastNinja(NewProp prop, int increment)
     {
-        IncrementAchievement(ACHIEVEMENT_TOAST_NINJA_SCORE_50, increment);
-        IncrementAchievement(ACHIEVEMENT_TOAST_NINJA_SCORE_100, increment);
+        IncrementToastNinja(ACHIEVEMENT_TOAST_NINJA_SCORE_50, increment);
+        IncrementToastNinja(ACHIEVEMENT_TOAST_NINJA_SCORE_100, increment);
+    }
+
+    /// <summary>
+    /// Achievements relating to Jam
+    /// </summary>
+    public void ReceivedJam(NewProp prop, int increment)
+    {
+        if (prop.HasFlag(PropFlags.Jam))
+        {
+            IncrementAchievement(ACHIEVEMENT_USE_50_JAM);
+        }
+    }
+
+    /// <summary>
+    /// Achievements relating to clock
+    /// </summary>
+    public void ReceivedTimeChange()
+    {
+        Unlock(ACHIEVEMENT_USE_CLOCK);
     }
 
     void IncrementAchievement(Achievement achievement, int increment = 1)
@@ -209,6 +230,36 @@ public class AchievementManager : MonoBehaviour
             }
         }
     }
+
+    void IncrementToastNinja(Achievement achievement, int score)
+    {
+        // Check that achievement has goal and that it is greater than 0
+        if (achievement.HasNumericGoal && achievement.AchievementGoal > 0 && !achievement.IsUnlocked)
+        {
+            // Increase progress
+            if(achievement.AchievementGoal < score)
+            {
+                achievement.AchievementProgress = score;
+            }
+
+            // Update visual progress
+            achievement.MenuSquare.ProgressText = $"{achievement.AchievementProgress}/{achievement.AchievementGoal}";
+
+            if (achievement.MenuSquare.IsHiddenAchievement)
+            {
+                achievement.MenuSquare.NameText = achievement.AchievementName;
+                achievement.MenuSquare.DescriptionText = achievement.Description;
+            }
+
+            // If goal has been reached, unlock
+            if (achievement.AchievementProgress >= achievement.AchievementGoal)
+            {
+                Unlock(achievement);
+            }
+        }
+    }
+
+
 
     void CreateMenu()
     {

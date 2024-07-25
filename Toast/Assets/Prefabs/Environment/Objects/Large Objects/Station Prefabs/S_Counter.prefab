@@ -238,6 +238,8 @@ MonoBehaviour:
   onClose:
     m_PersistentCalls:
       m_Calls: []
+  doorOpen: {fileID: 11400000, guid: c21dd1aed7bafad49b9212910f23d3d8, type: 2}
+  doorClose: {fileID: 11400000, guid: 76cb8afc0a2ee5e4db4bb87d4462c95d, type: 2}
 --- !u!1 &971529888928629326
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +456,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3814683499426095319}
+        m_TargetAssemblyTypeName: ObjectRespawner, Assembly-CSharp
+        m_MethodName: RespawnItems
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   leave:
     m_PersistentCalls:
       m_Calls:
@@ -528,6 +542,7 @@ Transform:
   m_Children:
   - {fileID: 6732733652448952283}
   - {fileID: 4220121773652788828}
+  - {fileID: 2575518286707262577}
   m_Father: {fileID: 5569153096915610135}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -587,6 +602,18 @@ MonoBehaviour:
       - m_Target: {fileID: 3292336899090263711}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
         m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3814683499426095319}
+        m_TargetAssemblyTypeName: ObjectRespawner, Assembly-CSharp
+        m_MethodName: RespawnItems
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -849,6 +876,8 @@ MonoBehaviour:
   onClose:
     m_PersistentCalls:
       m_Calls: []
+  doorOpen: {fileID: 11400000, guid: c21dd1aed7bafad49b9212910f23d3d8, type: 2}
+  doorClose: {fileID: 11400000, guid: 76cb8afc0a2ee5e4db4bb87d4462c95d, type: 2}
 --- !u!1 &5054889518724862717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,6 +1047,79 @@ Transform:
   m_Father: {fileID: 7682334661940190810}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7887717217971507176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2575518286707262577}
+  - component: {fileID: 3814683499426095319}
+  - component: {fileID: 5916282014902733595}
+  m_Layer: 2
+  m_Name: ItemRespawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2575518286707262577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7887717217971507176}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.099, z: 0}
+  m_LocalScale: {x: 0.83333325, y: 0.83333325, z: 0.83333325}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8848428644034644040}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3814683499426095319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7887717217971507176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b19bf611c1b9d842be4c2b1abc3d354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects: []
+  waitForAll: 0
+  autoRespawnItems: 0
+  spawnOnStart: 1
+  spawnParent: {fileID: 0}
+  tempHighlightOnFirstAppearance: 0
+  onFirstSpawnOnly: 0
+--- !u!65 &5916282014902733595
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7887717217971507176}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.0425353, y: 1.8526562, z: 1.2923769}
+  m_Center: {x: -0.0059798965, y: -0.3835758, z: 0.04101563}
 --- !u!1 &8227942000197139453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1939,6 +2041,8 @@ MonoBehaviour:
   maxPos: {x: 0, y: 0, z: 0.506}
   speed: 3
   isOpen: 0
+  openDrawer: {fileID: 11400000, guid: c21dd1aed7bafad49b9212910f23d3d8, type: 2}
+  closeDrawer: {fileID: 11400000, guid: 76cb8afc0a2ee5e4db4bb87d4462c95d, type: 2}
 --- !u!65 &3221277716303707087
 BoxCollider:
   m_ObjectHideFlags: 0

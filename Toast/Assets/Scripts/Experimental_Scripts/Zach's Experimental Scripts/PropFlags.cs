@@ -5,7 +5,7 @@ using System;
 
 // in order to check to see if the prop contains a flag use HasFlag
 // in order to check to see if the prop doesn't contain a flag use Equals(PropFlags.None)
-[Flags]
+[Flags, Serializable]
 public enum PropFlags
 {
     None = 0,

@@ -18,17 +18,23 @@ MonoBehaviour:
   unavailableText: ???
   requirements:
   - targetAttributes: 0
+    hasExclusions: 0
+    excludeAttributes: 0
     listener:
       gameEvent: {fileID: 11400000, guid: bace4ac0805980a46a61fa39ad9af797, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Score 50 Points
+    goalName: Score 50
     goal: 50
     exactValueGoal: 0
     alwaysListening: 1
     id: 0
     listening: 1
+    isHighScore: 1
+    isCurrentScore: 0
+  sequentialRequirements: 1
   id: 8
   complete: 0
   available: 1
+  successorComplete: 0
