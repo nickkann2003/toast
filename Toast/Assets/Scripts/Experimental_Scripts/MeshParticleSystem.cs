@@ -26,24 +26,6 @@ public class MeshParticleSystem : MonoBehaviour
 
     private Mesh mesh;
 
-    // set in the editor using pixel values
-    [System.Serializable]
-    public struct ParticleUVPixels
-    {
-        public Vector2Int uv00Pixels;
-        public Vector2Int uv11Pixels;
-    }
-    // holds normalized texture UV coordinates
-    private struct UVCoords
-    {
-        public Vector2 uv00;
-        public Vector2 uv11;
-    }
-
-    [SerializeField]
-    private ParticleUVPixels[] particleUVPixelsArray;
-    private UVCoords[] uvCoordsArray;
-
     private Vector3[] vertices;
     private Vector2[] uv;
     private int[] triangles;
@@ -65,8 +47,8 @@ public class MeshParticleSystem : MonoBehaviour
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
 
-        vertices = new Vector3[4 * MAX_QUAD_AMOUNT];
-        uv = new Vector2[4 * MAX_QUAD_AMOUNT];
+        vertices = new Vector3[8 * MAX_QUAD_AMOUNT];
+        uv = new Vector2[8 * MAX_QUAD_AMOUNT];
         triangles = new int[6 * MAX_QUAD_AMOUNT];
 
         //for (int i = 0; i < MAX_QUAD_AMOUNT; i++)

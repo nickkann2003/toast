@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ParticleCollisionSpawnCrumb : MonoBehaviour
 {
-    [ReadOnly]
-    public float toastiness;
-
     private ParticleSystem part;
     private List<ParticleCollisionEvent> collisionEvents;
 
@@ -24,7 +21,7 @@ public class ParticleCollisionSpawnCrumb : MonoBehaviour
     {
         int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
 
-        int index = (int)Mathf.Ceil(toastiness * 5);
+        int index = (int)Mathf.Round(toastiness * 5);
 
         for (int i = 0; i < numCollisionEvents; i++)
         {
