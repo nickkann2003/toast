@@ -52,13 +52,18 @@ public class ToastNinjaScore : ScriptableObject
 
     public void GameEnd()
     {
+        ResetScore();
+        toastNinjaScoreEvent?.RaiseEvent(null, score);
+    }
+
+    public void ResetScore()
+    {
         score = 0;
         bombsHit = 0;
-        toastNinjaScoreEvent?.RaiseEvent(null, score);
     }
 
     private void OnEnable()
     {
-        GameEnd();
+        ResetScore();
     }
 }

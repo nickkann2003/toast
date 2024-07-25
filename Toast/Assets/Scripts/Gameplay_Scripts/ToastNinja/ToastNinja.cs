@@ -71,7 +71,7 @@ public class ToastNinja : MonoBehaviour
     void Start()
     {
         timer = 1;
-        GameStop();
+        GameReset();
         //InvokeRepeating("LaunchToast", 2.0f, 2.0f);
     }
 
@@ -217,6 +217,30 @@ public class ToastNinja : MonoBehaviour
         runtimeSet.DestroyAll();
 
         toastNinjaUI.SetActive(false);
+    }
+
+    private void GameReset()
+    {
+        Raycast.Instance.noDrag = false;
+
+        toastNinjaState = ToastNinjaState.Inactive;
+        for (int i = 0; i < launchObjects.Length; i++)
+        {
+            launchObjects[i].active = false;
+        }
+        for (int i = 0; i < destroyerVolumes.Length; i++)
+        {
+            destroyerVolumes[i].gameObject.SetActive(false);
+        }
+        foreach (GameObject blocker in moveBlockers)
+        {
+            blocker.SetActive(false);
+        }
+
+        scoreSO.ResetScore();
+
+        runtimeSet.DestroyAll();
+
     }
 
     // Readies the game

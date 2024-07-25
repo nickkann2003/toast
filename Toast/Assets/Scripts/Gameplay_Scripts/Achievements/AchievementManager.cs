@@ -181,8 +181,8 @@ public class AchievementManager : MonoBehaviour
 
     public void ReceivedToastNinja(NewProp prop, int increment)
     {
-        IncrementAchievement(ACHIEVEMENT_TOAST_NINJA_SCORE_50, increment);
-        IncrementAchievement(ACHIEVEMENT_TOAST_NINJA_SCORE_100, increment);
+        IncrementToastNinja(ACHIEVEMENT_TOAST_NINJA_SCORE_50, increment);
+        IncrementToastNinja(ACHIEVEMENT_TOAST_NINJA_SCORE_100, increment);
     }
 
     void IncrementAchievement(Achievement achievement, int increment = 1)
@@ -204,6 +204,34 @@ public class AchievementManager : MonoBehaviour
 
             // If goal has been reached, unlock
             if(achievement.AchievementProgress >= achievement.AchievementGoal)
+            {
+                Unlock(achievement);
+            }
+        }
+    }
+
+    void IncrementToastNinja(Achievement achievement, int score)
+    {
+        // Check that achievement has goal and that it is greater than 0
+        if (achievement.HasNumericGoal && achievement.AchievementGoal > 0 && !achievement.IsUnlocked)
+        {
+            // Increase progress
+            if(achievement.AchievementGoal < score)
+            {
+                achievement.AchievementProgress = score;
+            }
+
+            // Update visual progress
+            achievement.MenuSquare.ProgressText = $"{achievement.AchievementProgress}/{achievement.AchievementGoal}";
+
+            if (achievement.MenuSquare.IsHiddenAchievement)
+            {
+                achievement.MenuSquare.NameText = achievement.AchievementName;
+                achievement.MenuSquare.DescriptionText = achievement.Description;
+            }
+
+            // If goal has been reached, unlock
+            if (achievement.AchievementProgress >= achievement.AchievementGoal)
             {
                 Unlock(achievement);
             }
