@@ -1,8 +1,12 @@
+using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ParticleCollisionSpawnCrumb : MonoBehaviour
 {
+    [ReadOnly]
+    public float toastiness;
+
     private ParticleSystem part;
     private List<ParticleCollisionEvent> collisionEvents;
 
@@ -19,7 +23,7 @@ public class ParticleCollisionSpawnCrumb : MonoBehaviour
 
         for (int i = 0; i < numCollisionEvents; i++)
         {
-            MeshParticleSystem.instance.CreateCube(collisionEvents[i].intersection, transform.localScale.x);
+            MeshParticleSystem.instance.CreateCube(collisionEvents[i].intersection, toastiness, transform.localScale.x);
         }
     }
 }

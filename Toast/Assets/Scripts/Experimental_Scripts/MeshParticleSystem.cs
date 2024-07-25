@@ -9,7 +9,26 @@ public class MeshParticleSystem : MonoBehaviour
     private const int MAX_QUAD_AMOUNT = 15000;
     private Mesh mesh;
 
+    // set in the editor using pixel values
+    [System.Serializable]
+    public struct ParticleUVPixels
+    {
+        public Vector2Int uv00Pixels;
+        public Vector2Int uv11Pixels;
+    }
+    // holds normalized texture UV coordinates
+    private struct UVCoords
+    {
+        public Vector2 uv00;
+        public Vector2 uv11;
+    }
+
+    [SerializeField]
+    private ParticleUVPixels[] particleUVPixelsArray;
+    private UVCoords[] uvCoordsArray;
+
     private Vector3[] vertices;
+    //private Vector2[] uv;
     private int[] triangles;
 
     private int quadIndex;
@@ -29,13 +48,32 @@ public class MeshParticleSystem : MonoBehaviour
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
 
-        vertices = new Vector3[4 * MAX_QUAD_AMOUNT];
+        vertices = new Vector3[8 * MAX_QUAD_AMOUNT];
+        //uv = new Vector2[8 * MAX_QUAD_AMOUNT];
         triangles = new int[6 * MAX_QUAD_AMOUNT];
 
         //for (int i = 0; i < MAX_QUAD_AMOUNT; i++)
         //{
         //    CreateParticle(new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f)));
         //}
+
+        // set up internal UV normalized array
+        Material material = GetComponent<MeshRenderer>().material;
+        Texture mainTexture = material.mainTexture;
+        int textureWidth = mainTexture.width;
+        int textureHeight = mainTexture.height;
+
+        //List<UVCoords> uvCoordsList = new List<UVCoords>();
+        //foreach (ParticleUVPixels particleUVPixels in particleUVPixelsArray)
+        //{
+        //    UVCoords uvCoords = new UVCoords
+        //    {
+        //        uv00 = new Vector2((float)particleUVPixels.uv00Pixels.x / textureWidth, (float)particleUVPixels.uv00Pixels.x / textureHeight),
+        //        uv11 = new Vector2((float)particleUVPixels.uv11Pixels.x / textureWidth, (float)particleUVPixels.uv11Pixels.x / textureHeight)
+        //    };
+        //    uvCoordsList.Add(uvCoords);
+        //}
+        //uvCoordsArray = uvCoordsList.ToArray();
     }
 
     //private void Update()
@@ -123,7 +161,7 @@ public class MeshParticleSystem : MonoBehaviour
         UpdateMesh();
     }
 
-    public void CreateCube(Vector3 position, float sizeMod = 1)
+    public void CreateCube(Vector3 position, float toastiness = 0, float sizeMod = 1)
     {
         if (quadIndex >= MAX_QUAD_AMOUNT) return;
         if (sizeMod >= 2)
@@ -210,6 +248,7 @@ public class MeshParticleSystem : MonoBehaviour
         mesh.Clear();
         
         mesh.vertices = vertices;
+        //mesh.uv = uv;
         mesh.triangles = triangles;
 
         mesh.RecalculateNormals();
