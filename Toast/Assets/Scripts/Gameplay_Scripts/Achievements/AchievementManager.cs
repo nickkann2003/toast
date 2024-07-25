@@ -62,6 +62,10 @@ public class AchievementManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI unlockedProgressText;
 
+    [Header("Audio")]
+    [SerializeField]
+    private SimpleAudioEvent achievementUnlockEvent;
+
     // ------------------------------- Save Variables -------------------------------
     private string achievementSeparator = "~";
     private string spacer = "_";
@@ -109,6 +113,7 @@ public class AchievementManager : MonoBehaviour
             achievement.MenuSquare.displayImage.sprite = achievement.MenuSquare.unlockedSprite;
             PlayNotification(achievement);
             unlockedProgressText.text = $"{unlockedAchievements.Count}/{achievements.Count}";
+            AudioManager.instance.PlayAudioEvent(achievementUnlockEvent);
         }
     }
 
