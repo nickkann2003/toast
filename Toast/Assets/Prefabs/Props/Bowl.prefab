@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1656201333593800746}
   - component: {fileID: 5716177448186523780}
   - component: {fileID: 3474368482129516496}
-  - component: {fileID: 7592348262546618263}
   m_Layer: 7
   m_Name: SM_Bowl
   m_TagString: Untagged
@@ -84,22 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7592348262546618263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2370372565732981676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 902f118e886d20d43b1ff6bff5092b93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultHighlightSetting: {fileID: 11400000, guid: 66f8fe3eb1012ef40aa66410722286fc,
-    type: 2}
-  isHighlightedEnabled: 1
-  outline: []
 --- !u!1 &7564301329878422352
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,6 +95,7 @@ GameObject:
   - component: {fileID: 3582580032432063970}
   - component: {fileID: 2352343336068135818}
   - component: {fileID: 1803221708377619970}
+  - component: {fileID: 8650291137364772449}
   m_Layer: 7
   m_Name: Bowl
   m_TagString: Untagged
@@ -210,3 +194,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2542112853833809232, guid: 7d6a9fac399f68541bf1f7644a9e1ca5, type: 3}
+--- !u!114 &8650291137364772449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7564301329878422352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902f118e886d20d43b1ff6bff5092b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHighlightSetting: {fileID: 11400000, guid: 66f8fe3eb1012ef40aa66410722286fc,
+    type: 2}
+  isHighlightedEnabled: 1
+  outline: []

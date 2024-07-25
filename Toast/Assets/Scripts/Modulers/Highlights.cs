@@ -49,8 +49,15 @@ public class Highlights : MonoBehaviour
         if(outline.Count == 0)
         {
             this.outline= new List<Outline>();
-            Outline temp = this.AddComponent<Outline>();
-            outline.Add(temp); 
+            try
+            {
+                Outline temp = this.AddComponent<Outline>();
+                outline.Add(temp);
+            }
+            catch
+            {
+
+            }
         }
 
         SettingOutline();
