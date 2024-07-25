@@ -23,7 +23,8 @@ public class AchievementManager : MonoBehaviour
         ACHIEVEMENT_FEED_LITTLE_FELLA,
         ACHIEVEMENT_TOAST_NINJA_SCORE_50,
         ACHIEVEMENT_TOAST_NINJA_SCORE_100,
-        ACHIEVEMENT_ELECTROCUTION;
+        ACHIEVEMENT_ELECTROCUTION,
+        ACHIEVEMENT_USE_50_JAM;
 
 
 
@@ -185,6 +186,17 @@ public class AchievementManager : MonoBehaviour
         IncrementToastNinja(ACHIEVEMENT_TOAST_NINJA_SCORE_100, increment);
     }
 
+    /// <summary>
+    /// Achievements relating to Jam
+    /// </summary>
+    public void ReceivedJam(NewProp prop, int increment)
+    {
+        if (prop.HasFlag(PropFlags.Jam))
+        {
+            IncrementAchievement(ACHIEVEMENT_USE_50_JAM);
+        }
+    }
+
     void IncrementAchievement(Achievement achievement, int increment = 1)
     {
         // Check that achievement has goal and that it is greater than 0
@@ -237,6 +249,8 @@ public class AchievementManager : MonoBehaviour
             }
         }
     }
+
+
 
     void CreateMenu()
     {
