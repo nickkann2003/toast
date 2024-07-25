@@ -9,6 +9,9 @@ public class EatenAttribute : PropAttributeSO
     private GameObject onEatParticles;
 
     [SerializeField]
+    private Color particleColor;
+
+    [SerializeField]
     private PropIntGameEvent eatEvent;
 
     public override void OnEquip(NewProp newProp)
@@ -37,11 +40,18 @@ public class EatenAttribute : PropAttributeSO
 
             particles.transform.position = newProp.transform.position;
 
-            float size = Mathf.Clamp(newProp.transform.localScale.x, .5f, 3.0f);
-            particles.transform.localScale = Vector3.one * size;
-            var main = particles.GetComponent<ParticleSystem>().main;
-
             float toastiness = newProp.Stats.GetStat(StatAttManager.instance.toastType).Value;
+
+            toastiness = Mathf.Clamp(toastiness, 0f, 1f);
+
+            Color toastColor = new Color(1 - toastiness, 1 - toastiness, 1 - toastiness) * particleColor;
+
+            var main = particles.GetComponent<ParticleSystem>().main;
+            main.startColor = toastColor;
+            main.startSizeMultiplier = main.startSizeMultiplier * newProp.transform.localScale.x;
+
+            particles.GetComponent<ParticleCollisionSpawnCrumb>().toastiness = toastiness;
+            particles.GetComponent<ParticleCollisionSpawnCrumb>().sizeMult = newProp.transform.localScale.x;
         }
 
         if (eatEvent)

@@ -6,6 +6,9 @@ public class ParticleCollisionSpawnCrumb : MonoBehaviour
     private ParticleSystem part;
     private List<ParticleCollisionEvent> collisionEvents;
 
+    public float toastiness;
+    public float sizeMult = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +20,11 @@ public class ParticleCollisionSpawnCrumb : MonoBehaviour
     {
         int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
 
+        int index = (int)Mathf.Ceil(toastiness * 5);
+
         for (int i = 0; i < numCollisionEvents; i++)
         {
-            MeshParticleSystem.instance.CreateCube(collisionEvents[i].intersection, transform.localScale.x);
+            MeshParticleSystem.instance.CreateCube(collisionEvents[i].intersection, sizeMult, index);
         }
     }
 }
