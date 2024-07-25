@@ -63,6 +63,9 @@ public class Clock : MonoBehaviour
     [SerializeField]
     Material daySkybox, nightSkybox, betweenSkybox;
 
+    [Header("Events")]
+    public VoidGameEvent timeChangeEvent;    
+
     /*
     [Header("Directional Lighting")]
     [SerializeField]
@@ -78,7 +81,7 @@ public class Clock : MonoBehaviour
     {
         RenderSettings.skybox.SetFloat("_Rotation", 0);
         currentTime = ClockTimes.Time0;
-        currentRange = new Vector2(0, 30);
+        currentRange = new Vector2(270, 300);
         currentHalf = AMPM.AM;
         hourlyRotation = 0;
     }
@@ -154,6 +157,8 @@ public class Clock : MonoBehaviour
 
     void SwitchHour()
     {
+        timeChangeEvent.RaiseEvent();
+
         switch(hourHand.transform.localEulerAngles.y)
         {
             // 12

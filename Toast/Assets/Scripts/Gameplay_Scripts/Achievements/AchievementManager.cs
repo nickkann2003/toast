@@ -24,7 +24,8 @@ public class AchievementManager : MonoBehaviour
         ACHIEVEMENT_TOAST_NINJA_SCORE_50,
         ACHIEVEMENT_TOAST_NINJA_SCORE_100,
         ACHIEVEMENT_ELECTROCUTION,
-        ACHIEVEMENT_USE_50_JAM;
+        ACHIEVEMENT_USE_50_JAM,
+        ACHIEVEMENT_USE_CLOCK;
 
 
 
@@ -195,6 +196,14 @@ public class AchievementManager : MonoBehaviour
         {
             IncrementAchievement(ACHIEVEMENT_USE_50_JAM);
         }
+    }
+
+    /// <summary>
+    /// Achievements relating to clock
+    /// </summary>
+    public void ReceivedTimeChange()
+    {
+        Unlock(ACHIEVEMENT_USE_CLOCK);
     }
 
     void IncrementAchievement(Achievement achievement, int increment = 1)
