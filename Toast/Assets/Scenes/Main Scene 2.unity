@@ -6462,6 +6462,8 @@ MonoBehaviour:
     type: 2}
   ACHIEVEMENT_USE_50_JAM: {fileID: 11400000, guid: 8daaf1e94167dfe4e836baf4459c4e0d,
     type: 2}
+  ACHIEVEMENT_USE_CLOCK: {fileID: 11400000, guid: 98fb6872772a8c04599a573f80350cbe,
+    type: 2}
   achievements:
   - {fileID: 11400000, guid: 44519b983e4fe3d4ca616aebd14a5cf2, type: 2}
   - {fileID: 11400000, guid: c70411c4c03041f48aa495ecc1181b44, type: 2}
@@ -6472,6 +6474,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cd23c95dfeaf20944aeb83011d6da0aa, type: 2}
   - {fileID: 11400000, guid: c67638b804190a04caccd28baf76dbaf, type: 2}
   - {fileID: 11400000, guid: 8daaf1e94167dfe4e836baf4459c4e0d, type: 2}
+  - {fileID: 11400000, guid: 98fb6872772a8c04599a573f80350cbe, type: 2}
   unlockedAchievements: []
   UIPrefab: {fileID: 4698171833950961960, guid: 54adf1b91ca220f4e92b8d2cd4812fce,
     type: 3}
@@ -6515,6 +6518,22 @@ MonoBehaviour:
         - m_Target: {fileID: 476747432}
           m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
           m_MethodName: ReceivedEnding
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: ea90b26566215e149b705366fb9151c0, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 476747432}
+          m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
+          m_MethodName: ReceivedTimeChange
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -13481,8 +13500,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0067447, y: 0}
-  m_SizeDelta: {x: 2100, y: 1080}
+  m_AnchoredPosition: {x: -0.0039902, y: 0}
+  m_SizeDelta: {x: 2160, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &885162175
 MonoBehaviour:
