@@ -27,6 +27,8 @@ public class TN_ItemScriptableObject : ScriptableObject
     private GameObject pointsObject;
     [SerializeField]
     private Color pointsColor;
+    [SerializeField]
+    private SimpleAudioEvent simpleAudioEvent;
 
     [SerializeField]
     private ToastNinjaScore toastNinjaScore;
@@ -63,6 +65,11 @@ public class TN_ItemScriptableObject : ScriptableObject
     {
         GameObject particleObj = Instantiate(onDestroyParticles);
         particleObj.transform.position = location;
+
+        if (simpleAudioEvent != null)
+        {
+            AudioManager.instance.PlayAudioEvent(simpleAudioEvent);
+        }
     }
 
     public int GetPoints(int hitsTaken)
