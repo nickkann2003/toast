@@ -49,7 +49,7 @@ public class MeshParticleSystem : MonoBehaviour
 
         vertices = new Vector3[8 * MAX_QUAD_AMOUNT];
         uv = new Vector2[8 * MAX_QUAD_AMOUNT];
-        triangles = new int[6 * MAX_QUAD_AMOUNT];
+        triangles = new int[36 * MAX_QUAD_AMOUNT];
 
         //for (int i = 0; i < MAX_QUAD_AMOUNT; i++)
         //{
