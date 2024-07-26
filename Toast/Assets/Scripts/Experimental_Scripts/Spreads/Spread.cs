@@ -16,7 +16,7 @@ public class Spread : MonoBehaviour
     public Knife currentKnife;
 
     [SerializeField]
-    private PropIntGameEvent spreadEvent;
+    private PropIntGameEvent spreadEvent, useEvent; 
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +24,11 @@ public class Spread : MonoBehaviour
         if(spreadEvent == null)
         {
             spreadEvent = PieManager.instance.SpreadObject;
+        }
+
+        if(useEvent == null)
+        {
+            useEvent = PieManager.instance.UseObject;
         }
     }
 
@@ -85,6 +90,12 @@ public class Spread : MonoBehaviour
 
         // Trigger the event
         spreadEvent.RaiseEvent(breadToSpread, 1);
+
+        if(gameObject.TryGetComponent(out NewProp prop))
+        {
+            useEvent.RaiseEvent(prop, 1);
+        }
+        
 
     }
 }

@@ -25,7 +25,9 @@ public class AchievementManager : MonoBehaviour
         ACHIEVEMENT_TOAST_NINJA_SCORE_100,
         ACHIEVEMENT_ELECTROCUTION,
         ACHIEVEMENT_USE_50_JAM,
-        ACHIEVEMENT_USE_CLOCK;
+        ACHIEVEMENT_USE_CLOCK,
+        ACHIEVEMENT_BUTTER_BREAD,
+        ACHIEVEMENT_AVOCADO_TOAST;
 
 
 
@@ -209,6 +211,24 @@ public class AchievementManager : MonoBehaviour
     public void ReceivedTimeChange()
     {
         Unlock(ACHIEVEMENT_USE_CLOCK);
+    }
+
+    /// <summary>
+    /// Achievements relating to spreads
+    /// </summary>
+    public void ReceivedSpread(NewProp prop, int increment)
+    {
+        // Avocado Toast
+        if(prop.HasAttribute(StatAttManager.instance.avocadoSpreadAtt))
+        {
+            Unlock(ACHIEVEMENT_AVOCADO_TOAST);
+        }
+
+        // Butter
+        if(prop.HasAttribute(StatAttManager.instance.butterSpreadAtt))
+        {
+            Unlock(ACHIEVEMENT_BUTTER_BREAD);
+        }
     }
 
     void IncrementAchievement(Achievement achievement, int increment = 1)

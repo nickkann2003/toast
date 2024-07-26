@@ -288,6 +288,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 525210ac228d83d44a9c0c7834c3b1ae,
         type: 2}
+    - target: {fileID: 1531639256685303951, guid: ad49be42c75a27b4baee9e4469988c8a,
+        type: 3}
+      propertyPath: butterSpreadAtt
+      value: 
+      objectReference: {fileID: 11400000, guid: 7532074d77090fe4b816510eae8e2692,
+        type: 2}
+    - target: {fileID: 1531639256685303951, guid: ad49be42c75a27b4baee9e4469988c8a,
+        type: 3}
+      propertyPath: avocadoSpreadAtt
+      value: 
+      objectReference: {fileID: 11400000, guid: 525210ac228d83d44a9c0c7834c3b1ae,
+        type: 2}
     - target: {fileID: 4297427761457757578, guid: ad49be42c75a27b4baee9e4469988c8a,
         type: 3}
       propertyPath: m_Name
@@ -6855,6 +6867,10 @@ MonoBehaviour:
     type: 2}
   ACHIEVEMENT_USE_CLOCK: {fileID: 11400000, guid: 98fb6872772a8c04599a573f80350cbe,
     type: 2}
+  ACHIEVEMENT_BUTTER_BREAD: {fileID: 11400000, guid: 3762d3be3f8d554479f23cae4bdf5ed4,
+    type: 2}
+  ACHIEVEMENT_AVOCADO_TOAST: {fileID: 11400000, guid: ea753b44790a2524385db09f380ebeef,
+    type: 2}
   achievements:
   - {fileID: 11400000, guid: 44519b983e4fe3d4ca616aebd14a5cf2, type: 2}
   - {fileID: 11400000, guid: c70411c4c03041f48aa495ecc1181b44, type: 2}
@@ -6866,6 +6882,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c67638b804190a04caccd28baf76dbaf, type: 2}
   - {fileID: 11400000, guid: 8daaf1e94167dfe4e836baf4459c4e0d, type: 2}
   - {fileID: 11400000, guid: 98fb6872772a8c04599a573f80350cbe, type: 2}
+  - {fileID: 11400000, guid: ea753b44790a2524385db09f380ebeef, type: 2}
+  - {fileID: 11400000, guid: 3762d3be3f8d554479f23cae4bdf5ed4, type: 2}
   unlockedAchievements: []
   UIPrefab: {fileID: 4698171833950961960, guid: 54adf1b91ca220f4e92b8d2cd4812fce,
     type: 3}
@@ -7036,6 +7054,18 @@ MonoBehaviour:
         - m_Target: {fileID: 476747432}
           m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
           m_MethodName: ReceivedJam
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 476747432}
+          m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
+          m_MethodName: ReceivedSpread
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
