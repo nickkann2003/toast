@@ -18,6 +18,11 @@ public class StatAttManager : MonoBehaviour
     [HorizontalLine(color: EColor.Gray)]
     public PropAttributeSO hasSpreadAtt;
 
+    [HorizontalLine(color: EColor.Gray)]
+    [Header("Spread Attributes")]
+    public PropAttributeSO avocadoSpread;
+    public PropAttributeSO butterSpread;
+
 
     // Singleton
     public static StatAttManager instance;
