@@ -17,7 +17,7 @@ public class Objective
     // Public variables
     [Header("Objective Scriptable Object")]
     [SerializeField]
-    private SO_Objective objectiveInfo;
+    public SO_Objective objectiveInfo;
     private bool complete = false;
 
     [Header("Pre-Requisite Objectives")]

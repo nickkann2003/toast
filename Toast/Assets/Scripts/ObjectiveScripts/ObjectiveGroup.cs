@@ -14,7 +14,11 @@ public class ObjectiveGroup
     public List<TextMeshPro> displays;
     public List<TextMeshProUGUI> displaysUI;
 
-    private bool complete = false;
+    public bool complete = false;
+    public bool available = false;
+
+    [SerializeField]
+    public bool displayOnNotepad = true;
 
     [SerializeField]
     private bool destroyPaperOnCompletion = true;
@@ -44,10 +48,15 @@ public class ObjectiveGroup
     /// </summary>
     public void CheckAvailable()
     {
+        bool av = false;
         foreach (Objective o in objectives)
         {
-            o.CheckAvailable();
+            if (o.CheckAvailable())
+            {
+                av = true;
+            }
         }
+        available = av;
     }
 
     /// <summary>

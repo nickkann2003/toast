@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +17,8 @@ public class ObjectiveManager : MonoBehaviour
 
     [SerializeField]
     public List<ObjectiveGroup> objectiveGroups = new List<ObjectiveGroup>(); // DO NOT CHANGE VARIABLE NAME IT WILL WIPE ALL EDITOR INFO (im unbelievably sad)
-    private Dictionary<int, Objective> objectivesById = new Dictionary<int, Objective>();
+    [NonSerialized]
+    public Dictionary<int, Objective> objectivesById = new Dictionary<int, Objective>();
 
     private string objSerialPath = "Assets/Resources/objs.txt";
 
@@ -35,6 +37,9 @@ public class ObjectiveManager : MonoBehaviour
     private char spacer = '_';
     private char requirementStartMarker = '[';
     private char requirementSpace = ',';
+
+    [SerializeField]
+    private NotepadHelper notepadHelper;
 
     // ------------------------------- Properties -------------------------------
     public Dictionary<int, Objective> ObjectivesById { get => objectivesById; set => objectivesById = value; }
@@ -99,6 +104,7 @@ public class ObjectiveManager : MonoBehaviour
             g.CheckAvailable();
             g.UpdateText();
         }
+        notepadHelper.UpdateText(objectiveGroups);
     }
 
     private void EditorTextUpdate()
@@ -112,6 +118,7 @@ public class ObjectiveManager : MonoBehaviour
             g.CheckAvailable();
             g.UpdateText();
         }
+        notepadHelper.UpdateText(objectiveGroups);
     }
 
     /// <summary>

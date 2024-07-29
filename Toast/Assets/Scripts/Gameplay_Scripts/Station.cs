@@ -51,6 +51,8 @@ public class Station : MonoBehaviour
     public Vector3 ObjectOffset { get => transform.TransformPoint(objectOffset); set => objectOffset = value; }
 
 #if UNITY_EDITOR
+    [SerializeField]
+    private bool permaGizmos = false;
     [SerializeField, Button]
     private void SetCameraPositionAndRotation() 
     {
@@ -150,6 +152,27 @@ public class Station : MonoBehaviour
         Matrix4x4 matrix = Matrix4x4.Translate(transform.TransformPoint(cameraPos)) * Matrix4x4.Rotate(Quaternion.Euler(eAngle + cameraRotation.eulerAngles));
         Gizmos.matrix = matrix;
         Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane * transform.lossyScale.x, Camera.main.nearClipPlane * transform.lossyScale.x, Camera.main.aspect);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (permaGizmos)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.TransformPoint(objectOffset), 0.1f * transform.lossyScale.x);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(transform.TransformPoint(cameraPos), 0.1f * transform.lossyScale.x);
+
+            Vector3 eAngle = transform.rotation.eulerAngles;
+            if (invertXCameraRotation)
+            {
+                eAngle.x = -eAngle.x;
+            }
+            Matrix4x4 matrix = Matrix4x4.Translate(transform.TransformPoint(cameraPos)) * Matrix4x4.Rotate(Quaternion.Euler(eAngle + cameraRotation.eulerAngles));
+            Gizmos.matrix = matrix;
+            Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane * transform.lossyScale.x, Camera.main.nearClipPlane * transform.lossyScale.x, Camera.main.aspect);
+        }
     }
 
     /// <summary>

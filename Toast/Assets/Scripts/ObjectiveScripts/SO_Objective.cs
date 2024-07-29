@@ -18,6 +18,8 @@ public class SO_Objective : ScriptableObject
     private string completeText = ""; // Text displayed once this objective is complete
     [SerializeField]
     private string unavailableText = "???";
+    [SerializeField]
+    private bool displayInNotepad = true;
 
 
     [Header("Requirements")]
@@ -44,6 +46,8 @@ public class SO_Objective : ScriptableObject
     public bool Available { get => available; set => available = value; }
     public string Description { get { return description; } }
     public List<Requirement> Requirements { get => requirements; set => requirements = value; }
+    public string UnavailableText { get => unavailableText; set => unavailableText = value; }
+    public bool DisplayInNotepad { get => displayInNotepad; set => displayInNotepad = value; }
     public int ID { get { return id; } }
 
     // ------------------------------- Functions -------------------------------

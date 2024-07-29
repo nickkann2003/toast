@@ -937,6 +937,7 @@ MonoBehaviour:
   returnTo:
     m_PersistentCalls:
       m_Calls: []
+  permaGizmos: 0
 --- !u!114 &29234283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2827,6 +2828,18 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &146730489 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 152856708554764927, guid: 2c9c0efdbf0eedb4587651c193697747,
+    type: 3}
+  m_PrefabInstance: {fileID: 1072833540}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &160402413
 GameObject:
   m_ObjectHideFlags: 0
@@ -5154,6 +5167,7 @@ MonoBehaviour:
   returnTo:
     m_PersistentCalls:
       m_Calls: []
+  permaGizmos: 0
 --- !u!1 &337582752
 GameObject:
   m_ObjectHideFlags: 0
@@ -5464,7 +5478,7 @@ RectTransform:
   m_GameObject: {fileID: 364652323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.62}
-  m_LocalScale: {x: 0.031009555, y: 0.031009555, z: 0.031009555}
+  m_LocalScale: {x: 0.020594066, y: 0.020594066, z: 0.020594066}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1461805137}
@@ -5495,7 +5509,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: List of Discovered Objectives
+  m_text: 'Tutorial
+
+    Toaster
+
+    <color=#111>???</color>
+
+    <color=#111>???</color>
+
+    <color=#111>???</color>
+
+    <color=#111>???</color>
+
+    <color=#111>???</color>
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3e45105ca00c2734d800591dab8f7e11, type: 2}
   m_sharedMaterial: {fileID: -8340264654399378448, guid: 3e45105ca00c2734d800591dab8f7e11,
@@ -5559,7 +5587,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -5.294736, y: -12.960077, z: -5.511256, w: -13.37507}
+  m_margin: {x: -13.154749, y: -20.81229, z: -12.559425, w: -20.845816}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -6758,6 +6786,7 @@ MonoBehaviour:
   returnTo:
     m_PersistentCalls:
       m_Calls: []
+  permaGizmos: 0
 --- !u!114 &467144369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7536,6 +7565,7 @@ MonoBehaviour:
   returnTo:
     m_PersistentCalls:
       m_Calls: []
+  permaGizmos: 0
 --- !u!114 &520773477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10950,6 +10980,7 @@ MonoBehaviour:
   returnTo:
     m_PersistentCalls:
       m_Calls: []
+  permaGizmos: 0
 --- !u!114 &694911872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13460,9 +13491,9 @@ GameObject:
   m_Component:
   - component: {fileID: 814188440}
   - component: {fileID: 814188442}
+  - component: {fileID: 814188444}
   - component: {fileID: 814188441}
   - component: {fileID: 814188443}
-  - component: {fileID: 814188444}
   m_Layer: 0
   m_Name: NotepadStation
   m_TagString: Untagged
@@ -13543,6 +13574,7 @@ MonoBehaviour:
   returnTo:
     m_PersistentCalls:
       m_Calls: []
+  permaGizmos: 1
 --- !u!114 &814188442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13573,6 +13605,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notepadStation: {fileID: 814188441}
   itemContainer: {fileID: 507582218}
+  notepad: {fileID: 364652325}
+  stickyNote: {fileID: 146730489}
 --- !u!65 &814188444
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18097,22 +18131,22 @@ PrefabInstance:
     - target: {fileID: 5572875669193235664, guid: 2c9c0efdbf0eedb4587651c193697747,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.87477887
+      value: 0.8771443
       objectReference: {fileID: 0}
     - target: {fileID: 5572875669193235664, guid: 2c9c0efdbf0eedb4587651c193697747,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.464571
+      value: 0.45518625
       objectReference: {fileID: 0}
     - target: {fileID: 5572875669193235664, guid: 2c9c0efdbf0eedb4587651c193697747,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.121532306
+      value: 0.15297648
       objectReference: {fileID: 0}
     - target: {fileID: 5572875669193235664, guid: 2c9c0efdbf0eedb4587651c193697747,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.06454244
+      value: 0.0046485993
       objectReference: {fileID: 0}
     - target: {fileID: 5572875669193235664, guid: 2c9c0efdbf0eedb4587651c193697747,
         type: 3}
@@ -18127,7 +18161,7 @@ PrefabInstance:
     - target: {fileID: 5572875669193235664, guid: 2c9c0efdbf0eedb4587651c193697747,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 21.963
+      value: 14.131
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27737,6 +27771,7 @@ MonoBehaviour:
   returnTo:
     m_PersistentCalls:
       m_Calls: []
+  permaGizmos: 0
 --- !u!114 &1392973462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28079,6 +28114,9 @@ MonoBehaviour:
     displays:
     - {fileID: 780163200}
     displaysUI: []
+    complete: 0
+    available: 1
+    displayOnNotepad: 1
     destroyPaperOnCompletion: 0
   - name: Toaster Objectives
     objectivesTitle: Toaster
@@ -28124,6 +28162,9 @@ MonoBehaviour:
     displays:
     - {fileID: 1037877080}
     displaysUI: []
+    complete: 0
+    available: 1
+    displayOnNotepad: 1
     destroyPaperOnCompletion: 1
   - name: Fridge Objectives
     objectivesTitle: Fridge
@@ -28188,6 +28229,9 @@ MonoBehaviour:
     displays:
     - {fileID: 739542199}
     displaysUI: []
+    complete: 0
+    available: 0
+    displayOnNotepad: 1
     destroyPaperOnCompletion: 1
   - name: Freezer Objectives
     objectivesTitle: Freezer
@@ -28220,6 +28264,9 @@ MonoBehaviour:
     displays:
     - {fileID: 1656941649}
     displaysUI: []
+    complete: 0
+    available: 0
+    displayOnNotepad: 1
     destroyPaperOnCompletion: 1
   - name: Oven Objectives
     objectivesTitle: Oven
@@ -28233,6 +28280,9 @@ MonoBehaviour:
     displays:
     - {fileID: 1518105230}
     displaysUI: []
+    complete: 0
+    available: 0
+    displayOnNotepad: 1
     destroyPaperOnCompletion: 1
   - name: Knife Objectives
     objectivesTitle: Utensils
@@ -28253,6 +28303,9 @@ MonoBehaviour:
     displays:
     - {fileID: 181718770}
     displaysUI: []
+    complete: 0
+    available: 0
+    displayOnNotepad: 1
     destroyPaperOnCompletion: 1
   - name: Toast Ninja Objectives
     objectivesTitle: Toast Ninja!
@@ -28284,7 +28337,10 @@ MonoBehaviour:
     displays:
     - {fileID: 1078149210}
     displaysUI: []
-    destroyPaperOnCompletion: 1
+    complete: 0
+    available: 1
+    displayOnNotepad: 0
+    destroyPaperOnCompletion: 0
   - name: Little Fella Objectives
     objectivesTitle: Little Fella?
     objectives:
@@ -28309,8 +28365,12 @@ MonoBehaviour:
     displays:
     - {fileID: 865962925}
     displaysUI: []
+    complete: 0
+    available: 0
+    displayOnNotepad: 1
     destroyPaperOnCompletion: 0
   objectiveToComplete: 0
+  notepadHelper: {fileID: 814188443}
 --- !u!1 &1426349071
 GameObject:
   m_ObjectHideFlags: 0
@@ -28561,15 +28621,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461805136}
-  m_LocalRotation: {x: 0.49959913, y: -0.037117705, z: -0.024029756, w: 0.8651275}
-  m_LocalPosition: {x: -0.108, y: -0.234, z: 0.341}
+  m_LocalRotation: {x: 0.43854946, y: -0.049741704, z: -0.033545986, w: 0.8967022}
+  m_LocalPosition: {x: -0.096, y: -0.2426, z: 0.3283}
   m_LocalScale: {x: 0.2105962, y: 0.26382554, z: 0.0054908786}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 364652324}
   m_Father: {fileID: 93804490}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 70.143, y: -23.707, z: -5.842}
+  m_LocalEulerAnglesHint: {x: 51.551, y: -10.998, z: -9.608}
 --- !u!65 &1461805138
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28976,6 +29036,7 @@ MonoBehaviour:
   returnTo:
     m_PersistentCalls:
       m_Calls: []
+  permaGizmos: 0
 --- !u!114 &1467470858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41228,6 +41289,7 @@ MonoBehaviour:
   returnTo:
     m_PersistentCalls:
       m_Calls: []
+  permaGizmos: 0
 --- !u!114 &1819411566
 MonoBehaviour:
   m_ObjectHideFlags: 0
