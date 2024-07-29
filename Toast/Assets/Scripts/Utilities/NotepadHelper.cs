@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NotepadHelper : MonoBehaviour
@@ -16,6 +17,11 @@ public class NotepadHelper : MonoBehaviour
     private TextMeshPro notepad;
     [SerializeField]
     private TextMeshPro stickyNote;
+
+    private List<StickyHelper> stickyHelpers = new List<StickyHelper>();
+
+    [SerializeField]
+    private GameObject stickyPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -78,23 +84,14 @@ public class NotepadHelper : MonoBehaviour
         // Notepad ------------------
         string notepadText = "";
 
-        //foreach(Objective obj in objs)
-        //{
-        //    if(obj.)
-        //    if (obj.objectiveInfo.Available)
-        //    {
-        //        notepadText += obj.objectiveInfo.ObjectiveName;
-        //        notepadText += "\n";
-        //    }
-        //    else if(obj.objectiveInfo.UnavailableText != string.Empty)
-        //    {
-        //        notepadText += "<color=#111><size=-10>" + obj.objectiveInfo.UnavailableText + "</size></color>";
-        //        notepadText += "\n";
-        //    }
-        //}
-
-        foreach (ObjectiveGroup obj in objs)
+        while (stickyHelpers.Count < objs.Count)
         {
+            stickyHelpers.Add(null);
+        }
+
+        for (int i = 0; i < objs.Count; i++)
+        {
+            ObjectiveGroup obj = objs[i];
             if (obj.displayOnNotepad)
             {
                 if (obj.complete)
@@ -113,13 +110,32 @@ public class NotepadHelper : MonoBehaviour
                     notepadText += "\n";
                 }
             }
+
+            if (stickyHelpers[i] == null)
+            {
+                // Create and place sticky helper
+                Vector3 topPos = notepad.transform.position;
+                Quaternion rot = notepad.transform.rotation;
+
+                GameObject stickyObject = Instantiate(stickyPrefab);
+                stickyObject.transform.parent = itemContainer.transform;
+                stickyHelpers[i] = stickyObject.GetComponent<StickyHelper>();
+                stickyHelpers[i].displayText = stickyNote;
+                stickyObject.transform.position = topPos;
+                stickyObject.transform.rotation = rot;
+            }
+            stickyHelpers[i].SetText(obj.ToString());
         }
+    }
 
-        notepad.text = notepadText;
-
-        // Sticky -------------------
-        string stickyText = "";
-
-        stickyNote.text = stickyText;
+    public void UpdateSticky(StickyHelper helper)
+    {
+        for(int i = 0; i < stickyHelpers.Count; i ++)
+        {
+            StickyHelper h = stickyHelpers[i];
+            h.UnSelectText();
+            h.SetText(ObjectiveManager.instance.objectiveGroups[i].ToString());
+        }
+        helper.SelectText();
     }
 }
