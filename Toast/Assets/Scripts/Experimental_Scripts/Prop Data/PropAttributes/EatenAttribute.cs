@@ -40,7 +40,12 @@ public class EatenAttribute : PropAttributeSO
 
             particles.transform.position = newProp.transform.position;
 
-            float toastiness = newProp.Stats.GetStat(StatAttManager.instance.toastType).Value;
+            float toastiness = 0;
+
+            if (newProp.Stats.GetStat(StatAttManager.instance.toastType) != null)
+            {
+                toastiness = newProp.Stats.GetStat(StatAttManager.instance.toastType).Value;
+            }
 
             toastiness = Mathf.Clamp(toastiness, 0f, 1f);
 

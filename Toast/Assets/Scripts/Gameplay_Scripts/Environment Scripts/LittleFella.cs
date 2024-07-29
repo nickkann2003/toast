@@ -126,7 +126,9 @@ public class LittleFella : MonoBehaviour
                     littleFellaEvent.RaiseEvent(edibleObject.GetComponent<NewProp>(), 1);
                     if (edibleObject.GetComponent<NewProp>().HasFlag(PropFlags.Bread) || edibleObject.GetComponent<NewProp>().HasFlag(PropFlags.Jam))
                     {
-                        Destroy(edibleObject);
+                        edibleObject.transform.position = dragGiftPos;
+                        edibleObject.GetComponent<NewProp>().AddAttribute(StatAttManager.instance.eatenAtt);
+                        //Destroy(edibleObject);
                         AudioManager.instance.PlayOneShotSound(AudioManager.instance.eatingBread);
                         accept.Play(source1);
 

@@ -14,6 +14,7 @@ public class StatAttManager : MonoBehaviour
     public PropAttributeSO onFireAtt;
     public PropAttributeSO frozenAtt;
     public PropAttributeSO inHandAtt;
+    public PropAttributeSO eatenAtt;
 
     [HorizontalLine(color: EColor.Gray)]
     public PropAttributeSO hasSpreadAtt;
