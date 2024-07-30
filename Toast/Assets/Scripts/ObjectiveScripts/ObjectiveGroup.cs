@@ -105,6 +105,17 @@ public class ObjectiveGroup
         }
     }
 
+    public void SendToDisplayStation()
+    {
+        SendToDisplayStation(0);
+    }
+
+    public void SendToDisplayStation(int display)
+    {
+        Station station = displays[display].GetComponentInParent<Station>();
+        StationManager.instance.MoveToStationThroughParents(station);
+    }
+
     /// <summary>
     /// To String, formatted for user display
     /// </summary>
@@ -113,8 +124,21 @@ public class ObjectiveGroup
         get
         {
             string value = "";
-            value += $"<u><b><pos=0%>{objectivesTitle}:</pos> <size=-5><color=#111><pos=85%>~</pos></size></color></b></u>";
-            int complete = 0;
+            string title = "";
+            if (complete)
+            {
+                title = "<color=#111><s>" + objectivesTitle + "</s></color>";
+            }
+            else if (available)
+            {
+                title = objectivesTitle;
+            }
+            else
+            {
+                title = "<color=#111>???</color>";
+            }
+            value += $"<u><b><pos=0%>{title}:</pos> <size=-5><color=#111><pos=85%>~</pos></size></color></b></u>";
+            int completed = 0;
             int total = 0;
             //value += "\n" + "<color=#111><size=-1>" + "Objectives Completed: " + completedObjectives + "</size></color>";
             foreach (Objective obj in objectives)
@@ -124,11 +148,11 @@ public class ObjectiveGroup
 
                 if (obj.Complete)
                 {
-                    complete++;
+                    completed++;
                 }
             }
             string[] subs = value.Split('~');
-            value = subs[0].Substring(0, subs[0].Length) + complete + "/" + total + subs[1];
+            value = subs[0].Substring(0, subs[0].Length) + completed + "/" + total + subs[1];
             return value;
         }
     }

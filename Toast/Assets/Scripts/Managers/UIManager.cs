@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     [Header("UI Buttons")]
     public UnityEngine.UI.Button backButton;
     public UnityEngine.UI.Button inventoryButton;
+    public Button objectiveButton;
     public Animator backButtonAni;
     public Slider volumeSlider;
     public Slider moveSpeedSlider;
@@ -82,6 +83,7 @@ public class UIManager : MonoBehaviour
     {
         backButton.gameObject.SetActive(true);
         inventoryButton.gameObject.SetActive(true);
+        objectiveButton.gameObject.SetActive(true);
     }
 
     public void BackButtonPopup()

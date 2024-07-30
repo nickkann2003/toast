@@ -141,6 +141,24 @@ public class StationManager : MonoBehaviour
         }
     }
 
+    public void MoveToStationThroughParents(Station s)
+    {
+        while (playerPath.Count > 1)
+        {
+            StationMoveBack();
+        }
+        MoveToStationRecursive(s);
+    }
+
+    private void MoveToStationRecursive(Station s)
+    {
+        if(s.parentLoc != null)
+        {
+            MoveToStationRecursive(s.parentLoc);
+        }
+        MoveToStation(s);
+    }
+
     /// <summary>
     /// Moves the player to the 
     /// </summary>

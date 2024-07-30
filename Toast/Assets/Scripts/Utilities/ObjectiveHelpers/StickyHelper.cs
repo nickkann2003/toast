@@ -8,10 +8,14 @@ public class StickyHelper : MonoBehaviour
     [SerializeField]
     public TextMeshPro displayText;
     public string text;
+    public string stickyDisplayText;
     [SerializeField]
     public TextMeshPro stickyText;
     [SerializeField]
     public NotepadHelper notepadHelper;
+    public StickyClicker clicker;
+
+    public ObjectiveGroup group;
 
     public void SetStickyText(string newText)
     {
@@ -20,12 +24,14 @@ public class StickyHelper : MonoBehaviour
     public void SetText(string text)
     {
         this.text = text;
+        displayText.text = text;
     }
 
     public void SelectText()
     {
+        clicker.currentHelper = this;
         displayText.text = "<size=+5>" + text + "</size>";
-        SetStickyText(text);
+        stickyText.text = stickyDisplayText;
     }
 
     public void UnSelectText()
@@ -36,6 +42,11 @@ public class StickyHelper : MonoBehaviour
     private void OnMouseDown()
     {
         notepadHelper.UpdateSticky(this);
+    }
+
+    public void SendToObjectivePaper()
+    {
+        group.SendToDisplayStation();
     }
 
 }

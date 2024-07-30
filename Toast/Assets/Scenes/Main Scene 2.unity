@@ -991,7 +991,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &29242646
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5509,21 +5509,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Tutorial
-
-    Toaster
-
-    <color=#111>???</color>
-
-    <color=#111>???</color>
-
-    <color=#111>???</color>
-
-    <color=#111>???</color>
-
-    <color=#111>???</color>
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3e45105ca00c2734d800591dab8f7e11, type: 2}
   m_sharedMaterial: {fileID: -8340264654399378448, guid: 3e45105ca00c2734d800591dab8f7e11,
@@ -13731,6 +13717,7 @@ MonoBehaviour:
   stickyNote: {fileID: 146730489}
   stickyPrefab: {fileID: 8126141863165798097, guid: a62aa7faa1915864a96f803fe6f307b4,
     type: 3}
+  stickyClicker: {fileID: 1299061391}
 --- !u!65 &814188444
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16176,6 +16163,7 @@ MonoBehaviour:
   objectiveOpened: 0
   backButton: {fileID: 1514345163}
   inventoryButton: {fileID: 1218421967}
+  objectiveButton: {fileID: 29242647}
   backButtonAni: {fileID: 1514345158}
   volumeSlider: {fileID: 1090905803}
   moveSpeedSlider: {fileID: 633002227}
@@ -18334,6 +18322,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 152856708554764927, guid: 2c9c0efdbf0eedb4587651c193697747,
         type: 3}
+      propertyPath: m_spriteAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e427ec189849369459d3a86974b3078a,
+        type: 2}
+    - target: {fileID: 152856708554764927, guid: 2c9c0efdbf0eedb4587651c193697747,
+        type: 3}
       propertyPath: m_VerticalAlignment
       value: 256
       objectReference: {fileID: 0}
@@ -18431,6 +18425,14 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1168705356409567540, guid: 2c9c0efdbf0eedb4587651c193697747,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1299061391}
+    - targetCorrespondingSourceObject: {fileID: 1168705356409567540, guid: 2c9c0efdbf0eedb4587651c193697747,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1299061392}
     - targetCorrespondingSourceObject: {fileID: 316373981574334108, guid: 2c9c0efdbf0eedb4587651c193697747,
         type: 3}
       insertIndex: -1
@@ -27075,6 +27077,41 @@ MonoBehaviour:
   transitionMask: {fileID: 0}
   atInventory: 0
   inventoryEvent: {fileID: 11400000, guid: 6d1b224677ea7ff4583d2e8af35f0cff, type: 2}
+--- !u!1 &1299061387 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1168705356409567540, guid: 2c9c0efdbf0eedb4587651c193697747,
+    type: 3}
+  m_PrefabInstance: {fileID: 1072833540}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1299061391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299061387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01082f698c4d0b4b84667739813b975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHelper: {fileID: 0}
+--- !u!114 &1299061392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299061387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902f118e886d20d43b1ff6bff5092b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHighlightSetting: {fileID: 11400000, guid: 3f68b239498e31141913e230e582f315,
+    type: 2}
+  isHighlightedEnabled: 1
+  outline: []
 --- !u!1001 &1305277311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28380,7 +28417,7 @@ MonoBehaviour:
     displaysUI: []
     complete: 0
     available: 1
-    displayOnNotepad: 1
+    displayOnNotepad: 0
     destroyPaperOnCompletion: 0
   - name: Toaster Objectives
     objectivesTitle: Toaster
