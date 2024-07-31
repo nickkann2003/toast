@@ -282,6 +282,24 @@ public class NewProp : MonoBehaviour
         }
     }
 
+    //  ------------------------------------ Use Info ------------------------------------
+    private void OnMouseOver()
+    {
+        if(UsingInfoManager.instance != null)
+        {
+            UsingInfoManager.instance.UIPanel.SetActive(true);
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        if (UsingInfoManager.instance != null)
+        {
+            UsingInfoManager.instance.UIPanel.SetActive(false); ;
+        }
+    }
+    
+
     //private void RunEventChecks()
     //{
     //    // Adjust prop flags and trigger requirement events
