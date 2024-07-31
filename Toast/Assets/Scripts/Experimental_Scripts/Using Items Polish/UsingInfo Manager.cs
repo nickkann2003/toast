@@ -27,4 +27,14 @@ public class UsingInfoManager : MonoBehaviour
     {
         
     }
+
+    public void DisplayInfo(NewProp prop, int num)
+    {
+        UIPanel.SetActive(true);
+    }
+
+    public void HideInfo(NewProp prop, int num)
+    {
+        UIPanel.SetActive(false);
+    }
 }

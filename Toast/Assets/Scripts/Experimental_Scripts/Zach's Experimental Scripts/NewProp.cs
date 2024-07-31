@@ -285,18 +285,12 @@ public class NewProp : MonoBehaviour
     //  ------------------------------------ Use Info ------------------------------------
     private void OnMouseOver()
     {
-        if(UsingInfoManager.instance != null)
-        {
-            UsingInfoManager.instance.UIPanel.SetActive(true);
-        }
+        PieManager.instance.HoverObject.RaiseEvent(this, 1);
     }
 
     private void OnMouseExit()
     {
-        if (UsingInfoManager.instance != null)
-        {
-            UsingInfoManager.instance.UIPanel.SetActive(false); ;
-        }
+        PieManager.instance.StopHover.RaiseEvent(this, 1);
     }
     
 
