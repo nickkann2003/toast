@@ -56,6 +56,9 @@ public class Raycast : MonoBehaviour
 
     private Camera targetCamera;
 
+    [SerializeField]
+    private Camera handCam;
+
     private GameObject prevGO;
 
     [Header("Game Object References")]
@@ -394,7 +397,6 @@ public class Raycast : MonoBehaviour
     /// </summary>
     void TestRaycast()
     {
-
         if (scrollInput < 0f && stationMoveTimer <= 0 && !noStationMove)
         {
             StationManager.instance.StationMoveBack();
@@ -544,18 +546,32 @@ public class Raycast : MonoBehaviour
         line = null;
 
         dragging = false;
-    }
+    }   
 
     /// <summary>
     /// Helper function that returns a raycast hit based on mouse position
     /// </summary>
     /// <param name="layerMask"></param>
     /// <returns></returns>
-    public RaycastHit RaycastHelper(int layerMask)
+    public RaycastHit RaycastHelper(int layerMask, bool ignoreHandCam = false)
     {
-
         RaycastHit hit = new RaycastHit();
-        Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
+
+        Ray ray = handCam.ScreenPointToRay(Input.mousePosition);
+        if (!ignoreHandCam)
+        {
+            // shoot a raycast, ignoring the layermask
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, (layerMask & ~mask_IgnoreRaycast & ~mask_Plane & ~mask_UI))
+                && !EventSystem.current.IsPointerOverGameObject())
+            {
+                if (hit.distance <= 5)
+                {
+                    return hit;
+                }
+            }
+        }
+
+        ray = targetCamera.ScreenPointToRay(Input.mousePosition);
 
         // shoot a raycast, ignoring the layermask
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, (layerMask & ~mask_IgnoreRaycast & ~mask_Plane & ~mask_UI))
