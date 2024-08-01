@@ -154,6 +154,7 @@ public class Station : MonoBehaviour
         Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane * transform.lossyScale.x, Camera.main.nearClipPlane * transform.lossyScale.x, Camera.main.aspect);
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (permaGizmos)
@@ -174,6 +175,7 @@ public class Station : MonoBehaviour
             Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane * transform.lossyScale.x, Camera.main.nearClipPlane * transform.lossyScale.x, Camera.main.aspect);
         }
     }
+#endif
 
     /// <summary>
     /// Disables attached dragplanes
