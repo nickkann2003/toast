@@ -487,8 +487,34 @@ public class Raycast : MonoBehaviour
                 Debug.Log("Forcibly removing from hand");
                 hitGO.GetComponent<NewProp>().ForceRemoveFromHand();
 
+                // Handle dropping item in hand when dragged
+                Station currentStation = StationManager.instance.playerLocation;
+                GameObject itemToDrop = hitGO;
+                Vector3 objectPos = currentStation.ObjectOffset;
+                Vector3 objectDropRotation = new Vector3(0, 90, 0);
+                objectDropRotation += currentStation.gameObject.transform.rotation.eulerAngles;
+                RaycastHit hitTest;
+                Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
+
+                // Check for hit
+                if (Physics.Raycast(ray, out hitTest, Mathf.Infinity, (~mask_IgnoreRaycast & ~mask_Station)))
+                {
+                    Vector3 offset = new Vector3(0, .3f * hitTest.normal.y, 0);
+                    if (offset.y == 0)
+                    {
+                        offset.y = .3f;
+                    }
+
+                    objectPos = hitTest.point + offset;
+                }
+
+                // Set the current position of the object
+                itemToDrop.transform.position = objectPos;
+                itemToDrop.transform.rotation = Quaternion.identity;
+                itemToDrop.transform.Rotate(objectDropRotation);
+
                 // Spread specific, mark as not on knife
-                if(hitGO.TryGetComponent(out Spread spread))
+                if (hitGO.TryGetComponent(out Spread spread))
                 {
                     spread.IsOnKnife = false;
                 }
