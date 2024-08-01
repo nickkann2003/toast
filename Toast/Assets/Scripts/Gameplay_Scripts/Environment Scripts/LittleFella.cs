@@ -124,6 +124,7 @@ public class LittleFella : MonoBehaviour
                 if (moveProgress >= 1.0f)
                 {
                     littleFellaEvent.RaiseEvent(edibleObject.GetComponent<NewProp>(), 1);
+                    Debug.Log(edibleObject.GetComponent<NewProp>().propFlags);
                     if (edibleObject.GetComponent<NewProp>().HasFlag(PropFlags.Bread) || edibleObject.GetComponent<NewProp>().HasFlag(PropFlags.Jam))
                     {
                         edibleObject.transform.position = dragGiftPos;

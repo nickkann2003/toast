@@ -16,10 +16,14 @@ MonoBehaviour:
   description: Pick Up some Bread from the Fridge
   completeText: Bring Bread back to the Toaster
   unavailableText: Check the Toaster first!
+  displayInNotepad: 1
   requirements:
   - targetAttributes: 536870912
     hasExclusions: 0
     excludeAttributes: 0
+    targetPropAttributes:
+    - {fileID: 11400000, guid: bbd5aaa18dace3f42971001a1a94ac56, type: 2}
+    excludePropAttributes: []
     listener:
       gameEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
       response:

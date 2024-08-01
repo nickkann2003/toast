@@ -16,8 +16,11 @@ MonoBehaviour:
   description: He's a bit shy, and won't act while theres motion near him
   completeText: You've made a new friend!
   unavailableText: Complete the Toast Ninja goals
+  displayInNotepad: 1
   requirements:
   - targetAttributes: 0
+    hasExclusions: 0
+    excludeAttributes: 0
     listener:
       gameEvent: {fileID: 11400000, guid: 6b5b7c99d0548e9478e16c409f30b6e8, type: 2}
       response:
@@ -26,9 +29,13 @@ MonoBehaviour:
     goalName: Give him something
     goal: 1
     exactValueGoal: 0
-    alwaysListening: 1
+    alwaysListening: 0
     id: 0
-    listening: 1
+    listening: 0
+    isHighScore: 0
+    isCurrentScore: 0
+  sequentialRequirements: 1
   id: 13
-  complete: 1
-  available: 1
+  complete: 0
+  available: 0
+  successorComplete: 0

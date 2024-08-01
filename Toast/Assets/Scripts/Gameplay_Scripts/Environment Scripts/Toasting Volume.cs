@@ -65,7 +65,10 @@ public class ToastingVolume : MonoBehaviour
         {
             for(int i = 0; i < toRemove.Count; i++)
             {
-                toastingObjects.RemoveAt(toRemove[i]);
+                if (toastingObjects.Count >= i && toastingObjects[i] != null)
+                {
+                    toastingObjects.RemoveAt(toRemove[i]);
+                }
             }
             toRemove.Clear();
         }

@@ -16,10 +16,14 @@ MonoBehaviour:
   description: We keep Silverware in the drawer
   completeText: 
   unavailableText: Complete the Toaster
+  displayInNotepad: 1
   requirements:
   - targetAttributes: -2147483648
     hasExclusions: 0
     excludeAttributes: 0
+    targetPropAttributes:
+    - {fileID: 0}
+    excludePropAttributes: []
     listener:
       gameEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
       response:
@@ -31,6 +35,8 @@ MonoBehaviour:
     alwaysListening: 0
     id: 0
     listening: 0
+    isHighScore: 0
+    isCurrentScore: 0
   sequentialRequirements: 0
   id: 5
   complete: 0

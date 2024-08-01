@@ -16,10 +16,15 @@ MonoBehaviour:
   description: Put out a Flaming Toast using the Freezer
   completeText: You saved the house!
   unavailableText: ???
+  displayInNotepad: 1
   requirements:
   - targetAttributes: 536871168
     hasExclusions: 0
     excludeAttributes: 0
+    targetPropAttributes:
+    - {fileID: 11400000, guid: 785ed3b6223c9154ab924bd2d7bd63aa, type: 2}
+    - {fileID: 11400000, guid: bbd5aaa18dace3f42971001a1a94ac56, type: 2}
+    excludePropAttributes: []
     listener:
       gameEvent: {fileID: 11400000, guid: 92409c5fb9227fa40b0bef8f1398f70e, type: 2}
       response:
@@ -31,6 +36,8 @@ MonoBehaviour:
     alwaysListening: 0
     id: 0
     listening: 1
+    isHighScore: 0
+    isCurrentScore: 0
   sequentialRequirements: 0
   id: 23
   complete: 0

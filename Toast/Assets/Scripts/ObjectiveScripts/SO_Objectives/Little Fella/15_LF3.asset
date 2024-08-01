@@ -16,10 +16,15 @@ MonoBehaviour:
   description: Can he really eat that?
   completeText: 
   unavailableText: ???
+  displayInNotepad: 1
   requirements:
   - targetAttributes: 536879873
     hasExclusions: 0
     excludeAttributes: 0
+    targetPropAttributes:
+    - {fileID: 11400000, guid: bbd5aaa18dace3f42971001a1a94ac56, type: 2}
+    - {fileID: 11400000, guid: 785ed3b6223c9154ab924bd2d7bd63aa, type: 2}
+    excludePropAttributes: []
     listener:
       gameEvent: {fileID: 11400000, guid: 6b5b7c99d0548e9478e16c409f30b6e8, type: 2}
       response:
@@ -28,11 +33,13 @@ MonoBehaviour:
     goalName: Give him some Flaming Mini Toast
     goal: 1
     exactValueGoal: 0
-    alwaysListening: 1
+    alwaysListening: 0
     id: 0
-    listening: 1
+    listening: 0
+    isHighScore: 0
+    isCurrentScore: 0
   sequentialRequirements: 0
   id: 15
   complete: 0
-  available: 1
+  available: 0
   successorComplete: 0

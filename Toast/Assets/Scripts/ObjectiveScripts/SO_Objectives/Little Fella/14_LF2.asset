@@ -16,8 +16,14 @@ MonoBehaviour:
   description: Little Fella can eat some things, but not others
   completeText: 
   unavailableText: ???
+  displayInNotepad: 1
   requirements:
   - targetAttributes: 1
+    hasExclusions: 0
+    excludeAttributes: 0
+    targetPropAttributes:
+    - {fileID: 11400000, guid: 81c8835632c92c9448e21b33860885de, type: 2}
+    excludePropAttributes: []
     listener:
       gameEvent: {fileID: 11400000, guid: 6b5b7c99d0548e9478e16c409f30b6e8, type: 2}
       response:
@@ -26,10 +32,16 @@ MonoBehaviour:
     goalName: Give him Toast
     goal: 1
     exactValueGoal: 0
-    alwaysListening: 1
+    alwaysListening: 0
     id: 0
-    listening: 1
+    listening: 0
+    isHighScore: 0
+    isCurrentScore: 0
   - targetAttributes: 1073741824
+    hasExclusions: 0
+    excludeAttributes: 0
+    targetPropAttributes: []
+    excludePropAttributes: []
     listener:
       gameEvent: {fileID: 11400000, guid: 6b5b7c99d0548e9478e16c409f30b6e8, type: 2}
       response:
@@ -38,9 +50,13 @@ MonoBehaviour:
     goalName: Give him Jam
     goal: 1
     exactValueGoal: 0
-    alwaysListening: 1
+    alwaysListening: 0
     id: 0
-    listening: 1
+    listening: 0
+    isHighScore: 0
+    isCurrentScore: 0
+  sequentialRequirements: 1
   id: 14
-  complete: 1
-  available: 1
+  complete: 0
+  available: 0
+  successorComplete: 0

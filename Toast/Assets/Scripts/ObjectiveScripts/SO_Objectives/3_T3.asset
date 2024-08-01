@@ -16,10 +16,14 @@ MonoBehaviour:
   description: Toasty perfection
   completeText: 
   unavailableText: 
+  displayInNotepad: 1
   requirements:
   - targetAttributes: 536870912
     hasExclusions: 0
     excludeAttributes: 0
+    targetPropAttributes:
+    - {fileID: 11400000, guid: bbd5aaa18dace3f42971001a1a94ac56, type: 2}
+    excludePropAttributes: []
     listener:
       gameEvent: {fileID: 11400000, guid: f22c03b7efca1db4eaddede215bf0fa5, type: 2}
       response:
@@ -31,9 +35,14 @@ MonoBehaviour:
     alwaysListening: 0
     id: 0
     listening: 0
+    isHighScore: 0
+    isCurrentScore: 0
   - targetAttributes: 536870913
     hasExclusions: 0
     excludeAttributes: 0
+    targetPropAttributes:
+    - {fileID: 11400000, guid: bbd5aaa18dace3f42971001a1a94ac56, type: 2}
+    excludePropAttributes: []
     listener:
       gameEvent: {fileID: 11400000, guid: 970b092f003cb444aaefd5a473fc0faf, type: 2}
       response:
@@ -45,7 +54,10 @@ MonoBehaviour:
     alwaysListening: 0
     id: 1
     listening: 0
+    isHighScore: 0
+    isCurrentScore: 0
   sequentialRequirements: 1
   id: 3
   complete: 0
   available: 0
+  successorComplete: 0

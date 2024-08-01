@@ -394,4 +394,36 @@ public class NewProp : MonoBehaviour
 
         audioEvent.Play(gameObject.GetComponent<AudioSource>());
     }
+
+    public bool HasAttributes(List<PropAttributeSO> attributes)
+    {
+        if(attributes.Count <= 0)
+        {
+            return true;
+        }
+
+        bool hasAll = true;
+        foreach (PropAttributeSO attribute in attributes)
+        {
+            if(!attributesList.Contains(attribute)) 
+                hasAll = false;
+        }
+        return hasAll;
+    }
+
+    public bool HasAnyAttribute(List<PropAttributeSO> attributes)
+    {
+        if (attributes.Count <= 0)
+        {
+            return false;
+        }
+
+        bool hasAny = false;
+        foreach (PropAttributeSO attribute in attributes)
+        {
+            if (attributesList.Contains(attribute))
+                hasAny = true;
+        }
+        return hasAny;
+    }
 }

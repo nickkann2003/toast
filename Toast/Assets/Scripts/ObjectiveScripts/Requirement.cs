@@ -18,6 +18,10 @@ public class Requirement
     public bool hasExclusions = false;
     [SerializeField, ShowIf("hasExclusions")]
     private PropFlags excludeAttributes;
+
+    public List<PropAttributeSO> targetPropAttributes;
+    public List<PropAttributeSO> excludePropAttributes;
+
     [SerializeField, Label("Do Not Add Response Event")]
     private PropIntGameEventListener listener = new PropIntGameEventListener();
     // Used to mark if this objective was completed by a load, ensures OneShot effects play at the correct time
@@ -125,12 +129,12 @@ public class Requirement
         if((listening || alwaysListening) && !complete) // Ensure type, target, and listening
         {
             // If does not contain all necessary flags, return
-            if(!(e.propFlags.HasFlag(targetAttributes)) && !targetAttributes.HasFlag(PropFlags.None))
+            if(!e.HasAttributes(targetPropAttributes))
             {
                 return;
             }
 
-            if(hasExclusions && e.propFlags.HasFlag(excludeAttributes))
+            if(hasExclusions && e.HasAnyAttribute(excludePropAttributes))
             {
                 return;
             }

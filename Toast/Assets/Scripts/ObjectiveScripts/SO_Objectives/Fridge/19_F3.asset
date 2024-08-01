@@ -16,10 +16,14 @@ MonoBehaviour:
   description: The Fridge respawns items while closed!
   completeText: 
   unavailableText: ???
+  displayInNotepad: 1
   requirements:
   - targetAttributes: 536870912
     hasExclusions: 0
     excludeAttributes: 0
+    targetPropAttributes:
+    - {fileID: 11400000, guid: bbd5aaa18dace3f42971001a1a94ac56, type: 2}
+    excludePropAttributes: []
     listener:
       gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
       response:
@@ -31,6 +35,8 @@ MonoBehaviour:
     alwaysListening: 0
     id: 0
     listening: 1
+    isHighScore: 0
+    isCurrentScore: 0
   sequentialRequirements: 1
   id: 19
   complete: 1

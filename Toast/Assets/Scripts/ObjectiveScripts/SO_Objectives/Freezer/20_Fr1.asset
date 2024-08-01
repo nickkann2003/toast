@@ -16,10 +16,14 @@ MonoBehaviour:
   description: Freeze a slice of Bread
   completeText: 
   unavailableText: Complete Toaster 3
+  displayInNotepad: 1
   requirements:
   - targetAttributes: 536870912
     hasExclusions: 0
     excludeAttributes: 0
+    targetPropAttributes:
+    - {fileID: 11400000, guid: bbd5aaa18dace3f42971001a1a94ac56, type: 2}
+    excludePropAttributes: []
     listener:
       gameEvent: {fileID: 11400000, guid: 6cbdcf27414bfd34c932bb1ee33dafe9, type: 2}
       response:
@@ -31,6 +35,8 @@ MonoBehaviour:
     alwaysListening: 0
     id: 0
     listening: 0
+    isHighScore: 0
+    isCurrentScore: 0
   sequentialRequirements: 1
   id: 20
   complete: 0
