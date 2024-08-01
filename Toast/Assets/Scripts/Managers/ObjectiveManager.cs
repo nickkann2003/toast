@@ -118,7 +118,6 @@ public class ObjectiveManager : MonoBehaviour
             g.CheckAvailable();
             g.UpdateText();
         }
-        notepadHelper.UpdateText(objectiveGroups);
     }
 
     /// <summary>

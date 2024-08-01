@@ -397,14 +397,17 @@ public class NewProp : MonoBehaviour
 
     public bool HasAttributes(List<PropAttributeSO> attributes)
     {
+        Debug.Log(attributes.Count);
         if(attributes.Count <= 0)
         {
             return true;
-        }
+        }   
 
         bool hasAll = true;
         foreach (PropAttributeSO attribute in attributes)
         {
+            if(attribute == null) 
+                continue;
             if(!attributesList.Contains(attribute)) 
                 hasAll = false;
         }

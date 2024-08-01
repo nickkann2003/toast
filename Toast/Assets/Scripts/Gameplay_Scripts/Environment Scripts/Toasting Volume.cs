@@ -26,7 +26,7 @@ public class ToastingVolume : MonoBehaviour
     private float heat; // Degrees
 
     private bool toasting;
-    private List<int> toRemove = new List<int>();
+    private List<NewProp> toRemove = new List<NewProp>();
     private List<NewProp> toastingObjects = new List<NewProp>();
 
     // ------------------------------- Functions -------------------------------
@@ -41,17 +41,17 @@ public class ToastingVolume : MonoBehaviour
                 NewProp prop = toastingObjects[i];
                 if(prop == null)
                 {
-                    toRemove.Add(i);
+                    toRemove.Add(toastingObjects[i]);
                     continue;
                 }
                 if(prop.gameObject == null)
                 {
-                    toRemove.Add(i);
+                    toRemove.Add(toastingObjects[i]);
                     continue;
                 }
                 if (prop.gameObject.GetComponent<Rigidbody>() == null)
                 {
-                    toRemove.Add(i);
+                    toRemove.Add(toastingObjects[i]);
                     continue;
                 }
 
@@ -63,12 +63,9 @@ public class ToastingVolume : MonoBehaviour
         // Remove outside of loop
         if(toRemove.Count > 0)
         {
-            for(int i = 0; i < toRemove.Count; i++)
+            foreach(NewProp prop in toRemove)
             {
-                if (toastingObjects.Count >= i && toastingObjects[i] != null)
-                {
-                    toastingObjects.RemoveAt(toRemove[i]);
-                }
+                toastingObjects.Remove(prop);
             }
             toRemove.Clear();
         }
