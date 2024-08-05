@@ -25,11 +25,12 @@ public class UsingInfoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+   
     }
 
     public void DisplayInfo(NewProp prop, int num)
     {
+        UIPanel.transform.position = Camera.main.WorldToScreenPoint(prop.transform.position); 
         UIPanel.SetActive(true);
     }
 
