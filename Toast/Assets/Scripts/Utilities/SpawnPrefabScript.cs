@@ -70,15 +70,18 @@ public class SpawnPrefabScript : MonoBehaviour
     /// </summary>
     public void TriggerSpawn()
     {
-        Vector3 randomness = new Vector3(Random.value*spawnRandomness.x, Random.value*spawnRandomness.y, Random.value*spawnRandomness.z);
-        Quaternion rotationRandomness = new Quaternion(Random.value*spawnRotationRandomness.x + spawnRotation.x, Random.value*spawnRotationRandomness.y + spawnRotation.y, Random.value*spawnRotationRandomness.z + spawnRotation.z, spawnRotation.w);
-        GameObject spawnedObject = Instantiate(prefab);
-        
-        spawnedObject.transform.position = actualSpawnPos + randomness;
-        spawnedObject.transform.rotation = rotationRandomness;
+        if (prefab != null)
+        {
+            Vector3 randomness = new Vector3(Random.value * spawnRandomness.x, Random.value * spawnRandomness.y, Random.value * spawnRandomness.z);
+            Quaternion rotationRandomness = new Quaternion(Random.value * spawnRotationRandomness.x + spawnRotation.x, Random.value * spawnRotationRandomness.y + spawnRotation.y, Random.value * spawnRotationRandomness.z + spawnRotation.z, spawnRotation.w);
+            GameObject spawnedObject = Instantiate(prefab);
 
-        if (spawnParent != null)
-            spawnedObject.transform.SetParent(spawnParent.transform, true);
+            spawnedObject.transform.position = actualSpawnPos + randomness;
+            spawnedObject.transform.rotation = rotationRandomness;
+
+            if (spawnParent != null)
+                spawnedObject.transform.SetParent(spawnParent.transform, true);
+        }
     }
 
     /// <summary>
