@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEditor.Rendering;
 using NaughtyAttributes;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 public class NewProp : MonoBehaviour
 {
@@ -285,7 +286,12 @@ public class NewProp : MonoBehaviour
     //  ------------------------------------ Use Info ------------------------------------
     private void OnMouseOver()
     {
-        PieManager.instance.HoverObject.RaiseEvent(this, 1);
+        // Find  a way to disable if toast ninja is active
+
+        if(!Raycast.Instance.Dragging)
+        {
+            PieManager.instance.HoverObject.RaiseEvent(this, 1);
+        }
     }
 
     private void OnMouseExit()
