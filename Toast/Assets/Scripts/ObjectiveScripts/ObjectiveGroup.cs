@@ -112,8 +112,14 @@ public class ObjectiveGroup
 
     public void SendToDisplayStation(int display)
     {
-        Station station = displays[display].GetComponentInParent<Station>();
-        StationManager.instance.MoveToStationThroughParents(station);
+        if(displays.Count > display)
+        {
+            Station station = displays[display].GetComponentInParent<Station>();
+            if(station != null)
+            {
+                StationManager.instance.MoveToStationThroughParents(station);
+            }
+        }
     }
 
     /// <summary>
