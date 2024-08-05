@@ -117,6 +117,14 @@ public class StationManager : MonoBehaviour
                 }    
                 
                 StationManager.instance.playerLocation.OnLeave();
+            }else if(StationManager.instance.playerLocation.clickableCollider && StationManager.instance.playerLocation.runLeaveWhenGoingToChildren)
+            {
+                if (instance.playerLocation != loc.parentLoc)
+                {
+                    StationManager.instance.playerLocation.EnableColliders();
+                }
+
+                StationManager.instance.playerLocation.OnLeave();
             }
         }
 

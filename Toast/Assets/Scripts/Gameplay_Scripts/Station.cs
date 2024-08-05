@@ -47,6 +47,7 @@ public class Station : MonoBehaviour
     [SerializeField] private UnityEvent leave;
     [SerializeField] private bool separateArriveAndReturn;
     [SerializeField, ShowIf("separateArriveAndReturn")] private UnityEvent returnTo;
+    [SerializeField] public bool runLeaveWhenGoingToChildren;
 
     public Vector3 ObjectOffset { get => transform.TransformPoint(objectOffset); set => objectOffset = value; }
 

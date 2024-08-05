@@ -46,6 +46,10 @@ public class PhysicalButtons : MonoBehaviour
     private AudioSource source1;
     private AudioSource source2;
 
+    [SerializeField]
+    private bool stickOnPress = false;
+    private bool sticking = false;
+
     // ------------------------------- Functions -------------------------------
     private void Start()
     {
@@ -70,7 +74,10 @@ public class PhysicalButtons : MonoBehaviour
         }
         else
         {
-            Depress();
+            if (!sticking)
+            {
+                Depress();
+            }
         }
     }
 
@@ -99,26 +106,31 @@ public class PhysicalButtons : MonoBehaviour
     // Starts the interaction with this button
     void Interact()
     {
-        Press();
-        switch (trigger)
+        if (!sticking)
         {
-            case Trigger.onDown:
-                if (!pressed)
-                {
+            Press();
+            switch (trigger)
+            {
+                case Trigger.onDown:
+                    if (!pressed)
+                    {
+                        Activate();
+                    }
+                    break;
+                case Trigger.onHold:
                     Activate();
-                }
-                break;
-            case Trigger.onHold:
-                Activate();
-                break;
-        }
+                    break;
+            }
 
-        // Play audio on first press
-        if (!pressed)
-        {
-            buttonDown.Play(source1);
+            // Play audio on first press
+            if (!pressed)
+            {
+                buttonDown.Play(source1);
+            }
+            pressed = true;
+            if (stickOnPress)
+                sticking = true;
         }
-        pressed = true;
     }
 
     // Activates the button
@@ -170,5 +182,10 @@ public class PhysicalButtons : MonoBehaviour
         }
 
         transform.position = Vector3.Lerp(maxHeight.transform.position, minHieght.transform.position, interpolateAmount);
+    }
+
+    public void UnStick()
+    {
+        sticking = false;
     }
 }
