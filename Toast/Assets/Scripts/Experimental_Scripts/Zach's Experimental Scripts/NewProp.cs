@@ -90,6 +90,11 @@ public class NewProp : MonoBehaviour
         attributesList.RemoveAt(indexToRemove);
     }
 
+    public int UseEffectsCount
+    {
+        get { return useEffects.Count; }
+    }
+
 
     // Currently Toasting Checks
     private bool toasting = false;
@@ -286,11 +291,15 @@ public class NewProp : MonoBehaviour
     //  ------------------------------------ Use Info ------------------------------------
     private void OnMouseOver()
     {
-        // Disable if toast ninja is active
-        if(UsingInfoManager.instance.toastNinja != null && UsingInfoManager.instance.toastNinja.CurrentState == ToastNinjaState.Active)
+        if(UsingInfoManager.instance != null)
         {
-            return;
+            // Disable if toast ninja is active
+            if (UsingInfoManager.instance.toastNinja != null && UsingInfoManager.instance.toastNinja.CurrentState == ToastNinjaState.Active)
+            {
+                return;
+            }
         }
+        
         if(!Raycast.Instance.Dragging)
         {
             PieManager.instance.HoverObject.RaiseEvent(this, 1);
