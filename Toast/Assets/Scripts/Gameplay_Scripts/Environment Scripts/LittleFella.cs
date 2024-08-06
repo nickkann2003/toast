@@ -34,10 +34,13 @@ public class LittleFella : MonoBehaviour
     [Header("Other Variables")]
     [SerializeField]
     private GameObject edibleObject;
+    private List<GameObject> nearbyObjects = new List<GameObject>();
     [SerializeField]
     private GameObject grabHand;
     [SerializeField]
     private GrabStatus status = GrabStatus.Rest;
+    [SerializeField]
+    private Animator littleFellaAnimator;
 
     int currentGifts = 0;
 
@@ -132,6 +135,7 @@ public class LittleFella : MonoBehaviour
                         //Destroy(edibleObject);
                         AudioManager.instance.PlayOneShotSound(AudioManager.instance.eatingBread);
                         accept.Play(source1);
+                        nearbyObjects.Remove(edibleObject);
 
                         currentGifts++;
 
@@ -173,7 +177,13 @@ public class LittleFella : MonoBehaviour
                 if (moveProgress >= 1.0f)
                 {
                     status = GrabStatus.Rest;
+                    littleFellaAnimator.SetTrigger("Go To Sleep");
                     moveProgress = 0.0f;
+                    if(nearbyObjects.Count > 0)
+                    {
+                        edibleObject = nearbyObjects[0];
+                        dragGrabPos = edibleObject.transform.position;
+                    }
                 }
                 break;
 
@@ -195,6 +205,7 @@ public class LittleFella : MonoBehaviour
                     dragGrabPos.y = edibleObject.transform.position.y;
                     status = GrabStatus.Reaching;
                     alert.Play(source1);
+                    littleFellaAnimator.SetTrigger("Wake Up");
                 }
                 break;
 
@@ -211,6 +222,7 @@ public class LittleFella : MonoBehaviour
                 edibleObject = other.gameObject;
                 dragGrabPos = other.transform.position;                
             }
+            nearbyObjects.Add(other.gameObject);
         }
     }
 
@@ -221,6 +233,11 @@ public class LittleFella : MonoBehaviour
             edibleObject = null;
             moveProgress = 0.0f;
             status = GrabStatus.Withdrawing;
+        }
+
+        if (nearbyObjects.Contains(other.gameObject))
+        {
+            nearbyObjects.Remove(other.gameObject);
         }
     }
 
