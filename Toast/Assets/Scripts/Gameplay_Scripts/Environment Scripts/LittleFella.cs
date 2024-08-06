@@ -124,6 +124,11 @@ public class LittleFella : MonoBehaviour
                 grabHand.transform.position = Vector3.Lerp(dragGrabPos, dragHomePos, moveProgress);
                 edibleObject.transform.position = grabHand.transform.position;
                 moveProgress += Time.deltaTime * grabSpeed;
+                if(moveProgress > 0.4f && moveProgress < 0.42f)
+                {
+                    littleFellaAnimator.SetTrigger("Happy");
+                }
+
                 if (moveProgress >= 1.0f)
                 {
                     littleFellaEvent.RaiseEvent(edibleObject.GetComponent<NewProp>(), 1);
@@ -152,6 +157,7 @@ public class LittleFella : MonoBehaviour
                     {
                         status = GrabStatus.Returning;
                         reject.Play(source1);
+                        littleFellaAnimator.SetTrigger("Angry");
                         moveProgress = 0.0f;
                     }       
                 }
