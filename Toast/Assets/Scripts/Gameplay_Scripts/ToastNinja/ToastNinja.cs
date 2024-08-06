@@ -66,6 +66,11 @@ public class ToastNinja : MonoBehaviour
         get { return launchObjects; }
     }
 
+    public ToastNinjaState CurrentState
+    {
+        get { return toastNinjaState; }
+    }
+
     // ------------------------------- Functions -------------------------------
     // Start is called before the first frame update
     void Start()

@@ -10,6 +10,8 @@ public class UsingInfoManager : MonoBehaviour
 
     [SerializeField] NewHand playerHand;
 
+    public ToastNinja toastNinja;
+
     // Singleton
     private void Awake()
     {
@@ -25,7 +27,7 @@ public class UsingInfoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-   
+        
     }
 
     public void DisplayInfo(NewProp prop, int num)
