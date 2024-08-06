@@ -286,8 +286,11 @@ public class NewProp : MonoBehaviour
     //  ------------------------------------ Use Info ------------------------------------
     private void OnMouseOver()
     {
-        // Find  a way to disable if toast ninja is active
-
+        // Disable if toast ninja is active
+        if(UsingInfoManager.instance.toastNinja != null && UsingInfoManager.instance.toastNinja.CurrentState == ToastNinjaState.Active)
+        {
+            return;
+        }
         if(!Raycast.Instance.Dragging)
         {
             PieManager.instance.HoverObject.RaiseEvent(this, 1);
