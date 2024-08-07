@@ -71,7 +71,7 @@ public class UsingInfoManager : MonoBehaviour
             }
         }
 
-
+        // If using knife...
         if (playerHand.IsHoldingItem)
         {
             if (playerHand.CheckObject().TryGetComponent(out Knife knife))
