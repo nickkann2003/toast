@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UsingInfoManager : MonoBehaviour
@@ -12,7 +13,13 @@ public class UsingInfoManager : MonoBehaviour
 
     public ToastNinja toastNinja;
 
-    [SerializeField] GameObject useTextUI;
+    [SerializeField] TextMeshProUGUI useTextUI, pickUpTextUI;
+
+    [Header("Special Use Cases")]
+    [SerializeField]
+    UseEffectSO knifeUse;
+    [SerializeField]
+    UseEffectSO spreadUse;
 
     // Singleton
     private void Awake()
@@ -35,23 +42,81 @@ public class UsingInfoManager : MonoBehaviour
     public void DisplayInfo(NewProp prop, int num)
     {
         UIPanel.transform.position = Camera.main.WorldToScreenPoint(prop.transform.position); 
+
         UIPanel.SetActive(true);
 
-        // Display use if use effect exists
-        if(prop.UseEffectsCount > 0)
+        // Check for special cases and set text activity
+        if(UseTextSpecialCases(prop))
         {
-            useTextUI.SetActive(true);
+            useTextUI.gameObject.SetActive(false);
         }
         else
         {
-            useTextUI.SetActive(false);
+            if(!useTextUI.gameObject.activeSelf)
+            {
+                useTextUI.gameObject.SetActive(true);
+            }
         }
 
-        // Add more conditions for special cases like knife and spread which can only be used in hand
+        // Check for special cases and set text activity
+        if(PickUptextSpecialCases(prop))
+        {
+            pickUpTextUI.gameObject.SetActive(false);
+        }
+        else
+        {
+            if(!pickUpTextUI.gameObject.activeSelf)
+            {
+                pickUpTextUI.gameObject.SetActive(true);
+            }
+        }
+
+
+        if (playerHand.IsHoldingItem)
+        {
+            if (playerHand.CheckObject().TryGetComponent(out Knife knife))
+            {
+                useTextUI.text = "Use Knife (<sprite=78>)";
+                useTextUI.gameObject.SetActive(true);
+            }
+        } 
     }
 
     public void HideInfo(NewProp prop, int num)
     {
         UIPanel.SetActive(false);
+
+        useTextUI.text = "Use (<sprite=78>)";
+    }
+
+    private bool UseTextSpecialCases(NewProp prop)
+    {
+        if(prop.UseEffectsCount <= 0)
+        {
+            return true;
+        }
+
+        if (prop.HasUseEffect(spreadUse) || prop.HasUseEffect(knifeUse))
+        {
+            return true;
+        }
+
+        if (playerHand.IsHoldingItem)
+        {
+            return true;
+        }
+            
+
+        return false;
+    }
+
+    private bool PickUptextSpecialCases(NewProp prop)
+    {
+        if (playerHand.IsHoldingItem)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

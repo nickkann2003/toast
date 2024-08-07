@@ -15,6 +15,10 @@ public class NewHand : MonoBehaviour
     [SerializeField]
     private PropIntGameEvent dropEvent;
 
+    // ---------------------------- Properties ---------------------------------
+
+    public bool IsHoldingItem {  get { return heldObject != null; } }
+
     // ------------------------------- Functions -------------------------------
 
     // Uses the item in hand
