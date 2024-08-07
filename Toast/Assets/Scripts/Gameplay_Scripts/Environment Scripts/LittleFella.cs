@@ -185,6 +185,13 @@ public class LittleFella : MonoBehaviour
                     status = GrabStatus.Rest;
                     littleFellaAnimator.SetTrigger("Go To Sleep");
                     moveProgress = 0.0f;
+                    for(int i = nearbyObjects.Count-1; i >= 0; i--)
+                    {
+                        if (nearbyObjects[i] == null)
+                        {
+                            nearbyObjects.RemoveAt(i);
+                        }
+                    }
                     if(nearbyObjects.Count > 0)
                     {
                         edibleObject = nearbyObjects[0];
