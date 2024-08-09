@@ -41,6 +41,11 @@ public class UsingInfoManager : MonoBehaviour
 
     public void DisplayInfo(NewProp prop, int num)
     {
+        if(GameManager.Instance.curState != GameState.inGame)
+        {
+            return;
+        }
+
         UIPanel.transform.position = Camera.main.WorldToScreenPoint(prop.transform.position); 
 
         UIPanel.SetActive(true);
