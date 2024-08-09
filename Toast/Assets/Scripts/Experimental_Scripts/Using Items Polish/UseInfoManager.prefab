@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &305460149268091856
+--- !u!1 &8021223530553801750
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8807868614811179376}
-  - component: {fileID: 6166921755252948570}
-  - component: {fileID: 2527379383002476599}
+  - component: {fileID: 807153920773264079}
+  - component: {fileID: 3119666077673332355}
+  - component: {fileID: 4899992582248952717}
   m_Layer: 0
   m_Name: UseInfoManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8807868614811179376
+  m_IsActive: 1
+--- !u!4 &807153920773264079
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305460149268091856}
+  m_GameObject: {fileID: 8021223530553801750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,13 +33,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6166921755252948570
+--- !u!114 &3119666077673332355
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305460149268091856}
+  m_GameObject: {fileID: 8021223530553801750}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2938f2ad4311d547b1da7dcaa0d1a8a, type: 3}
@@ -47,13 +47,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIPanel: {fileID: 0}
   playerHand: {fileID: 0}
---- !u!114 &2527379383002476599
+  toastNinja: {fileID: 0}
+  useTextUI: {fileID: 0}
+  pickUpTextUI: {fileID: 0}
+  knifeUse: {fileID: 11400000, guid: a69585ce2e284ae43b493895457a36e0, type: 2}
+  spreadUse: {fileID: 11400000, guid: 00d43e05d0f5dbb488d699bd65c62db8, type: 2}
+--- !u!114 &4899992582248952717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305460149268091856}
+  m_GameObject: {fileID: 8021223530553801750}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0784d9d68d0bfcb4eb584da356bc4f17, type: 3}
@@ -64,7 +69,7 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6166921755252948570}
+        - m_Target: {fileID: 3119666077673332355}
           m_TargetAssemblyTypeName: UsingInfoManager, Assembly-CSharp
           m_MethodName: DisplayInfo
           m_Mode: 0
@@ -80,7 +85,7 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6166921755252948570}
+        - m_Target: {fileID: 3119666077673332355}
           m_TargetAssemblyTypeName: UsingInfoManager, Assembly-CSharp
           m_MethodName: HideInfo
           m_Mode: 0
