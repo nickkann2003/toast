@@ -355,6 +355,7 @@ public class AchievementManager : MonoBehaviour
     public void LoadAchievementSaveString(string data)
     {
         SortAchievementsById();
+        unlockedAchievements = new List<Achievement>();
         string[] allAch = data.Split(achievementSeparator);
         foreach(string a in allAch)
         {
@@ -373,6 +374,11 @@ public class AchievementManager : MonoBehaviour
             Achievement target = achievementsById[aId];
             target.AchievementProgress = aProgress;
             target.IsUnlocked = aUnlocked;
+            if (aUnlocked)
+            {
+                unlockedAchievements.Add(target);
+            }
         }
+        unlockedProgressText.text = $"{unlockedAchievements.Count}/{achievements.Count}";
     }
 }
