@@ -64,6 +64,9 @@ public class EatenAttribute : PropAttributeSO
             eatEvent.RaiseEvent(newProp, 1);
         }
 
+        // Hide use info
+        PieManager.instance.StopHover.RaiseEvent(newProp, 1);
+
         Destroy(newProp.gameObject);
     }
 }
