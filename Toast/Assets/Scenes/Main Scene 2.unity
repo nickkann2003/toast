@@ -15387,11 +15387,36 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 819621938}
     m_Modifications:
+    - target: {fileID: 66618314234273813, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -175
+      objectReference: {fileID: 0}
+    - target: {fileID: 66618314234273813, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 970953666983971680, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 994660152878932024, guid: 79bbdac269fb3484685f63b4b174e8e7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 995659374}
+    - target: {fileID: 995980450570276228, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: newPosition.x
+      value: -175
+      objectReference: {fileID: 0}
+    - target: {fileID: 995980450570276228, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: newPosition.y
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 2162204368464006237, guid: 79bbdac269fb3484685f63b4b174e8e7,
         type: 3}
       propertyPath: m_IsActive
@@ -15402,10 +15427,40 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2904243006708447805, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: newPosition.x
+      value: -175
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904243006708447805, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: newPosition.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409665534892118859, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: newPosition.x
+      value: -175
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722764242635152743, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -175
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722764242635152743, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 5366386428531671611, guid: 79bbdac269fb3484685f63b4b174e8e7,
         type: 3}
       propertyPath: m_Name
       value: MainMenuCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288802712393827977, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6718466831112045532, guid: 79bbdac269fb3484685f63b4b174e8e7,
         type: 3}
@@ -15571,6 +15626,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366320539643049588, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -175
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366320539643049588, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534037428143449884, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20451,8 +20521,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smokiness: 0
   smokeRate: 0.01
-  antiSmokeRate: -0.15
-  fireEndingThreshold: 50
+  antiSmokeRate: -0.5
+  fireEndingThreshold: 15
   firePrefab: {fileID: 3313279580185439241, guid: 797bc0bd80e510e489d3a8dbd4aff7d7,
     type: 3}
   smokeThingy: {fileID: 2018340504}
@@ -32663,7 +32733,7 @@ MonoBehaviour:
     - {fileID: 739542199}
     displaysUI: []
     complete: 0
-    available: 0
+    available: 1
     displayOnNotepad: 1
     destroyPaperOnCompletion: 1
   - name: Freezer Objectives
