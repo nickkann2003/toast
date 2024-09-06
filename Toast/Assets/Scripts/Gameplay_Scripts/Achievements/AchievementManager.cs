@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Animations;
 #if UNITY_EDITOR
 using UnityEditor.UIElements;
 #endif
@@ -56,7 +57,9 @@ public class AchievementManager : MonoBehaviour
 
     [Header("Unlock Notification Objects")]
     [SerializeField]
-    private GameObject notificationBanner;
+    private Animator bannerAnimator;
+    [SerializeField]
+    private Animator spinningBreadAnimator;
     [SerializeField]
     TextMeshProUGUI bannerText;
 
@@ -72,8 +75,6 @@ public class AchievementManager : MonoBehaviour
     private string achievementSeparator = "~";
     private string spacer = "_";
 
-    //Temporary before animation, remove later********
-    float bannerShowTime;
 
     // Basic singleton
     private void Awake()
@@ -86,19 +87,6 @@ public class AchievementManager : MonoBehaviour
     {
         CreateMenu();
     }
-    
-
-    // Update is called once per frame
-    void Update()
-    {
-        bannerShowTime += Time.deltaTime;
-
-        if(notificationBanner.activeSelf == true && bannerShowTime >= 6)
-        {
-            notificationBanner.SetActive(false);
-        }
-    }
-
 
     /// <summary>
     /// Performs the steps of unlocking an achievement
@@ -310,8 +298,8 @@ public class AchievementManager : MonoBehaviour
 
         //
         // Show banner and start timer
-        notificationBanner.SetActive(true);
-        bannerShowTime = 0;
+        bannerAnimator.SetTrigger("TriggerAnimateIn");
+        spinningBreadAnimator.SetTrigger("Start");
     }
 
     /// <summary>
