@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     // ------------------------------- Properties -------------------------------
     public AudioManager AudioManager { get; private set; }
     public UIManager UIManager { get; private set; }
+
+    public GameObject PauseMenu;
     //public SceneLoadingManager SceneLoadingManager { get; private set; }
 
     // ------------------------------- Variables -------------------------------
@@ -113,6 +115,10 @@ public class GameManager : MonoBehaviour
         switch(curState)
         {
             case GameState.Menu:
+                if (Keyboard.current.escapeKey.wasPressedThisFrame)
+                {
+                    UIManager.MenuEscape();
+                }
                 break;
             case GameState.Tutorial:
                 if (Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -189,15 +195,19 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void UnPauseGame()
     {
-        curState = GameState.inGame;
-        // Confine cursor
-        Cursor.lockState = CursorLockMode.Confined;
-        #if UNITY_EDITOR
-            Cursor.lockState = CursorLockMode.None;
-        #endif
-        Time.timeScale = 1;
-        raycaster.enabled = true;
-        UIManager.ClosePauseMenu();
+        bool unpaused = UIManager.ClosePauseMenu();
+        if (unpaused)
+        {
+            curState = GameState.inGame;
+            // Confine cursor
+            Cursor.lockState = CursorLockMode.Confined;
+            #if UNITY_EDITOR
+                Cursor.lockState = CursorLockMode.None;
+            #endif
+            Time.timeScale = 1;
+            raycaster.enabled = true;
+            UIManager.ClosePauseMenu();
+        }
     }
 
     /// <summary>

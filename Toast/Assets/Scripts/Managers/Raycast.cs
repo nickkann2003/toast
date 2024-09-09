@@ -550,21 +550,6 @@ public class Raycast : MonoBehaviour
     {
         if (selectGO != null)
         {
-            if (InventoryManager.instance.HoveringInventory)
-            {
-                Debug.Log("hovering inv");
-                if (!InventoryManager.instance.atInventory)
-                {
-                    Debug.Log("not at inv");
-                    InventoryManager.instance.AddItemToInventory(selectGO);
-                    selectGO.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                }
-                else
-                {
-                    InventoryManager.instance.RemoveItemFromInventory(selectGO);
-                    selectGO.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                }
-            }
             selectGO = null;
         }
 

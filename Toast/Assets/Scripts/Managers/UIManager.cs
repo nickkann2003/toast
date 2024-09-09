@@ -5,6 +5,15 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    private enum PauseScreen 
+    { 
+        none,
+        pauseMenu,
+        optionsMenu,
+        achievements,
+        fileSelect,
+        fileName
+    }
     // ------------------------------- Variables -------------------------------
     [Header("Menu References")]
     [SerializeField] private GameObject pauseMenu;
@@ -16,16 +25,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject achievementMenu;
     [SerializeField] private GameObject notificationBanner;
     public bool objectiveOpened = false;
+    private PauseScreen currentScreen = PauseScreen.none;
 
     [Header("UI Buttons")]
     public UnityEngine.UI.Button backButton;
-    public UnityEngine.UI.Button inventoryButton;
     public Button objectiveButton;
     public Animator backButtonAni;
     public Slider volumeSlider;
     public Slider moveSpeedSlider;
     private bool backButtonOnScreen = false;
-    private bool inventoryButtonOnScreen = false;
     
     public bool backFromMainMenu = true;
 
@@ -42,6 +50,24 @@ public class UIManager : MonoBehaviour
 
         //DontDestroyOnLoad(gameObject);
     }
+    /// <summary>
+    /// Handles escape presses when at the main menu
+    /// </summary>
+    public void MenuEscape()
+    {
+        if(currentScreen == PauseScreen.fileSelect)
+        {
+            CloseFileSelectMenu();
+            SetMainMain();
+        }
+        if (currentScreen == PauseScreen.fileName)
+        {
+            CloseFileNamingMenu();
+            OpenFileSelectMenu();
+        }
+        if(currentScreen == PauseScreen.optionsMenu)
+            CloseSettingMenuFromMainMenu();
+    }
 
     /// <summary>
     /// Sets pause menu active
@@ -49,15 +75,47 @@ public class UIManager : MonoBehaviour
     public void SetPauseMenu()
     {
         pauseMenu.SetActive(true);
+        float timeDelay = 0.0f;
+        foreach (Animator a in pauseMenu.GetComponentsInChildren<Animator>())
+        {
+            StartCoroutine(AnimateButtons(timeDelay, a, "Open"));
+            timeDelay += 0.05f;
+        }
+        currentScreen = PauseScreen.pauseMenu;
     }
 
     /// <summary>
-    /// Sets pause menu false
+    /// Sets pause menu false, returns true if pause was closed, false if pause was moved back one state
     /// </summary>
-    public void ClosePauseMenu()
+    public bool ClosePauseMenu()
     {
-        pauseMenu.SetActive(false);
-        settingMenu.SetActive(false);
+        bool closed = false;
+        if(currentScreen == PauseScreen.pauseMenu)
+        {
+            pauseMenu.SetActive(false);
+            settingMenu.SetActive(false);
+            foreach (Animator a in pauseMenu.GetComponentsInChildren<Animator>())
+            {
+                StartCoroutine(AnimateButtons(0f, a, "Close"));
+            }
+            closed = true;
+        }
+        else
+        {
+            if (currentScreen == PauseScreen.achievements)
+                CloseAchievementMenu();
+            settingMenu.SetActive(false);
+
+            SetPauseMenu();
+        }
+
+        return closed;
+    }
+
+    private IEnumerator AnimateButtons(float timeDelay, Animator a, string trigger)
+    {
+        yield return new WaitForSecondsRealtime(timeDelay);
+        a.SetTrigger(trigger);
     }
 
     /// <summary>
@@ -82,7 +140,6 @@ public class UIManager : MonoBehaviour
     public void SetupInGameUI()
     {
         backButton.gameObject.SetActive(true);
-        inventoryButton.gameObject.SetActive(true);
         objectiveButton.gameObject.SetActive(true);
     }
 
@@ -130,27 +187,6 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Activates the inventory button
-    /// </summary>
-    public void TurnOnInventoryButton()
-    {
-        if (!inventoryButtonOnScreen)
-        {
-            inventoryButton.interactable = true;
-            inventoryButtonOnScreen = true;
-        }
-    }
-
-    /// <summary>
-    /// Deactivates the inventory button
-    /// </summary>
-    public void TurnOffInventoryButton()
-    {
-        inventoryButton.interactable = false;
-        inventoryButtonOnScreen = false;
-    }
-
-    /// <summary>
     /// Opens the settings menu
     /// </summary>
     public void OpenSettingMenu()
@@ -166,6 +202,7 @@ public class UIManager : MonoBehaviour
         settingMenu.SetActive(true);
         mainMenu.SetActive(false);
         pauseMenu.SetActive(false);
+        currentScreen = PauseScreen.optionsMenu;
     }
 
     /// <summary>
@@ -182,7 +219,7 @@ public class UIManager : MonoBehaviour
         {
             pauseMenu.SetActive(true);
         }
- 
+        currentScreen = PauseScreen.none;
     }
 
     /// <summary>
@@ -191,6 +228,7 @@ public class UIManager : MonoBehaviour
     public void OpenFileSelectMenu()
     {
         fileSelectMenu.SetActive(true);
+        currentScreen = PauseScreen.fileSelect;
     }
 
     /// <summary>
@@ -207,6 +245,7 @@ public class UIManager : MonoBehaviour
     public void OpenFileNamingMenu()
     {
         saveFileNameMenu.SetActive(true);
+        currentScreen = PauseScreen.fileName;
     }
 
     /// <summary>
@@ -222,9 +261,6 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void SetAchievementMenu()
     {
-        // Hide banner
-        notificationBanner.SetActive(false);
-
         // Pause game (in case menu is accessed via banner click)
         GameManager.Instance.PauseGame();
 
@@ -233,6 +269,8 @@ public class UIManager : MonoBehaviour
 
         // Hide pause menu
         pauseMenu.SetActive(false);
+
+        currentScreen = PauseScreen.achievements;
     }
 
     /// <summary>
@@ -241,6 +279,7 @@ public class UIManager : MonoBehaviour
     public void CloseAchievementMenu()
     {
         achievementMenu?.SetActive(false);
-        pauseMenu.SetActive(true);
+        SetPauseMenu();
+        currentScreen = PauseScreen.pauseMenu;
     }
 }

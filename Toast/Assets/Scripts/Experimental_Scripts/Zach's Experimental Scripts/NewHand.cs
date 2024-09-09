@@ -62,12 +62,6 @@ public class NewHand : MonoBehaviour
             
             heldObject.GetComponent<NewProp>()?.RemoveAttribute(StatAttManager.instance.inHandAtt);
 
-            // Check if dropping in inventory
-            if (StationManager.instance.playerLocation.stationLabel == Stations.Inventory)
-            {
-                InventoryManager.instance.AddItemToInventory(itemToReturn);
-            }
-
             // Update drop objectives
             if(dropEvent != null)
                 dropEvent.RaiseEvent(heldObject.GetComponent<NewProp>(), 1);
@@ -94,12 +88,6 @@ public class NewHand : MonoBehaviour
             }
 
             //itemToPickup.transform.position = Vector3.zero;
-            
-            // Inventory checks
-            if (StationManager.instance.playerLocation.stationLabel == Stations.Inventory)
-            {
-                InventoryManager.instance.RemoveItemFromInventory(itemToPickup);
-            }
 
             // Objective calls
             if (pickUpEvent != null)

@@ -16,8 +16,7 @@ public enum Stations
     Defualt,
     Table,
     Toaster,
-    Fridge,
-    Inventory
+    Fridge
 }
 public class StationManager : MonoBehaviour
 {
@@ -175,12 +174,6 @@ public class StationManager : MonoBehaviour
         if(playerLocation == ExamineManager.instance.examineStation)
         {
             ExamineManager.instance.QuitExamining();
-        }
-
-        if(playerLocation == InventoryManager.instance.InventoryStation)
-        {
-            transitionMask.StartTransition();
-            InventoryManager.instance.SetLeaveInventoryValues();
         }
 
             StationManager.instance.playerLocation.EnableColliders();
