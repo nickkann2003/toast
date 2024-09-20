@@ -13,7 +13,8 @@ public enum GameState
     Pause,
     Tutorial,
     Objective,
-    inGame
+    inGame,
+    Intro
 }
 
 public class GameManager : MonoBehaviour
@@ -50,6 +51,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] Station gameDefaultStation;
     [SerializeField] Station tutorialStation;
     [SerializeField] Station mainMenuStation;
+
+    [Header("Intro References")]
+    public Animator introAnimation;
+    public Animator introBreadAnimation;
+    public float introTime;
+    private float rIntroTime;
 
     [Header("Music")]
     // BGM
@@ -93,7 +100,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        curState = GameState.Menu;
+        curState = GameState.Intro;
+        rIntroTime = introTime;
         raycaster.enabled = false;
 
         Time.timeScale = 1f;
@@ -106,6 +114,9 @@ public class GameManager : MonoBehaviour
         UIManager = GameObject.Find("UIManager").gameObject.transform.GetComponent<UIManager>();
         //SceneLoadingManager = GetComponentInChildren<SceneLoadingManager>(); 
         //AudioManager.PlaySound(test);
+
+        introAnimation.SetTrigger("Intro");
+        introBreadAnimation.SetTrigger("Intro");
     }
 
     // Update is called once per frame
@@ -114,6 +125,13 @@ public class GameManager : MonoBehaviour
         // Switch for current game state
         switch(curState)
         {
+            case GameState.Intro:
+                rIntroTime -= Time.deltaTime;
+                if(rIntroTime < 0)
+                {
+                    curState = GameState.Menu;
+                }
+                break;
             case GameState.Menu:
                 if (Keyboard.current.escapeKey.wasPressedThisFrame)
                 {
