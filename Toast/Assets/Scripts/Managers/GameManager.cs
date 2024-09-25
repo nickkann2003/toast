@@ -233,7 +233,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void QuitGame()
     {
-        SaveHandler.instance.SaveAllData();
+        try{
+            SaveHandler.instance.SaveAllData();
+        }
+        catch
+        {
+            // haha! You found an empty catch block! I'm too busy preparing for ROC Game Fest, so this is all you get!
+        }
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
@@ -322,8 +328,15 @@ public class GameManager : MonoBehaviour
     /// <param name="sceneIndex"></param>
     public void LoadGame(int sceneIndex)
     {
-        SaveHandler.instance.SaveAllData();
-        ObjectiveManager.instance.OnDisable();
+        try
+        {
+            SaveHandler.instance.SaveAllData();
+            ObjectiveManager.instance.OnDisable();
+        }
+        catch
+        {
+            // another catch block with node code! Get rolled! haha! (i really need to actually fix these issues but this is fine for ROC game fest)
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

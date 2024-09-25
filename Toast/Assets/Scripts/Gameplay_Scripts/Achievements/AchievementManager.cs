@@ -2,8 +2,8 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Animations;
 #if UNITY_EDITOR
+using UnityEditor.Animations;
 using UnityEditor.UIElements;
 #endif
 using UnityEngine;
