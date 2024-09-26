@@ -12,7 +12,8 @@ public class UIManager : MonoBehaviour
         optionsMenu,
         achievements,
         fileSelect,
-        fileName
+        fileName,
+        credits
     }
     // ------------------------------- Variables -------------------------------
     [Header("Menu References")]
@@ -24,6 +25,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject saveFileNameMenu;
     [SerializeField] private GameObject achievementMenu;
     [SerializeField] private GameObject notificationBanner;
+    [SerializeField] private GameObject creditsMenu;
+
     public bool objectiveOpened = false;
     private PauseScreen currentScreen = PauseScreen.none;
 
@@ -211,6 +214,42 @@ public class UIManager : MonoBehaviour
     public void CloseSettingMenuFromMainMenu()
     {
         settingMenu.SetActive(false);
+        if (backFromMainMenu)
+        {
+            mainMenu.SetActive(true);
+        }
+        else
+        {
+            pauseMenu.SetActive(true);
+        }
+        currentScreen = PauseScreen.none;
+    }
+
+    /// <summary>
+    /// Opens the credits menu
+    /// </summary>
+    public void OpenCreditsMenu()
+    {
+        if (mainMenu.activeSelf)
+        {
+            backFromMainMenu = true;
+        }
+        else
+        {
+            backFromMainMenu = false;
+        }
+        creditsMenu.SetActive(true);
+        mainMenu.SetActive(false);
+        pauseMenu.SetActive(false);
+        currentScreen = PauseScreen.credits;
+    }
+
+    /// <summary>
+    /// Closes the settings menu
+    /// </summary>
+    public void CloseCreditsFromMainMenu()
+    {
+        creditsMenu.SetActive(false);
         if (backFromMainMenu)
         {
             mainMenu.SetActive(true);
