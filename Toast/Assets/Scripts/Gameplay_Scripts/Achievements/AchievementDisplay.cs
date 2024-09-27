@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.UI;
+using TMPro;
+using NaughtyAttributes;
 
 public class AchievementDisplay : MonoBehaviour
 {
@@ -22,7 +19,10 @@ public class AchievementDisplay : MonoBehaviour
     TextMeshProUGUI nameText, descriptionText, progressText;
 
     [SerializeField]
-    public Sprite lockedSprite, unlockedSprite;
+    public Sprite lockedSprite, progressedUlockedSprite, unlockedSprite;
+
+    [SerializeField, BoxGroup("Random Rotation")]
+    private float minZ, maxZ;
 
     public UnityEngine.UI.Image displayImage;
 
@@ -59,7 +59,14 @@ public class AchievementDisplay : MonoBehaviour
             // Set sprite depending on unlock status
             if(associatedAchievement.IsUnlocked)
             {
-                displayImage.sprite = unlockedSprite;
+                if(associatedAchievement.HasNumericGoal)
+                {
+                    displayImage.sprite = progressedUlockedSprite;
+                }
+                else
+                {
+                    displayImage.sprite = unlockedSprite;
+                }
             }
             else
             {
@@ -75,11 +82,19 @@ public class AchievementDisplay : MonoBehaviour
             else
             {
                 nameText.text = associatedAchievement.AchievementName;
-                descriptionText.text = associatedAchievement.Description;
+                if(associatedAchievement.IsUnlocked)
+                {
+                    descriptionText.text = associatedAchievement.Description;
+                }
+                else
+                {
+                    descriptionText.text = string.Empty;
+                }
+                    
             }
 
-            // Display goal progress if applicable
-            if (associatedAchievement.HasNumericGoal)
+            // Display goal progress if applicable && the achievement is unlocked
+            if (associatedAchievement.HasNumericGoal && associatedAchievement.IsUnlocked)
             {
                 if(isHiddenAchievement)
                 {
@@ -96,11 +111,8 @@ public class AchievementDisplay : MonoBehaviour
                 progressText.text = string.Empty;
             }
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        float rotationZ = Random.Range(minZ, maxZ);
+        this.gameObject.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
     }
 }
