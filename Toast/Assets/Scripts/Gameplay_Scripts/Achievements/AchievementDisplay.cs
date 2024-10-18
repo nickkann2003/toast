@@ -82,15 +82,7 @@ public class AchievementDisplay : MonoBehaviour
             else
             {
                 nameText.text = associatedAchievement.AchievementName;
-                if(associatedAchievement.IsUnlocked)
-                {
-                    descriptionText.text = associatedAchievement.Description;
-                }
-                else
-                {
-                    descriptionText.text = string.Empty;
-                }
-                    
+                descriptionText.text = associatedAchievement.Description;
             }
 
             // Display goal progress if applicable && the achievement is unlocked
