@@ -60,6 +60,8 @@ public class ToastingBreadTest : MonoBehaviour
 
     private bool defrost = false;
 
+    private bool bagel = false;
+
     private int snapPoint;
 
     // ------------------------------- Properties -------------------------------
@@ -268,6 +270,14 @@ public class ToastingBreadTest : MonoBehaviour
     public void toggleDefrost()
     {
         defrost = !defrost;
+    }
+
+    /// <summary>
+    /// Toggles the bagel setting
+    /// </summary>
+    public void toggleBagel()
+    {
+        bagel = !bagel;
     }
 
     // Sets the toasting dials value
