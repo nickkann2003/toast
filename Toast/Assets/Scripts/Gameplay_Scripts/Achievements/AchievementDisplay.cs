@@ -86,7 +86,7 @@ public class AchievementDisplay : MonoBehaviour
             }
 
             // Display goal progress if applicable && the achievement is unlocked
-            if (associatedAchievement.HasNumericGoal && associatedAchievement.IsUnlocked)
+            if (associatedAchievement.HasNumericGoal)
             {
                 if(isHiddenAchievement)
                 {
