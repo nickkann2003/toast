@@ -220,6 +220,11 @@ public class ToastingBreadTest : MonoBehaviour
                         if (defrost)
                             prop.RemoveAttribute(StatAttManager.instance.frozenAtt);
 
+                        if(bagel)
+                        {
+                            prop.AddAttribute(StatAttManager.instance.bagelAtt);
+                        }
+
                         switch (snapPoint)
                         {
                             case 0:
