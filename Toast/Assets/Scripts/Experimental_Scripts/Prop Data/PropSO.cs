@@ -30,6 +30,12 @@ public class PropSO : ScriptableObject
     [SerializeField, BoxGroup("Configs")]
     private PD_Rigidbody rigidbody;
 
+    [SerializeField, BoxGroup("Prop Description")]
+    private string displayName;
+
+    [SerializeField, BoxGroup("Prop Description")]
+    private string description;
+
     public void PopulateProp(NewProp newProp)
     {
         if (stats != null)
