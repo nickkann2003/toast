@@ -26,6 +26,9 @@ public class ExamineManager : MonoBehaviour
     [SerializeField] public Raycast raycast; // Temp
     [SerializeField] Canvas background;
 
+    private Vector3 initLoc;
+    private Quaternion initRot;
+
     private GameObject currentExamine;
 
     // ------------------------------- Functions -------------------------------
@@ -42,7 +45,8 @@ public class ExamineManager : MonoBehaviour
         //dof.mode.value = DepthOfFieldMode.Off;
 
         background.gameObject.SetActive(false);
-
+        initLoc = transform.parent.position;
+        initRot = transform.parent.rotation;
     }
 
     /// <summary>
@@ -58,13 +62,17 @@ public class ExamineManager : MonoBehaviour
         }
         if (freezeOnExamine)
         {
-            Time.timeScale = 0;
+            Time.timeScale = 0f;
         }
 
         // Right now, can only inspect basic items with a single mesh
 
         examineStation.cameraPos = StationManager.instance.playerLocation.cameraPos;
         examineStation.cameraRotation = StationManager.instance.playerLocation.cameraRotation;
+
+        transform.parent.position = StationManager.instance.playerLocation.transform.position;
+        transform.parent.rotation = StationManager.instance.playerLocation.transform.rotation;
+
 
         StationManager.instance.MoveToStation(examineStation);
 
@@ -120,5 +128,8 @@ public class ExamineManager : MonoBehaviour
 
         background.gameObject.SetActive(false);
         raycast.enabled = true;
+
+        transform.parent.position = initLoc;
+        transform.parent.rotation = initRot;
     }
 }
