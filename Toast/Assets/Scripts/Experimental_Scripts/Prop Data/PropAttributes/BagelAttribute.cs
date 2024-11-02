@@ -17,6 +17,7 @@ public class BagelAttribute : PropAttributeSO
 
     [SerializeField]
     Vector3 bagelColliderSize = new Vector3(0.48f, 0.12f, -0.51f);
+    Vector3 bagelScale = new Vector3(1, 0.75f, 1);
 
   
 
@@ -25,7 +26,7 @@ public class BagelAttribute : PropAttributeSO
         // Change prop model to bagel
         newProp.GetComponentInChildren<MeshFilter>().mesh = bagelMesh;
         newProp.GetComponentInChildren<MeshRenderer>().material= bagelMat;
-        newProp.transform.GetChild(0).transform.localScale = Vector3.one;
+        newProp.transform.GetChild(0).transform.localScale = bagelScale;
         newProp.GetComponent<BoxCollider>().size = bagelColliderSize;
         newProp.transform.rotation = Quaternion.Euler(0, 0, -90);
         newProp.IncreaseToastiness(0);
