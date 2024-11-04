@@ -66,6 +66,10 @@ public class AchievementManager : MonoBehaviour
     [Header("Achievement Progress Text")]
     [SerializeField]
     TextMeshProUGUI unlockedProgressText;
+    [SerializeField]
+    List<Sprite> progressionToastSprites;
+    [SerializeField]
+    Image progressionToastImage;
 
     [Header("Audio")]
     [SerializeField]
@@ -102,9 +106,16 @@ public class AchievementManager : MonoBehaviour
             unlockedAchievements.Add(achievement);
             achievement.MenuSquare.displayImage.sprite = achievement.MenuSquare.unlockedSprite;
             PlayNotification(achievement);
-            unlockedProgressText.text = $"{unlockedAchievements.Count}/{achievements.Count}";
+            UpdateProgressionToast();
             AudioManager.instance.PlayAudioEvent(achievementUnlockEvent);
         }
+    }
+
+    private void UpdateProgressionToast()
+    {
+        unlockedProgressText.text = $"{unlockedAchievements.Count}/{achievements.Count}";
+        int index = Mathf.RoundToInt((float)unlockedAchievements.Count / achievements.Count * progressionToastSprites.Count);
+        progressionToastImage.sprite = progressionToastSprites[index];
     }
 
     /// <summary>
@@ -287,7 +298,7 @@ public class AchievementManager : MonoBehaviour
             newItem.transform.SetParent(menuPanel.transform, false);
         }
 
-        unlockedProgressText.text = $"{unlockedAchievements.Count}/{achievements.Count}";
+        UpdateProgressionToast();
     }
 
     void PlayNotification(Achievement achievement)
@@ -367,6 +378,6 @@ public class AchievementManager : MonoBehaviour
                 unlockedAchievements.Add(target);
             }
         }
-        unlockedProgressText.text = $"{unlockedAchievements.Count}/{achievements.Count}";
+        UpdateProgressionToast();
     }
 }

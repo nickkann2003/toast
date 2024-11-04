@@ -57,6 +57,13 @@ public class NewHand : MonoBehaviour
             // Set return
             itemToReturn = heldObject;
 
+            /*
+            if (itemToReturn.TryGetComponent<Carrier>(out Carrier carry))
+            {
+                carry.PutDown();
+            }
+            */
+
             // Set prop flogs
             heldObject.GetComponent<NewProp>()?.RemoveFlag(PropFlags.InHand);
             
@@ -81,6 +88,21 @@ public class NewHand : MonoBehaviour
         // If item being picked up is not null
         if (itemToPickup != null)
         {
+            /*
+            if(itemToPickup.TryGetComponent<Carrier>(out Carrier carry))
+            { 
+                Debug.Log(carry.currentCarries.Count);
+
+                carry.PickUp();
+
+                foreach (GameObject obj in carry.currentCarries)
+                {
+                    Debug.Log("Picking Up");
+                    obj.transform.parent = this.gameObject.transform;
+                }
+            }
+            */
+            
             // If clicked object in hand, remove it instead
             if (itemToPickup.GetComponent<NewProp>() != null && itemToPickup.GetComponent<NewProp>().HasAttribute(StatAttManager.instance.inHandAtt))
             {

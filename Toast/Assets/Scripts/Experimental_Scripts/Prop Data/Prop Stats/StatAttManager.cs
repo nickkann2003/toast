@@ -24,6 +24,9 @@ public class StatAttManager : MonoBehaviour
     public PropAttributeSO avocadoSpreadAtt;
     public PropAttributeSO butterSpreadAtt;
 
+    [HorizontalLine(color: EColor.Gray)]
+    public PropAttributeSO bagelAtt;
+
 
     // Singleton
     public static StatAttManager instance;
