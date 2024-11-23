@@ -37,6 +37,7 @@ public class PieManager : MonoBehaviour
     public PropIntGameEvent SpreadObject;
     public PropIntGameEvent HoverObject;
     public PropIntGameEvent StopHover;
+    public PropIntGameEvent ExamineObject;
 
     // Singleton
     public static PieManager instance;

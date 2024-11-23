@@ -33,8 +33,11 @@ public class PropSO : ScriptableObject
     [SerializeField, BoxGroup("Prop Description")]
     private string displayName;
 
-    [SerializeField, BoxGroup("Prop Description")]
+    [SerializeField, ResizableTextArea, BoxGroup("Prop Description")]
     private string description;
+
+    public string DisplayName { get => displayName; }
+    public string Description { get => description; }
 
     public void PopulateProp(NewProp newProp)
     {

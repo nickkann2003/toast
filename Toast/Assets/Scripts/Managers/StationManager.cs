@@ -171,35 +171,30 @@ public class StationManager : MonoBehaviour
     /// </summary>
     public void StationMoveBack()
     {
-        if(playerLocation == ExamineManager.instance.examineStation)
+        StationManager.instance.playerLocation.EnableColliders();
+
+
+        // No parent location exists, do stack manipulation
+        if (playerLocation.parentLoc == null)
         {
-            ExamineManager.instance.QuitExamining();
+            if (playerPath.Count > 1)
+            {
+                playerPath.Pop();
+                MoveToStation(playerPath.Peek(), false);
+            }
+               
+
         }
-
-            StationManager.instance.playerLocation.EnableColliders();
-
-
-            // No parent location exists, do stack manipulation
-            if (playerLocation.parentLoc == null)
+        // Move back to parent
+        else
+        {
+            while (playerPath.Count > 0 &&
+                playerPath.Peek() != playerLocation.parentLoc)
             {
-                if (playerPath.Count > 1)
-                {
-                    playerPath.Pop();
-                    MoveToStation(playerPath.Peek(), false);
-                }
-                   
-
+                playerPath.Pop();
             }
-            // Move back to parent
-            else
-            {
-                while (playerPath.Count > 0 &&
-                    playerPath.Peek() != playerLocation.parentLoc)
-                {
-                    playerPath.Pop();
-                }
-                MoveToStation(playerLocation.parentLoc, false);
-            }
+            MoveToStation(playerLocation.parentLoc, false);
+        }
     }
 
     /// <summary>

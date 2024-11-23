@@ -218,6 +218,7 @@ public class Raycast : MonoBehaviour
         if (dragging && selectGO.GetComponent<NewProp>() != null)
         {
             ExamineManager.instance.ExamineObject(selectGO);
+            PieManager.instance.ExamineObject.RaiseEvent(selectGO.GetComponent<NewProp>(), 1);
             return;
         }
         
@@ -232,6 +233,7 @@ public class Raycast : MonoBehaviour
         if (itemToView != null && itemToView.GetComponent<NewProp>() != null)
         {
             ExamineManager.instance.ExamineObject(hitGO);
+            PieManager.instance.ExamineObject.RaiseEvent(itemToView.GetComponent<NewProp>(), 1);
             StopDragging();
             return;
         }
@@ -239,6 +241,7 @@ public class Raycast : MonoBehaviour
         if (hand.CheckObject())
         {
             ExamineManager.instance.ExamineObject(hand.CheckObject());
+            PieManager.instance.ExamineObject.RaiseEvent(hand.GetComponent<NewProp>(), 1);
             StopDragging();
             return;
         }

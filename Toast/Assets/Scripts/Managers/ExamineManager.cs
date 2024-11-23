@@ -60,21 +60,9 @@ public class ExamineManager : MonoBehaviour
         {
             return;
         }
-        if (freezeOnExamine)
-        {
-            Time.timeScale = 0f;
-        }
+      
 
         // Right now, can only inspect basic items with a single mesh
-
-        examineStation.cameraPos = StationManager.instance.playerLocation.cameraPos;
-        examineStation.cameraRotation = StationManager.instance.playerLocation.cameraRotation;
-
-        transform.parent.position = StationManager.instance.playerLocation.transform.position;
-        transform.parent.rotation = StationManager.instance.playerLocation.transform.rotation;
-
-
-        StationManager.instance.MoveToStation(examineStation);
 
         inspectorItem.inspectorCam.enabled = true;
         inspectorItem.inspecting = true;
@@ -107,6 +95,10 @@ public class ExamineManager : MonoBehaviour
 
         background.gameObject.SetActive(true);
         raycast.enabled = false;
+        if (freezeOnExamine)
+        {
+            Time.timeScale = 0f;
+        }
     }
 
     /// <summary>
