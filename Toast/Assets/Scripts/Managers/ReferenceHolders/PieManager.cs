@@ -47,5 +47,4 @@ public class PieManager : MonoBehaviour
     {
         instance = this;
     }
-
 }
