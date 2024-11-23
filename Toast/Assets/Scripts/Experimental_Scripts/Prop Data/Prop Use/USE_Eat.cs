@@ -49,6 +49,15 @@ public class USE_Eat : UseEffectSO
     {
         if (newProp.Stats.GetStat(biteType) == null) { return false; }
 
+        // Spread, just return true without doing anything
+        if(newProp.TryGetComponent<Spread>(out Spread spread))
+        {
+            if(spread.IsOnKnife)
+            {
+                return true;
+            }
+        }
+
         TakeBite(newProp);
 
         return true;
