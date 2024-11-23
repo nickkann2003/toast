@@ -32,6 +32,10 @@ public class DetectItem : MonoBehaviour
     [SerializeField] // Is this cumulative
     private bool flagsAreCumulative = false;
     private PropFlags cumulativeFlags;
+    [SerializeField]
+    private bool showRequiredFlags = true;
+    [SerializeField]
+    private bool showItemsCollectedHeader = true;
 
     [Header("Completion Variables")]
     [SerializeField] // Number of items to check for
@@ -45,6 +49,8 @@ public class DetectItem : MonoBehaviour
     private float cStayTime;
     [SerializeField] // Text displaying the reward
     private string rewardText;
+    [SerializeField]
+    private string goalText;
     [SerializeField] // Destroy items in volume when complete?
     private bool destroyItemsOnComplete = false;
     [SerializeField] // Destroy this when complete?
@@ -341,18 +347,21 @@ public class DetectItem : MonoBehaviour
                 }
             }
 
-            // Target flags, strikethrough if complete
-            foreach(PropFlags f in Enum.GetValues(typeof(PropFlags)))
+            if (showRequiredFlags)
             {
-                if (attributes.HasFlag(f) && !PropFlags.None.Equals(f))
+                // Target flags, strikethrough if complete
+                foreach(PropFlags f in Enum.GetValues(typeof(PropFlags)))
                 {
-                    if (cumulativeFlags.HasFlag(f))
+                    if (attributes.HasFlag(f) && !PropFlags.None.Equals(f))
                     {
-                        value += $"<s><color=#111>{f}</color></s>\n";
-                    }
-                    else
-                    {
-                        value += $"{f}\n";
+                        if (cumulativeFlags.HasFlag(f))
+                        {
+                            value += $"<s><color=#111>{f}</color></s>\n";
+                        }
+                        else
+                        {
+                            value += $"{f}\n";
+                        }
                     }
                 }
             }
@@ -365,16 +374,28 @@ public class DetectItem : MonoBehaviour
         }
         else
         {
-            // Number collected over total number
-            value += $"<u>Items Collected:</u> <b>{curItems}</b> of <b>{numItems}</b>\n";
-
-            // Target attributes of objects
-            value += "<u></u> \n";
-            foreach (PropFlags f in Enum.GetValues(typeof(PropFlags)))
+            if(goalText.Length > 0)
             {
-                if (attributes.HasFlag(f) && !PropFlags.None.Equals(f))
+                value += $"{goalText}\n\n";
+            }
+            if (showItemsCollectedHeader)
+            {
+                // Number collected over total number
+                value += $"<u>Items Collected:</u>";
+            }
+
+            value +=  $"<b>{curItems}</b> of <b>{numItems}</b>\n";
+
+            if (showRequiredFlags)
+            {
+                // Target attributes of objects
+                value += "<u></u> \n";
+                foreach (PropFlags f in Enum.GetValues(typeof(PropFlags)))
                 {
-                    value += $"{f}\n";   
+                    if (attributes.HasFlag(f) && !PropFlags.None.Equals(f))
+                    {
+                        value += $"{f}\n";   
+                    }
                 }
             }
 

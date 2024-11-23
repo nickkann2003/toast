@@ -89,12 +89,8 @@ public class StationManager : MonoBehaviour
     /// The player moves to a station upon clicking
     /// </summary>
     /// <param name="loc">The station being targeted to move to</param>
-    public void MoveToStation(Station loc, bool forwards = true)
+    public void MoveToStation(Station loc, bool forwards = true, bool disableMoveBackwards = false)
     {
-        //foreach(var i in playerLocation.interactables)
-        //{
-        //    i.GetComponent<IHighlightable>().
-        //}
         // Trigger to begin moving camera
         moveProgress = 0.0f;
         movingCam = true;
@@ -125,6 +121,11 @@ public class StationManager : MonoBehaviour
 
                 StationManager.instance.playerLocation.OnLeave();
             }
+        }
+
+        if (disableMoveBackwards)
+        {
+            playerPath.Clear();
         }
 
         // Update player's current location

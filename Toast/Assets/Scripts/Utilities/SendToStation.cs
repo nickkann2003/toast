@@ -13,8 +13,11 @@ public class SendToStation : MonoBehaviour
     [SerializeField]
     private Station targetStation;
 
+    [SerializeField]
+    private bool forceStayAtStation = false;
+
     public void TriggerSend()
     {
-        StationManager.instance.MoveToStation(targetStation);
+        StationManager.instance.MoveToStation(targetStation, disableMoveBackwards: forceStayAtStation);
     }
 }
