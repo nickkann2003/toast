@@ -57,8 +57,21 @@ public class Station : MonoBehaviour
     [SerializeField, Button]
     private void SetCameraPositionAndRotation() 
     {
-        cameraPos = transform.InverseTransformPoint(SceneView.GetAllSceneCameras()[0].transform.position);
-        cameraRotation = Quaternion.Euler(-transform.rotation.eulerAngles + transform.InverseTransformDirection(SceneView.GetAllSceneCameras()[0].transform.eulerAngles));
+        Camera c = SceneView.lastActiveSceneView.camera;
+        cameraPos = transform.InverseTransformPoint(c.transform.position);
+        cameraRotation = Quaternion.Euler(-transform.rotation.eulerAngles + transform.InverseTransformDirection(c.transform.eulerAngles));
+    }
+    [SerializeField, Button]
+    private void ViewCamera()
+    {
+        SceneView v = SceneView.lastActiveSceneView;
+        Camera c = v.camera;
+        c.transform.position = new Vector3(0, 0, 0);
+        v.pivot = transform.TransformPoint(cameraPos);
+        v.rotation = Quaternion.Euler(transform.TransformVector(cameraRotation.eulerAngles));
+        v.Repaint();
+        //c.transform.localPosition = cameraPos;
+        //c.transform.localRotation = cameraRotation;
     }
 #endif
 
