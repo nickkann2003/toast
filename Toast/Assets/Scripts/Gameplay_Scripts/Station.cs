@@ -117,7 +117,7 @@ public class Station : MonoBehaviour
     /// <summary>
     /// Calls necessary arrival functions for this station
     /// </summary>
-    public void OnArrive(bool forward)
+    public virtual void OnArrive(bool forward)
     {
         if (separateArriveAndReturn && !forward)
         {
@@ -136,7 +136,7 @@ public class Station : MonoBehaviour
     /// <summary>
     /// Calls necessary Leave functions for this station
     /// </summary>
-    public void OnLeave()
+    public virtual void OnLeave()
     {
         leave.Invoke();
         foreach (GameObject obj in stationSpecificHints)
