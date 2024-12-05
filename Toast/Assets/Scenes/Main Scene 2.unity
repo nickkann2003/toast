@@ -6289,6 +6289,7 @@ Transform:
   - {fileID: 396911677}
   - {fileID: 1564343964}
   - {fileID: 168588468}
+  - {fileID: 1400739278}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -36025,6 +36026,102 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cb03fd8a1162454a88446417654ce25, type: 3}
+--- !u!1001 &1400739277
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 262728155}
+    m_Modifications:
+    - target: {fileID: 2766759407674986520, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
+        type: 3}
+      propertyPath: nextStation
+      value: 
+      objectReference: {fileID: 29234282}
+    - target: {fileID: 5550356178177237827, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550356178177237827, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.467
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550356178177237827, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.452
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550356178177237827, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.455
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550356178177237827, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550356178177237827, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550356178177237827, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550356178177237827, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550356178177237827, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550356178177237827, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550356178177237827, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538634112873998220, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
+        type: 3}
+      propertyPath: m_Name
+      value: AS_TutorialFinish
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 709722a6e47fd5c49b3e83a5398d3c5d, type: 3}
+--- !u!4 &1400739278 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5550356178177237827, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1400739277}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1400739279 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2766759407674986520, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1400739277}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 200ac538edce4964dbd011c03e262faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1410022301
 GameObject:
   m_ObjectHideFlags: 0
@@ -36337,7 +36434,34 @@ MonoBehaviour:
     displays: []
     displaysUI: []
     complete: 0
-    available: 0
+    available: 1
+    displayOnNotepad: 1
+    destroyPaperOnCompletion: 1
+  - name: Tutorial 3
+    objectivesTitle: Tutorial
+    objectives:
+    - objectiveInfo: {fileID: 11400000, guid: e811e25c41d68334ab99bbd6003176ae, type: 2}
+      prerequisiteIds: 01000000
+      activatables: []
+      completionEvents:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1400739279}
+            m_TargetAssemblyTypeName: AnimatedStation, Assembly-CSharp
+            m_MethodName: StartAnimation
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    displays: []
+    displaysUI: []
+    complete: 0
+    available: 1
     displayOnNotepad: 1
     destroyPaperOnCompletion: 1
   objectiveToComplete: 0

@@ -166,6 +166,8 @@ public class Station : MonoBehaviour
         Matrix4x4 matrix = Matrix4x4.Translate(transform.TransformPoint(cameraPos)) * Matrix4x4.Rotate(Quaternion.Euler(eAngle + cameraRotation.eulerAngles));
         Gizmos.matrix = matrix;
         Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane * transform.lossyScale.x, Camera.main.nearClipPlane * transform.lossyScale.x, Camera.main.aspect);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(Vector3.zero, Vector3.forward * 10);
     }
 
 #if UNITY_EDITOR
