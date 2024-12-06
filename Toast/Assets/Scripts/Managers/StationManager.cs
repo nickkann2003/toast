@@ -68,7 +68,7 @@ public class StationManager : MonoBehaviour
         }
 
         // Camera tweening
-        if (movingCam)
+        if (true)
         {
             // playerLocation.cameraPos is used because's player's location has already been changed internally
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, playerLocation.camPosWorldCoords(), moveProgress);
