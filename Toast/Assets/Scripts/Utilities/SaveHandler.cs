@@ -36,6 +36,7 @@ public class SaveHandler : MonoBehaviour
     private int saveFileNameLocation = 0;
     private int objectiveDataLocation = 1;
     private int achievementDataLocation = 2;
+    private int tutorialPropDataLocation = 3;
 
     private string saveFileBaseFormat = "";
     private string singleFileBaseFormat = "";
@@ -128,9 +129,11 @@ public class SaveHandler : MonoBehaviour
         {
             string objectiveData = ObjectiveManager.instance.GetObjectiveStorageString();
             string achievementData = AchievementManager.instance.GetAchievementSaveString();
+            string tutorialPropData = PopUpTutorialManager.instance.GetTutorialPopUpSaveString();
 
             SaveObjectiveData(objectiveData);
             SaveAchievementData(achievementData);
+            SaveTutorialPropData(tutorialPropData);
         }
     }
 
@@ -154,6 +157,7 @@ public class SaveHandler : MonoBehaviour
 
             ObjectiveManager.instance.LoadObjectives(ReadObjectiveData());
             AchievementManager.instance.LoadAchievementSaveString(ReadAchievementData());
+            PopUpTutorialManager.instance.LoadCheckedPropSaveString(ReadTutorialPropData());
         }
     }
 
@@ -241,6 +245,23 @@ public class SaveHandler : MonoBehaviour
 
         return parsedDat[achievementDataLocation];
     }
+
+    public void SaveTutorialPropData(string tutorialPropData)
+    {
+        string allDat = GetCurrentFileInfo();
+        string[] parsedDat = allDat.Split(fileDataParser);
+        parsedDat[tutorialPropDataLocation] = tutorialPropData;
+        SetCurrentFileInfo(ArrayToFileData(parsedDat));
+    }
+
+    public string ReadTutorialPropData()
+    {
+         string allDat = GetCurrentFileInfo();
+        string[] parsedDat = allDat.Split(fileDataParser);
+
+        return parsedDat[tutorialPropDataLocation];
+    }
+
 
     /// <summary>
     /// Sets the save file path based on editor or not
