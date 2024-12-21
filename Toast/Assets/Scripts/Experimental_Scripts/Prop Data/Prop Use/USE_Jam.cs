@@ -30,6 +30,8 @@ public class USE_Jam : UseEffectSO
     private bool invokeEvents;
     [SerializeField, EnableIf("invokeEvents")]
     private PropIntGameEvent useEvent;
+    [SerializeField, EnableIf("invokeEvents")]
+    private PropIntGameEvent jamEvent;
 
     [SerializeField]
     private SimpleAudioEvent jamSplashEvent;
@@ -76,6 +78,7 @@ public class USE_Jam : UseEffectSO
             obj.transform.parent = hit.collider.gameObject.transform;
             obj.transform.GetChild(0).Rotate(new Vector3(0, 0, Random.Range(-30, 30) * 2), Space.Self);
             obj.GetComponentInChildren<Renderer>().material.color = config.Material.color;
+            jamEvent.RaiseEvent(newProp, 1);
             useEvent.RaiseEvent(newProp, 1);
 
             AudioManager.instance.PlayAudioEvent(jamSplashEvent);
