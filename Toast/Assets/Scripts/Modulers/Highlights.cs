@@ -117,7 +117,10 @@ public class Highlights : MonoBehaviour
             }
             foreach (Outline outline in outline)
             {
-                outline.enabled = false;
+                if(outline != null)
+                {
+                    outline.enabled = false;
+                }
             }
         }
     }

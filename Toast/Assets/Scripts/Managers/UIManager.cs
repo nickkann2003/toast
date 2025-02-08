@@ -306,6 +306,8 @@ public class UIManager : MonoBehaviour
         // Show achievement menu
         achievementMenu.SetActive(true);
 
+        PieManager.instance.ViewAchievements.RaiseEvent(new NewProp(), 1);
+
         // Hide pause menu
         pauseMenu.SetActive(false);
 
@@ -318,6 +320,7 @@ public class UIManager : MonoBehaviour
     public void CloseAchievementMenu()
     {
         achievementMenu?.SetActive(false);
+        PieManager.instance.ViewAchievements.RaiseEvent(new NewProp(), 1);
         SetPauseMenu();
         currentScreen = PauseScreen.pauseMenu;
     }

@@ -203,7 +203,7 @@ public class GameManager : MonoBehaviour
         curState= GameState.Pause;
         // Unlock cursor
         Cursor.lockState = CursorLockMode.None;
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
         raycaster.enabled= false;
         UIManager.SetPauseMenu();
     }
@@ -318,7 +318,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Once the camera movement is complete, set the timescale to 0
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
         UIManager.SetMainMain();
     }
 

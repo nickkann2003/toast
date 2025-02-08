@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
+  m_Name: 3_Toaster1
+  m_EditorClassIdentifier: 
+  objectiveName: Toaster
+  description: Toast 2 Bread
+  completeText: 
+  unavailableText: 
+  displayInNotepad: 0
+  requirements:
+  - targetAttributes: 536870913
+    hasExclusions: 0
+    excludeAttributes: 0
+    targetPropAttributes:
+    - {fileID: 11400000, guid: 81c8835632c92c9448e21b33860885de, type: 2}
+    excludePropAttributes: []
+    listener:
+      gameEvent: {fileID: 11400000, guid: e101c82c1dd11aa47985d3853517143f, type: 2}
+      response:
+        m_PersistentCalls:
+          m_Calls: []
+    goalName: Make Toast
+    goal: 2
+    exactValueGoal: 0
+    alwaysListening: 0
+    id: 0
+    listening: 1
+    isHighScore: 0
+    isCurrentScore: 0
+  sequentialRequirements: 1
+  id: 3
+  complete: 0
+  available: 1
+  successorComplete: 0

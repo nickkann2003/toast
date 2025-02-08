@@ -37,6 +37,7 @@ public class PieManager : MonoBehaviour
     public PropIntGameEvent SpreadObject;
     public PropIntGameEvent HoverObject;
     public PropIntGameEvent StopHover;
+    public PropIntGameEvent ViewAchievements;
     public PropIntGameEvent ExamineObject;
 
     // Singleton
@@ -47,5 +48,4 @@ public class PieManager : MonoBehaviour
     {
         instance = this;
     }
-
 }

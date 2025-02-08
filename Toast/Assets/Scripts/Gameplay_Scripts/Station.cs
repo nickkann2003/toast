@@ -57,8 +57,21 @@ public class Station : MonoBehaviour
     [SerializeField, Button]
     private void SetCameraPositionAndRotation() 
     {
-        cameraPos = transform.InverseTransformPoint(SceneView.GetAllSceneCameras()[0].transform.position);
-        cameraRotation = Quaternion.Euler(-transform.rotation.eulerAngles + transform.InverseTransformDirection(SceneView.GetAllSceneCameras()[0].transform.eulerAngles));
+        Camera c = SceneView.lastActiveSceneView.camera;
+        cameraPos = transform.InverseTransformPoint(c.transform.position);
+        cameraRotation = Quaternion.Euler(-transform.rotation.eulerAngles + transform.InverseTransformDirection(c.transform.eulerAngles));
+    }
+    [SerializeField, Button]
+    private void ViewCamera()
+    {
+        SceneView v = SceneView.lastActiveSceneView;
+        Camera c = v.camera;
+        c.transform.position = new Vector3(0, 0, 0);
+        v.pivot = transform.TransformPoint(cameraPos);
+        v.rotation = Quaternion.Euler(transform.TransformVector(cameraRotation.eulerAngles));
+        v.Repaint();
+        //c.transform.localPosition = cameraPos;
+        //c.transform.localRotation = cameraRotation;
     }
 #endif
 
@@ -104,7 +117,7 @@ public class Station : MonoBehaviour
     /// <summary>
     /// Calls necessary arrival functions for this station
     /// </summary>
-    public void OnArrive(bool forward)
+    public virtual void OnArrive(bool forward)
     {
         if (separateArriveAndReturn && !forward)
         {
@@ -123,7 +136,7 @@ public class Station : MonoBehaviour
     /// <summary>
     /// Calls necessary Leave functions for this station
     /// </summary>
-    public void OnLeave()
+    public virtual void OnLeave()
     {
         leave.Invoke();
         foreach (GameObject obj in stationSpecificHints)
@@ -153,6 +166,8 @@ public class Station : MonoBehaviour
         Matrix4x4 matrix = Matrix4x4.Translate(transform.TransformPoint(cameraPos)) * Matrix4x4.Rotate(Quaternion.Euler(eAngle + cameraRotation.eulerAngles));
         Gizmos.matrix = matrix;
         Gizmos.DrawFrustum(Vector3.zero, Camera.main.fieldOfView, Camera.main.farClipPlane * transform.lossyScale.x, Camera.main.nearClipPlane * transform.lossyScale.x, Camera.main.aspect);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(Vector3.zero, Vector3.forward * 10);
     }
 
 #if UNITY_EDITOR

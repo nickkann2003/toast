@@ -36,6 +36,8 @@ public class StationManager : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 1.0f;
 
+    private bool stationMovementLocked = false;
+
     // ------------------------------- Functions -------------------------------
     // EXTREMELY BASIC SINGLETON, SHOULD BE REPLACED LATER
     private void Awake()
@@ -51,7 +53,7 @@ public class StationManager : MonoBehaviour
 
         //backBounds = new Rect(0, 0, Screen.width, Screen.height / 10);
         MoveToStation(playerLocation);
-        moveSpeed= UIManager.instance.moveSpeedSlider.value;
+        moveSpeed = UIManager.instance.moveSpeedSlider.value;
     }
 
     // Update is called once per frame
@@ -66,7 +68,7 @@ public class StationManager : MonoBehaviour
         }
 
         // Camera tweening
-        if (movingCam)
+        if (true)
         {
             // playerLocation.cameraPos is used because's player's location has already been changed internally
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, playerLocation.camPosWorldCoords(), moveProgress);
@@ -75,13 +77,13 @@ public class StationManager : MonoBehaviour
             moveProgress += Time.deltaTime * moveSpeed;
 
             // Target reached, stop moving
-            if(moveProgress >= 1.0f)
+            if (moveProgress >= 1.0f)
             {
                 movingCam = false;
             }
         }
 
-      
+
     }
 
 
@@ -89,62 +91,67 @@ public class StationManager : MonoBehaviour
     /// The player moves to a station upon clicking
     /// </summary>
     /// <param name="loc">The station being targeted to move to</param>
-    public void MoveToStation(Station loc, bool forwards = true)
+    public void MoveToStation(Station loc, bool forwards = true, bool disableMoveBackwards = false)
     {
-        //foreach(var i in playerLocation.interactables)
-        //{
-        //    i.GetComponent<IHighlightable>().
-        //}
-        // Trigger to begin moving camera
-        moveProgress = 0.0f;
-        movingCam = true;
+        if (!stationMovementLocked)
+        {
+            // Trigger to begin moving camera
+            moveProgress = 0.0f;
+            movingCam = true;
 
-        // If station does not already exist in player's path, add it to stack
-        if (!playerPath.Contains(loc))
-        {
-            StationManager.instance.playerPath.Push(loc);
-        }
-        
-        // Enable collider before leaving
-        if(StationManager.instance.playerLocation != null)
-        {
-            if(StationManager.instance.playerLocation.clickableCollider != null && StationManager.instance.playerLocation != loc.parentLoc)
+            // If station does not already exist in player's path, add it to stack
+            if (!playerPath.Contains(loc))
             {
-                if(instance.playerLocation != loc.parentLoc)
-                {
-                    StationManager.instance.playerLocation.EnableColliders();
-                }    
-                
-                StationManager.instance.playerLocation.OnLeave();
-            }else if(StationManager.instance.playerLocation.clickableCollider && StationManager.instance.playerLocation.runLeaveWhenGoingToChildren)
+                StationManager.instance.playerPath.Push(loc);
+            }
+
+            // Enable collider before leaving
+            if (StationManager.instance.playerLocation != null)
             {
-                if (instance.playerLocation != loc.parentLoc)
+                if (StationManager.instance.playerLocation.clickableCollider != null && StationManager.instance.playerLocation != loc.parentLoc)
                 {
-                    StationManager.instance.playerLocation.EnableColliders();
+                    if (instance.playerLocation != loc.parentLoc)
+                    {
+                        StationManager.instance.playerLocation.EnableColliders();
+                    }
+
+                    StationManager.instance.playerLocation.OnLeave();
                 }
+                else if (StationManager.instance.playerLocation.clickableCollider && StationManager.instance.playerLocation.runLeaveWhenGoingToChildren)
+                {
+                    if (instance.playerLocation != loc.parentLoc)
+                    {
+                        StationManager.instance.playerLocation.EnableColliders();
+                    }
 
-                StationManager.instance.playerLocation.OnLeave();
+                    StationManager.instance.playerLocation.OnLeave();
+                }
             }
-        }
 
-        // Update player's current location
-        StationManager.instance.playerLocation = loc;
-        StationManager.instance.playerLocation.OnArrive(forwards);
-
-
-        loc.DisableColliders();
-
-        if (playerPath.Count > 1)
-        {
-            GameManager.Instance.UIManager.BackButtonPopup();
-            if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+            if (disableMoveBackwards)
             {
-                StationManager.instance.StationMoveBack();
+                playerPath.Clear();
             }
-        }
-        else
-        {
-            GameManager.Instance.UIManager.BackButtonPopdown();
+
+            // Update player's current location
+            StationManager.instance.playerLocation = loc;
+            StationManager.instance.playerLocation.OnArrive(forwards);
+
+
+            loc.DisableColliders();
+
+            if (playerPath.Count > 1)
+            {
+                GameManager.Instance.UIManager.BackButtonPopup();
+                if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+                {
+                    StationManager.instance.StationMoveBack();
+                }
+            }
+            else
+            {
+                GameManager.Instance.UIManager.BackButtonPopdown();
+            }
         }
     }
 
@@ -159,7 +166,7 @@ public class StationManager : MonoBehaviour
 
     private void MoveToStationRecursive(Station s)
     {
-        if(s.parentLoc != null)
+        if (s.parentLoc != null)
         {
             MoveToStationRecursive(s.parentLoc);
         }
@@ -171,30 +178,40 @@ public class StationManager : MonoBehaviour
     /// </summary>
     public void StationMoveBack()
     {
-        StationManager.instance.playerLocation.EnableColliders();
-
-
-        // No parent location exists, do stack manipulation
-        if (playerLocation.parentLoc == null)
+        if (!stationMovementLocked)
         {
-            if (playerPath.Count > 1)
+                if (playerLocation == ExamineManager.instance.examineStation)
+                {
+                    ExamineManager.instance.QuitExamining();
+                }
+    
+                StationManager.instance.playerLocation.EnableColliders();
+    
+    
+            // No parent location exists, do stack manipulation
+            if (playerLocation.parentLoc == null)
             {
-                playerPath.Pop();
-                MoveToStation(playerPath.Peek(), false);
+                if (playerPath.Count > 1)
+                {
+                    playerPath.Pop();
+                    MoveToStation(playerPath.Peek(), false);
+                }
+                   
+    
             }
-               
+            // Move back to parent
+            else
+            {
+                while (playerPath.Count > 0 &&
+                    playerPath.Peek() != playerLocation.parentLoc)
+                {
+                    playerPath.Pop();
+                }
+                MoveToStation(playerLocation.parentLoc, false);
+            }
 
         }
-        // Move back to parent
-        else
-        {
-            while (playerPath.Count > 0 &&
-                playerPath.Peek() != playerLocation.parentLoc)
-            {
-                playerPath.Pop();
-            }
-            MoveToStation(playerLocation.parentLoc, false);
-        }
+        
     }
 
     /// <summary>
@@ -203,5 +220,21 @@ public class StationManager : MonoBehaviour
     public void ChangeMoveSpeed()
     {
         moveSpeed = UIManager.instance.moveSpeedSlider.value;
+    }
+
+    /// <summary>
+    /// Locks the ability to move between stations
+    /// </summary>
+    public void LockStationMovement()
+    {
+        stationMovementLocked = true;
+    }
+
+    /// <summary>
+    /// Unlocks station movement, allowing movement between stations
+    /// </summary>
+    public void UnlockStationMovement()
+    {
+        stationMovementLocked = false;
     }
 }

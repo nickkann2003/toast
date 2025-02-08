@@ -120,6 +120,11 @@ public class Requirement
             {
                 current = value;
             }
+            else
+            {
+                // Was a null triggering event
+                current += value;
+            }
 
             ObjectiveManager.instance.UpdateText();
             return;
@@ -153,8 +158,8 @@ public class Requirement
             {
                 current += value;
             }
-        
-            if(!exactValueGoal) // If not [exact number type], don't allow overflow
+
+            if (!exactValueGoal) // If not [exact number type], don't allow overflow
             {
                 if(goal > 0)
                 {

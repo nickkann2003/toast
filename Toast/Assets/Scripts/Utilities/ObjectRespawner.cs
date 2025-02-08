@@ -19,6 +19,7 @@ public class ObjectRespawner : MonoBehaviour
     [Header("------------- Spawn Variables -------------")]
     [SerializeField] public bool waitForAll = false;
     [SerializeField] public bool autoRespawnItems = true;
+    private bool autoSpawning = false;
     [SerializeField] public bool spawnOnStart = true;
     [SerializeField] private GameObject spawnParent;
 
@@ -116,7 +117,7 @@ public class ObjectRespawner : MonoBehaviour
                 }
             }
 
-            if (empty && waitForAll)
+            if (empty && waitForAll && respawnCollider == null)
             {
                 foreach (RespawnableObject obj in objects)
                 {
