@@ -95,6 +95,8 @@ public class NewProp : MonoBehaviour
         get { return useEffects.Count; }
     }
 
+    public PropSO PropSO { get => propSO; set => propSO = value; }
+
 
     // Currently Toasting Checks
     private bool toasting = false;

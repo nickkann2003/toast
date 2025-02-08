@@ -151,23 +151,23 @@ public class GameManager : MonoBehaviour
                     PauseGame();
                 }
 
-                // Check if the player is holding down the 'J' key
-                if (Input.GetKey(KeyCode.J))
-                {
-                    // Enable the UI canvas if it's not already enabled
-                    if (!UIManager.objectiveOpened)
-                    {
-                        UIManager.OpenObjectiveNote();
-                    }
-                }
-                else
-                {
-                    // Disable the UI canvas if it's currently enabled
-                    if (UIManager.objectiveOpened)
-                    {
-                        UIManager.CloseObjectiveNote();
-                    }
-                }
+                //// Check if the player is holding down the 'J' key
+                //if (Input.GetKey(KeyCode.J))
+                //{
+                //    // Enable the UI canvas if it's not already enabled
+                //    if (!UIManager.objectiveOpened)
+                //    {
+                //        UIManager.OpenObjectiveNote();
+                //    }
+                //}
+                //else
+                //{
+                //    // Disable the UI canvas if it's currently enabled
+                //    if (UIManager.objectiveOpened)
+                //    {
+                //        UIManager.CloseObjectiveNote();
+                //    }
+                //}
                 break;
             case GameState.Pause:
                 if (Keyboard.current.escapeKey.wasPressedThisFrame)

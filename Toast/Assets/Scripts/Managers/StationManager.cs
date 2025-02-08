@@ -180,14 +180,14 @@ public class StationManager : MonoBehaviour
     {
         if (!stationMovementLocked)
         {
-            if (playerLocation == ExamineManager.instance.examineStation)
-            {
-                ExamineManager.instance.QuitExamining();
-            }
-
-            StationManager.instance.playerLocation.EnableColliders();
-
-
+                if (playerLocation == ExamineManager.instance.examineStation)
+                {
+                    ExamineManager.instance.QuitExamining();
+                }
+    
+                StationManager.instance.playerLocation.EnableColliders();
+    
+    
             // No parent location exists, do stack manipulation
             if (playerLocation.parentLoc == null)
             {
@@ -196,8 +196,8 @@ public class StationManager : MonoBehaviour
                     playerPath.Pop();
                     MoveToStation(playerPath.Peek(), false);
                 }
-
-
+                   
+    
             }
             // Move back to parent
             else
@@ -209,7 +209,9 @@ public class StationManager : MonoBehaviour
                 }
                 MoveToStation(playerLocation.parentLoc, false);
             }
+
         }
+        
     }
 
     /// <summary>

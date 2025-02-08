@@ -31,10 +31,18 @@ public class PropSO : ScriptableObject
     private PD_Rigidbody rigidbody;
 
     [SerializeField, BoxGroup("Prop Description")]
-    private string displayName;
+    private int propID;
 
     [SerializeField, BoxGroup("Prop Description")]
+    private string displayName;
+
+    [SerializeField, ResizableTextArea, BoxGroup("Prop Description")]
     private string description;
+    
+    public int PropID { get => propID; }
+
+    public string DisplayName { get => displayName; }
+    public string Description { get => description; }
 
     public void PopulateProp(NewProp newProp)
     {
