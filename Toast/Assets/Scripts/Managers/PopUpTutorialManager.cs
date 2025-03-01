@@ -31,11 +31,13 @@ public class PopUpTutorialManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        
+
     }
 
     public void ShowPopUpTutorial(NewProp prop, int count)
     {
+        if (prop == null || prop.PropSO == null)
+            return;
         if(checkedPropListIndex.Contains(prop.PropSO.PropID))
             return;
 
