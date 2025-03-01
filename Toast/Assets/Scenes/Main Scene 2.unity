@@ -1917,7 +1917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &38302966
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12074,7 +12074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &554426564
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21787,6 +21787,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 819621938}
     m_Modifications:
+    - target: {fileID: 66618314234273813, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 66618314234273813, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 66618314234273813, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 66618314234273813, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -75
+      objectReference: {fileID: 0}
     - target: {fileID: 994660152878932024, guid: 79bbdac269fb3484685f63b4b174e8e7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -21797,10 +21817,35 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 995659374}
+    - target: {fileID: 4722764242635152743, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722764242635152743, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722764242635152743, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722764242635152743, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -375
+      objectReference: {fileID: 0}
     - target: {fileID: 5366386428531671611, guid: 79bbdac269fb3484685f63b4b174e8e7,
         type: 3}
       propertyPath: m_Name
       value: MainMenuCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366386428531671611, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6718466831112045532, guid: 79bbdac269fb3484685f63b4b174e8e7,
         type: 3}
@@ -21922,6 +21967,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 995659374}
+    - target: {fileID: 8366320539643049588, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366320539643049588, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366320539643049588, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366320539643049588, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -225
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30732,7 +30797,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1191442003
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36749,12 +36814,17 @@ PrefabInstance:
     - target: {fileID: 5476473787394451228, guid: d53a25ba06b093e4fa3677cfa70b6e15,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -84
       objectReference: {fileID: 0}
     - target: {fileID: 6302088291265908506, guid: d53a25ba06b093e4fa3677cfa70b6e15,
         type: 3}
       propertyPath: m_fontSizeMax
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392460302466550722, guid: d53a25ba06b093e4fa3677cfa70b6e15,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8403846324990009548, guid: d53a25ba06b093e4fa3677cfa70b6e15,
         type: 3}
@@ -66212,6 +66282,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICanvas_Achievements
       objectReference: {fileID: 0}
+    - target: {fileID: 5202266392595956840, guid: 0a434a0a276479c429a5a6efb2156dd7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7352799203427572963, guid: 0a434a0a276479c429a5a6efb2156dd7,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -66649,6 +66724,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UICanvas_ObjectiveNote
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793074255076788302, guid: 550a0dc5e31dcbd4581e32f235a586ef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2683654725706004345, guid: 550a0dc5e31dcbd4581e32f235a586ef,
         type: 3}
@@ -67304,6 +67384,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UICanvas_Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 8258903926599493645, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8370078380186647288, guid: 0bb8f131a3c27284eb8bba8b7cc40bf8,
         type: 3}
