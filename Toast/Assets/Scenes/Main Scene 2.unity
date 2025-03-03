@@ -4681,7 +4681,7 @@ MonoBehaviour:
     - {fileID: 1652460431}
     displaysUI: []
     complete: 0
-    available: 0
+    available: 1
     displayOnNotepad: 1
     destroyPaperOnCompletion: 1
   - name: Toaster
@@ -24031,11 +24031,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 853e0de6c10a02948b6c894e9504e927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicClips:
+  daytimeMusic:
   - {fileID: 8300000, guid: 9677764d2cbddd64e8983bf8b4c41d29, type: 3}
   - {fileID: 8300000, guid: 20cd30e0760b4cc43bbf29fd42a3c305, type: 3}
   musicSource: {fileID: 1226861824}
-  volume: 0.7
+  volume: 0.2
+  songInterval: 2
+  songDurationRange: {x: 60, y: 120}
 --- !u!1 &910010506
 GameObject:
   m_ObjectHideFlags: 0
