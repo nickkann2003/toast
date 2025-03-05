@@ -44,7 +44,7 @@ public class MusicManager : MonoBehaviour
     private void Update()
     {
         float dt = Time.deltaTime;
-        float lp = Time.deltaTime / 2f;
+        float lp = Time.deltaTime / 6f;
         rSongDuration -= dt;
         if(rSongDuration < 0)
         {

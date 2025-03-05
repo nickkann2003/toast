@@ -258,7 +258,7 @@ public class GameManager : MonoBehaviour
         UIManager.CloseMainMenu();
         StationManager.instance.playerPath.Clear();
         StationManager.instance.MoveToStation(tutorialStation);
-        MusicManager.instance.SetMusicClip(1);
+        MusicManager.instance.SetMusicClip(2);
     }
 
     /// <summary>
