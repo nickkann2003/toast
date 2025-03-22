@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,9 @@ using static UnityEngine.ParticleSystem;
 public class ToastingBreadTest : MonoBehaviour
 {
     // ------------------------------- Variables -------------------------------
+    [Header("---SPECIAL---")]
+    [SerializeField] private bool endlessToasting;
+
     [Header("Unity Events")]
     [SerializeField] private UnityEvent startToasting;
     [SerializeField] private UnityEvent toasting;
@@ -136,7 +140,8 @@ public class ToastingBreadTest : MonoBehaviour
             }
 
             // Decrement time
-            timer -= Time.deltaTime;
+            if(!endlessToasting)
+                timer -= Time.deltaTime;
 
             // Reset if timer is 0
             if (timer <= 0)
