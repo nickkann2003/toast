@@ -75,6 +75,11 @@ public class AchievementManager : MonoBehaviour
     [SerializeField]
     private SimpleAudioEvent achievementUnlockEvent;
 
+    [Header("Achievement Tracking")]
+    public bool TrackingAchievements = true;
+
+
+
     // ------------------------------- Save Variables -------------------------------
     private string achievementSeparator = "~";
     private string spacer = "_";
@@ -84,6 +89,7 @@ public class AchievementManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        TrackingAchievements = true;
     }
 
     // Start is called before the first frame update
@@ -98,6 +104,12 @@ public class AchievementManager : MonoBehaviour
     /// <param name="achievement">The achievement to unlock</param>
     private void Unlock(Achievement achievement)
     {
+        // Not tracking achievements, don't do anything
+        if(!TrackingAchievements)
+        {
+            return; 
+        }
+
         if(!achievement.IsUnlocked)
         {
             // Unlock code goes here
@@ -232,6 +244,12 @@ public class AchievementManager : MonoBehaviour
 
     void IncrementAchievement(Achievement achievement, int increment = 1)
     {
+        // Not tracking achievements, don't do anything
+        if(!TrackingAchievements)
+        {
+            return;
+        }
+
         // Check that achievement has goal and that it is greater than 0
         if(achievement.HasNumericGoal && achievement.AchievementGoal > 0 && !achievement.IsUnlocked)
         {
@@ -282,7 +300,6 @@ public class AchievementManager : MonoBehaviour
             }
         }
     }
-
 
 
     void CreateMenu()
