@@ -89,7 +89,6 @@ public class AchievementManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        TrackingAchievements = true;
     }
 
     // Start is called before the first frame update
@@ -396,5 +395,14 @@ public class AchievementManager : MonoBehaviour
             }
         }
         UpdateProgressionToast();
+    }
+
+    /// <summary>
+    /// Sets whether or not achievement tracking should be active
+    /// </summary>
+    /// <param name="tracking"></param>
+    public void SetAchievementTracking(bool tracking)
+    {
+        TrackingAchievements = tracking;
     }
 }

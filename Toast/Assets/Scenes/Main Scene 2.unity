@@ -5226,6 +5226,18 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+          - m_Target: {fileID: 476747432}
+            m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
+            m_MethodName: SetAchievementTracking
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
     displays:
     - {fileID: 1652460431}
     displaysUI: []
@@ -5384,7 +5396,7 @@ MonoBehaviour:
     - {fileID: 1518105230}
     displaysUI: []
     complete: 0
-    available: 1
+    available: 0
     displayOnNotepad: 1
     destroyPaperOnCompletion: 1
   - name: Fridge
@@ -11677,7 +11689,7 @@ MonoBehaviour:
   progressionToastImage: {fileID: 1544594394178468782}
   achievementUnlockEvent: {fileID: 11400000, guid: 96b10d83c6119284399423bab421e0fc,
     type: 2}
-  TrackingAchievements: 1
+  TrackingAchievements: 0
 --- !u!114 &476747433
 MonoBehaviour:
   m_ObjectHideFlags: 0
