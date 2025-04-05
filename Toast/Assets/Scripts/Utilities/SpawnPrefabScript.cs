@@ -45,6 +45,7 @@ public class SpawnPrefabScript : MonoBehaviour
         if (automaticSpawning && gameObject.activeSelf)
         {
             cd -= Time.deltaTime;
+            remainingSpawnDuration -= Time.deltaTime;
             if (cd < 0f)
             {
                 if(spawnDuration > 0)
@@ -53,7 +54,6 @@ public class SpawnPrefabScript : MonoBehaviour
                     {
                         TriggerSpawn();
                         cd = spawnDelay;
-                        remainingSpawnDuration -= Time.deltaTime;
                     }
                 }
                 else
