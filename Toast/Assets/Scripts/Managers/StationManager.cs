@@ -24,7 +24,7 @@ public class StationManager : MonoBehaviour
     public static StationManager instance;
     public Station playerLocation;
 
-    public Stack<Station> playerPath;
+    public Stack<Station> playerPath = new Stack<Station>();
 
     // Transition Effect
     public TransitionEffect transitionMask;
@@ -49,8 +49,6 @@ public class StationManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerPath = new Stack<Station>();
-
         //backBounds = new Rect(0, 0, Screen.width, Screen.height / 10);
         MoveToStation(playerLocation);
         moveSpeed = UIManager.instance.moveSpeedSlider.value;
