@@ -156,7 +156,7 @@ public class ObjectRespawner : MonoBehaviour
             {
                 foreach (RespawnableObject r in objects)
                 {
-                    if (r.ObjRef.Equals(o))
+                    if (o == null || r.ObjRef.Equals(o))
                     {
                         if (!waitForAll || empty)
                         {

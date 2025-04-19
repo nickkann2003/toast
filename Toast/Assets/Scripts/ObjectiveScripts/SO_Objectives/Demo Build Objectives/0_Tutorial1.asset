@@ -18,6 +18,24 @@ MonoBehaviour:
   unavailableText: 
   displayInNotepad: 0
   requirements:
+  - targetAttributes: 0
+    hasExclusions: 0
+    excludeAttributes: 0
+    targetPropAttributes: []
+    excludePropAttributes: []
+    listener:
+      gameEvent: {fileID: 11400000, guid: 8822cdfe53c3a8a44b064e887185528d, type: 2}
+      response:
+        m_PersistentCalls:
+          m_Calls: []
+    goalName: Click the <b>Bell</b> to get bread <sprite=46>
+    goal: 1
+    exactValueGoal: 0
+    alwaysListening: 0
+    id: 0
+    listening: 1
+    isHighScore: 0
+    isCurrentScore: 0
   - targetAttributes: 536870912
     hasExclusions: 0
     excludeAttributes: 0
@@ -29,11 +47,11 @@ MonoBehaviour:
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Drag Bread <sprite=46>
+    goalName: Drag <b>Bread</b> <sprite=46>
     goal: 1
     exactValueGoal: 0
     alwaysListening: 0
-    id: 0
+    id: 1
     listening: 1
     isHighScore: 0
     isCurrentScore: 0
@@ -47,11 +65,11 @@ MonoBehaviour:
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Drag bread onto Plate <sprite=46>
+    goalName: Drag <b>Bread</b> onto <b>Plate</b> <sprite=46>
     goal: 1
     exactValueGoal: 0
     alwaysListening: 0
-    id: 1
+    id: 2
     listening: 1
     isHighScore: 0
     isCurrentScore: 0
