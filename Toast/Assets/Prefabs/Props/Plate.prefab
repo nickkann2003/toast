@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2685057866694324069}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7395367721526894479}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4916420717288286480}
   - component: {fileID: 9148254667911941135}
   - component: {fileID: 8137672992907595256}
-  - component: {fileID: 9046808449301169706}
+  - component: {fileID: 5360146303631121080}
   m_Layer: 7
   m_Name: Plate
   m_TagString: Untagged
@@ -112,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 4168674122169654064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6024865516263600983}
@@ -133,18 +133,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   propSO: {fileID: 11400000, guid: d7a83861a769d3a4b95906018cad53c8, type: 2}
   staticMesh: {fileID: 2685057866694324069}
-  iceConfig: {fileID: 11400000, guid: 7c993078cd8a8e7489c4ac452eb9f246, type: 2}
   propFlags: 0
   attributesList: []
   statsSystem:
     statList: []
-  toastType: {fileID: 11400000, guid: ed769c6990786b0428bfb3911e9f608b, type: 2}
-  sizeType: {fileID: 11400000, guid: e4f0d536b759caf468fa4f8a983f5ce2, type: 2}
-  massType: {fileID: 11400000, guid: 263ef62346c87a54e8aec3fc8b974bf7, type: 2}
-  inHandAtt: {fileID: 11400000, guid: 6cac2a5c331557a47a12f4ccee4105ba, type: 2}
   useEffects: []
-  baseMat: {fileID: 0}
-  PD_Rb: {fileID: 11400000, guid: 8103e42690c48e846b030fa357413095, type: 2}
   createObjectEvent: {fileID: 0}
   thawObjectEvent: {fileID: 0}
   toastObjectEvent: {fileID: 0}
@@ -195,8 +188,8 @@ MonoBehaviour:
     type: 2}
   isHighlightedEnabled: 1
   outline: []
---- !u!65 &9046808449301169706
-BoxCollider:
+--- !u!64 &5360146303631121080
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -213,6 +206,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.7, y: 0.05, z: 0.7}
-  m_Center: {x: 0, y: 0.025, z: 0}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 808474172911093344, guid: 7b961fe625a1ceb4985559c9d923f5d9, type: 3}

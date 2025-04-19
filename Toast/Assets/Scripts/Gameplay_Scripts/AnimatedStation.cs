@@ -28,6 +28,7 @@ public class AnimatedStation : Station
     public void AnimationOver()
     {
         StationManager.instance.UnlockStationMovement();
+        StationManager.instance.playerPath.Clear();
         StationManager.instance.MoveToStation(nextStation);
     }
 
