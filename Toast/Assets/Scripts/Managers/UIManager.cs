@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject achievementMenu;
     [SerializeField] private GameObject notificationBanner;
     [SerializeField] private GameObject creditsMenu;
+    [SerializeField] private Station fileSelectionStation;
 
     public bool objectiveOpened = false;
     private PauseScreen currentScreen = PauseScreen.none;
@@ -41,6 +42,9 @@ public class UIManager : MonoBehaviour
     public bool backFromMainMenu = true;
 
     public static UIManager instance;
+
+    [Header("Physical File Selection")]
+    [SerializeField] private List<GameObject> saveSlots;
 
     // ------------------------------- Functions -------------------------------
     private void Awake()
@@ -261,13 +265,17 @@ public class UIManager : MonoBehaviour
         currentScreen = PauseScreen.none;
     }
 
+#region File Selection
     /// <summary>
     /// Opens the file select menu
     /// </summary>
     public void OpenFileSelectMenu()
     {
-        fileSelectMenu.SetActive(true);
+        //fileSelectMenu.SetActive(true);
         currentScreen = PauseScreen.fileSelect;
+
+        // Move to the physical file selection stations
+        StationManager.instance.MoveToStation(fileSelectionStation);
     }
 
     /// <summary>
@@ -294,6 +302,15 @@ public class UIManager : MonoBehaviour
     {
         saveFileNameMenu?.SetActive(false);
     }
+
+    public void AddNewSaveFile(int fileIndex)
+    {
+        saveSlots[fileIndex].SetActive(true);
+    }
+
+#endregion
+
+#region Achievement
 
     /// <summary>
     /// Opens the achievement menu
@@ -324,4 +341,5 @@ public class UIManager : MonoBehaviour
         SetPauseMenu();
         currentScreen = PauseScreen.pauseMenu;
     }
+#endregion
 }
