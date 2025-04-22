@@ -26,7 +26,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject achievementMenu;
     [SerializeField] private GameObject notificationBanner;
     [SerializeField] private GameObject creditsMenu;
-    [SerializeField] private Station fileSelectionStation;
 
     public bool objectiveOpened = false;
     private PauseScreen currentScreen = PauseScreen.none;
@@ -44,7 +43,11 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     [Header("Physical File Selection")]
-    [SerializeField] private List<GameObject> saveSlots;
+
+    [SerializeField] private Station fileSelectionStation;
+    [SerializeField] private List<GameObject> saveSlots_Bread;
+    [SerializeField] private List<GameObject> saveSlotButton_Blackframe;
+    [SerializeField] private List<Station> saveSlotsStations;
 
     // ------------------------------- Functions -------------------------------
     private void Awake()
@@ -303,9 +306,25 @@ public class UIManager : MonoBehaviour
         saveFileNameMenu?.SetActive(false);
     }
 
+    /// <summary>
+    /// Will be called when the saveslot black frame is clicked
+    /// </summary>
+    /// <param name="fileIndex">Which slot is clicked</param>
     public void AddNewSaveFile(int fileIndex)
     {
-        saveSlots[fileIndex].SetActive(true);
+        saveSlotButton_Blackframe[fileIndex].SetActive(false);
+        saveSlots_Bread[fileIndex].SetActive(true);
+    }
+
+    public void MoveToFileSlotStation(int fileIndex)
+    {
+        StationManager.instance.MoveToStation(saveSlotsStations[fileIndex]);
+    }
+
+    public void BackToMainFileSelectStation()
+    {
+        // Move to the physical file selection stations
+        StationManager.instance.MoveToStation(fileSelectionStation);
     }
 
 #endregion

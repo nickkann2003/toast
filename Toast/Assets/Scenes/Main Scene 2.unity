@@ -28397,6 +28397,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &882579591 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6999487180720352372, guid: aa91b14ae9d884ce79f38c7256d9726b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7467879706770550418}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ff63f25d1ab4344b3bd1f858dfaec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &882707492
 GameObject:
   m_ObjectHideFlags: 0
@@ -28537,6 +28549,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &882902434 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3231534491899293441, guid: aa91b14ae9d884ce79f38c7256d9726b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7467879706770550418}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &882989179
 GameObject:
   m_ObjectHideFlags: 0
@@ -31267,6 +31285,16 @@ MonoBehaviour:
   volumeSlider: {fileID: 1090905803}
   moveSpeedSlider: {fileID: 633002227}
   backFromMainMenu: 1
+  fileSelectionStation: {fileID: 1981205981}
+  saveSlots_Bread:
+  - {fileID: 1927222072}
+  - {fileID: 882902434}
+  saveSlotButton_Blackframe:
+  - {fileID: 1346474045}
+  - {fileID: 1277581195}
+  saveSlotsStations:
+  - {fileID: 882579591}
+  - {fileID: 0}
 --- !u!4 &995659375
 Transform:
   m_ObjectHideFlags: 0
@@ -39704,6 +39732,12 @@ MonoBehaviour:
       m_Calls: []
   doorOpen: {fileID: 0}
   doorClose: {fileID: 0}
+--- !u!1 &1277581195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6017460555717678170, guid: aa91b14ae9d884ce79f38c7256d9726b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7467879706770550418}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1278790837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40918,6 +40952,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331918404}
   m_CullTransparentMesh: 1
+--- !u!1 &1346474045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4619252123058461102, guid: aa91b14ae9d884ce79f38c7256d9726b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7467879706770550418}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1358130131
 GameObject:
   m_ObjectHideFlags: 0
@@ -66285,6 +66325,12 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: -2
   m_TargetDisplay: 0
+--- !u!1 &1927222072 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5513354079241895907, guid: aa91b14ae9d884ce79f38c7256d9726b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7467879706770550418}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1932192270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67785,6 +67831,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.58900386, y: 0.49160242, z: 0.8653136}
   m_Center: {x: -0.22178307, y: 1.9860721, z: -0.045675237}
+--- !u!114 &1981205981 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8311707431139501111, guid: aa91b14ae9d884ce79f38c7256d9726b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7467879706770550418}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ff63f25d1ab4344b3bd1f858dfaec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1990150019
 GameObject:
   m_ObjectHideFlags: 0
@@ -77366,6 +77424,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: New Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 1494832734085182187, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: trigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494832734085182187, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494832734085182187, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 995659374}
+    - target: {fileID: 1494832734085182187, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddNewSaveFile
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494832734085182187, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494832734085182187, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1878910092121158009, guid: aa91b14ae9d884ce79f38c7256d9726b,
         type: 3}
       propertyPath: m_RootOrder
@@ -77421,11 +77509,71 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3600024381494968883, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: trigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600024381494968883, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600024381494968883, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 995659374}
+    - target: {fileID: 3600024381494968883, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddNewSaveFile
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600024381494968883, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600024381494968883, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4619252123058461102, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: m_Name
+      value: FileAdd_Blackframe_Button1
+      objectReference: {fileID: 0}
     - target: {fileID: 4897234374555837094, guid: aa91b14ae9d884ce79f38c7256d9726b,
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 995659374}
+    - target: {fileID: 5426061217322606868, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426061217322606868, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 995659374}
+    - target: {fileID: 5426061217322606868, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MoveToFileSlotStation
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513354079241895907, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017460555717678170, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: m_Name
+      value: FileAdd_Blackframe_Button1 (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 6220764487012424803, guid: aa91b14ae9d884ce79f38c7256d9726b,
         type: 3}
       propertyPath: leverTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
