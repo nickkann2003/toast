@@ -247,9 +247,13 @@ public class Station : MonoBehaviour
     /// </summary>
     public void DisableColliders()
     {
-        foreach(Collider c in myClickableColliders)
+        if(myClickableColliders != null)
         {
-            c.enabled = false;
+        foreach(Collider c in myClickableColliders)
+            {
+                if(c != null)
+                    c.enabled = false;
+            }
         }
     }
 

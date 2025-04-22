@@ -10,54 +10,52 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: 2_Tutorial3
+  m_Name: 18_Tutorial2.5
   m_EditorClassIdentifier: 
-  objectiveName: Tutorial
-  description: Make and Eat Toast!
-  completeText: Toast eaten!
-  unavailableText: 
-  displayInNotepad: 0
+  objectiveName: Navigating Stations
+  description: 
+  completeText: 
+  unavailableText: ???
+  displayInNotepad: 1
   requirements:
-  - targetAttributes: 536870913
+  - targetAttributes: 0
     hasExclusions: 0
     excludeAttributes: 0
-    targetPropAttributes:
-    - {fileID: 11400000, guid: 81c8835632c92c9448e21b33860885de, type: 2}
+    targetPropAttributes: []
     excludePropAttributes: []
     listener:
-      gameEvent: {fileID: 11400000, guid: e101c82c1dd11aa47985d3853517143f, type: 2}
+      gameEvent: {fileID: 11400000, guid: 95a1be862c1dbd3409b3f5fd4ac7cb4c, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Make Toast
-    goal: 1
+    goalName: Press all the <b>Buttons</b>
+    goal: 6
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
     listening: 1
     isHighScore: 0
     isCurrentScore: 0
-  - targetAttributes: 536870913
+  - targetAttributes: 0
     hasExclusions: 0
     excludeAttributes: 0
-    targetPropAttributes:
-    - {fileID: 11400000, guid: 81c8835632c92c9448e21b33860885de, type: 2}
+    targetPropAttributes: []
     excludePropAttributes: []
     listener:
-      gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
+      gameEvent: {fileID: 11400000, guid: f7d211695a9b0e04a886c44b82000681, type: 2}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Eat Toast
+    goalName: Press the <b>Big Button</b>
     goal: 1
     exactValueGoal: 0
     alwaysListening: 0
     id: 1
-    listening: 0
+    listening: 1
     isHighScore: 0
     isCurrentScore: 0
   sequentialRequirements: 1
-  id: 2
-  complete: 0
+  id: 18
+  complete: 1
   available: 1
   successorComplete: 0
