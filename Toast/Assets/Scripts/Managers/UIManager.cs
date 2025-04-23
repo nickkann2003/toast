@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     [Header("Menu References")]
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private Station mainMenuStation;
     [SerializeField] private GameObject settingMenu;
     [SerializeField] private GameObject objectiveNote;
     [SerializeField] private GameObject fileSelectMenu;
@@ -274,7 +275,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void OpenFileSelectMenu()
     {
-        //fileSelectMenu.SetActive(true);
+        fileSelectMenu.SetActive(true);
         currentScreen = PauseScreen.fileSelect;
 
         // Move to the physical file selection stations
@@ -287,6 +288,7 @@ public class UIManager : MonoBehaviour
     public void CloseFileSelectMenu()
     {
         fileSelectMenu?.SetActive(false);
+        StationManager.instance.MoveToStation(mainMenuStation);
     }
 
     /// <summary>
