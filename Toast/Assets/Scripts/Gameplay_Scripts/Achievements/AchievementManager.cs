@@ -61,6 +61,8 @@ public class AchievementManager : MonoBehaviour
     [SerializeField]
     private Animator spinningBreadAnimator;
     [SerializeField]
+    private Animator newAchievementPopup;
+    [SerializeField]
     TextMeshProUGUI bannerText;
 
     [Header("Achievement Progress Text")]
@@ -320,13 +322,16 @@ public class AchievementManager : MonoBehaviour
     void PlayNotification(Achievement achievement)
     {
         // Change text
-        bannerText.text = $"\"{achievement.AchievementName}\" Unlocked - Click to view achievements";
+        //bannerText.text = $"\"{achievement.AchievementName}\" Unlocked - Click to view achievements";
+        bannerText.text = $"\n\"{achievement.AchievementName}\"";
+
         // Play a sound here
 
         //
         // Show banner and start timer
-        bannerAnimator.SetTrigger("TriggerAnimateIn");
-        spinningBreadAnimator.SetTrigger("Start");
+        newAchievementPopup.SetTrigger("animate");
+        //bannerAnimator.SetTrigger("TriggerAnimateIn");
+        //spinningBreadAnimator.SetTrigger("Start");
     }
 
     /// <summary>
