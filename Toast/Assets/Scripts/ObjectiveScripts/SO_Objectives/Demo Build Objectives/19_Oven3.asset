@@ -10,27 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13dd003522fd8764eac1c74566c7f9db, type: 3}
-  m_Name: 7_Oven1
+  m_Name: 19_Oven3
   m_EditorClassIdentifier: 
   objectiveName: Oven
   description: 
   completeText: 
-  unavailableText: Complete the Toaster first!
+  unavailableText: 
   displayInNotepad: 0
   requirements:
   - targetAttributes: 0
     hasExclusions: 0
     excludeAttributes: 0
-    targetPropAttributes:
-    - {fileID: 11400000, guid: bbd5aaa18dace3f42971001a1a94ac56, type: 2}
+    targetPropAttributes: []
     excludePropAttributes: []
     listener:
-      gameEvent: {fileID: 11400000, guid: e101c82c1dd11aa47985d3853517143f, type: 2}
+      gameEvent: {fileID: 0}
       response:
         m_PersistentCalls:
           m_Calls: []
-    goalName: Bake Toast
-    goal: 25
+    goalName: Light enough Bread on Fire to Burn Down The House
+    goal: 0
     exactValueGoal: 0
     alwaysListening: 0
     id: 0
@@ -38,7 +37,7 @@ MonoBehaviour:
     isHighScore: 0
     isCurrentScore: 0
   sequentialRequirements: 1
-  id: 7
+  id: 19
   complete: 0
   available: 1
   successorComplete: 0
