@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject achievementMenu;
     [SerializeField] private GameObject notificationBanner;
     [SerializeField] private GameObject creditsMenu;
+    [SerializeField] private Station physicalMenu_CloseStation;
 
     public bool objectiveOpened = false;
     private PauseScreen currentScreen = PauseScreen.none;
@@ -42,7 +43,7 @@ public class UIManager : MonoBehaviour
     public bool backFromMainMenu = true;
 
     public static UIManager instance;
-
+    
     [Header("Physical File Selection")]
 
     [SerializeField] private Station fileSelectionStation;
@@ -269,7 +270,27 @@ public class UIManager : MonoBehaviour
         currentScreen = PauseScreen.none;
     }
 
+#region Main Menu
+    /// This will be called in the animation signal
+    public void MoveToCloseMainMenu()
+    {
+          // Move to the physical file selection stations
+        StationManager.instance.MoveToStation(physicalMenu_CloseStation);
+    }
+#endregion
+
 #region File Selection
+    private bool selectFile = false;
+    // Demo Version Remove the file selection
+    public void DemoSkipFileSelection()
+    {
+        if(selectFile) return;
+        selectFile = true;
+        SaveHandler.instance.SetCurrentSaveFileByID(0);
+        SaveHandler.instance.LoadSaveFile();
+        SaveHandler.instance.SetSaveFileName("DEMO");
+    }
+
     /// <summary>
     /// Opens the file select menu
     /// </summary>

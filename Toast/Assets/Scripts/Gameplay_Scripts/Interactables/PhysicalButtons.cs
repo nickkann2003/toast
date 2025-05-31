@@ -85,6 +85,7 @@ public class PhysicalButtons : MonoBehaviour
     private void OnMouseDown()
     {
         Interact();
+        
     }
 
     // On release, activate if on-up

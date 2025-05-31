@@ -118,8 +118,6 @@ public class GameManager : MonoBehaviour
         introAnimation.SetTrigger("Intro");
         introBreadAnimation.SetTrigger("Intro");
 
-
-
         // Move to the physical stations
         StationManager.instance.MoveToStation(mainMenuStation);
     }
