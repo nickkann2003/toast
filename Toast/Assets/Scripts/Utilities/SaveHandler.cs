@@ -26,6 +26,9 @@ public class SaveHandler : MonoBehaviour
     [SerializeField]
     public int numSaveFiles = 3;
 
+    [SerializeField]
+    public bool demo = false;
+
     private int currentSaveFile = 0;
     private string currentSaveFileName = string.Empty;
 
@@ -154,10 +157,19 @@ public class SaveHandler : MonoBehaviour
             UIManager.instance.CloseFileNamingMenu();
             UIManager.instance.CloseFileSelectMenu();
             GameManager.Instance.MainMenuToTutorial();
+            if (demo)
+            {
+                ObjectiveManager.instance.LoadObjectives("");
+                AchievementManager.instance.LoadAchievementSaveString("");
+                PopUpTutorialManager.instance.LoadCheckedPropSaveString("");
+            }
+            else
+            {
+                ObjectiveManager.instance.LoadObjectives(ReadObjectiveData());
+                AchievementManager.instance.LoadAchievementSaveString(ReadAchievementData());
+                PopUpTutorialManager.instance.LoadCheckedPropSaveString(ReadTutorialPropData());
+            }
 
-            ObjectiveManager.instance.LoadObjectives(ReadObjectiveData());
-            AchievementManager.instance.LoadAchievementSaveString(ReadAchievementData());
-            PopUpTutorialManager.instance.LoadCheckedPropSaveString(ReadTutorialPropData());
         }
     }
 
