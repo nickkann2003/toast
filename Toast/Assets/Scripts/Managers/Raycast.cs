@@ -148,10 +148,12 @@ public class Raycast : MonoBehaviour
 
             StartDragging();
         }
+        /*
         if (Input.GetButtonDown("View"))
         {
             ViewRaycast();
         }
+        */
 
         // OBJECT EAT DETECTION
         if (Input.GetButtonDown("Use") && !noUse)
@@ -213,6 +215,7 @@ public class Raycast : MonoBehaviour
     /// <summary>
     /// Triggers the examine manager on the hovered item
     /// </summary>
+    /*
     void ViewRaycast()
     {
         if (dragging && selectGO.GetComponent<NewProp>() != null)
@@ -246,6 +249,7 @@ public class Raycast : MonoBehaviour
             return;
         }
     }
+    */
 
     /// <summary>
     /// Sends a ray and gets current item

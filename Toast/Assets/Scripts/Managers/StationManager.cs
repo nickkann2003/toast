@@ -178,10 +178,12 @@ public class StationManager : MonoBehaviour
     {
         if (!stationMovementLocked)
         {
+                /*
                 if (playerLocation == ExamineManager.instance.examineStation)
                 {
                     ExamineManager.instance.QuitExamining();
                 }
+                */
     
                 StationManager.instance.playerLocation.EnableColliders();
     

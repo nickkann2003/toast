@@ -132,11 +132,11 @@ public class SaveHandler : MonoBehaviour
         {
             string objectiveData = ObjectiveManager.instance.GetObjectiveStorageString();
             string achievementData = AchievementManager.instance.GetAchievementSaveString();
-            string tutorialPropData = PopUpTutorialManager.instance.GetTutorialPopUpSaveString();
+            //string tutorialPropData = PopUpTutorialManager.instance.GetTutorialPopUpSaveString();
 
             SaveObjectiveData(objectiveData);
             SaveAchievementData(achievementData);
-            SaveTutorialPropData(tutorialPropData);
+            //SaveTutorialPropData(tutorialPropData);
         }
     }
 
@@ -161,13 +161,13 @@ public class SaveHandler : MonoBehaviour
             {
                 ObjectiveManager.instance.LoadObjectives("");
                 AchievementManager.instance.LoadAchievementSaveString("");
-                PopUpTutorialManager.instance.LoadCheckedPropSaveString("");
+                //PopUpTutorialManager.instance.LoadCheckedPropSaveString("");
             }
             else
             {
                 ObjectiveManager.instance.LoadObjectives(ReadObjectiveData());
                 AchievementManager.instance.LoadAchievementSaveString(ReadAchievementData());
-                PopUpTutorialManager.instance.LoadCheckedPropSaveString(ReadTutorialPropData());
+                //PopUpTutorialManager.instance.LoadCheckedPropSaveString(ReadTutorialPropData());
             }
 
         }
