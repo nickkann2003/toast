@@ -105,10 +105,14 @@ public class FireEndingManager : MonoBehaviour
 
             // Raise event to trigger achievement;
             endingEvent.RaiseEvent();
+            endingTrigger.Invoke();
+            smokiness = 0;
+            smokeRate = 0f;
+            
 
             if (gameManager != null)
             {
-                gameManager.LoadGame(0);
+                //gameManager.LoadGame(0);
             }
         }
         else if (smokiness >= fireEndingThreshold * .85)
@@ -125,7 +129,7 @@ public class FireEndingManager : MonoBehaviour
             {
                 lightEnabled = !lightEnabled;
                 lightTimer = .75f;
-                AudioManager.instance.PlayOneShotSound(AudioManager.instance.fireAlarm);
+                //AudioManager.instance.PlayOneShotSound(AudioManager.instance.fireAlarm);
 
             }
             if (redLight != null)
