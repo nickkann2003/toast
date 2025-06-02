@@ -204,18 +204,21 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void OpenSettingMenu()
     {
-        if(mainMenu.activeSelf)
+        if(currentScreen != PauseScreen.optionsMenu)
         {
-            backFromMainMenu = true;
+            if(currentScreen != PauseScreen.pauseMenu)
+            {
+                backFromMainMenu = true;
+            }
+            else
+            {
+                backFromMainMenu = false;
+            }
+            settingMenu.SetActive(true);
+            mainMenu.SetActive(false);
+            pauseMenu.SetActive(false);
+            currentScreen = PauseScreen.optionsMenu;
         }
-        else
-        {
-            backFromMainMenu = false;
-        }
-        settingMenu.SetActive(true);
-        mainMenu.SetActive(false);
-        pauseMenu.SetActive(false);
-        currentScreen = PauseScreen.optionsMenu;
     }
 
     /// <summary>
@@ -227,12 +230,14 @@ public class UIManager : MonoBehaviour
         if (backFromMainMenu)
         {
             mainMenu.SetActive(true);
+            currentScreen = PauseScreen.none;
         }
         else
         {
-            pauseMenu.SetActive(true);
+            SetPauseMenu();
+            currentScreen = PauseScreen.pauseMenu;
         }
-        currentScreen = PauseScreen.none;
+        
     }
 
     /// <summary>
