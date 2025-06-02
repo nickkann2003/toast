@@ -375,6 +375,7 @@ public class AchievementManager : MonoBehaviour
     public void LoadAchievementSaveString(string data)
     {
         SortAchievementsById();
+        ResetAllAchievements();
         unlockedAchievements = new List<Achievement>();
         string[] allAch = data.Split(achievementSeparator);
         foreach(string a in allAch)
@@ -409,5 +410,17 @@ public class AchievementManager : MonoBehaviour
     public void SetAchievementTracking(bool tracking)
     {
         TrackingAchievements = tracking;
+    }
+
+    /// <summary>
+    /// Resets progress on all achievements, used when loading or unloading the scene
+    /// </summary>
+    private void ResetAllAchievements()
+    {
+        foreach(Achievement a in achievements)
+        {
+            a.AchievementProgress = 0;
+            a.IsUnlocked = false;
+        }
     }
 }
