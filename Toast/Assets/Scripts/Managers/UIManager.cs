@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject notificationBanner;
     [SerializeField] private GameObject creditsMenu;
     [SerializeField] private Station physicalMenu_CloseStation;
+    [SerializeField] private Station physicalMenu_CreditStation;
 
     public bool objectiveOpened = false;
     private PauseScreen currentScreen = PauseScreen.none;
@@ -239,18 +240,21 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void OpenCreditsMenu()
     {
-        if (mainMenu.activeSelf)
-        {
-            backFromMainMenu = true;
-        }
-        else
-        {
-            backFromMainMenu = false;
-        }
-        creditsMenu.SetActive(true);
-        mainMenu.SetActive(false);
-        pauseMenu.SetActive(false);
-        currentScreen = PauseScreen.credits;
+        // Move to the physical credit page
+        StationManager.instance.MoveToStation(physicalMenu_CreditStation);
+
+        // if (mainMenu.activeSelf)
+        // {
+        //     backFromMainMenu = true;
+        // }
+        // else
+        // {
+        //     backFromMainMenu = false;
+        // }
+        // creditsMenu.SetActive(true);
+        // mainMenu.SetActive(false);
+        // pauseMenu.SetActive(false);
+        // currentScreen = PauseScreen.credits;
     }
 
     /// <summary>
