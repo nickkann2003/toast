@@ -117,7 +117,12 @@ public class AchievementManager : MonoBehaviour
             achievement.IsUnlocked = true;
             Debug.Log("Achievement Unlocked: " + achievement.AchievementName + ": " + achievement.Description);
             unlockedAchievements.Add(achievement);
-            achievement.MenuSquare.displayImage.sprite = achievement.MenuSquare.unlockedSprite;
+
+            achievement.MenuSquare.displayImage.sprite = 
+                achievement.HasNumericGoal
+                ? achievement.MenuSquare.progressedUlockedSprite
+                : achievement.MenuSquare.unlockedSprite;
+                
             PlayNotification(achievement);
             UpdateProgressionToast();
             AudioManager.instance.PlayAudioEvent(achievementUnlockEvent);
