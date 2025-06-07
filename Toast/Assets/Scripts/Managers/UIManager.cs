@@ -37,6 +37,8 @@ public class UIManager : MonoBehaviour
     public UnityEngine.UI.Button backButton;
     public Button objectiveButton;
     public Animator backButtonAni;
+    [SerializeField]
+    public Slider musicVolumeSlider;
     public Slider volumeSlider;
     public Slider moveSpeedSlider;
     private bool backButtonOnScreen = false;
