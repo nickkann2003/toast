@@ -101,4 +101,9 @@ public class MusicManager : MonoBehaviour
         musicSource.Play();
         rSongDuration = Random.Range(songDurationRange.x, songDurationRange.y);
     }
+
+    public void SetVolume()
+    {
+        volume = 0.3f * UIManager.instance.musicVolumeSlider.value;
+    }
 }

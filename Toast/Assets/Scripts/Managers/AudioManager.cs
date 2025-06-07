@@ -107,7 +107,7 @@ public class AudioManager : MonoBehaviour
 
         // example 1
 
-        audioPlayer.volume = volume *volumeMultiplier;
+        audioPlayer.volume = volume * volumeMultiplier;
         audioPlayer.PlayDelayed(delay);
         audioPlayer.clip = soundToPlay;
         audioPlayer.Play();
@@ -121,12 +121,17 @@ public class AudioManager : MonoBehaviour
     {
         volumeMultiplier = UIManager.instance.volumeSlider.value;
         audioPlayer.volume = volumeMultiplier;
+    }
+
+    public void VolumeSample()
+    {
         audioPlayer.PlayOneShot(eatingBread);
     }
 
     public void PlayAudioEvent(SimpleAudioEvent audioEvent)
     {
         iterator = (iterator + 1) % 10;
+        eventSources[iterator].volume = volumeMultiplier;
         audioEvent.Play(eventSources[iterator]);
     }
 }
