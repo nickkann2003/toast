@@ -15,6 +15,12 @@ public class Lever : MonoBehaviour
     private Vector3 mOffset;
     private float mZCoord;
 
+    [Header("---------- Grab Events ----------")]
+    [SerializeField]
+    private UnityEvent dragStartEvent;
+    [SerializeField]
+    private UnityEvent dragEndEvent;
+
     [Header("------------- Lever Variables ------------")]
     public float maxHeight;
     public float minHeight;
@@ -112,6 +118,8 @@ public class Lever : MonoBehaviour
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 
         mOffset = transform.position - GetMouseWorldPos();
+
+        dragStartEvent.Invoke();
     }
 
     // On mouse up, clear values
@@ -120,6 +128,7 @@ public class Lever : MonoBehaviour
         interpolateAmount = 1 - (ConvertToLocalPos(transform.position).y - minHeight) / (maxHeight - minHeight);
         interpolationSpeed = (maxSpeedInterpolation - baseSpeedInterpolation) * interpolateAmount + baseSpeedInterpolation;
         mouse = false;
+        dragEndEvent.Invoke();
     }
 
     // On drag, cap at ends and calculate percent
