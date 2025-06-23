@@ -7,12 +7,16 @@ public class CarryVolume : MonoBehaviour
     [SerializeField]
     Carrier carrierObject;
 
+
+    public List<GameObject> currentCarries;
+
     Collider coll;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(carrierObject == null)
+        currentCarries = new List<GameObject>();
+        if (carrierObject == null)
         {
             carrierObject = gameObject.GetComponentInParent<Carrier>();
         }
@@ -23,9 +27,10 @@ public class CarryVolume : MonoBehaviour
         if(!carrierObject.isHeld)
         {
             // Only include interactable objects that aren't the parent
-            if (other.gameObject.layer == 7 && other.gameObject != transform.parent)
+            if (other.GetComponent<NewProp>())
             {
-                carrierObject.currentCarries.Add(other.gameObject);
+                currentCarries.Add(other.gameObject);
+                other.transform.SetParent(carrierObject.gameObject.transform);
             }
         }
     }
@@ -33,12 +38,11 @@ public class CarryVolume : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        /*
         if (!carrierObject.isHeld)
         {
-            carrierObject.currentCarries.Remove(other.gameObject);
+           currentCarries.Remove(other.gameObject);
+           other.transform.parent = null;
         }
-        */
     }
 
     // Update is called once per frame

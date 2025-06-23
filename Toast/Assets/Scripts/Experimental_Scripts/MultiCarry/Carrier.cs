@@ -10,8 +10,6 @@ public class Carrier : MonoBehaviour
     private CarryVolume carryVolume;
     public CarryVolume CarryVolume { get { return carryVolume;} }
 
-    public List<GameObject> currentCarries;
-
     public bool isHeld;
 
     // The maximum amount of objects that can be carried
@@ -21,7 +19,7 @@ public class Carrier : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentCarries = new List<GameObject>();
+      
     }
 
     // Update is called once per frame
@@ -33,7 +31,7 @@ public class Carrier : MonoBehaviour
     public void PickUp()
     {
         isHeld = true;
-        foreach(GameObject obj in currentCarries)
+        foreach(GameObject obj in carryVolume.currentCarries)
         {
             Debug.Log("Picking Up");
             obj.transform.SetParent(this.gameObject.transform); 
@@ -44,7 +42,7 @@ public class Carrier : MonoBehaviour
     {
         isHeld = false;
 
-        foreach(GameObject obj in currentCarries)
+        foreach(GameObject obj in carryVolume.currentCarries)
         {
             obj.transform.parent = null;
         }
