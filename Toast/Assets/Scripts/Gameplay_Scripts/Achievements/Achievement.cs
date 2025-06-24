@@ -33,6 +33,8 @@ public class Achievement : ScriptableObject
     [Header("Achievement ID Number")]
     [SerializeField]
     private int id;
+    [SerializeField]
+    public string steamID;
 
     [Header("Achievement Starts Hidden in Menu?")]
     [SerializeField]

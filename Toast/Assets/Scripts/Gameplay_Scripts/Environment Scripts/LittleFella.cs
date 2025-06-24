@@ -1,3 +1,4 @@
+using Steamworks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -132,6 +133,14 @@ public class LittleFella : MonoBehaviour
                 if (moveProgress >= 1.0f)
                 {
                     littleFellaEvent.RaiseEvent(edibleObject.GetComponent<NewProp>(), 1);
+
+                    // Steam stats integration
+                    int itemsGiven = 0;
+                    SteamUserStats.GetStat("LITTLE_FELLA_GIVEN", out itemsGiven);
+                    itemsGiven++;
+                    SteamUserStats.SetStat("LITTLE_FELLA_GIVEN", itemsGiven);
+                    SteamUserStats.StoreStats();
+
                     Debug.Log(edibleObject.GetComponent<NewProp>().propFlags);
                     if (edibleObject.GetComponent<NewProp>().HasFlag(PropFlags.Bread) || edibleObject.GetComponent<NewProp>().HasFlag(PropFlags.Jam))
                     {

@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -117,6 +118,14 @@ public class AchievementManager : MonoBehaviour
             achievement.IsUnlocked = true;
             Debug.Log("Achievement Unlocked: " + achievement.AchievementName + ": " + achievement.Description);
             unlockedAchievements.Add(achievement);
+
+            bool achievementComplete = false;
+            SteamUserStats.GetAchievement(achievement.steamID, out achievementComplete);
+            if (!achievementComplete)
+            {
+                SteamUserStats.SetAchievement(achievement.steamID);
+                SteamUserStats.StoreStats();
+            }
 
             achievement.MenuSquare.displayImage.sprite = 
                 achievement.HasNumericGoal

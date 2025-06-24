@@ -2796,6 +2796,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: S_Cabinet
       objectReference: {fileID: 0}
+    - target: {fileID: 4105399035124392075, guid: 3cc99baee12034c42a4e4bfaa74b9de2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5715525646274482207, guid: 3cc99baee12034c42a4e4bfaa74b9de2,
         type: 3}
       propertyPath: isOpen
@@ -5525,7 +5530,7 @@ MonoBehaviour:
     - {fileID: 1652460431}
     displaysUI: []
     complete: 0
-    available: 0
+    available: 1
     displayOnNotepad: 1
     destroyPaperOnCompletion: 1
   - name: Toaster
@@ -5657,7 +5662,7 @@ MonoBehaviour:
     - {fileID: 1037877080}
     displaysUI: []
     complete: 0
-    available: 0
+    available: 1
     displayOnNotepad: 1
     destroyPaperOnCompletion: 1
   - name: Oven
@@ -29338,6 +29343,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0baf38bc089043e4088948c4d25596fd, type: 3}
+--- !u!1 &957998178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 957998179}
+  - component: {fileID: 957998180}
+  m_Layer: 0
+  m_Name: SteamManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &957998179
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957998178}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1135898838}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &957998180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957998178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4bffeda13d7a748973ff9204401c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &963767483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35248,6 +35297,7 @@ Transform:
   - {fileID: 12714976642359791}
   - {fileID: 1991441054}
   - {fileID: 203181412}
+  - {fileID: 957998179}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

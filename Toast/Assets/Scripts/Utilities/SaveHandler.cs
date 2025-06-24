@@ -315,7 +315,14 @@ public class SaveHandler : MonoBehaviour
         if (parsedDat.Length > 1)
         {
             DEBUGOUTPUT.text += "Parsed data found, returning info\n";  //DEBUG
-            return parsedDat[currentSaveFile];
+            if(currentSaveFile < parsedDat.Length)
+            {
+                return parsedDat[currentSaveFile];
+            }
+            else
+            {
+                return "";
+            }
         }
         else
         {
