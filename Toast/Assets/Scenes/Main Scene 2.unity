@@ -27124,6 +27124,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9feb287f2355f36459a282728e1ae1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &837236346 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 986701023330284498, guid: aa91b14ae9d884ce79f38c7256d9726b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7467879706770550418}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ff63f25d1ab4344b3bd1f858dfaec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &837392210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30660,6 +30672,7 @@ MonoBehaviour:
   achievementMenu: {fileID: 885162173}
   notificationBanner: {fileID: 1140447888}
   creditsMenu: {fileID: 2106326191}
+  physicalMenu_CreditStation: {fileID: 837236346}
   objectiveOpened: 0
   backButton: {fileID: 1514345163}
   objectiveButton: {fileID: 29242647}
@@ -65569,18 +65582,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7467879706770550418}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1927222073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1927222072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a1b957216706465faa0c9b35d72be62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1932192270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76985,85 +76986,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 127543603553798646, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 127543603553798646, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 127543603553798646, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 127543603553798646, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1927222073}
-    - target: {fileID: 127543603553798646, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1927222073}
-    - target: {fileID: 127543603553798646, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 1927222073}
-    - target: {fileID: 127543603553798646, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 127543603553798646, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayBreadSlideInAnimation
-      objectReference: {fileID: 0}
-    - target: {fileID: 127543603553798646, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: PlayBreadSlideInAnimation
-      objectReference: {fileID: 0}
-    - target: {fileID: 127543603553798646, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: PlayBreadSlideInAnimation
-      objectReference: {fileID: 0}
-    - target: {fileID: 127543603553798646, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MoveToMainGame_AniEvent, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 127543603553798646, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: MoveToMainGame_AniEvent, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 127543603553798646, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: MoveToMainGame_AniEvent, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 127543603553798646, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 532767240280744339, guid: aa91b14ae9d884ce79f38c7256d9726b,
         type: 3}
       propertyPath: m_Name
       value: New Physical Menu
-      objectReference: {fileID: 0}
-    - target: {fileID: 765707835111927961, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1878910092121158009, guid: aa91b14ae9d884ce79f38c7256d9726b,
         type: 3}
@@ -77130,11 +77056,6 @@ PrefabInstance:
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 995659374}
-    - target: {fileID: 4089943622117109743, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4897234374555837094, guid: aa91b14ae9d884ce79f38c7256d9726b,
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -77145,11 +77066,6 @@ PrefabInstance:
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 995659374}
-    - target: {fileID: 5513354079241895907, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5974202094482770615, guid: aa91b14ae9d884ce79f38c7256d9726b,
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -77158,6 +77074,11 @@ PrefabInstance:
     - target: {fileID: 6220764487012424803, guid: aa91b14ae9d884ce79f38c7256d9726b,
         type: 3}
       propertyPath: leverTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 995659374}
+    - target: {fileID: 6799241044939148230, guid: aa91b14ae9d884ce79f38c7256d9726b,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 995659374}
     - target: {fileID: 8051544463414004995, guid: aa91b14ae9d884ce79f38c7256d9726b,
@@ -77190,10 +77111,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 5513354079241895907, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1927222073}
   m_SourcePrefab: {fileID: 100100000, guid: aa91b14ae9d884ce79f38c7256d9726b, type: 3}
 --- !u!1001 &7897295053060498382
 PrefabInstance:
