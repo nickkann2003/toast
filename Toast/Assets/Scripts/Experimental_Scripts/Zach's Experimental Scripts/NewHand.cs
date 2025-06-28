@@ -14,6 +14,8 @@ public class NewHand : MonoBehaviour
     private PropIntGameEvent pickUpEvent;
     [SerializeField]
     private PropIntGameEvent dropEvent;
+    [SerializeField]
+    private bool mainHand = false;
 
     // ---------------------------- Properties ---------------------------------
 
@@ -64,6 +66,14 @@ public class NewHand : MonoBehaviour
             }
             */
 
+            // Carrier check
+            Carrier c = null;
+            itemToReturn.TryGetComponent<Carrier>(out c);
+            if (c != null)
+            {
+                c.PutDown();
+            }
+
             // Set prop flogs
             heldObject.GetComponent<NewProp>()?.RemoveFlag(PropFlags.InHand);
             
@@ -108,6 +118,7 @@ public class NewHand : MonoBehaviour
             {
                 itemToPickup.GetComponent<NewProp>().ForceRemoveFromHand();
             }
+
 
             //itemToPickup.transform.position = Vector3.zero;
 
