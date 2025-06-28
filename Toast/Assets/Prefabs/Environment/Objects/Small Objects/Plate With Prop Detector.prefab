@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3568023729605199994}
   - component: {fileID: 2159773904323666851}
   - component: {fileID: 5330966749156450958}
-  m_Layer: 7
+  m_Layer: 2
   m_Name: PropDetectorVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7748244305991956531}
+  m_Father: {fileID: 5365191875232829343}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2159773904323666851
@@ -68,8 +68,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attributes: 0
   flagsAreCumulative: 0
+  showRequiredFlags: 1
+  showItemsCollectedHeader: 1
   numItems: 0
+  exactValue: 0
   itemStayTime: 0
+  rewardText: 
+  goalText: 
+  destroyItemsOnComplete: 0
+  destroyOnComplete: 0
+  displayReference: {fileID: 0}
   completionEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -82,6 +90,9 @@ MonoBehaviour:
   progressEvent:
     m_PersistentCalls:
       m_Calls: []
+  rCompleteEvent: {fileID: 0}
+  rStartEvent: {fileID: 0}
+  rProgressEvent: {fileID: 0}
 --- !u!1001 &3230596433678733328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -145,6 +156,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4168674122169654064, guid: a90e32852b80aab4a99636608229c338,
+        type: 3}
+      propertyPath: m_Name
+      value: Plate With Prop Detector
+      objectReference: {fileID: 0}
     - target: {fileID: 7478228445048931180, guid: a90e32852b80aab4a99636608229c338,
         type: 3}
       propertyPath: m_Name
@@ -153,15 +169,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5139215702867535907, guid: a90e32852b80aab4a99636608229c338,
+    - targetCorrespondingSourceObject: {fileID: 7395367721526894479, guid: a90e32852b80aab4a99636608229c338,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3568023729605199994}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a90e32852b80aab4a99636608229c338, type: 3}
---- !u!4 &7748244305991956531 stripped
+--- !u!4 &5365191875232829343 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5139215702867535907, guid: a90e32852b80aab4a99636608229c338,
+  m_CorrespondingSourceObject: {fileID: 7395367721526894479, guid: a90e32852b80aab4a99636608229c338,
     type: 3}
   m_PrefabInstance: {fileID: 3230596433678733328}
   m_PrefabAsset: {fileID: 0}

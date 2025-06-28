@@ -30,21 +30,22 @@ public class Carrier : MonoBehaviour
 
     public void PickUp()
     {
-        isHeld = true;
-        foreach(GameObject obj in carryVolume.currentCarries)
-        {
-            Debug.Log("Picking Up");
-            obj.transform.SetParent(this.gameObject.transform); 
-        }
+        carryVolume.TriggerPickup();
+        //isHeld = true;
+        //foreach(GameObject obj in carryVolume.currentCarries)
+        //{
+        //    Debug.Log("Picking Up");
+        //    obj.transform.SetParent(this.gameObject.transform); 
+        //}
     }
 
     public void PutDown()
     {
-        isHeld = false;
-
-        foreach(GameObject obj in carryVolume.currentCarries)
-        {
-            obj.transform.parent = null;
-        }
+        carryVolume.TriggerDrop();
+       //isHeld = false;
+       //foreach(GameObject obj in carryVolume.currentCarries)
+       //{
+       //    obj.transform.parent = null;
+       //}
     }
 }
