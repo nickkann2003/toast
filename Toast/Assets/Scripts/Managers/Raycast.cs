@@ -382,6 +382,15 @@ public class Raycast : MonoBehaviour
             {
                 return false;
             }
+            
+            // Carrier check
+            Carrier c = null;
+            itemToPickup.TryGetComponent<Carrier>(out c);
+            if (c != null)
+            {
+                c.PickUp();
+            }
+
             hit.collider.gameObject.transform.position = new Vector3(100, 100, 100);
             StartCoroutine(PickupItem(itemToPickup, _hand));
             return true;
