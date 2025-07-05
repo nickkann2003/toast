@@ -81,6 +81,7 @@ public class SaveHandler : MonoBehaviour
         string allDat = sr.ReadToEnd();
         sr.Close();
         DEBUGOUTPUT.text += allDat + "\n";  //DEBUG
+
         if (allDat == "")
         {
             DEBUGOUTPUT.text += "Save file found empty, creating formatted save file";  //DEBUG
@@ -105,7 +106,7 @@ public class SaveHandler : MonoBehaviour
         DEBUGOUTPUT.text += "Save file format verified, loading files"; //DEBUG
 
         currentSaveFile = -1;
-        SetFileDisplayNames();
+        SetFileStats();
 
         saveFileBaseFormat = string.Empty;
         singleFileBaseFormat = string.Empty;
@@ -145,14 +146,14 @@ public class SaveHandler : MonoBehaviour
         DEBUGOUTPUT.text += "Loading save file";  //DEBUG
         if (currentSaveFileName.Equals("")){
             DEBUGOUTPUT.text += "Name empty, opening file naming menu";  //DEBUG
-            UIManager.instance.CloseFileSelectMenu();
-            UIManager.instance.OpenFileNamingMenu();
+            // UIManager.instance.CloseFileSelectMenu();
+            // UIManager.instance.OpenFileNamingMenu();
         }
         else
         {
             DEBUGOUTPUT.text += "Name not empty,";  //DEBUG
-            UIManager.instance.CloseFileNamingMenu();
-            UIManager.instance.CloseFileSelectMenu();
+            // UIManager.instance.CloseFileNamingMenu();
+            // UIManager.instance.CloseFileSelectMenu();
             GameManager.Instance.MainMenuToTutorial();
 
             ObjectiveManager.instance.LoadObjectives(ReadObjectiveData());
@@ -386,40 +387,56 @@ public class SaveHandler : MonoBehaviour
         return allDat;
     }
 
-    private void SetFileDisplayNames()
+    /// <summary>
+    /// Called when the first time load in the game.
+    /// </summary>
+    private void SetFileStats()
     {
         int cFileId = currentSaveFile;
 
-        string file3Name;
-        SetCurrentSaveFileByID(2);
-        DEBUGOUTPUT.text += "PARSING SAVE FILE NAME";  //DEBUG
-        file3Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
-        DEBUGOUTPUT.text += "SAVE FILE NAME SUCCESSFULLY PARSED\n";  //DEBUG
+        // NOTE: The final version should only have 2 save file.
+        // string file3Name;
+        // SetCurrentSaveFileByID(2);
+        // DEBUGOUTPUT.text += "PARSING SAVE FILE NAME";  //DEBUG
+        // file3Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
+        // DEBUGOUTPUT.text += "SAVE FILE NAME SUCCESSFULLY PARSED\n";  //DEBUG
 
         string file2Name;
         SetCurrentSaveFileByID(1);
         file2Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
+        Debug.LogError(file2Name);
+        // NICK TODO:
+        // 1. Load Achievement Finish Stats
+        // 2. Load Objective Finish Stats
+        // 3. Load Any other stats (Bread Eaten, Bread Toasted, Item to Little Fella)
+        // 4. Call the update UI function
+        //    UIManager.instance.SetAllSaveSlotStats(1, ...)
 
         string file1Name;
         SetCurrentSaveFileByID(0);
         file1Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
+        Debug.LogError(file1Name);
 
-        SaveFile1.text = file1Name.Equals("") ? "NEW SAVE" : file1Name;
-        SaveFile2.text = file2Name.Equals("") ? "NEW SAVE" : file2Name;
-        SaveFile3.text = file3Name.Equals("") ? "NEW SAVE" : file3Name;
+        if(!file1Name.Equals("")) UIManager.instance.SetUpPhysicalFileStation(0);
+        if(!file2Name.Equals("")) UIManager.instance.SetUpPhysicalFileStation(1);
+
+        // SaveFile1.text = file1Name.Equals("") ? "NEW SAVE" : file1Name;
+        // SaveFile2.text = file2Name.Equals("") ? "NEW SAVE" : file2Name;
+        //SaveFile3.text = file3Name.Equals("") ? "NEW SAVE" : file3Name;
 
         currentSaveFile = cFileId;
     }
 
     /// <summary>
     /// Deletes all information for a given save file
+    /// This is called when the delete button is pressed in the physical save slot
     /// </summary>
     /// <param name="fileId">File ID to be replaced</param>
     public void DeleteAllFileData(int fileId)
     {
         SetCurrentSaveFileByID(fileId);
         SetCurrentFileInfo(singleFileBaseFormat);
-        SetFileDisplayNames();
+        SetFileStats();
 
         currentSaveFile = -1;
     }

@@ -48,9 +48,7 @@ public class UIManager : MonoBehaviour
     [Header("Physical File Selection")]
 
     [SerializeField] private Station fileSelectionStation;
-    [SerializeField] private List<GameObject> saveSlots_Bread;
-    [SerializeField] private List<GameObject> saveSlotButton_Blackframe;
-    [SerializeField] private List<Station> saveSlotsStations;
+    [SerializeField] private List<PhysicalSaveSlot> physicalSaveSlots;
 
     // ------------------------------- Functions -------------------------------
     private void Awake()
@@ -297,14 +295,14 @@ public class UIManager : MonoBehaviour
         StationManager.instance.MoveToStation(mainMenuStation);
     }
 
-    /// <summary>
-    /// Opens the file naming menu
-    /// </summary>
-    public void OpenFileNamingMenu()
-    {
-        saveFileNameMenu.SetActive(true);
-        currentScreen = PauseScreen.fileName;
-    }
+    // /// <summary>
+    // /// Opens the file naming menu
+    // /// </summary>
+    // public void OpenFileNamingMenu()
+    // {
+    //     saveFileNameMenu.SetActive(true);
+    //     currentScreen = PauseScreen.fileName;
+    // }
 
     /// <summary>
     /// Closes the file naming menu
@@ -320,13 +318,30 @@ public class UIManager : MonoBehaviour
     /// <param name="fileIndex">Which slot is clicked</param>
     public void AddNewSaveFile(int fileIndex)
     {
-        saveSlotButton_Blackframe[fileIndex].SetActive(false);
-        saveSlots_Bread[fileIndex].SetActive(true);
+        physicalSaveSlots[fileIndex].NewSaveSlot();
     }
 
-    public void MoveToFileSlotStation(int fileIndex)
+    public void SetUpPhysicalFileStation(int fileIndex)
     {
-        StationManager.instance.MoveToStation(saveSlotsStations[fileIndex]);
+        physicalSaveSlots[fileIndex].SetUpExistingSaveSlot();
+    }
+
+    /// <summary>
+    /// Set All the UI for save slots
+    /// </summary>
+    /// <param name="fileIndex"></param>
+    /// <param name="curAchievementCount"></param>
+    /// <param name="totalAchievementCount"></param>
+    /// <param name="curObjectiveCount"></param>
+    /// <param name="totalObjectiveCount"></param>
+    /// <param name="breadEatenCount"></param>
+    /// <param name="breadToastedCount"></param>
+    /// <param name="littleFellaItemCount"></param>
+    public void SetAllSaveSlotStats(int fileIndex, int curAchievementCount, int totalAchievementCount,
+    int curObjectiveCount, int totalObjectiveCount, int breadEatenCount, int breadToastedCount, int littleFellaItemCount)
+    {
+        physicalSaveSlots[fileIndex].SetSliderStats(curAchievementCount, totalAchievementCount, curObjectiveCount, totalObjectiveCount);
+        physicalSaveSlots[fileIndex].SetNumberStats(breadEatenCount, breadToastedCount, littleFellaItemCount);
     }
 
     public void BackToMainFileSelectStation()
