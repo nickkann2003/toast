@@ -68,6 +68,9 @@ public class EatenAttribute : PropAttributeSO
         // Hide use info
         PieManager.instance.StopHover.RaiseEvent(newProp, 1);
 
+        // Local stats integration
+        SaveHandler.instance.StatsHandler.BreadEaten += 1;
+
         // Steam stats integration
         int breadEaten = 0;
         SteamUserStats.GetStat("BREAD_EATEN", out breadEaten);

@@ -19,6 +19,9 @@ public class ToastyAttribute : PropAttributeSO
         newProp.AddFlag(flag);
         propIntGameEvent?.RaiseEvent(newProp, 1);
 
+        // Local stats integration
+        SaveHandler.instance.StatsHandler.ToastMade += 1;
+
         // Steam stats integration
         int toastMade = 0;
         SteamUserStats.GetStat("TOAST_MADE", out toastMade);

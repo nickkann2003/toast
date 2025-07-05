@@ -112,7 +112,11 @@ public class Objective
                 // One Shot Effects
                 complete = true;
                 completionEvents.Invoke();
-                foreach(int i in prerequisiteIds)
+
+                // Local stats integration
+                SaveHandler.instance.StatsHandler.ObjectivesComplete += 1;
+
+                foreach (int i in prerequisiteIds)
                 {
                     ObjectiveManager.instance.ObjectivesById[i].ObjectiveInfo.CompleteSuccessor();
                 }

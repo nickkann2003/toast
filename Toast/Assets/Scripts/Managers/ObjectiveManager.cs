@@ -249,6 +249,25 @@ public class ObjectiveManager : MonoBehaviour
         UpdateText();
     }
 
+    /// <summary>
+    /// Returns the total number of objectives in the game
+    /// </summary>
+    /// <returns>Total num objectives</returns>
+    public int GetNumTotalObjectives()
+    {
+        int numObjs = 0;
+
+        foreach(ObjectiveGroup g in objectiveGroups)
+        {
+            foreach(Objective o in g.objectives)
+            {
+                numObjs += 1;
+            }
+        }
+
+        return numObjs;
+    }
+
     private void OnDrawGizmosSelected()
     {
         instance = this;

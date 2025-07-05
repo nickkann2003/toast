@@ -83,6 +83,9 @@ public class USE_Jam : UseEffectSO
             jamEvent.RaiseEvent(newProp, 1);
             useEvent.RaiseEvent(newProp, 1);
 
+            // Local stats integration
+            SaveHandler.instance.StatsHandler.JamUsed += 1;
+
             // Steam stats integration
             int jamUsed = 0;
             SteamUserStats.GetStat("JAM_USED", out jamUsed);

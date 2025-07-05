@@ -37,9 +37,12 @@ public class SaveHandler : MonoBehaviour
     private int objectiveDataLocation = 1;
     private int achievementDataLocation = 2;
     private int tutorialPropDataLocation = 3;
+    private int statsLocation = 4;
 
     private string saveFileBaseFormat = "";
     private string singleFileBaseFormat = "";
+
+    private StatsHandler statsHandler = new StatsHandler();
 
     [Header("UI References")]
     [SerializeField]
@@ -51,6 +54,8 @@ public class SaveHandler : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI DEBUGOUTPUT;
+
+    public StatsHandler StatsHandler { get => statsHandler; }
 
     // ------------------------------- Buttons -------------------------------
     [SerializeField, Button]
@@ -131,10 +136,12 @@ public class SaveHandler : MonoBehaviour
             string objectiveData = ObjectiveManager.instance.GetObjectiveStorageString();
             string achievementData = AchievementManager.instance.GetAchievementSaveString();
             string tutorialPropData = PopUpTutorialManager.instance.GetTutorialPopUpSaveString();
+            string statsData = statsHandler.SaveStats();
 
             SaveObjectiveData(objectiveData);
             SaveAchievementData(achievementData);
             SaveTutorialPropData(tutorialPropData);
+            SaveStatsData(statsData);
         }
     }
 
@@ -159,6 +166,7 @@ public class SaveHandler : MonoBehaviour
             ObjectiveManager.instance.LoadObjectives(ReadObjectiveData());
             AchievementManager.instance.LoadAchievementSaveString(ReadAchievementData());
             PopUpTutorialManager.instance.LoadCheckedPropSaveString(ReadTutorialPropData());
+            StatsHandler.LoadStats(ReadStatsData());
         }
     }
 
@@ -261,6 +269,22 @@ public class SaveHandler : MonoBehaviour
         string[] parsedDat = allDat.Split(fileDataParser);
 
         return parsedDat[tutorialPropDataLocation];
+    }
+
+    public void SaveStatsData(string statsData)
+    {
+        string allDat = GetCurrentFileInfo();
+        string[] parsedDat = allDat.Split(fileDataParser);
+        parsedDat[statsLocation] = statsData;
+        SetCurrentFileInfo(ArrayToFileData(parsedDat));
+    }
+
+    public string ReadStatsData()
+    {
+        string allDat = GetCurrentFileInfo();
+        string[] parsedDat = allDat.Split(fileDataParser);
+
+        return parsedDat[statsLocation];
     }
 
 
@@ -393,6 +417,8 @@ public class SaveHandler : MonoBehaviour
     private void SetFileStats()
     {
         int cFileId = currentSaveFile;
+        int totalObjectives = ObjectiveManager.instance.GetNumTotalObjectives();
+        int totalAchievements = AchievementManager.instance.GetNumTotalAchievements();
 
         // NOTE: The final version should only have 2 save file.
         // string file3Name;
@@ -405,6 +431,13 @@ public class SaveHandler : MonoBehaviour
         SetCurrentSaveFileByID(1);
         file2Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
         Debug.LogError(file2Name);
+        
+        // Short hand
+        StatsHandler s = statsHandler;
+        
+        // Load stats for file
+        s.LoadStats(ReadStatsData());
+
         // NICK TODO:
         // 1. Load Achievement Finish Stats
         // 2. Load Objective Finish Stats
@@ -412,10 +445,18 @@ public class SaveHandler : MonoBehaviour
         // 4. Call the update UI function
         // UIManager.instance.SetAllSaveSlotStats(1, ...)
 
+        UIManager.instance.SetAllSaveSlotStats(1, s.AchievementsComplete, totalAchievements, s.ObjectivesComplete, totalObjectives, s.BreadEaten, s.ToastMade, s.LittleFellaGiven);
+
+
         string file1Name;
         SetCurrentSaveFileByID(0);
         file1Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
         Debug.LogError(file1Name);
+
+        // Load stats for file
+        s.LoadStats(ReadStatsData());
+
+        UIManager.instance.SetAllSaveSlotStats(0, s.AchievementsComplete, totalAchievements, s.ObjectivesComplete, totalObjectives, s.BreadEaten, s.ToastMade, s.LittleFellaGiven);
 
         UIManager.instance.SetUpPhysicalFileStation(0, file1Name.Equals(""));
         UIManager.instance.SetUpPhysicalFileStation(1, file2Name.Equals(""));

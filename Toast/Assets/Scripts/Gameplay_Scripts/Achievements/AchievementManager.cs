@@ -119,6 +119,9 @@ public class AchievementManager : MonoBehaviour
             Debug.Log("Achievement Unlocked: " + achievement.AchievementName + ": " + achievement.Description);
             unlockedAchievements.Add(achievement);
 
+            // Local stats integration
+            SaveHandler.instance.StatsHandler.AchievementsComplete += 1;
+
             bool achievementComplete = false;
             SteamUserStats.GetAchievement(achievement.steamID, out achievementComplete);
             if (!achievementComplete)
@@ -414,6 +417,15 @@ public class AchievementManager : MonoBehaviour
             }
         }
         UpdateProgressionToast();
+    }
+
+    /// <summary>
+    /// Returns the total number of achievements in the game
+    /// </summary>
+    /// <returns>Num achievements</returns>
+    public int GetNumTotalAchievements()
+    {
+        return achievements.Count;
     }
 
     /// <summary>

@@ -134,6 +134,9 @@ public class LittleFella : MonoBehaviour
                 {
                     littleFellaEvent.RaiseEvent(edibleObject.GetComponent<NewProp>(), 1);
 
+                    // Local stats integration
+                    SaveHandler.instance.StatsHandler.LittleFellaGiven += 1;
+
                     // Steam stats integration
                     int itemsGiven = 0;
                     SteamUserStats.GetStat("LITTLE_FELLA_GIVEN", out itemsGiven);
