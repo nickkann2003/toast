@@ -1,5 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
+using Steamworks;
+
 [CreateAssetMenu(fileName = "New Place Effect", menuName = "Prop/Use Effect/Place", order = 53)]
 public class USE_Jam : UseEffectSO
 {
@@ -80,6 +82,13 @@ public class USE_Jam : UseEffectSO
             obj.GetComponentInChildren<Renderer>().material.color = config.Material.color;
             jamEvent.RaiseEvent(newProp, 1);
             useEvent.RaiseEvent(newProp, 1);
+
+            // Steam stats integration
+            int jamUsed = 0;
+            SteamUserStats.GetStat("JAM_USED", out jamUsed);
+            jamUsed++;
+            SteamUserStats.SetStat("JAM_USED", jamUsed);
+            SteamUserStats.StoreStats();
 
             AudioManager.instance.PlayAudioEvent(jamSplashEvent);
 

@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using Steamworks;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New TN Score", menuName = "Minigames/Toast Ninja/Score", order = 55)]
@@ -52,6 +53,15 @@ public class ToastNinjaScore : ScriptableObject
 
     public void GameEnd()
     {
+        // Steam stats integration
+        int storedHighScore = 0;
+        SteamUserStats.GetStat("TOAST_NINJA_HIGH_SCORE", out storedHighScore);
+        if(highScore > storedHighScore)
+        {
+            SteamUserStats.SetStat("TOAST_NINJA_HIGH_SCORE", highScore);
+            SteamUserStats.StoreStats();
+        }
+
         ResetScore();
         toastNinjaScoreEvent?.RaiseEvent(null, score);
     }

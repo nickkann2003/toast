@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using Steamworks;
 using UnityEngine.InputSystem.LowLevel;
 
 [CreateAssetMenu(fileName = "New Eat Attribute", menuName = "Prop/Attribute/Eat", order = 53)]
@@ -66,6 +67,13 @@ public class EatenAttribute : PropAttributeSO
 
         // Hide use info
         PieManager.instance.StopHover.RaiseEvent(newProp, 1);
+
+        // Steam stats integration
+        int breadEaten = 0;
+        SteamUserStats.GetStat("BREAD_EATEN", out breadEaten);
+        breadEaten++;
+        SteamUserStats.SetStat("BREAD_EATEN", breadEaten);
+        SteamUserStats.StoreStats();
 
         Destroy(newProp.gameObject);
     }
