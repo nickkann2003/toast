@@ -22,7 +22,7 @@ public class PhysicalSaveSlot : MonoBehaviour
     [SerializeField] private GameObject saveSlotButton_Blackframe;
     private int hoverOverTracker = 0;
 
-    void Start()
+    void Awake()
     {
         ani = this.GetComponent<Animator>();
     }
@@ -77,6 +77,9 @@ public class PhysicalSaveSlot : MonoBehaviour
     {
         SetSliderStats(0, 1, 0, 1);
         SetNumberStats(0, 0, 0);
+
+        hoverOverTracker = 0;
+        ani?.SetInteger("hoverOver_IntTracker", hoverOverTracker);
     }
 
     public void NewSaveSlot(int fileIndex)
