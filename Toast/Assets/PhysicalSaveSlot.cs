@@ -27,13 +27,13 @@ public class PhysicalSaveSlot : MonoBehaviour
 
     void OnMouseEnter()
     {
-        Debug.LogError("Enter");
+        //Debug.LogError("Enter");
         ani.SetBool("hoverOver", true);
     }
 
     void OnMouseExit()
     {
-        Debug.LogError("Exit");
+        //Debug.LogError("Exit");
         ani.SetBool("hoverOver", false);
     }
 
@@ -73,10 +73,17 @@ public class PhysicalSaveSlot : MonoBehaviour
         littleFellaItemCount.text = littleFellaItem.ToString();
     }
 
-    public void NewSaveSlot()
+    public void ResetAllStats()
+    {
+        SetSliderStats(0, 1, 0, 1);
+        SetNumberStats(0, 0, 0);
+    }
+
+    public void NewSaveSlot(int fileIndex)
     {
         saveSlotButton_Blackframe.SetActive(false);
         saveSlots_Bread.SetActive(true);
+        SaveHandler.instance.SetCurrentSaveFileByID(fileIndex);
         SaveHandler.instance.SetSaveFileName("SaveSlot");
         Debug.LogError("New a save slot");
     }

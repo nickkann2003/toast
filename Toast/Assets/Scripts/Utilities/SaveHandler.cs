@@ -24,7 +24,7 @@ public class SaveHandler : MonoBehaviour
 
     [Header("Save Variables")]
     [SerializeField]
-    public int numSaveFiles = 3;
+    public int numSaveFiles = 2;
 
     private int currentSaveFile = 0;
     private string currentSaveFileName = string.Empty;
@@ -410,15 +410,15 @@ public class SaveHandler : MonoBehaviour
         // 2. Load Objective Finish Stats
         // 3. Load Any other stats (Bread Eaten, Bread Toasted, Item to Little Fella)
         // 4. Call the update UI function
-        //    UIManager.instance.SetAllSaveSlotStats(1, ...)
+        // UIManager.instance.SetAllSaveSlotStats(1, ...)
 
         string file1Name;
         SetCurrentSaveFileByID(0);
         file1Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
         Debug.LogError(file1Name);
 
-        if(!file1Name.Equals("")) UIManager.instance.SetUpPhysicalFileStation(0);
-        if(!file2Name.Equals("")) UIManager.instance.SetUpPhysicalFileStation(1);
+        UIManager.instance.SetUpPhysicalFileStation(0, file1Name.Equals(""));
+        UIManager.instance.SetUpPhysicalFileStation(1, file2Name.Equals(""));
 
         // SaveFile1.text = file1Name.Equals("") ? "NEW SAVE" : file1Name;
         // SaveFile2.text = file2Name.Equals("") ? "NEW SAVE" : file2Name;

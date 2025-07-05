@@ -318,12 +318,15 @@ public class UIManager : MonoBehaviour
     /// <param name="fileIndex">Which slot is clicked</param>
     public void AddNewSaveFile(int fileIndex)
     {
-        physicalSaveSlots[fileIndex].NewSaveSlot();
+        physicalSaveSlots[fileIndex].NewSaveSlot(fileIndex);
     }
 
-    public void SetUpPhysicalFileStation(int fileIndex)
+    public void SetUpPhysicalFileStation(int fileIndex, bool isExistingSaveSlot)
     {
-        physicalSaveSlots[fileIndex].SetUpExistingSaveSlot();
+        if (isExistingSaveSlot)
+            physicalSaveSlots[fileIndex].SetUpExistingSaveSlot();
+        else
+            physicalSaveSlots[fileIndex].ResetAllStats();
     }
 
     /// <summary>
