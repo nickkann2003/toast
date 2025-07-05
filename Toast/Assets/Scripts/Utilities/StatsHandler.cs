@@ -24,6 +24,14 @@ public class StatsHandler
 
     public void LoadStats(string stats)
     {
+        breadEaten = 0;
+        jamUsed = 0;
+        toastMade = 0;
+        littleFellaGiven = 0;
+        toastNinjaHighScore = 0;
+        objectivesComplete = 0;
+        achievementsComplete = 0;
+
         try
         {
             string[] parsed = stats.Split(parser);
