@@ -123,12 +123,24 @@ public class AchievementManager : MonoBehaviour
             SaveHandler.instance.StatsHandler.AchievementsComplete += 1;
 
             bool achievementComplete = false;
-            SteamUserStats.GetAchievement(achievement.steamID, out achievementComplete);
-            if (!achievementComplete)
+
+            try
             {
-                SteamUserStats.SetAchievement(achievement.steamID);
-                SteamUserStats.StoreStats();
+                if (SteamManager.Initialized)
+                {
+                    SteamUserStats.GetAchievement(achievement.steamID, out achievementComplete);
+                    if (!achievementComplete)
+                    {
+                        SteamUserStats.SetAchievement(achievement.steamID);
+                        SteamUserStats.StoreStats();
+                    }
+                }
             }
+            catch
+            {
+                Debug.Log("Steamworks not properly intialized");
+            }
+
 
             achievement.MenuSquare.displayImage.sprite = 
                 achievement.HasNumericGoal

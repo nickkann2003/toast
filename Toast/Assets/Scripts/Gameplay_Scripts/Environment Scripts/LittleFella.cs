@@ -139,10 +139,22 @@ public class LittleFella : MonoBehaviour
 
                     // Steam stats integration
                     int itemsGiven = 0;
-                    SteamUserStats.GetStat("LITTLE_FELLA_GIVEN", out itemsGiven);
-                    itemsGiven++;
-                    SteamUserStats.SetStat("LITTLE_FELLA_GIVEN", itemsGiven);
-                    SteamUserStats.StoreStats();
+
+                    try
+                    {
+                        if (SteamManager.Initialized)
+                        {
+                            SteamUserStats.GetStat("LITTLE_FELLA_GIVEN", out itemsGiven);
+                            itemsGiven++;
+                            SteamUserStats.SetStat("LITTLE_FELLA_GIVEN", itemsGiven);
+                            SteamUserStats.StoreStats();
+                        }
+                    }
+                    catch
+                    {
+                        Debug.Log("Steamworks not properly intialized");
+                    }
+
 
                     Debug.Log(edibleObject.GetComponent<NewProp>().propFlags);
                     if (edibleObject.GetComponent<NewProp>().HasFlag(PropFlags.Bread) || edibleObject.GetComponent<NewProp>().HasFlag(PropFlags.Jam))

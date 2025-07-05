@@ -60,14 +60,24 @@ public class ToastNinjaScore : ScriptableObject
         {
             SaveHandler.instance.StatsHandler.ToastNinjaHighScore = highScore;
         }
-
-        SteamUserStats.GetStat("TOAST_NINJA_HIGH_SCORE", out storedHighScore);
-        if(highScore > storedHighScore)
+        try
         {
-            // Local stats integration
-            SteamUserStats.SetStat("TOAST_NINJA_HIGH_SCORE", highScore);
-            SteamUserStats.StoreStats();
+            if (SteamManager.Initialized)
+            {
+                SteamUserStats.GetStat("TOAST_NINJA_HIGH_SCORE", out storedHighScore);
+                if(highScore > storedHighScore)
+                {
+                    // Local stats integration
+                    SteamUserStats.SetStat("TOAST_NINJA_HIGH_SCORE", highScore);
+                    SteamUserStats.StoreStats();
+                }
+            }
         }
+        catch
+        {
+            Debug.Log("Steamworks not properly intialized");
+        }
+
 
         ResetScore();
         toastNinjaScoreEvent?.RaiseEvent(null, score);

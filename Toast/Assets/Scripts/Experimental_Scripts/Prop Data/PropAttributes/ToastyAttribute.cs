@@ -22,12 +22,22 @@ public class ToastyAttribute : PropAttributeSO
         // Local stats integration
         SaveHandler.instance.StatsHandler.ToastMade += 1;
 
-        // Steam stats integration
-        int toastMade = 0;
-        SteamUserStats.GetStat("TOAST_MADE", out toastMade);
-        toastMade++;
-        SteamUserStats.SetStat("TOAST_MADE", toastMade);
-        SteamUserStats.StoreStats();
+        try
+        {
+            if (SteamManager.Initialized)
+            {
+                // Steam stats integration
+                int toastMade = 0;
+                SteamUserStats.GetStat("TOAST_MADE", out toastMade);
+                toastMade++;
+                SteamUserStats.SetStat("TOAST_MADE", toastMade);
+                SteamUserStats.StoreStats();
+            }
+        }
+        catch
+        {
+            Debug.Log("Steamworks not properly intialized");
+        }
     }
 
     public override void OnRemove(NewProp newProp)

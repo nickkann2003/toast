@@ -86,12 +86,23 @@ public class USE_Jam : UseEffectSO
             // Local stats integration
             SaveHandler.instance.StatsHandler.JamUsed += 1;
 
-            // Steam stats integration
-            int jamUsed = 0;
-            SteamUserStats.GetStat("JAM_USED", out jamUsed);
-            jamUsed++;
-            SteamUserStats.SetStat("JAM_USED", jamUsed);
-            SteamUserStats.StoreStats();
+            try
+            {
+                if (SteamManager.Initialized)
+                {
+                    // Steam stats integration
+                    int jamUsed = 0;
+                    SteamUserStats.GetStat("JAM_USED", out jamUsed);
+                    jamUsed++;
+                    SteamUserStats.SetStat("JAM_USED", jamUsed);
+                    SteamUserStats.StoreStats();
+                }
+            }
+            catch
+            {
+                Debug.Log("Steamworks not properly intialized");
+            }
+
 
             AudioManager.instance.PlayAudioEvent(jamSplashEvent);
 
