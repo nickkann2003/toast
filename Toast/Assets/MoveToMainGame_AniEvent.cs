@@ -7,7 +7,19 @@ public class MoveToMainGame_AniEvent : MonoBehaviour
     private Animator ani;
     void Start()
     {
-      ani = this.GetComponent<Animator>();  
+        ani = this.GetComponent<Animator>();
+    }
+
+    void OnMouseEnter()
+    {
+        Debug.LogError("Enter");
+        ani.SetBool("hoverOver", true);
+    }
+
+    void OnMouseExit()
+    {
+        Debug.LogError("Exit");
+        ani.SetBool("hoverOver", false);
     }
 
     /// <summary>
