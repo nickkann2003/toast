@@ -430,7 +430,7 @@ public class SaveHandler : MonoBehaviour
         string file2Name;
         SetCurrentSaveFileByID(1);
         file2Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
-        Debug.LogError(file2Name);
+        //Debug.LogError(file2Name);
         
         // Short hand
         StatsHandler s = statsHandler;
@@ -451,15 +451,15 @@ public class SaveHandler : MonoBehaviour
         string file1Name;
         SetCurrentSaveFileByID(0);
         file1Name = GetCurrentFileInfo().Split(fileDataParser)[saveFileNameLocation];
-        Debug.LogError(file1Name);
+        //Debug.LogError(file1Name);
 
         // Load stats for file
         s.LoadStats(ReadStatsData());
 
         UIManager.instance.SetAllSaveSlotStats(0, s.AchievementsComplete, totalAchievements, s.ObjectivesComplete, totalObjectives, s.BreadEaten, s.ToastMade, s.LittleFellaGiven);
 
-        UIManager.instance.SetUpPhysicalFileStation(0, file1Name.Equals(""));
-        UIManager.instance.SetUpPhysicalFileStation(1, file2Name.Equals(""));
+        UIManager.instance.SetUpPhysicalFileStation(0, !file1Name.Equals(""));
+        UIManager.instance.SetUpPhysicalFileStation(1, !file2Name.Equals(""));
 
         // SaveFile1.text = file1Name.Equals("") ? "NEW SAVE" : file1Name;
         // SaveFile2.text = file2Name.Equals("") ? "NEW SAVE" : file2Name;
