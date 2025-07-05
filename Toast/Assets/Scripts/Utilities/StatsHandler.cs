@@ -24,16 +24,24 @@ public class StatsHandler
 
     public void LoadStats(string stats)
     {
-        string[] parsed = stats.Split(parser);
+        try
+        {
+            string[] parsed = stats.Split(parser);
 
-        // Ordered parse, must mach save
-        breadEaten = int.Parse(parsed[0]);
-        jamUsed = int.Parse(parsed[1]);
-        toastMade = int.Parse(parsed[2]);
-        littleFellaGiven = int.Parse(parsed[3]);
-        toastNinjaHighScore = int.Parse(parsed[4]);
-        objectivesComplete = int.Parse(parsed[5]);
-        achievementsComplete = int.Parse(parsed[6]);
+            // Ordered parse, must mach save
+            breadEaten = int.Parse(parsed[0]);
+            jamUsed = int.Parse(parsed[1]);
+            toastMade = int.Parse(parsed[2]);
+            littleFellaGiven = int.Parse(parsed[3]);
+            toastNinjaHighScore = int.Parse(parsed[4]);
+            objectivesComplete = int.Parse(parsed[5]);
+            achievementsComplete = int.Parse(parsed[6]);
+
+        }
+        catch
+        {
+            Debug.Log("Stats save parsed incorrectly, setting all values to 0");
+        }
     }
     
     public string SaveStats()
