@@ -20,6 +20,8 @@ public class PhysicalSaveSlot : MonoBehaviour
     [Header("Reference")]
     [SerializeField] private GameObject saveSlots_Bread;
     [SerializeField] private GameObject saveSlotButton_Blackframe;
+    private int hoverOverTracker = 0;
+
     void Start()
     {
         ani = this.GetComponent<Animator>();
@@ -27,14 +29,12 @@ public class PhysicalSaveSlot : MonoBehaviour
 
     void OnMouseEnter()
     {
-        //Debug.LogError("Enter");
-        ani.SetBool("hoverOver", true);
+        ChangeHoverOverTracker(1);
     }
 
     void OnMouseExit()
     {
-        //Debug.LogError("Exit");
-        ani.SetBool("hoverOver", false);
+        ChangeHoverOverTracker(-1);
     }
 
     /// <summary>
@@ -42,8 +42,8 @@ public class PhysicalSaveSlot : MonoBehaviour
     /// </summary>
     public void MoveToMainGame(int fileId)
     {
-        SaveHandler.instance.LoadSaveFile();
         SaveHandler.instance.SetCurrentSaveFileByID(fileId);
+        SaveHandler.instance.LoadSaveFile();
     }
 
     /// <summary>
@@ -85,7 +85,6 @@ public class PhysicalSaveSlot : MonoBehaviour
         saveSlots_Bread.SetActive(true);
         SaveHandler.instance.SetCurrentSaveFileByID(fileIndex);
         SaveHandler.instance.SetSaveFileName("SaveSlot");
-        Debug.LogError("New a save slot");
     }
 
     public void SetUpExistingSaveSlot()
@@ -93,4 +92,16 @@ public class PhysicalSaveSlot : MonoBehaviour
         saveSlotButton_Blackframe.SetActive(false);
         saveSlots_Bread.SetActive(true);
     }
+
+    /// <summary>
+    /// This will be called in the physical button for "Play" / "Delete"
+    /// </summary>
+    /// <param name="changeAmount"></param>
+    public void ChangeHoverOverTracker(int changeAmount)
+    {
+        hoverOverTracker += changeAmount;
+        ani.SetInteger("hoverOver_IntTracker", hoverOverTracker);
+    }
+
+
 }

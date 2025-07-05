@@ -21,6 +21,8 @@ public class PhysicalButtons : MonoBehaviour
     // ------------------------------- Variables -------------------------------
     [Header("----------- Unity Events ------------")]
     [SerializeField] private UnityEvent buttonTrigger;
+    [SerializeField] private UnityEvent mouseEnter;
+    [SerializeField] private UnityEvent mouseExit;
 
     [Header("----------- Height Entities -----------")]
     public GameObject maxHeight;
@@ -79,6 +81,16 @@ public class PhysicalButtons : MonoBehaviour
                 Depress();
             }
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        mouseEnter?.Invoke();
+    }
+
+    private void OnMouseExit()
+    {
+        mouseExit?.Invoke();
     }
 
     // On click, interact
