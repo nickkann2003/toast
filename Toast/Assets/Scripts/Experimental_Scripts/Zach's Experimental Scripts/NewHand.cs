@@ -66,14 +66,6 @@ public class NewHand : MonoBehaviour
             }
             */
 
-            // Carrier check
-            Carrier c = null;
-            itemToReturn.TryGetComponent<Carrier>(out c);
-            if (c != null)
-            {
-                c.PutDown();
-            }
-
             // Set prop flogs
             heldObject.GetComponent<NewProp>()?.RemoveFlag(PropFlags.InHand);
             
@@ -87,6 +79,15 @@ public class NewHand : MonoBehaviour
             
             heldObject.transform.parent = null;
             heldObject = null;
+
+            // Carrier check
+            Carrier c = null;
+            itemToReturn.TryGetComponent<Carrier>(out c);
+            if (c != null)
+            {
+                c.PutDown();
+            }
+
         }
 
         return itemToReturn;

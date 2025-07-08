@@ -114,14 +114,25 @@ public class CarryVolume : MonoBehaviour
                     FindParent(c.gameObject).transform.SetParent(carrierObject.gameObject.transform);
                 }
             }
+
+            
         }
-        
+
+        foreach (GameObject go in currentCarries)
+        {
+            go.TryGetComponent<Rigidbody>(out Rigidbody rb);
+            rb.isKinematic = false;
+        }
+
+
     }
 
     public void TriggerDrop()
     {
         foreach(GameObject go in currentCarries)
         {
+            go.TryGetComponent<Rigidbody>(out Rigidbody rb);
+            rb.isKinematic = true;
             go.transform.parent = null;
         }
         currentCarries.Clear();
