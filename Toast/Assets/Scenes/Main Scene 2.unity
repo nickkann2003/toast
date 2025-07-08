@@ -956,6 +956,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1653158263}
     m_Modifications:
+    - target: {fileID: 2464367003275098137, guid: 293b959f1111e9745b9fb1cd56f01b55,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2464367003275098137, guid: 293b959f1111e9745b9fb1cd56f01b55,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
     - target: {fileID: 3414108266269885370, guid: 293b959f1111e9745b9fb1cd56f01b55,
         type: 3}
       propertyPath: parentLoc
@@ -1015,6 +1025,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5966782232546011287, guid: 293b959f1111e9745b9fb1cd56f01b55,
+        type: 3}
+      propertyPath: isOpen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5966782232546011287, guid: 293b959f1111e9745b9fb1cd56f01b55,
         type: 3}
@@ -25769,6 +25784,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 995659374}
+    - target: {fileID: 1678877201880254646, guid: 79bbdac269fb3484685f63b4b174e8e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3003241300233398339, guid: 79bbdac269fb3484685f63b4b174e8e7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -27533,7 +27553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &864959009
 Transform:
   m_ObjectHideFlags: 0
@@ -27568,7 +27588,7 @@ MonoBehaviour:
   spawnRotationRandomness: {x: 0.00864982, y: 0.008802123, z: 0.008802123, w: -0.9998851}
   spawnParent: {fileID: 0}
   automaticSpawning: 1
-  spawnRatePerSecond: 0.4
+  spawnRatePerSecond: 0.3
   spawnDuration: 0
 --- !u!1001 &865962923
 PrefabInstance:
