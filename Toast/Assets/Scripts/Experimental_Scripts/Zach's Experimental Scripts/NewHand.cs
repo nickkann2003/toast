@@ -80,6 +80,7 @@ public class NewHand : MonoBehaviour
             heldObject.transform.parent = null;
             heldObject = null;
 
+            /*
             // Carrier check
             Carrier c = null;
             itemToReturn.TryGetComponent<Carrier>(out c);
@@ -87,6 +88,7 @@ public class NewHand : MonoBehaviour
             {
                 c.PutDown();
             }
+            */
 
         }
 

@@ -238,6 +238,13 @@ public class NewProp : MonoBehaviour
             {
                 CreateAndUpdateRigidbody();
             }
+
+            // Carrier check
+            gameObject.TryGetComponent<Carrier>(out Carrier c);
+            if(c != null)
+            {
+                c.PutDown();
+            }    
         }
     }
 

@@ -90,7 +90,7 @@ public class CarryVolume : MonoBehaviour
         if(triggerCollider is BoxCollider)
         {
             BoxCollider box = (BoxCollider)triggerCollider;
-            Collider[] colliders = Physics.OverlapBox(transform.position, box.size);
+            Collider[] colliders = Physics.OverlapBox(transform.position + box.center, box.size / 2f);
             Debug.Log("Pos: " + transform.position + box.center + ", Size: " + box.size / 2f);
             Debug.Log(colliders.Length);
             foreach(Collider c in colliders)
@@ -121,7 +121,7 @@ public class CarryVolume : MonoBehaviour
         foreach (GameObject go in currentCarries)
         {
             go.TryGetComponent<Rigidbody>(out Rigidbody rb);
-            rb.isKinematic = false;
+            rb.isKinematic = true;
         }
 
 
@@ -132,8 +132,8 @@ public class CarryVolume : MonoBehaviour
         foreach(GameObject go in currentCarries)
         {
             go.TryGetComponent<Rigidbody>(out Rigidbody rb);
-            rb.isKinematic = true;
             go.transform.parent = null;
+            rb.isKinematic = false;
         }
         currentCarries.Clear();
     }

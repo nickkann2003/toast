@@ -337,6 +337,13 @@ public class Raycast : MonoBehaviour
             itemToDrop.transform.rotation = Quaternion.identity;
             itemToDrop.transform.Rotate(objectDropRotation);
 
+            // Carrier check
+            itemToDrop.TryGetComponent<Carrier>(out Carrier c);
+            if (c != null)
+            {
+                c.PutDown();
+            }
+
             // Try setting rigidbody, catch if object doesnt have a rigidbody
             //try
             //{
