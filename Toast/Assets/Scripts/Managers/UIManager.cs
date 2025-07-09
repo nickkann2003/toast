@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour
     public Button objectiveButton;
     public Animator backButtonAni;
     public Slider volumeSlider;
+    public Slider musicSlider;
     public Slider moveSpeedSlider;
     private bool backButtonOnScreen = false;
     

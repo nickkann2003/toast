@@ -41,6 +41,8 @@ public class AudioManager : MonoBehaviour
     public List<AudioSource> eventSources;
     private int iterator = 0;
 
+    private float audioCd = 0.1f;
+
 
     // ------------------------------- Functions -------------------------------
     private void Awake()
@@ -66,6 +68,11 @@ public class AudioManager : MonoBehaviour
             source.dopplerLevel = 0.0f;
             eventSources.Add(source);
         }
+    }
+
+    private void Update()
+    {
+        audioCd -= Time.deltaTime;
     }
 
     /// <summary>
@@ -120,8 +127,12 @@ public class AudioManager : MonoBehaviour
     public void ChangeVolume()
     {
         volumeMultiplier = UIManager.instance.volumeSlider.value;
-        audioPlayer.volume = volumeMultiplier;
-        audioPlayer.PlayOneShot(eatingBread);
+        if(audioCd <= 0)
+        {
+            audioPlayer.volume = volumeMultiplier;
+            audioPlayer.PlayOneShot(eatingBread);
+            audioCd = 0.45f;
+        }
     }
 
     public void PlayAudioEvent(SimpleAudioEvent audioEvent)

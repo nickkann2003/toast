@@ -25,23 +25,26 @@ public class EventOnAnyKeyPress : MonoBehaviour
     // On update, check if a key is down, and optionally if its a specified key
     void Update()
     {
-        // If any key is pressed
-        if(Input.anyKey)
+        if (gameObject.activeSelf)
         {
-            if(!specificKeys)
+            // If any key is pressed
+            if(Input.anyKey)
             {
-                // Invoke if any key allowed
-                onKeyEvent.Invoke();
-            }
-            else
-            {
-                // Otherwise check all keycodes in list
-                foreach(KeyCode keyCode in keys)
+                if(!specificKeys)
                 {
-                    if(Input.GetKey(keyCode))
+                    // Invoke if any key allowed
+                    onKeyEvent.Invoke();
+                }
+                else
+                {
+                    // Otherwise check all keycodes in list
+                    foreach(KeyCode keyCode in keys)
                     {
-                        onKeyEvent.Invoke();
-                        return;
+                        if(Input.GetKey(keyCode))
+                        {
+                            onKeyEvent.Invoke();
+                            return;
+                        }
                     }
                 }
             }
