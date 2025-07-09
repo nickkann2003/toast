@@ -238,13 +238,21 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void QuitGame()
     {
-        try{
+        StartCoroutine(QuitCoroutine());
+    }
+
+    private IEnumerator QuitCoroutine()
+    {
+        try
+        {
             SaveHandler.instance.SaveAllData();
         }
         catch
         {
-            // haha! You found an empty catch block! I'm too busy preparing for ROC Game Fest, so this is all you get!
+            Debug.LogError("Save failed! This could lead to lost or corrupt data potentially.");
         }
+
+        yield return new WaitForSeconds(0.5f);
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
