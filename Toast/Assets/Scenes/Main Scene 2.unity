@@ -12179,6 +12179,8 @@ MonoBehaviour:
     type: 2}
   ACHIEVEMENT_USE_FREEZER: {fileID: 11400000, guid: 7043db1bafa59df438c6adbc0c5e3249,
     type: 2}
+  ACHIEVEMENT_BAGEL_BUTTON: {fileID: 11400000, guid: 557a1e27d098af5448a5dcbf8b19f40e,
+    type: 2}
   achievements:
   - {fileID: 11400000, guid: 44519b983e4fe3d4ca616aebd14a5cf2, type: 2}
   - {fileID: 11400000, guid: c70411c4c03041f48aa495ecc1181b44, type: 2}
@@ -12193,6 +12195,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea753b44790a2524385db09f380ebeef, type: 2}
   - {fileID: 11400000, guid: 3762d3be3f8d554479f23cae4bdf5ed4, type: 2}
   - {fileID: 11400000, guid: 7043db1bafa59df438c6adbc0c5e3249, type: 2}
+  - {fileID: 11400000, guid: 557a1e27d098af5448a5dcbf8b19f40e, type: 2}
   unlockedAchievements: []
   UIPrefab: {fileID: 4698171833950961960, guid: 54adf1b91ca220f4e92b8d2cd4812fce,
     type: 3}
@@ -12272,6 +12275,22 @@ MonoBehaviour:
         - m_Target: {fileID: 476747432}
           m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
           m_MethodName: ReceivedTimeChange
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: a49704fa8669e86499b327822ceee166, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 476747432}
+          m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
+          m_MethodName: ReceivedBagelUnlock
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -36491,7 +36510,7 @@ PrefabInstance:
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
@@ -36515,6 +36534,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
+        type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2125806615}
@@ -36535,6 +36559,12 @@ PrefabInstance:
       objectReference: {fileID: 179354646}
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: a49704fa8669e86499b327822ceee166,
+        type: 2}
+    - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
+        type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -36551,6 +36581,11 @@ PrefabInstance:
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
@@ -36575,6 +36610,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: RaiseEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
+        type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -36592,6 +36632,11 @@ PrefabInstance:
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: AudioManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: VoidGameEvent, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
@@ -36638,6 +36683,11 @@ PrefabInstance:
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: SimpleAudioEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
+        type: 3}
+      propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

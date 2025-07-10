@@ -30,7 +30,8 @@ public class AchievementManager : MonoBehaviour
         ACHIEVEMENT_USE_CLOCK,
         ACHIEVEMENT_BUTTER_BREAD,
         ACHIEVEMENT_AVOCADO_TOAST,
-        ACHIEVEMENT_USE_FREEZER;
+        ACHIEVEMENT_USE_FREEZER,
+        ACHIEVEMENT_BAGEL_BUTTON;
 
 
 
@@ -279,6 +280,14 @@ public class AchievementManager : MonoBehaviour
     public void ReceivedExtinguish(NewProp prop, int increment)
     {
         Unlock(ACHIEVEMENT_USE_FREEZER);
+    }
+
+    /// <summary>
+    /// Achievement relating to unlocking the bagel button
+    /// </summary>
+    public void ReceivedBagelUnlock()
+    {
+        Unlock(ACHIEVEMENT_BAGEL_BUTTON);
     }
 
     void IncrementAchievement(Achievement achievement, int increment = 1)
