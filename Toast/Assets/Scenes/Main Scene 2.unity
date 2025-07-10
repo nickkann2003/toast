@@ -12177,6 +12177,8 @@ MonoBehaviour:
     type: 2}
   ACHIEVEMENT_AVOCADO_TOAST: {fileID: 11400000, guid: ea753b44790a2524385db09f380ebeef,
     type: 2}
+  ACHIEVEMENT_USE_FREEZER: {fileID: 11400000, guid: 7043db1bafa59df438c6adbc0c5e3249,
+    type: 2}
   achievements:
   - {fileID: 11400000, guid: 44519b983e4fe3d4ca616aebd14a5cf2, type: 2}
   - {fileID: 11400000, guid: c70411c4c03041f48aa495ecc1181b44, type: 2}
@@ -12190,6 +12192,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 98fb6872772a8c04599a573f80350cbe, type: 2}
   - {fileID: 11400000, guid: ea753b44790a2524385db09f380ebeef, type: 2}
   - {fileID: 11400000, guid: 3762d3be3f8d554479f23cae4bdf5ed4, type: 2}
+  - {fileID: 11400000, guid: 7043db1bafa59df438c6adbc0c5e3249, type: 2}
   unlockedAchievements: []
   UIPrefab: {fileID: 4698171833950961960, guid: 54adf1b91ca220f4e92b8d2cd4812fce,
     type: 3}
@@ -12390,6 +12393,22 @@ MonoBehaviour:
         - m_Target: {fileID: 476747432}
           m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
           m_MethodName: ReceivedSpread
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: 92409c5fb9227fa40b0bef8f1398f70e, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 476747432}
+          m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
+          m_MethodName: ReceivedExtinguish
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
