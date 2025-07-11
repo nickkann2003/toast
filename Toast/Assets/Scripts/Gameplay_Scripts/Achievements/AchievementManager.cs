@@ -296,9 +296,7 @@ public class AchievementManager : MonoBehaviour
     /// </summary>
     public void ReceivedPickUp(NewProp prop, int increment)
     {
-        Debug.Log("Carry Received");
         prop.gameObject.TryGetComponent<Carrier>(out Carrier c);
-        Debug.Log("Holding: " + c.CarryVolume.currentCarries.Count);
         if(c != null && c.CarryVolume.currentCarries.Count >= 10)
         {
             Unlock(ACHIEVEMENT_PLATE_10_ITEMS);
