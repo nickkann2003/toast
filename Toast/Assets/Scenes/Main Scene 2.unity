@@ -12181,6 +12181,8 @@ MonoBehaviour:
     type: 2}
   ACHIEVEMENT_BAGEL_BUTTON: {fileID: 11400000, guid: 557a1e27d098af5448a5dcbf8b19f40e,
     type: 2}
+  ACHIEVEMENT_PLATE_10_ITEMS: {fileID: 11400000, guid: 5f20293a147a62b4e8fcd65a45e5a2fd,
+    type: 2}
   achievements:
   - {fileID: 11400000, guid: 44519b983e4fe3d4ca616aebd14a5cf2, type: 2}
   - {fileID: 11400000, guid: c70411c4c03041f48aa495ecc1181b44, type: 2}
@@ -12196,6 +12198,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3762d3be3f8d554479f23cae4bdf5ed4, type: 2}
   - {fileID: 11400000, guid: 7043db1bafa59df438c6adbc0c5e3249, type: 2}
   - {fileID: 11400000, guid: 557a1e27d098af5448a5dcbf8b19f40e, type: 2}
+  - {fileID: 11400000, guid: 5f20293a147a62b4e8fcd65a45e5a2fd, type: 2}
   unlockedAchievements: []
   UIPrefab: {fileID: 4698171833950961960, guid: 54adf1b91ca220f4e92b8d2cd4812fce,
     type: 3}
@@ -12428,6 +12431,22 @@ MonoBehaviour:
         - m_Target: {fileID: 476747432}
           m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
           m_MethodName: ReceivedExtinguish
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: 74cfc54411c41f147b57673b2ae02f7b, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 476747432}
+          m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
+          m_MethodName: ReceivedPickUp
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

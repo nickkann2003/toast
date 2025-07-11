@@ -31,7 +31,8 @@ public class AchievementManager : MonoBehaviour
         ACHIEVEMENT_BUTTER_BREAD,
         ACHIEVEMENT_AVOCADO_TOAST,
         ACHIEVEMENT_USE_FREEZER,
-        ACHIEVEMENT_BAGEL_BUTTON;
+        ACHIEVEMENT_BAGEL_BUTTON,
+        ACHIEVEMENT_PLATE_10_ITEMS;
 
 
 
@@ -288,6 +289,20 @@ public class AchievementManager : MonoBehaviour
     public void ReceivedBagelUnlock()
     {
         Unlock(ACHIEVEMENT_BAGEL_BUTTON);
+    }
+
+    /// <summary>
+    /// Achievements relating to picking up items
+    /// </summary>
+    public void ReceivedPickUp(NewProp prop, int increment)
+    {
+        Debug.Log("Carry Received");
+        prop.gameObject.TryGetComponent<Carrier>(out Carrier c);
+        Debug.Log("Holding: " + c.CarryVolume.currentCarries.Count);
+        if(c != null && c.CarryVolume.currentCarries.Count >= 10)
+        {
+            Unlock(ACHIEVEMENT_PLATE_10_ITEMS);
+        }
     }
 
     void IncrementAchievement(Achievement achievement, int increment = 1)
