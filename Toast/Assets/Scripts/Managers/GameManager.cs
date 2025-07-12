@@ -252,6 +252,7 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Save failed! This could lead to lost or corrupt data potentially.");
         }
 
+        Time.timeScale = 1f;
         yield return new WaitForSeconds(0.5f);
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
