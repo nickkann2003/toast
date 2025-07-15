@@ -1112,6 +1112,7 @@ Transform:
   - {fileID: 2572956098616876166}
   - {fileID: 3532958765416405076}
   - {fileID: 1674959468303295089}
+  - {fileID: 7286783366270834771}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1272,7 +1273,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   runLeaveWhenGoingToChildren: 0
-  permaGizmos: 0
+  permaGizmos: 1
 --- !u!65 &7230327151319708209
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2397,6 +2398,113 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   M_Off: {fileID: 2100000, guid: 826b7577bc903254fa2d2b432566b7f5, type: 2}
   M_On: {fileID: 2100000, guid: 6b3c213a948ec5b4081d0069c02d2b94, type: 2}
+--- !u!1 &6431459876207142759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7286783366270834771}
+  - component: {fileID: 6576608925785674620}
+  - component: {fileID: 1481498067882423671}
+  - component: {fileID: 8457381106673335913}
+  m_Layer: 3
+  m_Name: AS_InsideButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7286783366270834771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6431459876207142759}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.8, z: 1.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7673949830678707445}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &6576608925785674620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6431459876207142759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902f118e886d20d43b1ff6bff5092b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHighlightSetting: {fileID: 0}
+  isHighlightedEnabled: 1
+  outline: []
+--- !u!114 &1481498067882423671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6431459876207142759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 200ac538edce4964dbd011c03e262faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraPos: {x: 0, y: 0, z: 0}
+  cameraRotation: {x: 0.19080906, y: 0, z: 0, w: 0.98162717}
+  objectOffset: {x: 0, y: 0, z: 0}
+  parentLoc: {fileID: 0}
+  stationLabel: 0
+  clickableCollider: {fileID: 0}
+  invertXCameraRotation: 0
+  interactables: []
+  isEnabled: 0
+  dragPlanes: []
+  stationSpecificHints: []
+  arrive:
+    m_PersistentCalls:
+      m_Calls: []
+  leave:
+    m_PersistentCalls:
+      m_Calls: []
+  separateArriveAndReturn: 0
+  returnTo:
+    m_PersistentCalls:
+      m_Calls: []
+  runLeaveWhenGoingToChildren: 0
+  permaGizmos: 0
+  stationAnimator: {fileID: 8457381106673335913}
+  nextStation: {fileID: 2622713567600744381}
+--- !u!95 &8457381106673335913
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6431459876207142759}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0df0fd54ceaa7104fa7d505a5cbbf156, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6587288225165906862
 GameObject:
   m_ObjectHideFlags: 0
@@ -7335,6 +7443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d36d2d8d4d4f94d9ac66410f52c005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endlessToasting: 0
   startToasting:
     m_PersistentCalls:
       m_Calls:

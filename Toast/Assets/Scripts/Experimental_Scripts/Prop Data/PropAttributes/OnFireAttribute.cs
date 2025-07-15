@@ -23,6 +23,9 @@ public class OnFireAttribute : PropAttributeSO
     [SerializeField]
     private PropAttributeSO frozenAtt;
 
+    [SerializeField]
+    private PropAttributeSO combustibleAttribute;
+
     public override void OnEquip(NewProp newProp)
     {
         if (newProp.HasAttribute(frozenAtt))
