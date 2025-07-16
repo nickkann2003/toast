@@ -65,6 +65,7 @@ GameObject:
   - component: {fileID: 7150139995679081156}
   - component: {fileID: 913150833136117116}
   - component: {fileID: 4509306430860586685}
+  - component: {fileID: -7097836797089826443}
   m_Layer: 7
   m_Name: Detergent
   m_TagString: Untagged
@@ -197,7 +198,7 @@ MonoBehaviour:
   jamJar: {fileID: 3495897718580543956}
   jamJarLid: {fileID: 4021424640729716323}
   lidAtt: {fileID: 11400000, guid: dd487103649cd7245b62df80a130f900, type: 2}
-  config: {fileID: 11400000, guid: 07f36fef13e477f478b45a2f8bbab2ba, type: 2}
+  config: {fileID: 11400000, guid: 28d2743b80b2abd4e81e28d7f45fec8e, type: 2}
   isCapped: 1
   jamJarLidPrefab: {fileID: 1000392157583233769, guid: 25599e56e49ac394790feaa984175dd8,
     type: 3}
@@ -225,6 +226,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9982785, y: 2.7823539, z: 1.117207}
   m_Center: {x: -0.0060619414, y: 0.27280712, z: -0.0020205602}
+--- !u!114 &-7097836797089826443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2154851158994903832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3444dd07cc16c48b0d4d75f02451e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spreadColor: {r: 0.29803923, g: 0.8666667, b: 0.43137255, a: 1}
+  splatterPrefab: {fileID: 5890934200943475886, guid: efc64389672f24e4e9f2e54deedc9185,
+    type: 3}
+  IsOnKnife: 0
+  currentKnife: {fileID: 0}
+  spreadEvent: {fileID: 0}
+  useEvent: {fileID: 0}
 --- !u!1 &3349344035879295808
 GameObject:
   m_ObjectHideFlags: 0
