@@ -28,6 +28,9 @@ public class Objective
 
     [Header("Unity Events")]
     public UnityEvent completionEvents;
+
+    // Unity events that only trigger when the objective is NOT force completed (ie. loading save file)
+    public UnityEvent nonForceCompleteExclusiveEvents;
     
     [Button, SerializeField]
     private void ForceCompleteAll()
@@ -37,7 +40,7 @@ public class Objective
 
 
     // ------------------------------- Properties -------------------------------
-    public bool Complete { get => objectiveInfo.Complete; }
+    public bool Complete { get => objectiveInfo.Complete; set => objectiveInfo.Complete = value; }
     public int ID { get => objectiveInfo.ID; }
     public SO_Objective ObjectiveInfo { get => objectiveInfo; set => objectiveInfo = value; }
 
@@ -112,6 +115,7 @@ public class Objective
                 // One Shot Effects
                 complete = true;
                 completionEvents.Invoke();
+                nonForceCompleteExclusiveEvents.Invoke();
 
                 // Local stats integration
                 SaveHandler.instance.StatsHandler.ObjectivesComplete += 1;
@@ -148,6 +152,8 @@ public class Objective
             // One shot effects
             complete = true;
             completionEvents.Invoke();
+            // Specifically DO NOT trigger nonForceCompleteExclusives
+
             foreach (int i in prerequisiteIds)
             {
                 ObjectiveManager.instance.ObjectivesById[i].ObjectiveInfo.CompleteSuccessor();

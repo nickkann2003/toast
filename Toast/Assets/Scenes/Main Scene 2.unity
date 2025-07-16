@@ -5455,6 +5455,9 @@ MonoBehaviour:
       - {fileID: 1542199387}
       completionEvents:
         m_PersistentCalls:
+          m_Calls: []
+      nonForceCompleteExclusiveEvents:
+        m_PersistentCalls:
           m_Calls:
           - m_Target: {fileID: 772417327}
             m_TargetAssemblyTypeName: SendToStation, Assembly-CSharp
@@ -5483,6 +5486,9 @@ MonoBehaviour:
       activatables:
       - {fileID: 1200584591}
       completionEvents:
+        m_PersistentCalls:
+          m_Calls: []
+      nonForceCompleteExclusiveEvents:
         m_PersistentCalls:
           m_Calls:
           - m_Target: {fileID: 495551249}
@@ -5536,6 +5542,21 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 1
             m_CallState: 2
+          - m_Target: {fileID: 476747432}
+            m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
+            m_MethodName: TutorialCleared
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      nonForceCompleteExclusiveEvents:
+        m_PersistentCalls:
+          m_Calls:
           - m_Target: {fileID: 1885478009}
             m_TargetAssemblyTypeName: AnimatedStation, Assembly-CSharp
             m_MethodName: StartAnimation
@@ -5552,7 +5573,7 @@ MonoBehaviour:
     - {fileID: 1652460431}
     displaysUI: []
     complete: 0
-    available: 0
+    available: 1
     displayOnNotepad: 1
     destroyPaperOnCompletion: 1
   - name: Toaster
@@ -5562,6 +5583,9 @@ MonoBehaviour:
       prerequisiteIds: 02000000
       activatables: []
       completionEvents:
+        m_PersistentCalls:
+          m_Calls: []
+      nonForceCompleteExclusiveEvents:
         m_PersistentCalls:
           m_Calls: []
     - objectiveInfo: {fileID: 11400000, guid: 0b94892cb77c0f340b2f27a06745f462, type: 2}
@@ -5630,6 +5654,9 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 1
             m_CallState: 2
+      nonForceCompleteExclusiveEvents:
+        m_PersistentCalls:
+          m_Calls:
           - m_Target: {fileID: 1391671527}
             m_TargetAssemblyTypeName: AnimatedStation, Assembly-CSharp
             m_MethodName: StartAnimation
@@ -5640,7 +5667,7 @@ MonoBehaviour:
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
-              m_BoolArgument: 1
+              m_BoolArgument: 0
             m_CallState: 2
     - objectiveInfo: {fileID: 11400000, guid: 6593658ea515af24cb7278330089dfd8, type: 2}
       prerequisiteIds: 04000000
@@ -5660,12 +5687,18 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 1
             m_CallState: 2
+      nonForceCompleteExclusiveEvents:
+        m_PersistentCalls:
+          m_Calls: []
     - objectiveInfo: {fileID: 11400000, guid: 0df330efd0563d24f8c70e210f2d5a5c, type: 2}
       prerequisiteIds: 05000000
       activatables:
       - {fileID: 1415698659}
       - {fileID: 1617756001}
       completionEvents:
+        m_PersistentCalls:
+          m_Calls: []
+      nonForceCompleteExclusiveEvents:
         m_PersistentCalls:
           m_Calls: []
     displays:
@@ -5684,10 +5717,16 @@ MonoBehaviour:
       completionEvents:
         m_PersistentCalls:
           m_Calls: []
+      nonForceCompleteExclusiveEvents:
+        m_PersistentCalls:
+          m_Calls: []
     - objectiveInfo: {fileID: 11400000, guid: e8c1cd7da25f3754d8a82ed70a1aaa45, type: 2}
       prerequisiteIds: 07000000
       activatables: []
       completionEvents:
+        m_PersistentCalls:
+          m_Calls: []
+      nonForceCompleteExclusiveEvents:
         m_PersistentCalls:
           m_Calls: []
     displays:
@@ -5731,6 +5770,9 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+      nonForceCompleteExclusiveEvents:
+        m_PersistentCalls:
+          m_Calls: []
     - objectiveInfo: {fileID: 11400000, guid: 12b714bdb3cce024091c0a66b9e944df, type: 2}
       prerequisiteIds: 09000000
       activatables: []
@@ -5749,6 +5791,9 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+      nonForceCompleteExclusiveEvents:
+        m_PersistentCalls:
+          m_Calls: []
     displays:
     - {fileID: 739542199}
     displaysUI: []
@@ -5765,10 +5810,16 @@ MonoBehaviour:
       completionEvents:
         m_PersistentCalls:
           m_Calls: []
+      nonForceCompleteExclusiveEvents:
+        m_PersistentCalls:
+          m_Calls: []
     - objectiveInfo: {fileID: 11400000, guid: d64db531dc8e6b6498a3e9b639450dd1, type: 2}
       prerequisiteIds: 0b000000
       activatables: []
       completionEvents:
+        m_PersistentCalls:
+          m_Calls: []
+      nonForceCompleteExclusiveEvents:
         m_PersistentCalls:
           m_Calls: []
     - objectiveInfo: {fileID: 11400000, guid: 31e9f77976e48414b9b361404e32e7ff, type: 2}
@@ -5777,10 +5828,16 @@ MonoBehaviour:
       completionEvents:
         m_PersistentCalls:
           m_Calls: []
+      nonForceCompleteExclusiveEvents:
+        m_PersistentCalls:
+          m_Calls: []
     - objectiveInfo: {fileID: 11400000, guid: d71e48f60aeffb54d8361fe44ccb17a3, type: 2}
       prerequisiteIds: 0d000000
       activatables: []
       completionEvents:
+        m_PersistentCalls:
+          m_Calls: []
+      nonForceCompleteExclusiveEvents:
         m_PersistentCalls:
           m_Calls: []
     displays:
@@ -5797,6 +5854,9 @@ MonoBehaviour:
       prerequisiteIds: 02000000
       activatables: []
       completionEvents:
+        m_PersistentCalls:
+          m_Calls: []
+      nonForceCompleteExclusiveEvents:
         m_PersistentCalls:
           m_Calls: []
     - objectiveInfo: {fileID: 11400000, guid: 9b2b29ba71acf354cb45d368097a99d8, type: 2}
@@ -5817,6 +5877,9 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+      nonForceCompleteExclusiveEvents:
+        m_PersistentCalls:
+          m_Calls: []
     displays:
     - {fileID: 1003077765}
     displaysUI: []
@@ -5833,6 +5896,9 @@ MonoBehaviour:
       completionEvents:
         m_PersistentCalls:
           m_Calls: []
+      nonForceCompleteExclusiveEvents:
+        m_PersistentCalls:
+          m_Calls: []
     displays:
     - {fileID: 146853449}
     displaysUI: []
@@ -5840,6 +5906,14 @@ MonoBehaviour:
     available: 1
     displayOnNotepad: 1
     destroyPaperOnCompletion: 1
+  objectiveStations:
+  - objective: {fileID: 11400000, guid: dae3d8f283a1506409a995763819c874, type: 2}
+    defaultStation: {fileID: 550000352}
+  - objective: {fileID: 11400000, guid: 83151a92b405bff4e88b6fa52422330e, type: 2}
+    defaultStation: {fileID: 1542199388}
+  - objective: {fileID: 11400000, guid: e811e25c41d68334ab99bbd6003176ae, type: 2}
+    defaultStation: {fileID: 977083784}
+  defaultLocation: {fileID: 1467470857}
   objectiveToComplete: 0
   notepadHelper: {fileID: 814188443}
 --- !u!1 &210329464
@@ -30541,7 +30615,7 @@ PrefabInstance:
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
@@ -30556,7 +30630,7 @@ PrefabInstance:
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
@@ -30577,7 +30651,7 @@ PrefabInstance:
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 203181413}
+      objectReference: {fileID: 1885478009}
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -30611,7 +30685,7 @@ PrefabInstance:
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: ForceCompleteObjective
+      value: StartAnimation
       objectReference: {fileID: 0}
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
@@ -30626,7 +30700,7 @@ PrefabInstance:
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: ObjectiveManager, Assembly-CSharp
+      value: AnimatedStation, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
@@ -30646,7 +30720,7 @@ PrefabInstance:
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
       propertyPath: buttonTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7707362071693748688, guid: 54a7b92d33073a046bdb02bccdc9b0a2,
         type: 3}
@@ -42669,6 +42743,11 @@ PrefabInstance:
       propertyPath: rotateAround.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2622713567600744381, guid: 1750db23407feb64f9c5084a643ae3ae,
+        type: 3}
+      propertyPath: permaGizmos
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3293500021430403112, guid: 1750db23407feb64f9c5084a643ae3ae,
         type: 3}
       propertyPath: m_Enabled
@@ -46257,6 +46336,11 @@ PrefabInstance:
         type: 3}
       propertyPath: parentLoc
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2622713567600744381, guid: 1750db23407feb64f9c5084a643ae3ae,
+        type: 3}
+      propertyPath: permaGizmos
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3704584830139008556, guid: 1750db23407feb64f9c5084a643ae3ae,
         type: 3}
@@ -65271,7 +65355,7 @@ PrefabInstance:
     - target: {fileID: 2766759407674986520, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
         type: 3}
       propertyPath: permaGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5550356178177237827, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
         type: 3}
@@ -65281,7 +65365,7 @@ PrefabInstance:
     - target: {fileID: 5550356178177237827, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.467
+      value: 20.76
       objectReference: {fileID: 0}
     - target: {fileID: 5550356178177237827, guid: 709722a6e47fd5c49b3e83a5398d3c5d,
         type: 3}
@@ -79973,82 +80057,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 1239337290473918015, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3926882994072751416, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2357934412925911808, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6971758654753734760, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8914178629579394535, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 1166186958556728491, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2361952735077213547, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 9056768313679554252, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 3535554376849100721, guid: aa91b14ae9d884ce79f38c7256d9726b,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2014163147}
-    - targetCorrespondingSourceObject: {fileID: 956008005690917169, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 5536693770781312245, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 1451584432313519879, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8734313692583055602, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 5154520953310376944, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2360222452252598517, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6197332997450859808, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6513689119401761784, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2585244306780436223, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4659493453763425216, guid: aa91b14ae9d884ce79f38c7256d9726b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: aa91b14ae9d884ce79f38c7256d9726b, type: 3}
 --- !u!95 &7467879706770550419 stripped
 Animator:

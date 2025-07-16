@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 using TMPro;
@@ -19,6 +20,11 @@ public class ObjectiveManager : MonoBehaviour
     public List<ObjectiveGroup> objectiveGroups = new List<ObjectiveGroup>(); // DO NOT CHANGE VARIABLE NAME IT WILL WIPE ALL EDITOR INFO (im unbelievably sad)
     [NonSerialized]
     public Dictionary<int, Objective> objectivesById = new Dictionary<int, Objective>();
+
+    [Header("Objectives by location"), Description("This is a collection of objectives and their necessary location, ordered from first incomplete to last")]
+    [SerializeField]
+    public List<ObjectiveDefaultStation> objectiveStations;
+    public Station defaultLocation;
 
     private string objSerialPath = "Assets/Resources/objs.txt";
 
@@ -206,6 +212,11 @@ public class ObjectiveManager : MonoBehaviour
         // Sort objectives by ID into fictionary
         SortObjectivesById();
 
+        foreach(Objective o in objectivesById.Values)
+        {
+            o.Complete = false;
+        }
+
         // Get array of all objective objects from file data
         string[] allObjs = fileDat.Split(objectiveMarker);
 
@@ -246,7 +257,30 @@ public class ObjectiveManager : MonoBehaviour
                 }
             }
         }
+
+        SetPlayerStartingPosition();
+
         UpdateText();
+    }
+
+    /// <summary>
+    /// Called when loading a save, checks the list of objectives and their locations in order, sending the player
+    /// to the location of the first uncompleted objective, or the default if all are completed
+    /// </summary>
+    private void SetPlayerStartingPosition()
+    {
+        bool sent = false;
+        foreach(ObjectiveDefaultStation s in objectiveStations)
+        {
+            if (!s.objective.Complete && !sent)
+            {
+                sent = true;
+                StationManager.instance.MoveToStation(s.defaultStation, disableMoveBackwards: true);
+            }
+
+            if(!sent)
+                StationManager.instance.MoveToStation(defaultLocation, disableMoveBackwards: false);
+        }
     }
 
     /// <summary>
@@ -274,4 +308,11 @@ public class ObjectiveManager : MonoBehaviour
         SortObjectivesById();
         EditorTextUpdate();
     }
+}
+
+[Serializable]
+public class ObjectiveDefaultStation
+{
+    [SerializeField] public SO_Objective objective;
+    [SerializeField] public Station defaultStation;
 }
