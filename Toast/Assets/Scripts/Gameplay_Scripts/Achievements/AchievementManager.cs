@@ -224,11 +224,19 @@ public class AchievementManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Achievements related to endings
+    /// Achievement for the fire ending
     /// </summary>
     public void ReceivedEnding()
     {
         Unlock(ACHIEVEMENT_FIRE_ENDING);
+    }
+
+    /// <summary>
+    /// Achievement for the detergent ending
+    /// </summary>
+    public void ReceivedDetergentEnding()
+    {
+        Unlock(ACHIEVEMENT_DETERGENT_EAT);
     }
 
     /// <summary>

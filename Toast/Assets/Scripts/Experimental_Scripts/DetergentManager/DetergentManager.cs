@@ -16,11 +16,13 @@ public class DetergentManager : MonoBehaviour
     [SerializeField]
     float timer = 0.0f;
 
-    [SerializeField] private VolumeProfile filterProfile;
+    [SerializeField] private VolumeProfile filterProfileLvl1, filterProfileLvl2, filterProfileLvl3;
     [SerializeField] private VolumeProfile globalProfile;
     [SerializeField] private Volume globalVolume;
 
     [SerializeField] VoidGameEvent endingEvent;
+
+    [SerializeField] Station endingStation;
 
     private void Awake()
     {
@@ -44,7 +46,7 @@ public class DetergentManager : MonoBehaviour
         }
 
         // Countdown if able
-        if(timer > 0)
+        if(timer > 0 && poisonLevel < 3)
         {
             timer -= 1.0f * Time.deltaTime;
         }
@@ -52,7 +54,16 @@ public class DetergentManager : MonoBehaviour
 
     void TriggerEnding()
     {
-        Debug.Log("Detergent Ending Triggered");
+        // Play ending "animation"
+        Time.timeScale = 0.2f;
+
+        // Trigger event
+        endingEvent.RaiseEvent();
+        
+        StationManager.instance.playerPath.Clear();
+        StationManager.instance.MoveToStation(endingStation);
+
+        StartCoroutine(GiveEnding());
     }
 
     /// <summary>
@@ -88,16 +99,25 @@ public class DetergentManager : MonoBehaviour
 
             // Ate detergent once
             case 1:
-                globalVolume.profile = filterProfile;
+                globalVolume.profile = filterProfileLvl1;
                 break;
 
             // Ate detergent twice
             case 2:
+                globalVolume.profile = filterProfileLvl2;
                 break;
                 
             // Ate detergent 3 times, time to end the game
             case 3:
+                globalVolume.profile = filterProfileLvl3;
                 break;
         }
+    }
+
+    private IEnumerator GiveEnding()
+    {
+        yield return new WaitForSecondsRealtime(3);
+
+        GameManager.Instance.LoadGame(0);
     }
 }

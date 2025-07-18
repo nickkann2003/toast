@@ -12343,6 +12343,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: 4e6906bfc55e9834d8294164bd8a4dfb, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 476747432}
+          m_TargetAssemblyTypeName: AchievementManager, Assembly-CSharp
+          m_MethodName: ReceivedDetergentEnding
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &476747434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38361,10 +38377,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poisonCooldownCount: 10
-  filterProfile: {fileID: 11400000, guid: 0bf47da602158fb49a05f96c0f453bf0, type: 2}
+  timer: 0
+  filterProfileLvl1: {fileID: 11400000, guid: 0bf47da602158fb49a05f96c0f453bf0, type: 2}
+  filterProfileLvl2: {fileID: 11400000, guid: ac68c5555aeec5d4daa134c559b53822, type: 2}
+  filterProfileLvl3: {fileID: 11400000, guid: e159575632aa0e84fb29bd734c546197, type: 2}
   globalProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
   globalVolume: {fileID: 360692423}
-  endingEvent: {fileID: 0}
+  endingEvent: {fileID: 11400000, guid: 4e6906bfc55e9834d8294164bd8a4dfb, type: 2}
+  endingStation: {fileID: 1392973461}
 --- !u!114 &1209353356
 MonoBehaviour:
   m_ObjectHideFlags: 0
