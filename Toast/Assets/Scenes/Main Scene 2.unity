@@ -302,6 +302,12 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 1531639256685303951, guid: ad49be42c75a27b4baee9e4469988c8a,
         type: 3}
+      propertyPath: hasDetergentAtt
+      value: 
+      objectReference: {fileID: 11400000, guid: a1491a4b402f3d84a9b00ce0fb42bb2a,
+        type: 2}
+    - target: {fileID: 1531639256685303951, guid: ad49be42c75a27b4baee9e4469988c8a,
+        type: 3}
       propertyPath: avocadoSpreadAtt
       value: 
       objectReference: {fileID: 11400000, guid: 525210ac228d83d44a9c0c7834c3b1ae,
@@ -26263,7 +26269,7 @@ PrefabInstance:
     - target: {fileID: 1484499269278894042, guid: 79bbdac269fb3484685f63b4b174e8e7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 491.2
+      value: 496
       objectReference: {fileID: 0}
     - target: {fileID: 1678877201880254646, guid: 79bbdac269fb3484685f63b4b174e8e7,
         type: 3}
@@ -38348,6 +38354,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenTint: {r: 0, g: 0, b: 0, a: 0}
+        m_Calls:
+        - m_Target: {fileID: 1209353355}
+          m_TargetAssemblyTypeName: DetergentManager, Assembly-CSharp
+          m_MethodName: IncreasePoison
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1209642994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45756,6 +45775,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1638592724476060682, guid: d53a25ba06b093e4fa3677cfa70b6e15,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -32
+      objectReference: {fileID: 0}
     - target: {fileID: 2243437594896907578, guid: d53a25ba06b093e4fa3677cfa70b6e15,
         type: 3}
       propertyPath: m_Pivot.x
@@ -45889,7 +45913,7 @@ PrefabInstance:
     - target: {fileID: 2462654859556837094, guid: d53a25ba06b093e4fa3677cfa70b6e15,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 427
+      value: 432
       objectReference: {fileID: 0}
     - target: {fileID: 2496434807341602214, guid: d53a25ba06b093e4fa3677cfa70b6e15,
         type: 3}
@@ -45910,6 +45934,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 3781115551331283493, guid: d53a25ba06b093e4fa3677cfa70b6e15,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 5444453257312797882, guid: d53a25ba06b093e4fa3677cfa70b6e15,
         type: 3}
@@ -45961,6 +45990,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7891465874745733430, guid: d53a25ba06b093e4fa3677cfa70b6e15,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -32
+      objectReference: {fileID: 0}
     - target: {fileID: 8403846324990009548, guid: d53a25ba06b093e4fa3677cfa70b6e15,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -45989,7 +46023,7 @@ PrefabInstance:
     - target: {fileID: 8403846324990009548, guid: d53a25ba06b093e4fa3677cfa70b6e15,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 429
+      value: 432
       objectReference: {fileID: 0}
     - target: {fileID: 8946821802094287736, guid: d53a25ba06b093e4fa3677cfa70b6e15,
         type: 3}

@@ -7,9 +7,6 @@ public class DetergentManager : MonoBehaviour
 {
     public static DetergentManager instance;
 
-    [SerializeField]
-    Color screenTint;
-
     // Requires 3 levels to reach ending
     int poisonLevel = 0;
 
@@ -38,12 +35,6 @@ public class DetergentManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If condition is met, trigger ending
-        if(poisonLevel >= 3)
-        {
-            TriggerEnding();
-        }
-        
         // Cooldown has been reached, reset poison
         if (timer <= 0)
         {
@@ -60,17 +51,26 @@ public class DetergentManager : MonoBehaviour
 
     void TriggerEnding()
     {
-
+        Debug.Log("Detergent Ending Triggered");
     }
 
     /// <summary>
     /// After eating bread, the poison level is increased and camera filter is changed
     /// </summary>
-    void IncreasePoison()
+    public void IncreasePoison(NewProp prop, int increment)
     {
-        poisonLevel++;
-        timer = poisonCooldownCount;
-        ApplyFilters();
+        if (prop.HasFlag(PropFlags.Bread)) // && prop.HasAttribute(StatAttManager.instance.HasDetergent
+        {
+            poisonLevel++;
+            ApplyFilters();
+            // If condition is met, trigger ending
+            if (poisonLevel >= 3)
+            {
+                TriggerEnding();
+            }
+            timer = poisonCooldownCount;
+        }
+        
     }
 
     /// <summary>

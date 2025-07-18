@@ -18,6 +18,7 @@ public class StatAttManager : MonoBehaviour
 
     [HorizontalLine(color: EColor.Gray)]
     public PropAttributeSO hasSpreadAtt;
+    public PropAttributeSO hasDetergentAtt;
 
     [HorizontalLine(color: EColor.Gray)]
     [Header("Spread Attributes")]
