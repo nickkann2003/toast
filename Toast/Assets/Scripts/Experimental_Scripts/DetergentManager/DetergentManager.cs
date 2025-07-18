@@ -13,6 +13,7 @@ public class DetergentManager : MonoBehaviour
     [SerializeField]
     float poisonCooldownCount;
 
+    [SerializeField]
     float timer = 0.0f;
 
     [SerializeField] private VolumeProfile filterProfile;
@@ -45,7 +46,7 @@ public class DetergentManager : MonoBehaviour
         // Countdown if able
         if(timer > 0)
         {
-            timer -= 0.1f * Time.deltaTime;
+            timer -= 1.0f * Time.deltaTime;
         }
     }
 
@@ -59,7 +60,7 @@ public class DetergentManager : MonoBehaviour
     /// </summary>
     public void IncreasePoison(NewProp prop, int increment)
     {
-        if (prop.HasFlag(PropFlags.Bread)) // && prop.HasAttribute(StatAttManager.instance.HasDetergent
+        if (prop.HasFlag(PropFlags.Bread) && prop.HasAttribute(StatAttManager.instance.hasDetergentAtt))
         {
             poisonLevel++;
             ApplyFilters();
@@ -87,6 +88,7 @@ public class DetergentManager : MonoBehaviour
 
             // Ate detergent once
             case 1:
+                globalVolume.profile = filterProfile;
                 break;
 
             // Ate detergent twice
