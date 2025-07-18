@@ -88,6 +88,13 @@ public class Spread : MonoBehaviour
         // Mark that bread has spread
         breadToSpread.AddAttribute(StatAttManager.instance.hasSpreadAtt);
 
+        // Condition for detergent, related to ending
+        this.gameObject.TryGetComponent<NewProp>(out NewProp p);
+        if(p.HasAttribute(StatAttManager.instance.detergentSpreadAtt)) //REPLACE WITH DETERGENT
+        {
+            breadToSpread.AddAttribute(StatAttManager.instance.hasDetergentAtt);
+        }
+
         // Trigger the event
         spreadEvent.RaiseEvent(breadToSpread, 1);
 

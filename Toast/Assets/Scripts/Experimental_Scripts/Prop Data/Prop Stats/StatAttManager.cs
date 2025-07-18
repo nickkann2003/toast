@@ -21,9 +21,10 @@ public class StatAttManager : MonoBehaviour
     public PropAttributeSO hasDetergentAtt;
 
     [HorizontalLine(color: EColor.Gray)]
-    [Header("Spread Attributes")]
+    [Header("Spread Object Attributes")]
     public PropAttributeSO avocadoSpreadAtt;
     public PropAttributeSO butterSpreadAtt;
+    public PropAttributeSO detergentSpreadAtt;
 
     [HorizontalLine(color: EColor.Gray)]
     public PropAttributeSO bagelAtt;
