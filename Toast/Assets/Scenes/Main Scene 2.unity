@@ -38319,6 +38319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1209353354}
   - component: {fileID: 1209353355}
+  - component: {fileID: 1209353356}
   m_Layer: 0
   m_Name: DetergentEndingManager
   m_TagString: Untagged
@@ -38353,7 +38354,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baae19af2aa1e4240b9509557203a8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenTint: {r: 0, g: 0, b: 0, a: 0}
+  poisonCooldownCount: 10
+  filterProfile: {fileID: 11400000, guid: 0bf47da602158fb49a05f96c0f453bf0, type: 2}
+  globalProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
+  globalVolume: {fileID: 360692423}
+  endingEvent: {fileID: 0}
+--- !u!114 &1209353356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209353353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0784d9d68d0bfcb4eb584da356bc4f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEventListeners:
+  - gameEvent: {fileID: 11400000, guid: c42dd6fd284a0de4c9e9c60e6be1abb8, type: 2}
+    response:
+      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1209353355}
           m_TargetAssemblyTypeName: DetergentManager, Assembly-CSharp
